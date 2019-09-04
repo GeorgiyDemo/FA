@@ -33,6 +33,13 @@ class ExampleClass():
 
         check = float(42)
         print(type(check))
+        a3 = "MEOW"
+        a1 = "MEOW"
+        a2 = a1
+        
+        print(a3 == a1)
+        print(a3 is a1)
+        print(a2 is a1)
 
 
 
