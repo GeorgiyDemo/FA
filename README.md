@@ -1,5 +1,5 @@
-<img src="https://github.com/GeorgiyDemo/KIP/blob/img/img/FA.png" />
-<img src="https://github.com/GeorgiyDemo/KIP/blob/img/img/CAT.jpg" align="right" />
+<img src="https://github.com/GeorgiyDemo/FA/blob/img/fa.png" />
+<img src="https://github.com/GeorgiyDemo/FA/blob/img/me.jpg" align="right" width="360" height="365" />
 
 ## Учебные материалы направления ПИ факультета ПМиИТ в ФУ при Правительстве РФ
 
