@@ -1,34 +1,33 @@
+"""
+Реализовать одно алфавитный шифр Цезаря для шифрования и дешифрование 
+строки любой длины и заданным ключем(сдвигом алфавита), 
+используется кириллический алфавит, знаки препинания, 
+цифры, верхний и нижний регистр.
+"""
 
-class CtsezarClass(object):
+GLOBAL_STR = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцшщъыьэюя0123456789 .,;...?:!()-|\"«»\'"
+
+class CesarClass(object):
     
-    def __init__(self):
-        """
-        Конструктор с вводом данных
-        """
-        self.GLOBAL_STR = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцшщъыьэюя0123456789 .,;...?:!()-|\"«»\'"
-        
-        try:
-            k = int(input("Введите сдвиг K -> "))
-            s = str(input("Введите строку -> "))
-        except:
-            print("Что-то пошло не так при вводе данных")
-            return
+    def __init__(self, key, string):
 
+        
+        
         out = ""
-        for char in s:
-            out += self.set_index(char, k)
-        print("Зашифрованный ключ: " + out)
+        for char in string:
+            out += self.encrypter(char, key)
+        self.encrypted = out 
 
-        s1 = ""
+        s = ""
         for char in out:
-            s1 += self.get_index(char, k)
-        print("Расшифрованный ключ: " + s1)
+            s += self.decrypter(char, key)
+        self.decrypted = s
         
-    def set_index(self, char, k):
+    def encrypter(self, char, k):
         """
         Метод для шифрования данных по шифру Цезаря
         """
-        s = self.GLOBAL_STR
+        s = GLOBAL_STR
         index = s.find(char)
 
         #Если длина ключа больше самой строки
@@ -40,11 +39,11 @@ class CtsezarClass(object):
         else:
             return s[index+k]
 
-    def get_index(self, char, k):
+    def decrypter(self, char, k):
         """
         Метод для расшифровки данных по шифру Цезаря
         """
-        s = self.GLOBAL_STR
+        s = GLOBAL_STR
         index = s.find(char)
 
         #Если длина ключа больше самой строки
@@ -56,6 +55,17 @@ class CtsezarClass(object):
         else:
             return s[index-k]
 
+def main():
+    try:
+        k = int(input("Введите сдвиг K -> "))
+        s = str(input("Введите строку -> "))
+    except:
+        print("Что-то пошло не так при вводе данных")
+        return 
+
+    obj = CesarClass(k, s)
+    print("Зашифрованный ключ: " + obj.encrypted)
+    print("Расшифрованный ключ: " + obj.decrypted)
 
 if __name__ == "__main__":
-    CtsezarClass()
+    main()
