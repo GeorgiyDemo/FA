@@ -15,10 +15,12 @@ def dict_generator():
     d = {}
     for i in range(129):
         d[i] = chr(i)
-
     return d
 
 class VigenereClass(object):
+    """
+    Основной класс для шифрования строк согласно шифру Виженера
+    """
     def __init__(self, w, k):
         
         self.w = w
@@ -28,11 +30,8 @@ class VigenereClass(object):
 
         self.k_indexes = self.encode_index(k)
         self.w_indexes = self.encode_index(w)
-                
 
         self.encoded_list = self.full_encode(self.w_indexes, self.k_indexes)
-        print("ENCODED LIST ")
-        print(self.encoded_list)
         self.encoded = "".join(self.decode_index(self.encoded_list))
 
         self.decoded_list = self.full_decode(self.encoded_list, self.k_indexes)
@@ -63,56 +62,67 @@ class VigenereClass(object):
                     outlist.append(input_d[element]) 
         return outlist
 
+    def full_encode(self, v, k):
 
-    def full_encode(self, value, key):
+        input_d = self.input_d
+        dic = self.comparator(v, k)
+        outlist = []
 
-        dic = self.comparator(value, key)
-        lis = []
-        d = self.input_d
+        ########################################################################
+        for value in dic:
+            go = (dic[value][0]+dic[value][1]) % len(input_d)
+            outlist.append(go) 
+        ########################################################################
+        
+        return outlist
 
-        for v in dic:
-            go = (dic[v][0]+dic[v][1]) % len(d)
-            lis.append(go) 
-        return lis
+    def full_decode(self, v, k):
 
-    def full_decode(self, value, key):
-
-        dic = self.comparator(value, key)
-        lis =[]
-        d = self.input_d 
-
-        for v in dic:
-            go = (dic[v][0]-dic[v][1]+len(d)) % len(d)
-            lis.append(go) 
-        return lis
+        input_d = self.input_d 
+        dic = self.comparator(v, k)
+        outlist = []
+        
+        ########################################################################
+        for value in dic:
+            go = (dic[value][0]-dic[value][1]+len(input_d)) % len(input_d)
+            outlist.append(go)
+        ########################################################################
+        
+        return outlist
     
     def comparator(self, value, key):
-        len_key = len(key)
-        dic = {}
-        iter = 0
-        full = 0
+        """
+        Сравнение
+        """
+
+        outdict = {}
+        buf_index = 0
+        all_index = 0
 
         for i in value:
-            dic[full] = [i,key[iter]]
-            full = full + 1
-            iter = iter +1
-            if (iter >= len_key):
-                iter = 0 
-        return dic 
+            outdict[all_index] = [i,key[buf_index]]
+            all_index += 1
+            buf_index += 1
+            if (buf_index >= len(key)):
+                buf_index = 0 
+        return outdict 
 
-if __name__ == "__main__":
-
-    obj = VigenereClass("Hello world", "key")
+def main():
+    obj = VigenereClass("meowmeowmeowmeow", "meow")
+    
     print("\n**Входные данные**")
     print('Слово: '+ obj.w)
-    print("Индексы слова: ",obj.w_indexes)
-    print('Ключ: '+ obj.k)
-    print("Индексы ключа: ",obj.k_indexes)
+    print("Индексы слова: ", obj.w_indexes)
+    print('Ключ: ', obj.k)
+    print("Индексы ключа: ", obj.k_indexes)
 
     print("\n**Шифрование**")
-    print("List: ",obj.encoded_list)
+    print("List: ", obj.encoded_list)
     print("Слово: ", obj.encoded)
 
     print("\n**Расшифровка**")
-    print("List: ",obj.decoded_list)
+    print("List: ", obj.decoded_list)
     print("Слово: ", obj.decoded)
+
+if __name__ == "__main__":
+    main()
