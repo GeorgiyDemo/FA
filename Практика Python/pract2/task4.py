@@ -17,25 +17,25 @@ def dict_generator():
         d[i] = chr(i)
     return d
 
-###########################################################################
-def comparator( w, k):
+def crypter(w, k):
         
     """
-    Сравнение
+    Сравнение кол-ва итераций с длинной ключа на основе индекса w и общего индекса k
+    - Возвращает tuple с двумя словарями
     """
-
     outdict = {}
-    buf_index = 0
-    all_index = 0
+    sum_outdict = {}
+    buf = 0
+    
+    for i in range(len(w)):
 
-    for i in w:
-        outdict[all_index] = [i,k[buf_index]]
-        all_index += 1
-        buf_index += 1
-        if (buf_index >= len(k)):
-            buf_index = 0 
-    return outdict 
-###########################################################################
+        sum_outdict[i] = w[i] + k[buf], w[i] - k[buf]
+        outdict[i] = w[i], k[buf]
+        buf += 1
+        if (buf >= len(k)):
+            buf = 0
+    
+    return (outdict, sum_outdict)
 
 class VigenereClass(object):
     """
@@ -89,14 +89,13 @@ class VigenereClass(object):
         - Возвращает список индексов list
         """
         input_d = self.input_d
-        compared_dict = comparator(w, k)
+        d = crypter(w, k)
+        compared_dict = d[0]
+        summed_dict = d[1]
         outlist = []
 
-        ########################################################################
-        for value in compared_dict:
-            go = (compared_dict[value][0]+compared_dict[value][1]) % len(input_d)
-            outlist.append(go) 
-        ########################################################################
+        for e in compared_dict:
+            outlist.append(summed_dict[e][0] % len(input_d)) 
         return outlist
 
     def full_decode(self, w, k):
@@ -105,20 +104,27 @@ class VigenereClass(object):
         - Возвращает список индексов list
         """
         input_d = self.input_d 
-        compared_dict = comparator(w, k)
+        d = crypter(w, k)
+        compared_dict = d[0]
+        summed_dict = d[1]
         outlist = []
         
-        ########################################################################
-        for value in compared_dict:
-            go = (compared_dict[value][0]-compared_dict[value][1]+len(input_d)) % len(input_d)
-            outlist.append(go)
-        ########################################################################
-        
+        for e in compared_dict:
+            new_element = (summed_dict[e][1]+len(input_d)) % len(input_d)
+            outlist.append(new_element)
+
         return outlist
 
 def main():
 
-    obj = VigenereClass("meowmeowmeowmeow", "meow")
+    try:
+        s = str(input("Введите строку для шифрования -> "))
+        k = str(input("Введите ключ -> "))
+    except:
+        print("Что-то пошло не так при вводе данных")
+        return 
+    
+    obj = VigenereClass(s, k)
     
     print("\n**Входные данные**")
     print('Слово: ', obj.w, "\nИндексы слова: ", obj.w_indexes)
