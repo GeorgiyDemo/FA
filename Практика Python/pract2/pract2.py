@@ -1,34 +1,27 @@
 """
-Деменчук Г.М., вариант 6, стандартные задания
+Деменчук Г.М., вариант 6, задания со звёздочкой *
 """
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
-class GraphClass():
+class LineGraphClass():
     """
-    Вариант задания для операторов цикла + график
+    Функции y=y(x), заданные графически*
 
-    Класс для вывода графика варианта задания 
-    для операторов цикла
     """
-    def __init__(self):
+    def __init__(self, d):
+        self.d = d
         self.graph()
 
     def graph(self):
-        args = ([],[])
-        x = 0.2
-        end_cycle = 0.8
 
-        while x != end_cycle:
+        x = [1,2,3,4,5]
+        y = [1,2,3,4,5]
 
-            obj = MathUpper(x)
-            args[0].append(x)
-            args[1].append(obj.result)
-            x = round(x + 0.1, 2)
-        
         fig = plt.figure()
         ax = fig.gca()
-        ax.plot(args[0], args[1], linewidth=2, marker="o")
+        ax.plot(x, y, linewidth=2)
         plt.show()
 
 class MathUpper():
@@ -89,19 +82,13 @@ class CycleClass():
 def main():
 
     try:
-        x = float(input("Введите x: "))
+        d = float(input("Введите -d: "))
     except:
         print("Проблема ввода данных!")
         return
 
-    obj = MathUpper(x)
-    print("\n*Условные операторы*")
-    print("Результат:"+str(obj.result))
-    
-    print("\n*Операторы цикла*")
-    CycleClass()
+    LineGraphClass(d)
 
-    GraphClass()
 
 if __name__ == "__main__":
     main()
