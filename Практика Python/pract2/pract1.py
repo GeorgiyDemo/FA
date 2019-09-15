@@ -26,8 +26,7 @@ class GraphClass():
             args[1].append(obj.result)
             x = round(x + 0.1, 2)
         
-        fig = plt.figure()
-        ax = fig.gca()
+        ax = plt.figure().gca()
         ax.plot(args[0], args[1], linewidth=2, marker="o")
         plt.show()
 

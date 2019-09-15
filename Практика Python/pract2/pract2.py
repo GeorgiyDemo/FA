@@ -3,91 +3,53 @@
 """
 import math
 import matplotlib.pyplot as plt
-import numpy as np
 
 class LineGraphClass():
     """
     Функции y=y(x), заданные графически*
-
     """
-    def __init__(self, d):
+    def __init__(self, c, d):
+
+        self.c = c
         self.d = d
         self.graph()
 
     def graph(self):
+        c = self.c
+        d = self.d
 
-        x = [1,2,3,4,5]
-        y = [1,2,3,4,5]
+        #Необходимо для адекватного масштаба
+        #TODO
+        buf_с = abs(c)
+        
+        #Координаты осей
+        m = ([-20, 20],[0, 0])
+        x = [-10,-c,0]
+        y = [0,0,d]
 
-        fig = plt.figure()
-        ax = fig.gca()
-        ax.plot(x, y, linewidth=2)
+        plt.style.use('seaborn-dark')
+        ax = plt.figure().gca()
+
+        #Ось координат X
+        ax.plot(m[0], m[1], linewidth=1, color="k")
+        #Ось координат Y
+        ax.plot(m[1], m[0], linewidth=1, color="k")
+        #Линия левая
+        ax.plot(x, y, linewidth=2, marker="o", color="b")
+        #Линия правая 
+        ax.plot([-e for e in reversed(x)], [-e for e in reversed(y)] , linewidth=2, marker="o", color="b")
         plt.show()
-
-class MathUpper():
-    """
-    Вариант задания на условные операторы
-
-    Класс для работы с первым заданием
-    на условные операторы
-    """
-    def __init__(self, x):
-        self.x = x
-        self.getter()
-    
-    def getter(self):
-
-        x = self.x
-        upper = x**3*math.e**(x-1)
-        lower = x**3-math.fabs(x)
-        if lower == 0:
-            print("Знаменатель равен нулю, деление на 0!")
-            self.result = 0
-            return
-
-        first = upper/lower
-        
-        log_sqrt = math.sqrt(x)-x
-        
-        if log_sqrt >= 0:
-            buf_log = math.log(log_sqrt,2)
-        else:
-            print("Выражение в log[sqrt(x)-x,2] меньше 0!")
-            self.result = 0
-            return
-
-        self.result = first-buf_log
-
-class CycleClass():
-    """
-    Вариант задания для операторов цикла
-
-    Класс для вызова MathUpper в цикле
-    """
-    def __init__(self):
-        self.cycle()
-    
-    def cycle(self):
-        x = 0.2
-        end_cycle = 0.8
-
-        while x != end_cycle:
-            obj = MathUpper(x)
-        
-            print("x=",x, "result = ",obj.result)
-            x = round(x + 0.1, 2)
-
-    pass
 
 def main():
 
     try:
-        d = float(input("Введите -d: "))
+        d = float(input("Введите d: "))
+        c = float(input("Введите c: "))
     except:
         print("Проблема ввода данных!")
         return
 
-    LineGraphClass(d)
+    LineGraphClass(c, d)
 
 
 if __name__ == "__main__":
