@@ -10,4 +10,5 @@ class DecimalClass(object):
         self.result = a+b
 
 if __name__ == "__main__":
+    o = DecimalClass()
     print(o.result)
