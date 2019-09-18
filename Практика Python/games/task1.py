@@ -25,8 +25,13 @@ class MainClass():
         self.matrix = out_list
         self.show_matrix()
 
-    def check_finish_game(self):
+    def check_finish_game(self, x, y):
+
+        
+        
+
         pass
+        #Цепочка - это ряд фишек, следующая фишка в котором примыкает к предыдущей с любого из 8-ми направлений. (описание правил игры:  )
         # после чьего хода получилась цепочка длиной хотя бы в 3 отметке,
         
     def change_matrix(self, x, y):
@@ -43,12 +48,12 @@ class MainClass():
             print("[!] Неправильные координаты")
         
         #Проверка на то, закончилась ли игра
-        self.check_finish_game()
+        self.check_finish_game(x,y)
 
     def show_matrix(self):
-        print("Игровое поле:")
+        print("Игровое поле:\n   0  1  2  3  4  5  6  7  8  9")
         for i in range(len(self.matrix)):
-            print(self.matrix[i])
+            print(i,self.matrix[i])
 
     def enter_number(self):
         check_tuple = check_input(input("Введите координаты по x,y для постановки фишки через запятую ->"))
