@@ -1,6 +1,6 @@
 import collections
 
-class CheckClass():
+class CheckClass(object):
     def __init__(self):
         self.custom_tuple()
         self.standart_dictionary()
