@@ -6,6 +6,18 @@
 ключевое слово вводится с клавиатуры.
 """
 
+def filter_input(s):
+    """
+    Метод для фильтрации
+    Позволяет вводить только английские символы
+    """
+    
+    try:
+        s.encode(encoding='utf-8').decode('ascii')
+        return True
+    except:
+        return False
+
 def dict_generator():
     """
     Создание словаря символов для шифрованного слова из char
@@ -13,7 +25,7 @@ def dict_generator():
     - Возвращает сгенерированный словарь
     """
     d = {}
-    for i in range(129):
+    for i in range(128):
         d[i] = chr(i)
     return d
 
@@ -117,12 +129,11 @@ class VigenereClass(object):
 
 def main():
 
-    try:
-        s = str(input("Введите строку для шифрования -> "))
-        k = str(input("Введите ключ -> "))
-    except:
-        print("Что-то пошло не так при вводе данных")
-        return 
+    s = str(input("Введите строку для шифрования -> "))
+    k = str(input("Введите ключ -> "))
+    if filter_input(s) == False or filter_input(k) == False:
+        print("Строки в задании могут содержать только английские символы!")
+        return
     
     obj = VigenereClass(s, k)
     
