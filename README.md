@@ -1,4 +1,4 @@
-<img src="https://github.com/GeorgiyDemo/FA/blob/img/fa.png" /> <img src="https://github.com/GeorgiyDemo/FA/blob/img/pmiit.png" />
+<img src="https://github.com/GeorgiyDemo/FA/blob/img/fa.png" /> <img src="https://github.com/GeorgiyDemo/FA/blob/img/pmiit.png" width="85" height="85" />
 <img src="https://github.com/GeorgiyDemo/FA/blob/img/cat.jpg" align="right"/>
 
 ## Учебные материалы направления ПИ факультета ПМиИТ в ФУ при Правительстве РФ
