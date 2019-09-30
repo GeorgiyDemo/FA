@@ -26,6 +26,8 @@ class MainClass():
         self.show_matrix()
 
     def check_finish_game(self, x, y):
+        print(x,y)
+        
 
         
         
