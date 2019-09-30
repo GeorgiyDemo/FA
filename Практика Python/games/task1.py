@@ -4,7 +4,6 @@
 Сама программа НЕ ходит, т.е. не пытается ставить в клетки отметки с целью выиграть игру.
 
 """
-
 def check_input(string):
     try:
         input_list = string.split(",")
@@ -12,8 +11,44 @@ def check_input(string):
     except:
         return (False, 0, 0)
 
+class CheckWinClass(object):
+    def __init__(self, matrix, x, y):
+        self.matrix = matrix
+        self.ignore = []
+        self.total = 0
+        self.check_finish_game(x,y)
 
-class MainClass():
+    def check_dots(self, x, y):
+        d=[]
+        d.append((x-1,y-1))
+        d.append((x,y))
+        d.append((x-1,y+1))
+        d.append((x,y+1))
+        d.append((x,y-1))
+        d.append((x+1,y))
+        d.append((x+1,y+1))
+        d.append((x+1,y-1))
+        return d
+
+    def contain(self, item, arr):
+        for elem in arr:
+            if elem[0]==item[0] and elem[1]==item[1]:
+                return True
+        return False
+
+    def check_finish_game(self,x,y):
+        self.ignore+=[(x,y)]
+        if self.matrix[x][y]:
+            self.total+=1
+            for dot in self.check_dots(x,y):
+                if self.contain((dot[0],dot[1]),self.ignore):
+                    continue
+                else:
+                    self.check_finish_game(dot[0],dot[1])
+        else:
+            return
+
+class MainClass(object):
     def __init__(self):
         self.matrix_generation()
         #TODO До того, пока нет 3 фишек подряд, пока while True
@@ -26,34 +61,9 @@ class MainClass():
         self.show_matrix()
 
     def check_finish_game(self, x, y):
-        #Элементы выше главной диагонали
-        main_diagonal_up = 0
-        boolfalg = True
-        
-        for i in range(1,3):
-            print(self.matrix[x-i][y-i],[x-i],[y-i])
-            if self.matrix[x-i][y-i] == 1:
-                main_diagonal_up += 1
-            else:
-                boolfalg = False
-                main_diagonal_up = 0
-
-        #Элементы ниже главной диагонали
-        main_diagonal_down = 1
-        boolfalg = False
-        for i in range(1,3):
-            if (self.matrix[x+i][y+i] == 1) and (boolfalg == True or i == 0):
-                boolfalg = True
-                main_diagonal_down += 1
-            else:
-                boolfalg = False
-                main_diagonal_down = 0
-
-        print("main_diagonal_up", main_diagonal_up)
-        print("main_diagonal_down",main_diagonal_down)
-        total = main_diagonal_up + main_diagonal_down
-        if total >= 3:
-            print("ВЫИГРАЛИ")
+        obj = CheckWinClass(self.matrix, x,y)
+        if obj.total > 2:
+            print("Вы проиграли")
 
         #Цепочка - это ряд фишек, следующая фишка в котором примыкает к предыдущей с любого из 8-ми направлений. (описание правил игры:  )
         # после чьего хода получилась цепочка длиной хотя бы в 3 отметке,
