@@ -26,13 +26,35 @@ class MainClass():
         self.show_matrix()
 
     def check_finish_game(self, x, y):
-        print(x,y)
+        #Элементы выше главной диагонали
+        main_diagonal_up = 0
+        boolfalg = True
         
+        for i in range(1,3):
+            print(self.matrix[x-i][y-i],[x-i],[y-i])
+            if self.matrix[x-i][y-i] == 1:
+                main_diagonal_up += 1
+            else:
+                boolfalg = False
+                main_diagonal_up = 0
 
-        
-        
+        #Элементы ниже главной диагонали
+        main_diagonal_down = 1
+        boolfalg = False
+        for i in range(1,3):
+            if (self.matrix[x+i][y+i] == 1) and (boolfalg == True or i == 0):
+                boolfalg = True
+                main_diagonal_down += 1
+            else:
+                boolfalg = False
+                main_diagonal_down = 0
 
-        pass
+        print("main_diagonal_up", main_diagonal_up)
+        print("main_diagonal_down",main_diagonal_down)
+        total = main_diagonal_up + main_diagonal_down
+        if total >= 3:
+            print("ВЫИГРАЛИ")
+
         #Цепочка - это ряд фишек, следующая фишка в котором примыкает к предыдущей с любого из 8-ми направлений. (описание правил игры:  )
         # после чьего хода получилась цепочка длиной хотя бы в 3 отметке,
         
