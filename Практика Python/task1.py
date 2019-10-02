@@ -38,7 +38,7 @@ class CheckWinClass(object):
 
     def check_finish_game(self,x,y):
         self.ignore+=[(x,y)]
-        if self.matrix[x][y]:
+        if self.matrix[x][y] == 1:
             self.total+=1
             for dot in self.check_dots(x,y):
                 if self.contain((dot[0],dot[1]),self.ignore):
