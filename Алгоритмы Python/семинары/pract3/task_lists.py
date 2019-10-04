@@ -66,11 +66,27 @@ class Task2(object):
         
         self.result = "Повторяющиеся значения:\n"+"".join(str(x)+" " for x in result)
 
-    
+class Task3(object):
+
+    """
+    Выполните oбработку элементов прямоугольной матрицы A, имеющей N строк и M столбцов.
+    Все элeменты имeют целый тип. Дано целое число H.
+    Опрeделите, какие столбцы имeют хотя бы однo такое число, а какие не имeют.
+    """
+    def __init__(self):
+        pass
+      
+
+    def processing(self):
+        pass
+
+        self.result = "Повторяющиеся значения:\n"+"".join(str(x)+" " for x in result)
+
 
 def main():
     #Task1()
-    Task2()
+    #Task2()
+    Task3()
 
 if __name__ == "__main__":
     main()
