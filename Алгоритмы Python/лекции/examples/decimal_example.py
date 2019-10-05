@@ -1,5 +1,6 @@
 import decimal
 
+
 class DecimalClass(object):
     def __init__(self):
         self.m()
@@ -7,7 +8,8 @@ class DecimalClass(object):
     def m(self):
         a = decimal.Decimal(39595)
         b = decimal.Decimal(354363.430643693496933364636)
-        self.result = a+b
+        self.result = a + b
+
 
 if __name__ == "__main__":
     o = DecimalClass()

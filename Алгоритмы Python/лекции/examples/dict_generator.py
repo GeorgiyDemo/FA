@@ -12,7 +12,7 @@ print(lst_gen)
 # создание списка с помощью цикла и условия (фильтра):
 lst_new2 = []
 for el in lst_val:
-    if el % 2 == 0: # число el четное (остаток от деления на 2 равен 0)
+    if el % 2 == 0:  # число el четное (остаток от деления на 2 равен 0)
         lst_new2.append(el * 2)
 print(lst_new2)
 
@@ -20,13 +20,12 @@ print(lst_new2)
 lst_gen2 = [el * 2 for el in lst_val if el % 2 == 0]
 print(lst_gen2)
 
-
 filt_list = [1, 3, 2, 8, 4, 11, 8, 9]
-for ind in range(len(filt_list) - 1, -1, -1): # идем с конца в начало с шагом -1
+for ind in range(len(filt_list) - 1, -1, -1):  # идем с конца в начало с шагом -1
     el = filt_list[ind]
-    print(f'ind: {ind}, el: {el}')    
-#     do_action(element)
+    print(f'ind: {ind}, el: {el}')
+    #     do_action(element)
     if el % 2 == 0:
-        print('removing')        
+        print('removing')
         del filt_list[ind]
-print(filt_list) # РАБОТАЕТ!
+print(filt_list)  # РАБОТАЕТ!
