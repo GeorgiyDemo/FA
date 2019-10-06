@@ -11,7 +11,7 @@ class Task1(object):
     """
 
     def __init__(self):
-        out_text = "Введите список чисел через запятую ->"
+        out_text = "Введите список чисел через запятую -> "
         self.input_l = [int(x) for x in input(out_text).split(",")]
         self.processing()
         print(self.result)
@@ -46,7 +46,7 @@ class Task2(object):
     """
 
     def __init__(self):
-        out_text = "Введите список чисел через запятую ->"
+        out_text = "Введите список чисел через запятую -> "
         self.input_l = [int(x) for x in input(out_text).split(",")]
         self.processing()
         print(self.result)
@@ -96,7 +96,7 @@ class Task3(object):
     def element_search(self):
         d = {}
         try:
-            number = int(input("Введите число H для поиска по столбцам ->"))
+            number = int(input("Введите число H для поиска по столбцам -> "))
         except:
             print("Ошибка ввода данных")
             return
@@ -135,7 +135,8 @@ class Task4(object):
             return int(e)
         except:
             return e
-        
+    
+    #TODO СДЕЛАТЬ В ОДНУ СТРОЧКУ
     def matrix_input(self):
         l = []
         for i in range(self.n):
@@ -164,12 +165,45 @@ class Task4(object):
                     flag = False
         print(d[flag])
 
+class Task5(object):
+    """
+    Список задается пользователем с клавиатуры.
+    Определите, можно ли удалить из списка каких-нибудь два элемента так, чтобы новый список оказался упорядоченным
+    """
+    def __init__(self):
+        pass
+
+class Task6(object):
+    """
+    Список задается пользователем с клавиатуры.
+    Определите, сколько различных значений содержится в списке.
+    """
+    def __init__(self):
+        self.processing()
+
+    def check_digit(self, e):
+        try:
+            return int(e)
+        except:
+            return e
+
+    def processing(self):
+        s = "Введите элементы списка через запятую ->"
+        r = len(set([self.check_digit(e) for e in input(s).split(",")]))
+        print("Уникальных значений в списке:", r)
+        
+
+
+        
 
 def main():
-    # Task1()
-    # Task2()
+    #Task1()
+    #Task2()
     #Task3()
-    Task4()
+    #Task4()
+    #TODO TASK 5
+    #Task5()
+    Task6()
 
 
 if __name__ == "__main__":
