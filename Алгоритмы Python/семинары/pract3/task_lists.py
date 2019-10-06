@@ -1,3 +1,5 @@
+import random
+
 class Task1(object):
     """
     Нaпишите программу, на вход которой подаётся список чисел одной строкой.
@@ -60,12 +62,11 @@ class Task2(object):
         for e in l:
             d[e] += 1
 
-        for e in d:
-            if d[e] > 1:
-                result.append(e)
+        for k, v in d.items():
+            if v > 1:
+                result.append(k)
 
         self.result = "Повторяющиеся значения:\n" + "".join(str(x) + " " for x in result)
-
 
 class Task3(object):
     """
@@ -75,18 +76,100 @@ class Task3(object):
     """
 
     def __init__(self):
-        pass
+        try:
+            self.n = int(input("Введите количество строк N в матрице -> "))
+            self.m = int(input("Введите количество столбцов M в матрице -> "))
+        except:
+            print("Ошибка ввода данных")
+            return
+        
+        self.matrix_gen()
+        self.element_search()
+    
+    def matrix_gen(self):
+        m = [[random.randint(10,99) for c in range(self.m)] for r in range(self.n)]
+        print("Исходная матрица:")
+        for e in m:
+            print(e)
+        self.matrix = m
 
-    def processing(self):
-        pass
+    def element_search(self):
+        d = {}
+        try:
+            number = int(input("Введите число H для поиска по столбцам ->"))
+        except:
+            print("Ошибка ввода данных")
+            return
+        
+        for i in range(len(self.matrix[0])):
+            d[i] = 0
 
-        self.result = "Повторяющиеся значения:\n" + "".join(str(x) + " " for x in result)
+        for i in range(len(self.matrix[0])):
+            for j in range(len(self.matrix)):
+                if self.matrix[j][i] == number:
+                    d[i] += 1
+
+        for k, v in d.items():
+            if v == 0:
+                print("Столбец №"+str(k+1)+" - значений нет")
+            else:
+                print("Столбец №"+str(k+1)+" - повторение значения "+str(v)+" раз(а)")
+
+
+class Task4(object):
+    """
+    Список задается пользователем с клавиатуры. Определите, является ли список симметричным .
+    """
+
+    def __init__(self):
+        try:
+            self.n = int(input("Введите размерность матрицы -> "))
+        except:
+            print("Ошибка ввода данных")
+            return
+        self.matrix_input()
+        self.symmetry_detect()
+        
+    def check_digit(self, e):
+        try:
+            return int(e)
+        except:
+            return e
+        
+    def matrix_input(self):
+        l = []
+        for i in range(self.n):
+            l.append([])
+            for j in range(self.n):
+                l[i].append(self.check_digit(input("Введите элемент ["+str(i)+"]["+str(j)+"] ->")))
+        
+        print("\nИсходная матрица:")
+        for e in l:
+            print(e)
+        self.out_l = l
+
+
+    def symmetry_detect(self):
+        
+        d = {
+            True : "Список является симметричным",
+            False : "Список НЕ является симметричным"
+        }
+
+        l = self.out_l
+        flag = True
+        for i in range(len(l)):
+            for j in range(len(l)):
+                if l[i][j] != l[j][i]:
+                    flag = False
+        print(d[flag])
 
 
 def main():
     # Task1()
     # Task2()
-    Task3()
+    #Task3()
+    Task4()
 
 
 if __name__ == "__main__":
