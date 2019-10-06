@@ -192,9 +192,68 @@ class Task6(object):
         r = len(set([self.check_digit(e) for e in input(s).split(",")]))
         print("Уникальных значений в списке:", r)
         
+class Task7(object):
+    """
+    Список задается пользователем с клавиатуры.
+    Удаление из списка элементов, значения которых уже встречались в предыдущих элементах
+    """
+    def __init__(self):
+        self.processing()
 
+    def check_digit(self, e):
+        try:
+            return int(e)
+        except:
+            return e
 
+    def processing(self):
+        s = "Введите элементы списка через запятую ->"
+        r = list(set([self.check_digit(e) for e in input(s).split(",")]))
+        print("Список без повторных значений: ", r)
+
+class Task8(object):
+    """
+    Пользователь вводит упорядоченный список книг (заданной длины по алфавиту).
+    Добавить новую книгу, сохранив
+    упорядоченность списка по алфавиту
+    """
+    def __init__(self):
+        self.add_values()
+        #Ввод исходных элементов
+        pass
+
+    #TODO
+    def add_values(self):
+        books_list = input("Введите книги через запятую -> ").split(",")
+        books_list.sort()
+        print(books_list)
         
+
+    def add_book_to_list(self, input_list, n):
+        # Searching for the position 
+        for i in range(len(input_list)): 
+            if input_list[i] > n: 
+                index = i 
+                break
+        
+        # Inserting n in the list 
+        out_list = input_list[:i] + [n] + input_list[i:] 
+        return out_list
+    
+        # Driver function 
+        #list = [1, 2, 4] 
+        #n = 3
+        
+        #print(insert(list, n)) 
+
+class Task9(object):
+    """
+    Дан список целых чисел. Упорядочьте по возрастанию только:
+    а) положительные числа;
+    б) элементы с четными порядковыми номерами в списке.
+    """
+    def __init__(self):
+        pass
 
 def main():
     #Task1()
@@ -203,7 +262,8 @@ def main():
     #Task4()
     #TODO TASK 5
     #Task5()
-    Task6()
+    #Task6()
+    Task7()
 
 
 if __name__ == "__main__":
