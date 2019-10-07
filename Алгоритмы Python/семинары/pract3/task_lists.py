@@ -1,4 +1,5 @@
 import random
+import collections
 
 class Task1(object):
     """
@@ -35,8 +36,6 @@ class Task1(object):
             print(l[-1], "пары: ", l[-2], l[0])
 
             self.result = out_l
-
-
 class Task2(object):
     """
     Нaпишите прогрaмму, котoрая принимает на вход спиcок чисел в одной cтроке и выводит на экран в 
@@ -67,7 +66,6 @@ class Task2(object):
                 result.append(k)
 
         self.result = "Повторяющиеся значения:\n" + "".join(str(x) + " " for x in result)
-
 class Task3(object):
     """
     Выполните oбработку элементов прямоугольной матрицы A, имеющей N строк и M столбцов.
@@ -114,8 +112,6 @@ class Task3(object):
                 print("Столбец №"+str(k+1)+" - значений нет")
             else:
                 print("Столбец №"+str(k+1)+" - повторение значения "+str(v)+" раз(а)")
-
-
 class Task4(object):
     """
     Список задается пользователем с клавиатуры. Определите, является ли список симметричным .
@@ -164,15 +160,15 @@ class Task4(object):
                 if l[i][j] != l[j][i]:
                     flag = False
         print(d[flag])
-
+#TODO
 class Task5(object):
     """
     Список задается пользователем с клавиатуры.
-    Определите, можно ли удалить из списка каких-нибудь два элемента так, чтобы новый список оказался упорядоченным
+    Определите, можно ли удалить из списка каких-нибудь два элемента так, 
+    чтобы новый список оказался упорядоченным
     """
     def __init__(self):
         pass
-
 class Task6(object):
     """
     Список задается пользователем с клавиатуры.
@@ -191,7 +187,7 @@ class Task6(object):
         s = "Введите элементы списка через запятую ->"
         r = len(set([self.check_digit(e) for e in input(s).split(",")]))
         print("Уникальных значений в списке:", r)
-        
+             
 class Task7(object):
     """
     Список задается пользователем с клавиатуры.
@@ -219,33 +215,39 @@ class Task8(object):
     """
     def __init__(self):
         self.add_values()
-        #Ввод исходных элементов
-        pass
+        self.add_new_value()
 
-    #TODO
     def add_values(self):
         books_list = input("Введите книги через запятую -> ").split(",")
-        books_list.sort()
-        print(books_list)
+        for i in range(len(books_list)):
+            if books_list[i][0] == " ":
+                books_list[i] = books_list[i][1:]
+        self.books_list = sorted(books_list, key=str.lower)
+        print("Введенный list:\n"+str(self.books_list))
         
+    def add_new_value(self):
+        self.new_book = input("Введите название книги для добавления в существующий список ->")
+        self.add_book_to_list()
+    
+    def add_book_to_list(self):
+        buf_list = [e.lower() for e in self.books_list]
+        input_element = self.new_book.lower()
 
-    def add_book_to_list(self, input_list, n):
-        # Searching for the position 
-        for i in range(len(input_list)): 
-            if input_list[i] > n: 
+        for i in range(len(buf_list)): 
+            if buf_list[i] > input_element: 
                 index = i 
                 break
         
-        # Inserting n in the list 
-        out_list = input_list[:i] + [n] + input_list[i:] 
-        return out_list
+        print("Индекс для вставки:",index)
+        out_list = self.books_list[:index] + [self.new_book] + self.books_list[index:] 
+        print("Результирующий list:\n"+str(out_list))
     
         # Driver function 
         #list = [1, 2, 4] 
         #n = 3
         
         #print(insert(list, n)) 
-
+#TODO Task9
 class Task9(object):
     """
     Дан список целых чисел. Упорядочьте по возрастанию только:
@@ -253,7 +255,54 @@ class Task9(object):
     б) элементы с четными порядковыми номерами в списке.
     """
     def __init__(self):
-        pass
+        
+        try:
+            n = int(input("Введите размерность списка ->"))
+        except:
+            print("Что-то пошло не так при вводе данных")
+            return
+
+        self.l = [random.randint(-10,10) for _ in range(n)]
+        print(self.l)
+        self.l.sort(key=lambda kot: (kot>0, kot))
+        print(self.l)
+        #self.l = [random.randint(10,99) for r in range(self.n)]
+
+class Task10(object):
+    """
+    Даны два списка. Определите, совпадают ли множества их элементов.  
+    """
+    def __init__(self):
+        self.l1 = []
+        self.l2 = []
+        self.input_data()
+    
+    def input_data(self):
+
+        try:
+            n1 = int(input("Введите размерность списка №1 ->"))
+            n2 = int(input("Введите размерность списка №2 ->"))
+        except:
+            print("Что-то пошло не так при вводе данных")
+            return
+        
+        print("*Заполение списка №1*")
+        for i in range(n1):
+            self.l1.append(input("Введите элемент списка №"+str(i)+" -> "))
+        
+        print("*Заполение списка №2")
+        for i in range(n2):
+            self.l2.append(input("Введите элемент списка №"+str(i)+" -> "))
+    
+    def comparator(self):
+        
+        d = {
+            True : "Множества списокв совпадают",
+            False : "Множества списков НЕ совпадают",
+        }
+
+        print(d[collections.Counter(self.l1) == collections.Counter(self.l2)])
+ 
 
 def main():
     #Task1()
@@ -263,7 +312,11 @@ def main():
     #TODO TASK 5
     #Task5()
     #Task6()
-    Task7()
+    #Task7()
+    #Task8()
+    #TODO TASK 9
+    #Task9()
+    Task10()
 
 
 if __name__ == "__main__":
