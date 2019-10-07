@@ -1,5 +1,5 @@
 import random
-import collections
+import itertools
 
 class Task1(object):
     """
@@ -276,6 +276,7 @@ class Task10(object):
         self.l1 = []
         self.l2 = []
         self.input_data()
+        self.comparator()
     
     def input_data(self):
 
@@ -290,7 +291,7 @@ class Task10(object):
         for i in range(n1):
             self.l1.append(input("Введите элемент списка №"+str(i)+" -> "))
         
-        print("*Заполение списка №2")
+        print("*Заполение списка №2*")
         for i in range(n2):
             self.l2.append(input("Введите элемент списка №"+str(i)+" -> "))
     
@@ -301,10 +302,34 @@ class Task10(object):
             False : "Множества списков НЕ совпадают",
         }
 
-        print(d[collections.Counter(self.l1) == collections.Counter(self.l2)])
- 
+        print(d[set(self.l1) == set(self.l2)])
+
+class Task11(object):
+    """
+    Дан список. После каждого элемента добавьте предшествующую ему часть списка.
+    """
+    def __init__(self):
+        self.l = input("Введите элементы списка через запятую -> ").split(",")
+        self.processing()
+    
+    #ВВОД [1,2,3]
+    #ВЫВОД [1,2,1,3,1,2,1]
+    def processing(self):
+        main_list = self.l
+
+        for i in range(len(main_list)):
+            buf_list = main_list[:i]
+            print(buf_list)
+
+            #print("СРЕЗ:",main_list[:i+1])
+            #main_list.insert(i, main_list[:i+1])
+        #print(main_list)
+        print(main_list)
+    
+
 
 def main():
+    #TODO ВЫБОР ЗАДАНИЯ
     #Task1()
     #Task2()
     #Task3()
@@ -316,7 +341,8 @@ def main():
     #Task8()
     #TODO TASK 9
     #Task9()
-    Task10()
+    #Task10()
+    Task11()
 
 
 if __name__ == "__main__":
