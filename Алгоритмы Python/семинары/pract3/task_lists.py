@@ -1,5 +1,4 @@
 import random
-import itertools
 
 class Task1(object):
     """
@@ -160,7 +159,7 @@ class Task4(object):
                 if l[i][j] != l[j][i]:
                     flag = False
         print(d[flag])
-#TODO
+#TODO Task5
 class Task5(object):
     """
     Список задается пользователем с клавиатуры.
@@ -169,7 +168,6 @@ class Task5(object):
     """
     def __init__(self):
         pass
-
 class Task6(object):
     """
     Список задается пользователем с клавиатуры.
@@ -187,8 +185,7 @@ class Task6(object):
     def processing(self):
         s = "Введите элементы списка через запятую ->"
         r = len(set([self.check_digit(e) for e in input(s).split(",")]))
-        print("Уникальных значений в списке:", r)
-             
+        print("Уникальных значений в списке:", r)           
 class Task7(object):
     """
     Список задается пользователем с клавиатуры.
@@ -207,7 +204,6 @@ class Task7(object):
         s = "Введите элементы списка через запятую ->"
         r = list(set([self.check_digit(e) for e in input(s).split(",")]))
         print("Список без повторных значений: ", r)
-
 class Task8(object):
     """
     Пользователь вводит упорядоченный список книг (заданной длины по алфавиту).
@@ -268,7 +264,6 @@ class Task9(object):
         self.l.sort(key=lambda kot: (kot>0, kot))
         print(self.l)
         #self.l = [random.randint(10,99) for r in range(self.n)]
-
 class Task10(object):
     """
     Даны два списка. Определите, совпадают ли множества их элементов.  
@@ -304,7 +299,6 @@ class Task10(object):
         }
 
         print(d[set(self.l1) == set(self.l2)])
-
 class Task11(object):
     """
     Дан список. После каждого элемента добавьте предшествующую ему часть списка.
@@ -326,7 +320,6 @@ class Task11(object):
             #main_list.insert(i, main_list[:i+1])
         #print(main_list)
         print(main_list)
-    
 class Task12(object):
     """
     Пусть элементы списка хранят символы предложения. Замените каждое вхождение слова 'itma
@@ -370,8 +363,14 @@ class Task12(object):
                 processing_flag = False
         
         print("Список после замены:\n"+str(self.list))
-
-
+class Task13(object):
+    """
+    Дан текстовый файл. Создайте двусвязный список, каждый элемент которого содержит
+    количество символов в соответствующей строке текста.
+    """
+    def __init__(self):
+        pass
+    def 
 def main():
     #TODO ВЫБОР ЗАДАНИЯ
     #Task1()
@@ -387,6 +386,7 @@ def main():
     #Task9()
     #Task10()
     #Task11()
+    #Task12()
     Task12()
 
 
