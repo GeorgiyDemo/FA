@@ -169,6 +169,7 @@ class Task5(object):
     """
     def __init__(self):
         pass
+
 class Task6(object):
     """
     Список задается пользователем с клавиатуры.
@@ -326,6 +327,49 @@ class Task11(object):
         #print(main_list)
         print(main_list)
     
+class Task12(object):
+    """
+    Пусть элементы списка хранят символы предложения. Замените каждое вхождение слова 'itma
+    threpetitor' на 'silence'.
+    """
+    def __init__(self):
+        self.list = list("kotitmaitmaitmathrepetitorkotthrepekotitmathrepetitor")
+        self.sub_list = list("itmathrepetitor")
+        self.replace_list = list("silence")
+        self.processing()
+
+    def get_sublist_index(self):
+        
+        sub = self.sub_list
+        lst = self.list
+        sublen = len(sub)
+        first = sub[0] if sub else []
+        indx = -1
+
+        while True:
+            try:
+                indx = lst.index(first, indx + 1)
+            except ValueError:
+                break
+            if sub == lst[indx: indx + sublen]:
+                return True, indx, indx+len(sub)
+        return False, 0, 0
+
+    def processing(self):
+
+        print("Список до замены:\n"+str(self.list))
+        processing_flag = True
+
+        while processing_flag == True:
+            index_tuple = self.get_sublist_index()
+            if index_tuple[0] == True:
+                print("Замена подсписка по индексам", index_tuple[1], index_tuple[2])
+                del self.list[index_tuple[1]:index_tuple[2]]
+                self.list[index_tuple[1]:index_tuple[1]] = self.replace_list
+            else:
+                processing_flag = False
+        
+        print("Список после замены:\n"+str(self.list))
 
 
 def main():
@@ -342,7 +386,8 @@ def main():
     #TODO TASK 9
     #Task9()
     #Task10()
-    Task11()
+    #Task11()
+    Task12()
 
 
 if __name__ == "__main__":
