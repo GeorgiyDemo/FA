@@ -258,12 +258,44 @@ class Task9(object):
         except:
             print("Что-то пошло не так при вводе данных")
             return
-
+        
         self.l = [random.randint(-10,10) for _ in range(n)]
-        print(self.l)
-        self.l.sort(key=lambda kot: (kot>0, kot))
-        print(self.l)
-        #self.l = [random.randint(10,99) for r in range(self.n)]
+        print("Исходная матрица:\n",self.l)
+        self.a_processing()
+        self.b_processing()
+        print("Упорядочьте по возрастанию только положительные числа:\n", self.a_l)
+        print("Упорядочьте по возрастанию только элементы с четными порядковыми номерами в списке:\n", self.b_l)
+
+    def a_processing(self):
+        buf_list = []
+        matrix = self.l 
+        for i in range(len(matrix)):
+            if matrix[i] > 0:
+                buf_list.append(matrix[i])
+        buf_list.sort()
+        
+        index = 0
+        for i in range(len(matrix)):
+            if matrix[i] > 0:
+                matrix[i] = buf_list[index]
+                index += 1
+        self.a_l = matrix
+
+    def b_processing(self):
+        buf_list = []
+        matrix = self.l 
+        for i in range(len(matrix)):
+            if i % 2 == 0:
+                buf_list.append(matrix[i])
+        buf_list.sort()
+        
+        index = 0
+        for i in range(len(matrix)):
+            if i % 2 == 0:
+                matrix[i] = buf_list[index]
+                index += 1
+        self.b_l = matrix
+
 class Task10(object):
     """
     Даны два списка. Определите, совпадают ли множества их элементов.  
@@ -299,7 +331,7 @@ class Task10(object):
         }
 
         print(d[set(self.l1) == set(self.l2)])
-#TODO Task11
+
 class Task11(object):
     """
     Дан список. После каждого элемента добавьте предшествующую ему часть списка.
@@ -307,20 +339,23 @@ class Task11(object):
     def __init__(self):
         self.l = input("Введите элементы списка через запятую -> ").split(",")
         self.processing()
-    
-    #ВВОД [1,2,3]
-    #ВЫВОД [1,2,1,3,1,2,1]
+        print(self.result)
+
     def processing(self):
-        main_list = self.l
+        s = self.l
+        counter = -1
+        output_list = [s[0]]
+        for element_first in s:
+            counter += 1
+            if counter == 0:
+                pass
+            else:
+                output_list.append(element_first)
+                for element_alter in output_list[:counter]:
+                    output_list.append(element_alter)
+                    counter += 1
+        self.result = output_list
 
-        for i in range(len(main_list)):
-            buf_list = main_list[:i]
-            print(buf_list)
-
-            #print("СРЕЗ:",main_list[:i+1])
-            #main_list.insert(i, main_list[:i+1])
-        #print(main_list)
-        print(main_list)
 class Task12(object):
     """
     Пусть элементы списка хранят символы предложения. Замените каждое вхождение слова 'itma
@@ -398,7 +433,6 @@ def main():
     #Task5()
     #TODO TASK 9
     #Task9()
-    #TODO Task 11
 
 
 if __name__ == "__main__":
