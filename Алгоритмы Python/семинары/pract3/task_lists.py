@@ -1,4 +1,5 @@
 import random
+from itertools import permutations 
 
 class Task1(object):
     """
@@ -159,7 +160,7 @@ class Task4(object):
                 if l[i][j] != l[j][i]:
                     flag = False
         print(d[flag])
-#TODO Task5
+
 class Task5(object):
     """
     Список задается пользователем с клавиатуры.
@@ -167,7 +168,32 @@ class Task5(object):
     чтобы новый список оказался упорядоченным
     """
     def __init__(self):
-        pass
+        self.l = [self.check_digit(e) for e in input("Введите элементы списка через запятую -> ").split(",")]
+        self.processing()
+
+    def check_digit(self, e):
+        try:
+            return int(e)
+        except:
+            return e
+
+    def processing(self):
+        this_list = self.l
+        perm = permutations(this_list, 2)
+        for e in list(perm): 
+            print(e)
+            buf_list = this_list[:]
+            buf_list.remove(e[0])
+            buf_list.remove(e[1])
+            buf_list1 = buf_list[:] 
+            buf_list1.sort() 
+
+            if (buf_list1 == buf_list): 
+                print("Удалили элементы",e[0],"и",e[1],"\nПолучили:",buf_list)
+                break
+
+        this_list = self.l
+            
 class Task6(object):
     """
     Список задается пользователем с клавиатуры.
@@ -185,7 +211,8 @@ class Task6(object):
     def processing(self):
         s = "Введите элементы списка через запятую ->"
         r = len(set([self.check_digit(e) for e in input(s).split(",")]))
-        print("Уникальных значений в списке:", r)           
+        print("Уникальных значений в списке:", r)
+           
 class Task7(object):
     """
     Список задается пользователем с клавиатуры.
@@ -244,7 +271,6 @@ class Task8(object):
         #n = 3
         
         #print(insert(list, n)) 
-#TODO Task9
 class Task9(object):
     """
     Дан список целых чисел. Упорядочьте по возрастанию только:
@@ -413,7 +439,7 @@ def main():
         "2" : Task2,
         "3" : Task3,
         "4" : Task4,
-        "5" : Task5,
+        "5" : Task5(),
         "6" : Task6,
         "7" : Task7,
         "8" : Task8,
@@ -428,11 +454,6 @@ def main():
         d[input_str]()
     else:
         print("Такого номера нет!")
-
-    #TODO TASK 5
-    #Task5()
-    #TODO TASK 9
-    #Task9()
 
 
 if __name__ == "__main__":
