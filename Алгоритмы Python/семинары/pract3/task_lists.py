@@ -299,6 +299,7 @@ class Task10(object):
         }
 
         print(d[set(self.l1) == set(self.l2)])
+#TODO Task11
 class Task11(object):
     """
     Дан список. После каждого элемента добавьте предшествующую ему часть списка.
@@ -326,7 +327,7 @@ class Task12(object):
     threpetitor' на 'silence'.
     """
     def __init__(self):
-        self.list = list("kotitmaitmaitmathrepetitorkotthrepekotitmathrepetitor")
+        self.list = list(input("Введите строку для замены 'itmathrepetitor' на 'silence' -> "))
         self.sub_list = list("itmathrepetitor")
         self.replace_list = list("silence")
         self.processing()
@@ -370,24 +371,34 @@ class Task13(object):
     """
     def __init__(self):
         pass
-    def 
+    
 def main():
-    #TODO ВЫБОР ЗАДАНИЯ
-    #Task1()
-    #Task2()
-    #Task3()
-    #Task4()
+    d = {
+        "1" : Task1,
+        "2" : Task2,
+        "3" : Task3,
+        "4" : Task4,
+        "5" : Task5,
+        "6" : Task6,
+        "7" : Task7,
+        "8" : Task8,
+        "9" : Task9,
+        "10" : Task10,
+        "11" : Task11,
+        "12" : Task12,
+    }
+
+    input_str = input("Введите номер задания ->")
+    if input_str in d:
+        d[input_str]()
+    else:
+        print("Такого номера нет!")
+
     #TODO TASK 5
     #Task5()
-    #Task6()
-    #Task7()
-    #Task8()
     #TODO TASK 9
     #Task9()
-    #Task10()
-    #Task11()
-    #Task12()
-    Task12()
+    #TODO Task 11
 
 
 if __name__ == "__main__":
