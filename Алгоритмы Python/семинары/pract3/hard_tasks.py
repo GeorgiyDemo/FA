@@ -1,7 +1,6 @@
 """
 Разбор двусвязных списков по заданиям 13-14
 """
-
 def print_backward(lst):
     if lst == None:
         return
