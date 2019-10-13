@@ -2,72 +2,89 @@
 Создайте двусвязный список групп факультета. Каждая группа представляет собой односвязн
 ый список студентов.
 """
+import yaml
+
+
+class GetDataClass(object):
+    def __init__(self):
+        self.processing()
+
+    def processing(self):
+        with open("./d.yml", 'r') as stream:
+            self.d = yaml.safe_load(stream)
 
 
 class Students(object):
+    """
+    Класс для создания коллекции студентов в виде односвязанного списка
+    Поля:
+    - value - значение объекта
+    - next - ссылка на след объект в коллекции
+    """
 
-    def __init__(self, value=None, next=None, previous=None):
+    def __init__(self, value=None, next=None):
         self.value = value
-        self.next  = next
-        self.previous = previous
+        self.next = next
 
     def __str__(self):
         return str(self.value)
+
 
 class Groups(object):
+    """
+    Класс для создания коллекции групп в виде двусвязного списка
+    Поля:
+    - value - значение объекта
+    - next - ссылка на след объект в коллекции
+    - previous - ссылка на предыдущий объект коллекции
+    """
 
     def __init__(self, value=None, next=None, previous=None):
         self.value = value
-        self.next  = next
+        self.next = next
         self.previous = previous
 
     def __str__(self):
         return str(self.value)
+
 
 class ProcessingClass(object):
 
     def __init__(self):
-        self.file2text()
+        self.get_data()
         self.processing()
 
-    def file2text(self):
-        with open(TXT_FILE, 'r') as stream:
-            list_m = stream.readlines()
-            self.text = [e.replace("\n", "") for e in list_m]
-    
-    def print_backward_previous(self, lst):
-        if lst == None:
-            return
-        head = lst
-        tail = lst.next
-        self.print_backward_previous(tail)
-        print(head, head.previous)
-    
-    def print_backward_next(self, lst):
-        if lst == None:
-            return
-        head = lst
-        tail = lst.next
-        self.print_backward_next(tail)
-        print(head, head.next)
+    def get_data(self):
+        settings = GetDataClass()
+        self.data = settings.d
 
     def processing(self):
+        group_list = []
+        for group in self.data:
+            student_list = []
+            for student in self.data[group]:
+                student_list.append(Students(student))
+                print("Занесли  '" + student + "' ")
 
-        obj_list = []
-        for txt in self.text:
-            obj_list.append(Node(len(txt)))
-            print("Занесли len '"+txt+"' "+str(len(txt)))
-        
-        for i in range(len(obj_list)-1):
-            obj_list[i].next = obj_list[i+1]
-            obj_list[i+1].previous = obj_list[i]
+                # Связываем между собой студентов группы
+                for i in range(len(student_list) - 1):
+                    student_list[i].next = student_list[i + 1]
 
-        for i in range(len(obj_list)):
-            print("-------\n*Элемент №"+str(i)+"*")
-            print("Проход с начала в конец (next)")
-            self.print_backward_next(obj_list[i])
-            print("Проход с конца в начало (previous)")
-            self.print_backward_previous(obj_list[i])
+            group_list.append((group, Groups(student_list)))
+            print("Занесли студентов группы", group)
+
+            for i in range(len(group_list) - 1):
+                group_list[i][1].next = group_list[i + 1][1]
+                group_list[i + 1][1].previous = group_list[i][1]
+
+        for group in group_list:
+
+            print("*" * 60)
+            print(group[1].previous, "->", group[0], "->", group[1].next)
+            print("Элементы группы:")
+            for student in group[1].value:
+                print(student.value, "->", student.next)
+
 
 if __name__ == "__main__":
     ProcessingClass()
