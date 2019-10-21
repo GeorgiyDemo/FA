@@ -1,6 +1,8 @@
-class Task6(object):
+class Task6():
+    TIME_WAIT = 30
     """
     Создать словарь железнодорожных сообщений с учетом более одной но менее 4 пересадок, с рекомендацией оптимального маршрута по времени
+    Между переходами разница в 30 мин
     """
     def __init__(self):
 
@@ -40,12 +42,20 @@ class Task6(object):
             ],
         }
         self.time_recognizer()
-    
+
+
 #TODO Рекурсивный поиск элементов
     def checker(self, elements, b):
+        detect_flag = False
         for item in elements:
             if item["name"] == b:
-                self.checker(self.d[item["name"]], b)
+                print(item["name"])
+                detect_flag = True
+            
+        if detect_flag == False:
+            self.checker(self.d[item["name"]], b)
+        else:
+            return
 
     def time_recognizer(self):
         d = self.d
@@ -54,8 +64,8 @@ class Task6(object):
 
         if point_a in d:
             self.checker(d[point_a], point_b)
-
-            
         else:
             print("Нет исходной точки в начале")
-                 
+
+if __name__ == "__main__":
+    Task6()
