@@ -5,7 +5,7 @@ class Task6():
     Между переходами разница в 30 мин
     """
     def __init__(self):
-
+        self.way_list = {}
         self.d = {
             "Одинцово":[
                 {"time" : 30, "name": "Белорусский вокзал"},
@@ -30,12 +30,10 @@ class Task6():
             ],
             "Курский Вокзал":[
                 {"time" : 10, "name" : "Белорусский Вокзал"},
-                {"time" : 30, "name": "Савёловский вокзал"},
                 {"time" : 10, "name": "Баковка"},
                 {"time" : 60, "name": "Отрадное"},
             ],
             "Савёловский Вокзал":[
-                {"time" : 30, "name": "Курский вокзал"},
                 {"time" : 5,"name" : "Белорусский вокзал"},
                 {"time" : 25, "name": "Баковка"},
                 {"time" : 38, "name": "Отрадное"},
@@ -43,29 +41,40 @@ class Task6():
         }
         self.time_recognizer()
 
-
-#TODO Рекурсивный поиск элементов
-    def checker(self, elements, b):
-        detect_flag = False
-        for item in elements:
-            if item["name"] == b:
-                print(item["name"])
-                detect_flag = True
-            
-        if detect_flag == False:
-            self.checker(self.d[item["name"]], b)
-        else:
-            return
-
     def time_recognizer(self):
         d = self.d
         point_a = input("Введите точку А -> ")
         point_b = input("Введите точку В -> ")
 
+        all_ways_list = []
+
         if point_a in d:
-            self.checker(d[point_a], point_b)
+
+            for first_element in d[point_a]:
+                print(first_element["name"], point_b)
+                if first_element["name"] == point_b:
+
+                    print(point_a+" - > "+first_element["name"])
+                    all_ways_list.append([point_a,first_element["name"]])
+                    print("ПРИЕХАЛИ 0 ")
+
+                for second_element in d[first_element["name"]]:
+                    if second_element["name"] == point_b:
+                        print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"])
+                        all_ways_list.append([point_a,first_element["name"],second_element["name"]])
+                        print("ПРИЕХАЛИ 1")
+ 
+                    print(second_element)
+                    for third_element in d[second_element["name"]]:
+                        if third_element["name"] == point_b:
+                            print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"]+" -> "+third_element["name"])
+                            all_ways_list.append([point_a,first_element["name"],second_element["name"],third_element["name"]])
+                            print("ПРИЕХАЛИ 2") 
+
         else:
             print("Нет исходной точки в начале")
+        
+        print(all_ways_list)
 
 if __name__ == "__main__":
     Task6()
