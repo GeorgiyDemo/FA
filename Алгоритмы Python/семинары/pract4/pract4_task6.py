@@ -1,3 +1,5 @@
+#TODO Сделать 4 уровень + учёт времени 
+
 class Task6():
     TIME_WAIT = 30
     """
@@ -51,25 +53,26 @@ class Task6():
         if point_a in d:
 
             for first_element in d[point_a]:
-                print(first_element["name"], point_b)
+
                 if first_element["name"] == point_b:
 
                     print(point_a+" - > "+first_element["name"])
                     all_ways_list.append([point_a,first_element["name"]])
                     print("ПРИЕХАЛИ 0 ")
 
-                for second_element in d[first_element["name"]]:
-                    if second_element["name"] == point_b:
-                        print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"])
-                        all_ways_list.append([point_a,first_element["name"],second_element["name"]])
-                        print("ПРИЕХАЛИ 1")
- 
-                    print(second_element)
-                    for third_element in d[second_element["name"]]:
-                        if third_element["name"] == point_b:
-                            print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"]+" -> "+third_element["name"])
-                            all_ways_list.append([point_a,first_element["name"],second_element["name"],third_element["name"]])
-                            print("ПРИЕХАЛИ 2") 
+                if first_element["name"] in d:
+                    for second_element in d[first_element["name"]]:
+                        if second_element["name"] == point_b:
+                            print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"])
+                            all_ways_list.append([point_a,first_element["name"],second_element["name"]])
+                            print("ПРИЕХАЛИ 1")
+                        
+                        if second_element["name"] in d:
+                            for third_element in d[second_element["name"]]:
+                                if third_element["name"] == point_b:
+                                    print(point_a+" - > "+first_element["name"]+" -> "+second_element["name"]+" -> "+third_element["name"])
+                                    all_ways_list.append([point_a,first_element["name"],second_element["name"],third_element["name"]])
+                                    print("ПРИЕХАЛИ 2") 
 
         else:
             print("Нет исходной точки в начале")
