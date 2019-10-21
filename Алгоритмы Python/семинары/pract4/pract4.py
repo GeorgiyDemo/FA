@@ -165,7 +165,41 @@ class Task4(object):
     """
     создать словарь на свободную тему, включающий в себя кортеж в качестве ключа, реализовать поиск
     """
-    pass
+    
+    def __init__(self):
+        self.d = {}
+        self.max_values = 100
+        self.hashtable_generator()
+        self.results_searcher()
+    
+    def all_counter(self, *t):
+        res = 0
+        for i in t: 
+            res += i 
+        return res 
+
+    def all_multipy(self, *t):  
+        res = 1
+        for i in t: 
+            res *= i 
+        return res 
+
+    def hashtable_generator(self):
+        for i in range(self.max_values):
+            for j in range(self.max_values):
+                for k in range(self.max_values):
+                    self.d[(i,j,k)] = [{"multiplication" : self.all_multipy(i,j,k), "sum" : self.all_counter(i,j,k)}]
+    
+    def check_digit(self, e):
+        try:
+            return int(e)
+        except:
+            return e 
+
+    def results_searcher(self):
+        out_str = "Введите 3 числа через пробел от 0 до 100 для быстрого подсчёта их суммы и произведения -> "
+        r = self.d[tuple([self.check_digit(x) for x in input(out_str).split(" ")])][0]
+        print("Произведение: "+str(r["multiplication"])+"\nСумма: "+str(r["sum"]))
 
 class Task5(object):
     """
@@ -181,6 +215,7 @@ class Task5(object):
             "Владивосток" : ["Москва","Норильск"],
             "Норильск" : ["Владивосток"],
         }
+
         self.search()
     
     def search(self):
@@ -215,4 +250,4 @@ class Task6(object):
 
 
 if __name__ == "__main__":
-    Task5()
+    Task4()
