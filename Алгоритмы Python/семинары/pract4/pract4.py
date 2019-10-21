@@ -1,15 +1,6 @@
+from random import randint
 
-class Task1(object):
-    """
-    Создать словарь адресной книги, содержащий ФИО и адрес. Заполнить его 50 элементами, реализовать поиск по адресу
-    """
-    def __init__(self):
-        self.dict_generator()
-        self.search()
-
-    def dict_generator(self):
-        print("dict_generator Task1")
-        n = [
+UNIC_NAMES_LIST = [
             "Комова Елизавета Олеговна",
             "Репенков Сергей Алексеевич",
             "Анисимов Ефим Сергеевич",
@@ -61,12 +52,22 @@ class Task1(object):
             "Термышева Полина Евгеньевна",
             "Василевская Лидия Игоревна",
         ]
+
+class Task1():
+    """
+    Создать словарь адресной книги, содержащий ФИО и адрес. Заполнить его 50 элементами, реализовать поиск по адресу
+    """
+    def __init__(self):
+        self.dict_generator()
+        self.search()
+
+    def dict_generator(self):
+        n = UNIC_NAMES_LIST
         self.d = {}
         for i in range(0,len(n),2):
             self.d["адрес №"+str(i)]=[n[i],n[i+1]]
 
     def search(self):
-        print("search Task1")
         s = input("Введите адрес для поиска ->")
         if s in self.d:
             print("Адрес найден!\nПроживающие по адресу:")
@@ -78,24 +79,87 @@ class Task1(object):
                         print("Возможно вы имели ввиду '"+p+"' по '"+k+"'")
             
 
-class Task2(Task1):
+class Task2():
     """
-    создать словарь телефонного справочника. Заполнить его 50 элементами. Реализовать поиск по телефону
+    Cоздать словарь телефонного справочника. Заполнить его 50 элементами. Реализовать поиск по телефону
     """
     def __init__(self):
         self.dict_generator()
         self.search()
     
+    def locale_random(self, n):
+        return str(randint(10**(n-1), (10**n)-1))
+
     def dict_generator(self):
-        print("dict_generator Task2")
+        self.d = {}
+        for e in UNIC_NAMES_LIST:
+            key = "+7"+self.locale_random(10)
+            self.d[key] = e
+            print("Сгенерировали ключ "+key)
 
-
+    def search(self):
+        input_key = input("Введите номер телефона для поиска ->")
+        if input_key in self.d:
+            print("Значение для телефона "+input_key+" -> "+self.d[input_key])
+        else:
+            print("Введённого номера телефона нет в базе")
 
 class Task3(object):
     """
     реализовать проверку на существующие записи в предыдущих заданиях с возможностью дополнения
     """
-    pass
+    def __init__(self):
+        d = {
+            "1" : Task1Plus,
+            "2" : Task2Plus,
+        }
+        e = input("Какой номер вы хотите дополнить ?")
+        if e in d:
+            d[e]()
+        else:
+            print("Такого номера не существует!")
+
+class Task1Plus(Task1):
+    """
+    Класс для дополнения задания №1
+    """
+    def __init__(self):
+        self.dict_generator()
+        self.search()
+    
+    def search(self):
+        s = input("Введите адрес для поиска ->")
+        if s in self.d:
+            print("Адрес найден!\nПроживающие по адресу:")
+            [print(x) for x in self.d[s]]
+        else:
+            print("Адрес не найден, но мы его добавим в систему")
+            names = input("Введите ФИО людей, проживающих по этому адресу через заптую -> ")
+            self.d[s] = names.split(",")
+            print("Обновлённый словарь:")
+            for k,v in self.d.items():
+                print(k,v)
+
+class Task2Plus(Task2):
+    """
+    Класс для дополнения задания №2
+    """
+    def __init__(self):
+        self.dict_generator()
+        self.search()
+    
+    def search(self):
+        s = input("Введите телефон для поиска ->")
+        if s in self.d:
+            print("Телефон найден!\nАбонент " +self.d[s])
+        else:
+            print("Абонент не найден, но мы его добавим в систему")
+            name = input("Введите ФИО абонента -> ")
+            self.d[s] = name
+
+            print("Обновлённый словарь:")
+            for k,v in self.d.items():
+                print(k,v)
 
 class Task4(object):
     """
@@ -107,7 +171,41 @@ class Task5(object):
     """
     создать словарь авиарейсов, в возможностью поиска маршрута из точки А в точку В с учётом 1 пересадки
     """
-    pass
+    def __init__(self):
+        self.d = {
+            "Москва" : ["Лондон","Владивосток","Санкт-Петербург"],
+            "Лондон" : ["Москва","Сингапур"],
+            "Сингапур" : ["Лондон"],
+            "Калининград" : ["Санкт-Петербург"],
+            "Санкт-Петербург" : ["Калининград", "Москва"],
+            "Владивосток" : ["Москва","Норильск"],
+            "Норильск" : ["Владивосток"],
+        }
+        self.search()
+    
+    def search(self):
+
+        search_flag = False
+        point_a = input("Введите точку А -> ")
+        point_b = input("Введите точку В -> ")
+
+        if point_a in self.d:
+            for tranzit_city in self.d[point_a]:
+                if tranzit_city == point_b:
+                    search_flag = True
+                    print("*План перелёта*\n"+point_a+" -> "+point_b)
+                    break
+
+                for city in self.d[tranzit_city]:
+                    if city == point_b:
+                        search_flag = True
+                        print("*План перелёта*\n"+point_a+" -> "+tranzit_city+"\n"+tranzit_city+" -> "+city)
+            
+            if search_flag == False:
+                print("По вашему запросу ничего не найдено")
+        
+        else:
+            print("Нет точки А в исходном словаре")
 
 class Task6(object):
     """
@@ -117,4 +215,4 @@ class Task6(object):
 
 
 if __name__ == "__main__":
-    Task2()
+    Task5()
