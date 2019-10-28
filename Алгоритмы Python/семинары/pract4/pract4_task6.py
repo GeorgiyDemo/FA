@@ -1,43 +1,76 @@
+"""
+Создать словарь железнодорожных сообщений с учетом более одной но менее 4 пересадок, с рекомендацией оптимального маршрута по времени
+Между переходами разница в 30 мин
+"""
+
+import datetime
+
+#Время для пересадки между поездами
+TIME_WAIT = 30
+
+class UniversalCalss():
+
+    @staticmethod
+    def get_train_time(*time_ranges):
+        """
+        Метод для вычисления времени прибытия поезда + время ожидания
+        Необходим для проверки на то, успевает ли человек на свой поезд
+        """
+        out_list = []
+        for time_range in time_ranges:
+            time = time_range[0]
+            begin_time = time_range[1]
+
+            train_begin_time = datetime.datetime.strptime(begin_time, "%d.%m.%Y %H:%M")
+            print(train_begin_time)
+            train_arrive_time = train_begin_time + datetime.timedelta(minutes=time+TIME_WAIT)
+            print("TIME:",time)
+            print(train_arrive_time)
+
+            out_list.append((train_begin_time,train_arrive_time))
+        return out_list
+
+        
 class Task6():
-    """
-    Создать словарь железнодорожных сообщений с учетом более одной но менее 4 пересадок, с рекомендацией оптимального маршрута по времени
-    Между переходами разница в 30 мин
-    """
 
     def __init__(self):
-        self.TIME_WAIT = 30
+        """
+        Конструктор класса
+        Формирует словарь железнодорожных сообщений + вызов всех методов
+        """
         self.all_ways_list = []
+        date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
         self.d = {
             "Одинцово": [
-                {"begin_time": "21:30", "time_range": 30, "name": "Белорусский вокзал"},
-                {"begin_time": "14:40", "time_range": 3, "name": "Баковка"},
-                {"begin_time": "10:30", "time_range": 15, "name": "Отрадное"},
+                {"begin_time": date+"21:30", "time_range": 30, "name": "Белорусский вокзал"},
+                {"begin_time": date+"14:40", "time_range": 3, "name": "Баковка"},
+                {"begin_time": date+"10:30", "time_range": 15, "name": "Отрадное"},
             ],
 
             "Баковка": [
-                {"begin_time": "7:45", "time_range": 3, "name": "Одинцово"},
-                {"begin_time": "14:20", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": "8:10", "time_range": 25, "name": "Савёловский Вокзал"},
+                {"begin_time": date+"07:45", "time_range": 3, "name": "Одинцово"},
+                {"begin_time": date+"14:20", "time_range": 10, "name": "Курский Вокзал"},
+                {"begin_time": date+"08:10", "time_range": 25, "name": "Савёловский Вокзал"},
             ],
             "Отрадное": [
-                {"begin_time": "8:10", "time_range": 15, "name": "Одинцово"},
-                {"begin_time": "9:40", "time_range": 60, "name": "Курский Вокзал"},
-                {"begin_time": "18:21", "time_range": 38, "name": "Савёловский вокзал"},
+                {"begin_time": date+"08:10", "time_range": 15, "name": "Одинцово"},
+                {"begin_time": date+"09:40", "time_range": 60, "name": "Курский Вокзал"},
+                {"begin_time": date+"18:21", "time_range": 38, "name": "Савёловский вокзал"},
             ],
             "Белорусский вокзал": [
-                {"begin_time": "11:15", "time_range": 30, "name": "Одинцово"},
-                {"begin_time": "13:50", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": "20:52", "time_range": 5, "name": "Савёловский вокзал"},
+                {"begin_time": date+"11:15", "time_range": 30, "name": "Одинцово"},
+                {"begin_time": date+"13:50", "time_range": 10, "name": "Курский Вокзал"},
+                {"begin_time": date+"20:52", "time_range": 5, "name": "Савёловский вокзал"},
             ],
             "Курский Вокзал": [
-                {"begin_time": "17:02", "begin_time": "15:21", "time_range": 10, "name": "Белорусский Вокзал"},
-                {"begin_time": "17:10", "time_range": 10, "name": "Баковка"},
-                {"begin_time": "15:58", "time_range": 60, "name": "Отрадное"},
+                {"begin_time": date+"17:02", "time_range": 10, "name": "Белорусский Вокзал"},
+                {"begin_time": date+"17:10", "time_range": 10, "name": "Баковка"},
+                {"begin_time": date+"15:58", "time_range": 60, "name": "Отрадное"},
             ],
             "Савёловский Вокзал": [
-                {"begin_time": "11:18", "time_range": 5, "name": "Белорусский вокзал"},
-                {"begin_time": "15:26", "time_range": 25, "name": "Баковка"},
-                {"begin_time": "19:10", "time_range": 38, "name": "Отрадное"},
+                {"begin_time": date+"11:18", "time_range": 5, "name": "Белорусский вокзал"},
+                {"begin_time": date+"15:26", "time_range": 25, "name": "Баковка"},
+                {"begin_time": date+"19:10", "time_range": 38, "name": "Отрадное"},
             ],
         }
         self.way_inputer()
@@ -47,6 +80,9 @@ class Task6():
             # self.result_outputer()
 
     def result_outputer(self):
+        """
+        Метод для сортировки выходных результатов и их вывода
+        """
         self.all_ways_list.sort(key=lambda x: (x["times"]))
         for e in self.all_ways_list:
             buf_out = ""
@@ -57,11 +93,18 @@ class Task6():
             print("Время: " + str(e["times"]) + " минут")
 
     def time_detector(self):
+        """
+        Метод для определения 
+        """
 
         all_ways_list = self.all_ways_list
 
-        for i in range(len(all_ways_list)):
-            print(all_ways_list[i])
+        for way in all_ways_list:
+            for time in way["times"]:
+                print(time)
+            print("WAYYYY")
+            
+
             # total_time = 0
             # if len(all_ways_list[i]["points"]) > 2:
             #    # Цикл по каждому времени
@@ -76,11 +119,18 @@ class Task6():
         # self.all_ways_list = all_ways_list
 
     def way_inputer(self):
+        """
+        Ввод данных
+        """
 
         self.point_a = input("Введите точку А -> ")
         self.point_b = input("Введите точку В -> ")
 
     def way_recognizer(self):
+        """
+        Метод для поиска маршрутов по словарю d
+        Заносит результаты вычислений в all_ways_list
+        """
 
         d = self.d
         point_a = self.point_a
@@ -94,10 +144,11 @@ class Task6():
 
                 if first_element["name"] == point_b:
                     print("[Вложенность 0] " + point_a + " - > " + first_element["name"])
+
                     all_ways_list.append(
                         {
                             "points": [point_a, first_element["name"]],
-                            "times": [(first_element["time_range"], first_element["begin_time"])],
+                            "times": UniversalCalss.get_train_time((first_element["time_range"],first_element["begin_time"])),
                             "detector_number": 0,
                         })
 
@@ -106,13 +157,14 @@ class Task6():
                         if second_element["name"] == point_b:
                             print("[Вложенность 1] " + point_a + " - > " + first_element["name"] + " -> " +
                                   second_element["name"])
+                            
                             all_ways_list.append(
                                 {
                                     "points": [point_a, first_element["name"], second_element["name"]],
-                                    "times": [
+                                    "times": UniversalCalss.get_train_time(
                                         (first_element["time_range"], first_element["begin_time"]),
                                         (second_element["time_range"], second_element["begin_time"])
-                                    ],
+                                    ),
                                     "detector_number": 1,
                                 })
 
@@ -125,11 +177,11 @@ class Task6():
                                         {
                                             "points": [point_a, first_element["name"], second_element["name"],
                                                        third_element["name"]],
-                                            "times": [
+                                            "times": UniversalCalss.get_train_time(
                                                 (first_element["time_range"], first_element["begin_time"]),
                                                 (second_element["time_range"], second_element["begin_time"]),
                                                 (third_element["time_range"], third_element["begin_time"]),
-                                            ],
+                                            ),
                                             "detector_number": 2,
                                         })
 
@@ -143,12 +195,12 @@ class Task6():
                                                 {
                                                     "points": [point_a, first_element["name"], second_element["name"],
                                                                third_element["name"], fourth_element["name"]],
-                                                    "times": [
+                                                    "times": UniversalCalss.get_train_time(
                                                         (first_element["time_range"], first_element["begin_time"]),
                                                         (second_element["time_range"], second_element["begin_time"]),
                                                         (third_element["time_range"], third_element["begin_time"]),
                                                         (fourth_element["time_range"], fourth_element["begin_time"]),
-                                                    ],
+                                                    ),
                                                     "detector_number": 3,
                                                 })
 
@@ -156,7 +208,6 @@ class Task6():
 
         else:
             print("Нет исходной точки в начале")
-
 
 if __name__ == "__main__":
     Task6()
