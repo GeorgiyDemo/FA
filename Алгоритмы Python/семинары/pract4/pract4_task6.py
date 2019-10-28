@@ -1,4 +1,3 @@
-import datetime
 class Task6():
     """
     Создать словарь железнодорожных сообщений с учетом более одной но менее 4 пересадок, с рекомендацией оптимального маршрута по времени
@@ -21,31 +20,31 @@ class Task6():
                 {"begin_time": "8:10", "time_range": 25, "name": "Савёловский Вокзал"},
             ],
             "Отрадное": [
-                {"begin_time": "8:10","time_range": 15, "name": "Одинцово"},
-                {"begin_time": "9:40","time_range": 60, "name": "Курский Вокзал"},
-                {"begin_time": "18:21","time_range": 38, "name": "Савёловский вокзал"},
+                {"begin_time": "8:10", "time_range": 15, "name": "Одинцово"},
+                {"begin_time": "9:40", "time_range": 60, "name": "Курский Вокзал"},
+                {"begin_time": "18:21", "time_range": 38, "name": "Савёловский вокзал"},
             ],
             "Белорусский вокзал": [
-                {"begin_time": "11:15","time_range": 30, "name": "Одинцово"},
-                {"begin_time": "13:50","time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": "20:52","time_range": 5, "name": "Савёловский вокзал"},
+                {"begin_time": "11:15", "time_range": 30, "name": "Одинцово"},
+                {"begin_time": "13:50", "time_range": 10, "name": "Курский Вокзал"},
+                {"begin_time": "20:52", "time_range": 5, "name": "Савёловский вокзал"},
             ],
             "Курский Вокзал": [
-                {"begin_time": "17:02","begin_time": "15:21","time_range": 10, "name": "Белорусский Вокзал"},
-                {"begin_time": "17:10","time_range": 10, "name": "Баковка"},
-                {"begin_time": "15:58","time_range": 60, "name": "Отрадное"},
+                {"begin_time": "17:02", "begin_time": "15:21", "time_range": 10, "name": "Белорусский Вокзал"},
+                {"begin_time": "17:10", "time_range": 10, "name": "Баковка"},
+                {"begin_time": "15:58", "time_range": 60, "name": "Отрадное"},
             ],
             "Савёловский Вокзал": [
-                {"begin_time": "11:18","time_range": 5, "name": "Белорусский вокзал"},
-                {"begin_time": "15:26","time_range": 25, "name": "Баковка"},
-                {"begin_time": "19:10","time_range": 38, "name": "Отрадное"},
+                {"begin_time": "11:18", "time_range": 5, "name": "Белорусский вокзал"},
+                {"begin_time": "15:26", "time_range": 25, "name": "Баковка"},
+                {"begin_time": "19:10", "time_range": 38, "name": "Отрадное"},
             ],
         }
         self.way_inputer()
         self.way_recognizer()
         if self.all_ways_list != []:
             self.time_detector()
-            #self.result_outputer()
+            # self.result_outputer()
 
     def result_outputer(self):
         self.all_ways_list.sort(key=lambda x: (x["times"]))
@@ -61,21 +60,20 @@ class Task6():
 
         all_ways_list = self.all_ways_list
 
-
         for i in range(len(all_ways_list)):
             print(all_ways_list[i])
-            #total_time = 0
-            #if len(all_ways_list[i]["points"]) > 2:
+            # total_time = 0
+            # if len(all_ways_list[i]["points"]) > 2:
             #    # Цикл по каждому времени
             #    for time in all_ways_list[i]["times"]:
             #        total_time += time + self.TIME_WAIT
             #    total_time -= self.TIME_WAIT
-            #else:
+            # else:
             #    total_time = all_ways_list[i]["times"][0]
             #
-            #all_ways_list[i]["times"] = total_time
+            # all_ways_list[i]["times"] = total_time
 
-        #self.all_ways_list = all_ways_list
+        # self.all_ways_list = all_ways_list
 
     def way_inputer(self):
 
@@ -99,7 +97,7 @@ class Task6():
                     all_ways_list.append(
                         {
                             "points": [point_a, first_element["name"]],
-                            "times": [(first_element["time_range"],first_element["begin_time"])],
+                            "times": [(first_element["time_range"], first_element["begin_time"])],
                             "detector_number": 0,
                         })
 
@@ -112,9 +110,9 @@ class Task6():
                                 {
                                     "points": [point_a, first_element["name"], second_element["name"]],
                                     "times": [
-                                        (first_element["time_range"],first_element["begin_time"]), 
-                                        (second_element["time_range"],second_element["begin_time"])
-                                        ],
+                                        (first_element["time_range"], first_element["begin_time"]),
+                                        (second_element["time_range"], second_element["begin_time"])
+                                    ],
                                     "detector_number": 1,
                                 })
 
@@ -128,10 +126,10 @@ class Task6():
                                             "points": [point_a, first_element["name"], second_element["name"],
                                                        third_element["name"]],
                                             "times": [
-                                                (first_element["time_range"],first_element["begin_time"]), 
-                                                (second_element["time_range"],second_element["begin_time"]),
-                                                (third_element["time_range"],third_element["begin_time"]),
-                                                ],
+                                                (first_element["time_range"], first_element["begin_time"]),
+                                                (second_element["time_range"], second_element["begin_time"]),
+                                                (third_element["time_range"], third_element["begin_time"]),
+                                            ],
                                             "detector_number": 2,
                                         })
 
@@ -146,11 +144,11 @@ class Task6():
                                                     "points": [point_a, first_element["name"], second_element["name"],
                                                                third_element["name"], fourth_element["name"]],
                                                     "times": [
-                                                        (first_element["time_range"],first_element["begin_time"]),
-                                                        (second_element["time_range"],second_element["begin_time"]),
-                                                        (third_element["time_range"],third_element["begin_time"]),
-                                                        (fourth_element["time_range"],fourth_element["begin_time"]),
-                                                        ],
+                                                        (first_element["time_range"], first_element["begin_time"]),
+                                                        (second_element["time_range"], second_element["begin_time"]),
+                                                        (third_element["time_range"], third_element["begin_time"]),
+                                                        (fourth_element["time_range"], fourth_element["begin_time"]),
+                                                    ],
                                                     "detector_number": 3,
                                                 })
 
