@@ -91,7 +91,7 @@ class Task6():
 
     def time_detector(self):
         """
-        Метод для определения 
+        Метод для определения времени ожидания след поезда между станциями + 30 мин на пересадку
         """
 
         all_ways_list = self.all_ways_list
@@ -101,7 +101,7 @@ class Task6():
             print()
             print("ВЯЗЛИ ПУТЬ",way)
             #Словарь для хранения маршрутов и времени для дальнейшего вывода
-            way_final_dict = {"total_time" : None, "ways":[]}
+            way_ = {"total_time" : None, "ways":[]}
             #Список с парами прибытия предыдущего и отправления следующего поезда
             pairs_time = []
             
@@ -116,7 +116,7 @@ class Task6():
                 else:
                     total_time = pairs_time[0][1] - pairs_time[0][0]
                 print("По прямой total_time",total_time)
-
+            ##########################################################
                 
             else:
                 for i in range(1,len(way["times"])):
@@ -127,10 +127,7 @@ class Task6():
 
                 for i in range(len(pairs_time)):
                     #####
-                    print(way["points"][i+1]+" -> "+way["points"][i+2])
-                    print(pairs_time[i])
-                    #####
-                    print(way["points"][i]+" -> "+way["points"][i+1])
+                    print("Время ожидания электрички на "+way["points"][i+1])
                     print(pairs_time[i])
                     if pairs_time[i][0] > pairs_time[i][1]:
                         pairs_time[i][1] = pairs_time[i][1] + datetime.timedelta(days=1)
@@ -138,7 +135,7 @@ class Task6():
                     else:
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
                     #ways_final_list[]
-                    print("Время:", diff_time)
+                    print("Время ожидания:", diff_time)
                     
 
             
