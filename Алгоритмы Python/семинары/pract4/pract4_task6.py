@@ -22,10 +22,7 @@ class UniversalCalss():
             begin_time = time_range[1]
 
             train_begin_time = datetime.datetime.strptime(begin_time, "%d.%m.%Y %H:%M")
-            print(train_begin_time)
             train_arrive_time = train_begin_time + datetime.timedelta(minutes=time+TIME_WAIT)
-            print("TIME:",time)
-            print(train_arrive_time)
 
             out_list.append((train_begin_time,train_arrive_time))
         return out_list
@@ -98,11 +95,59 @@ class Task6():
         """
 
         all_ways_list = self.all_ways_list
+        print(all_ways_list)
 
         for way in all_ways_list:
-            for time in way["times"]:
-                print(time)
-            print("WAYYYY")
+            print()
+            print("ВЯЗЛИ ПУТЬ",way)
+            #Словарь для хранения маршрутов и времени для дальнейшего вывода
+            way_final_dict = {"total_time" : None, "ways":[]}
+            #Список с парами прибытия предыдущего и отправления следующего поезда
+            pairs_time = []
+            
+            #Т.к. есть прямой маршрут, то время одно от точки 0 до 1
+            #Индивидуальный подход кароч, если маршрут прямой
+            if len(way["times"]) == 1:
+                pairs_time.append([way["times"][0][0],way["times"][0][1]])
+
+                if pairs_time[0][0] > pairs_time[0][1]:
+                    pairs_time[0][1] = pairs_time[0][1] + datetime.timedelta(days=1)
+                    total_time = pairs_time[0][1]-pairs_time[0][0]
+                else:
+                    total_time = pairs_time[0][1] - pairs_time[0][0]
+                print("По прямой total_time",total_time)
+
+                
+            else:
+                for i in range(1,len(way["times"])):
+                    pairs_time.append([way["times"][i-1][1],way["times"][i][0]])
+    
+                print("pairs_time",pairs_time)
+                
+
+                for i in range(len(pairs_time)):
+                    #####
+                    print(way["points"][i+1]+" -> "+way["points"][i+2])
+                    print(pairs_time[i])
+                    #####
+                    print(way["points"][i]+" -> "+way["points"][i+1])
+                    print(pairs_time[i])
+                    if pairs_time[i][0] > pairs_time[i][1]:
+                        pairs_time[i][1] = pairs_time[i][1] + datetime.timedelta(days=1)
+                        diff_time = pairs_time[i][1]-pairs_time[i][0]
+                    else:
+                        diff_time = pairs_time[i][1] - pairs_time[i][0]
+                    #ways_final_list[]
+                    print("Время:", diff_time)
+                    
+
+            
+            #Общее время и каждый отдельный участок
+            
+            #for i in range(len(points)-1):
+            #    ways_final_list.append({})
+
+
             
 
             # total_time = 0
