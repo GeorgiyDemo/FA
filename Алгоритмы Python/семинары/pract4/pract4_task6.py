@@ -13,7 +13,7 @@ class UniversalCalss():
     @staticmethod
     def get_train_time(*time_ranges):
         """
-        Метод для вычисления времени прибытия поезда + время ожидания
+        Метод для вычисления времени прибытия поезда
         Необходим для проверки на то, успевает ли человек на свой поезд
         """
         out_list = []
@@ -22,7 +22,7 @@ class UniversalCalss():
             begin_time = time_range[1]
 
             train_begin_time = datetime.datetime.strptime(begin_time, "%d.%m.%Y %H:%M")
-            train_arrive_time = train_begin_time + datetime.timedelta(minutes=time+TIME_WAIT)
+            train_arrive_time = train_begin_time + datetime.timedelta(minutes=time)
 
             out_list.append((train_begin_time,train_arrive_time))
         return out_list
@@ -91,7 +91,7 @@ class Task6():
 
     def time_detector(self):
         """
-        Метод для определения времени ожидания след поезда между станциями + 30 мин на пересадку
+        Метод для определения времени ожидания след поезда между станциями + TIME_WAIT мин на пересадку
         """
 
         all_ways_list = self.all_ways_list
@@ -101,7 +101,7 @@ class Task6():
             print()
             print("ВЯЗЛИ ПУТЬ",way)
             #Словарь для хранения маршрутов и времени для дальнейшего вывода
-            way_ = {"total_time" : None, "ways":[]}
+            way_dict = {"total_time" : None, "ways":[]}
             #Список с парами прибытия предыдущего и отправления следующего поезда
             pairs_time = []
             
@@ -127,15 +127,18 @@ class Task6():
 
                 for i in range(len(pairs_time)):
                     #####
-                    print("Время ожидания электрички на "+way["points"][i+1])
-                    print(pairs_time[i])
-                    if pairs_time[i][0] > pairs_time[i][1]:
+                    print("Время ожидания электрички на "+way["points"][i+1]+"+ пересадка:")
+                    
+                    #Если не успевает на след поезд от премени предыдущего поезда + 30 мин, то + 24 часа
+                    if pairs_time[i][0] + datetime.timedelta(minutes=TIME_WAIT) > pairs_time[i][1]:
+                        print("Не успеваем, + 24 часа")
                         pairs_time[i][1] = pairs_time[i][1] + datetime.timedelta(days=1)
                         diff_time = pairs_time[i][1]-pairs_time[i][0]
+                    
                     else:
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
                     #ways_final_list[]
-                    print("Время ожидания:", diff_time)
+                    print("Время: ", diff_time)
                     
 
             
