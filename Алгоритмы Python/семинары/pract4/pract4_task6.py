@@ -73,7 +73,8 @@ class Task6():
         self.way_inputer()
         self.way_recognizer()
         if self.all_ways_list != []:
-            self.time_detector()
+            self.change_time_detector()
+            self.main_time_detector()
             # self.result_outputer()
 
     def result_outputer(self):
@@ -89,22 +90,31 @@ class Task6():
             print("*" * 40 + "\nПуть:\n" + buf_out)
             print("Время: " + str(e["times"]) + " минут")
 
-    def time_detector(self):
+    def main_time_detector(self):
+        
+        """
+        Метод вычисляет общее время, которое включает в себя:
+         - Время поездки на поезда
+         - Время ожидания между поездами
+        Формуирет форматированный список рейсов, отсортированных по убыванию
+        """
+
+        all_ways_list = self.all_ways_list
+        all_wait_list = self.all_wait_list
+
+    def change_time_detector(self):
         """
         Метод для определения времени ожидания след поезда между станциями + TIME_WAIT мин на пересадку
         """
 
         all_ways_list = self.all_ways_list
-        print(all_ways_list)
+        all_wait_list = []
 
         for way in all_ways_list:
-            print()
-            print("ВЯЗЛИ ПУТЬ",way)
             #Словарь для хранения маршрутов и времени для дальнейшего вывода
-            way_dict = {"total_time" : None, "ways":[]}
+            wait_dict = {"ways":[]}
             #Список с парами прибытия предыдущего и отправления следующего поезда
             pairs_time = []
-            
             #Т.к. есть прямой маршрут, то время одно от точки 0 до 1
             #Индивидуальный подход кароч, если маршрут прямой
             if len(way["times"]) == 1:
@@ -115,53 +125,30 @@ class Task6():
                     total_time = pairs_time[0][1]-pairs_time[0][0]
                 else:
                     total_time = pairs_time[0][1] - pairs_time[0][0]
-                print("По прямой total_time",total_time)
-            ##########################################################
-                
+                wait_dict["ways"].append({ "point":way["points"], "time": total_time ,"type":0})  
             else:
                 for i in range(1,len(way["times"])):
                     pairs_time.append([way["times"][i-1][1],way["times"][i][0]])
-    
-                print("pairs_time",pairs_time)
-                
 
                 for i in range(len(pairs_time)):
-                    #####
-                    print("Время ожидания электрички на "+way["points"][i+1]+"+ пересадка:")
                     
                     #Если не успевает на след поезд от премени предыдущего поезда + 30 мин, то + 24 часа
                     if pairs_time[i][0] + datetime.timedelta(minutes=TIME_WAIT) > pairs_time[i][1]:
-                        print("Не успеваем, + 24 часа")
                         pairs_time[i][1] = pairs_time[i][1] + datetime.timedelta(days=1)
                         diff_time = pairs_time[i][1]-pairs_time[i][0]
                     
                     else:
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
                     #ways_final_list[]
-                    print("Время: ", diff_time)
+                    wait_dict["ways"].append({ "point":way["points"][i+1], "time": diff_time ,"type":1})
                     
+            all_wait_list.append(wait_dict)
 
-            
-            #Общее время и каждый отдельный участок
-            
-            #for i in range(len(points)-1):
-            #    ways_final_list.append({})
+        for i in range(len(all_wait_list)):
+            print(all_wait_list[i])
+            print(all_ways_list[i])
 
-
-            
-
-            # total_time = 0
-            # if len(all_ways_list[i]["points"]) > 2:
-            #    # Цикл по каждому времени
-            #    for time in all_ways_list[i]["times"]:
-            #        total_time += time + self.TIME_WAIT
-            #    total_time -= self.TIME_WAIT
-            # else:
-            #    total_time = all_ways_list[i]["times"][0]
-            #
-            # all_ways_list[i]["times"] = total_time
-
-        # self.all_ways_list = all_ways_list
+        self.all_wait_list = all_wait_list
 
     def way_inputer(self):
         """
