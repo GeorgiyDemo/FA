@@ -27,6 +27,14 @@ class UniversalCalss():
             out_list.append((train_begin_time,train_arrive_time))
         return out_list
 
+    @staticmethod
+    def detect_station_waiting_time(station_name, all_wait_list):
+        for way in all_wait_list["ways"]:
+            if station_name == way["point"]:
+                return True, way["time"]
+        return False, None
+
+
         
 class Task6():
 
@@ -73,7 +81,7 @@ class Task6():
         self.way_inputer()
         self.way_recognizer()
         if self.all_ways_list != []:
-            self.change_time_detector()
+            self.waiting_time_detector()
             self.main_time_detector()
             # self.result_outputer()
 
@@ -102,7 +110,36 @@ class Task6():
         all_ways_list = self.all_ways_list
         all_wait_list = self.all_wait_list
 
-    def change_time_detector(self):
+
+        #TODO ПОВТОРЯЮЩИЕСЯ ЗНАЧЕНИЯ
+        for i in range(len(all_ways_list)):
+            print("\n\nОбнуление всего...")
+            points = all_ways_list[i]["points"]
+            print("points",points)
+            times = all_ways_list[i]["times"]
+            print("times",times)
+            print("all_wait_list[i]",all_wait_list[i])
+            total_time = None
+            for j in range(len(times)):
+                print(points[j]," -> ",points[j+1])
+                train_time = times[j][1] - times[j][0]
+                checked_value = UniversalCalss.detect_station_waiting_time(points[j+1], all_wait_list[i])
+                if checked_value[0] == True:
+                    print("Опа, добавлем время ожидания..")
+                    train_time += checked_value[1]
+                
+                if total_time == None:
+                    total_time = train_time
+                else:
+                    total_time += train_time
+                
+                print(train_time)
+                print(total_time)
+                
+
+
+
+    def waiting_time_detector(self):
         """
         Метод для определения времени ожидания след поезда между станциями + TIME_WAIT мин на пересадку
         """
@@ -143,11 +180,6 @@ class Task6():
                     wait_dict["ways"].append({ "point":way["points"][i+1], "time": diff_time ,"type":1})
                     
             all_wait_list.append(wait_dict)
-
-        for i in range(len(all_wait_list)):
-            print(all_wait_list[i])
-            print(all_ways_list[i])
-
         self.all_wait_list = all_wait_list
 
     def way_inputer(self):
