@@ -29,11 +29,31 @@ class UniversalCalss():
 
     @staticmethod
     def detect_station_waiting_time(station_name, all_wait_list):
+        """
+        Определяем, есть ли станция в словаре ожидания
+        - Если есть такая станция, то отдаём True и время ожидания
+        - Если нет, то False и None
+        """
         for way in all_wait_list["ways"]:
             if station_name == way["point"]:
                 return True, way["time"]
         return False, None
-
+    
+    @staticmethod
+    def get_ways_string(ways_list):
+        """
+        Отдаёт единую строку путей для красивого вывода в result_outputer
+        """
+        buf_list = []
+        for e in ways_list:
+            buf_list.extend([e["way_from"],e["way_to"]])
+        results = []
+        for item in buf_list:
+            if results and item == results[-1]:
+                results.pop()
+            results.append(item)
+        return " -> ".join(results)
+        
 
         
 class Task6():
@@ -87,12 +107,18 @@ class Task6():
 
     def result_outputer(self):
         """
-        Вывод результатов на экран
+        Вывод всего этого веселья на экран
         """
         print("result_outputer")
-        results = self.final_out_list
-        for e in results:
-            print(e["total_time"])
+        r = self.final_out_list
+        for i in range(len(r)):
+            print("\n"+"*"*10+"Маршрут №"+str(i+1)+"*"*10)
+            print(UniversalCalss.get_ways_string(r[i]["ways"]))
+            print("Общее время:",r[i]["total_time"])
+            for way in r[i]["ways"]:
+                print(way["way_from"],"->",way["way_to"],", время:",way["train_time"])
+                if way["waiting_time"] != None:
+                    print("Ожидание:",way["waiting_time"])
 
     def main_time_detector(self):
         
@@ -171,7 +197,7 @@ class Task6():
                     total_time = pairs_time[0][1]-pairs_time[0][0]
                 else:
                     total_time = pairs_time[0][1] - pairs_time[0][0]
-                wait_dict["ways"].append({ "point":way["points"], "time": total_time ,"type":0})  
+                wait_dict["ways"].append({ "point":way["points"], "time": total_time})  
             else:
                 for i in range(1,len(way["times"])):
                     pairs_time.append([way["times"][i-1][1],way["times"][i][0]])
@@ -185,8 +211,8 @@ class Task6():
                     
                     else:
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
-                    #ways_final_list[]
-                    wait_dict["ways"].append({ "point":way["points"][i+1], "time": diff_time ,"type":1})
+
+                    wait_dict["ways"].append({ "point":way["points"][i+1], "time": diff_time})
                     
             all_wait_list.append(wait_dict)
         self.all_wait_list = all_wait_list
