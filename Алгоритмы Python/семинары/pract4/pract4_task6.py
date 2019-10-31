@@ -258,12 +258,16 @@ class Task6():
                                     print("[Вложенность 2] " + point_a + " - > " + first_element["name"] + " -> " +
                                           second_element["name"] + " -> " + third_element["name"])
                                     all_ways_list.append(
-                                        dict(points=[point_a, first_element["name"], second_element["name"],
-                                                     third_element["name"]], times=UniversalClass.get_train_time(
-                                            (first_element["time_range"], first_element["begin_time"]),
-                                            (second_element["time_range"], second_element["begin_time"]),
-                                            (third_element["time_range"], third_element["begin_time"]),
-                                        ), detector_number=2))
+                                        {
+                                            "points": [point_a, first_element["name"], second_element["name"],
+                                                       third_element["name"]],
+                                            "times": UniversalClass.get_train_time(
+                                                (first_element["time_range"], first_element["begin_time"]),
+                                                (second_element["time_range"], second_element["begin_time"]),
+                                                (third_element["time_range"], third_element["begin_time"]),
+                                            ),
+                                            "detector_number": 2,
+                                        })
 
                                 if third_element["name"] in d:
                                     for fourth_element in d[third_element["name"]]:
@@ -272,14 +276,17 @@ class Task6():
                                                 "name"] + " -> " + second_element["name"] + " -> " + third_element[
                                                       "name"] + " -> " + fourth_element["name"])
                                             all_ways_list.append(
-                                                dict(points=[point_a, first_element["name"], second_element["name"],
-                                                             third_element["name"], fourth_element["name"]],
-                                                     times=UniversalClass.get_train_time(
-                                                         (first_element["time_range"], first_element["begin_time"]),
-                                                         (second_element["time_range"], second_element["begin_time"]),
-                                                         (third_element["time_range"], third_element["begin_time"]),
-                                                         (fourth_element["time_range"], fourth_element["begin_time"]),
-                                                     ), detector_number=3))
+                                                {
+                                                    "points": [point_a, first_element["name"], second_element["name"],
+                                                               third_element["name"], fourth_element["name"]],
+                                                    "times": UniversalClass.get_train_time(
+                                                        (first_element["time_range"], first_element["begin_time"]),
+                                                        (second_element["time_range"], second_element["begin_time"]),
+                                                        (third_element["time_range"], third_element["begin_time"]),
+                                                        (fourth_element["time_range"], fourth_element["begin_time"]),
+                                                    ),
+                                                    "detector_number": 3,
+                                                })
 
             self.all_ways_list = all_ways_list
 
