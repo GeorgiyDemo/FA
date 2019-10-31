@@ -83,20 +83,16 @@ class Task6():
         if self.all_ways_list != []:
             self.waiting_time_detector()
             self.main_time_detector()
-            # self.result_outputer()
+            self.result_outputer()
 
     def result_outputer(self):
         """
-        Метод для сортировки выходных результатов и их вывода
+        Вывод результатов на экран
         """
-        self.all_ways_list.sort(key=lambda x: (x["times"]))
-        for e in self.all_ways_list:
-            buf_out = ""
-            for way in e["points"]:
-                buf_out += way + " -> "
-            buf_out = buf_out[:len(buf_out) - 4]
-            print("*" * 40 + "\nПуть:\n" + buf_out)
-            print("Время: " + str(e["times"]) + " минут")
+        print("result_outputer")
+        results = self.final_out_list
+        for e in results:
+            print(e["total_time"])
 
     def main_time_detector(self):
         
@@ -110,9 +106,12 @@ class Task6():
         all_ways_list = self.all_ways_list
         all_wait_list = self.all_wait_list
 
+        out_list = []
 
-        #TODO ПОВТОРЯЮЩИЕСЯ ЗНАЧЕНИЯ
         for i in range(len(all_ways_list)):
+            
+            final_way = {"total_time" : None, "ways":[]}
+
             print("\n\nОбнуление всего...")
             points = all_ways_list[i]["points"]
             print("points",points)
@@ -120,22 +119,32 @@ class Task6():
             print("times",times)
             print("all_wait_list[i]",all_wait_list[i])
             total_time = None
+            little_way_dict = []
             for j in range(len(times)):
                 print(points[j]," -> ",points[j+1])
                 train_time = times[j][1] - times[j][0]
                 checked_value = UniversalCalss.detect_station_waiting_time(points[j+1], all_wait_list[i])
+                print("train_time",train_time)
+
                 if checked_value[0] == True:
-                    print("Опа, добавлем время ожидания..")
+                    print("Опа, добавлем время ожидания..",checked_value[1])
+                    little_way_dict.append({"way_from":points[j],"way_to":points[j+1],"train_time":train_time,"waiting_time":checked_value[1]})
                     train_time += checked_value[1]
+                else:
+                    little_way_dict.append({"way_from":points[j],"way_to":points[j+1],"train_time":train_time,"waiting_time":None})
+                
                 
                 if total_time == None:
                     total_time = train_time
                 else:
                     total_time += train_time
-                
-                print(train_time)
-                print(total_time)
-                
+
+            final_way["total_time"] = total_time
+            final_way["ways"] = little_way_dict
+            out_list.append(final_way)
+            out_list.sort(key=lambda x: (x["total_time"]))
+    
+        self.final_out_list = out_list   
 
 
 
