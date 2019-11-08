@@ -131,31 +131,27 @@ class TCALC():
             self.typToken = CALC_END
             return True
         elif self.IsDelim():
+            choose_dict = {
+                "+" : OP_PLUS,
+                "-" : OP_MINUS,
+                "*" : OP_MULTIPLY,
+                "/" : OP_DIVIDE,
+                "%" : OP_PERCENT,
+                "[" : CALC_L_BRACKET,
+                "(" : CALC_L_BRACKET,
+                "]" : CALC_R_BRACKET,
+                ")" : CALC_R_BRACKET,
+
+            }
             self.curToken[0] = self.expr[self.pos]
             self.pos = self.pos + 1
             self.curToken[1] = TERMINATOR
             tmp = "".join(self.curToken[:strlen(self.curToken)])
-            if tmp == "+":
-                self.typToken = OP_PLUS
+            
+            if tmp in choose_dict:
+                self.typToken = choose_dict[tmp]
                 return True
-            elif tmp == "-":
-                self.typToken = OP_MINUS
-                return True
-            elif tmp == "*":
-                self.typToken = OP_MULTIPLY
-                return True
-            elif tmp == "/":
-                self.typToken = OP_DIVIDE
-                return True
-            elif tmp == "%":
-                self.typToken = OP_PERCENT
-                return True
-            elif tmp == "[" or tmp == "(":
-                self.typToken = CALC_L_BRACKET
-                return True
-            elif tmp == "]" or tmp == ")":
-                self.typToken = CALC_R_BRACKET
-                return True
+            
         elif self.IsLetter():
             i = 0
             while self.IsLetter():
