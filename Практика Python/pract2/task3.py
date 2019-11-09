@@ -423,16 +423,41 @@ class TCALC():
 
 if __name__ == "__main__":
 
-    print("Введите выражение: ")
-    #with open("urs.pickle", "rb") as input_file:
-    #    elements = pickle.load(input_file)
-    #print(e)
-    while True:
+    with open("urs.pickle", "rb") as input_file:
+        elements = pickle.load(input_file)
+    print(elements)
+
+    exp_list = []
+    input_value = "sin(arcSIN(2*x))=49"
+    print("input_value",input_value)
+    steps = input_value.split("=")
+
+    #решаем левую и правую часть уравнения
+    for step in steps:
         try:
             CALC = TCALC()
-            CALC.Compile(list(str(input(">> "))))
+            CALC.Compile(list(step))
             CALC.Evaluate()
-            print("Ответ: ", CALC.GetResult())
-            print("")
+            exp_list.append({"exp":step,"result" :CALC.GetResult(),"exception" : False})
         except:
-            break
+            exp_list.append({"exp":step,"result" : None,"exception" : True})
+    
+    print(exp_list)
+    for exp in exp_list:
+        if exp["exception"] == True:
+            for index in range(len(exp["exp"])):
+                if exp["exp"][index] == "x":
+                    print([M_PI/step for step in range(2,6)])
+                    #exp["exp"][index] = [M_PI/step for step in range(2,6)]
+    print(exp_list)
+                    
+
+
+    """
+    print(steps)
+
+    CALC = TCALC()
+    CALC.Compile(list(str(input(">> "))))
+    CALC.Evaluate()
+    print("Ответ: ", CALC.GetResult())
+    """
