@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 
+import pickle
 import copy
 import math
 
@@ -131,6 +132,7 @@ class TCALC():
             self.typToken = CALC_END
             return True
         elif self.IsDelim():
+            
             choose_dict = {
                 "+" : OP_PLUS,
                 "-" : OP_MINUS,
@@ -141,8 +143,8 @@ class TCALC():
                 "(" : CALC_L_BRACKET,
                 "]" : CALC_R_BRACKET,
                 ")" : CALC_R_BRACKET,
-
             }
+
             self.curToken[0] = self.expr[self.pos]
             self.pos = self.pos + 1
             self.curToken[1] = TERMINATOR
@@ -420,12 +422,14 @@ class TCALC():
 
 
 if __name__ == "__main__":
-    CALC = TCALC()
 
     print("Введите выражение: ")
-
+    #with open("urs.pickle", "rb") as input_file:
+    #    elements = pickle.load(input_file)
+    #print(e)
     while True:
         try:
+            CALC = TCALC()
             CALC.Compile(list(str(input(">> "))))
             CALC.Evaluate()
             print("Ответ: ", CALC.GetResult())
