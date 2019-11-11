@@ -13,14 +13,15 @@ a*cos(x)+b*sin(y)=c
 d*cos(y)+e*sin(x)=k
 , где a, b, c, d, e, k коэффициенты и вводятся с клавиатуры.
 """
+
 # если считать определитель и обратную матрицу по схеме: [url]http://www.cyberforum.ru/python/thread721979.html[/url], то numpy будет не нужен
 import numpy as np
 import math
  
 #считаем значение функции a*cos(x)+b*sin(y)-c и d*cos(y)+e*sin(x)-k в точке x,y при заданных a, b, c, d, e, k
 def f(x, y, a, b, c, d, e, k):
-     return a*math.cos(x)+b*math.sin(y)-c, d*math.cos(y)+e*math.sin(x)-k
- 
+    return a*math.cos(x)+b*math.sin(y)-c, d*math.cos(y)+e*math.sin(x)-k
+
 #вычисляем матрицу Якоби
 def matr_yakobi(v):
  
