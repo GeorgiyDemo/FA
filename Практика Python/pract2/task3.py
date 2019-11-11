@@ -1,14 +1,10 @@
-class TaskClass():
+class TaskClass:
     def __init__(self, input_exp):
 
+        # Поле результата
         self.r = None
 
-        d_function = {
-            "sin": self.sin_solver,
-            "cos": self.cos_solver,
-            "tan": self.tan_solver,
-            "ctg": self.ctg_solver,
-        }
+        d_function = dict(sin=self.sin_solver, cos=self.cos_solver, tan=self.tan_solver, ctg=self.ctg_solver)
         exp = input_exp
         self.number = float(exp[exp.find("=") + 1:len(exp)])
 
@@ -43,12 +39,8 @@ class TaskClass():
             -0.7: "-π/" + str(4 * k) + "+2πk" + "/" + str(k) + "\n" + "(-3π/" + str(4 * k) + "+2πk)" + "/" + str(k),
             -0.866: "-π/" + str(3 * k) + "+2πk" + "/" + str(k) + "\n" + "(-2π/" + str(3 * k) + "+2πk)" + "/" + str(k),
         }
-
-        if number in d_number:
-            self.r = d_number[number]
-        else:
-            self.r = "(arcsin(" + str(number) + ")+2πk)" + "/" + str(
-                k) + "\n" + "(π-arcsin(" + number + ")+2πk)" + "/" + str(k)
+        self.r = d_number[number] if number in d_number else "(arcsin(" + str(number) + ")+2πk)" + "/" + str(
+            k) + "\n" + "(π-arcsin(" + str(number) + ")+2πk)" + "/" + str(k)
 
     def cos_solver(self):
         number = self.number
@@ -61,11 +53,7 @@ class TaskClass():
             -0.866: "+-5π/" + str(6 * k) + "+2πk" + "/" + str(k),
             -0.7: "+-3π/" + str(4 * k) + "+2πk" + "/" + str(k),
         }
-
-        if number in d_number:
-            self.r = d_number[number]
-        else:
-            self.r = "(+-arccos(" + str(number) + ")+2πk)" + "/" + str(k)
+        self.r = d_number[number] if number in d_number else "(+-arccos(" + str(number) + ")+2πk)" + "/" + str(k)
 
     def tan_solver(self):
         number = self.number
@@ -78,11 +66,7 @@ class TaskClass():
             -1: "-π/" + str(4 * k) + "+πk" + "/" + str(k),
             -1.732: "-π/" + str(3 * k) + "+πk" + "/" + str(k),
         }
-
-        if number in d_number:
-            self.r = d_number[number]
-        else:
-            self.r = "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        self.r = d_number[number] if number in d_number else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
 
     def ctg_solver(self):
 
@@ -96,11 +80,7 @@ class TaskClass():
             -1: "3π/" + str(4 * k) + "+πk" + "/" + str(k),
             -1.732: "5π/" + str(6 * k) + "+πk" + "/" + str(k),
         }
-
-        if number in d_number:
-            self.r = d_number[number]
-        else:
-            self.r = "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        self.r = d_number[number] if number in d_number else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
 
 
 if __name__ == "__main__":
