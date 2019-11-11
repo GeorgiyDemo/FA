@@ -1,6 +1,4 @@
 ## -*- coding: utf-8 -*-
-from sympy import *
-import pickle
 import math
 
 # Math consts
@@ -422,46 +420,8 @@ class TCALC():
 
 if __name__ == "__main__":
 
-    with open("urs.pickle", "rb") as input_file:
-        elements = pickle.load(input_file)
-    print(elements)
-
-    exp_list = []
-    input_value = "arcSIN(2*x)=49"
-    y = symbols('y')
-    expr = 2*y - 7*y
-    s = solve(expr, y)
-    print(s)
-    
-    print("input_value",input_value)
-    steps = input_value.split("=")
-
-    #решаем левую и правую часть уравнения
-    for step in steps:
-        try:
-            CALC = TCALC()
-            CALC.Compile(list(step))
-            CALC.Evaluate()
-            exp_list.append({"exp":step,"result" :CALC.GetResult(),"exception" : False})
-        except:
-            exp_list.append({"exp":step,"result" : None,"exception" : True})
-    
-    print(exp_list)
-    for exp in exp_list:
-        if exp["exception"] == True:
-            for index in range(len(exp["exp"])):
-                if exp["exp"][index] == "x":
-                    print([M_PI/step for step in range(2,6)])
-                    #exp["exp"][index] = [M_PI/step for step in range(2,6)]
-    print(exp_list)
-                    
-
-
-    """
-    print(steps)
-
+    exp = input("Введите исходное выражение ->")
     CALC = TCALC()
-    CALC.Compile(list(str(input(">> "))))
+    CALC.Compile(list(exp))
     CALC.Evaluate()
-    print("Ответ: ", CALC.GetResult())
-    """
+    print(CALC.GetResult())
