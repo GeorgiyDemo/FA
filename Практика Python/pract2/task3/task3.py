@@ -1,34 +1,68 @@
+"""
+Реализовать текстовый калькулятор для решения тригонометрических уравнения.
+Добавить возможность сохранения хода решения в файл. 
+Встроенными функциями и библиотечными для решения уравнений и систем пользоваться ЗАПРЕЩЕНО.
+"""
+
+
 class TaskClass:
     def __init__(self, input_exp):
-
+        d_function = dict(sin=self.sin_solver, cos=self.cos_solver, tan=self.tan_solver, ctg=self.ctg_solver)
         # Поле результата
         self.r = None
+        self.input_exp = input_exp
+        self.processing()
 
-        d_function = dict(sin=self.sin_solver, cos=self.cos_solver, tan=self.tan_solver, ctg=self.ctg_solver)
-        exp = input_exp
+        if self.function in d_function:
+            d_function[self.function]()
+            self.file_writer()
+            self.get_result()
+        else:
+            print("Нет метода такой функции!")
+
+    def file_writer(self):
+        """
+        Метод для записи исходного выражения в файл
+        """
+        reult_str = "Входные данные\n" + self.input_exp + "\nЗначение:" + str(
+            self.number) + "\nФункция:" + self.function + "\nКоэффициент:" + str(self.koff) + "\n\nОтвет:\n" + str(
+            self.r) + "\n"
+        with open("result.txt", "w") as f:
+            f.write(reult_str)
+
+    def processing(self):
+        """
+        Метод-парсер исходного выражения
+
+        - Определяет коэффициент 
+        - Определяет значение
+        - Определяет функцию
+        """
+
+        exp = self.input_exp
         self.number = float(exp[exp.find("=") + 1:len(exp)])
 
         function = exp[0:3]
-
+        self.function = function
         if exp.find("x") - exp.find("(") == 1:
             self.koff = 1
         else:
             self.koff = float(exp[exp.find("(") + 1:exp.find("x")])
 
-        print("Значение:", self.number)
-        print("Функция:", function)
-        print("Коэффициент:", self.koff)
-
-        if function in d_function:
-            d_function[function]()
-            self.get_result()
-        else:
-            print("Нет метода такой функции!")
-
     def get_result(self):
+        """
+        Метод для вывода результатов выполнения на экран
+        """
+        print("Входные данные:", self.input_exp)
+        print("Значение:", self.number)
+        print("Функция:", self.function)
+        print("Коэффициент:", self.koff)
         print("\nОтвет:\n" + self.r)
 
     def sin_solver(self):
+        """
+        Метод для решения триг. уравнений с функцией sin
+        """
         number = self.number
         k = self.koff
         d_number = {
@@ -43,6 +77,9 @@ class TaskClass:
             k) + "\n" + "(π-arcsin(" + str(number) + ")+2πk)" + "/" + str(k)
 
     def cos_solver(self):
+        """
+        Метод для решения триг. уравнений с функцией cos
+        """
         number = self.number
         k = self.koff
         d_number = {
@@ -56,6 +93,9 @@ class TaskClass:
         self.r = d_number[number] if number in d_number else "(+-arccos(" + str(number) + ")+2πk)" + "/" + str(k)
 
     def tan_solver(self):
+        """
+        Метод для решения триг. уравнений с функцией tg
+        """
         number = self.number
         k = self.koff
         d_number = {
@@ -69,7 +109,9 @@ class TaskClass:
         self.r = d_number[number] if number in d_number else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
 
     def ctg_solver(self):
-
+        """
+        Метод для решения триг. уравнений с функцией ctg
+        """
         number = self.number
         k = self.koff
         d_number = {
@@ -84,6 +126,6 @@ class TaskClass:
 
 
 if __name__ == "__main__":
-    exp = input("-> ")
-    # exp = "cos(x)=0.5"
+    # exp = input("-> ")
+    exp = "cos(x)=0.5"
     TaskClass(exp)
