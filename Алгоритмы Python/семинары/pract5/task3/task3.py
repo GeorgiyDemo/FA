@@ -22,10 +22,22 @@
 """
 
 import yaml
+import random
 import datetime
+from os import path
 
 # Время для пересадки между поездами
 TIME_WAIT = 30
+
+
+class FileClassAdder():
+   """
+   Файл добавления данных в файл
+   - Спрашивает номер вагона 
+   - Спрашивает номер места
+   """
+   #car_places_dict[str(i)] = {"name":"Кот занял место", "price":1300, "type":"reserved"}
+   pass
 
 class FileClassGenerator():
 
@@ -33,24 +45,50 @@ class FileClassGenerator():
    Класс-генератор свободных мест на рейсы и запись в файл
    """
    
-   def __init__(way_from,way_to,count=55):
+   def __init__(self, all_train_dict, file_name, places_count=55, car_count=15):
       
-      self.way_from = way_from
-      self.way_to = way_to
-      self.count = count
+      self.file_name = file_name
+      self.all_train_dict = all_train_dict
+      self.places_count = places_count
+      self.car_count = car_count
       self.processing()
+      self.file_writer()
    
    def processing(self):
-      #Словарь вагонов
-      places_dict = {}
-      for i in range(self.count):
-         places_dict[str(i)] = {"name":"-", "price":1300, "type":"free",}
-      print(places_dict)
+      
+      print("Перегенерация исходного файла..")
+      #Каждый путь с каждым поездом и каждым вагоном и каждым местом
+      sum_train_list = [] 
+      #Все пути от self.d
+      all_train_dict = self.all_train_dict
+      
+      for first_point in all_train_dict:
+         for second_point in all_train_dict[first_point]:
+            sum_train_list.append({"from" : first_point, "to" : second_point["name"],"train" : {}})
 
-      #places_dict[str(i)] = {"name":"Кот занял место", "price":1300, "type":"reserved"}
+      for i in range(len(sum_train_list)):
+         
+         #Список поезда
+         train_dict = {}
+         for j in range(self.car_count):
 
-   def 
+            #Словарь вагонов
+            car_places_dict = {}
+            for k in range(self.places_count):
+               price = random.randint(999,2300)
+               car_places_dict[str(k+1)] = {"name": None, "price":price, "type":0}
+            
+            train_dict[str(j+1)] = car_places_dict
 
+         sum_train_list[i]["train"] = train_dict
+      
+      self.result = sum_train_list
+
+   def file_writer(self):
+      with open(self.file_name, 'w') as outfile:
+         yaml.safe_dump(self.result, outfile, allow_unicode=True)
+      print("Перегенерация завершена")
+      
 
 
 class UniversalClass():
@@ -100,13 +138,14 @@ class UniversalClass():
         return " -> ".join(results)
 
 
-class Task6():
+class MainClass():
 
     def __init__(self):
         """
         Конструктор класса
         Формирует словарь железнодорожных сообщений + вызов всех методов
         """
+        file_name = "tickets.yml"
         self.all_ways_list = []
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
         self.d = {
@@ -142,12 +181,21 @@ class Task6():
                 {"begin_time": date + "19:10", "time_range": 38, "name": "Отрадное"},
             ],
         }
+
+        fileflag = path.exists(file_name)
+        print("fileflag", fileflag)
+        reg_str = input("Хотите обнулить все забронированные места и перегенерировать исходный файл? (Да/Нет)\n-> ")
+        if reg_str == "Y" or reg_str == "Да":
+            FileClassGenerator(self.d, file_name)
+
         self.way_inputer()
         self.way_recognizer()
         if self.all_ways_list:
             self.waiting_time_detector()
             self.main_time_detector()
             self.result_outputer()
+            #Вывод меню с предложением о бронировании билета
+            #Или возврата билета
 
     def result_outputer(self):
         """
@@ -339,4 +387,4 @@ class Task6():
 
 
 if __name__ == "__main__":
-    Task6()
+    MainClass()
