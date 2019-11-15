@@ -24,11 +24,11 @@ class TaskClass:
         """
         Метод для записи исходного выражения в файл
         """
-        reult_str = "Входные данные\n" + self.input_exp + "\nЗначение:" + str(
+        result_str = "Входные данные\n" + self.input_exp + "\nЗначение:" + str(
             self.number) + "\nФункция:" + self.function + "\nКоэффициент:" + str(self.koff) + "\n\nОтвет:\n" + str(
             self.r) + "\n"
         with open("result.txt", "w") as f:
-            f.write(reult_str)
+            f.write(result_str)
 
     def processing(self):
         """

@@ -1,3 +1,4 @@
+#TODO Проблема в том, что отрициательные коэффы не считает
 """
 Реализовать решение квадратного уравнения через дискриминант
 """
@@ -26,7 +27,7 @@ class DescrSolver():
         while return_flag == False:
             
             index_a = input_str[:symbols]
-            if self.is_digital(index_a) == False:
+            if self.is_digital(index_a) == False and symbols != 1:
                 return_flag = True
 
             symbols += 1
@@ -61,13 +62,14 @@ class DescrSolver():
             
             symbols += 1
 
+        print("Коэффициент a =",index_a)
+        print("Коэффициент b =",index_b)
+        print("Коэффициент c =",index_c)
+
         self.index_a = float(index_a)
         self.index_b = float(index_b)
         self.index_c = float(index_c)
 
-        print("Коэффициент a =",index_a)
-        print("Коэффициент b =",index_b)
-        print("Коэффициент c =",index_c)
 
     def get_descriminant(self):
         a = self.index_a
