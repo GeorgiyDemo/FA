@@ -52,7 +52,7 @@ class FileGeneratorClass():
       
       print("Перегенерация исходного файла..")
       #Каждый путь с каждым поездом и каждым вагоном и каждым местом
-      sum_train_list = [] 
+      sum_train_list = []
       #Все пути от self.d
       all_train_dict = self.all_train_dict
       
@@ -73,10 +73,23 @@ class FileGeneratorClass():
 
             #Словарь вагонов
             car_places_dict = {"cars" : {}, "places_free" :self.places_count-1}
+            place_type_dict = {
+                0 : "нижнее (боковое)",
+                1 : "верхнее (боковое)",
+                2 : "верхнее",
+                3 : "нижнее",
+                4 : "верхнее",
+                5 : "нижнее",
+            }
+            place_type_counter = 0
             for k in range(self.places_count):
-               price = random.randint(999,2300)
-               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":0}
-            
+               price = random.randint(999,3300)
+               place_type = place_type_dict[place_type_counter]
+               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":place_type}
+               place_type_counter +=1
+               if place_type_counter == 6:
+                   place_type_counter = 0
+
             train_dict[str(j+1)] = car_places_dict
 
          sum_train_list[i]["train"] = train_dict

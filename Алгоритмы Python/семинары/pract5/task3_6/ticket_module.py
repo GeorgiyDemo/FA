@@ -5,10 +5,23 @@
 """
 import yaml
 
+def get_min_max_price_of_car(car):
+    
+    max_price = car["cars"]["1"]["price"]
+    min_price = max_price
+    
+    for place in car["cars"]:
+        locale_price = car["cars"][place]["price"]
+        if locale_price > max_price:
+            max_price = locale_price
+        if locale_price < min_price:
+            min_price = locale_price
+    
+    return max_price, min_price
+
 def check_reservers_by_name(d, name):
     """
     Метод находит по ФИО брони все билеты в коллекции
-    
     Также полезен для отмены бронирования #TODO
     """
     trains_str = []
@@ -95,10 +108,7 @@ class AddTicketClass():
     def car_searcher(self):
         """
         Выбор вагона для брони в поезде
-        
         #TODO Проверка, если нет таких поездов совсем + выбор поезда на пути
-        #TODO Также можно добавить диапазон цен на места
-        #TODO Генерация боковых мест , верхних и нижних полок + обозначение их в поле type + 
         
         #Номер Статус  Цена Тип
         """
@@ -109,11 +119,14 @@ class AddTicketClass():
             if content[i]["from"] == self.way_from and content[i]["to"] == self.way_to:
                 print("Поезд найден "+content[i]["from"]+" -> "+content[i]["to"])
                 print("Всего в поезде "+str(content[i]["info"]["car_count"])+" вагонов и "+str(content[i]["info"]["places_free"])+" свободных мест")
-                print('\nМест по вагонам:\n{0:10}  {1}'.format("Вагон", "Мест свободно"))
+                
+                print('\nМест по вагонам:\n{0:<10} {1:>10} {2:>25}'.format("Вагон", "Мест свободно", "Диапазон цен на места"))
                 buf_car_list = []
 
                 for car in content[i]["train"]:
-                    print('{0:10}  {1}'.format(car, content[i]["train"][car]["places_free"]))
+                    price_min, price_max = get_min_max_price_of_car(content[i]["train"][car])
+                    price_range = str(price_max) + " - "+ str(price_min)+" руб."
+                    print('{0:<10} {1:>10} {2:>25}'.format(car, content[i]["train"][car]["places_free"],price_range))
                     buf_car_list.append(car)
                 
                 selected_car = input("Выберите вагон -> ")
@@ -126,14 +139,24 @@ class AddTicketClass():
         """
         Выбор места в вагоне для брони
         """
-        print("Места в вагоне:")
+        print('Места в вагоне:\n{0:<10} {1:>10} {2:>15} {3:>20}'.format("№", "Статус", "Цена", "Тип"))
         content = self.content
         for place in content[way]["train"][selected_car]["cars"]:
-            print(place, content[way]["train"][selected_car]["cars"][place])
+            
+            locale_place = content[way]["train"][selected_car]["cars"][place]
+            
+            reserved_type = "свободно"
+            if locale_place["name"] != None:
+                reserved_type = "забронировано"
+            price = str(locale_place["price"])+" руб."
+
+            print('{0:<10} {1:>10} {2:>15} {3:>20}'.format(place, reserved_type, price, locale_place["type"]))
         
         #print(selected_car)
         #for place in 
 
+    #Введите место 
+    #Вы действительно хотите забронировать место N в вагоне M поезда Москва - Екатеринбург на имя ФИО???
     #Номер Статус  Цена Тип
 
 
