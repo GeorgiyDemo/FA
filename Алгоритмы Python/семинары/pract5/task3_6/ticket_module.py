@@ -43,13 +43,6 @@ class AddTicketClass():
         - Спрашивает номер вагона 
         - Спрашивает номер места
         """
-        self.new_name = input("Введите ФИО пассажира -> ")
-        check_name_tuple = check_reservers_by_name(self.content,new_name)
-        if check_name_tuple[0] != []:
-            print("Ваши брони:")
-            print('\n'.join(check_name_tuple[0]))
-        else:
-            print("Броней, связанных с введенными ФИО не найдено")
         
         if self.way_from == None and self.way_to == None:
             self.way_from = input("Введите странцию отправления -> ")

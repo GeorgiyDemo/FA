@@ -203,6 +203,8 @@ class MainClass():
 
                 self.new_name = input("Введите ФИО пассажира -> ")
                 check_name_tuple = check_reservers_by_name(self.content,self.new_name)
+                
+                #TODO Оформить в виде таблицы
                 if check_name_tuple[0] != []:
                     print("Ваши билеты:")
                     print('\n'.join(check_name_tuple[0]))
