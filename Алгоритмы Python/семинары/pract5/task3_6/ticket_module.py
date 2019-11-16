@@ -61,7 +61,6 @@ class AddTicketClass():
     """
     def __init__(self, file_name, way_from=None, way_to=None):
         
-        self.selected_car = None
         self.file_name = file_name 
         self.way_from = way_from
         self.way_to = way_to
@@ -71,9 +70,7 @@ class AddTicketClass():
         self.content = obj.get_text()
         
         self.add_reserve()
-        self.car_searcher()
-        if self.selected_car != None:
-            self.place_searcher()
+
         
     def add_reserve(self):
         """
@@ -92,35 +89,55 @@ class AddTicketClass():
         if self.way_from == None and self.way_to == None:
             self.way_from = input("Введите странцию отправления -> ")
             self.way_to = input("Введите станцию прибытия -> ")
-    
+
+        self.car_searcher()
+
     def car_searcher(self):
         """
         Выбор вагона для брони в поезде
+        
         #TODO Проверка, если нет таких поездов совсем + выбор поезда на пути
         #TODO Также можно добавить диапазон цен на места
+        #TODO Генерация боковых мест , верхних и нижних полок + обозначение их в поле type + 
+        
+        #Номер Статус  Цена Тип
         """
+
         content = self.content
-        for train in content:
-            if train["from"] == self.way_from and train["to"] == self.way_to:
-                print("Поезд найден "+train["from"]+" -> "+train["to"])
-                print("Всего в поезде "+str(train["info"]["car_count"])+" вагонов и "+str(train["info"]["places_free"])+" свободных мест")
+
+        for i in range(len(content)):
+            if content[i]["from"] == self.way_from and content[i]["to"] == self.way_to:
+                print("Поезд найден "+content[i]["from"]+" -> "+content[i]["to"])
+                print("Всего в поезде "+str(content[i]["info"]["car_count"])+" вагонов и "+str(content[i]["info"]["places_free"])+" свободных мест")
                 print('\nМест по вагонам:\n{0:10}  {1}'.format("Вагон", "Мест свободно"))
                 buf_car_list = []
 
-                for car in train["train"]:
-                    print('{0:10}  {1}'.format(car, train["train"][car]["places_free"]))
+                for car in content[i]["train"]:
+                    print('{0:10}  {1}'.format(car, content[i]["train"][car]["places_free"]))
                     buf_car_list.append(car)
                 
                 selected_car = input("Выберите вагон -> ")
                 if selected_car in buf_car_list:
-                    self.selected_car = selected_car
+                    self.place_searcher(i,selected_car)
                 else:
                     print("Нет такого вагона, выход из подпрограммы..")
     
-    def place_searcher(self):
+    def place_searcher(self, way, selected_car):
         """
         Выбор места в вагоне для брони
         """
+        print("Места в вагоне:")
+        content = self.content
+        for place in content[way]["train"][selected_car]["cars"]:
+            print(place, content[way]["train"][selected_car]["cars"][place])
+        
+        #print(selected_car)
+        #for place in 
+
+    #Номер Статус  Цена Тип
+
+
+
         pass
 
 class RemoveTicketClass():
