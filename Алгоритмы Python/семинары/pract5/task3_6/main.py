@@ -82,7 +82,7 @@ class FileGeneratorClass():
          yaml.safe_dump(self.result, outfile, allow_unicode=True)
       print("Перегенерация завершена")
 
-class MainClass():
+class Task6MainClass():
 
     def __init__(self):
         """
@@ -92,6 +92,8 @@ class MainClass():
         file_name = "tickets.yml"
         self.all_ways_list = []
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
+        #TODO Чтение из YAML, если date != текущей date, то регенерейт.
+        #Если файла нет, то тоже его заного создаём
         self.d = {
             "Одинцово": [
                 {"begin_time": date + "21:30", "time_range": 30, "name": "Белорусский Вокзал"},
@@ -356,4 +358,4 @@ class MainClass():
 
 
 if __name__ == "__main__":
-    MainClass()
+    Task6MainClass()

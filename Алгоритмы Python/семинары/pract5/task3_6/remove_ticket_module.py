@@ -13,4 +13,3 @@ class RemoveTicketClass():
 
     def remove_reserve(self):
         pass
-
