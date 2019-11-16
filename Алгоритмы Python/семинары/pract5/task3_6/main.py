@@ -85,7 +85,7 @@ class FileGeneratorClass():
             for k in range(self.places_count):
                price = random.randint(999,3300)
                place_type = place_type_dict[place_type_counter]
-               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":place_type}
+               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":place_type, "payment":0}
                place_type_counter +=1
                if place_type_counter == 6:
                    place_type_counter = 0
@@ -164,7 +164,7 @@ class Task6MainClass():
         
         input_value = ""
         while input_value != "0":
-            menu_str = "Выберите действие:\n1. Поиск оптимального маршрута с пересадками по времени + отмена/покупка билетов\n2. Купить билеты на отдельный прямой маршрут\n3. Сдать билеты на отдельный прямой маршрут\n0. Выход из программы\n-> "
+            menu_str = "Выберите действие:\n1. Покупка билетов\n2. Управление моими билетами\n0. Выход из программы\n-> "
             input_value = input(menu_str)
             
             if input_value == "1":
@@ -174,17 +174,29 @@ class Task6MainClass():
                     self.waiting_time_detector()
                     self.main_time_detector()
                     self.result_outputer()
-            
-            elif input_value == "2":
-                ticket_module.AddTicketClass(self.file_name)
+                    #print("Хоите купить билет на путь? (Да/Нет)
+                    #if "Да":
+                    #   print("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически? Если нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) ->")
+                    #    if "Да":
+                    #        Автоматически поиск самых дешевых
+                    #    if "Нет"
+                    #        Пусть вбивает всё сам
 
-            elif input_value == "3":
+                    #ticket_module.AddTicketClass(self.file_name)
+                #
+            elif input_value == "2":
+                #Вводим фио
+                #Ищем билеты по мним
+                #Выберите билет (выбираем билет)
+                #Доступные действия
+                #1. Отмена бронирования
+                #2. Оплата билета (появляется если только мы его не оплатили)
+                #3. Распечатать билет (????? ПОКА #TODO)
+                ticket_module.AddTicketClass(self.file_name)
                 ticket_module.RemoveTicketClass(self.file_name)
-            
+
             elif input_value != "0":
                 print("Такого пункта нет в меню")
-            #input_number = input(input_value)
-            #FileProcessingClass
 
     def result_outputer(self):
         """

@@ -3,7 +3,9 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
+#TODO Пользователь может только зарезервировать место, но не оплатить
 import yaml
+import time
 
 def get_min_max_price_of_car(car):
     
@@ -91,7 +93,7 @@ class AddTicketClass():
         - Спрашивает номер вагона 
         - Спрашивает номер места
         """
-        new_name = input("Введите ФИО пассажира -> ")
+        self.new_name = input("Введите ФИО пассажира -> ")
         check_name_tuple = check_reservers_by_name(self.content,new_name)
         if check_name_tuple[0] != []:
             print("Ваши брони:")
@@ -141,8 +143,9 @@ class AddTicketClass():
         """
         print('Места в вагоне:\n{0:<10} {1:>10} {2:>15} {3:>20}'.format("№", "Статус", "Цена", "Тип"))
         content = self.content
+        buf_place_list = []
         for place in content[way]["train"][selected_car]["cars"]:
-            
+            buf_place_list.append(place)
             locale_place = content[way]["train"][selected_car]["cars"][place]
             
             reserved_type = "свободно"
@@ -152,16 +155,30 @@ class AddTicketClass():
 
             print('{0:<10} {1:>10} {2:>15} {3:>20}'.format(place, reserved_type, price, locale_place["type"]))
         
-        #print(selected_car)
-        #for place in 
-
-    #Введите место 
-    #Вы действительно хотите забронировать место N в вагоне M поезда Москва - Екатеринбург на имя ФИО???
-    #Номер Статус  Цена Тип
-
-
-
-        pass
+        selected_place = input("Введите номер места для бронирования ->")
+        if selected_place in buf_place_list:
+            question_string = "Вы действительно хотите забронировать место №"+selected_place+"в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.new_name+"'? (Да/Нет)\n->"
+            user_reply = input(question_string)
+            if user_reply == "Да" or user_reply == "Y" or user_reply == "y":
+                #Усешно меняем текущий словарь
+                self.content[way][selected_car][selected_place]["name"] = self.new_name
+                print("Место успешно зарезервировано\nОплатить его сейчас? Да/Нет -> ")
+                if "Да":
+                    print("Оплата..\n")
+                    for i in range(3):
+                        time.sleep(0.6)
+                        print(".",end="")
+                    print("Оплата прошла успешно!")
+                    #Устанавливаем флаг того, что мы всё оплатили
+                    self.content[way][selected_car][selected_place]["payment"] = 1
+                if "Нет":
+                    print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
+                
+                #Записываем все в файл
+                writer_obj = FileClass(self.file_name,1)
+                writer_obj.set_file(self.content)
+        else:
+            print("Введенное место не найдено, выход из подпрограммы..")
 
 class RemoveTicketClass():
     """
@@ -181,11 +198,11 @@ class RemoveTicketClass():
         - Спрашивает номер места
         """
         new_name = input("Введите ФИО пассажира -> ")
-        check_name_tuple = check_reservers_by_name(self.content,new_name)
+        check_name_tuple = check_reservers_by_name(self.content, new_name)
         if check_name_tuple[0] != []:
             print("Ваши брони:")
             print('\n'.join(check_name_tuple[0]))
-            remove_ticket = input("Какую бронь хотите отменить?\n-> ")
+            remove_ticket = input("Какое бронирование Вы хотите отменить?\n-> ")
 
         else:
             print("Броней, связанных с введенными ФИО не найдено")
