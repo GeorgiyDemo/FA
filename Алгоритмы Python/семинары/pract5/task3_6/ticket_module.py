@@ -3,9 +3,9 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
-#TODO Пользователь может только зарезервировать место, но не оплатить
 import yaml
 import time
+import universal_module
 
 def get_min_max_price_of_car(car):
     
@@ -21,68 +21,18 @@ def get_min_max_price_of_car(car):
     
     return max_price, min_price
 
-def check_reservers_by_name(d, name):
-    """
-    Метод находит по ФИО брони все билеты в коллекции
-    Также полезен для отмены бронирования #TODO
-    """
-    trains_str = []
-    trains = []
-    for i in range(len(d)):
-        for car in d[i]["train"]:
-            for place in d[i]["train"][car]["cars"]:
-                current_place_dict = d[i]["train"][car]["cars"][place]
-                if current_place_dict["name"] == name:
-                    price_str = str(current_place_dict["price"])
-                    trains_str.append("["+price_str+" руб.] Поезд по пути '"+d[i]["from"]+"' -> '"+d[i]["to"]+"' Вагон №"+car+", место "+place)
-                    trains.append([i,car,place])
-                
-    return (trains_str, trains)
-    
-class FileClass():
-    """
-    Класс для работы с файлом file_name, который передаётся в конструктр из main
-    - Записывает данные в файл
-    - Читает данные из файла 
-    """
-
-    def __init__(self, file_name, method):
-        self.file_name = file_name
-        _select_d = {
-            1 : self.set_file,
-            2 : self.read_file,
-        }
-        if method in _select_d:
-            _select_d[method]()
-        else:
-            raise ValueError("Значения нет в словаре","method принял значение "+str(method))
-
-    def set_file(self,content):
-        with open(self.file_name, 'w') as outfile:
-            yaml.safe_dump(content, outfile, allow_unicode=True)
-    
-    def read_file(self):
-        with open(self.file_name, 'r') as outfile:
-            self.content = yaml.safe_load(outfile)
-
-    def get_text(self):
-        return self.content
-
-
 class AddTicketClass():
     """
     Класс для добавления билетов. Выщывается как при прямых рейсов, так и для ресов с пересадками
     #TODO В конструкторе ввести поля для автобронирования мест при использовании пункта 1
     """
-    def __init__(self, file_name, way_from=None, way_to=None):
+    def __init__(self, content, file_name, way_from=None, way_to=None):
         
         self.file_name = file_name 
         self.way_from = way_from
         self.way_to = way_to
 
-        print("Загрузка..")
-        obj = FileClass(file_name,2)
-        self.content = obj.get_text()
+        self.content = content
         
         self.add_reserve()
 
@@ -175,7 +125,7 @@ class AddTicketClass():
                     print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
                 
                 #Записываем все в файл
-                writer_obj = FileClass(self.file_name,1)
+                writer_obj = universal_module.FileClass(self.file_name,1)
                 writer_obj.set_file(self.content)
         else:
             print("Введенное место не найдено, выход из подпрограммы..")
@@ -188,7 +138,7 @@ class RemoveTicketClass():
         self.remove_reserve()
 
     def ticket_remover(self):
-        #делает None на место + обращается к FileClass для записи обновлённого файла
+        #делает None на место + обращается к universal_module.FileClass для записи обновлённого файла
         pass
 
     def remove_reserve(self):

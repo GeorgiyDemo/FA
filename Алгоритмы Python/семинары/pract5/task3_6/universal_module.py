@@ -1,4 +1,34 @@
 import datetime
+import yaml
+
+class FileClass():
+    """
+    Класс для работы с файлом file_name, который передаётся в конструктр из main
+    - Записывает данные в файл
+    - Читает данные из файла 
+    """
+
+    def __init__(self, file_name, method):
+        self.file_name = file_name
+        _select_d = {
+            1 : self.set_file,
+            2 : self.read_file,
+        }
+        if method in _select_d:
+            _select_d[method]()
+        else:
+            raise ValueError("Значения нет в словаре","method принял значение "+str(method))
+
+    def set_file(self,content):
+        with open(self.file_name, 'w') as outfile:
+            yaml.safe_dump(content, outfile, allow_unicode=True)
+    
+    def read_file(self):
+        with open(self.file_name, 'r') as outfile:
+            self.content = yaml.safe_load(outfile)
+
+    def get_text(self):
+        return self.content
 
 class UniversalClass():
 
