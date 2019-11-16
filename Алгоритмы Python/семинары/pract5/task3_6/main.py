@@ -25,8 +25,7 @@ import yaml
 import random
 import datetime
 import universal_module
-import add_ticket_module
-import remove_ticket_module
+import ticket_module
 from os import path
 
 # Время для пересадки между поездами
@@ -38,7 +37,7 @@ class FileGeneratorClass():
    Класс-генератор свободных мест на рейсы и запись в файл
    """
    
-   def __init__(self, all_train_dict, file_name, places_count=55, car_count=15):
+   def __init__(self, all_train_dict, file_name, places_count=55, car_count=16):
       
       self.file_name = file_name
       self.all_train_dict = all_train_dict
@@ -57,7 +56,12 @@ class FileGeneratorClass():
       
       for first_point in all_train_dict:
          for second_point in all_train_dict[first_point]:
-            sum_train_list.append({"from" : first_point, "to" : second_point["name"],"train" : {}})
+            total_free_places = (self.places_count-1)*(self.car_count-1)
+            sum_train_list.append(
+                {"from" : first_point, "to" : second_point["name"],"train" : {},"info":{
+                    "places_free": total_free_places ,"places_count" : self.places_count-1, "car_count" : self.car_count-1}
+                }
+            )
 
       for i in range(len(sum_train_list)):
          
@@ -66,10 +70,10 @@ class FileGeneratorClass():
          for j in range(self.car_count):
 
             #Словарь вагонов
-            car_places_dict = {}
+            car_places_dict = {"cars" : {}, "places_free" :self.places_count-1}
             for k in range(self.places_count):
                price = random.randint(999,2300)
-               car_places_dict[str(k+1)] = {"name": None, "price":price, "type":0}
+               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":0}
             
             train_dict[str(j+1)] = car_places_dict
 
@@ -89,7 +93,7 @@ class Task6MainClass():
         Конструктор класса
         Формирует словарь железнодорожных сообщений + вызов всех методов
         """
-        file_name = "tickets.yml"
+        self.file_name = "tickets.yml"
         self.all_ways_list = []
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
         #TODO Чтение из YAML, если date != текущей date, то регенерейт.
@@ -129,13 +133,13 @@ class Task6MainClass():
         }
 
         #TODO
-        fileflag = path.exists(file_name)
+        fileflag = path.exists(self.file_name)
         if fileflag == False:
-            FileGeneratorClass(self.d, file_name)
+            FileGeneratorClass(self.d, self.file_name)
         else:
             reg_str = input("Хотите обнулить все забронированные места и перегенерировать исходный файл? (Да/Нет)\n-> ")
-            if reg_str == "Y" or reg_str == "Да":
-                FileGeneratorClass(self.d, file_name)
+            if reg_str == "Y" or reg_str == "y" or reg_str == "Да":
+                FileGeneratorClass(self.d, self.file_name)
 
         self.mainmenu_show()
     
@@ -158,10 +162,10 @@ class Task6MainClass():
                     self.result_outputer()
             
             elif input_value == "2":
-                add_ticket_module.AddTicketClass()
+                ticket_module.AddTicketClass(self.file_name)
 
             elif input_value == "3":
-                remove_ticket_module.RemoveTicketClass()
+                ticket_module.RemoveTicketClass(self.file_name)
             
             elif input_value != "0":
                 print("Такого пункта нет в меню")
