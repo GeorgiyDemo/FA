@@ -24,22 +24,15 @@
 import yaml
 import random
 import datetime
+import universal_module
+import add_ticket_module
+import remove_ticket_module
 from os import path
 
 # Время для пересадки между поездами
 TIME_WAIT = 30
 
-
-class FileClassAdder():
-   """
-   Файл добавления данных в файл
-   - Спрашивает номер вагона 
-   - Спрашивает номер места
-   """
-   #car_places_dict[str(i)] = {"name":"Кот занял место", "price":1300, "type":"reserved"}
-   pass
-
-class FileClassGenerator():
+class FileGeneratorClass():
 
    """
    Класс-генератор свободных мест на рейсы и запись в файл
@@ -88,55 +81,6 @@ class FileClassGenerator():
       with open(self.file_name, 'w') as outfile:
          yaml.safe_dump(self.result, outfile, allow_unicode=True)
       print("Перегенерация завершена")
-      
-
-
-class UniversalClass():
-
-    @staticmethod
-    def get_train_time(*time_ranges):
-        """
-        Метод для вычисления времени прибытия поезда
-        Необходим для проверки на то, успевает ли человек на свой поезд
-        """
-        out_list = []
-        for time_range in time_ranges:
-            time = time_range[0]
-            begin_time = time_range[1]
-
-            train_begin_time = datetime.datetime.strptime(begin_time, "%d.%m.%Y %H:%M")
-            train_arrive_time = train_begin_time + datetime.timedelta(minutes=time)
-
-            out_list.append((train_begin_time, train_arrive_time))
-        return out_list
-
-    @staticmethod
-    def detect_station_waiting_time(station_name, all_wait_list):
-        """
-        Определяем, есть ли станция в словаре ожидания
-        - Если есть такая станция, то отдаём True и время ожидания
-        - Если нет, то False и None
-        """
-        for way in all_wait_list["ways"]:
-            if station_name == way["point"]:
-                return True, way["time"]
-        return False, None
-
-    @staticmethod
-    def get_ways_string(ways_list):
-        """
-        Отдаёт единую строку путей для красивого вывода в result_outputer
-        """
-        buf_list = []
-        for e in ways_list:
-            buf_list.extend([e["way_from"], e["way_to"]])
-        results = []
-        for item in buf_list:
-            if results and item == results[-1]:
-                results.pop()
-            results.append(item)
-        return " -> ".join(results)
-
 
 class MainClass():
 
@@ -182,20 +126,45 @@ class MainClass():
             ],
         }
 
+        #TODO
         fileflag = path.exists(file_name)
-        print("fileflag", fileflag)
-        reg_str = input("Хотите обнулить все забронированные места и перегенерировать исходный файл? (Да/Нет)\n-> ")
-        if reg_str == "Y" or reg_str == "Да":
-            FileClassGenerator(self.d, file_name)
+        if fileflag == False:
+            FileGeneratorClass(self.d, file_name)
+        else:
+            reg_str = input("Хотите обнулить все забронированные места и перегенерировать исходный файл? (Да/Нет)\n-> ")
+            if reg_str == "Y" or reg_str == "Да":
+                FileGeneratorClass(self.d, file_name)
 
-        self.way_inputer()
-        self.way_recognizer()
-        if self.all_ways_list:
-            self.waiting_time_detector()
-            self.main_time_detector()
-            self.result_outputer()
-            #Вывод меню с предложением о бронировании билета
-            #Или возврата билета
+        self.mainmenu_show()
+    
+    def mainmenu_show(self):
+        """
+        Метод для вывода меню действий, связанных с 3 заданием 5 практики
+        """
+        
+        input_value = ""
+        while input_value != "0":
+            menu_str = "Выберите действие:\n1. Поиск оптимального маршрута по времени\n2. Купить билеты на отдельный маршрут\n3. Сдать билеты на отдельный маршрут\n0. Выход из программы\n-> "
+            input_value = input(menu_str)
+            
+            if input_value == "1":
+                self.way_inputer()
+                self.way_recognizer()
+                if self.all_ways_list:
+                    self.waiting_time_detector()
+                    self.main_time_detector()
+                    self.result_outputer()
+            
+            elif input_value == "2":
+                add_ticket_module.AddTicketClass()
+
+            elif input_value == "3":
+                remove_ticket_module.RemoveTicketClass()
+            
+            elif input_value != "0":
+                print("Такого пункта нет в меню")
+            #input_number = input(input_value)
+            #FileProcessingClass
 
     def result_outputer(self):
         """
@@ -204,7 +173,7 @@ class MainClass():
         r = self.final_out_list
         for i in range(len(r)):
             print("\n" + "*" * 10 + "Маршрут №" + str(i + 1) + "*" * 10)
-            print(UniversalClass.get_ways_string(r[i]["ways"]))
+            print(universal_module.UniversalClass.get_ways_string(r[i]["ways"]))
             print("Общее время: "+str(r[i]["total_time"]))
             for way in r[i]["ways"]:
                 print(way["way_from"]+" -> "+way["way_to"]+", время: "+str(way["train_time"]))
@@ -235,7 +204,7 @@ class MainClass():
             little_way_dict = []
             for j in range(len(times)):
                 train_time = times[j][1] - times[j][0]
-                checked_value = UniversalClass.detect_station_waiting_time(points[j + 1], all_wait_list[i])
+                checked_value = universal_module.UniversalClass.detect_station_waiting_time(points[j + 1], all_wait_list[i])
 
                 if checked_value[0]:
                     little_way_dict.append({"way_from": points[j], "way_to": points[j + 1], "train_time": train_time,
@@ -328,7 +297,7 @@ class MainClass():
                     print("[Вложенность 0] " + point_a + " - > " + first_element["name"])
 
                     all_ways_list.append(
-                        dict(points=[point_a, first_element["name"]], times=UniversalClass.get_train_time(
+                        dict(points=[point_a, first_element["name"]], times=universal_module.UniversalClass.get_train_time(
                             (first_element["time_range"], first_element["begin_time"])), detector_number=0))
 
                 if first_element["name"] in d:
@@ -339,7 +308,7 @@ class MainClass():
 
                             all_ways_list.append(
                                 dict(points=[point_a, first_element["name"], second_element["name"]],
-                                     times=UniversalClass.get_train_time(
+                                     times=universal_module.UniversalClass.get_train_time(
                                          (first_element["time_range"], first_element["begin_time"]),
                                          (second_element["time_range"], second_element["begin_time"])
                                      ), detector_number=1))
@@ -353,7 +322,7 @@ class MainClass():
                                         {
                                             "points": [point_a, first_element["name"], second_element["name"],
                                                        third_element["name"]],
-                                            "times": UniversalClass.get_train_time(
+                                            "times": universal_module.UniversalClass.get_train_time(
                                                 (first_element["time_range"], first_element["begin_time"]),
                                                 (second_element["time_range"], second_element["begin_time"]),
                                                 (third_element["time_range"], third_element["begin_time"]),
@@ -371,7 +340,7 @@ class MainClass():
                                                 {
                                                     "points": [point_a, first_element["name"], second_element["name"],
                                                                third_element["name"], fourth_element["name"]],
-                                                    "times": UniversalClass.get_train_time(
+                                                    "times": universal_module.UniversalClass.get_train_time(
                                                         (first_element["time_range"], first_element["begin_time"]),
                                                         (second_element["time_range"], second_element["begin_time"]),
                                                         (third_element["time_range"], third_element["begin_time"]),
