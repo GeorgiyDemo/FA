@@ -45,6 +45,3 @@ class PDFWriter():
         
         pdf.output('./pdf/'+self.pdf_filename_to_save, 'F')
         self.processed_flag = True
-
-if __name__ == "__main__":
-    PDFWriter("Документ об оформлении возврата срeдств на\n12.12.1201 20:00:22","ТЕКСТА\nкупдкупдукпд\nrgregg\n","QR текст")

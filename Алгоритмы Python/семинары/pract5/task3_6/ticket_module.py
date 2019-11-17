@@ -3,6 +3,7 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
+#TODO Не выходить из меню управления билетами после того, как что-то сделали с одним 
 import yaml
 import time
 import texttable
@@ -58,8 +59,37 @@ class AddTicketClass():
             self.mechanical_components_reserve()
             
     def auto_components_reserve(self):
-        #TODO
-        print("Зарезервировали билет по маршруту МОСКВА - САНКТ-ПЕТЕРБУРГ ЗА 228 руб..")
+        way_index = 0
+        price_dict = {}
+        content = self.content 
+        for i in range(len(content)):
+            if content[i]["from"] == self.way_from and content[i]["to"] == self.way_to:
+                way_index = i
+                for car in content[i]["train"]:
+                    for place in content[i]["train"][car]["cars"]:
+                        if content[i]["train"][car]["cars"][place]["name"] == None:
+                            locale_price = content[i]["train"][car]["cars"][place]["price"]
+                            price_dict[(car,place)] = locale_price
+
+        min_price = price_dict[('1','1')]
+        min_key = ('1','1')
+        for k,v in price_dict.items():
+            if v < min_price:
+                min_price = v
+                min_key = k
+        
+        way_index
+        price = min_price
+        car, place = min_key
+        
+        selected_train = content[way_index]
+        print("Зарезервировали "+place+" место в вагоне "+car+" по маршруту "+selected_train["from"]+" -> "+selected_train["to"]+" за "+str(price)+" руб")
+        print("Отправление в "+selected_train["time_begin"]+ ", прибытие - "+selected_train["time_finish"])
+
+        content[way_index]["train"][car]["cars"][place]["name"] = self.name
+        #Записываем все в файл
+        writer_obj = universal_module.FileClass(self.file_name)
+        writer_obj.set_file(content)
 
     def mechanical_components_reserve(self):
         """

@@ -21945,7 +21945,7 @@
           price: 3196
           type: нижнее
         '49':
-          name: null
+          name: Котик Толстый
           payment: 0
           price: 999
           type: нижнее (боковое)
@@ -51421,7 +51421,7 @@
           price: 2565
           type: верхнее (боковое)
         '39':
-          name: null
+          name: Котик Толстый
           payment: 0
           price: 999
           type: верхнее
@@ -73701,7 +73701,7 @@
           price: 2597
           type: нижнее (боковое)
         '38':
-          name: null
+          name: Котик Толстый
           payment: 0
           price: 1002
           type: верхнее (боковое)
