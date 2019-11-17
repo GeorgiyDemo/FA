@@ -4459,7 +4459,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 809
+    places_free: 806
   time_begin: 14:40:00 17/11/2019
   time_finish: 14:43:00 17/11/2019
   to: Баковка
@@ -7487,13 +7487,13 @@
           price: 2637
           type: нижнее
         '53':
-          name: null
+          name: Кот
           payment: 0
           price: 1564
           type: верхнее
         '54':
-          name: null
-          payment: 0
+          name: Кот
+          payment: 1
           price: 1932
           type: нижнее
         '55':
@@ -7521,7 +7521,7 @@
           payment: 0
           price: 2687
           type: верхнее
-      places_free: 54
+      places_free: 52
     '5':
       cars:
         '1':
@@ -7780,8 +7780,8 @@
           price: 2840
           type: нижнее (боковое)
         '6':
-          name: null
-          payment: 0
+          name: ТЕСТОВЫЙ ЧЕЛ
+          payment: 1
           price: 2290
           type: нижнее
         '7':
@@ -7799,7 +7799,7 @@
           payment: 0
           price: 1314
           type: верхнее
-      places_free: 54
+      places_free: 53
     '6':
       cars:
         '1':
