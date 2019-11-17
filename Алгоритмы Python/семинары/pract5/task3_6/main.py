@@ -1,5 +1,5 @@
-#TODO Рандомная генерация файла + сохранение расписания в файл
-#TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла
+# TODO Рандомная генерация файла + сохранение расписания в файл
+# TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла
 """
 Для задания  6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -19,17 +19,17 @@
 Между переходами разница в 30 мин
 """
 
-import yaml
-import random
 import datetime
-import texttable
-
-import universal_module
-import ticket_module
-import waysearcher_module
-import file_writer_module
-
+import random
 from os import path
+
+import file_writer_module
+import texttable
+import ticket_module
+import universal_module
+import waysearcher_module
+import yaml
+
 
 class GetAllInfoClass():
     """
@@ -38,21 +38,21 @@ class GetAllInfoClass():
     - Индексы поездов в общем словаре для последующего обращения
     - Информация о билетах: вагон, место, стоимость, тип, оплата
     """
+
     def __init__(self, d, name):
-        
-        #Поля для обращения к ним
+
+        # Поля для обращения к ним
         self.ways_index = []
         self.tickets = []
-        
+
         self.d = d
         self.name = name
-        
+
         self.d_payment_formater = {
-            0 : "Ожидает оплаты",
-            1 : "Оплачено",
+            0: "Ожидает оплаты",
+            1: "Оплачено",
         }
         self.check_reservers_by_name()
-
 
     def check_reservers_by_name(self):
         """
@@ -60,11 +60,11 @@ class GetAllInfoClass():
         - Возвращает время отправления и прибытия этих поездов
         - Возвращает индексы
         """
-        
+
         d = self.d
         ways_index = []
         tickets = []
-        
+
         for i in range(len(d)):
             train_begin_time = d[i]["time_begin"]
             train_time_finish = d[i]["time_finish"]
@@ -73,13 +73,13 @@ class GetAllInfoClass():
                     current_place_dict = d[i]["train"][car]["cars"][place]
                     if current_place_dict["name"] == self.name:
                         price_str = str(current_place_dict["price"])
-                        
+
                         ways_index.append(i)
                         tickets.append([
-                            d[i]["from"]+" -> "+d[i]["to"],
+                            d[i]["from"] + " -> " + d[i]["to"],
                             car,
                             place,
-                            price_str+" руб.",
+                            price_str + " руб.",
                             current_place_dict["type"],
                             self.d_payment_formater[current_place_dict["payment"]],
                             train_begin_time,
@@ -89,96 +89,98 @@ class GetAllInfoClass():
         self.ways_index = ways_index
         self.tickets = tickets
 
+
 class FileGeneratorClass():
+    """
+    Класс-генератор свободных мест на рейсы и запись в файл
+    """
 
-   """
-   Класс-генератор свободных мест на рейсы и запись в файл
-   """
+    def __init__(self, all_train_dict, file_name, places_count=55, car_count=16):
 
-   def __init__(self, all_train_dict, file_name, places_count=55, car_count=16):
-      
-      self.file_name = file_name
-      self.all_train_dict = all_train_dict
-      self.places_count = places_count
-      self.car_count = car_count
-      self.processing()
-      self.file_writer()
-   
-   def get_time_ranges(self, train):
-       """
-       Возврат диапазонов времени отправлений поезда
-       - Принимает словарь поезда
-       - Отдаёт временные промежутки отправления и прибытия поезда 
-       """
-       train_begin_time = datetime.datetime.strptime(train["begin_time"], "%d.%m.%Y %H:%M")
-       train_begin_time_str = train_begin_time.strftime("%H:%M:%S %d/%m/%Y")
-       train_finish_time = train_begin_time + datetime.timedelta(minutes=train["time_range"])
-       train_finish_time_str = train_finish_time.strftime("%H:%M:%S %d/%m/%Y")
-       return train_begin_time_str, train_finish_time_str
+        self.file_name = file_name
+        self.all_train_dict = all_train_dict
+        self.places_count = places_count
+        self.car_count = car_count
+        self.processing()
+        self.file_writer()
 
-   def processing(self):
-      
-      print("Перегенерация исходного файла..")
-      #Каждый путь с каждым поездом и каждым вагоном и каждым местом
-      sum_train_list = []
-      #Все пути от self.d
-      all_train_dict = self.all_train_dict
-      
-      for first_point in all_train_dict:
-         for second_point in all_train_dict[first_point]:
-            time_begin, time_finish = self.get_time_ranges(second_point)
-            total_free_places = (self.places_count-1)*(self.car_count-1)
-            sum_train_list.append(
-                {
-                    "from" : first_point,
-                    "to" : second_point["name"],
-                    "time_begin" : time_begin,
-                    "time_finish" : time_finish,
-                    "train" : {},
-                    "info":
+    def get_time_ranges(self, train):
+        """
+        Возврат диапазонов времени отправлений поезда
+        - Принимает словарь поезда
+        - Отдаёт временные промежутки отправления и прибытия поезда
+        """
+        train_begin_time = datetime.datetime.strptime(train["begin_time"], "%d.%m.%Y %H:%M")
+        train_begin_time_str = train_begin_time.strftime("%H:%M:%S %d/%m/%Y")
+        train_finish_time = train_begin_time + datetime.timedelta(minutes=train["time_range"])
+        train_finish_time_str = train_finish_time.strftime("%H:%M:%S %d/%m/%Y")
+        return train_begin_time_str, train_finish_time_str
+
+    def processing(self):
+
+        print("Перегенерация исходного файла..")
+        # Каждый путь с каждым поездом и каждым вагоном и каждым местом
+        sum_train_list = []
+        # Все пути от self.d
+        all_train_dict = self.all_train_dict
+
+        for first_point in all_train_dict:
+            for second_point in all_train_dict[first_point]:
+                time_begin, time_finish = self.get_time_ranges(second_point)
+                total_free_places = (self.places_count - 1) * (self.car_count - 1)
+                sum_train_list.append(
                     {
-                        "places_free": total_free_places,
-                        "places_count" : self.places_count-1,
-                        "car_count" : self.car_count-1,
+                        "from": first_point,
+                        "to": second_point["name"],
+                        "time_begin": time_begin,
+                        "time_finish": time_finish,
+                        "train": {},
+                        "info":
+                            {
+                                "places_free": total_free_places,
+                                "places_count": self.places_count - 1,
+                                "car_count": self.car_count - 1,
+                            }
                     }
+                )
+
+        for i in range(len(sum_train_list)):
+
+            # Список поезда
+            train_dict = {}
+            for j in range(self.car_count):
+
+                # Словарь вагонов
+                car_places_dict = {"cars": {}, "places_free": self.places_count - 1}
+                place_type_dict = {
+                    0: "нижнее (боковое)",
+                    1: "верхнее (боковое)",
+                    2: "верхнее",
+                    3: "нижнее",
+                    4: "верхнее",
+                    5: "нижнее",
                 }
-            )
+                place_type_counter = 0
+                for k in range(self.places_count):
+                    price = random.randint(999, 3300)
+                    place_type = place_type_dict[place_type_counter]
+                    car_places_dict["cars"][str(k + 1)] = {"name": None, "price": price, "type": place_type,
+                                                           "payment": 0}
+                    place_type_counter += 1
+                    if place_type_counter == 6:
+                        place_type_counter = 0
 
-      for i in range(len(sum_train_list)):
-         
-         #Список поезда
-         train_dict = {}
-         for j in range(self.car_count):
+                train_dict[str(j + 1)] = car_places_dict
 
-            #Словарь вагонов
-            car_places_dict = {"cars" : {}, "places_free" :self.places_count-1}
-            place_type_dict = {
-                0 : "нижнее (боковое)",
-                1 : "верхнее (боковое)",
-                2 : "верхнее",
-                3 : "нижнее",
-                4 : "верхнее",
-                5 : "нижнее",
-            }
-            place_type_counter = 0
-            for k in range(self.places_count):
-               price = random.randint(999,3300)
-               place_type = place_type_dict[place_type_counter]
-               car_places_dict["cars"][str(k+1)] = {"name": None, "price":price, "type":place_type, "payment":0}
-               place_type_counter +=1
-               if place_type_counter == 6:
-                   place_type_counter = 0
+            sum_train_list[i]["train"] = train_dict
 
-            train_dict[str(j+1)] = car_places_dict
+        self.result = sum_train_list
 
-         sum_train_list[i]["train"] = train_dict
-      
-      self.result = sum_train_list
+    def file_writer(self):
+        with open(self.file_name, 'w') as outfile:
+            yaml.safe_dump(self.result, outfile, allow_unicode=True)
+        print("Перегенерация завершена")
 
-   def file_writer(self):
-      with open(self.file_name, 'w') as outfile:
-         yaml.safe_dump(self.result, outfile, allow_unicode=True)
-      print("Перегенерация завершена")
 
 class MainClass():
 
@@ -188,10 +190,10 @@ class MainClass():
         Формирует словарь железнодорожных сообщений + вызов всех методов
         """
         self.file_name = "tickets.yml"
-        
+
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
-        #TODO Чтение из YAML, если date != текущей date, то регенерейт.
-        #Если файла нет, то тоже его заного создаём
+        # TODO Чтение из YAML, если date != текущей date, то регенерейт.
+        # Если файла нет, то тоже его заного создаём
         self.d = {
             "Одинцово": [
                 {"begin_time": date + "21:30", "time_range": 30, "name": "Белорусский Вокзал"},
@@ -235,12 +237,12 @@ class MainClass():
                 FileGeneratorClass(self.d, self.file_name)
 
         self.mainmenu_show()
-    
+
     def buying_ticket_processing(self):
         """
         Управляющая логика для покупки билетов
         """
-        
+
         user_input = input("\nХотите купить билет сейчас? (Да/Нет) -> ")
         if user_input == "Да":
 
@@ -253,8 +255,9 @@ class MainClass():
                 obj = universal_module.FileClass(self.file_name, 2)
                 self.content = obj.get_text()
                 processing_ways_list = all_ways[way_number_input]
-                auto_selecter_input = input("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути?\nЕсли нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) -> ")
-                
+                auto_selecter_input = input(
+                    "Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути?\nЕсли нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) -> ")
+
                 if auto_selecter_input == "Да":
                     automate_flag = True
                 elif auto_selecter_input == "Нет":
@@ -262,21 +265,20 @@ class MainClass():
                 else:
                     print("Некорректный ввод данных..")
                     return
-                
+
                 for way in processing_ways_list:
-                    ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1], automate_flag)
+                    ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1],
+                                                 automate_flag)
 
-
-                
-                #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
-                #if "Да":
+                # print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
+                # if "Да":
                 #   print("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути? Если нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) ->")
                 #    if "Да":
                 #        Автоматически поиск самых дешевых
                 #    if "Нет"
                 #        Пусть вбивает всё сам
 
-                #ticket_module.AddTicketClass(self.file_name)
+                # ticket_module.AddTicketClass(self.file_name)
 
             else:
                 print("Введенный маршрут не найден")
@@ -287,17 +289,17 @@ class MainClass():
         """
         Метод для вывода меню действий, связанных с 3 заданием 5 практики
         """
-        
+
         input_value = ""
         while input_value != "0":
             menu_str = "\nВыберите действие:\n1. Покупка билетов\n2. Управление моими билетами\n0. Выход из программы\n-> "
             input_value = input(menu_str)
-            
+
             if input_value == "1":
                 obj = waysearcher_module.SearcherClass(self.d)
                 all_ways = obj.ways
                 if all_ways != {}:
-                    #Вынесли логику в отдельный метод
+                    # Вынесли логику в отдельный метод
                     self.all_ways = all_ways
                     self.buying_ticket_processing()
                 else:
@@ -308,10 +310,10 @@ class MainClass():
                 obj = universal_module.FileClass(self.file_name, 2)
                 self.content = obj.get_text()
                 self.new_name = input("Введите ФИО пассажира -> ")
-                
+
                 exit_flag = False
                 while exit_flag == False:
-                    obj_info = GetAllInfoClass(self.content,self.new_name)
+                    obj_info = GetAllInfoClass(self.content, self.new_name)
                     ways_indexes = obj_info.ways_index
                     check_name_tuple = obj_info.tickets
 
@@ -319,81 +321,106 @@ class MainClass():
                     if check_name_tuple != []:
 
                         table = texttable.Texttable(180)
-                        table_list = [["№", "Поезд", "№ вагона","№ места","Цена","Тип места","Статус","Время отправления","Время прибытия"],]
+                        table_list = [
+                            ["№", "Поезд", "№ вагона", "№ места", "Цена", "Тип места", "Статус", "Время отправления",
+                             "Время прибытия"], ]
                         for i in range(len(check_name_tuple)):
-                            ticket_list.append(str(i+1))
-                            buf_list = [i+1]+check_name_tuple[i]
+                            ticket_list.append(str(i + 1))
+                            buf_list = [i + 1] + check_name_tuple[i]
                             table_list.append(buf_list)
 
                         table.add_rows(table_list)
                         print(table.draw() + "\n")
 
-                        reserve_input = input("Введите номер бронирования для управления им или 0 для выхода из подменю -> ")
+                        reserve_input = input(
+                            "Введите номер бронирования для управления им или 0 для выхода из подменю -> ")
                         if reserve_input == "0":
                             exit_flag = True
 
                         elif reserve_input in ticket_list:
-                            current_reserve = check_name_tuple[int(reserve_input)-1]
-                            #Флаг для проверки на ввод 2 пункта
+                            current_reserve = check_name_tuple[int(reserve_input) - 1]
+                            # Флаг для проверки на ввод 2 пункта
                             payment_show = False
                             if current_reserve[5] == "Ожидает оплаты":
 
                                 payment_show = True
-                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета\n3. Оплата билета")
-                            
+                                print(
+                                    "Бронирование №" + reserve_input + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета\n3. Оплата билета")
+
                             else:
-                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета")
-                            
+                                print(
+                                    "Бронирование №" + reserve_input + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета")
+
                             input_command = input("Введите номер действия -> ")
-                            
-                            way_index = ways_indexes[int(reserve_input)-1]
-                            if input_command == "1":                
-                                ticket_obj = ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
+
+                            way_index = ways_indexes[int(reserve_input) - 1]
+                            if input_command == "1":
+                                ticket_obj = ticket_module.RemoveTicketClass(self.file_name, self.content,
+                                                                             self.new_name, way_index,
+                                                                             current_reserve[1], current_reserve[2])
                                 self.content = ticket_obj.content
-                            
+
                             elif input_command == "2":
 
-                                #Формируем электронный билет об оплате
+                                # Формируем электронный билет об оплате
                                 date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
-                                report_filename = "Электронный билет "+self.new_name+" от "+date_now+".pdf"
+                                report_filename = "Электронный билет " + self.new_name + " от " + date_now + ".pdf"
                                 header_str = "Электронный билет"
-                                main_text_str_name = "ФИО клиента: "+self.new_name+"\nДата и время формирования: "+date_now
-                                    
+                                main_text_str_name = "ФИО клиента: " + self.new_name + "\nДата и время формирования: " + date_now
+
                                 current_ticket = table_list[int(reserve_input)]
 
-                                main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+self.content[way_index]["from"]+" "+self.content[way_index]["time_begin"]+"\n"+ "Место и время прибытия: "+self.content[way_index]["to"]+" "+self.content[way_index]["time_finish"]+"\nМесто: №"+current_ticket[3]+" вагон "+current_ticket[2]+" ["+current_ticket[5]+"]"
-                                
-                                main_text_str_payment = "\nОплата\nСтоимость билета: "+ str(current_ticket[4])+"\n"+"Статус оплаты: "+current_ticket[6]
-                                main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
+                                main_text_str_ticket = "\nБилет\nСтанция и время отправления: " + \
+                                                       self.content[way_index]["from"] + " " + self.content[way_index][
+                                                           "time_begin"] + "\n" + "Место и время прибытия: " + \
+                                                       self.content[way_index]["to"] + " " + self.content[way_index][
+                                                           "time_finish"] + "\nМесто: №" + current_ticket[
+                                                           3] + " вагон " + current_ticket[2] + " [" + current_ticket[
+                                                           5] + "]"
+
+                                main_text_str_payment = "\nОплата\nСтоимость билета: " + str(
+                                    current_ticket[4]) + "\n" + "Статус оплаты: " + current_ticket[6]
+                                main_text_str = main_text_str_name + "\n" + main_text_str_ticket + "\n" + main_text_str_payment
                                 qr_text = main_text_str
-                                PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
+                                PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str, qr_text,
+                                                                       report_filename)
                                 if PDF_obj.processed_flag == True:
                                     print("Электронный билет сформирован")
 
 
                             elif input_command == "3" and payment_show == True:
                                 payment_obj = ticket_module.PaymentClass()
-                                
+
                                 if payment_obj.result == True:
 
-                                    self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
+                                    self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]][
+                                        "payment"] = 1
 
-                                    #Формируем квитанцию об оплате
+                                    # Формируем квитанцию об оплате
                                     date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
-                                    report_filename = "Квитанция об оплате "+self.new_name+" от "+date_now+".pdf"
-                                    header_str = "Квитанция об оплате заказа от\n"+date_now
-                                    main_text_str_name = "ФИО клиента: "+self.new_name
-                                    
+                                    report_filename = "Квитанция об оплате " + self.new_name + " от " + date_now + ".pdf"
+                                    header_str = "Квитанция об оплате заказа от\n" + date_now
+                                    main_text_str_name = "ФИО клиента: " + self.new_name
+
                                     current_ticket = table_list[int(reserve_input)]
-                                    main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+self.content[way_index]["from"]+" "+self.content[way_index]["time_begin"]+"\n"+ "Место и время прибытия: "+self.content[way_index]["to"]+" "+self.content[way_index]["time_finish"]+"\nМесто: №"+current_ticket[3]+" вагон "+current_ticket[2]+" ["+current_ticket[5]+"]"
-                                    main_text_str_payment = "\nОплата\nСтоимость билета: "+ str(current_ticket[4])+"\n"+"Статус оплаты: ОПЛАЧЕНО"
-                                    main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
+                                    main_text_str_ticket = "\nБилет\nСтанция и время отправления: " + \
+                                                           self.content[way_index]["from"] + " " + \
+                                                           self.content[way_index][
+                                                               "time_begin"] + "\n" + "Место и время прибытия: " + \
+                                                           self.content[way_index]["to"] + " " + \
+                                                           self.content[way_index]["time_finish"] + "\nМесто: №" + \
+                                                           current_ticket[3] + " вагон " + current_ticket[2] + " [" + \
+                                                           current_ticket[5] + "]"
+                                    main_text_str_payment = "\nОплата\nСтоимость билета: " + str(
+                                        current_ticket[4]) + "\n" + "Статус оплаты: ОПЛАЧЕНО"
+                                    main_text_str = main_text_str_name + "\n" + main_text_str_ticket + "\n" + main_text_str_payment
                                     qr_text = main_text_str
-                                    PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
+                                    PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str, qr_text,
+                                                                           report_filename)
                                     if PDF_obj.processed_flag == True:
                                         print("Квитанция об оплате успешно сформирована")
 
-                                    #Записываем все в файл
+                                    # Записываем все в файл
                                     print("Записываем изменения..")
                                     writer_obj = universal_module.FileClass(self.file_name)
                                     writer_obj.set_file(self.content)
@@ -405,14 +432,15 @@ class MainClass():
 
                         else:
                             print("Введенного номера бронирования не существует")
-                        #Проверка на то, что можно выводить в управлении
-                        
+                        # Проверка на то, что можно выводить в управлении
+
                     else:
                         print("Броней, связанных с введенными ФИО не найдено")
                         exit_flag = True
-        
+
             elif input_value != "0":
                 print("Такого пункта нет в меню")
+
 
 if __name__ == "__main__":
     MainClass()

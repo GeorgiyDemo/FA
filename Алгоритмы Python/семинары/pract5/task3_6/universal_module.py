@@ -1,5 +1,7 @@
 import datetime
+
 import yaml
+
 
 class FileClass():
     """
@@ -10,20 +12,21 @@ class FileClass():
 
     def __init__(self, file_name, method=1):
         self.file_name = file_name
-        
+
         if method == 2:
             self.read_file()
 
-    def set_file(self,content):
+    def set_file(self, content):
         with open(self.file_name, 'w') as outfile:
             yaml.safe_dump(content, outfile, allow_unicode=True)
-    
+
     def read_file(self):
         with open(self.file_name, 'r') as outfile:
             self.content = yaml.safe_load(outfile)
 
     def get_text(self):
         return self.content
+
 
 class UniversalClass():
 

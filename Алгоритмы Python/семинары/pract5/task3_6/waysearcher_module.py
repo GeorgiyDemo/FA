@@ -3,7 +3,10 @@
 Неокогда основной процессинг 4 практики 6 задания
 """
 import datetime
+
 import universal_module
+
+
 class SearcherClass():
     def __init__(self, d):
         self.d = d
@@ -12,7 +15,7 @@ class SearcherClass():
         self.way_inputer()
         self.way_recognizer()
 
-        #Поля для последующего обращения с main
+        # Поля для последующего обращения с main
         self.ways = {}
 
         if self.all_ways_list:
@@ -31,11 +34,10 @@ class SearcherClass():
             buf_list = []
             for e in r[i]["ways"]:
                 buf_list.append([e["way_from"], e["way_to"]])
-            
-            locale_ways[str(i + 1)] = buf_list
-        
-        self.ways = locale_ways
 
+            locale_ways[str(i + 1)] = buf_list
+
+        self.ways = locale_ways
 
     def waiting_time_detector(self):
         """
@@ -107,8 +109,9 @@ class SearcherClass():
                     print("[Вложенность 0] " + point_a + " - > " + first_element["name"])
 
                     all_ways_list.append(
-                        dict(points=[point_a, first_element["name"]], times=universal_module.UniversalClass.get_train_time(
-                            (first_element["time_range"], first_element["begin_time"])), detector_number=0))
+                        dict(points=[point_a, first_element["name"]],
+                             times=universal_module.UniversalClass.get_train_time(
+                                 (first_element["time_range"], first_element["begin_time"])), detector_number=0))
 
                 if first_element["name"] in d:
                     for second_element in d[first_element["name"]]:
@@ -172,11 +175,11 @@ class SearcherClass():
         for i in range(len(r)):
             print("\n" + "*" * 10 + "Маршрут №" + str(i + 1) + "*" * 10)
             print(universal_module.UniversalClass.get_ways_string(r[i]["ways"]))
-            print("Общее время: "+str(r[i]["total_time"]))
+            print("Общее время: " + str(r[i]["total_time"]))
             for way in r[i]["ways"]:
-                print(way["way_from"]+" -> "+way["way_to"]+", время: "+str(way["train_time"]))
+                print(way["way_from"] + " -> " + way["way_to"] + ", время: " + str(way["train_time"]))
                 if way["waiting_time"] is not None:
-                    print("Ожидание: "+str(way["waiting_time"]))
+                    print("Ожидание: " + str(way["waiting_time"]))
 
     def main_time_detector(self):
 
@@ -202,7 +205,8 @@ class SearcherClass():
             little_way_dict = []
             for j in range(len(times)):
                 train_time = times[j][1] - times[j][0]
-                checked_value = universal_module.UniversalClass.detect_station_waiting_time(points[j + 1], all_wait_list[i])
+                checked_value = universal_module.UniversalClass.detect_station_waiting_time(points[j + 1],
+                                                                                            all_wait_list[i])
 
                 if checked_value[0]:
                     little_way_dict.append({"way_from": points[j], "way_to": points[j + 1], "train_time": train_time,
