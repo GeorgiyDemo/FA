@@ -29,6 +29,7 @@ class PDFWriter():
 
         pdf.image('./img/logo.gif', 10, 10, 33)
         pdf.image('./img/qr.png', 160, 8, 45)
+        pdf.image('./img/footer.png', 10, 220, 200 )
 
         for header in self.header:
 

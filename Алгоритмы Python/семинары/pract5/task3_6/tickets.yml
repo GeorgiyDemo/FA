@@ -4459,7 +4459,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 14:40:00 17/11/2019
   time_finish: 14:43:00 17/11/2019
   to: Баковка
@@ -5967,8 +5967,8 @@
           price: 3231
           type: верхнее
         '3':
-          name: null
-          payment: 0
+          name: Толстый Котик 10кг
+          payment: 1
           price: 1003
           type: верхнее
         '30':
@@ -6131,7 +6131,7 @@
           payment: 0
           price: 1550
           type: верхнее
-      places_free: 54
+      places_free: 53
     '15':
       cars:
         '1':
@@ -17830,7 +17830,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 14:20:00 17/11/2019
   time_finish: 14:30:00 17/11/2019
   to: Курский Вокзал
@@ -21379,7 +21379,7 @@
           price: 2115
           type: нижнее
         '47':
-          name: null
+          name: Толстый Котик 10кг
           payment: 0
           price: 999
           type: верхнее
@@ -21448,7 +21448,7 @@
           payment: 0
           price: 2991
           type: верхнее
-      places_free: 54
+      places_free: 53
     '7':
       cars:
         '1':
