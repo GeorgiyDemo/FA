@@ -6072,8 +6072,8 @@
           price: 2515
           type: нижнее
         '49':
-          name: null
-          payment: 0
+          name: ЖМЫХ БРАТ
+          payment: 1
           price: 2917
           type: нижнее (боковое)
         '5':

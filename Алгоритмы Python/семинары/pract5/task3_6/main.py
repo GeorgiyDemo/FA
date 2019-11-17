@@ -19,8 +19,6 @@
 Между переходами разница в 30 мин
 """
 
-#TODO async - хрень, чтоб быстрее читать файл
-
 import yaml
 import random
 import datetime
@@ -271,7 +269,6 @@ class MainClass():
                 
                 for way in processing_ways_list:
                     ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1], automate_flag)
-                    print(way)
 
                 #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
                 #if "Да":
@@ -322,7 +319,6 @@ class MainClass():
                 if check_name_tuple != []:
 
                     table = texttable.Texttable(180)
-                    #TODO
                     table_list = [["№", "Поезд", "№ вагона","№ места","Цена","Тип места","Статус","Время отправления","Время прибытия"],]
                     for i in range(len(check_name_tuple)):
                         ticket_list.append(str(i+1))
