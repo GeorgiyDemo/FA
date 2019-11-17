@@ -35,18 +35,28 @@ def check_reservers_by_name(d, name):
     Метод находит по ФИО брони все билеты в коллекции
     Также полезен для отмены бронирования #TODO
     """
-    trains_str = []
-    trains = []
+    d_payment_formater = {
+        0 : "Ожидает оплаты",
+        1 : "Оплачено",
+    }
+    ways_index = []
+    tickets = []
     for i in range(len(d)):
         for car in d[i]["train"]:
             for place in d[i]["train"][car]["cars"]:
                 current_place_dict = d[i]["train"][car]["cars"][place]
                 if current_place_dict["name"] == name:
                     price_str = str(current_place_dict["price"])
-                    trains_str.append("["+price_str+" руб.] Поезд по пути '"+d[i]["from"]+"' -> '"+d[i]["to"]+"' Вагон №"+car+", место "+place)
-                    trains.append([i,car,place])
-                
-    return (trains_str, trains)
+                    ways_index.append(i)
+                    tickets.append([
+                        d[i]["from"]+" -> "+d[i]["to"],
+                        car,
+                        place,
+                        price_str+" руб.",
+                        current_place_dict["type"],
+                        d_payment_formater[current_place_dict["payment"]],
+                    ])
+    return ways_index, tickets   
 
 class FileGeneratorClass():
 
@@ -185,7 +195,8 @@ class MainClass():
             
             if input_value == "1":
                 obj = waysearcher_module.SearcherClass(self.d)
-                #print("Хоите купить билет(ы) на весь указанный путь? (Да/Нет)
+                
+                #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
                 #if "Да":
                 #   print("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути? Если нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) ->")
                 #    if "Да":
@@ -202,13 +213,62 @@ class MainClass():
 
 
                 self.new_name = input("Введите ФИО пассажира -> ")
-                check_name_tuple = check_reservers_by_name(self.content,self.new_name)
+                ways_indexes, check_name_tuple = check_reservers_by_name(self.content,self.new_name)
                 
                 #TODO Оформить в виде таблицы
-                if check_name_tuple[0] != []:
-                    print("Ваши билеты:")
-                    print('\n'.join(check_name_tuple[0]))
-                    reserve_input = input("Введите номер бронирования для управления им ->")
+                #Поезд #№Вагона #№Места #Цена #Тип #Статус (Оплачено/Ожидет оплаты)
+                ticket_list = []
+                if check_name_tuple != []:
+                    print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус"))
+                    for i in range(len(check_name_tuple)):
+                        ticket_list.append(str(i+1))
+                        #Вывод
+                        
+                        print('{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format(i+1,*check_name_tuple[i]))
+                    reserve_input = input("Введите номер бронирования для управления им -> ")
+                    if reserve_input in ticket_list:
+                        current_reserve = check_name_tuple[int(reserve_input)-i]
+                        #Флаг для проверки на ввод 2 пункта
+                        payment_show = False
+                        if current_reserve[5] == "Ожидает оплаты":
+                        #TODO Печать билета?
+                        #TODO Выход на меню назад, к выбору всех билетов?
+                            payment_show = True
+                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Оплата билета")
+                        else:
+                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования")
+                        input_command = input("Введите номер действия -> ")
+                        
+                        if input_command == "1":
+                            #TODO Номер бронирования, вагон и т д 
+                            ticket_module.RemoveTicketClass(self.file_name)
+                            print("Отмена бронирования..")
+                        
+                        elif input_command == "2" and payment_show == True:
+                            payment_obj = ticket_module.PaymentClass()
+                            
+                            if payment_obj.result == True:
+                                way_index = ways_indexes[int(reserve_input)-i]
+
+                                self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
+
+                                #Записываем все в файл
+                                print("Записываем изменения..")
+                                writer_obj = universal_module.FileClass(self.file_name)
+                                writer_obj.set_file(self.content)
+                            else:
+                                print("Оплата не прошла..")
+
+                        
+                        else:
+                            print("Нет такого пункта в меню")
+                        
+                        print("Доступные действия со списком:\n")
+
+
+                        print("Работаем..")
+                    else:
+                        print("Введенного номера бронирования не существует")
                     #Проверка на то, что можно выводить в управлении
                     
 
@@ -227,8 +287,8 @@ class MainClass():
                 #1. Отмена бронирования
                 #2. Оплата билета (появляется если только мы его не оплатили)
                 #3. Распечатать билет (????? ПОКА #TODO)
-                ticket_module.AddTicketClass(self.file_name)
-                ticket_module.RemoveTicketClass(self.file_name)
+                #ticket_module.AddTicketClass(self.file_name)
+                #ticket_module.RemoveTicketClass(self.file_name)
 
             elif input_value != "0":
                 print("Такого пункта нет в меню")

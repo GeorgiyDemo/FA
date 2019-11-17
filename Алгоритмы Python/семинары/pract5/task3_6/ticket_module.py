@@ -7,6 +7,19 @@ import yaml
 import time
 import universal_module
 
+class PaymentClass():
+
+    def __init__(self):
+        self.payment_processing()
+        self.result = True
+
+    def payment_processing(self):
+        print("Оплата..\n")
+        for i in range(3):
+            time.sleep(1)
+            print(".")
+        print("Оплата прошла успешно!")
+
 def get_min_max_price_of_car(car):
     
     max_price = car["cars"]["1"]["price"]
@@ -107,18 +120,15 @@ class AddTicketClass():
                 self.content[way][selected_car][selected_place]["name"] = self.new_name
                 print("Место успешно зарезервировано\nОплатить его сейчас? Да/Нет -> ")
                 if "Да":
-                    print("Оплата..\n")
-                    for i in range(3):
-                        time.sleep(0.6)
-                        print(".",end="")
-                    print("Оплата прошла успешно!")
-                    #Устанавливаем флаг того, что мы всё оплатили
-                    self.content[way][selected_car][selected_place]["payment"] = 1
+                    pay_obj = PaymentClass()
+                    if pay_obj.result == True:
+                        #Устанавливаем флаг того, что мы всё оплатили
+                        self.content[way]["train"][selected_car]["cars"][selected_place]["payment"] = 1
                 if "Нет":
                     print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
                 
                 #Записываем все в файл
-                writer_obj = universal_module.FileClass(self.file_name,1)
+                writer_obj = universal_module.FileClass(self.file_name)
                 writer_obj.set_file(self.content)
         else:
             print("Введенное место не найдено, выход из подпрограммы..")

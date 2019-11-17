@@ -8,16 +8,11 @@ class FileClass():
     - Читает данные из файла 
     """
 
-    def __init__(self, file_name, method):
+    def __init__(self, file_name, method=1):
         self.file_name = file_name
-        _select_d = {
-            1 : self.set_file,
-            2 : self.read_file,
-        }
-        if method in _select_d:
-            _select_d[method]()
-        else:
-            raise ValueError("Значения нет в словаре","method принял значение "+str(method))
+        
+        if method == 2:
+            self.read_file()
 
     def set_file(self,content):
         with open(self.file_name, 'w') as outfile:
