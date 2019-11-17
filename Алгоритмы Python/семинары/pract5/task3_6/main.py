@@ -1,5 +1,4 @@
 #TODO Рандомная генерация файла + сохранение расписания в файл
-#TODO Хренение времени отправления поезда и билетом
 """
 Для задания 5 или 6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -23,6 +22,7 @@
 import yaml
 import random
 import datetime
+import texttable
 
 import universal_module
 import ticket_module
@@ -115,8 +115,10 @@ class FileGeneratorClass():
        - Отдаёт временные промежутки отправления и прибытия поезда 
        """
        train_begin_time = datetime.datetime.strptime(train["begin_time"], "%d.%m.%Y %H:%M")
+       train_begin_time_str = train_begin_time.strftime("%H:%M:%S %d/%m/%Y")
        train_finish_time = train_begin_time + datetime.timedelta(minutes=train["time_range"])
-       return train_begin_time, train_finish_time
+       train_finish_time_str = train_finish_time.strftime("%H:%M:%S %d/%m/%Y")
+       return train_begin_time_str, train_finish_time_str
 
    def processing(self):
       
@@ -251,6 +253,7 @@ class MainClass():
 
                 processing_ways_list = all_ways[way_number_input]
                 print("ЧЕТКО СЧА БУДЕМ БРОНИРОВАТЬ")
+                #Спрашиваем как мутим
                 for way in processing_ways_list:
                     print(way)
                     #TODO
@@ -294,9 +297,7 @@ class MainClass():
                 print("Загрузка..")
                 obj = universal_module.FileClass(self.file_name, 2)
                 self.content = obj.get_text()
-
-                self.new_name = "Деменчук Георгий"
-                #self.new_name = input("Введите ФИО пассажира -> ")
+                self.new_name = input("Введите ФИО пассажира -> ")
                 
                 obj_info = GetAllInfoClass(self.content,self.new_name)
                 ways_indexes = obj_info.ways_index
@@ -305,20 +306,20 @@ class MainClass():
                 ticket_list = []
                 if check_name_tuple != []:
 
-                    
-
+                    table = texttable.Texttable(180)
                     #TODO
-                    #print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27} {7:>29} {8:>31}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
-                    print('Ваши билеты:\n%-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s' %("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
+                    table_list = [["№", "Поезд", "№ вагона","№ места","Цена","Тип места","Статус","Время отправления","Время прибытия"],]
                     for i in range(len(check_name_tuple)):
                         ticket_list.append(str(i+1))
+                        buf_list = [i+1]+check_name_tuple[i]
+                        table_list.append(buf_list)
 
-                        #Вывод
-                        
-                        print('%-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s' %(i+1,*check_name_tuple[i]))
+                    table.add_rows(table_list)
+                    print(table.draw() + "\n")
+
                     reserve_input = input("Введите номер бронирования для управления им -> ")
                     if reserve_input in ticket_list:
-                        current_reserve = check_name_tuple[int(reserve_input)-i]
+                        current_reserve = check_name_tuple[int(reserve_input)-1]
                         #Флаг для проверки на ввод 2 пункта
                         payment_show = False
                         if current_reserve[5] == "Ожидает оплаты":
@@ -330,7 +331,7 @@ class MainClass():
                             print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования")
                         input_command = input("Введите номер действия -> ")
                         
-                        way_index = ways_indexes[int(reserve_input)-i]
+                        way_index = ways_indexes[int(reserve_input)-1]
                         if input_command == "1":                
                             ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
                         
@@ -351,8 +352,6 @@ class MainClass():
                         
                         else:
                             print("Нет такого пункта в меню")
-                        
-                        print("Доступные действия со списком:\n")
 
 
                         print("Работаем..")
