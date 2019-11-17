@@ -228,12 +228,13 @@ class RemoveTicketClass():
             content[way]["info"]["places_free"] = train_places_free
             content[way]["train"][car]["places_free"] = car_places_free
             
-            date_now = datetime.datetime.now().strftime("%H:%M:%S %d/%m/%Y")
+            date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
             report_filename = "Возврат "+self.name+" от "+date_now+".pdf"
-            header_str = "Документ об оформлении возврата срeдств на\n"+date_now
+            print(report_filename)
+            header_str = "Документ об оформлении возврата срeдств от\n"+date_now
             main_text_str = "Билет\nМесто и время отправления:"
-            qr_text = main_text_str
-
+            
+            #TODO Документ о возврате
             #Билет: 
             #Место и время отправления: Москва в 12.12.1201 20:00:22
             #Место и время прибытия: СПБ в 12.12.1201 20:00:22
@@ -244,7 +245,8 @@ class RemoveTicketClass():
             #Стоимость удержания комиссии
             #Стоимость возврата
             
-            #TODO Документ о возврате
+            qr_text = main_text_str
+
             PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
             if PDF_obj.processed_flag == True:
                 print("Документ о возврате успешно сформирован")

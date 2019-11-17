@@ -57943,7 +57943,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 17:10:00 17/11/2019
   time_finish: 17:20:00 17/11/2019
   to: Баковка
@@ -61019,7 +61019,7 @@
           price: 1445
           type: нижнее
         '11':
-          name: null
+          name: Мяу
           payment: 0
           price: 1000
           type: верхнее
@@ -61283,7 +61283,7 @@
           payment: 0
           price: 1014
           type: верхнее
-      places_free: 54
+      places_free: 53
     '6':
       cars:
         '1':
