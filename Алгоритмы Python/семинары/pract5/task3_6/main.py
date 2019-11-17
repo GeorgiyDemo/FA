@@ -46,25 +46,16 @@ class GetAllInfoClass():
         #Поля для обращения к ним
         self.ways_index = []
         self.tickets = []
-        self.time_ranges = []
-        
         
         self.d = d
         self.name = name
+        
         self.d_payment_formater = {
             0 : "Ожидает оплаты",
             1 : "Оплачено",
         }
         self.check_reservers_by_name()
 
-    def get_time_ranges(self, way_from, way_to):
-        """
-        Возврат диапазонов времени отправлений поезда
-        - Принимает точку отправления и точку прибытия
-        - Отдаёт временные промежутки отправления и прибытия поезда 
-        """
-
-        pass
 
     def check_reservers_by_name(self):
         """
@@ -76,16 +67,15 @@ class GetAllInfoClass():
         d = self.d
         ways_index = []
         tickets = []
-        time_ranges = []
         
         for i in range(len(d)):
+            train_begin_time = d[i]["time_begin"]
+            train_time_finish = d[i]["time_finish"]
             for car in d[i]["train"]:
                 for place in d[i]["train"][car]["cars"]:
                     current_place_dict = d[i]["train"][car]["cars"][place]
                     if current_place_dict["name"] == self.name:
                         price_str = str(current_place_dict["price"])
-                        
-                        time_ranges.append(self.get_time_ranges(d[i]["from"], d[i]["to"]))
                         
                         ways_index.append(i)
                         tickets.append([
@@ -95,7 +85,10 @@ class GetAllInfoClass():
                             price_str+" руб.",
                             current_place_dict["type"],
                             self.d_payment_formater[current_place_dict["payment"]],
+                            train_begin_time,
+                            train_time_finish,
                         ])
+
         self.ways_index = ways_index
         self.tickets = tickets
 
@@ -115,6 +108,16 @@ class FileGeneratorClass():
       self.processing()
       self.file_writer()
    
+   def get_time_ranges(self, train):
+       """
+       Возврат диапазонов времени отправлений поезда
+       - Принимает словарь поезда
+       - Отдаёт временные промежутки отправления и прибытия поезда 
+       """
+       train_begin_time = datetime.datetime.strptime(train["begin_time"], "%d.%m.%Y %H:%M")
+       train_finish_time = train_begin_time + datetime.timedelta(minutes=train["time_range"])
+       return train_begin_time, train_finish_time
+
    def processing(self):
       
       print("Перегенерация исходного файла..")
@@ -125,10 +128,21 @@ class FileGeneratorClass():
       
       for first_point in all_train_dict:
          for second_point in all_train_dict[first_point]:
+            time_begin, time_finish = self.get_time_ranges(second_point)
             total_free_places = (self.places_count-1)*(self.car_count-1)
             sum_train_list.append(
-                {"from" : first_point, "to" : second_point["name"],"train" : {},"info":{
-                    "places_free": total_free_places ,"places_count" : self.places_count-1, "car_count" : self.car_count-1}
+                {
+                    "from" : first_point,
+                    "to" : second_point["name"],
+                    "time_begin" : time_begin,
+                    "time_finish" : time_finish,
+                    "train" : {},
+                    "info":
+                    {
+                        "places_free": total_free_places,
+                        "places_count" : self.places_count-1,
+                        "car_count" : self.car_count-1,
+                    }
                 }
             )
 
@@ -281,22 +295,27 @@ class MainClass():
                 obj = universal_module.FileClass(self.file_name, 2)
                 self.content = obj.get_text()
 
+                self.new_name = "Деменчук Георгий"
+                #self.new_name = input("Введите ФИО пассажира -> ")
+                
+                obj_info = GetAllInfoClass(self.content,self.new_name)
+                ways_indexes = obj_info.ways_index
+                check_name_tuple = obj_info.tickets
 
-                self.new_name = input("Введите ФИО пассажира -> ")
-                
-                #TODO TODO TODO 
-                time_ranges, ways_indexes, check_name_tuple = check_reservers_by_name(self.content,self.new_name)
-                
                 ticket_list = []
                 if check_name_tuple != []:
+
+                    
+
                     #TODO
-                    print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
+                    #print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27} {7:>29} {8:>31}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
+                    print('Ваши билеты:\n%-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s' %("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
                     for i in range(len(check_name_tuple)):
                         ticket_list.append(str(i+1))
 
                         #Вывод
                         
-                        print('{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format(i+1,*check_name_tuple[i]))
+                        print('%-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s %-4s' %(i+1,*check_name_tuple[i]))
                     reserve_input = input("Введите номер бронирования для управления им -> ")
                     if reserve_input in ticket_list:
                         current_reserve = check_name_tuple[int(reserve_input)-i]
