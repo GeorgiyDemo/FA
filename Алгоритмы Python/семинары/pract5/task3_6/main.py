@@ -1,4 +1,5 @@
 #TODO Рандомная генерация файла + сохранение расписания в файл
+#TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла 
 """
 Для задания 5 или 6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -29,10 +30,6 @@ import ticket_module
 import waysearcher_module
 
 from os import path
-
-#Метод для поиска времени отправдения поезда
-#На вход станция отправдения и прибытия
-#Возвращает время отправления и прибытия 
 
 class GetAllInfoClass():
     """
@@ -247,7 +244,7 @@ class MainClass():
         
         user_input = input("\nХотите купить билет сейчас? (Да/Нет) -> ")
         if user_input == "Да":
-            #TODO ASYNC
+
             all_ways = self.all_ways
             way_number_input = input("Выберите номер маршрута для покупки -> ")
             if way_number_input in all_ways:

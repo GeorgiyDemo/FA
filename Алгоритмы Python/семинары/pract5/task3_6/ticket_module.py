@@ -7,7 +7,7 @@
 import yaml
 import time
 import texttable
-
+import datetime
 import universal_module
 import file_writer_module
 
@@ -82,13 +82,18 @@ class AddTicketClass():
         car, place = min_key
         
         selected_train = content[way_index]
+        train_places_free = selected_train["info"]["places_free"] - 1
+        car_places_free = selected_train["train"][car]["places_free"] - 1 
         print("Зарезервировали "+place+" место в вагоне "+car+" по маршруту "+selected_train["from"]+" -> "+selected_train["to"]+" за "+str(price)+" руб")
         print("Отправление в "+selected_train["time_begin"]+ ", прибытие - "+selected_train["time_finish"])
 
+        content[way_index]["info"]["places_free"] = train_places_free
+        content[way_index]["train"][car]["places_free"] = car_places_free
         content[way_index]["train"][car]["cars"][place]["name"] = self.name
         #Записываем все в файл
         writer_obj = universal_module.FileClass(self.file_name)
         writer_obj.set_file(content)
+        self.content = content
 
     def mechanical_components_reserve(self):
         """
@@ -122,15 +127,16 @@ class AddTicketClass():
                     self.place_searcher(i,selected_car)
                 else:
                     print("Нет такого вагона, выход из подпрограммы..")
-    
+        self.content = content
+        
     def place_searcher(self, way, selected_car):
         """
         Выбор места в вагоне для брони
         """
+        content = self.content
         table = texttable.Texttable(180)
         print("Места в вагоне:")
         table_list = [["№", "Статус", "Цена", "Тип"],]
-        content = self.content
         buf_place_list = []
         for place in content[way]["train"][selected_car]["cars"]:
             buf_place_list.append(place)
@@ -150,22 +156,31 @@ class AddTicketClass():
             question_string = "Вы действительно хотите забронировать место №"+selected_place+"в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.name+"'? (Да/Нет)\n->"
             user_reply = input(question_string)
             if user_reply == "Да" or user_reply == "Y" or user_reply == "y":
+
                 #Успешно меняем текущий словарь
-                self.content[way]["train"][selected_car]["cars"][selected_place]["name"] = self.name
+                content[way]["train"][selected_car]["cars"][selected_place]["name"] = self.name
                 question_input = input("Место успешно зарезервировано\nОплатить его сейчас? Да/Нет -> ")
                 if question_input == "Да":
                     pay_obj = PaymentClass()
                     if pay_obj.result == True:
                         #Устанавливаем флаг того, что мы всё оплатили
-                        self.content[way]["train"][selected_car]["cars"][selected_place]["payment"] = 1
+                        content[way]["train"][selected_car]["cars"][selected_place]["payment"] = 1
                 elif question_input == "Нет":
                     print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
                 
+                #Обновляем количество мест
+                train_places_free = content[way]["info"]["places_free"] - 1
+                car_places_free = content[way]["train"][selected_car]["places_free"] - 1 
+
+                content[way]["info"]["places_free"] = train_places_free
+                content[way]["train"][selected_car]["places_free"] = car_places_free
+
                 #Записываем все в файл
                 writer_obj = universal_module.FileClass(self.file_name)
-                writer_obj.set_file(self.content)
+                writer_obj.set_file(content)
         else:
             print("Введенное место не найдено, выход из подпрограммы..")
+        self.content = content
 
 class RemoveTicketClass():
 
@@ -184,8 +199,7 @@ class RemoveTicketClass():
         self.ticket_remover()
 
     def ticket_remover(self):
-        #делает None на место + обращается к universal_module.FileClass для записи обновлённого файла
-        
+
         print("Отмена бронирования..")
         percent = self.refund_percent
         content = self.content
@@ -206,25 +220,40 @@ class RemoveTicketClass():
 
             selected_place["payment"] = 0
             selected_place["name"] = None
+
+            #Обновляем количество мест
+            train_places_free = content[way]["info"]["places_free"] + 1
+            car_places_free = content[way]["train"][car]["places_free"] + 1 
+
+            content[way]["info"]["places_free"] = train_places_free
+            content[way]["train"][car]["places_free"] = car_places_free
             
-            #Документ об оформлении возврата срeдств на\n12.12.1201 20:00:22
+            date_now = datetime.datetime.now().strftime("%H:%M:%S %d/%m/%Y")
+            report_filename = "Возврат "+self.name+" от "+date_now+".pdf"
+            header_str = "Документ об оформлении возврата срeдств на\n"+date_now
+            main_text_str = "Билет\nМесто и время отправления:"
+            qr_text = main_text_str
 
             #Билет: 
             #Место и время отправления: Москва в 12.12.1201 20:00:22
             #Место и время прибытия: СПБ в 12.12.1201 20:00:22
             #Место 5 вагон 5 [верхняя (боковая)] 
             
-            #Средств
+            #Возврат средств:
+            #Стоимость билета
+            #Стоимость удержания комиссии
+            #Стоимость возврата
             
             #TODO Документ о возврате
-            PDF_obj = file_writer_module.PDFWriter("Тема","Сообщение","QR", "название файла.pdf")
+            PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
             if PDF_obj.processed_flag == True:
-                print("Файл о возврате успешно сформирован")
+                print("Документ о возврате успешно сформирован")
             
             content[way]["train"][car]["cars"][place] = selected_place
             print("Запиcь изменений..")
             writer_obj = universal_module.FileClass(self.file_name)
-            writer_obj.set_file(self.content)
+            writer_obj.set_file(content)
+            self.content = content
             print("Успешно")
         
         else: 
