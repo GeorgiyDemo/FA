@@ -1,5 +1,5 @@
 #TODO Рандомная генерация файла + сохранение расписания в файл
-#+ смотри еще один TODO в коде 
+#TODO Хренение времени отправления поезда и билетом
 """
 Для задания 5 или 6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -33,7 +33,6 @@ from os import path
 def check_reservers_by_name(d, name):
     """
     Метод находит по ФИО брони все билеты в коллекции
-    Также полезен для отмены бронирования #TODO
     """
     d_payment_formater = {
         0 : "Ожидает оплаты",
@@ -183,6 +182,28 @@ class MainClass():
 
         self.mainmenu_show()
     
+    def buying_ticket_processing(self):
+        """
+        Управляющая логика для покупки билетов
+        """
+        
+        user_input = input("\nХотите купить билет сейчас? (Да/Нет) -> ")
+        if user_input == "Да":
+            all_ways = self.all_ways
+            way_number_input = input("Выберите номер маршрута для покупки -> ")
+            if way_number_input in all_ways:
+
+                priocessing_station_list = 
+
+
+
+                print("ЧЕТКО СЧА БУДЕМ БРОНИРОВАТЬ")
+                    #TODO
+            else:
+                print("Введенный маршрут не найден")
+        else:
+            print("Хорошо, вы можете сделать это позже в пункте 'Покупка билетов'")
+
     def mainmenu_show(self):
         """
         Метод для вывода меню действий, связанных с 3 заданием 5 практики
@@ -195,10 +216,13 @@ class MainClass():
             
             if input_value == "1":
                 obj = waysearcher_module.SearcherClass(self.d)
-                ####
-                user_input = input("Хотите купить билет сейчас? (Да/Нет) ->")
-                if user_input == "Да":
-                    print("Выберите номер маршрута для покупки")
+                all_ways = obj.ways
+                if all_ways != {}:
+                    #Вынесли логику в отдельный метод
+                    self.all_ways = all_ways
+                    self.buying_ticket_processing()
+                else:
+                    print("Маршруты не найдены")
 
                 
                 #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
@@ -220,8 +244,6 @@ class MainClass():
                 self.new_name = input("Введите ФИО пассажира -> ")
                 ways_indexes, check_name_tuple = check_reservers_by_name(self.content,self.new_name)
                 
-                #TODO Оформить в виде таблицы
-                #Поезд #№Вагона #№Места #Цена #Тип #Статус (Оплачено/Ожидет оплаты)
                 ticket_list = []
                 if check_name_tuple != []:
                     print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус"))
@@ -280,18 +302,6 @@ class MainClass():
                     print("Броней, связанных с введенными ФИО не найдено")
         
 
-
-
-               
-                #Вводим фио
-                #Ищем билеты по мним
-                #Выберите билет (выбираем билет)
-                #Доступные действия
-                #1. Отмена бронирования
-                #2. Оплата билета (появляется если только мы его не оплатили)
-                #3. Распечатать билет (????? ПОКА #TODO)
-                #ticket_module.AddTicketClass(self.file_name)
-                #ticket_module.RemoveTicketClass(self.file_name)
 
             elif input_value != "0":
                 print("Такого пункта нет в меню")

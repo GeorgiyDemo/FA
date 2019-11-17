@@ -11,10 +11,30 @@ class SearcherClass():
         self.all_ways_list = []
         self.way_inputer()
         self.way_recognizer()
+
+        #Поля для последующего обращения с main
+        self.ways = {}
+
         if self.all_ways_list:
             self.waiting_time_detector()
             self.main_time_detector()
             self.result_outputer()
+            self.ways_outer()
+
+    def ways_outer(self):
+        """
+        Метод необходим для формирования словаря self.ways со всеми путями
+        """
+        locale_ways = {}
+        r = self.final_out_list
+        for i in range(len(r)):
+            buf_list = []
+            for e in r[i]["ways"]:
+                buf_list.append([e["way_from"], e["way_to"]])
+            
+            locale_ways[str(i + 1)] = buf_list
+        self.ways = locale_ways
+
 
     def waiting_time_detector(self):
         """
@@ -146,7 +166,7 @@ class SearcherClass():
 
     def result_outputer(self):
         """
-        Вывод всего этого веселья на экран
+        Вывод всех результатов на экран + отдача значений в self.ways
         """
         r = self.final_out_list
         for i in range(len(r)):
