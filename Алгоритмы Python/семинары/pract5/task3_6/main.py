@@ -313,70 +313,77 @@ class MainClass():
                 self.content = obj.get_text()
                 self.new_name = input("Введите ФИО пассажира -> ")
                 
-                obj_info = GetAllInfoClass(self.content,self.new_name)
-                ways_indexes = obj_info.ways_index
-                check_name_tuple = obj_info.tickets
+                exit_flag = False
+                while exit_flag == False:
+                    obj_info = GetAllInfoClass(self.content,self.new_name)
+                    ways_indexes = obj_info.ways_index
+                    check_name_tuple = obj_info.tickets
 
-                ticket_list = []
-                if check_name_tuple != []:
+                    ticket_list = []
+                    if check_name_tuple != []:
 
-                    table = texttable.Texttable(180)
-                    table_list = [["№", "Поезд", "№ вагона","№ места","Цена","Тип места","Статус","Время отправления","Время прибытия"],]
-                    for i in range(len(check_name_tuple)):
-                        ticket_list.append(str(i+1))
-                        buf_list = [i+1]+check_name_tuple[i]
-                        table_list.append(buf_list)
+                        table = texttable.Texttable(180)
+                        table_list = [["№", "Поезд", "№ вагона","№ места","Цена","Тип места","Статус","Время отправления","Время прибытия"],]
+                        for i in range(len(check_name_tuple)):
+                            ticket_list.append(str(i+1))
+                            buf_list = [i+1]+check_name_tuple[i]
+                            table_list.append(buf_list)
 
-                    table.add_rows(table_list)
-                    print(table.draw() + "\n")
+                        table.add_rows(table_list)
+                        print(table.draw() + "\n")
 
-                    reserve_input = input("Введите номер бронирования для управления им -> ")
-                    if reserve_input in ticket_list:
-                        current_reserve = check_name_tuple[int(reserve_input)-1]
-                        #Флаг для проверки на ввод 2 пункта
-                        payment_show = False
-                        if current_reserve[5] == "Ожидает оплаты":
+                        reserve_input = input("Введите номер бронирования для управления им или 0 для выхода из подменю -> ")
+                        if reserve_input == "0":
+                            exit_flag = True
 
-                            payment_show = True
-                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета\n3. Оплата билета")
-                        
-                        else:
-                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета")
-                        
-                        input_command = input("Введите номер действия -> ")
-                        
-                        way_index = ways_indexes[int(reserve_input)-1]
-                        if input_command == "1":                
-                            ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
-                        
-                        elif input_command == "2":
-                            pass
-                            #TODO Печать билета?
-                            #TODO Формирование файла еще разок
+                        elif reserve_input in ticket_list:
+                            current_reserve = check_name_tuple[int(reserve_input)-1]
+                            #Флаг для проверки на ввод 2 пункта
+                            payment_show = False
+                            if current_reserve[5] == "Ожидает оплаты":
 
-                        elif input_command == "3" and payment_show == True:
-                            payment_obj = ticket_module.PaymentClass()
+                                payment_show = True
+                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета\n3. Оплата билета")
                             
-                            if payment_obj.result == True:
-
-                                self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
-
-                                #Записываем все в файл
-                                print("Записываем изменения..")
-                                writer_obj = universal_module.FileClass(self.file_name)
-                                writer_obj.set_file(self.content)
                             else:
-                                print("Оплата не прошла..")
+                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета")
+                            
+                            input_command = input("Введите номер действия -> ")
+                            
+                            way_index = ways_indexes[int(reserve_input)-1]
+                            if input_command == "1":                
+                                ticket_obj = ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
+                                self.content = ticket_obj.content
+                            
+                            elif input_command == "2":
+                                pass
+                                #TODO Печать билета?
+                                #TODO Формирование файла еще разок
+
+                            elif input_command == "3" and payment_show == True:
+                                payment_obj = ticket_module.PaymentClass()
+                                
+                                if payment_obj.result == True:
+
+                                    self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
+
+                                    #Записываем все в файл
+                                    print("Записываем изменения..")
+                                    writer_obj = universal_module.FileClass(self.file_name)
+                                    writer_obj.set_file(self.content)
+                                else:
+                                    print("Оплата не прошла..")
+
+                            elif input_command != "0":
+                                print("Нет такого пункта в меню")
 
                         else:
-                            print("Нет такого пункта в меню")
-
+                            print("Введенного номера бронирования не существует")
+                        #Проверка на то, что можно выводить в управлении
+                        
                     else:
-                        print("Введенного номера бронирования не существует")
-                    #Проверка на то, что можно выводить в управлении
-                    
-                else:
-                    print("Броней, связанных с введенными ФИО не найдено")
+                        print("Броней, связанных с введенными ФИО не найдено")
+                        exit_flag = True
         
             elif input_value != "0":
                 print("Такого пункта нет в меню")

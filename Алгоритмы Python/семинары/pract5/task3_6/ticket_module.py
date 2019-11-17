@@ -3,7 +3,7 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
-#TODO Не выходить из меню управления билетами после того, как что-то сделали с одним 
+
 import yaml
 import time
 import texttable
@@ -41,7 +41,6 @@ def get_min_max_price_of_car(car):
 class AddTicketClass():
     """
     Класс для добавления билетов. Выщывается как при прямых рейсов, так и для ресов с пересадками
-    #TODO В конструкторе ввести поля для автобронирования мест при использовании пункта 1
     """
     
     def __init__(self, content, file_name, name, way_from, way_to, automate_flag=False):
