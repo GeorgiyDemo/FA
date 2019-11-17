@@ -1,5 +1,6 @@
 #TODO Рандомная генерация файла + сохранение расписания в файл
-#TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла 
+#TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла
+#TODO Проверка на то, зарезервировано ли место, если мы его вводим в input
 """
 Для задания 5 или 6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -28,6 +29,7 @@ import texttable
 import universal_module
 import ticket_module
 import waysearcher_module
+import file_writer_module
 
 from os import path
 
@@ -340,10 +342,10 @@ class MainClass():
                             if current_reserve[5] == "Ожидает оплаты":
 
                                 payment_show = True
-                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета\n3. Оплата билета")
+                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета\n3. Оплата билета")
                             
                             else:
-                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета")
+                                print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета")
                             
                             input_command = input("Введите номер действия -> ")
                             
@@ -357,12 +359,45 @@ class MainClass():
                                 #TODO Печать билета?
                                 #TODO Формирование файла еще разок
 
+                                #Формируем электронный билет об оплате
+                                date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
+                                report_filename = "Электронный билет "+self.new_name+" от "+date_now+".pdf"
+                                header_str = "Электронный билет"
+                                main_text_str_name = "ФИО клиента: "+self.new_name+"\nДата и время формирования: "+date_now
+                                    
+                                current_ticket = table_list[int(reserve_input)]
+
+                                main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+self.content[way_index]["from"]+" "+self.content[way_index]["time_begin"]+"\n"+ "Место и время прибытия: "+self.content[way_index]["to"]+" "+self.content[way_index]["time_finish"]+"\nМесто: №"+current_ticket[3]+" вагон "+current_ticket[2]+" ["+current_ticket[5]+"]"
+                                
+                                main_text_str_payment = "\nОплата\nСтоимость билета: "+ str(current_ticket[4])+"\n"+"Статус оплаты: "+current_ticket[6]
+                                main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
+                                qr_text = main_text_str
+                                PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
+                                if PDF_obj.processed_flag == True:
+                                    print("Электронный билет сформирован")
+
+
                             elif input_command == "3" and payment_show == True:
                                 payment_obj = ticket_module.PaymentClass()
                                 
                                 if payment_obj.result == True:
 
                                     self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
+
+                                    #Формируем квитанцию об оплате
+                                    date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
+                                    report_filename = "Квитанция об оплате "+self.new_name+" от "+date_now+".pdf"
+                                    header_str = "Квитанция об оплате заказа от\n"+date_now
+                                    main_text_str_name = "ФИО клиента: "+self.new_name
+                                    
+                                    current_ticket = table_list[int(reserve_input)]
+                                    main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+self.content[way_index]["from"]+" "+self.content[way_index]["time_begin"]+"\n"+ "Место и время прибытия: "+self.content[way_index]["to"]+" "+self.content[way_index]["time_finish"]+"\nМесто: №"+current_ticket[3]+" вагон "+current_ticket[2]+" ["+current_ticket[5]+"]"
+                                    main_text_str_payment = "\nОплата\nСтоимость билета: "+ str(current_ticket[4])+"\n"+"Статус оплаты: ОПЛАЧЕНО"
+                                    main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
+                                    qr_text = main_text_str
+                                    PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
+                                    if PDF_obj.processed_flag == True:
+                                        print("Квитанция об оплате успешно сформирована")
 
                                     #Записываем все в файл
                                     print("Записываем изменения..")

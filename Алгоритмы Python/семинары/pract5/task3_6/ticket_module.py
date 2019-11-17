@@ -153,7 +153,7 @@ class AddTicketClass():
         
         selected_place = input("Введите номер места для бронирования -> ")
         if selected_place in buf_place_list:
-            question_string = "Вы действительно хотите забронировать место №"+selected_place+"в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.name+"'? (Да/Нет)\n->"
+            question_string = "Вы действительно хотите забронировать место №"+selected_place+" в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.name+"'? (Да/Нет) -> "
             user_reply = input(question_string)
             if user_reply == "Да" or user_reply == "Y" or user_reply == "y":
 
@@ -165,6 +165,23 @@ class AddTicketClass():
                     if pay_obj.result == True:
                         #Устанавливаем флаг того, что мы всё оплатили
                         content[way]["train"][selected_car]["cars"][selected_place]["payment"] = 1
+                        
+                        #Формируем квитанцию об оплате
+                        date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
+                        report_filename = "Квитанция об оплате "+self.name+" от "+date_now+".pdf"
+                        header_str = "Квитанция об оплате заказа от\n"+date_now
+                        main_text_str_name = "ФИО клиента: "+self.name
+                        
+                        buf_place = content[way]["train"][selected_car]["cars"][selected_place]
+
+                        main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+content[way]["from"]+" "+content[way]["time_begin"]+"\n"+ "Место и время прибытия: "+content[way]["to"]+" "+content[way]["time_finish"]+"\nМесто: №"+selected_place+" вагон "+selected_car+" ["+buf_place["type"]+"]"
+                        main_text_str_payment = "\nОплата\nСтоимость билета: "+ str(buf_place["price"])+" руб. \n"+"Статус оплаты: ОПЛАЧЕНО"
+                        main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
+                        qr_text = main_text_str
+                        PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
+                        if PDF_obj.processed_flag == True:
+                            print("Квитанция об оплате успешно сформирована")
+
                 elif question_input == "Нет":
                     print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
                 
@@ -230,21 +247,12 @@ class RemoveTicketClass():
             
             date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
             report_filename = "Возврат "+self.name+" от "+date_now+".pdf"
-            print(report_filename)
             header_str = "Документ об оформлении возврата срeдств от\n"+date_now
-            main_text_str = "Билет\nМесто и время отправления:"
             
-            #TODO Документ о возврате
-            #Билет: 
-            #Место и время отправления: Москва в 12.12.1201 20:00:22
-            #Место и время прибытия: СПБ в 12.12.1201 20:00:22
-            #Место 5 вагон 5 [верхняя (боковая)] 
-            
-            #Возврат средств:
-            #Стоимость билета
-            #Стоимость удержания комиссии
-            #Стоимость возврата
-            
+            main_text_str_name = "ФИО клиента: "+self.name
+            main_text_str_ticket = "\nБилет\nСтанция и время отправления: "+content[way]["from"]+" "+content[way]["time_begin"]+"\n"+ "Место и время прибытия: "+content[way]["to"]+" "+content[way]["time_finish"]+"\nМесто: №"+place+" вагон "+car+" ["+selected_place["type"]+"]"
+            main_text_str_payment = "\nВозврат средств\nСтоимость билета: "+ str(selected_place["price"])+" руб. \n"+"Стоимость комиссии: "+str(percent_price)+" руб. \nВозвращённая сумма: "+ str(refound_price)+" руб."
+            main_text_str = main_text_str_name+"\n"+main_text_str_ticket + "\n" + main_text_str_payment
             qr_text = main_text_str
 
             PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str,qr_text, report_filename)
