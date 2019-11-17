@@ -195,6 +195,11 @@ class MainClass():
             
             if input_value == "1":
                 obj = waysearcher_module.SearcherClass(self.d)
+                ####
+                user_input = input("Хотите купить билет сейчас? (Да/Нет) ->")
+                if user_input == "Да":
+                    print("Выберите номер маршрута для покупки")
+
                 
                 #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
                 #if "Да":
@@ -239,16 +244,14 @@ class MainClass():
                             print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования")
                         input_command = input("Введите номер действия -> ")
                         
-                        if input_command == "1":
-                            #TODO Номер бронирования, вагон и т д 
-                            ticket_module.RemoveTicketClass(self.file_name)
-                            print("Отмена бронирования..")
+                        way_index = ways_indexes[int(reserve_input)-i]
+                        if input_command == "1":                
+                            ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
                         
                         elif input_command == "2" and payment_show == True:
                             payment_obj = ticket_module.PaymentClass()
                             
                             if payment_obj.result == True:
-                                way_index = ways_indexes[int(reserve_input)-i]
 
                                 self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]]["payment"] = 1
 

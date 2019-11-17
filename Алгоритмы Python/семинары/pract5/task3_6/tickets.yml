@@ -15564,8 +15564,8 @@
           price: 2751
           type: верхнее
         '54':
-          name: Деменчук Георгий
-          payment: 1
+          name: null
+          payment: 0
           price: 2898
           type: нижнее
         '55':
@@ -15598,7 +15598,7 @@
       cars:
         '1':
           name: Деменчук Георгий
-          payment: 0
+          payment: 1
           price: 2651
           type: нижнее (боковое)
         '10':

@@ -134,35 +134,52 @@ class AddTicketClass():
             print("Введенное место не найдено, выход из подпрограммы..")
 
 class RemoveTicketClass():
+    #TODO Учитываем то, что возвращается только часть денег, не все
     """
     Класс для отмены бронирования билетов
     """
-    def __init__(self, file_name):
-        self.remove_reserve()
+    def __init__(self, file_name, content, new_name, way, car, place):
+        self.file_name = file_name
+        self.content = content
+        self.name = new_name
+        self.way = way
+        self.car = car
+        self.place = place
+        self.refund_percent = 5
+
+        self.ticket_remover()
 
     def ticket_remover(self):
         #делает None на место + обращается к universal_module.FileClass для записи обновлённого файла
-        pass
+        
+        print("Отмена бронирования..")
+        percent = self.refund_percent
+        content = self.content
+        way = self.way
+        car = self.car
+        place = self.place
 
-    def remove_reserve(self):
-        """
-        Файл добавления данных в файл
-        - Спрашивает номер вагона 
-        - Спрашивает номер места
-        """
-        new_name = input("Введите ФИО пассажира -> ")
-        check_name_tuple = check_reservers_by_name(self.content, new_name)
-        if check_name_tuple[0] != []:
-            print("Ваши брони:")
-            print('\n'.join(check_name_tuple[0]))
-            remove_ticket = input("Какое бронирование Вы хотите отменить?\n-> ")
+        way_str = content[way]["from"]+" -> "+content[way]["to"]
+        selected_place = content[way]["train"][car]["cars"][place]
+        percent_price = (selected_place["price"]/100)*percent
+        refound_price = selected_place["price"]-percent_price
 
-        else:
-            print("Броней, связанных с введенными ФИО не найдено")
-        #car_places_dict[str(i)] = {"name":"Кот занял место", "price":1300, "type":"reserved"}
-        pass
+        refound_str = "Вам вернется "+str(refound_price)+" руб. Сервис удержит комиссию в виде "+str(percent_price)+" руб."
+        place_str = "\nВы действительно хотите отменить бронирование на "+place+" место "+car+" вагона поезда "+way_str+" ? (Да/Нет) -> "
+        
+        confirm_input = input(refound_str+place_str)
+        if confirm_input == "Да" or confirm_input == "Y" or confirm_input == "y":
 
+            selected_place["payment"] = 0
+            selected_place["name"] = None
 
-###Временно
-if __name__ == "__main__":
-    AddTicketClass("tickets.yml")
+            #TODO Документ о возврате
+
+            content[way]["train"][car]["cars"][place] = selected_place
+            print("Запиcь изменений..")
+            writer_obj = universal_module.FileClass(self.file_name)
+            writer_obj.set_file(self.content)
+            print("Успешно")
+        
+        else: 
+            print("Хорошо, все оставили без изменений")
