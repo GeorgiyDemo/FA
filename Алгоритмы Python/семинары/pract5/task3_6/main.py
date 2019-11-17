@@ -19,6 +19,8 @@
 Между переходами разница в 30 мин
 """
 
+#TODO async - хрень, чтоб быстрее читать файл
+
 import yaml
 import random
 import datetime
@@ -247,16 +249,40 @@ class MainClass():
         
         user_input = input("\nХотите купить билет сейчас? (Да/Нет) -> ")
         if user_input == "Да":
+            #TODO ASYNC
             all_ways = self.all_ways
             way_number_input = input("Выберите номер маршрута для покупки -> ")
             if way_number_input in all_ways:
 
+                self.new_name = input("Введите ФИО пассажира -> ")
+                print("Загрузка..")
+                obj = universal_module.FileClass(self.file_name, 2)
+                self.content = obj.get_text()
                 processing_ways_list = all_ways[way_number_input]
-                print("ЧЕТКО СЧА БУДЕМ БРОНИРОВАТЬ")
-                #Спрашиваем как мутим
+                auto_selecter_input = input("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути?\nЕсли нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) -> ")
+                
+                if auto_selecter_input == "Да":
+                    automate_flag = True
+                elif auto_selecter_input == "Нет":
+                    automate_flag = False
+                else:
+                    print("Некорректный ввод данных..")
+                    return
+                
                 for way in processing_ways_list:
+                    ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1], automate_flag)
                     print(way)
-                    #TODO
+
+                #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
+                #if "Да":
+                #   print("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути? Если нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) ->")
+                #    if "Да":
+                #        Автоматически поиск самых дешевых
+                #    if "Нет"
+                #        Пусть вбивает всё сам
+
+                #ticket_module.AddTicketClass(self.file_name)
+
             else:
                 print("Введенный маршрут не найден")
         else:
@@ -282,17 +308,6 @@ class MainClass():
                 else:
                     print("Маршруты не найдены")
 
-                
-                #print("Хотите купить билет(ы) на весь указанный путь? (Да/Нет)
-                #if "Да":
-                #   print("Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути? Если нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) ->")
-                #    if "Да":
-                #        Автоматически поиск самых дешевых
-                #    if "Нет"
-                #        Пусть вбивает всё сам
-
-                #ticket_module.AddTicketClass(self.file_name)
-                #
             elif input_value == "2":
                 print("Загрузка..")
                 obj = universal_module.FileClass(self.file_name, 2)
@@ -349,12 +364,9 @@ class MainClass():
                             else:
                                 print("Оплата не прошла..")
 
-                        
                         else:
                             print("Нет такого пункта в меню")
 
-
-                        print("Работаем..")
                     else:
                         print("Введенного номера бронирования не существует")
                     #Проверка на то, что можно выводить в управлении

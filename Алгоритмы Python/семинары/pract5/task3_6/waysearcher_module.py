@@ -84,7 +84,6 @@ class SearcherClass():
         """
         Ввод данных
         """
-
         self.point_a = input("Введите точку А -> ")
         self.point_b = input("Введите точку В -> ")
 

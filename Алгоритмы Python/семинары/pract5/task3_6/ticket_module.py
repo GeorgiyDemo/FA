@@ -3,6 +3,7 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
+#TODO красивые таблицы
 import yaml
 import time
 import universal_module
@@ -39,36 +40,29 @@ class AddTicketClass():
     Класс для добавления билетов. Выщывается как при прямых рейсов, так и для ресов с пересадками
     #TODO В конструкторе ввести поля для автобронирования мест при использовании пункта 1
     """
-    def __init__(self, content, file_name, way_from=None, way_to=None):
+    
+    def __init__(self, content, file_name, name, way_from, way_to, automate_flag=False):
         
         self.file_name = file_name 
         self.way_from = way_from
         self.way_to = way_to
+        self.name = name
 
         self.content = content
         
-        self.add_reserve()
+        if automate_flag == True:
+            self.auto_components_reserve()
+        else:
+            self.mechanical_components_reserve()
+            
+    def auto_components_reserve(self):
+        #TODO
+        print("Зарезервировали билет по маршруту МОСКВА - САНКТ-ПЕТЕРБУРГ ЗА 228 руб..")
 
-        
-    def add_reserve(self):
-        """
-        Файл добавления данных в файл
-        - Спрашивает номер вагона 
-        - Спрашивает номер места
-        """
-        
-        if self.way_from == None and self.way_to == None:
-            self.way_from = input("Введите странцию отправления -> ")
-            self.way_to = input("Введите станцию прибытия -> ")
-
-        self.car_searcher()
-
-    def car_searcher(self):
+    def mechanical_components_reserve(self):
         """
         Выбор вагона для брони в поезде
         #TODO Проверка, если нет таких поездов совсем + выбор поезда на пути
-        
-        #Номер Статус  Цена Тип
         """
 
         content = self.content
@@ -113,18 +107,18 @@ class AddTicketClass():
         
         selected_place = input("Введите номер места для бронирования ->")
         if selected_place in buf_place_list:
-            question_string = "Вы действительно хотите забронировать место №"+selected_place+"в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.new_name+"'? (Да/Нет)\n->"
+            question_string = "Вы действительно хотите забронировать место №"+selected_place+"в вагоне "+selected_car+" поезда "+self.way_from+" - "+self.way_to+" на имя '"+self.name+"'? (Да/Нет)\n->"
             user_reply = input(question_string)
             if user_reply == "Да" or user_reply == "Y" or user_reply == "y":
-                #Усешно меняем текущий словарь
-                self.content[way][selected_car][selected_place]["name"] = self.new_name
-                print("Место успешно зарезервировано\nОплатить его сейчас? Да/Нет -> ")
-                if "Да":
+                #Успешно меняем текущий словарь
+                self.content[way]["train"][selected_car]["cars"][selected_place]["name"] = self.name
+                question_input = input("Место успешно зарезервировано\nОплатить его сейчас? Да/Нет -> ")
+                if question_input == "Да":
                     pay_obj = PaymentClass()
                     if pay_obj.result == True:
                         #Устанавливаем флаг того, что мы всё оплатили
                         self.content[way]["train"][selected_car]["cars"][selected_place]["payment"] = 1
-                if "Нет":
+                elif question_input == "Нет":
                     print("Хорошо, оплатить билет вы можете позже в пункте 2 'Управление моими билетами'")
                 
                 #Записываем все в файл
@@ -134,14 +128,14 @@ class AddTicketClass():
             print("Введенное место не найдено, выход из подпрограммы..")
 
 class RemoveTicketClass():
-    
+
     """
     Класс для отмены бронирования билетов
     """
-    def __init__(self, file_name, content, new_name, way, car, place):
+    def __init__(self, file_name, content, name, way, car, place):
         self.file_name = file_name
         self.content = content
-        self.name = new_name
+        self.name = name
         self.way = way
         self.car = car
         self.place = place
