@@ -334,19 +334,25 @@ class MainClass():
                         #Флаг для проверки на ввод 2 пункта
                         payment_show = False
                         if current_reserve[5] == "Ожидает оплаты":
-                        #TODO Печать билета?
-                        #TODO Выход на меню назад, к выбору всех билетов?
+
                             payment_show = True
-                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Оплата билета")
+                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета\n3. Оплата билета")
+                        
                         else:
-                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования")
+                            print("Бронирование №"+reserve_input+"\nДоступные действия:\n1. Отмена бронирования\n2. Формирование билета")
+                        
                         input_command = input("Введите номер действия -> ")
                         
                         way_index = ways_indexes[int(reserve_input)-1]
                         if input_command == "1":                
                             ticket_module.RemoveTicketClass(self.file_name, self.content, self.new_name, way_index, current_reserve[1], current_reserve[2])
                         
-                        elif input_command == "2" and payment_show == True:
+                        elif input_command == "2":
+                            pass
+                            #TODO Печать билета?
+                            #TODO Формирование файла еще разок
+
+                        elif input_command == "3" and payment_show == True:
                             payment_obj = ticket_module.PaymentClass()
                             
                             if payment_obj.result == True:

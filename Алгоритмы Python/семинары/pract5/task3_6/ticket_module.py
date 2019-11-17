@@ -3,12 +3,12 @@
 - Заказ, бронирование, покупка
 - Отмена зказа
 """
-#TODO красивые таблицы
 import yaml
 import time
 import texttable
 
 import universal_module
+import file_writer_module
 
 class PaymentClass():
 
@@ -177,9 +177,21 @@ class RemoveTicketClass():
 
             selected_place["payment"] = 0
             selected_place["name"] = None
+            
+            #Документ об оформлении возврата срeдств на\n12.12.1201 20:00:22
 
+            #Билет: 
+            #Место и время отправления: Москва в 12.12.1201 20:00:22
+            #Место и время прибытия: СПБ в 12.12.1201 20:00:22
+            #Место 5 вагон 5 [верхняя (боковая)] 
+            
+            #Средств
+            
             #TODO Документ о возврате
-
+            PDF_obj = file_writer_module.PDFWriter("Тема","Сообщение","QR", "название файла.pdf")
+            if PDF_obj.processed_flag == True:
+                print("Файл о возврате успешно сформирован")
+            
             content[way]["train"][car]["cars"][place] = selected_place
             print("Запиcь изменений..")
             writer_obj = universal_module.FileClass(self.file_name)
