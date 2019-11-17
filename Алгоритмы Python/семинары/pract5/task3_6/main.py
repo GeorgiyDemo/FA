@@ -30,32 +30,74 @@ import waysearcher_module
 
 from os import path
 
-def check_reservers_by_name(d, name):
+#Метод для поиска времени отправдения поезда
+#На вход станция отправдения и прибытия
+#Возвращает время отправления и прибытия 
+
+class GetAllInfoClass():
     """
-    Метод находит по ФИО брони все билеты в коллекции
+    Класс для отдачи всей информации, связанной с именем
+    - Время отправления и прибытия поездов
+    - Индексы поездов в общем словаре для последующего обращения
+    - Информация о билетах: вагон, место, стоимость, тип, оплата
     """
-    d_payment_formater = {
-        0 : "Ожидает оплаты",
-        1 : "Оплачено",
-    }
-    ways_index = []
-    tickets = []
-    for i in range(len(d)):
-        for car in d[i]["train"]:
-            for place in d[i]["train"][car]["cars"]:
-                current_place_dict = d[i]["train"][car]["cars"][place]
-                if current_place_dict["name"] == name:
-                    price_str = str(current_place_dict["price"])
-                    ways_index.append(i)
-                    tickets.append([
-                        d[i]["from"]+" -> "+d[i]["to"],
-                        car,
-                        place,
-                        price_str+" руб.",
-                        current_place_dict["type"],
-                        d_payment_formater[current_place_dict["payment"]],
-                    ])
-    return ways_index, tickets   
+    def __init__(self, d, name):
+        
+        #Поля для обращения к ним
+        self.ways_index = []
+        self.tickets = []
+        self.time_ranges = []
+        
+        
+        self.d = d
+        self.name = name
+        self.d_payment_formater = {
+            0 : "Ожидает оплаты",
+            1 : "Оплачено",
+        }
+        self.check_reservers_by_name()
+
+    def get_time_ranges(self, way_from, way_to):
+        """
+        Возврат диапазонов времени отправлений поезда
+        - Принимает точку отправления и точку прибытия
+        - Отдаёт временные промежутки отправления и прибытия поезда 
+        """
+
+        pass
+
+    def check_reservers_by_name(self):
+        """
+        Метод находит по ФИО брони все билеты в коллекции
+        - Возвращает время отправления и прибытия этих поездов
+        - Возвращает индексы
+        """
+        
+        d = self.d
+        ways_index = []
+        tickets = []
+        time_ranges = []
+        
+        for i in range(len(d)):
+            for car in d[i]["train"]:
+                for place in d[i]["train"][car]["cars"]:
+                    current_place_dict = d[i]["train"][car]["cars"][place]
+                    if current_place_dict["name"] == self.name:
+                        price_str = str(current_place_dict["price"])
+                        
+                        time_ranges.append(self.get_time_ranges(d[i]["from"], d[i]["to"]))
+                        
+                        ways_index.append(i)
+                        tickets.append([
+                            d[i]["from"]+" -> "+d[i]["to"],
+                            car,
+                            place,
+                            price_str+" руб.",
+                            current_place_dict["type"],
+                            self.d_payment_formater[current_place_dict["payment"]],
+                        ])
+        self.ways_index = ways_index
+        self.tickets = tickets
 
 class FileGeneratorClass():
 
@@ -193,11 +235,10 @@ class MainClass():
             way_number_input = input("Выберите номер маршрута для покупки -> ")
             if way_number_input in all_ways:
 
-                priocessing_station_list = 
-
-
-
+                processing_ways_list = all_ways[way_number_input]
                 print("ЧЕТКО СЧА БУДЕМ БРОНИРОВАТЬ")
+                for way in processing_ways_list:
+                    print(way)
                     #TODO
             else:
                 print("Введенный маршрут не найден")
@@ -237,18 +278,22 @@ class MainClass():
                 #
             elif input_value == "2":
                 print("Загрузка..")
-                obj = universal_module.FileClass(self.file_name,2)
+                obj = universal_module.FileClass(self.file_name, 2)
                 self.content = obj.get_text()
 
 
                 self.new_name = input("Введите ФИО пассажира -> ")
-                ways_indexes, check_name_tuple = check_reservers_by_name(self.content,self.new_name)
+                
+                #TODO TODO TODO 
+                time_ranges, ways_indexes, check_name_tuple = check_reservers_by_name(self.content,self.new_name)
                 
                 ticket_list = []
                 if check_name_tuple != []:
-                    print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус"))
+                    #TODO
+                    print('Ваши билеты:\n{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format("№","Поезд", "№ вагона", "№ места", "Цена","Тип места","Статус","Время отправления","Время прибытия"))
                     for i in range(len(check_name_tuple)):
                         ticket_list.append(str(i+1))
+
                         #Вывод
                         
                         print('{0:<10} {1:>17} {2:>19} {3:>21} {4:>23} {5:>25} {6:>27}'.format(i+1,*check_name_tuple[i]))

@@ -33,6 +33,7 @@ class SearcherClass():
                 buf_list.append([e["way_from"], e["way_to"]])
             
             locale_ways[str(i + 1)] = buf_list
+        
         self.ways = locale_ways
 
 
