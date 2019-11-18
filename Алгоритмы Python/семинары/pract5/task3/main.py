@@ -31,6 +31,7 @@ import waysearcher_module
 import yaml
 
 
+def tt_regenerator(file_name, d, reg_flag):
     """
     Проверяет reg_flag, если требуется регенерация с новой датой (т.е. reg_flag == True)
     В условии перегенерирует d с текущей датой и пишет его в файл
