@@ -189,9 +189,11 @@ class MainClass():
         Конструктор класса
         Формирует словарь железнодорожных сообщений + вызов всех методов
         """
-        self.file_name = "tickets.yml"
+        self.file_name = "./yaml/tickets.yml"
 
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
+        
+        
         # TODO Чтение из YAML, если date != текущей date, то регенерейт.
         # Если файла нет, то тоже его заного создаём
         self.d = {
@@ -228,6 +230,14 @@ class MainClass():
             ],
         }
 
+        #Запись в YAML 
+        tt_obj = universal_module.FileClass("./yaml/tt.yml")
+        tt_obj.set_file(self.d)
+        #Чтение из YAML
+        #tt_obj = universal_module.FileClass("./yaml/tt.yml",2)
+        #self.d = tt_obj.read_file()
+        #print(self.d)
+        
         fileflag = path.exists(self.file_name)
         if fileflag == False:
             FileGeneratorClass(self.d, self.file_name)
