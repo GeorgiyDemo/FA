@@ -1,5 +1,8 @@
-# TODO Рандомная генерация файла + сохранение расписания в файл
+# TODO Рандомная генерация файла заполнения мест
 # TODO Можно обратиться к полю self.content при покупке билетов. Это избавит от повторного чтения файла
+# TODO Скидки - реализация для студентов
+# TODO Меню вынести в отдельный класс 
+# TODO Указание дат бронирования
 """
 Для задания  6 из предыдущей практики реализовать:
 [OK]    3.1 применение функций (не менее 5 штук)
@@ -29,6 +32,59 @@ import ticket_module
 import universal_module
 import waysearcher_module
 import yaml
+
+
+def tt_regenerator(file_name, d, reg_flag):
+    """
+    Проверяет reg_flag, если требуется регенерация с новой датой (т.е. reg_flag == True)
+    В условии перегенерирует d с текущей датой и пишет его в файл
+    """
+
+    # Формирование нового с новой датой
+    if reg_flag == True:
+        print("Регенерируем файл с расписанием поездов..")
+
+        date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
+
+        d = {
+            "Одинцово": [
+                {"begin_time": date + "21:30", "time_range": 30, "name": "Белорусский Вокзал"},
+                {"begin_time": date + "14:40", "time_range": 3, "name": "Баковка"},
+                {"begin_time": date + "10:30", "time_range": 15, "name": "Отрадное"},
+            ],
+
+            "Баковка": [
+                {"begin_time": date + "07:45", "time_range": 3, "name": "Одинцово"},
+                {"begin_time": date + "14:20", "time_range": 10, "name": "Курский Вокзал"},
+                {"begin_time": date + "08:10", "time_range": 25, "name": "Савёловский Вокзал"},
+            ],
+            "Отрадное": [
+                {"begin_time": date + "08:10", "time_range": 15, "name": "Одинцово"},
+                {"begin_time": date + "09:40", "time_range": 60, "name": "Курский Вокзал"},
+                {"begin_time": date + "18:21", "time_range": 38, "name": "Савёловский Вокзал"},
+            ],
+            "Белорусский Вокзал": [
+                {"begin_time": date + "11:15", "time_range": 30, "name": "Одинцово"},
+                {"begin_time": date + "13:50", "time_range": 10, "name": "Курский Вокзал"},
+                {"begin_time": date + "20:52", "time_range": 5, "name": "Савёловский Вокзал"},
+            ],
+            "Курский Вокзал": [
+                {"begin_time": date + "17:02", "time_range": 10, "name": "Белорусский Вокзал"},
+                {"begin_time": date + "17:10", "time_range": 10, "name": "Баковка"},
+                {"begin_time": date + "15:58", "time_range": 60, "name": "Отрадное"},
+            ],
+            "Савёловский Вокзал": [
+                {"begin_time": date + "11:18", "time_range": 5, "name": "Белорусский Вокзал"},
+                {"begin_time": date + "15:26", "time_range": 25, "name": "Баковка"},
+                {"begin_time": date + "19:10", "time_range": 38, "name": "Отрадное"},
+            ],
+        }
+        tt_obj = universal_module.FileClass(file_name)
+        tt_obj.set_file(d)
+
+        return d
+
+    return d
 
 
 class GetAllInfoClass():
@@ -189,44 +245,22 @@ class MainClass():
         Конструктор класса
         Формирует словарь железнодорожных сообщений + вызов всех методов
         """
-        self.file_name = "tickets.yml"
+        self.file_name = "./yaml/tickets.yml"
+        self.tt_file_name = "./yaml/tt.yml"
+        # Чтение из YAML
+        tt_obj = universal_module.FileClass(self.tt_file_name, 2)
+        self.d = tt_obj.get_text()
 
-        date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
-        # TODO Чтение из YAML, если date != текущей date, то регенерейт.
-        # Если файла нет, то тоже его заного создаём
-        self.d = {
-            "Одинцово": [
-                {"begin_time": date + "21:30", "time_range": 30, "name": "Белорусский Вокзал"},
-                {"begin_time": date + "14:40", "time_range": 3, "name": "Баковка"},
-                {"begin_time": date + "10:30", "time_range": 15, "name": "Отрадное"},
-            ],
+        tt_gereneration_flag = False
+        # Проверка на текущую дату
+        for first in self.d:
+            for second in self.d[first]:
+                buf_date = datetime.datetime.strptime(second["begin_time"], "%d.%m.%Y %H:%M").strftime("%d.%m.%Y")
+                date_now = datetime.datetime.now().strftime("%d.%m.%Y")
+                if buf_date != date_now:
+                    tt_gereneration_flag = True
 
-            "Баковка": [
-                {"begin_time": date + "07:45", "time_range": 3, "name": "Одинцово"},
-                {"begin_time": date + "14:20", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": date + "08:10", "time_range": 25, "name": "Савёловский Вокзал"},
-            ],
-            "Отрадное": [
-                {"begin_time": date + "08:10", "time_range": 15, "name": "Одинцово"},
-                {"begin_time": date + "09:40", "time_range": 60, "name": "Курский Вокзал"},
-                {"begin_time": date + "18:21", "time_range": 38, "name": "Савёловский Вокзал"},
-            ],
-            "Белорусский Вокзал": [
-                {"begin_time": date + "11:15", "time_range": 30, "name": "Одинцово"},
-                {"begin_time": date + "13:50", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": date + "20:52", "time_range": 5, "name": "Савёловский Вокзал"},
-            ],
-            "Курский Вокзал": [
-                {"begin_time": date + "17:02", "time_range": 10, "name": "Белорусский Вокзал"},
-                {"begin_time": date + "17:10", "time_range": 10, "name": "Баковка"},
-                {"begin_time": date + "15:58", "time_range": 60, "name": "Отрадное"},
-            ],
-            "Савёловский Вокзал": [
-                {"begin_time": date + "11:18", "time_range": 5, "name": "Белорусский Вокзал"},
-                {"begin_time": date + "15:26", "time_range": 25, "name": "Баковка"},
-                {"begin_time": date + "19:10", "time_range": 38, "name": "Отрадное"},
-            ],
-        }
+        self.d = tt_regenerator(self.tt_file_name, self.d, tt_gereneration_flag)
 
         fileflag = path.exists(self.file_name)
         if fileflag == False:
