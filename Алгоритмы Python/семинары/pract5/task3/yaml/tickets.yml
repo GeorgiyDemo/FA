@@ -44572,7 +44572,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 14:40:00 22/11/2019
   time_finish: 14:43:00 22/11/2019
   to: Баковка
@@ -46741,8 +46741,8 @@
           price: 3228
           type: нижнее
         '49':
-          name: null
-          payment: 0
+          name: ПОКЕМОН
+          payment: 1
           price: 1176
           type: нижнее (боковое)
         '5':
@@ -46800,7 +46800,7 @@
           payment: 0
           price: 1767
           type: верхнее
-      places_free: 54
+      places_free: 53
     '2':
       cars:
         '1':

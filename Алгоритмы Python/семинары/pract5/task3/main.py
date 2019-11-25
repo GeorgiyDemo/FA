@@ -21,7 +21,6 @@
 """
 
 import datetime
-import random
 from os import path
 
 import menu_module

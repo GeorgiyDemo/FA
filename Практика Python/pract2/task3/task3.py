@@ -126,6 +126,6 @@ class TaskClass:
 
 
 if __name__ == "__main__":
-    # exp = input("-> ")
-    exp = "cos(x)=0.5"
+    exp = input("-> ")
+    #exp = "cos(x)=0.5"
     TaskClass(exp)
