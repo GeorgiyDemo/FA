@@ -4459,7 +4459,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 14:20:00 22/11/2019
   time_finish: 14:30:00 22/11/2019
   to: Курский Вокзал
@@ -6127,11 +6127,11 @@
           price: 2588
           type: верхнее (боковое)
         '9':
-          name: null
+          name: Кот
           payment: 0
           price: 999
           type: верхнее
-      places_free: 54
+      places_free: 53
     '15':
       cars:
         '1':
@@ -35658,7 +35658,7 @@
   info:
     car_count: 15
     places_count: 54
-    places_free: 810
+    places_free: 809
   time_begin: 15:58:00 22/11/2019
   time_finish: 16:58:00 22/11/2019
   to: Отрадное
@@ -38258,7 +38258,7 @@
           price: 3193
           type: нижнее (боковое)
         '26':
-          name: null
+          name: Кот
           payment: 0
           price: 999
           type: верхнее (боковое)
@@ -38442,7 +38442,7 @@
           payment: 0
           price: 1967
           type: верхнее
-      places_free: 54
+      places_free: 53
     '4':
       cars:
         '1':
