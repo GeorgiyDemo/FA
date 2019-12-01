@@ -10,125 +10,52 @@
   Пример calc("двадцать пять плюс тринадцать") -> "тридцать восемь"
 Оформить калькулятор в виде функции, которая принимает на вход строку и возвращает строку.
 
-6)	Добавить возможность оперировать с дробями (правильными и смешанными). Реализовать поддержку сложения, вычитания и умножения, дробей. Результат операций не должен представлять неправильную дробь, такие результаты нужно превращать в смешанные дроби.
+6)	Добавить возможность оперировать с дробями. Реализовать поддержку сложения, вычитания и умножения, дробей. 
 Пример: calc("один и четыре пятых плюс шесть седьмых ") -> "два и двадцать три тридцать пятых".
 """
 
+import yaml
+from pytils import numeral
+from word2number import w2n
+from yandex.Translater import Translater
 
-class Num2StringClass():
+
+class FileClass():
     """
-    Представления числа в виде прописи
+    Возвращает токен Яндекс Переводчика с yaml
     """
 
-    def __init__(self, input_str):
-        self.setter()
-        self.num = int(input_str)
-        self.processing()
+    def __init__(self):
+        self.read_file()
 
-    def setter(self):
-        self.orders = (
-            ((u'тысяча', u'тысячи', u'тысяч'), 'f'),
-            ((u'миллион', u'миллиона', u'миллионов'), 'm'),
-            ((u'миллиард', u'миллиарда', u'миллиардов'), 'm'),
-        )
+    def read_file(self):
+        with open("./token.yml", 'r') as outfile:
+            self.content = yaml.safe_load(outfile)["token"]
 
-        self.units = (
-            u'ноль',
 
-            (u'один', u'одна'),
-            (u'два', u'две'),
+class TranslaterClass():
+    def __init__(self, token, ru_str):
+        self.token = token
+        self.ru_str = ru_str
+        self.translater()
 
-            u'три', u'четыре', u'пять',
-            u'шесть', u'семь', u'восемь', u'девять'
-        )
-
-        self.teens = (
-            u'десять', u'одиннадцать',
-            u'двенадцать', u'тринадцать',
-            u'четырнадцать', u'пятнадцать',
-            u'шестнадцать', u'семнадцать',
-            u'восемнадцать', u'девятнадцать'
-        )
-
-        self.tens = (
-            self.teens,
-            u'двадцать', u'тридцать',
-            u'сорок', u'пятьдесят',
-            u'шестьдесят', u'семьдесят',
-            u'восемьдесят', u'девяносто'
-        )
-
-        self.hundreds = (
-            u'сто', u'двести',
-            u'триста', u'четыреста',
-            u'пятьсот', u'шестьсот',
-            u'семьсот', u'восемьсот',
-            u'девятьсот'
-        )
-        self.minus = u'минус'
-
-    def thousand(self, rest, sex):
-        """
-        Конвертация чисел от 19 до 999
-        """
-        prev = 0
-        plural = 2
-        name = []
-        use_teens = rest % 100 >= 10 and rest % 100 <= 19
-        if not use_teens:
-            data = ((self.units, 10), (self.tens, 100), (self.hundreds, 1000))
-        else:
-            data = ((self.teens, 10), (self.hundreds, 1000))
-        for names, x in data:
-            cur = int(((rest - prev) % x) * 10 / x)
-            prev = rest % x
-            if x == 10 and use_teens:
-                plural = 2
-                name.append(self.teens[cur])
-            elif cur == 0:
-                continue
-            elif x == 10:
-                name_ = names[cur]
-                if isinstance(name_, tuple):
-                    name_ = name_[0 if sex == 'm' else 1]
-                name.append(name_)
-                if cur >= 2 and cur <= 4:
-                    plural = 1
-                elif cur == 1:
-                    plural = 0
-                else:
-                    plural = 2
-            else:
-                name.append(names[cur - 1])
-        return plural, name
-
-    def processing(self):
-        num = self.num
-        main_units = ((u'', u'', u''), 'm')
-        _orders = (main_units,) + self.orders
-        if num == 0:
-            self.result = ' '.join((self.units[0], _orders[0][0][2])).strip()  # ноль
-
-        rest = abs(num)
-        ord = 0
-        name = []
-        while rest > 0:
-            plural, nme = self.thousand(rest % 1000, _orders[ord][1])
-            if nme or ord == 0:
-                name.append(_orders[ord][0][plural])
-            name += nme
-            rest = int(rest / 1000)
-            ord += 1
-        if num < 0:
-            name.append(self.minus)
-        name.reverse()
-        self.result = ' '.join(name).strip()
+    def translater(self):
+        ru_str = self.ru_str
+        tr = Translater()
+        tr.set_key(self.token)
+        tr.set_from_lang('ru')
+        tr.set_to_lang('en')
+        tr.set_text(ru_str)
+        en_str = tr.translate()
+        self.result = en_str
+        print("Перевод:", self.result)
 
 
 class String2NumClass():
     """
     Представление прописи в виде числа
     """
+
     def __init__(self, number_string):
         self.arr_1 = [['ноль'], ['один', 'одна'], ['два', 'две'], ['три'], ['четыре'], ['пять'], ['шесть'], ['семь'],
                       ['восемь'], ['девять']]
@@ -212,9 +139,11 @@ class String2NumClass():
 class MainClass():
     def __init__(self, input_str):
 
+        obj_token = FileClass()
+        self.token = obj_token.content
         self.input_str = input_str
-        self.operations_list = {"плюс": "+", "минус": "-", "умножить": "*"}
-        self.r_operations_list = {"+": "плюс", "-": "минус", "*": "умножить"}
+        self.operations_list = {"плюс": "+", "минус": "-", "умножить на": "*", "умножить": "*"}
+        self.r_operations_list = {"+": "сложение", "-": "вычитание", "*": "умножение"}
         self.splitter()
         self.number_collector()
         self.processing()
@@ -226,10 +155,10 @@ class MainClass():
         n = self.collectored_numbers
         result = str(eval(n[0] + self.operation + n[1]))
         operation = self.r_operations_list[self.operation]
-        abs_obj = Num2StringClass(result)
+        abs_result = numeral.in_words(float(result))
         print("Число №1: " + n[0] + "\nЧисло №2: " + n[1])
         print("Операция: " + operation + "\nРезультат в виде числа: " + result)
-        print("Результат прописью: " + abs_obj.result)
+        print("Результат прописью: " + abs_result + "\n")
 
     def number_collector(self):
         """
@@ -240,13 +169,23 @@ class MainClass():
         input_str = self.input_str
 
         collectored_numbers = []
+        detect_word = "целых"
         for numbers in input_str:
-            locale_number = 0
-            buf_number_list = numbers.split(" ")
-            for number in buf_number_list:
-                o = String2NumClass(number)
-                locale_number += o.result
-            collectored_numbers.append(str(locale_number))
+            # Тогда это дробь и мы ее переводим, лол
+            if detect_word in numbers:
+
+                t_obj = TranslaterClass(self.token, numbers)
+                locale_number = w2n.word_to_num(t_obj.result)
+                collectored_numbers.append(str(locale_number))
+
+            # Тогда это число и мы его по составным числам считаем
+            else:
+                locale_number = 0
+                buf_number_list = numbers.split(" ")
+                for number in buf_number_list:
+                    o = String2NumClass(number)
+                    locale_number += o.result
+                collectored_numbers.append(str(locale_number))
         self.collectored_numbers = collectored_numbers
 
     def splitter(self):
@@ -263,5 +202,11 @@ class MainClass():
 
 
 if __name__ == "__main__":
-    input_str = input("Введите строку -> ")
-    MainClass(input_str)
+
+    examples_list = [
+        "ноль целых две десятых плюс восемь целых шесть сотых",
+        "четыреста пятьдесят пять целых две десятых минус двадцать девять",
+    ]
+    for e in examples_list:
+        print(e)
+        MainClass(e)
