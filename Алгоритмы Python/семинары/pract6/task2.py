@@ -5,28 +5,31 @@
 Обработать ошибки
 
 """
-from random import randint
 import os
+from random import randint
+
 
 class MetaClass():
     def __init__(self):
         d = {
-            0 : AttributeError,
-            1 : IOError,
-            2 : IndexError,
-            3 : KeyError,
+            0: AttributeError,
+            1: IOError,
+            2: IndexError,
+            3: KeyError,
         }
-        key = randint(0,3)
+        key = randint(0, 3)
         self.random_class = d[key]
+
 
 class ExceptionClass(IndexError):
     def __init__(self, description):
         self.description = description
-    
+
     def __str__(self):
         print("ExceptionClass __str__")
         return self.description
-    
+
+
 class FileProcessing():
     def __init__(self):
 
@@ -38,7 +41,7 @@ class FileProcessing():
         }
 
         self.file_name = input("Введите название файла для записи -> ")
-        
+
         input_str = ""
         while input_str != "0":
             input_str = input(
@@ -48,7 +51,7 @@ class FileProcessing():
             except KeyError:
                 if input_str != "0":
                     print("Нет введёного пункта меню")
-            
+
     def file_add(self):
 
         f = open(self.file_name, "w")
@@ -67,7 +70,7 @@ class FileProcessing():
         except KeyError as e:
             print("KeyError:", e)
         except Exception as e:
-            print("Вас посетила ошибка",type(e).__name__)
+            print("Вас посетила ошибка", type(e).__name__)
 
     def file_write(self):
         """
@@ -77,13 +80,13 @@ class FileProcessing():
         user_info = input("Введите строку для записи -> ")
         with open(self.file_name, "w") as f:
             f.write(user_info)
-            
+
     def random_riser(self):
         """
         Метод для рандомной отдачи 1 или 0
         Необходим для выкидывания ошибки
         """
-        return bool(randint(0,1))
+        return bool(randint(0, 1))
 
     def file_read(self):
         """
@@ -92,15 +95,16 @@ class FileProcessing():
         try:
             with open(self.file_name, "r") as f:
                 print(f.read())
-            
+
             if self.random_riser():
                 o = MetaClass()
                 raise o.random_class("ну привет")
-    
+
         except FileNotFoundError:
             print("Ошибка чтения файла. Файла не существует")
         except Exception as e:
-            print("Вас посетила ошибка",type(e).__name__)
+            print("Вас посетила ошибка", type(e).__name__)
+
 
 if __name__ == "__main__":
     try:
