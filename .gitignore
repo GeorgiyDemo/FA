@@ -266,5 +266,4 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints
 .idea/
-*.pdf
 Практика Python/pract3/token.yml
