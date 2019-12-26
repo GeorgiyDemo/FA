@@ -13,15 +13,19 @@
 """
 
 from collections.abc import MutableSequence
+
 import task_10_module
 import task_11_module
+
 
 class DEMKACollection(MutableSequence):
     """
     Кастомная коллекция
     """
+
     def __init__(self, data=None):
-        """Initialize the class"""
+
+        # Дёргаем конструктор MutableSequence
         super(DEMKACollection, self).__init__()
         if (data is not None):
             self._list = list(data)
@@ -32,19 +36,15 @@ class DEMKACollection(MutableSequence):
         return "<{0} {1}>".format(self.__class__.__name__, self._list)
 
     def __len__(self):
-        """List length"""
         return len(self._list)
 
     def __getitem__(self, ii):
-        """Get a list item"""
         return self._list[ii]
 
     def __delitem__(self, ii):
-        """Delete an item"""
         del self._list[ii]
 
     def __setitem__(self, ii, val):
-        # optional: self._acl_check(val)
         self._list[ii] = val
 
     def __str__(self):
@@ -54,15 +54,15 @@ class DEMKACollection(MutableSequence):
         return self._list.sort()
 
     def insert(self, ii, val):
-        # optional: self._acl_check(val)
         self._list.insert(ii, val)
 
     def append(self, val):
         self.insert(len(self._list), val)
 
+
 class MainClass():
     def __init__(self):
-        self.my_collection = DEMKACollection([1,5,3,2,5])
+        self.my_collection = DEMKACollection([1, 5, 3, 2, 5])
         self.task_2()
         self.task_3()
         self.task_4_5()
@@ -70,37 +70,36 @@ class MainClass():
         self.task_7()
         self.task_8()
         self.task_9()
-    
+        self.task_10()
+        self.task_11()
+
     def task_2(self):
-        print("len:",len(self.my_collection))
-    
+        print("len:", len(self.my_collection))
+
     def task_3(self):
         for i in range(11):
             flag = True if i in self.my_collection else False
             print(i, flag)
-    
+
     def task_4_5(self):
-        locale_collection = DEMKACollection(list(self.my_collection) +["abc"])
+        locale_collection = DEMKACollection(list(self.my_collection) + ["abc"])
         print(locale_collection.__getitem__(0))
         for i in range(len(locale_collection)):
             if "ab" in str(locale_collection.__getitem__(i)):
-                print("Подстрока \"ab\" есть в элементе №"+str(i)+" с содержимым \""+locale_collection[i]+"\"")
+                print("Подстрока \"ab\" есть в элементе №" + str(i) + " с содержимым \"" + locale_collection[i] + "\"")
 
     def task_6(self):
         print(self.my_collection)
         c = self.my_collection
-        print("Сумма:",sum(c))
+        print("Сумма:", sum(c))
         print("Максимальный элемент:", max(c))
-        print("Минимальный элемент:",min(c))
-        #if "ab" in locale_collection.__getitem__(-1):
-        #    print("Подстрока ab есть в "locale_collection в жлементе №11 с содержимым "")
-        #print('ab' in locale_collection[1])
-    
+        print("Минимальный элемент:", min(c))
+
     def task_7(self):
         search_element = int(input("Введите элемент для подсчёта кол-ва -> "))
         count = self.my_collection.count(search_element)
         print("Количество элементов", search_element, ":", count)
-    
+
     def task_8(self):
         print(type(self.my_collection))
         print(type(tuple(self.my_collection)))
@@ -111,13 +110,15 @@ class MainClass():
         print(c)
         c.sort()
         print(c)
-    
+
     def task_10(self):
         task_10_module.Task10_1()
         task_10_module.Task10_2()
-        
-        
+
+    def task_11(self):
+        task_11_module.Task11_1(DEMKACollection)
+        task_11_module.Task11_2(DEMKACollection)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     MainClass()

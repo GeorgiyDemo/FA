@@ -54,6 +54,7 @@ UNIC_NAMES_LIST = [
     "Василевская Лидия Игоревна",
 ]
 
+
 class DEMKAdict(MutableMapping):
     """
     Кастомная коллекция от dict
@@ -96,6 +97,7 @@ class Task10_1():
 
     def custom_generator(self):
         self.d = DEMKAdict()
+        print(type(self.d))
         for e in UNIC_NAMES_LIST:
             key = "+7" + self.locale_random(10)
             self.d[key] = e
@@ -108,27 +110,30 @@ class Task10_1():
         else:
             print("Введённого номера телефона нет в базе")
 
+
 class Task10_2(Task10_1):
     """
     Реализовать проверку на существующие записи в предыдущих заданиях с возможностью дополнения
     """
 
     def __init__(self):
-        self.dict_generator()
+        self.custom_generator()
         self.search()
 
     def search(self):
-        s = input("Введите адрес для поиска ->")
+        s = input("Введите телефон для поиска ->")
         if s in self.d:
-            print("Адрес найден!\nПроживающие по адресу:")
-            [print(x) for x in self.d[s]]
+            print("Телефон найден!\nАбонент " + self.d[s])
         else:
-            print("Адрес не найден, но мы его добавим в систему")
-            names = input("Введите ФИО людей, проживающих по этому адресу через заптую -> ")
-            self.d[s] = names.split(",")
+            print("Абонент не найден, но мы его добавим в систему")
+            name = input("Введите ФИО абонента -> ")
+            self.d[s] = name
+
             print("Обновлённый словарь:")
             for k, v in self.d.items():
                 print(k, v)
 
+
 if __name__ == "__main__":
     Task10_1()
+    Task10_2()
