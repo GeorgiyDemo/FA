@@ -76,7 +76,9 @@ if __name__ == "__main__":
         try:
             result = check_date(date)
         except ValueError as e:
-            print("Ошибка:", e)
+            print("Ошибка ValueError:", e)
+        except Exception as e:
+            print("")
 
         #Прибавляем +1 к значению в словаре по ключу-результату
         seasons_dict[result] += 1
