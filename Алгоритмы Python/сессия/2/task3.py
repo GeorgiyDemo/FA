@@ -53,34 +53,31 @@ if __name__ == "__main__":
         "Зима":  0,
         "Весна": 0,
         "Осень": 0,
+        "Ошибка в дате" : 0,
     }
 
-    #Список дат
-    date_list = []
+    #Входная строка
+    input_str = "17.15.21, 18.06.56, 2.12.99"
     
-    for month in range(1,13):
-        for day in range(1,32):
-
-            #Текущая дата
-            current_date = str(day)+"."+str(month)+".2019"
-
-            #Добавляем в список
-            date_list.append(current_date)
+    #Разделение строки по пробелу
+    date_list = input_str.split(" ")
 
     #Цикл по каждой дате
     for date in date_list:
         
-        print(date)
         #Получаем результат работы функции
         try:
             result = check_date(date)
-        except ValueError as e:
-            print("Ошибка ValueError:", e)
-        except Exception as e:
-            print("")
+            
+            #Прибавляем +1 к значению в словаре по ключу-результату
+            seasons_dict[result] += 1
+        
+        except ValueError:
+            print("Некорректные данные")
 
-        #Прибавляем +1 к значению в словаре по ключу-результату
-        seasons_dict[result] += 1
+        except Exception as e:
+            print("Перехват ошибки", e)
+
     
     #Вывод результатов из сформированного словаря
     print("Время года      Количество")
