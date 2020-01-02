@@ -19,6 +19,14 @@ def triangle(input_tuple):
     
     #Стороны треугольника
     a, b, c = input_tuple
+    
+    #Цикл по кажлому элементу tuple
+    for e in input_tuple:
+
+        #Если тип не числовой, то вызываем исключение
+        if type(e) != int and type(e) != float:
+            raise TypeError("Элементы tuple не являются числами")
+
 
     #Если сумма сторон меньше или равно третьей, то такого треугольника не существует
     if a+b <= c or a+c <= b or b+c <=a:
@@ -49,11 +57,25 @@ if __name__ == "__main__":
 
     #Цикл по каждому элементу из форматированного списка
     for i in range(len(input_list)):
-        #Получаем площадь
         
-        result = triangle(input_list[i])
-        #Присваеваем новый элемент по индексу i
-        input_list[i] = {"s": result, "triangle" : input_list[i]}
+        
+        try:
+            #Получаем площадь
+            result = triangle(input_list[i])
+            #Присваеваем новый элемент по индексу i
+            input_list[i] = {"s": result, "triangle" : input_list[i]}
+        
+        #Ошибка unpack'а при a, b, c = input_tuple
+        except ValueError:
+            print("В tuple нет 3 сторон треугольника")
+        
+        #Обработка нашего raise
+        except TypeError:
+            print("Некорректный тип в аргументах метода!")
+        
+        #Обработка прочих ошибок
+        except Exception as e:
+            print("Неожиданная ошибка:", e)
 
     #Сортируем по убыванию площади 
     input_list.sort(key=lambda x: x["s"], reverse=True)
