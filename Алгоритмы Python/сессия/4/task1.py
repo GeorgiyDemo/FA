@@ -30,7 +30,3 @@ def list2dict(list_str):
             out_d[key] += count
 
     return out_d
-
-if __name__ == "__main__":
-    input_list = ["ручки: 5", "тетради: 30", "ручки: 10", "тетради: 300"]
-    print(list2dict(input_list))
