@@ -25,11 +25,3 @@ def get_values(input_str):
     
     #Возврат значения
     return (plus, minus)
-
-
-if __name__ == "__main__":
-    this_str = "1,2,35,-56,305"
-    result = get_values(this_str)
-    print(result)
-    
-   
