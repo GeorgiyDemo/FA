@@ -17,53 +17,51 @@
 
 
 def converter(input_list):
-    
     if type(input_list) != list or input_list == []:
         raise TypeError()
-    #Выходня строка
+    # Выходня строка
     out_str = ""
     # Разделение на 1 и 2 эелмент a и b
     a, b = input_list
 
-    #Если исходная дробь неправильная
+    # Если исходная дробь неправильная
     if a > b:
-        
-        result = a/b
 
-        #Если есть нет остатка дроби
+        result = a / b
+
+        # Если есть нет остатка дроби
         if int(result) == result:
-            
-            out_str = str(a)+"/"+str(b)+" = "+str(int(result))
-        
-        #Если есть остаток дроби
+
+            out_str = str(a) + "/" + str(b) + " = " + str(int(result))
+
+        # Если есть остаток дроби
         else:
-            
-            integ = a // b # целая часть
+
+            integ = a // b  # целая часть
             fract = a % b  # дробная часть
 
-            #Результат
-            out_str = str(a)+"/"+str(b)+" = "+str(integ)+" "+str(fract)+"/"+str(b)
-    
-    #Если исходная дробь правильная
+            # Результат
+            out_str = str(a) + "/" + str(b) + " = " + str(integ) + " " + str(fract) + "/" + str(b)
+
+    # Если исходная дробь правильная
     else:
-        out_str = str(a)+"/"+str(b)+" – правильная дробь"
+        out_str = str(a) + "/" + str(b) + " – правильная дробь"
 
-    #Вывод
+    # Вывод
     print(out_str)
-
 
 
 if __name__ == "__main__":
 
-    locale_list = [[24,5], [2,3], [8,2]]
+    locale_list = [[24, 5], [2, 3], [8, 2]]
     for e in locale_list:
         try:
             converter(e)
         except ValueError:
             print("В словаре не 2 элемента")
-        
+
         except TypeError:
             print("Неверные аргументы в функции")
-       
+
         except Exception as e:
             print("Неожиданная ошибка:", e)

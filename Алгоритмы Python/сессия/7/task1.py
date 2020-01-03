@@ -9,39 +9,39 @@
 
 """
 
+
 def converter(input_list):
-    
-    #Выходня строка
+    # Выходня строка
     out_str = ""
     # Разделение на 1 и 2 эелмент a и b
     a, b = input_list
 
-    #Если исходная дробь неправильная
+    # Если исходная дробь неправильная
     if a > b:
-        
-        result = a/b
 
-        #Если есть нет остатка дроби
+        result = a / b
+
+        # Если есть нет остатка дроби
         if int(result) == result:
-            
-            out_str = str(a)+"/"+str(b)+" = "+str(int(result))
-        
-        #Если есть остаток дроби
+
+            out_str = str(a) + "/" + str(b) + " = " + str(int(result))
+
+        # Если есть остаток дроби
         else:
-            
-            integ = a // b # целая часть
+
+            integ = a // b  # целая часть
             fract = a % b  # дробная часть
 
-            #Результат
-            out_str = str(a)+"/"+str(b)+" = "+str(integ)+" "+str(fract)+"/"+str(b)
-    
-    #Если исходная дробь правильная
-    else:
-        out_str = str(a)+"/"+str(b)+" – правильная дробь"
+            # Результат
+            out_str = str(a) + "/" + str(b) + " = " + str(integ) + " " + str(fract) + "/" + str(b)
 
-    #Вывод
+    # Если исходная дробь правильная
+    else:
+        out_str = str(a) + "/" + str(b) + " – правильная дробь"
+
+    # Вывод
     print(out_str)
 
 
 if __name__ == "__main__":
-    converter([24,5])
+    converter([24, 5])
