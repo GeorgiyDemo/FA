@@ -21,12 +21,6 @@ def counter(S, p, n):
     #Вычисляем FV по формуле из задания
     FV = S * pow(1+p,n)
 
-    #Округляем числа
-    S = round(S, 2)
-    p = round(p, 2)
-    n = round(n, 2)
-    FV = round(FV, 2)
-
     #Переводим числа в строку с добавлением нулей после запятой
     S_str = format(S, '.2f')
     p_str = format(p, '.2f')
