@@ -37,7 +37,22 @@ if __name__ == "__main__":
 
         #Получаем сумму с помощью функции
         element_sum = counter(results_list[i])
-        print(element_sum)
 
-    result = counter("Иванов: 100, 45, 89")
-    print(result)
+        #Переопределяем элемент в виде словаря
+        results_list[i] = {"sum": element_sum, "value" : results_list[i]}
+
+    #Сортировка в порядке убывания суммы
+    results_list.sort(key=lambda x: x["sum"], reverse = True)
+    print(results_list)
+
+    #Определение списка для последующей записи в файл
+    final_list = [x["value"] for x in results_list]
+    
+    #Перевод списка в строку
+    final_str = "\n".join(final_list)
+    
+    #Открываем файл результат.txt на напись
+    with open("./результат.txt", "w") as file:
+        
+        #Записываем строку final_str
+        file.write(final_str)
