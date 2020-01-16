@@ -10,61 +10,65 @@
 
 
 def get_items(items_list):
-    # Пытаемся выпонить код
+
+    # Если список пуст или тип не list, то выкидываем исключение
+    if items_list == [] or type(items_list) != list:
+        raise ValueError("Некорректные данные", "Список пуст или параметр не является списком")
+
+    max_price = 0
+    out_list = []
+    # Для каждого tuple-элемента списка
+    for e in items_list:
+
+        # Если цена больше
+        if e[1] > max_price:
+
+            # Очистка списка
+            out_list.clear()
+            # Добавление в список
+            out_list.append(e)
+            # Выставление новой цены
+            max_price = e[1]
+
+        # Иначе, если цена такая же, то просто добавляем в список
+        elif e[1] == max_price:
+            out_list.append(e)
+
+    # Возврат значения
+    return out_list
+
+
+def main():
+
+    locale_list = [("ручка", 25), ("фломастеры", 350), ("альбом", 350)]
     try:
-        # Если список пуст или тип не list, то выкидываем исключение
-        if items_list == [] or type(items_list) != list:
-            raise ValueError("Некорректные данные", "Список пуст или параметр не является списком")
-
-        max_price = 0
-        out_list = []
-        # Для каждого tuple-элемента списка
-        for e in items_list:
-
-            # Если цена больше
-            if e[1] > max_price:
-
-                # Очистка списка
-                out_list.clear()
-                # Добавление в список
-                out_list.append(e)
-                # Выставление новой цены
-                max_price = e[1]
-
-            # Иначе, если цена такая же, то просто добавляем в список
-            elif e[1] == max_price:
-                out_list.append(e)
-
-        # Возврат значения
-        return out_list
+        # Получение результата от функции
+        result_list = get_items(locale_list)
 
     except ValueError as e:
         print("Ошибка ValueError:", e)
-        return [0]
+        return
 
     except Exception as e:
         print("Непредвиденная ошибка:", e)
-        return [0]
+        return
 
+    # Объявление временного списка для названий товаров
+    buf_list = []
+    
+    # Цикл по каждому результату
+    for name, price in result_list:
+
+        # Добавляем название товара в список
+        buf_list.append(name)
+
+    # Формирование выходной строки из временного списк
+    out_str = ", ".join(buf_list)
+
+
+    # Добавляем оформление + цену
+    out_str += " – самые дорогие товары, цена – " + str(price) + " руб."
+    print(out_str)
 
 if __name__ == "__main__":
-
-    locale_list = [("ручка", 25), ("фломастеры", 350), ("альбом", 350)]
-
-    # Получение результата от функции
-    result_list = get_items(locale_list)
-
-    # Если результат не ошибочный
-    if result_list != [0]:
-        # Объявление выходной строки
-        out_str = ""
-        # Цикл по каждому результату
-        for result in result_list:
-            # Определение переменных названия и цены
-            name, price = result
-            # Добавляем название товара в выходную строку
-            out_str += name + ", "
-
-        # Добавляем оформление + цену
-        out_str += "– самые дорогие товары, цена – " + str(price) + " руб."
-        print(out_str)
+    main()

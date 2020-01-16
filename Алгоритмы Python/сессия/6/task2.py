@@ -19,9 +19,25 @@ def converter(input_str):
         "5": "отлично",
     }
 
-    return ", ".join(
-        locale_dict[e] if 5 >= int(e) >= 2 else "ошибка" for e in input_str.split(", ")
-    )
+    # Преобразование в int
+    this_list = map(int, this_list)
+
+    # По каждому элементу в списке цикл
+    for e in this_list:
+
+        # Если элемент корректный
+        if 5 >= e >= 2:
+            # Добавляем элемент словаря по ключу e в список
+            out_list.append(locale_dict[e])
+        else:
+            # Иначе добавляем ошибку
+            out_list.append("ошибка")
+
+    # Формирование выходной строки из списка
+    out_str = ", ".join(out_list)
+
+    # Возврат строки
+    return out_str
 
 
 if __name__ == "__main__":

@@ -12,8 +12,11 @@
 Добавьте в программу обработку исключений (как собственного, так и стандартных).
 """
 
-
 def converter(input_str):
+
+    if type(input_str) != str:
+        raise TypeError("Некорректный тип аргументов функции")
+
     # Словарь с транслитом элементов
     locale_dict = {
         "2": "неудовлетворительно",
@@ -21,7 +24,6 @@ def converter(input_str):
         "4": "хорошо",
         "5": "отлично",
     }
-
     return ", ".join(
         locale_dict[e] if 5 >= int(e) >= 2 else "ошибка" for e in input_str.split(", ")
     )
