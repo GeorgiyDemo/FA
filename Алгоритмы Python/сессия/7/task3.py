@@ -25,7 +25,7 @@ def converter(input_list):
     a, b = input_list
 
     # Если исходная дробь неправильная
-    if a > b:
+    if a >= b:
 
         result = a / b
 
