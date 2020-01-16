@@ -12,8 +12,8 @@
 Добавьте в программу обработку исключений (как собственного, так и стандартных).
 """
 
-
 def converter(input_str):
+
     if type(input_str) != str:
         raise TypeError("Некорректный тип аргументов функции")
 
@@ -29,8 +29,8 @@ def converter(input_str):
     # Конвертация в list
     this_list = input_str.split(", ")
 
-    # Преобразование в str
-    this_list = [int(x) for x in this_list]
+    # Преобразование в int
+    this_list = map(int, this_list)
 
     # По каждому элементу в списке цикл
     for e in this_list:
@@ -42,9 +42,6 @@ def converter(input_str):
         else:
             # Иначе добавляем ошибку
             out_list.append("ошибка")
-
-    # Конвертация каждого элемента списка в строковый тип
-    out_list = [str(x) for x in out_list]
 
     # Формирование выходной строки из списка
     out_str = ", ".join(out_list)
