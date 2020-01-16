@@ -43,7 +43,10 @@ def triangle(input_tuple):
 
 if __name__ == "__main__":
 
-    input_list = [(1, 2, 1), (3, 4, 5), (5, 2, 4)]
+    input_list = [(3, 4, 5), (1,2,1), (1,2,1),(5, 2, 4)]
+    
+    #Список с результатами
+    result_list = input_list[:]
 
     # Цикл по каждому элементу, где мы удаляем неправильные треугольники
     for e in input_list:
@@ -53,16 +56,16 @@ if __name__ == "__main__":
 
         # Если реузльтат равен 0, то удаляем
         if result == 0:
-            input_list.remove(e)
+            result_list.remove(e)
 
     # Цикл по каждому элементу из форматированного списка
-    for i in range(len(input_list)):
+    for i in range(len(result_list)):
 
         try:
             # Получаем площадь
-            result = triangle(input_list[i])
+            result = triangle(result_list[i])
             # Присваеваем новый элемент по индексу i
-            input_list[i] = {"s": result, "triangle": input_list[i]}
+            result_list[i] = {"s": result, "triangle": result_list[i]}
 
         # Ошибка unpack'а при a, b, c = input_tuple
         except ValueError:
@@ -77,7 +80,7 @@ if __name__ == "__main__":
             print("Неожиданная ошибка:", e)
 
     # Сортируем по убыванию площади
-    input_list.sort(key=lambda x: x["s"], reverse=True)
+    result_list.sort(key=lambda x: x["s"], reverse=True)
 
     # Вывод
-    print(input_list)
+    print(result_list)

@@ -27,5 +27,5 @@ def triangle(input_tuple):
 
 
 if __name__ == "__main__":
-    result = triangle((1, 4, 5))
+    result = triangle((6, 4, 5))
     print(result)
