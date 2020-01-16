@@ -6,28 +6,27 @@
 Вызовите созданную функцию и выведите на экран полученный результат. 
 """
 
+from collections import defaultdict
+
 
 def get_values(input_str):
     input_list = input_str.split(",")
 
-    # Положительные числа
-    plus = 0
-    # Отрицательные числа
-    minus = 0
+    new_dict = defaultdict(int)
 
     # Цикл по каждому элементу
     for e in input_list:
 
         # Если элемент меньше нуля, то увеличиваем количество отрицательных чисел на 1
         if int(e) < 0:
-            minus += 1
+            new_dict["minus"] += 1
 
         # Если элемент больше нуля, то увеличиваем количество положительных чисел на 1
         elif int(e) > 0:
-            plus += 1
+            new_dict["plus"] -= 1
 
     # Возврат значения
-    return (plus, minus)
+    return new_dict["plus"], new_dict["minus"]
 
 
 if __name__ == "__main__":

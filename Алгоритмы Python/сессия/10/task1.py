@@ -21,10 +21,10 @@ if __name__ == "__main__":
         name, values = result.split(": ")
 
         # Список значений по разделителю ,
-        values_list = values.split(', ')
+        values_list = values.split(", ")
 
-        # Конвертация значений списка в целочисленный тип
-        values_list = [int(x) for x in values_list]
+        # Конвертация значений списка в целочисленный тип и приведение к кортежу
+        values_list = tuple(int(x) for x in values_list)
 
         # Определение нового ключа словаря и значения
         this_dict[name] = values_list

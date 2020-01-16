@@ -13,38 +13,15 @@
 def converter(input_str):
     # Словарь с транслитом элементов
     locale_dict = {
-        2: "неудовлетворительно",
-        3: "удовлетворительно",
-        4: "хорошо",
-        5: "отлично",
+        "2": "неудовлетворительно",
+        "3": "удовлетворительно",
+        "4": "хорошо",
+        "5": "отлично",
     }
-    # Выходной список
-    out_list = []
-    # Конвертация в list
-    this_list = input_str.split(", ")
 
-    # Преобразование в str
-    this_list = [int(x) for x in this_list]
-
-    # По каждому элементу в списке цикл
-    for e in this_list:
-
-        # Если элемент корректный
-        if 5 >= e >= 2:
-            # Добавляем элемент словаря по ключу e в список
-            out_list.append(locale_dict[e])
-        else:
-            # Иначе добавляем ошибку
-            out_list.append("ошибка")
-
-    # Конвертация каждого элемента списка в строковый тип
-    out_list = [str(x) for x in out_list]
-
-    # Формирование выходной строки из списка
-    out_str = ", ".join(out_list)
-
-    # Возврат строки
-    return out_str
+    return ", ".join(
+        locale_dict[e] if 5 >= int(e) >= 2 else "ошибка" for e in input_str.split(", ")
+    )
 
 
 if __name__ == "__main__":

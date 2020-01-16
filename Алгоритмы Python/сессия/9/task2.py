@@ -16,11 +16,8 @@ def counter(input_str):
     # Список кол-вом баллов
     values_list = values.split(", ")
 
-    # Конвертация каждого элемента списка в целочисленный тип
-    values_list = [int(x) for x in values_list]
-
-    # Возврат суммы баллов
-    return sum(values_list)
+    # Конвертация всех элементов списка в число, создание генератора из них и подсчет суммы
+    return sum(map(int, values_list))
 
 
 if __name__ == "__main__":

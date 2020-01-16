@@ -21,14 +21,11 @@ def counter(S, p, n):
     # Вычисляем FV по формуле из задания
     FV = S * pow(1 + p, n)
 
-    # Переводим числа в строку с добавлением нулей после запятой
-    S_str = format(S, '.2f')
-    p_str = format(p, '.2f')
-    n_str = format(n, '.2f')
-    FV_str = format(FV, '.2f')
-
     # Формирование выходной строки
-    out_str = S_str + " * (1 + " + p_str + ") ** " + n_str + " = " + FV_str
+    formater = ".2f"
+    out_str = (
+        f"{S:{formater}} * (1 + {p:{formater}}) ** {n:{formater}} = {FV:{formater}}"
+    )
 
     # Отдача строки
     return out_str

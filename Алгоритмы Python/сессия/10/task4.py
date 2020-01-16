@@ -12,18 +12,22 @@
 
 (10 баллов) Если параметр функции не является словарем, то функция генерирует собственное исключение. Добавьте в программу обработку исключений (как собственного, так и стандартных).
 """
+from sys import maxsize
 
 
 def counter(input_dict, subj_number=1):
     """
     Входные данные:
+
     - input_dict - исходный словарь
     - subj_number - номер предмета
     """
-    if type(input_dict) != dict:
+
+    if not isinstance(input_dict, dict):
         raise ValueError()
+
     # Изначальные данные для max и min
-    max_result, min_result = 0, 99999
+    max_result, min_result = 0, maxsize
 
     # Для каждого значения в словаре цикл
     for value in input_dict.values():
@@ -42,7 +46,7 @@ def counter(input_dict, subj_number=1):
             min_result = value[locale_index]
 
     # Возврат значений
-    return (max_result, min_result)
+    return max_result, min_result
 
 
 if __name__ == "__main__":
@@ -63,7 +67,7 @@ if __name__ == "__main__":
         name, values = result.split(": ")
 
         # Список значений по разделителю ,
-        values_list = values.split(', ')
+        values_list = values.split(", ")
 
         # Конвертация значений списка в целочисленный тип
         values_list = [int(x) for x in values_list]
@@ -72,7 +76,7 @@ if __name__ == "__main__":
         this_dict[name] = values_list
 
     # Вывод заголовка "таблицы"
-    print("№ предмета   Макс балл        Мин балл")
+    print(f"{'№ предмета':<13}{'Макс балл':<13}{'Мин балл':<13}")
 
     # Цикл по каждой дисциплине от 1 до 3
     for i in range(1, 4):
@@ -82,7 +86,7 @@ if __name__ == "__main__":
             f_max, f_min = counter(this_dict, i)
 
             # Вывод результатов
-            print(str(i) + "               " + str(f_max) + "              " + str(f_min))
+            print(f"{i:<13}{f_max:<13}{f_min:<13}")
 
         except ValueError:
             print("Некорректный тип аргумента функции")
