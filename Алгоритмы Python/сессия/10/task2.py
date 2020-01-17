@@ -8,6 +8,7 @@
 По умолчанию номер дисциплины равен 1.
 Функция возвращает кортеж из двух чисел.
 """
+from sys import maxsize
 
 
 def counter(input_dict, subj_number=1):
@@ -18,7 +19,7 @@ def counter(input_dict, subj_number=1):
     """
 
     # Изначальные данные для max и min
-    max_result, min_result = 0, 99999
+    max_result, min_result = 0, maxsize
 
     # Для каждого значения в словаре цикл
     for value in input_dict.values():
@@ -37,7 +38,7 @@ def counter(input_dict, subj_number=1):
             min_result = value[locale_index]
 
     # Возврат значений
-    return (max_result, min_result)
+    return max_result, min_result
 
 
 if __name__ == "__main__":
@@ -58,7 +59,7 @@ if __name__ == "__main__":
         name, values = result.split(": ")
 
         # Список значений по разделителю ,
-        values_list = values.split(', ')
+        values_list = values.split(", ")
 
         # Конвертация значений списка в целочисленный тип
         values_list = [int(x) for x in values_list]

@@ -25,4 +25,4 @@ def get_values(input_str):
             plus += 1
 
     # Возврат значения
-    return (plus, minus)
+    return plus, minus

@@ -21,7 +21,7 @@ def list2dict(list_str):
         count = int(count)
 
         # Выкидываем двоеточие
-        key = key[:len(key) - 1]
+        key = key[: len(key) - 1]
 
         # Если ключа нет в словаре, то создаём его и мутим значние
         if key not in out_d:
