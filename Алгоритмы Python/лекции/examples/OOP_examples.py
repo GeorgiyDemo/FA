@@ -1,11 +1,18 @@
-class CleckClass():
-    def __init__(self, field):
-        self.field = field
+from random import choice
+
+class FordFocus():
+    def __init__(self, color):
+
+        self.color = color
     
     def get_field(self):
-        return self.field
+        return self.color
 
 
 if __name__ == "__main__":
-    obj = CleckClass("meow")
-    print(obj.get_field())
+
+    colors = ["green", "black", "white","yellow"]
+    for _ in range(10):
+
+        obj = FordFocus(choice(colors))
+        print(obj.get_field())
