@@ -3,46 +3,48 @@
 персоне, а также определить ее возраст (в текущем году).
 
 Создайте дочерние классы: АБИТУРИЕНТ (фамилия, дата рождения, факультет),
-СТУДЕНТ (фамилия, дата рождения,
-факультет, курс),
-
+СТУДЕНТ (фамилия, дата рождения, факультет, курс),
 ПРЕПОДАВАТЕЛЬ (фамилия, дата рождения, факультет, должность, стаж), со
 своими методами вывода информации на экран и определения возраста.
 
-Создайте список из n
-персон, выведите полную информацию из базы на экран, а также организуйте поиск персон,
-чей возраст попадает в заданный диапазон. Комментарий. В родительском классе Persona()
-определим, в соответствии с условием задачи, метод vozrast(), служащий для определения
-возраста и метод info(), позволяющий вывести информацию о персоне. Далее создаем три
-дочерних класса: Abiturient(Persona), Student(Persona), Prepodavatel(Persona), основанные
-на классе Persona(). Соответственно, все дочерние классы будут наследовать методы
-родительского класса. Чтобы вызвать конструктор базового класса, можно использовать
-функцию Python - super(). Заметим, что при использовании функции super() можно не
-передавать в явном виде параметр self.
-"""
-from datetime import datetime
+Создайте список из n персон, выведите полную информацию из базы на экран, а также организуйте поиск персон,
+чей возраст попадает в заданный диапазон.
 
-class Persona:
+"""
+
+from faker import Faker
+from datetime import datetime
+import random 
+
+class Person:
     def __init__(self, name, birthday):
         self.name = name
         self.birthday = birthday
         self.year_detector()
     
     def year_detector(self):
-        now = datetime.now() # current date and time
+        
+        """
+        Метод определения возраста на основе полной даты рождения + datetime
+        """
+
+        now = datetime.now()
         year_now = int(now.strftime("%Y"))
 
-        _ , _ , year = map(int,self.birthday.split("."))
+        year , _ , _ = map(int,self.birthday.split("-"))
         self.year = year_now-year
 
     def info(self):
         print("*Класс персона*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday)
 
-    def vozrast(self):
+    def years_old(self):
         print("Возраст: "+str(self.year))
 
-class Abiturient(Persona):
+    def years_old_int(self):
+        return self.year
+
+class Abiturient(Person):
     def __init__(self, name, birthday, way):
         super().__init__(name, birthday)
         self.way = way
@@ -52,25 +54,103 @@ class Abiturient(Persona):
             "\n"+"Дата рождения: "+self.birthday+\
             "\nФакультет: "+self.way)
 
-class Student(Persona):
+class Student(Person):
     def __init__(self, name, birthday, way, course):
         super().__init__(name, birthday)
         self.way = way
-        self.course = course
+        self.course = str(course)
     
     def info(self):
         print("*Класс студента*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday+\
-            "\nФакультет: "+self.way+"\nКУРС"
+            "\nФакультет: "+self.way+\
+            "\nКурс: "+self.course)
 
-class Prepodavatel(Persona):
-    pass
+class Teacher(Person):
+    def __init__(self, name, birthday, way, position, years):
+        super().__init__(name, birthday)
+        self.way = way
+        self.job_position = position
+        self.job_years = str(years)
+    
+    def info(self):
+        print("*Класс учителя*\nФИО: "+self.name+\
+            "\n"+"Дата рождения: "+self.birthday+\
+            "\nФакультет: "+self.way+\
+            "\nДолжность: "+self.job_position+\
+            "\nСтаж: "+self.job_years)
+
+
+class MainClass():
+
+    def __init__(self):
+
+        try:
+            n = int(input("Ведите количество персон ->"))
+        except ValueError:
+            print("Некорректный ввод данных !")
+            return
+
+        Введите диапазон для поиска персон, чей возраст попадает в заданный диапазон. Пример: 6-12:
+        
+    def generator(self):
+        pass
+
+    fake = Faker(['ru_RU'])
+    ways_list = [
+        "Факультет анализа рисков и экономической безопасности им. профессора В.К. Сенчагова",
+        "Государственное управление и финансовый контроль",
+        "Менеджмент",
+        "Международные экономические отношения​",
+        "Международный туризм, спорт и гостиничный бизнес",
+        "Международный финансовый",
+        "Налоги и налогообложение",
+        "Прикладная математика и информационные технологии",
+        "Социология и политология",
+        "Учет и аудит",
+        "Финансово-экономический",
+        "Финансовых рынков",
+        "Юридический",
+    ]
+
+    jobs_list = [
+        "Старший научный сотрудник",
+        "Старший преподаватель",
+        "Профессор",
+        "Преподаватель",
+        "Научный сотрудник",
+        "Младший научный сотрудник",
+        "Доцент",
+        "Докторант",
+        "Главный научный сотрудник",
+        "Ведущий научный сотрудник",
+        "Ассистент"
+    ]
+
+    all_obj_list = []
+
+    d = {
+        1: Person,
+        2: Abiturient,
+        3: Student,
+        4: Teacher,
+    }
+    
+    for _ in range(n):
+        d_args = {
+            1: [fake.name(), fake.date()],
+            2: [fake.name(), fake.date(), random.choice(ways_list)],
+            3: [fake.name(), fake.date(), random.choice(ways_list), random.randint(1,4)],
+            4: [fake.name(), fake.date(), random.choice(ways_list), random.choice(jobs_list), random.randint(5,35)],
+        }
+
+        r = random.randint(1,4)
+        all_obj_list.append(d[r](*d_args[r]))
+        all_obj_list.sort(key=lambda e: e.years_old_int())
+    
+    for obj in all_obj_list:
+        obj.years_old()
 
 if __name__ == "__main__":
-    person_obj = Persona("КОТ","01.01.2001")
-    person_obj.info()
-    person_obj.vozrast()
-
-    ab_obj = Abiturient("КОТ","03.12.2019","ПМИИТ")
-    ab_obj.info()
-    ab_obj.vozrast()
+    main()
+    
