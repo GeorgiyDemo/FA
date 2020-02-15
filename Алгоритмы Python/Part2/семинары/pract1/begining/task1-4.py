@@ -1,4 +1,5 @@
 import math
+from random import randrange
 
 class Task1Class:
     """
@@ -21,13 +22,62 @@ class Task2Class:
     def sum(self):
         return self.a + self.b
 
-#TODO
+
 class Task3Class:
     """
     Задача 3. Создайте класс с методами, формирующими вложенную последовательность.
     Пользователю должна быть предоставлена возможность заполнить ее либо случайными числами в
     интервале [-10; 10], либо осуществить ввод данных с клавиатуры.
     """
+    def __init__(self):
+        try:
+            d = {
+                "1": self.user_input,
+                "2": self.random_input,
+            }
+            self.main_list = []
+            self.list_len = int(input("Введите длинну последовательности -> "))
+            method_number = input("Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> ")
+            
+            if method_number in d:
+                d[method_number]()
+                self.out_list()
+            else:
+                print("Некорректный ввод")
+
+        except Exception as e:
+            print("Возникла ошибка: ", e)
+
+    def number_checker(self, e):
+        """
+        Фильтрация на числа
+        """
+        try:
+            return int(e)
+        except Exception:
+            return e
+        
+    def user_input(self):
+        """
+        Ручное заполнение последовательности
+        """
+        for i in range(self.list_len):
+
+            locale_element = self.number_checker(input("Введите элемент №"+str(i+1)+" -> "))
+            self.main_list.append(locale_element)
+
+    def random_input(self):
+        """
+        Автоматическое заполнение последовательности
+        """
+        self.main_list = [randrange(-10, 10) for _ in range(self.list_len)]
+
+    def out_list(self):
+        """
+        Вывод полученной последовательности
+        """
+        print("Полученная последовательность:")
+        print(self.main_list)
 
 class Task4Class:
     """
@@ -67,9 +117,11 @@ def main():
     print("Задание 1:", Task1Class.sum(3,4))
     obj = Task2Class(2,4)
     print("Задание 2:", obj.sum())
+    
+    print("Задание 3:")
+    Task3Class()
 
-
-    print("*Задание 4 на условные операторы*")
+    print("\nЗадание 4:")
     try:
         x = float(input("Введите x -> "))
     except:
@@ -78,7 +130,6 @@ def main():
     
     obj = Task4Class(x)
     print("Результат: " + str(obj.result))
-
 
 if __name__ == "__main__":
     main()
