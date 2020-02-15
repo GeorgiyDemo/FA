@@ -9,7 +9,6 @@
 
 Создайте список из n персон, выведите полную информацию из базы на экран, а также организуйте поиск персон,
 чей возраст попадает в заданный диапазон.
-
 """
 
 from faker import Faker
@@ -35,7 +34,7 @@ class Person:
         self.year = year_now-year
 
     def info(self):
-        print("*Класс персона*\nФИО: "+self.name+\
+        print("\n*Класс персона*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday)
 
     def years_old(self):
@@ -50,7 +49,7 @@ class Abiturient(Person):
         self.way = way
 
     def info(self):
-        print("*Класс абитуриента*\nФИО: "+self.name+\
+        print("\n*Класс абитуриента*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday+\
             "\nФакультет: "+self.way)
 
@@ -61,7 +60,7 @@ class Student(Person):
         self.course = str(course)
     
     def info(self):
-        print("*Класс студента*\nФИО: "+self.name+\
+        print("\n*Класс студента*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday+\
             "\nФакультет: "+self.way+\
             "\nКурс: "+self.course)
@@ -74,82 +73,81 @@ class Teacher(Person):
         self.job_years = str(years)
     
     def info(self):
-        print("*Класс учителя*\nФИО: "+self.name+\
+        print("\n*Класс учителя*\nФИО: "+self.name+\
             "\n"+"Дата рождения: "+self.birthday+\
             "\nФакультет: "+self.way+\
             "\nДолжность: "+self.job_position+\
             "\nСтаж: "+self.job_years)
 
 
-class MainClass():
-
-    def __init__(self):
-
+def main():
         try:
-            n = int(input("Ведите количество персон ->"))
+            n = int(input("Ведите количество персон -> "))
+            person_range = list(map(int,input("Введите диапазон для поиска персон по возрасту\nПример: 36-40\n-> ").split("-")))
+            min_age, max_age = sorted(person_range)
+
         except ValueError:
             print("Некорректный ввод данных !")
             return
 
-        Введите диапазон для поиска персон, чей возраст попадает в заданный диапазон. Пример: 6-12:
-        
-    def generator(self):
-        pass
+        ways_list = [
+            "Факультет анализа рисков и экономической безопасности им. профессора В.К. Сенчагова",
+            "Государственное управление и финансовый контроль",
+            "Менеджмент",
+            "Международные экономические отношения​",
+            "Международный туризм, спорт и гостиничный бизнес",
+            "Международный финансовый",
+            "Налоги и налогообложение",
+            "Прикладная математика и информационные технологии",
+            "Социология и политология",
+            "Учет и аудит",
+            "Финансово-экономический",
+            "Финансовых рынков",
+            "Юридический",
+        ]
 
-    fake = Faker(['ru_RU'])
-    ways_list = [
-        "Факультет анализа рисков и экономической безопасности им. профессора В.К. Сенчагова",
-        "Государственное управление и финансовый контроль",
-        "Менеджмент",
-        "Международные экономические отношения​",
-        "Международный туризм, спорт и гостиничный бизнес",
-        "Международный финансовый",
-        "Налоги и налогообложение",
-        "Прикладная математика и информационные технологии",
-        "Социология и политология",
-        "Учет и аудит",
-        "Финансово-экономический",
-        "Финансовых рынков",
-        "Юридический",
-    ]
+        jobs_list = [
+            "Старший научный сотрудник",
+            "Старший преподаватель",
+            "Профессор",
+            "Преподаватель",
+            "Научный сотрудник",
+            "Младший научный сотрудник",
+            "Доцент",
+            "Докторант",
+            "Главный научный сотрудник",
+            "Ведущий научный сотрудник",
+            "Ассистент"
+        ]
 
-    jobs_list = [
-        "Старший научный сотрудник",
-        "Старший преподаватель",
-        "Профессор",
-        "Преподаватель",
-        "Научный сотрудник",
-        "Младший научный сотрудник",
-        "Доцент",
-        "Докторант",
-        "Главный научный сотрудник",
-        "Ведущий научный сотрудник",
-        "Ассистент"
-    ]
+        fake = Faker(['ru_RU'])
+        all_obj_list = []
 
-    all_obj_list = []
-
-    d = {
-        1: Person,
-        2: Abiturient,
-        3: Student,
-        4: Teacher,
-    }
-    
-    for _ in range(n):
-        d_args = {
-            1: [fake.name(), fake.date()],
-            2: [fake.name(), fake.date(), random.choice(ways_list)],
-            3: [fake.name(), fake.date(), random.choice(ways_list), random.randint(1,4)],
-            4: [fake.name(), fake.date(), random.choice(ways_list), random.choice(jobs_list), random.randint(5,35)],
+        d = {
+            1: Person,
+            2: Abiturient,
+            3: Student,
+            4: Teacher,
         }
+        
+        for _ in range(n):
+            d_args = {
+                1: [fake.name(), fake.date()],
+                2: [fake.name(), fake.date(), random.choice(ways_list)],
+                3: [fake.name(), fake.date(), random.choice(ways_list), random.randint(1,4)],
+                4: [fake.name(), fake.date(), random.choice(ways_list), random.choice(jobs_list), random.randint(5,35)],
+            }
 
-        r = random.randint(1,4)
-        all_obj_list.append(d[r](*d_args[r]))
-        all_obj_list.sort(key=lambda e: e.years_old_int())
-    
-    for obj in all_obj_list:
-        obj.years_old()
+            r = random.randint(1,4)
+            all_obj_list.append(d[r](*d_args[r]))
+            all_obj_list.sort(key=lambda e: e.years_old_int())
+        
+        for obj in all_obj_list:
+            obj.info()
+            obj.years_old()
+            if obj.years_old_int() in range(min_age,max_age+1):
+                print("[Попадает в диапазон]")
+        
 
 if __name__ == "__main__":
     main()
