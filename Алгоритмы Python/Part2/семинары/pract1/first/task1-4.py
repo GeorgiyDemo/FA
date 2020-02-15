@@ -54,7 +54,7 @@ class Task3Class:
         """
         try:
             return int(e)
-        except Exception:
+        except ValueError:
             return e
         
     def user_input(self):
@@ -124,7 +124,7 @@ def main():
     print("\nЗадание 4:")
     try:
         x = float(input("Введите x -> "))
-    except:
+    except ValueError:
         print("Проблема ввода данных!")
         return
     

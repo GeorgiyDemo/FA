@@ -106,15 +106,21 @@ class TriangleClass(FigureClass):
     def perimeter_calculation(self):
         self.perimeter = self.a + self.b + self.c
 
-if __name__ == "__main__":
-    n = int(input("Введите количество фигур -> "))
-    
+def main():
+
+    try:
+        n = int(input("Введите количество фигур -> "))
+    except ValueError:
+        print("Некорректный ввод данных")
+        return
+        
     d = {
         0 : RectangleClass,
         1 : CircleClass,
         2 : TriangleClass,
     }
 
+    figures_list = []
     for _ in range(n):
         
         d_args = {
@@ -124,4 +130,12 @@ if __name__ == "__main__":
         }
 
         r_number = randint(0,2)
-        obj = d[r_number](*d_args[r_number])
+
+        figures_list.append(d[r_number](*d_args[r_number]))
+    
+    for figure in figures_list:
+        figure.info() #TODO
+
+
+if __name__ == "__main__":
+    main()
