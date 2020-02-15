@@ -130,12 +130,7 @@ def main():
         }
 
         r_number = randint(0,2)
-
         figures_list.append(d[r_number](*d_args[r_number]))
-    
-    for figure in figures_list:
-        figure.info() #TODO
-
 
 if __name__ == "__main__":
     main()
