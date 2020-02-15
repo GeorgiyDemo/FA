@@ -10,3 +10,35 @@
 Создайте список из п изданий, выведите полную информацию из списка,
 а также организуйте поиск изданий по фамилии автора. 
 """
+
+class PublicationClass:
+    """
+    Класс ИЗДАНИЕ с методом, позволяющим вывести на экран информацию об издании,
+    а также определить, является ли данное издание искомым.
+    """
+    def __init__(self, name, author_name):
+        pass
+    
+    def info(self, author_search_name):
+        pass
+
+class BookClass(PublicationClass):
+    """
+    Класс КНИГА (название, фамилия автора, год издания, издательство)
+    """
+    def __init__(self, name, author_name, publich_year, publishing_house):
+        pass
+    
+class ArticleClass(PublicationClass):
+    """
+    Класс СТАТЬЯ (название, фамилия автора, название журнала, его номер и год издания),
+    """
+    def __init__(self, name, author_name, publich_year, journal_name, journal_number):
+        pass
+    
+class WebClass(PublicationClass):
+    """
+    Класс ЭЛЕКТРОННЫЙ РЕСУРС (название, фамилия автора, ссылка, аннотация)
+    """
+    def __init__(self, name, author_name, link, annotation):
+        pass
