@@ -8,107 +8,96 @@ TODO Задача  3. Создайте класс ТРЕУГОЛЬНИК, зад
 
 Создайте список п треугольников и выведите полную информацию о треугольниках на экран.
 """
+
 from abc import ABCMeta, abstractmethod
-from math import pi, sqrt
+import math
 from random import randint
 
-import inspect
-class FigureClass:
+class TriangleClass:
     """
-    Абстрактный класс фигуры
+    Базовый класс треугольника
     """
-    __metaclass__ = ABCMeta
+    def __init__(self, a_side, b_side, angle):
+        self.a_side = a_side
+        self.b_side = b_side
+        self.angle = angle
 
-    @abstractmethod
+        self.c_side_calculation()
+
+        if self.validator():
+            self.perimeter_calculation()
+            self.area_calculation()
+
+    def c_side_calculation(self):
+        b = self.b_side
+        a = self.a_side
+        c = math.sqrt(b**2 + a**2 - 2*b*a * math.cos(self.angle))
+        print(c)
+        self.c_side = c
+    
+    def validator(self):
+        a = self.a_side
+        b = self.b_side
+        c = self.c_side
+
+        if a + b <= c or a + c <= b or b + c <= a:
+            
+            print("Треугольника со сторонами {}, {}, {} не существует".format(a, b, c))
+            self.area = "Не существует"
+            self.perimeter = "Не существует"
+            
+            return False
+        
+        return True
+
     def perimeter_calculation(self):
-        self.perimeter = 0
+        self.perimeter = self.a_side + self.b_side + self.c_side
 
-    @abstractmethod
     def area_calculation(self):
-        self.area = 0
+
+        #Вычисление полупериметра
+        a = self.a_side
+        b = self.b_side
+        c = self.c_side
+
+        p = (a+b+c)/2
+        s = math.sqrt(p*(p-a)*(p-b)*(p-c))
+        self.area = s
 
     def info(self):
 
-        stack = inspect.stack()
-        lclass = stack[1][0].f_locals["self"].__class__.__name__
-        
         a = self.area
         p = self.perimeter
 
         if type(self.area) == float and type(self.perimeter) == float:
             a = str(round(self.area,2))
             p = str(round(self.perimeter,2))
-        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(lclass, a, p))
+        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(1, a, p))
 
-class RectangleClass(FigureClass):
+class TectangularClass(TriangleClass):
     """
-    Класс прямоугольника
+    Прямоугольный треугольник
     """
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-        self.perimeter_calculation()
-        self.area_calculation()
-        self.info()
-
-    def perimeter_calculation(self):
-        self.perimeter = (self.a+self.b)*2
-
-    def area_calculation(self):
-        self.area = self.a*self.b 
-
-class CircleClass(FigureClass):
-    """
-    Класс круга
-    """
-    def __init__(self, r):
-        self.r = r
-        self.perimeter_calculation()
-        self.area_calculation()
-        self.info()
-
-    def area_calculation(self):
-        self.area = pi*self.r**2
-    
-    def perimeter_calculation(self):
-        self.perimeter = 2*pi*self.r
-
-class TriangleClass(FigureClass):
-    """
-    Класс треугольника
-    """
-    def __init__(self, a, b, c):
-
-        self.a = a
-        self.b = b
-        self.c = c
+    def __init__(self, a_side, b_side, angle):
+        super().__init__(a_side, b_side, angle)
+        self.a_side = a_side
+        self.b_side = b_side
 
         if self.validator():
-            self.area_calculation()
             self.perimeter_calculation()
-            self.info()
-    
-    def validator(self):
-        a = self.a
-        b = self.b
-        c = self.c
+            self.area_calculation()
 
-        if a + b <= c or a + c <= b or b + c <= a:
-            self.area = "Не существует"
-            self.perimeter = "Не существует"
-            return False
-        
-        return True
+        self.area_calculation()
 
     def area_calculation(self):
-        #Полупериметр
-        p = (self.a+self.b+self.c)/2
-        s = sqrt(p*(p-self.a)*(p-self.b)*(p-self.c))
-        self.area = s
+        self.area = (1/2)*self.a_side*self.b_side
 
-    def perimeter_calculation(self):
-        self.perimeter = self.a + self.b + self.c
 
+def main():
+    obj1 = TriangleClass(5,11,111)
+    obj1.info()
+
+"""
 def main():
 
     try:
@@ -134,6 +123,6 @@ def main():
 
         r_number = randint(0,2)
         figures_list.append(d[r_number](*d_args[r_number]))
-
+"""
 if __name__ == "__main__":
     main()
