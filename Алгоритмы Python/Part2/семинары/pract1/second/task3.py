@@ -143,12 +143,34 @@ class EquilateralTriangleClass(TriangleClass):
         self.perimeter = self.a_side*3
 
     def area_calculation(self):
-        self.area = (math.sqrt(3)/4)*pow(self.a_side,2)
-
+        #Высота
+        a = self.a_side
+        h = math.sqrt(pow(a,2)-(pow(a,2)/4))
+        self.area = (1/2)*a*h
 
 def main():
-    obj1 = EquilateralTriangleClass(3,4,45545)
-    obj1.info(type(obj1).__name__)
+
+    try:
+        n = int(input("Введите количество треугольников -> "))
+    except ValueError:
+        print("Некорректный ввод данных")
+        return
+    
+    triangle_list = []
+    d = {
+        0 : EquilateralTriangleClass,
+        1 : IsoscelesTriangleClass,
+        2 : TectangularTriangleClass,
+        3 : TriangleClass,
+    }
+
+    for _ in range(n):
+        r_number = randint(0,3)
+        r_args = [randint(4,100),randint(4,100),randint(4,100)]
+        triangle_list.append(d[r_number](*r_args))
+    
+    for triangle in triangle_list:
+        triangle.info(type(triangle).__name__)
 
 """
 def main():
