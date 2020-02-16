@@ -15,7 +15,6 @@
 """
 
 from random_auto import random_auto, random_number
-from faker import Faker
 from random import randint
 
 class TransportClass:
@@ -104,7 +103,6 @@ def main():
         4 : TruckClass,
     }
     
-    fake = Faker()
     transport_list = []
     for _ in range(n):
 
