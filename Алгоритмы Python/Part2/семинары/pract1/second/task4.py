@@ -120,5 +120,22 @@ def main():
     for transport in transport_list:
         print(transport.get_info()+"\n")
     
+    #Организуйте поиск машин, удовлетворяющих требованиям грузоподъемности.
+    try:
+        carrying_input = float(input("Введите грузоподъёмность -> "))
+    except ValueError:
+        print("Некорректный ввод данных")
+        return
+    
+    print("\n**Транспорт, грузоподъёмность которого меньше или равна заданной**\n")
+    search_flag = False
+    for transport in transport_list:
+        if  transport.get_carrying() <= carrying_input:
+            print(transport.get_info()+"\n")
+            search_flag = True
+    
+    if not search_flag:
+        print("**Транспорт не найден**")
+  
 if __name__ == "__main__":
     main()
