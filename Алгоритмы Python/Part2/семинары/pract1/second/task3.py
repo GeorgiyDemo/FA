@@ -1,5 +1,5 @@
 """
-TODO Задача  3. Создайте класс ТРЕУГОЛЬНИК, заданный длинами двух сторон и угла между ними,
+Задача  3. Создайте класс ТРЕУГОЛЬНИК, заданный длинами двух сторон и угла между ними,
 с методами вычисления площади и периметра треугольника, а также методом,
 выводящим информацию о фигуре на экран.
 
@@ -22,35 +22,16 @@ class TriangleClass:
         self.b_side = b_side
         self.angle = angle
 
-        self.c_side_calculation()
-
-        if self.validator():
-            self.perimeter_calculation()
-            self.area_calculation()
-
-    def c_side_calculation(self):
-        b = self.b_side
-        a = self.a_side
-        c = math.sqrt(b**2 + a**2 - 2*b*a * math.cos(math.radians(self.angle)))
-        self.c_side = c
-    
-    def validator(self):
-        a = self.a_side
-        b = self.b_side
-        c = self.c_side
-
-        if a + b <= c or a + c <= b or b + c <= a:
-            
-            print("Треугольника со сторонами {}, {}, {} не существует".format(a, b, c))
-            self.area = "Не существует"
-            self.perimeter = "Не существует"
-            
-            return False
-        
-        return True
+        self.perimeter_calculation()
+        self.area_calculation()
 
     def perimeter_calculation(self):
-        self.perimeter = self.a_side + self.b_side + self.c_side
+        a = self.a_side
+        b = self.b_side
+        c = math.sqrt(b**2 + a**2 - 2*b*a * math.cos(math.radians(self.angle)))
+
+        self.c_side = c
+        self.perimeter = a + b + c
 
     def area_calculation(self):
 
@@ -85,9 +66,8 @@ class TectangularTriangleClass(TriangleClass):
         self.a_side = a_side
         self.b_side = b_side
 
-        if self.validator():
-            self.perimeter_calculation()
-            self.area_calculation()
+        self.perimeter_calculation()
+        self.area_calculation()
 
         self.area_calculation()
 
@@ -121,12 +101,16 @@ class IsoscelesTriangleClass(TriangleClass):
         a = self.a_side
         b = self.b_side
         
-        #Половинка основания
-        part_a = a/2
-        #Вычисляем высоту
-        h = math.sqrt(pow(b,2)-pow(part_a,2))
-        #По формуле площади равнобедренного треугольника
-        self.area = (h*a)/2
+        try:
+            #Половинка основания
+            part_a = a/2
+            #Вычисляем высоту
+            h = math.sqrt(pow(b,2)-pow(part_a,2))
+            #По формуле площади равнобедренного треугольника
+            self.area = (h*a)/2
+        except ValueError:
+            self.area = "Ошибка вычисления"
+
 
 class EquilateralTriangleClass(TriangleClass):
     """
@@ -143,10 +127,15 @@ class EquilateralTriangleClass(TriangleClass):
         self.perimeter = self.a_side*3
 
     def area_calculation(self):
+
+        try:
         #Высота
-        a = self.a_side
-        h = math.sqrt(pow(a,2)-(pow(a,2)/4))
-        self.area = (1/2)*a*h
+            a = self.a_side
+            h = math.sqrt(pow(a,2)-(pow(a,2)/4))
+            self.area = (1/2)*a*h
+        except ValueError:
+            self.area = "Ошибка вычисления"
+
 
 def main():
 
@@ -166,38 +155,11 @@ def main():
 
     for _ in range(n):
         r_number = randint(0,3)
-        r_args = [randint(4,100),randint(4,100),randint(4,100)]
+        r_args = [randint(1,100),randint(1,100),randint(1,100)]
         triangle_list.append(d[r_number](*r_args))
     
     for triangle in triangle_list:
         triangle.info(type(triangle).__name__)
 
-"""
-def main():
-
-    try:
-        n = int(input("Введите количество фигур -> "))
-    except ValueError:
-        print("Некорректный ввод данных")
-        return
-        
-    d = {
-        0 : RectangleClass,
-        1 : CircleClass,
-        2 : TriangleClass,
-    }
-
-    figures_list = []
-    for _ in range(n):
-        
-        d_args = {
-            0 : [randint(1,100),randint(1,100)],
-            1 : [randint(1,100)],
-            2 : [randint(1,100),randint(1,100),randint(1,100)]
-        }
-
-        r_number = randint(0,2)
-        figures_list.append(d[r_number](*d_args[r_number]))
-"""
 if __name__ == "__main__":
     main()
