@@ -9,7 +9,6 @@ from abc import ABCMeta, abstractmethod
 from math import pi, sqrt
 from random import randint
 
-import inspect
 class FigureClass:
     """
     Абстрактный класс фигуры
@@ -24,10 +23,7 @@ class FigureClass:
     def area_calculation(self):
         self.area = 0
 
-    def info(self):
-
-        stack = inspect.stack()
-        lclass = stack[1][0].f_locals["self"].__class__.__name__
+    def info(self, lclass):
         
         a = self.area
         p = self.perimeter
@@ -46,7 +42,6 @@ class RectangleClass(FigureClass):
         self.b = b
         self.perimeter_calculation()
         self.area_calculation()
-        self.info()
 
     def perimeter_calculation(self):
         self.perimeter = (self.a+self.b)*2
@@ -62,7 +57,6 @@ class CircleClass(FigureClass):
         self.r = r
         self.perimeter_calculation()
         self.area_calculation()
-        self.info()
 
     def area_calculation(self):
         self.area = pi*self.r**2
@@ -83,7 +77,6 @@ class TriangleClass(FigureClass):
         if self.validator():
             self.area_calculation()
             self.perimeter_calculation()
-            self.info()
     
     def validator(self):
         a = self.a
@@ -131,6 +124,9 @@ def main():
 
         r_number = randint(0,2)
         figures_list.append(d[r_number](*d_args[r_number]))
+    
+    for figure in figures_list:
+        figure.info(type(figure).__name__)
 
 if __name__ == "__main__":
     main()

@@ -31,8 +31,7 @@ class TriangleClass:
     def c_side_calculation(self):
         b = self.b_side
         a = self.a_side
-        c = math.sqrt(b**2 + a**2 - 2*b*a * math.cos(self.angle))
-        print(c)
+        c = math.sqrt(b**2 + a**2 - 2*b*a * math.cos(math.radians(self.angle)))
         self.c_side = c
     
     def validator(self):
@@ -64,7 +63,7 @@ class TriangleClass:
         s = math.sqrt(p*(p-a)*(p-b)*(p-c))
         self.area = s
 
-    def info(self):
+    def info(self, cl_name):
 
         a = self.area
         p = self.perimeter
@@ -72,13 +71,16 @@ class TriangleClass:
         if type(self.area) == float and type(self.perimeter) == float:
             a = str(round(self.area,2))
             p = str(round(self.perimeter,2))
-        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(1, a, p))
+        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(cl_name, a, p))
 
-class TectangularClass(TriangleClass):
+class TectangularTriangleClass(TriangleClass):
     """
-    Прямоугольный треугольник
+    Класс прямоугольного треугольника
     """
-    def __init__(self, a_side, b_side, angle):
+    def __init__(self, a_side, b_side, angle=90):
+        
+        #Т.к. прямой угол
+        self.angle = 90
         super().__init__(a_side, b_side, angle)
         self.a_side = a_side
         self.b_side = b_side
@@ -91,11 +93,62 @@ class TectangularClass(TriangleClass):
 
     def area_calculation(self):
         self.area = (1/2)*self.a_side*self.b_side
+    
+    def perimeter_calculation(self):
+
+        a = self.a_side
+        b = self.b_side
+        c = math.sqrt(pow(a,2)+pow(b,2))
+        self.perimeter = a + b + c 
+
+class IsoscelesTriangleClass(TriangleClass):
+    """
+    Класс равнобедренного треугольника
+    """
+    def __init__(self, a_side, b_side, angle):
+        #angle необходим для того, чтоб в main снова не вводить разные аргументы для вызова разных классов
+        super().__init__(a_side, b_side, angle)
+        #Основание
+        self.a_side = a_side
+        #Боковая сторона
+        self.b_side = b_side
+    
+    def perimeter_calculation(self):
+        #Чтоб не учитывать c_side
+        self.perimeter = self.b_side*2 + self.a_side
+
+    def area_calculation(self):
+        a = self.a_side
+        b = self.b_side
+        
+        #Половинка основания
+        part_a = a/2
+        #Вычисляем высоту
+        h = math.sqrt(pow(b,2)-pow(part_a,2))
+        #По формуле площади равнобедренного треугольника
+        self.area = (h*a)/2
+
+class EquilateralTriangleClass(TriangleClass):
+    """
+    Класс равностороннего треугольника
+    """
+    def __init__(self, a_side, b_side, angle):
+        #angle и b_side необходимы для того, чтоб в main снова не вводить разные аргументы для вызова разных классов
+
+        super().__init__(a_side, b_side, angle)
+        #Единсттвенная труъ сторона
+        self.a_side = a_side
+    
+    def perimeter_calculation(self):
+        self.perimeter = self.a_side*3
+
+    def area_calculation(self):
+        self.area = (math.sqrt(3)/4)*pow(self.a_side,2)
 
 
 def main():
-    obj1 = TriangleClass(5,11,111)
-    obj1.info()
+    obj1 = EquilateralTriangleClass(3,4,45545)
+    obj1.info(type(obj1).__name__)
 
 """
 def main():
