@@ -28,7 +28,7 @@ class FigureClass:
         a = self.area
         p = self.perimeter
 
-        if type(self.area) == float and type(self.perimeter) == float:
+        if type(self.area) == float or type(self.perimeter) == float:
             a = str(round(self.area,2))
             p = str(round(self.perimeter,2))
         print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(lclass, a, p))

@@ -48,10 +48,10 @@ class TriangleClass:
 
         a = self.area
         p = self.perimeter
-
-        if type(self.area) == float and type(self.perimeter) == float:
+        p = str(round(self.perimeter,2))
+        #Можно сделать вот так вообще, потому что периметр не влияет вовсе
+        if type(self.area) == float:
             a = str(round(self.area,2))
-            p = str(round(self.perimeter,2))
         print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(cl_name, a, p))
 
 class TectangularTriangleClass(TriangleClass):
