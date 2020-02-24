@@ -29,6 +29,9 @@ class PhoneDictionaryClass:
         if input_name in self.name:
             return True
         return False
+    
+    def out_info(self):
+        ...
 
 class PersonClass(PhoneDictionaryClass):
     """
@@ -39,7 +42,7 @@ class PersonClass(PhoneDictionaryClass):
         super().__init__(name, address, phone_number)
 
     def out_info(self):
-        return "[Класс персона]\nФамилия"+self.name+"\nAдрес"+self.address+"\nНомер телефона:"+self.phone_number
+        return "[Класс персона]\nФИО: "+self.name+"\nAдрес: "+self.address+"\nНомер телефона: "+self.phone_number
 
 class OrganizationClass(PhoneDictionaryClass):
     """
@@ -52,8 +55,12 @@ class OrganizationClass(PhoneDictionaryClass):
         self.contact_person = contact_person
 
     def out_info(self):
-        return "[Класс организация]\nНазвание"+self.name+"\nAдрес"+self.address+"\nНомер телефона:"+self.phone_number+"\nФакс: "+self.fax+"\nКонтактое лицо:"+self.contact_person
+        return "[Класс организация]\nНазвание: "+self.name+"\nAдрес: "+self.address+"\nНомер телефона: "+self.phone_number+"\nФакс: "+self.fax+"\nКонтактое лицо: "+self.contact_person
 
+    def search(self, input_name):
+        if input_name in self.contact_person:
+            return True
+        return False 
 
 class FriendClass(PhoneDictionaryClass):
     """
@@ -65,7 +72,7 @@ class FriendClass(PhoneDictionaryClass):
         self.birth_date = birth_date
     
     def out_info(self):
-        return "[Класс друг]\nИмя"+self.name+"\nAдрес"+self.address+"\nНомер телефона:"+self.phone_number+"\nДата рождения: "+self.birth_date
+        return "[Класс друг]\nФИО: "+self.name+"\nAдрес: "+self.address+"\nНомер телефона: "+self.phone_number+"\nДата рождения: "+self.birth_date
 
 def main():
     """
@@ -86,24 +93,41 @@ def main():
     }
 
     fake = Faker(['ru_RU'])
-    base_list = []
+    obj_list = []
 
-    #################
     for _ in range(n):
 
         r_int = randint(1,3)
 
         d_args = {
             
-            1 : (fake.word(),randint(1,1000000),fake.word(),randint(1,18)),
-            2 : (fake.word(),randint(1,1000000),fake.word(),randint(1,18),"пластик"),
-            3 : (fake.word(),randint(1,1000000),fake.word(),randint(1,18),fake.name()),
+            1 : (fake.name(),fake.address(),fake.phone_number()),
+            2 : (fake.word(),fake.address(),fake.phone_number(),fake.phone_number(),fake.name()),
+            3 : (fake.name(),fake.address(),fake.phone_number(), fake.date(pattern='%d.%m.%Y')),
         }
         
-        goods_list.append(d[r_int](*d_args[r_int]))
+        obj_list.append(d[r_int](*d_args[r_int]))
 
 
-    for goods in goods_list:
-        print(goods.get_info()+"\n")
+    for obj in obj_list:
+        print(obj.out_info()+"\n")
+
+    try:
+        input_name = input("Введите фамилию для поиска -> ")
+    except ValueError:
+        print("Некорректный ввод данных")
+        return
+    
+    print("\n*Абоненты системы с фамилией \""+input_name+"\"*")
+    
+    search_flag = False 
+    for obj in obj_list:
+        if obj.search(input_name):
+            search_flag = True
+            print(obj.out_info()+"\n")
+
+    if not search_flag:
+        print("Абоненты не найдены")
+
 if __name__ == "__main__":
     main()
