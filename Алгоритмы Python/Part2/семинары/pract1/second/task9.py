@@ -13,6 +13,8 @@
 а также организуйте поиск программного обеспечения, которое допустимо использовать на текущую дату.
 """
 import datetime
+from faker import Faker
+from random import randint
 
 class SoftwareClass:
     """
@@ -86,17 +88,74 @@ class CommercialClass(SoftwareClass):
         super().__init__(name, manufacturer)
         self.install_date = datetime.datetime.strptime(install_date, '%d.%m.%Y')
         self.days_pay = int(days_pay)
-    
+
     def opportunity_detector(self):
         #Если дата установки + кол-во оплаченных дней >= текущей даты, то ок
         if self.install_date + datetime.timedelta(days=self.days_pay) >= self.date:
             return True
         return False
+    
+    def __days_calculation(self):
+        days_left = self.install_date + datetime.timedelta(days=self.days_pay)-self.date
+        return str(abs(days_left.days))
+    
+    def software_info(self):
+        
+        days_left_str = self.__days_calculation()
+        install_date = self.install_date.strftime("%d.%m.%Y")
+
+        if self.opportunity_detector() == True:
+            status_msg = "Активировано, осталось "+days_left_str+" дня/дней"
+        else:
+            status_msg = "Проблемы с активацией, просрочено на "+days_left_str+" дня/дней"
+
+        return "[Коммерческое ПО]\nНазвание: "+self.name+"\nПроизводитель: "+self.manufacturer+"\nДата установки: "+install_date+"\nКоличество дней: "+str(self.days_pay)+"\nСтатус: "+status_msg
+
 
 def main():
-    obj = TrialClass("ПО","ПРОИХЗВОДИТЕЛЬ ПОО","06.05.2019",5)
-    result = obj.software_info()
-    print(result)
+    """
+    Создайте список из п видов программного обеспечения, выведите полную информацию из базы на экран,
+    а также организуйте поиск программного обеспечения, которое допустимо использовать на текущую дату.
+    """
+    try:
+        n = int(input("Введите количество ПО -> "))
+    except ValueError:
+        print("Некорректный ввод данных")
+        return
+
+    d = {
+        1 : FreewareClass,
+        2 : TrialClass,
+        3 : CommercialClass,
+    }
+
+    fake = Faker(['ru_RU'])
+    software_list = []
+    for _ in range(n):
+
+        r_int = randint(1,3)
+
+        d_args = {
+            1 : (fake.word(),fake.word()+" "+fake.word()),
+            2 : (fake.word(),fake.word()+" "+fake.word(),fake.date(pattern='%d.%m.%Y'),randint(0,1800)),
+            3 : (fake.word(),fake.word()+" "+fake.word(),fake.date(pattern='%d.%m.%Y'),randint(0,1800)),
+        }
+
+        software_list.append(d[r_int](*d_args[r_int]))
+
+
+    for software in software_list:
+        print(software.software_info()+"\n")
+
+    search_flag = False
+    print("\n*ПО, которое допустимо использовать на текущую дату*")
+    for software in software_list:
+        if software.opportunity_detector():
+            print(software.software_info()+"\n")
+            search_flag = True
+
+    if not search_flag:
+        print("ПО не найдено")
 
 if __name__ == "__main__":
     main()
