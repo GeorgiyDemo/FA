@@ -1,13 +1,16 @@
 import math
 from random import randrange
 
+
 class Task1Class:
     """
     Задача 1. Создайте класс с методом класса, в котором определялась бы сумма двух целых чисел.
     """
+
     @staticmethod
     def sum(a, b):
-        return a+b
+        return a + b
+
 
 class Task2Class:
     """
@@ -15,10 +18,11 @@ class Task2Class:
     экземпляра класса, необходимые для сложения двух целых чисел. Напишите метод, в котором
     бы определялась сумма двух целых чисел.
     """
+
     def __init__(self, a, b):
         self.a = a
         self.b = b
-    
+
     def sum(self):
         return self.a + self.b
 
@@ -29,6 +33,7 @@ class Task3Class:
     Пользователю должна быть предоставлена возможность заполнить ее либо случайными числами в
     интервале [-10; 10], либо осуществить ввод данных с клавиатуры.
     """
+
     def __init__(self):
         try:
             d = {
@@ -38,7 +43,7 @@ class Task3Class:
             self.main_list = []
             self.list_len = int(input("Введите длинну последовательности -> "))
             method_number = input("Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> ")
-            
+
             if method_number in d:
                 d[method_number]()
                 self.out_list()
@@ -56,14 +61,13 @@ class Task3Class:
             return int(e)
         except ValueError:
             return e
-        
+
     def user_input(self):
         """
         Ручное заполнение последовательности
         """
         for i in range(self.list_len):
-
-            locale_element = self.number_checker(input("Введите элемент №"+str(i+1)+" -> "))
+            locale_element = self.number_checker(input("Введите элемент №" + str(i + 1) + " -> "))
             self.main_list.append(locale_element)
 
     def random_input(self):
@@ -78,6 +82,7 @@ class Task3Class:
         """
         print("Полученная последовательность:")
         print(self.main_list)
+
 
 class Task4Class:
     """
@@ -113,11 +118,12 @@ class Task4Class:
 
         self.result = first - buf_log
 
+
 def main():
-    print("Задание 1:", Task1Class.sum(3,4))
-    obj = Task2Class(2,4)
+    print("Задание 1:", Task1Class.sum(3, 4))
+    obj = Task2Class(2, 4)
     print("Задание 2:", obj.sum())
-    
+
     print("Задание 3:")
     Task3Class()
 
@@ -127,9 +133,10 @@ def main():
     except ValueError:
         print("Проблема ввода данных!")
         return
-    
+
     obj = Task4Class(x)
     print("Результат: " + str(obj.result))
+
 
 if __name__ == "__main__":
     main()

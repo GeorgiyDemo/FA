@@ -1,5 +1,6 @@
 from random import choice
 
+
 def random_color():
     color_list = [
         "Военно-воздушный синий",

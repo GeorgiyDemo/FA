@@ -104,9 +104,12 @@ model_list = [
     "Luxgen",
     "Zotye",
 ]
+
+
 def random_auto():
     return choice(model_list)
 
+
 def random_number():
     rus_abs = "АВЕКМНОРСТУХ"
-    return choice(rus_abs)+str(randint(100,999))+choice(rus_abs)+choice(rus_abs)
+    return choice(rus_abs) + str(randint(100, 999)) + choice(rus_abs) + choice(rus_abs)

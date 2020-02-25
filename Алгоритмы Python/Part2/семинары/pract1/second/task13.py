@@ -6,40 +6,44 @@
 Создайте список n уравнений и выведите полную информацию об уравнениях на экран.
 """
 
-from random import randint
 import math
+from random import randint
+
 
 class EquationClass:
     """
     Базовый класс уравнение
     """
+
     def __init__(self):
         pass
 
     def calculation(self):
         ...
-        
+
     def info(self):
         ...
+
 
 class LinearEquation(EquationClass):
     def __init__(self, a, b, c):
         self.a = a
-        self.b = b 
+        self.b = b
         self.c = c
-        #Поскольку я устал и мне надо сделать просто КАКОЕ-ТО ЛИНЕЙНОЕ УРАВНЕНИЕ
+        # Поскольку я устал и мне надо сделать просто КАКОЕ-ТО ЛИНЕЙНОЕ УРАВНЕНИЕ
         self.calculation()
-    
+
     def calculation(self):
-        #Просто представляем, что вся задача сводится к решению ax+b=c
-        self.result = (self.c-self.b)/self.a
+        # Просто представляем, что вся задача сводится к решению ax+b=c
+        self.result = (self.c - self.b) / self.a
 
     def info(self):
         a = self.a
         b = self.b
         c = self.c
-        equation_str = str(a)+"x+"+str(b)+"="+str(c)
-        return "*Информация о простом линейном уравнении*\nОбщий вид: "+equation_str+"\nКоэффициент a = "+str(a)+"\nКоэффициент b = "+str(b)+"\nКоэффициент c = "+str(c)+"\nОтвет:\n"+str(self.result)
+        equation_str = str(a) + "x+" + str(b) + "=" + str(c)
+        return "*Информация о простом линейном уравнении*\nОбщий вид: " + equation_str + "\nКоэффициент a = " + str(
+            a) + "\nКоэффициент b = " + str(b) + "\nКоэффициент c = " + str(c) + "\nОтвет:\n" + str(self.result)
 
 
 class QuadraticEquation(EquationClass):
@@ -114,11 +118,13 @@ class QuadraticEquation(EquationClass):
         if len(locale_list) == 1:
             result_msg = "".join(locale_list)
         elif len(locale_list) == 2:
-            result_msg = "Корень А1 = "+str(locale_list[0])+"\nКорень А2 = "+str(locale_list[1])
+            result_msg = "Корень А1 = " + str(locale_list[0]) + "\nКорень А2 = " + str(locale_list[1])
         else:
             result_msg = "Ошибка вычисления"
-        return "*Информация о квадратном уравнении*\nОбщий вид: "+self.input_str+"\nКоэффициент a = "+str(self.index_a)+"\nКоэффициент b = "+str(self.index_b)+"\nКоэффициент c = "+str(self.index_c)+"\nОтвет:\n"+result_msg
-    
+        return "*Информация о квадратном уравнении*\nОбщий вид: " + self.input_str + "\nКоэффициент a = " + str(
+            self.index_a) + "\nКоэффициент b = " + str(self.index_b) + "\nКоэффициент c = " + str(
+            self.index_c) + "\nОтвет:\n" + result_msg
+
     def calculation(self):
         a = self.index_a
         b = self.index_b
@@ -141,34 +147,35 @@ class QuadraticEquation(EquationClass):
         else:
             self.equation_results_list.append("Нет решения, D < 0")
 
-def main():
 
-    #Создайте список n уравнений и выведите полную информацию об уравнениях на экран.
+def main():
+    # Создайте список n уравнений и выведите полную информацию об уравнениях на экран.
     try:
         n = int(input("Введите количество уравнений -> "))
     except ValueError:
         print("Некорректный ввод данных")
         return
-        
+
     d = {
-        1 : LinearEquation,
-        2 : QuadraticEquation,
+        1: LinearEquation,
+        2: QuadraticEquation,
     }
 
     main_list = []
 
     for _ in range(n):
-        
         d_args = {
-            1 : [randint(-1000,1000),randint(-1000,1000),randint(-1000,1000)],
-            2 : [str(randint(-1000,1000))+"x^2+"+str(randint(-1000,1000))+"x+"+str(randint(-1000,1000))+"=0"],
+            1: [randint(-1000, 1000), randint(-1000, 1000), randint(-1000, 1000)],
+            2: [str(randint(-1000, 1000)) + "x^2+" + str(randint(-1000, 1000)) + "x+" + str(
+                randint(-1000, 1000)) + "=0"],
         }
 
-        r_number = randint(1,2)
+        r_number = randint(1, 2)
         main_list.append(d[r_number](*d_args[r_number]))
-    
+
     for e in main_list:
-        print(e.info()+"\n")
+        print(e.info() + "\n")
+
 
 if __name__ == "__main__":
     main()
