@@ -39,7 +39,7 @@ class LinearEquation(EquationClass):
         b = self.b
         c = self.c
         equation_str = str(a)+"x+"+str(b)+"="+str(c)
-        return "*Информация о простом линейном уравнении*\nОбщий вид: "+equation_str+"Коэффициент a = "+str(a)+"\nКоэффициент b = "+str(b)+"\nКоэффициент c = "+str(c)+"\nОтвет:\n"+str(self.result)
+        return "*Информация о простом линейном уравнении*\nОбщий вид: "+equation_str+"\nКоэффициент a = "+str(a)+"\nКоэффициент b = "+str(b)+"\nКоэффициент c = "+str(c)+"\nОтвет:\n"+str(self.result)
 
 
 class QuadraticEquation(EquationClass):
@@ -114,7 +114,7 @@ class QuadraticEquation(EquationClass):
         if len(locale_list) == 1:
             result_msg = "".join(locale_list)
         elif len(locale_list) == 2:
-            result_msg = "Корень А1 ="+str(locale_list[0])+"\nКорень А2 ="+str(locale_list[1])
+            result_msg = "Корень А1 = "+str(locale_list[0])+"\nКорень А2 = "+str(locale_list[1])
         else:
             result_msg = "Ошибка вычисления"
         return "*Информация о квадратном уравнении*\nОбщий вид: "+self.input_str+"\nКоэффициент a = "+str(self.index_a)+"\nКоэффициент b = "+str(self.index_b)+"\nКоэффициент c = "+str(self.index_c)+"\nОтвет:\n"+result_msg
@@ -125,7 +125,6 @@ class QuadraticEquation(EquationClass):
         c = self.index_c
 
         D = b ** 2 - 4 * a * c
-        print("D =", D)
 
         if D == 0:
             A1 = -b / (2 * a)
@@ -161,8 +160,8 @@ def main():
     for _ in range(n):
         
         d_args = {
-            1 : [randint(1,1000),randint(1,1000),randint(1,1000)],
-            2 : [str(randint(1,1000))+"x^2+"+str(randint(1,1000))+"x+"+str(randint(1,1000))+"=0"],
+            1 : [randint(-1000,1000),randint(-1000,1000),randint(-1000,1000)],
+            2 : [str(randint(-1000,1000))+"x^2+"+str(randint(-1000,1000))+"x+"+str(randint(-1000,1000))+"=0"],
         }
 
         r_number = randint(1,2)
