@@ -8,7 +8,7 @@
 """
 
 from abc import ABCMeta, abstractmethod
-from math import pi, sqrt
+from math import pi
 from random import randint
 
 class BodyClass:
@@ -25,81 +25,75 @@ class BodyClass:
     def volume_calculation(self):
         self.volume = 0
 
-    def info(self, lclass):
+    def info(self, lclass=None):
         
         a = self.surface_area
         v = self.volume
 
-        if type(self.area) == float or type(self.perimeter) == float:
-            a = str(round(self.area,2))
-            p = str(round(self.perimeter,2))
-        print("\nВызов от {}\nПлощадь поверхности фигуры: {}\nОбъем фигуры: {}".format(lclass, a, p))
+        if type(self.surface_area) == float or type(self.volume) == float:
+            a = str(round(self.surface_area,2))
+            v = str(round(self.volume,2))
+        print("\nВызов от {}\nПлощадь поверхности фигуры: {}\nОбъем фигуры: {}".format(lclass, a, v))
 
-class RectangleClass(FigureClass):
+class ParallelepipedClass(BodyClass):
     """
-    Класс прямоугольника
-    """
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-        self.perimeter_calculation()
-        self.area_calculation()
-
-    def perimeter_calculation(self):
-        self.perimeter = (self.a+self.b)*2
-
-    def area_calculation(self):
-        self.area = self.a*self.b 
-
-class CircleClass(FigureClass):
-    """
-    Класс круга
-    """
-    def __init__(self, r):
-        self.r = r
-        self.perimeter_calculation()
-        self.area_calculation()
-
-    def area_calculation(self):
-        self.area = pi*self.r**2
-    
-    def perimeter_calculation(self):
-        self.perimeter = 2*pi*self.r
-
-class TriangleClass(FigureClass):
-    """
-    Класс треугольника
+    Класс параллелепипед
     """
     def __init__(self, a, b, c):
-
+        #a,b,c - ребра параллелепипеда
         self.a = a
         self.b = b
         self.c = c
+        self.volume_calculation()
+        self.surface_area_calculation()
 
-        if self.validator():
-            self.area_calculation()
-            self.perimeter_calculation()
-    
-    def validator(self):
+    def surface_area_calculation(self):
+        #S = 2(ab + bc + ac)
         a = self.a
         b = self.b
         c = self.c
+        self.surface_area = 2*(a*b + b*c + a*c)
 
-        if a + b <= c or a + c <= b or b + c <= a:
-            self.area = "Не существует"
-            self.perimeter = "Не существует"
-            return False
-        
-        return True
+    def volume_calculation(self):
+        self.volume = self.a * self.b *self.c
 
-    def area_calculation(self):
-        #Полупериметр
-        p = (self.a+self.b+self.c)/2
-        s = sqrt(p*(p-self.a)*(p-self.b)*(p-self.c))
-        self.area = s
+class BallClass(BodyClass):
+    """
+    Класс шар
+    """
+    def __init__(self, r):
+        self.r = r
+        self.volume_calculation()
+        self.surface_area_calculation()
 
-    def perimeter_calculation(self):
-        self.perimeter = self.a + self.b + self.c
+    def surface_area_calculation(self):
+        self.surface_area = 4*pi*pow(self.r,2)
+
+    def volume_calculation(self):
+        self.volume = (4/3)*pi*pow(self.r, 3)
+
+class PyramidClass(BodyClass):
+    """
+    Класс пирамида
+    """
+    def __init__(self, S_main, S_back, h):
+        #S_main - площадь основания пирамиды
+        #S_back - площадь боковой поверхности
+        #h - высота пирамиды
+        self.S_main = S_main
+        self.S_back = S_back
+        self.h = h
+
+        self.volume_calculation()
+        self.surface_area_calculation()
+
+    def surface_area_calculation(self):
+        self.surface_area = self.S_main + 4 * self.S_back
+
+    def volume_calculation(self):
+        self.volume = (1/3)*self.S_main * self.h 
+
+
 
 def main():
 
@@ -110,21 +104,22 @@ def main():
         return
         
     d = {
-        0 : RectangleClass,
-        1 : CircleClass,
-        2 : TriangleClass,
+        1 : ParallelepipedClass,
+        2 : BallClass,
+        3 : PyramidClass,
     }
 
     figures_list = []
+
     for _ in range(n):
         
         d_args = {
-            0 : [randint(1,100),randint(1,100)],
-            1 : [randint(1,100)],
-            2 : [randint(1,100),randint(1,100),randint(1,100)]
+            1 : [randint(1,1000),randint(1,1000),randint(1,1000)],
+            2 : [randint(1,1000)],
+            3 : [randint(1,1000),randint(1,1000),randint(1,1000)],
         }
 
-        r_number = randint(0,2)
+        r_number = randint(1,3)
         figures_list.append(d[r_number](*d_args[r_number]))
     
     for figure in figures_list:
