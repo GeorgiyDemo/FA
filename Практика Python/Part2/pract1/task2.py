@@ -5,23 +5,24 @@
 """
 
 from math import log
+
+
 class MainClass:
     def __init__(self):
         self.x_processing_flag = False
         self.e_processing_flag = False
         self.result_sum = 0
-        
-        #Ввод данных
+
+        # Ввод данных
         while not self.x_processing_flag:
             self.x_values_input()
         while not self.e_processing_flag:
             self.e_values_input()
-            
+
         self.calculating(1, self.x)
-        print("Общая сумма: "+str(self.result_sum))
+        print("Общая сумма: " + str(self.result_sum))
 
         self.math_calculating()
-
 
     def x_values_input(self):
         """
@@ -35,18 +36,18 @@ class MainClass:
                 self.x_processing_flag = True
                 self.x = x
         except ValueError:
-            print("Некорректный ввод данных") 
+            print("Некорректный ввод данных")
 
     def math_calculating(self):
-        result = log(1+self.x)
-        print("Результат математической функции: "+str(result))
+        result = log(1 + self.x)
+        print("Результат математической функции: " + str(result))
 
     def e_values_input(self):
         """
         Метод для ввода данных по n
         """
         try:
-            self.e = int(input("Введите e степень погрешности ε=10^-e -> "))
+            self.e = int(input("Введите степень погрешности ε=10^-e -> "))
             self.e_processing_flag = True
 
         except ValueError:
@@ -56,15 +57,15 @@ class MainClass:
         """
         Рекурсивный метод для вычисления N элемента (так требует задание)
         """
-        result = pow(-1,i+1)*(pow(x,i)/i)
+        result = pow(-1, i + 1) * (pow(x, i) / i)
         self.result_sum += result
-        print("i = "+str(i)+", результат: "+str(result))
-        #Остановка 
-        if abs(result-previous_result) < pow(10,-self.e):
+        print("i = " + str(i) + ", результат: " + str(result))
+        # Остановка
+        if abs(result - previous_result) < pow(10, -self.e):
             return
 
-        self.calculating(i+1, x,result)
-        
+        self.calculating(i + 1, x, result)
+
 
 if __name__ == "__main__":
     MainClass()
