@@ -8,21 +8,21 @@
 вывести в командное окно соответствующее сообщение и повторить ввод.
 4. Произвести расчёты для нескольких значений N 
 (5≤N≤10)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-
 """
-#TODO ТУТ ВСЕ НЕПРАВИЛЬНО
+
 
 class MainClass:
     def __init__(self):
         self.x_processing_flag = False
+        self.n_processing_flag = False
         self.result_sum = 0
         # Ввод данных
         while not self.x_processing_flag:
             self.x_values_input()
+        while not self.n_processing_flag:
+            self.n_values_input()
 
-        for i in range(5, 11):
-            self.current_calculating(self.x, i)
-
+        self.calculating(1, self.x, self.n)
         print("Общая сумма: " + str(self.result_sum))
 
     def x_values_input(self):
@@ -39,43 +39,27 @@ class MainClass:
         except ValueError:
             print("Некорректный ввод данных")
 
-    def current_calculating(self, n, x):
+    def n_values_input(self):
         """
-        Метод для вычисления N элемента по рекурентным формулам
-        - n - текущий n
-        - x - входящий x
-        - n_stop - фильнальый n, где необходима остановка
-        
-        Общая формала по 6 варианту:
-        L*(C/P)
+        Метод для ввода данных по n
         """
+        try:
+            self.n = int(input("Введите количество членов ряда n -> "))
+            self.n_processing_flag = True
+        except ValueError:
+            print("Некорректный ввод данных")
 
-        #Обозначение знака L
-        L = -1
-
-        if x != 0:
-            C = pow(x,n+1)
-        else:
-            C = 1 
-
-
-        for i in range(0, n):
-            #Чтоб в числителе не стало 0
-            if x != 0:
-                C = pow(x,n+1)
-            else:
-                C = 1 
-            
-            #Меняем знак на противоположный
-            L = -L
-
-        result = pow(-1, n + 1) * (pow(x, n) / n)
+    def calculating(self, i, x, n_stop):
+        """
+        Рекурсивный метод для вычисления N элемента (так требует задание)
+        """
+        result = pow(-1, i + 1) * (pow(x, i) / i)
         self.result_sum += result
-        print("n = " + str(n) + ", результат: " + str(result))
+        print("i = " + str(i) + ", результат: " + str(result))
         # Остановка
-        if n == n_stop:
+        if i == n_stop:
             return
-        self.calculating(n + 1, x, n_stop)
+        self.calculating(i + 1, x, n_stop)
 
 
 if __name__ == "__main__":
