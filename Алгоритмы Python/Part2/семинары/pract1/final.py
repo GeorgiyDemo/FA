@@ -1,5 +1,6 @@
 from random import randint
 from faker import Faker
+from time import sleep
 
 class colors:
     HEADER = '\033[95m'
@@ -28,7 +29,7 @@ class CockroachClass():
     
     def __speed_generator(self):
         #Генерация скорости
-        self.speed = randint(1,1) #TODO 
+        self.speed = randint(1,10) #TODO 
 
 
 class GamerClass():
@@ -39,8 +40,10 @@ class MainClass():
     
     def __init__(self):
         
+        self.COCKROACH_ICON = "🐞"
+        self.GRASS_ICON = "_"
         self.COCKROACH_COUNT = 4
-        self.ITERATIONS_COUNT = 20
+        self.ITERATIONS_COUNT = 100
         #Хранит объекты тараканов
         self.cockroach_list = []
         fake = Faker(['ru_RU'])
@@ -55,27 +58,46 @@ class MainClass():
         for current_iteration in range(self.ITERATIONS_COUNT):
 
             self.drawer()
-            input()
-            self.cockroach_changer()
+            sleep(1)
+            try:
+                self.cockroach_changer()
 
-    
+            #Если допрыгались до IndexError
+            except IndexError:
+                self.winner_detector()
+                break
+
+    def winner_detector(self):
+        """
+        Метод, определяющий то, какой таракан выиграл
+        """
+        print("winner_detector погнал")
+        winner = sorted(self.cockroach_list,key=lambda e: e.current_location,reverse=True)[0]
+        print("Победитель: {}".format(winner.name))
+            
+
     def start_matrix_generator(self):
+        """
+        Метод генерации начальной матрицы
+        """
         #Начальная матрица
-        self.matrix = [[0 for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        self.matrix = [[self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
         for i in range(len(self.matrix)):
-            self.matrix[i][0] = "🐞"
+            self.matrix[i][0] = self.COCKROACH_ICON
 
         
     def cockroach_changer(self):
-        self.matrix = [[0 for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        """
+        Осуществление перемещения таракана
+        """
+        self.matrix = [[self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        
         for i in range(len(self.cockroach_list)):
             
             cockroach = self.cockroach_list[i]
             cockroach.movement_changer()
-            print("[Таракан '"+str(cockroach.name)+"'] находится на "+str(cockroach.current_location)+", перемещение: "+str(cockroach.movement))
-            self.matrix[i][cockroach.current_location] = "🐞" #TODO Заменить на значек таракана
-
-            
+            print("[Таракан "+str(cockroach.name)+"] находится на "+str(cockroach.current_location)+", перемещение: "+str(cockroach.movement))
+            self.matrix[i][cockroach.current_location] = self.COCKROACH_ICON
 
 
     def drawer(self):
@@ -84,8 +106,10 @@ class MainClass():
         """
         print("Забег:\n")
         for i in range(len(self.matrix)):
-            
-            print(i, self.matrix[i])
+            print(i+1, end=" ")
+            for j in range(len(self.matrix[i])):
+                print('{}'.format(self.matrix[i][j]), end=" ")
+            print("|   Таракан '{}'".format(self.cockroach_list[i].name))
 
         
 if __name__ == "__main__":
