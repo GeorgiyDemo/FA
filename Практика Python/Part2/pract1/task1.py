@@ -10,7 +10,7 @@
 (5≤N≤10)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 """
-
+#TODO ТУТ ВСЕ НЕПРАВИЛЬНО
 
 class MainClass:
     def __init__(self):
@@ -52,8 +52,12 @@ class MainClass:
 
     def calculating(self, i, x, n_stop):
         """
-        Рекурсивный метод для вычисления N элемента (так требует задание)
+        Метод для вычисления N элемента по рекурентным формулам
+        - i - текущий n
+        - x - входящий x
+        - n_stop - фильнальый n, где необходима остановка
         """
+        
         result = pow(-1, i + 1) * (pow(x, i) / i)
         self.result_sum += result
         print("i = " + str(i) + ", результат: " + str(result))
