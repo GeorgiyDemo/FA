@@ -1,16 +1,7 @@
 from random import randint
 from faker import Faker
 from time import sleep
-
-class colors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+import texttable
 
 class CockroachClass():
     """
@@ -56,16 +47,19 @@ class MainClass():
             self.cockroach_list.append(cockroach_obj)
     
         for current_iteration in range(self.ITERATIONS_COUNT):
-
+            
+            print("Итерация №{}".format(current_iteration))
             self.drawer()
-            sleep(1)
+            input()
+            
             try:
                 self.cockroach_changer()
-
             #Если допрыгались до IndexError
             except IndexError:
                 self.winner_detector()
                 break
+            
+            #Информация о перемещении
 
     def winner_detector(self):
         """
@@ -91,26 +85,35 @@ class MainClass():
         Осуществление перемещения таракана
         """
         self.matrix = [[self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        self.cockroach_list.sort(key=lambda e: e.current_location,reverse=True)
+        table = texttable.Texttable()
+        table_list = [
+            ["Место", "Кличка", "Точка"],
+            ]
         
         for i in range(len(self.cockroach_list)):
             
             cockroach = self.cockroach_list[i]
             cockroach.movement_changer()
-            print("[Таракан "+str(cockroach.name)+"] находится на "+str(cockroach.current_location)+", перемещение: "+str(cockroach.movement))
+            table_list.append([str(i+1), cockroach.name, str(cockroach.current_location)])
             self.matrix[i][cockroach.current_location] = self.COCKROACH_ICON
+                         
+        table.add_rows(table_list)
+        print(table.draw() + "\n")
 
 
     def drawer(self):
         """
         Отображение на экран
         """
-        print("Забег:\n")
+
         for i in range(len(self.matrix)):
             print(i+1, end=" ")
             for j in range(len(self.matrix[i])):
                 print('{}'.format(self.matrix[i][j]), end=" ")
             print("|   Таракан '{}'".format(self.cockroach_list[i].name))
-
+        
+        print("\n")
         
 if __name__ == "__main__":
     obj = MainClass()
