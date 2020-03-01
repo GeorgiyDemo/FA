@@ -1,6 +1,15 @@
 from random import randint
 from faker import Faker
 
+class colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class CockroachClass():
     """
@@ -54,7 +63,7 @@ class MainClass():
         #Начальная матрица
         self.matrix = [[0 for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
         for i in range(len(self.matrix)):
-            self.matrix[i][0] = 1
+            self.matrix[i][0] = "🐞"
 
         
     def cockroach_changer(self):
@@ -64,7 +73,7 @@ class MainClass():
             cockroach = self.cockroach_list[i]
             cockroach.movement_changer()
             print("[Таракан '"+str(cockroach.name)+"'] находится на "+str(cockroach.current_location)+", перемещение: "+str(cockroach.movement))
-            self.matrix[i][cockroach.current_location] = 1 #TODO Заменить на значек таракана
+            self.matrix[i][cockroach.current_location] = "🐞" #TODO Заменить на значек таракана
 
             
 
@@ -75,6 +84,7 @@ class MainClass():
         """
         print("Забег:\n")
         for i in range(len(self.matrix)):
+            
             print(i, self.matrix[i])
 
         
