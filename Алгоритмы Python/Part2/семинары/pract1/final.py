@@ -1,3 +1,4 @@
+#TODO Решить проблему сортировки рейтинга тараканов, табличка на -1 итерацию показывает
 from random import randint
 from faker import Faker
 from time import sleep
@@ -20,12 +21,28 @@ class CockroachClass():
     
     def __speed_generator(self):
         #Генерация скорости
-        self.speed = randint(1,10) #TODO 
+        self.speed = randint(1,10)
 
-
+#TODO
 class GamerClass():
-    pass
+    """
+    Класс геймер, что у него есть:
+    - Таракан ( может ващ объект передавать?)
+    - Деньги
 
+    Один игрок = один таракан
+    """
+    def stakes_set(self):
+        """
+        Метод осуществления set'а ставки
+        """
+        pass
+
+    def stakes_get(self):
+        """
+        Метод перераспределения денег в зависимости от того, какой таракан выиграл
+        """
+        pass
 
 class MainClass():
     
@@ -46,10 +63,13 @@ class MainClass():
             cockroach_obj = CockroachClass(fake.word())
             self.cockroach_list.append(cockroach_obj)
     
+        #
         for current_iteration in range(self.ITERATIONS_COUNT):
             
             print("Итерация №{}".format(current_iteration))
-            self.drawer()
+            #Отображение рейцтинга тараканов
+            #self.rating_drawer()
+            self.game_field_drawer()
             input()
             
             try:
@@ -61,6 +81,7 @@ class MainClass():
             
             #Информация о перемещении
 
+    #TODO
     def winner_detector(self):
         """
         Метод, определяющий то, какой таракан выиграл
@@ -102,9 +123,9 @@ class MainClass():
         print(table.draw() + "\n")
 
 
-    def drawer(self):
+    def game_field_drawer(self):
         """
-        Отображение на экран
+        Отображение на экране
         """
 
         for i in range(len(self.matrix)):
