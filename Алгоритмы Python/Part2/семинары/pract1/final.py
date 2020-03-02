@@ -1,4 +1,3 @@
-#TODO Решить проблему сортировки рейтинга тараканов, табличка на -1 итерацию показывает
 from random import randint
 from faker import Faker
 from time import sleep
@@ -68,7 +67,7 @@ class MainClass():
             
             print("Итерация №{}".format(current_iteration))
             #Отображение рейцтинга тараканов
-            #self.rating_drawer()
+            self.rating_drawer()
             self.game_field_drawer()
             input()
             
@@ -81,6 +80,24 @@ class MainClass():
             
             #Информация о перемещении
 
+    def rating_drawer(self):
+        """
+        Рисовальщик рейтинга тараканов
+        """
+        cockroach_list = self.cockroach_list.copy()
+        cockroach_list.sort(key=lambda e: e.current_location,reverse=True)
+        table = texttable.Texttable()
+        table_list = [
+            ["Место", "Кличка", "Точка"],
+            ]
+        
+        for i in range(len(cockroach_list)):
+            e = cockroach_list[i]
+            table_list.append([str(i+1), e.name, str(e.current_location)])
+
+        table.add_rows(table_list)
+        print(table.draw() + "\n")
+    
     #TODO
     def winner_detector(self):
         """
@@ -106,21 +123,12 @@ class MainClass():
         Осуществление перемещения таракана
         """
         self.matrix = [[self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
-        self.cockroach_list.sort(key=lambda e: e.current_location,reverse=True)
-        table = texttable.Texttable()
-        table_list = [
-            ["Место", "Кличка", "Точка"],
-            ]
         
         for i in range(len(self.cockroach_list)):
             
-            cockroach = self.cockroach_list[i]
-            cockroach.movement_changer()
-            table_list.append([str(i+1), cockroach.name, str(cockroach.current_location)])
-            self.matrix[i][cockroach.current_location] = self.COCKROACH_ICON
-                         
-        table.add_rows(table_list)
-        print(table.draw() + "\n")
+            e = self.cockroach_list[i]
+            e.movement_changer()
+            self.matrix[i][e.current_location] = self.COCKROACH_ICON
 
 
     def game_field_drawer(self):
