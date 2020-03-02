@@ -13,17 +13,43 @@
 
 class MainClass:
     def __init__(self):
+
         self.x_processing_flag = False
-        self.n_processing_flag = False
         self.result_sum = 0
+
         # Ввод данных
         while not self.x_processing_flag:
             self.x_values_input()
-        while not self.n_processing_flag:
-            self.n_values_input()
 
-        self.calculating(1, self.x, self.n)
-        print("Общая сумма: " + str(self.result_sum))
+        for i in range(5, 11):
+            self.calculating(i)
+            print("x={}, n={}, sum={}\n".format(self.x, i, self.final_sum))
+
+    def calculating(self, n):
+        """
+        Метод для вычисления по рекурентной формуле
+        """
+        x = self.x
+        locale_m = -1
+        locale_c = 1
+        locale_p = 1
+
+        final_sum = 0
+
+        for i in range(0, n):
+            # Рекурентные формулы
+            if i == 0:
+                locale_c = 1
+            else:
+                locale_c += 1    # знаменатель
+            locale_m = -locale_m          # знак
+            locale_p = x * locale_p   # числитель
+            locale_result = locale_m * locale_p / locale_c
+            print("{}*({}/{}) = {}".format(locale_m,
+                                           locale_p, locale_c, locale_result))
+            final_sum += locale_result
+
+        self.final_sum = final_sum
 
     def x_values_input(self):
         """
@@ -38,28 +64,6 @@ class MainClass:
                 self.x = x
         except ValueError:
             print("Некорректный ввод данных")
-
-    def n_values_input(self):
-        """
-        Метод для ввода данных по n
-        """
-        try:
-            self.n = int(input("Введите количество членов ряда n -> "))
-            self.n_processing_flag = True
-        except ValueError:
-            print("Некорректный ввод данных")
-
-    def calculating(self, i, x, n_stop):
-        """
-        Рекурсивный метод для вычисления N элемента (так требует задание)
-        """
-        result = pow(-1, i + 1) * (pow(x, i) / i)
-        self.result_sum += result
-        print("i = " + str(i) + ", результат: " + str(result))
-        # Остановка
-        if i == n_stop:
-            return
-        self.calculating(i + 1, x, n_stop)
 
 
 if __name__ == "__main__":
