@@ -65,8 +65,8 @@ class MainClass:
             if abs(locale_m * locale_p / locale_c) < 10**-e_input:
                 self.i = i
                 break
-
-            i += 1
+            else:
+                i += 1
 
         self.final_sum = final_sum
 

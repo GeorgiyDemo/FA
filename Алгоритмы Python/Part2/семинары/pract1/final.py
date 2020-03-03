@@ -51,6 +51,7 @@ class MainClass():
         self.GRASS_ICON = "_"
         self.COCKROACH_COUNT = 4
         self.ITERATIONS_COUNT = 100
+        
         #Хранит объекты тараканов
         self.cockroach_list = []
         fake = Faker(['ru_RU'])
