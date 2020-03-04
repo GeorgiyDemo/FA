@@ -95,7 +95,7 @@ class MainClass():
 
     def __init__(self):
 
-        self.COCKROACH_ICON = "🐞"
+        self.COCKROACH_ICON = "🦗"
         self.GRASS_ICON = "_"
         self.COCKROACH_COUNT = 4
         self.ITERATIONS_COUNT = 50
@@ -115,7 +115,8 @@ class MainClass():
 
         # Генерируем пользователей
         for i in range(self.COCKROACH_COUNT):
-            user_obj = GamerClass("Пользователь №"+str(i+1))
+            curent_user_name = input("Введите ФИО пользователя №{} -> ".format(i+1))
+            user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
 
         # Генерируем тараканов
@@ -130,7 +131,7 @@ class MainClass():
         for current_iteration in range(self.ITERATIONS_COUNT):
 
             print("Итерация №{}".format(current_iteration))
-            # Отображение рейцтинга тараканов
+            # Отображение рейтинга тараканов
             self.rating_drawer()
             self.game_field_drawer()
             input()
@@ -146,37 +147,62 @@ class MainClass():
         """
         Выбор ассоциации пользователь -> таракан
         """
+        
         for user in self.user_list:
-            print("Выберите № таракана для игрока '{}':".format(user.name))
+            
+            
+                    
+            allowed_cockroach_list = []
+                    
 
-            out_str = ""
+            table = texttable.Texttable()
+            table_list = [["№", "Кличка", "Скорость"],]
+                    
             for i in range(len(self.cockroach_list)):
+                        
                 e = self.cockroach_list[i]
-
                 if not e.selected:
-                    out_str += "\n№"+str(i+1)+". Кличка: " + \
-                        e.name+", скорость: "+str(e.speed)
+                    allowed_cockroach_list.append(i+1)
+                    table_list.append([str(i+1), e.name, str(e.speed)])
 
-            # Выбираем таракана
-            selected_cockroach = int(input(out_str+"\n-> "))
-            obj = self.cockroach_list[selected_cockroach-1]
+            table.add_rows(table_list)
+            print(table.draw() + "\n")
 
-            # Делаем ставку
-            money = float(
-                input("Введите вашу ставку на выигрыш '{}'".format(obj.name)))
 
-            # Вводим ассоциацию
-            obj.selected = True
-            user.cockroach_obj = obj
-            user.money = money
+            processing_flag = True
+            while processing_flag:
+                try:
+                    print("Выберите № таракана для игрока '{}':".format(user.name))
+                    
+                    # Выбираем таракана
+                    selected_cockroach = int(input("\n-> "))
+                    if selected_cockroach not in allowed_cockroach_list:
+                        raise ValueError("Некорректный ввод номера таракана")
+                    
+                    obj = self.cockroach_list[selected_cockroach-1]
+ 
+                    # Делаем ставку
+                    money = float(input("Введите вашу ставку на выигрыш '{}' -> ".format(obj.name)))
+
+                    # Вводим ассоциацию
+                    obj.selected = True
+                    user.cockroach_obj = obj
+                    user.money = money
+                    processing_flag = False
+                
+                except ValueError as e:
+                    print(e)
+                    continue
 
     def rating_drawer(self):
         """
         Рисовальщик рейтинга тараканов
         """
+        #TODO вывод игрока
         cockroach_list = self.cockroach_list.copy()
         cockroach_list.sort(key=lambda e: e.current_location, reverse=True)
         table = texttable.Texttable()
+        
         table_list = [
             ["Место", "Кличка", "Точка"],
         ]
@@ -215,10 +241,11 @@ class MainClass():
         input_flag = True
         while input_flag:
             try:
-                x = int(input("Введите количество игроков ->"))
+                x = int(input("Введите количество игроков -> "))
                 input_flag = False
             except ValueError:
                 continue
+        
 
         # Кол-во пользователей = кол-во тараканов
         self.COCKROACH_COUNT = x
