@@ -1,3 +1,4 @@
+#TODO возможность ставить на несколько тараканов
 from random import randint
 from faker import Faker
 from time import sleep
