@@ -83,7 +83,7 @@ class MainClass():
 
         self.COCKROACH_ICON = "🦗"
         self.GRASS_ICON = "_"
-        self.COCKROACH_COUNT = 4
+        self.COCKROACH_COUNT = 10
         self.ITERATIONS_COUNT = 50
 
         # Хранит объекты тараканов
@@ -122,6 +122,17 @@ class MainClass():
             except IndexError:
                 self.winner_detector()
                 break
+    
+    def getusers_cockroachobj(self, obj):
+        """
+        Получение имен пользователей по объекту таракана
+        """
+        out_names = []
+        for e in self.user_list:
+            if e.cockroach_obj == obj:
+                out_names.append(e.name)
+        
+        return ", ".join(out_names)
 
     def user_chooser(self):
         """
@@ -183,12 +194,12 @@ class MainClass():
         table = texttable.Texttable()
         
         table_list = [
-            ["Место", "Кличка", "Точка"],
+            ["Место", "Кличка", "Точка", "Пользователи"],
         ]
 
         for i in range(len(cockroach_list)):
             e = cockroach_list[i]
-            table_list.append([str(i+1), e.name, str(e.current_location)])
+            table_list.append([str(i+1), e.name, str(e.current_location),self.getusers_cockroachobj(e)])
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -202,21 +213,18 @@ class MainClass():
         print("Победитель: {}".format(winner.name))
         self.rating_drawer()
 
-        # Обнуляем все т.к. в подобных играх все по дефолту проигрывают
-        for u in self.user_list:
-            u.money = 0.0
-
-        old_money = 0 
+        old_money = 0
         win_obj_users_list = []
+        
         # Ищем игроков-победителей
-        # Ищем игрока-победителя
         for u in self.user_list:
             if u.cockroach_obj == winner:
                 win_obj_users_list.append(u)
+
             else:
                 old_money += u.money 
-                u.money = 0
-        
+                u.money = 0.0
+
         #Распределение на каждого человека        
         koff = old_money/len(win_obj_users_list)
         
@@ -242,7 +250,6 @@ class MainClass():
             user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
         
-
     def start_matrix_generator(self):
         """
         Метод генерации начальной матрицы
