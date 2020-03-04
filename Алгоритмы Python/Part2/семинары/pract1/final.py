@@ -8,21 +8,43 @@ class CockroachClass():
     Класс таракан
     """
     def __init__(self, name):
-        self.name = name
-        self.current_location = 0
+        self.__name = name
+        self.__selected = False
+        self.__current_location = 0
         self.__speed_generator()
 
     def movement_changer(self):
         self.movement = bool(randint(0,1))
         #Если было перемещение
         if self.movement:
-            self.current_location += self.speed
+            self.__current_location += self.__speed
     
     def __speed_generator(self):
         #Генерация скорости
-        self.speed = randint(1,10)
+        self.__speed = randint(1,10)
+    
+    @property
+    def name(self):
+        return self.__name
 
-#TODO
+    @property
+    def current_location(self):
+        return self.__current_location
+
+    @property # Декоратор функции, оформляющий функцию как функцию доступа
+    def selected(self):
+        return self.__selected
+    
+    @property
+    def speed(self):
+        return self.__speed
+    
+    @selected.setter # Декоратор функции, оформляющий функцию как функцию-сеттер
+    def selected(self, val): # проверка при изменении значения
+        values = [True, False]
+        assert val in values, "Некорректное значение"
+        self.__selected = val
+
 class GamerClass():
     """
     Класс геймер, что у него есть:
@@ -31,17 +53,36 @@ class GamerClass():
 
     Один игрок = один таракан
     """
-    def stakes_set(self):
-        """
-        Метод осуществления set'а ставки
-        """
-        pass
+    def __init__(self, name):
+        self.__name = name
+        self.__cockroach_obj = None
+        self.__money = None
+        
+    
+    @property
+    def cockroach_obj(self):
+        return self.__cockroach_obj
+    
+    @cockroach_obj.setter
+    def cockroach_obj(self, obj):
+        assert isinstance(obj, CockroachClass), "Некорректное значение"
+        self.__cockroach_obj = obj
 
-    def stakes_get(self):
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def money(self):
+        return self.__money
+    
+    @money.setter
+    def money(self, val):
         """
-        Метод перераспределения денег в зависимости от того, какой таракан выиграл
+        Осуществление set'а ставки
         """
-        pass
+        assert type(val) == float, "Некорректное значение"
+        self.__money = val
 
 class MainClass():
     
@@ -50,20 +91,34 @@ class MainClass():
         self.COCKROACH_ICON = "🐞"
         self.GRASS_ICON = "_"
         self.COCKROACH_COUNT = 4
-        self.ITERATIONS_COUNT = 100
+        self.ITERATIONS_COUNT = 50
         
         #Хранит объекты тараканов
         self.cockroach_list = []
+        #Храние объекты игроков
+        self.user_list = []
         fake = Faker(['ru_RU'])
 
+        #Ввод кол-ва пользователей
+        self.user_input_generator()
+        
         #Начальная матрица
         self.start_matrix_generator()
+        
+        #Генерируем пользователей
+        for i in range(self.COCKROACH_COUNT):
+            user_obj = GamerClass("Пользователь №"+str(i+1))
+            self.user_list.append(user_obj)
+            
         #Генерируем тараканов
         for i in range(self.COCKROACH_COUNT):
             cockroach_obj = CockroachClass(fake.word())
             self.cockroach_list.append(cockroach_obj)
-    
-        #
+
+        #Выбор ассоциации пользователь -> таракан
+        self.user_chooser()
+        
+        #Основная логика
         for current_iteration in range(self.ITERATIONS_COUNT):
             
             print("Итерация №{}".format(current_iteration))
@@ -78,8 +133,37 @@ class MainClass():
             except IndexError:
                 self.winner_detector()
                 break
-            
+
             #Информация о перемещении
+
+    def user_chooser(self):
+        """
+        Выбор ассоциации пользователь -> таракан
+        """
+        for user in self.user_list:
+            print("Выберите № таракана для игрока '{}':".format(user.name))
+            
+            out_str = ""
+            for i in range(len(self.cockroach_list)):
+                e = self.cockroach_list[i]
+
+                if not e.selected:
+                    out_str += "\n№"+str(i+1)+". Кличка: "+e.name+", скорость: "+str(e.speed)
+
+            #Выбираем таракана
+            selected_cockroach = int(input(out_str+"\n-> "))
+            obj = self.cockroach_list[selected_cockroach-1]
+            
+            #Делаем ставку
+            money = float(input("Введите вашу ставку на выигрыш '{}'".format(obj.name)))
+            
+            #Вводим ассоциацию
+            obj.selected = True
+            user.cockroach_obj = obj
+            user.money = money
+
+
+            
 
     def rating_drawer(self):
         """
@@ -99,15 +183,34 @@ class MainClass():
         table.add_rows(table_list)
         print(table.draw() + "\n")
     
-    #TODO
+    #TODO вод общей суммы
     def winner_detector(self):
         """
         Метод, определяющий то, какой таракан выиграл
         """
-        print("winner_detector погнал")
         winner = sorted(self.cockroach_list,key=lambda e: e.current_location,reverse=True)[0]
         print("Победитель: {}".format(winner.name))
+        self.rating_drawer()
+
+        for u in self.user_list:
+            if u.cockroach_obj == winner:
+                print("{} получает сумму {} руб.!".format(u.name,0))
+        #TODO Вызов
             
+    def user_input_generator(self):
+        """
+        Ввод количества пользователей для ставок
+        """
+        input_flag = True
+        while input_flag:
+            try:
+                x = int(input("Введите количество игроков ->"))
+                input_flag = False
+            except ValueError:
+                continue
+        
+        #Кол-во пользователей = кол-во тараканов
+        self.COCKROACH_COUNT = x
 
     def start_matrix_generator(self):
         """
