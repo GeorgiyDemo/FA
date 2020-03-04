@@ -12,7 +12,6 @@ class CockroachClass():
 
     def __init__(self, name):
         self.__name = name
-        self.__selected = False
         self.__current_location = 0
         self.__speed_generator()
 
@@ -35,19 +34,8 @@ class CockroachClass():
         return self.__current_location
 
     @property
-    def selected(self):
-        return self.__selected
-
-    @property
     def speed(self):
         return self.__speed
-
-    @selected.setter
-    def selected(self, val):
-        values = [True, False]
-        assert val in values, "Некорректное значение"
-        self.__selected = val
-
 
 class GamerClass():
     """
@@ -57,8 +45,6 @@ class GamerClass():
 
     Один игрок = один таракан
     """
-    # Статическое поле для суммы всех денег
-    static_all_money = 0
 
     def __init__(self, name):
         self.__name = name
@@ -88,7 +74,6 @@ class GamerClass():
         Осуществление set'а ставки
         """
         assert type(val) == float, "Некорректное значение"
-        GamerClass.static_all_money += val
         self.__money = val
 
 
@@ -108,17 +93,11 @@ class MainClass():
         self.user_list = []
         fake = Faker(['ru_RU'])
 
-        # Ввод кол-ва пользователей
+        # Генерация пользователей
         self.user_input_generator()
 
         # Начальная матрица
         self.start_matrix_generator()
-
-        # Генерируем пользователей
-        for i in range(self.COCKROACH_COUNT):
-            curent_user_name = input("Введите ФИО пользователя №{} -> ".format(i+1))
-            user_obj = GamerClass(curent_user_name)
-            self.user_list.append(user_obj)
 
         # Генерируем тараканов
         for i in range(self.COCKROACH_COUNT):
@@ -162,9 +141,8 @@ class MainClass():
             for i in range(len(self.cockroach_list)):
                         
                 e = self.cockroach_list[i]
-                if not e.selected:
-                    allowed_cockroach_list.append(i+1)
-                    table_list.append([str(i+1), e.name, str(e.speed)])
+                allowed_cockroach_list.append(i+1)
+                table_list.append([str(i+1), e.name, str(e.speed)])
 
             table.add_rows(table_list)
             print(table.draw() + "\n")
@@ -228,9 +206,15 @@ class MainClass():
         for u in self.user_list:
             u.money = 0.0
 
+        old_money = []
+        win_obj_usesrs_list = []
+        # Ищем игроков-победителей
         # Ищем игрока-победителя
         for u in self.user_list:
             if u.cockroach_obj == winner:
+                win_obj_usesrs_list.append(u)
+            else:
+                
                 all_money = GamerClass.static_all_money
                 print("{} получает сумму {} руб.!".format(u.name, all_money))
                 u.money = float(all_money)
@@ -242,14 +226,17 @@ class MainClass():
         input_flag = True
         while input_flag:
             try:
-                x = int(input("Введите количество игроков -> "))
+                users_count = int(input("Введите количество игроков -> "))
                 input_flag = False
             except ValueError:
                 continue
+    
+        # Генерируем пользователей
+        for i in range(users_count):
+            curent_user_name = input("Введите ФИО пользователя №{} -> ".format(i+1))
+            user_obj = GamerClass(curent_user_name)
+            self.user_list.append(user_obj)
         
-
-        # Кол-во пользователей = кол-во тараканов
-        self.COCKROACH_COUNT = x
 
     def start_matrix_generator(self):
         """
