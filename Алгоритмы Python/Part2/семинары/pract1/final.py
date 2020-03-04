@@ -206,19 +206,24 @@ class MainClass():
         for u in self.user_list:
             u.money = 0.0
 
-        old_money = []
-        win_obj_usesrs_list = []
+        old_money = 0 
+        win_obj_users_list = []
         # Ищем игроков-победителей
         # Ищем игрока-победителя
         for u in self.user_list:
             if u.cockroach_obj == winner:
-                win_obj_usesrs_list.append(u)
+                win_obj_users_list.append(u)
             else:
-                
-                all_money = GamerClass.static_all_money
-                print("{} получает сумму {} руб.!".format(u.name, all_money))
-                u.money = float(all_money)
-
+                old_money += u.money 
+                u.money = 0
+        
+        #Распределение на каждого человека        
+        koff = old_money/len(win_obj_users_list)
+        
+        for obj in win_obj_users_list:
+            obj.money += koff
+            print("{} получает сумму {} руб, общее кол-во денег: {}".format(obj.name, koff, obj.money))
+    
     def user_input_generator(self):
         """
         Ввод количества пользователей для ставок
