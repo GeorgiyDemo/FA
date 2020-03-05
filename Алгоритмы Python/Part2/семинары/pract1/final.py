@@ -1,21 +1,26 @@
-# TODO Изначальный банк
 # TODO Коэффициенты на тараканов
-# TODO Несколько забегов, проигрывает тот, у кого 0 руб остается, выигрывает - у кого больше всего денег
-# TODO Возможность ввода только положительных значений > 0
+# TODO Возможность ввода только положительных значений > 0, ноль тоже нельзя
 
 from random import randint
 from faker import Faker
 from time import sleep
 import texttable
 
-class bcolors:
 
-    yellow = '\033[93m'
-    red = '\033[91m'
-    end = '\033[0m'
+class DemkaPrintClass:
+
+    @staticmethod
+    def msg_warning(input_str):
+        assert type(input_str) == str
+        print("\033[93m"+input_str+"\033[0m")
+
+    @staticmethod
+    def msg_fail(input_str):
+        assert type(input_str) == str
+        print("\033[91m"+input_str+"\033[0m")
 
 
-class CockroachClass():
+class CockroachClass:
     """
     Класс таракан
     """
@@ -48,7 +53,7 @@ class CockroachClass():
         return self.__speed
 
 
-class GamerClass():
+class GamerClass:
     """
     Класс геймер, что у него есть:
     - Таракан ( может ващ объект передавать?)
@@ -108,7 +113,7 @@ class GamerClass():
         return True
 
 
-class RaceClass():
+class RaceClass:
     """
     Класс текущей гонки
     """
@@ -140,7 +145,8 @@ class RaceClass():
         # Основная логика
         for current_iteration in range(self.ITERATIONS_COUNT):
 
-            print("Итерация №{}".format(current_iteration))
+            DemkaPrintClass.msg_warning(
+                "Итерация №{}".format(current_iteration))
             # Отображение рейтинга тараканов
             self.rating_drawer()
             self.game_field_drawer()
@@ -188,10 +194,11 @@ class RaceClass():
             processing_flag = True
             while processing_flag:
                 try:
-                    print("Выберите № таракана для игрока '{}':".format(user.name))
+                    DemkaPrintClass.msg_warning(
+                        "Выберите № таракана для игрока '{}'".format(user.name))
 
                     # Выбираем таракана
-                    selected_cockroach = int(input("\n-> "))
+                    selected_cockroach = int(input("-> "))
                     if selected_cockroach not in allowed_cockroach_list:
                         raise ValueError("Некорректный ввод номера таракана")
 
@@ -210,11 +217,12 @@ class RaceClass():
                         processing_flag = False
 
                     else:
-                        print("У Вас недостаточно денег для ставки на {} в размере {} руб.".format(
+                        DemkaPrintClass.msg_fail("У Вас недостаточно денег для ставки на {} в размере {} руб.".format(
                             obj.name, money))
 
                 except ValueError as e:
-                    print(e)
+                    DemkaPrintClass.msg_fail(
+                        "Что-то пошло не так при вводе данных:\n"+str(e))
                     continue
 
     def rating_drawer(self):
@@ -238,13 +246,12 @@ class RaceClass():
         print(table.draw() + "\n")
 
     def winner_detector(self):
-
         """
         Метод, определяющий то, какой таракан выиграл
         """
         winner = sorted(self.cockroach_list,
                         key=lambda e: e.current_location, reverse=True)[0]
-        print("Победитель: {}".format(winner.name))
+        DemkaPrintClass.msg_warning("Победитель: {}".format(winner.name))
         self.rating_drawer()
 
         lost_money = 0
@@ -268,11 +275,12 @@ class RaceClass():
                 u.all_money += u.locale_money
                 u.all_money += koff
                 u.locale_money = 0.0
-                print(
+                DemkaPrintClass.msg_warning(
                     "{} получает сумму {} руб, общее кол-во денег: {}".format(u.name, koff, u.all_money))
 
         else:
-            print("Выиграл компьютер! Он заработал {} руб.".format(lost_money))
+            DemkaPrintClass.msg_warning(
+                "Выиграл компьютер! Он заработал {} руб.".format(lost_money))
 
     def start_matrix_generator(self):
         """
@@ -311,7 +319,7 @@ class RaceClass():
         print("\n")
 
 
-class MainClass():
+class MainClass:
 
     def __init__(self):
 
@@ -323,10 +331,14 @@ class MainClass():
 
         # Пока у одного из пользователей не 0 руб, то вызываем гонку
         while self.gameover_detector():
-            
+
             self.usermoney_drawer()
-            input(bcolors.WARNING+"Нажмите любую клавишу для настройки параметров забега"+bcolors.ENDC)
+            DemkaPrintClass.msg_warning("Нажмите любую кнопку для забега..")
+            input()
             RaceClass(self.user_list)
+
+        # TODO Красивое оформление победителя и проигравшего в игре
+        self.usermoney_drawer()
 
     def gameover_detector(self):
         """
@@ -362,6 +374,7 @@ class MainClass():
                 users_count = int(input("Введите количество игроков -> "))
                 input_flag = False
             except ValueError:
+                DemkaPrintClass.msg_fail("Некорректный ввод з:")
                 continue
 
         # Генерируем пользователей
@@ -370,6 +383,7 @@ class MainClass():
                 "Введите ФИО пользователя №{} -> ".format(i+1))
             user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
+
 
 if __name__ == "__main__":
     obj = MainClass()
