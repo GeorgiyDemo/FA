@@ -1,4 +1,7 @@
-#TODO возможность ставить на несколько тараканов
+# TODO Изначальный банк
+# TODO Коэффициенты на тараканов
+# TODO Несколько забегов, проигрывает тот, у кого 0 руб остается, выигрывает - у кого больше всего денег
+
 from random import randint
 from faker import Faker
 from time import sleep
@@ -36,6 +39,7 @@ class CockroachClass():
     @property
     def speed(self):
         return self.__speed
+
 
 class GamerClass():
     """
@@ -88,7 +92,7 @@ class MainClass():
 
         # Хранит объекты тараканов
         self.cockroach_list = []
-        
+
         # Храние объекты игроков
         self.user_list = []
         fake = Faker(['ru_RU'])
@@ -122,7 +126,7 @@ class MainClass():
             except IndexError:
                 self.winner_detector()
                 break
-    
+
     def getusers_cockroachobj(self, obj):
         """
         Получение имен пользователей по объекту таракана
@@ -131,26 +135,23 @@ class MainClass():
         for e in self.user_list:
             if e.cockroach_obj == obj:
                 out_names.append(e.name)
-        
+
         return ", ".join(out_names)
 
     def user_chooser(self):
         """
         Выбор ассоциации пользователь -> таракан
         """
-        
+
         for user in self.user_list:
-            
-            
-                    
+
             allowed_cockroach_list = []
-                    
 
             table = texttable.Texttable()
-            table_list = [["№", "Кличка", "Скорость"],]
-                    
+            table_list = [["№", "Кличка", "Скорость"], ]
+
             for i in range(len(self.cockroach_list)):
-                        
+
                 e = self.cockroach_list[i]
                 allowed_cockroach_list.append(i+1)
                 table_list.append([str(i+1), e.name, str(e.speed)])
@@ -158,28 +159,28 @@ class MainClass():
             table.add_rows(table_list)
             print(table.draw() + "\n")
 
-
             processing_flag = True
             while processing_flag:
                 try:
                     print("Выберите № таракана для игрока '{}':".format(user.name))
-                    
+
                     # Выбираем таракана
                     selected_cockroach = int(input("\n-> "))
                     if selected_cockroach not in allowed_cockroach_list:
                         raise ValueError("Некорректный ввод номера таракана")
-                    
+
                     obj = self.cockroach_list[selected_cockroach-1]
- 
+
                     # Делаем ставку
-                    money = float(input("Введите вашу ставку на выигрыш '{}' -> ".format(obj.name)))
+                    money = float(
+                        input("Введите вашу ставку на выигрыш '{}' -> ".format(obj.name)))
 
                     # Вводим ассоциацию
                     obj.selected = True
                     user.cockroach_obj = obj
                     user.money = money
                     processing_flag = False
-                
+
                 except ValueError as e:
                     print(e)
                     continue
@@ -188,18 +189,18 @@ class MainClass():
         """
         Рисовальщик рейтинга тараканов
         """
-        #TODO вывод игрока
         cockroach_list = self.cockroach_list.copy()
         cockroach_list.sort(key=lambda e: e.current_location, reverse=True)
         table = texttable.Texttable()
-        
+
         table_list = [
             ["Место", "Кличка", "Точка", "Пользователи"],
         ]
 
         for i in range(len(cockroach_list)):
             e = cockroach_list[i]
-            table_list.append([str(i+1), e.name, str(e.current_location),self.getusers_cockroachobj(e)])
+            table_list.append(
+                [str(i+1), e.name, str(e.current_location), self.getusers_cockroachobj(e)])
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -215,23 +216,24 @@ class MainClass():
 
         old_money = 0
         win_obj_users_list = []
-        
+
         # Ищем игроков-победителей
         for u in self.user_list:
             if u.cockroach_obj == winner:
                 win_obj_users_list.append(u)
 
             else:
-                old_money += u.money 
+                old_money += u.money
                 u.money = 0.0
 
-        #Распределение на каждого человека        
+        # Распределение на каждого человека
         koff = old_money/len(win_obj_users_list)
-        
+
         for obj in win_obj_users_list:
             obj.money += koff
-            print("{} получает сумму {} руб, общее кол-во денег: {}".format(obj.name, koff, obj.money))
-    
+            print(
+                "{} получает сумму {} руб, общее кол-во денег: {}".format(obj.name, koff, obj.money))
+
     def user_input_generator(self):
         """
         Ввод количества пользователей для ставок
@@ -243,13 +245,14 @@ class MainClass():
                 input_flag = False
             except ValueError:
                 continue
-    
+
         # Генерируем пользователей
         for i in range(users_count):
-            curent_user_name = input("Введите ФИО пользователя №{} -> ".format(i+1))
+            curent_user_name = input(
+                "Введите ФИО пользователя №{} -> ".format(i+1))
             user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
-        
+
     def start_matrix_generator(self):
         """
         Метод генерации начальной матрицы
