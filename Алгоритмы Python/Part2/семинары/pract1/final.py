@@ -1,5 +1,4 @@
 # TODO Коэффициенты на тараканов
-# TODO Возможность ввода только положительных значений > 0, ноль тоже нельзя
 
 from random import randint
 from faker import Faker
@@ -208,6 +207,9 @@ class RaceClass:
                     money = float(input(
                         "Введите вашу ставку на выигрыш '{}', ваш текущий баланс: {} руб.\n-> ".format(obj.name, user.all_money)))
 
+                    if money <= 0.0:
+                        raise ValueError()
+                    
                     # Проверяем на то, чтоб у пользователя были деньги
                     if user.opportunity_checker(money):
                         # Вводим ассоциацию
@@ -222,7 +224,7 @@ class RaceClass:
 
                 except ValueError as e:
                     DemkaPrintClass.msg_fail(
-                        "Что-то пошло не так при вводе данных:\n"+str(e))
+                        "Что-то пошло не так при вводе данных\n"+str(e))
                     continue
 
     def rating_drawer(self):
