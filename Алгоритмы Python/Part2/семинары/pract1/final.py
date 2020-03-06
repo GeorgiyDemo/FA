@@ -337,8 +337,7 @@ class MainClass:
             input()
             RaceClass(self.user_list)
 
-        # TODO Красивое оформление победителя и проигравшего в игре
-        self.usermoney_drawer()
+        self.gameover_stats()
 
     def gameover_detector(self):
         """
@@ -349,6 +348,24 @@ class MainClass:
             if u.all_money <= 0:
                 return False
         return True
+
+    def gameover_stats(self):
+        """
+        Отображение статистики игроков при окончании игры
+        """
+        l = self.user_list.copy()
+        l.sort(key=lambda u: u.all_money, reverse=True)
+        DemkaPrintClass.msg_warning("Окончание игры, результаты:")
+
+        table = texttable.Texttable()
+        table_list = [["№ места", "Имя", "Баланс"], ]
+
+        for i in range(len(l)):
+            table_list.append([i+1, l[i].name, str(l[i].all_money)+" руб."])
+
+        table.add_rows(table_list)
+        print(table.draw() + "\n")
+        
 
     def usermoney_drawer(self):
         """
