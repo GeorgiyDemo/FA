@@ -1,5 +1,3 @@
-# TODO Коэффициенты на тараканов
-
 from random import randint
 from faker import Faker
 from time import sleep
@@ -27,6 +25,17 @@ class CockroachClass:
     def __init__(self, name):
         self.__name = name
         self.__current_location = 0
+        self.__coefficient = 1.0
+
+        # Скорость -> коэфф
+        self.koff_dict = {
+            1: 5.0,
+            2: 4.0,
+            3: 1.8,
+            4: 1.5,
+            5: 1.1,
+        }
+
         self.__speed_generator()
 
     def movement_changer(self):
@@ -37,7 +46,13 @@ class CockroachClass:
 
     def __speed_generator(self):
         # Генерация скорости
-        self.__speed = randint(1, 10)
+        speed = randint(1, 5)
+        self.__speed = speed
+        self.__coefficient = self.koff_dict[speed]
+
+    @property
+    def coefficient(self):
+        return self.__coefficient
 
     @property
     def name(self):
@@ -179,13 +194,15 @@ class RaceClass:
             allowed_cockroach_list = []
 
             table = texttable.Texttable()
-            table_list = [["№", "Кличка", "Скорость"], ]
+            table_list = [["№", "Кличка", "Скорость",
+                           "Коэффициент при выигрыше"], ]
 
             for i in range(len(self.cockroach_list)):
 
                 e = self.cockroach_list[i]
                 allowed_cockroach_list.append(i+1)
-                table_list.append([str(i+1), e.name, str(e.speed)])
+                table_list.append(
+                    [str(i+1), e.name, str(e.speed), e.coefficient])
 
             table.add_rows(table_list)
             print(table.draw() + "\n")
@@ -209,7 +226,7 @@ class RaceClass:
 
                     if money <= 0.0:
                         raise ValueError()
-                    
+
                     # Проверяем на то, чтоб у пользователя были деньги
                     if user.opportunity_checker(money):
                         # Вводим ассоциацию
@@ -273,12 +290,16 @@ class RaceClass:
             koff = lost_money/len(win_obj_users_list)
             for u in win_obj_users_list:
 
-                # Возвращаем поставленные деньги + выигранные
-                u.all_money += u.locale_money
+                # Возвращаем поставленные деньги + коэфф по таракану
+                u.all_money += u.locale_money * winner.coefficient
+                # Высчитываем сколько заработали на коэффе
+                coefficient_diff = (
+                    u.locale_money * winner.coefficient) - u.locale_money
+                # + выигранные у других пользователей
                 u.all_money += koff
                 u.locale_money = 0.0
                 DemkaPrintClass.msg_warning(
-                    "{} получает сумму {} руб, общее кол-во денег: {}".format(u.name, koff, u.all_money))
+                    "{} получает сумму {} руб!\nСреди них {} руб за коэфф и {} руб от других пользователей\nОбщее кол-во денег: {}".format(u.name, coefficient_diff+koff, coefficient_diff, koff, u.all_money))
 
         else:
             DemkaPrintClass.msg_warning(
@@ -367,7 +388,6 @@ class MainClass:
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
-        
 
     def usermoney_drawer(self):
         """
