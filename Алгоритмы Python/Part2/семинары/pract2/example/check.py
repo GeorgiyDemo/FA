@@ -1,3 +1,3 @@
-from your_package import add
-add1()
-add2()
+import your_package as p 
+p.add1()
+p.add2()
