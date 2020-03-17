@@ -1,19 +1,12 @@
-from .quadraticequation import EquationClass
+from quadraticequation import EquationClass
+from parse_exp import parse_exp
 class QuadraticEquation(EquationClass):
     def __init__(self, input_str):
         self.equation_results_list = []
 
         self.input_str = input_str
-        self.parse_exp()
+        self.index_a, self.index_b, self.index_c = parse_exp(input_str)
         self.calculation()
-
-    def is_digital(self, number):
-        try:
-            float(number)
-            return True
-        except:
-            return False
-
 
 
     def info(self):
