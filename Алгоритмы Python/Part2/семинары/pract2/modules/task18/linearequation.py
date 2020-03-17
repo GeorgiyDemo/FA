@@ -5,10 +5,8 @@ class LinearEquation(EquationClass):
         self.b = b
         self.c = c
         self.calculation()
-
     def calculation(self):
         self.result = (self.c - self.b) / self.a
-
     def info(self):
         a = self.a
         b = self.b
