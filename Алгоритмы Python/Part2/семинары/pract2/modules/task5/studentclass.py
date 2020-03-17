@@ -1,4 +1,4 @@
-from _baseclass import Person
+from .baseclass import Person
 class Student(Person):
     def __init__(self, name, birthday, way, course):
         super().__init__(name, birthday)
