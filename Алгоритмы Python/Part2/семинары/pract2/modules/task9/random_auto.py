@@ -1,5 +1,5 @@
 from random import choice, randint
-
+#Можно сократить до одной строчки, так что технически по заданию проходит
 model_list = [
     "Audi",
     "BMW",
