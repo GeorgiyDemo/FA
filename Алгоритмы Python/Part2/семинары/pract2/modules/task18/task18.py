@@ -1,29 +1,5 @@
-"""
-Задача 13. Создайте класс
-УРАВНЕНИЕ с методами вычисления корня уравнения и вывода результата на экран.
-
-Создайте дочерние классы ЛИНЕЙНОЕ, КВАДРАТНОЕ со своими методами вычисления корней и вывода на экран.
-Создайте список n уравнений и выведите полную информацию об уравнениях на экран.
-"""
-
 import math
 from random import randint
-
-
-class EquationClass:
-    """
-    Базовый класс уравнение
-    """
-
-    def __init__(self):
-        pass
-
-    def calculation(self):
-        ...
-
-    def info(self):
-        ...
-
 
 class LinearEquation(EquationClass):
     def __init__(self, a, b, c):
@@ -46,106 +22,7 @@ class LinearEquation(EquationClass):
             a) + "\nКоэффициент b = " + str(b) + "\nКоэффициент c = " + str(c) + "\nОтвет:\n" + str(self.result)
 
 
-class QuadraticEquation(EquationClass):
-    """
-    Квадратное уравнение
-    """
 
-    def __init__(self, input_str):
-        self.equation_results_list = []
-
-        self.input_str = input_str
-        self.parse_exp()
-        self.calculation()
-
-    def is_digital(self, number):
-        try:
-            float(number)
-            return True
-        except:
-            return False
-
-    def parse_exp(self):
-        input_str = self.input_str
-
-        # Определяем коэффициент a
-        symbols = 1
-        return_flag = False
-        while return_flag == False:
-
-            index_a = input_str[:symbols]
-            if self.is_digital(index_a) == False and symbols != 1:
-                return_flag = True
-
-            symbols += 1
-
-        index_a = input_str[:symbols - 2]
-
-        # Определяем коэффициент b
-        symbols = input_str.rindex("x")
-        buf_index_b = input_str[:symbols]
-        symbols = 1
-        return_flag = False
-        while return_flag == False:
-
-            index_b = buf_index_b[symbols:]
-
-            if self.is_digital(index_b) == True:
-                return_flag = True
-
-            symbols += 1
-
-        # Определяем коэффициент c
-        symbols = input_str.rindex("=")
-        buf_index_c = input_str[:symbols]
-        symbols = 1
-        return_flag = False
-        while return_flag == False:
-
-            index_c = buf_index_c[symbols:]
-
-            if self.is_digital(index_c) == True:
-                return_flag = True
-
-            symbols += 1
-
-        self.index_a = float(index_a)
-        self.index_b = float(index_b)
-        self.index_c = float(index_c)
-
-    def info(self):
-        locale_list = self.equation_results_list
-        if len(locale_list) == 1:
-            result_msg = "".join(locale_list)
-        elif len(locale_list) == 2:
-            result_msg = "Корень А1 = " + str(locale_list[0]) + "\nКорень А2 = " + str(locale_list[1])
-        else:
-            result_msg = "Ошибка вычисления"
-        return "*Информация о квадратном уравнении*\nОбщий вид: " + self.input_str + "\nКоэффициент a = " + str(
-            self.index_a) + "\nКоэффициент b = " + str(self.index_b) + "\nКоэффициент c = " + str(
-            self.index_c) + "\nОтвет:\n" + result_msg
-
-    def calculation(self):
-        a = self.index_a
-        b = self.index_b
-        c = self.index_c
-
-        D = b ** 2 - 4 * a * c
-
-        if D == 0:
-            A1 = -b / (2 * a)
-            A2 = A1
-            self.equation_results_list.append(A1)
-            self.equation_results_list.append(A2)
-
-        elif D > 0:
-            A1 = (-b + math.sqrt(D)) / (2 * a)
-            A2 = (-b - math.sqrt(D)) / (2 * a)
-            self.equation_results_list.append(A1)
-            self.equation_results_list.append(A2)
-
-        else:
-            self.equation_results_list.append("Нет решения, D < 0")
 
 
 def main():
