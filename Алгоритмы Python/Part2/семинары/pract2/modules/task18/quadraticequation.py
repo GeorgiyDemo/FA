@@ -1,5 +1,6 @@
-from quadraticequation import EquationClass
+from equationclass import EquationClass
 from parse_exp import parse_exp
+import math
 class QuadraticEquation(EquationClass):
     def __init__(self, input_str):
         self.equation_results_list = []

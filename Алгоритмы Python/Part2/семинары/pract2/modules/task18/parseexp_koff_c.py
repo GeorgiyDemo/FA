@@ -8,7 +8,7 @@ def get(input_str):
 
         index_c = buf_index_c[symbols:]
 
-        if self.is_digital(index_c) == True:
+        if is_digital(index_c) == True:
             return_flag = True
 
         symbols += 1
