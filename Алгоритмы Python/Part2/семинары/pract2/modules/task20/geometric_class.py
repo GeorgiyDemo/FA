@@ -5,6 +5,9 @@ class GeometricClass(ProgressionClass):
         self.q = q
         self.calculate()
     def calculate(self):
-        self.s = self.b1 / (1 - self.q)
+        try:
+            self.s = self.b1 / (1 - self.q)
+        except ZeroDivisionError:
+            self.s = -1
     def info(self):
         return "[Геометрическая прогрессия]\nЗнаменатель прогрессии: " + str(self.q) + "\n1-й элемент: " + str(self.b1) + "\nСумма: " + str(self.s)

@@ -5,6 +5,6 @@ class CurrencyClass:
         self.balance = balance
         self.exchange = exchange
     def converter(self):
-        return self.balance * self.exchange
+        return round(self.balance * self.exchange, 2)
     def info(self):
         return "[Родительский класс валюты]\nКол-во: " + str(self.balance) + "\nКурс обмена: " + str(self.exchange) + "\nСконвертированная валюта: " + str(self.converter())

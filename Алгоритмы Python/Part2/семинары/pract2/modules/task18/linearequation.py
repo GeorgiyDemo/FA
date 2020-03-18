@@ -6,7 +6,11 @@ class LinearEquation(EquationClass):
         self.c = c
         self.calculation()
     def calculation(self):
-        self.result = (self.c - self.b) / self.a
+        try:
+            self.result = (self.c - self.b) / self.a
+        except ZeroDivisionError:
+            self.result = 0
+
     def info(self):
         a = self.a
         b = self.b

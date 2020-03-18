@@ -14,5 +14,3 @@ def main():
         r_number = randint(1, 2)
         main_list.append(d[r_number](*d_args[r_number]))
     for e in main_list: print(e.info() + "\n")
-if __name__ == "__main__":
-    main()
