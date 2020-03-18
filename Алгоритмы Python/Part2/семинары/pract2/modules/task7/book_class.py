@@ -1,4 +1,4 @@
-from publication_class import PublicationClass
+from .publication_class import PublicationClass
 class BookClass(PublicationClass):
     """Класс КНИГА (название, фамилия автора, год издания, издательство)"""
     def __init__(self, name, author_name, publish_year, publishing_house):

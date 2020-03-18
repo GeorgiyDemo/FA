@@ -1,4 +1,4 @@
-from transport_class import TransportClass
+from .transport_class import TransportClass
 class MotorcycleClass(TransportClass):
     def __init__(self, model, number, speed, carrying, addition):
         super().__init__(model, number, speed, carrying)

@@ -1,5 +1,5 @@
 import math
-from triangleclass_calculation import *
+from .triangleclass_calculation import *
 class TriangleClass:
     def __init__(self, a_side, b_side, angle):
         self.a_side = a_side

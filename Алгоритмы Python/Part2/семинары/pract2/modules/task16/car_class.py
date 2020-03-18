@@ -1,4 +1,4 @@
-from toy_class import ToyClass
+from .toy_class import ToyClass
 class CarClass(ToyClass):
     def __init__(self, color, price, name, manufacturer):
         self.color = color

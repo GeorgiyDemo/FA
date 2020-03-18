@@ -1,11 +1,11 @@
 import datetime
 from random import randint
 from faker import Faker
-from software_class import SoftwareClass
-from freeware_class import FreewareClass
-from trial_class import TrialClass
-from commercial_class import CommercialClass
-from util_module import search, display
+from .software_class import SoftwareClass
+from .freeware_class import FreewareClass
+from .trial_class import TrialClass
+from .commercial_class import CommercialClass
+from .util_module import search, display
 def main():
     try:
         n = int(input("Введите количество ПО -> "))

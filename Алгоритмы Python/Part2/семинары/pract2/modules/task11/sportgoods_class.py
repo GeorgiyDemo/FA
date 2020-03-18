@@ -1,4 +1,4 @@
-from goods_class import GoodsClass
+from .goods_class import GoodsClass
 class SportGoodsClass(GoodsClass):
     def __init__(self, name, price, manufacturer, age):
         super().__init__(name, price, manufacturer, age)

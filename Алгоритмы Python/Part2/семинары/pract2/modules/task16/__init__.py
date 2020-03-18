@@ -1,11 +1,11 @@
 from random import randint
 from faker import Faker
-from random_color import random_color
-from car_class import CarClass
-from ball_class import BallClass
-from cube_class import CubeClass
-from toy_class import ToyClass
-from util_module import search, display
+from .random_color import random_color
+from .car_class import CarClass
+from .ball_class import BallClass
+from .cube_class import CubeClass
+from .toy_class import ToyClass
+from .util_module import search, display
 def main():
     try:
         n = int(input("Введите количество игрушек -> "))

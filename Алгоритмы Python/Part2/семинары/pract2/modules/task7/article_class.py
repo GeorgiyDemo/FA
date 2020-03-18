@@ -1,4 +1,4 @@
-from publication_class import PublicationClass
+from .publication_class import PublicationClass
 class ArticleClass(PublicationClass):
     """Класс СТАТЬЯ (название, фамилия автора, название журнала, его номер и год издания),"""
     def __init__(self, name, author_name, publish_year, journal_name, journal_number):

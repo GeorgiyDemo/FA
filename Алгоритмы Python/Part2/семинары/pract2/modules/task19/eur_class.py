@@ -1,4 +1,4 @@
-from currency_class import CurrencyClass
+from .currency_class import CurrencyClass
 class EURClass(CurrencyClass):
     def __init__(self, balance):
         self.currency = super().eur_currency

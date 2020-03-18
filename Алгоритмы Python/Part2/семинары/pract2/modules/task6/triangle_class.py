@@ -1,4 +1,4 @@
-from figure_class import FigureClass
+from .figure_class import FigureClass
 class TriangleClass(FigureClass):
     def __init__(self, a, b, c):
         self.a = a

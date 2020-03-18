@@ -1,10 +1,10 @@
 from random import randint
 from faker import Faker
-from goods_class import GoodsClass
-from toy_class import ToyClass
-from book_class import BookClass
-from sportgoods_class import SportGoodsClass
-from search_module import search 
+from .goods_class import GoodsClass
+from .toy_class import ToyClass
+from .book_class import BookClass
+from .sportgoods_class import SportGoodsClass
+from .search_module import search 
 def main():
     try:
         n = int(input("Введите количество товаров -> "))

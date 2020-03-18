@@ -1,10 +1,10 @@
 from random import randint
 from faker import Faker
-from clent_class import ClentClass
-from contributor_class import ContributorClass
-from creditor_class import CreditorClass
-from organization_class import OrganizationClass
-from search_module import search
+from .clent_class import ClentClass
+from .contributor_class import ContributorClass
+from .creditor_class import CreditorClass
+from .organization_class import OrganizationClass
+from .search_module import search
 def main():
     try:
         n = int(input("Введите количество клиентов -> "))

@@ -1,7 +1,7 @@
 from random import randint
-from currency_class import CurrencyClass
-from eur_class import EURClass
-from usd_class import USDClass
+from .currency_class import CurrencyClass
+from .eur_class import EURClass
+from .usd_class import USDClass
 def main():
     try:
         n = int(input("Введите кол-во валютных денежных сумм -> "))

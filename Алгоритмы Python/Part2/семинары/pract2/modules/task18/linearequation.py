@@ -1,4 +1,4 @@
-from equationclass import EquationClass
+from .equationclass import EquationClass
 class LinearEquation(EquationClass):
     def __init__(self, a, b, c):
         self.a = a

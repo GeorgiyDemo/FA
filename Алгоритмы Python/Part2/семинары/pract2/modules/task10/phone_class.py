@@ -1,4 +1,4 @@
-from goods_class import GoodsClass
+from .goods_class import GoodsClass
 class PhoneClass(GoodsClass):
     def __init__(self, name, price):
         self.name = name

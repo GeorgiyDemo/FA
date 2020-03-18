@@ -1,10 +1,10 @@
 from random import randint
 from faker import Faker
-from phonedictionary_class import PhoneDictionaryClass
-from person_class import PersonClass
-from organization_class import OrganizationClass
-from friend_class import FriendClass
-from search_module import search
+from .phonedictionary_class import PhoneDictionaryClass
+from .person_class import PersonClass
+from .organization_class import OrganizationClass
+from .friend_class import FriendClass
+from .search_module import search
 def main():
     try:
         n = int(input("Введите количество записей -> "))

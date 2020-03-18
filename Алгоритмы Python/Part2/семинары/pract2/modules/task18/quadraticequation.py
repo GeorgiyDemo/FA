@@ -1,7 +1,7 @@
-from equationclass import EquationClass
-from parse_exp import parse_exp
 import math
-from quadraticequation_calculation import calculation
+from .equationclass import EquationClass
+from .parse_exp import parse_exp
+from .quadraticequation_calculation import calculation
 class QuadraticEquation(EquationClass):
     def __init__(self, input_str):
         self.equation_results_list = []

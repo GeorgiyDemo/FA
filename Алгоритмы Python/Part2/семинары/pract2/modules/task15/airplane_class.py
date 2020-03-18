@@ -1,4 +1,4 @@
-from transport_class import TransportClass
+from .transport_class import TransportClass
 class AirplaneClass(TransportClass):
     def __init__(self, name, coords, passengers_number, max_speed, max_height):
         super().__init__(name, coords)

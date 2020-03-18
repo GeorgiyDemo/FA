@@ -1,4 +1,4 @@
-from body_class import BodyClass
+from .body_class import BodyClass
 from math import pi
 class BallClass(BodyClass):
     def __init__(self, r):

@@ -1,4 +1,4 @@
-from phonedictionary_class import PhoneDictionaryClass
+from .phonedictionary_class import PhoneDictionaryClass
 class PersonClass(PhoneDictionaryClass):
     def __init__(self, name, address, phone_number):
         super().__init__(name, address, phone_number)

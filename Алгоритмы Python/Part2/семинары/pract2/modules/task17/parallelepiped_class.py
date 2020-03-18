@@ -1,4 +1,4 @@
-from body_class import BodyClass
+from .body_class import BodyClass
 class ParallelepipedClass(BodyClass):
     def __init__(self, a, b, c):
         # a,b,c - ребра параллелепипеда

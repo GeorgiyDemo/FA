@@ -1,4 +1,4 @@
-from clent_class import ClentClass
+from .clent_class import ClentClass
 class CreditorClass(ClentClass):
     def __init__(self, name, open_date, money_count, percent, balance_owed):
         super().__init__(name, open_date, money_count, percent)

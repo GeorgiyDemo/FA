@@ -1,4 +1,4 @@
-from goods_class import GoodsClass
+from .goods_class import GoodsClass
 class GroupClass(GoodsClass):
     def __init__(self, name, price, manufacture_date, expiration_date, amount):
         super().__init__(name, price, manufacture_date, expiration_date)

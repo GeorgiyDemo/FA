@@ -1,4 +1,4 @@
-from clent_class import ClentClass
+from .clent_class import ClentClass
 class ContributorClass(ClentClass):
     def __init__(self, name, open_date, money_count, percent):
         super().__init__(name, open_date, money_count, percent)

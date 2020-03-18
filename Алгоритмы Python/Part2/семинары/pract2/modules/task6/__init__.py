@@ -1,8 +1,8 @@
 from math import pi, sqrt
 from random import randint
-from triangle_class import TriangleClass
-from rectangle_class import RectangleClass
-from circle_class import CircleClass
+from .triangle_class import TriangleClass
+from .rectangle_class import RectangleClass
+from .circle_class import CircleClass
 def main():
     try:
         n = int(input("Введите количество фигур -> "))

@@ -1,7 +1,7 @@
 import math
 from random import randint
-from quadraticequation import QuadraticEquation
-from linearequation import LinearEquation
+from .quadraticequation import QuadraticEquation
+from .linearequation import LinearEquation
 def main():
     try:
         n = int(input("Введите количество уравнений -> "))

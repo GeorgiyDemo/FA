@@ -1,10 +1,10 @@
 import math
 from abc import ABCMeta, abstractmethod
 from random import randint
-from equilateral_triangle_class import EquilateralTriangleClass
-from isosceles_triangle_class import IsoscelesTriangleClass
-from tectangular_triangle_class import TectangularTriangleClass
-from triangle_class import TriangleClass
+from .equilateral_triangle_class import EquilateralTriangleClass
+from .isosceles_triangle_class import IsoscelesTriangleClass
+from .tectangular_triangle_class import TectangularTriangleClass
+from .triangle_class import TriangleClass
 def main():
     try:
         n = int(input("Введите количество треугольников -> "))

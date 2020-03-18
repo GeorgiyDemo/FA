@@ -1,5 +1,5 @@
 import datetime
-from software_class import SoftwareClass
+from .software_class import SoftwareClass
 class CommercialClass(SoftwareClass):
     def __init__(self, name, manufacturer, install_date, days_pay):
         super().__init__(name, manufacturer)

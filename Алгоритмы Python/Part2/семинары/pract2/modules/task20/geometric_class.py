@@ -1,4 +1,4 @@
-from progression_class import ProgressionClass
+from .progression_class import ProgressionClass
 class GeometricClass(ProgressionClass):
     def __init__(self, b1, q):
         self.b1 = b1

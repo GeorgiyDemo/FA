@@ -1,7 +1,7 @@
 from random import randint
-from progression_class import ProgressionClass
-from arithmetic_class import ArithmeticClass
-from geometric_class import GeometricClass
+from .progression_class import ProgressionClass
+from .arithmetic_class import ArithmeticClass
+from .geometric_class import GeometricClass
 def main():
     try:
         n = int(input("Введите кол-во прогрессий для генерации -> "))

@@ -1,9 +1,9 @@
 from random import randint
-from random_auto import random_auto, random_number
-from transport_class import TransportClass
-from car_class import CarClass
-from motorcycle_class import MotorcycleClass
-from truck_class import TruckClass
+from .random_auto import random_auto, random_number
+from .transport_class import TransportClass
+from .car_class import CarClass
+from .motorcycle_class import MotorcycleClass
+from .truck_class import TruckClass
 def main():
     n = int(input("Введите количество транспорта -> "))
     d = {1: TransportClass, 2: CarClass, 3: MotorcycleClass, 4: TruckClass,}

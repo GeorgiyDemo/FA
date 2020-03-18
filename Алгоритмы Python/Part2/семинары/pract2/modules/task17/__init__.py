@@ -1,9 +1,9 @@
 from math import pi
 from random import randint
-from pyramid_class import PyramidClass
-from ball_class import BallClass
-from parallelepiped_class import ParallelepipedClass
-from body_class import BodyClass
+from .pyramid_class import PyramidClass
+from .ball_class import BallClass
+from .parallelepiped_class import ParallelepipedClass
+from .body_class import BodyClass
 def main():
     try:
         n = int(input("Введите количество фигур -> "))

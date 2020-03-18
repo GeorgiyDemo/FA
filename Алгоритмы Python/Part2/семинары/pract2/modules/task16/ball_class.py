@@ -1,4 +1,4 @@
-from toy_class import ToyClass
+from .toy_class import ToyClass
 class BallClass(ToyClass):
     def __init__(self, color, price, material, size):
         super().__init__(color, price, material, size)

@@ -1,4 +1,4 @@
-from progression_class import ProgressionClass
+from .progression_class import ProgressionClass
 class ArithmeticClass(ProgressionClass):
     def __init__(self, a1, a2, n):
         self.a1 = a1

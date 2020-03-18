@@ -1,5 +1,5 @@
 import math
-from triangle_class import TriangleClass
+from .triangle_class import TriangleClass
 class TectangularTriangleClass(TriangleClass):
     def __init__(self, a_side, b_side, angle=90):
         self.angle = 90

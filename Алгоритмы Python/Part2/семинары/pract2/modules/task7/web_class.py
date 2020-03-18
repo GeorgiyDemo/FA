@@ -1,4 +1,4 @@
-from publication_class import PublicationClass
+from .publication_class import PublicationClass
 class WebClass(PublicationClass):
     """Класс ЭЛЕКТРОННЫЙ РЕСУРС (название, фамилия автора, ссылка, аннотация)"""
     def __init__(self, name, author_name, link, annotation):

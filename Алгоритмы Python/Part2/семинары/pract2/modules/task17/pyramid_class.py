@@ -1,4 +1,4 @@
-from body_class import BodyClass
+from .body_class import BodyClass
 class PyramidClass(BodyClass):
     def __init__(self, S_main, S_back, h):
         # S_main - площадь основания пирамиды

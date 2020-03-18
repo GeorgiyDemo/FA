@@ -1,4 +1,4 @@
-from utils import is_digital
+from .utils import is_digital
 def get(input_str):
     symbols = input_str.rindex("=")
     buf_index_c = input_str[:symbols]

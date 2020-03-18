@@ -1,4 +1,4 @@
-from clent_class import ClentClass
+from .clent_class import ClentClass
 class OrganizationClass(ClentClass):
     def __init__(self, name, open_date, account_number, balance):
         self.name = name

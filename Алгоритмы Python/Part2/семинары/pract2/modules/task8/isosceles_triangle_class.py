@@ -1,5 +1,5 @@
 import math
-from triangle_class import TriangleClass
+from .triangle_class import TriangleClass
 class IsoscelesTriangleClass(TriangleClass):
     def __init__(self, a_side, b_side, angle):
         super().__init__(a_side, b_side, angle)

@@ -1,5 +1,5 @@
 import math
-from figure_class import FigureClass
+from .figure_class import FigureClass
 class CircleClass(FigureClass):
     def __init__(self, r):
         self.r = r
