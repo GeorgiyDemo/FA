@@ -79,7 +79,9 @@ class MainClass():
         print("Введенная матрица: ")
         matrix = self.matrix
         for i in range(len(matrix)):
-            print(*matrix[i])
+            for j in range(len(matrix[i])):
+                print('{:4}'.format(matrix[i][j]), end=" ")
+            print()
 
     def vector_print(self):
         """Вывод вектора"""

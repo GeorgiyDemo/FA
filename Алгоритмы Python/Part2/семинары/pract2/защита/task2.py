@@ -3,10 +3,10 @@
 (задается размерность и вводятся элементы с клавиатуры),
 как и число, реализуйте проверку корректности введенных данных.
 """
+import copy
 class MainClass():
     def __init__(self):
         self.matrix = []
-        self.vector = []
         boolean_flag = True
         #Размерность матрицы
         while boolean_flag:
@@ -15,36 +15,27 @@ class MainClass():
             
             if self.digital_checker(n) and self.digital_checker(m):
                 boolean_flag = False
-                self.n, self.m = int(n), int(m)
-            
+                self.n, self.m = int(n), int(m)            
             else:
                 print("Некорректный ввод данных!")
 
         self.matrix_input()
-        self.vector_input()
-
+        self.number_input()
         self.matrix_print()
-        self.vector_print()
-
         self.calculating()
         self.result_print()
 
 
-    def vector_input(self):
-        """Ввод вектора"""
-        #Т.к. вектор - это тоже матрица с кол-вом столбцов 1
-        vector = self.vector 
-        for i in range(self.n):
-            boolean_flag = True
-            while boolean_flag:
-                e = input("Введите элемент вектора №{} -> ".format(i+1))
-                if self.digital_checker(e):
-                    boolean_flag = False
-                    vector.append(float(e))
-                else:
-                    print("Некорректный ввод элемента вектора №{}, повторите попытку.".format(i+1))
-
-        self.vector = vector
+    def number_input(self):
+        """Ввод числа"""
+        boolean_flag = True
+        while boolean_flag:
+            number = input("Введите число для умножения -> ")
+            if self.digital_checker(number):
+                self.number = float(number)
+                boolean_flag = False
+            else:
+                print("Некорректный ввод данных!")
 
     def matrix_input(self):
         """Ввод матрицы"""
@@ -80,35 +71,28 @@ class MainClass():
         print("Введенная матрица: ")
         matrix = self.matrix
         for i in range(len(matrix)):
-            print(*matrix[i])
-
-    def vector_print(self):
-        """Вывод вектора"""
-        print("Введенный вектор: ")
-        for e in self.vector:
-            print(e)
+            for j in range(len(matrix[i])):
+                print('{:4}'.format(matrix[i][j]), end=" ")
+            print()
+        print("Введенное число для умножения: {}".format(self.number))
     
     def result_print(self):
-        """Вывод реузльтирующей матрицы"""
+        """Вывод результирующей матрицы"""
         print("Результат: ")
         result = self.result
-        for e in result:
-            print(e)
-
+        for i in range(len(result)):
+            for j in range(len(result[i])):
+                print('{:4}'.format(result[i][j]), end=" ")
+            print()
 
     def calculating(self):
-        """Перемножение матрицы на вектор"""
-        matrix = self.matrix
-        vector = self.vector
-        result = []
-        for i in range(len(matrix)):
-            
-            current_line = matrix[i]
-            line_sum = 0
-            for e in current_line:
-                line_sum += e*vector[i]
-            
-            result.append(line_sum)
+        """Перемножение матрицы на число"""
+        result = copy.deepcopy(self.matrix)
+        for i in range(len(result)):
+            for j in range(len(result)):
+                result[i][j] *=self.number
+
         self.result = result
+    
 if __name__ == "__main__":
     MainClass()
