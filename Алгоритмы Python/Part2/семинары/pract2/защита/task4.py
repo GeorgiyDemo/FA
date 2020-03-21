@@ -5,11 +5,12 @@ import task1
 import task2
 import task3
 
+
 def main():
     selector_dict = {
-        "1" : task1,
-        "2" : task2,
-        "3" : task3,
+        "1": task1,
+        "2": task2,
+        "3": task3,
     }
     input_str = ""
     while input_str != "0":
@@ -18,6 +19,7 @@ def main():
             selector_dict[input_str].MainClass()
         else:
             print("Такого номера не существует!")
+
 
 if __name__ == "__main__":
     main()

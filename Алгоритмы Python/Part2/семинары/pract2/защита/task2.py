@@ -4,18 +4,20 @@
 как и число, реализуйте проверку корректности введенных данных.
 """
 import copy
+
+
 class MainClass():
     def __init__(self):
         self.matrix = []
         boolean_flag = True
-        #Размерность матрицы
+        # Размерность матрицы
         while boolean_flag:
             n = input("Введите кол-во строк в матрице -> ")
             m = input("Введите кол-во столбцов в матрице -> ")
-            
+
             if self.digital_checker(n) and self.digital_checker(m):
                 boolean_flag = False
-                self.n, self.m = int(n), int(m)            
+                self.n, self.m = int(n), int(m)
             else:
                 print("Некорректный ввод данных!")
 
@@ -24,7 +26,6 @@ class MainClass():
         self.matrix_print()
         self.calculating()
         self.result_print()
-
 
     def number_input(self):
         """Ввод числа"""
@@ -45,15 +46,15 @@ class MainClass():
         for i in range(n):
             buf_matrix = []
             for j in range(m):
-                
+
                 boolean_flag = True
                 while boolean_flag:
-                    e = input("Введите элемент [{}][{}] -> ".format(i+1,j+1))
+                    e = input("Введите элемент [{}][{}] -> ".format(i + 1, j + 1))
                     if self.digital_checker(e):
                         boolean_flag = False
                         buf_matrix.append(float(e))
                     else:
-                        print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i+1,j+1))
+                        print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
 
             matrix.append(buf_matrix)
         self.matrix = matrix
@@ -75,7 +76,7 @@ class MainClass():
                 print('{:4}'.format(matrix[i][j]), end=" ")
             print()
         print("Введенное число для умножения: {}".format(self.number))
-    
+
     def result_print(self):
         """Вывод результирующей матрицы"""
         print("Результат: ")
@@ -90,9 +91,10 @@ class MainClass():
         result = copy.deepcopy(self.matrix)
         for i in range(len(result)):
             for j in range(len(result)):
-                result[i][j] *=self.number
+                result[i][j] *= self.number
 
         self.result = result
-    
+
+
 if __name__ == "__main__":
     MainClass()
