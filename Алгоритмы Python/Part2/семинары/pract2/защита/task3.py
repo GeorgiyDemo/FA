@@ -3,13 +3,6 @@
 (задается размерность и вводятся элементы с клавиатуры),
 как и вторая матрица, реализуйте проверку корректности введенных данных)
 """
-def digital_checker(number):
-        """Метод для проверки элемента на число"""
-        try:
-            float(number)
-            return True
-        except ValueError:
-            return False
 
 class MatrixClass():
     """Класс матрицы"""
@@ -26,7 +19,7 @@ class MatrixClass():
         while boolean_flag:
             n = input("Введите кол-во строк в матрице №{} -> ".format(self.matrix_number))
             m = input("Введите кол-во столбцов в матрице №{} -> ".format(self.matrix_number))
-            if digital_checker(n) and digital_checker(m):
+            if self.digital_checker(n) and self.digital_checker(m):
                 boolean_flag = False
                 self.n, self.m = int(n), int(m)
             else:
@@ -44,7 +37,7 @@ class MatrixClass():
                 boolean_flag = True
                 while boolean_flag:
                     e = input("Введите элемент [{}][{}] -> ".format(i+1,j+1))
-                    if digital_checker(e):
+                    if self.digital_checker(e):
                         boolean_flag = False
                         buf_matrix.append(float(e))
                     else:
@@ -62,6 +55,13 @@ class MatrixClass():
                 print('{:4}'.format(matrix[i][j]), end=" ")
             print()
 
+    def digital_checker(self, number):
+        """Метод для проверки элемента на число"""
+        try:
+            float(number)
+            return True
+        except ValueError:
+            return False
 
 class MainClass():
     def __init__(self):
