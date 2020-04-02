@@ -12,7 +12,6 @@ def r_printer(n):
         return
     r_printer(n)
 
-
 if __name__ == "__main__":
     number = int(input("Введите число N ->"))
     r_printer(number)
