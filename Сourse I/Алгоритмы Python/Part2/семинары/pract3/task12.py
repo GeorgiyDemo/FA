@@ -8,17 +8,3 @@
 состоять только из вызова этой функции.
 """
 
-
-"""
-def print_nums():
-    n = int(input("Введите номер"))
-    if n > 0: 
-        if n % 2:
-            print('-',n)
-            print_nums()
-        else:
-            print_nums()
-
-if __name__ == "__main__":
-    print_nums()
-"""
