@@ -6,3 +6,26 @@
 функцию. Функция получает данные, считывая их с клавиатуры, а не получая их в виде
 параметров.
 """
+def recursion():
+    n = int(input())
+    if n == 1:
+        m = int(input())
+        if m == 1:
+            #Шаг рекурсии / рекурсивное условие
+                return recursion() + n + m
+        else:
+            k = int(input())
+            if k == 1:
+                # Шаг рекурсии / рекурсивное условие
+                return recursion() + n + m + k
+            else:
+                return n + m + k
+    else:
+        m = int(input())
+        if m == 1:
+            return recursion() + n + m
+        else:
+            return n + m
+
+if __name__ == "__main__":
+    print(recursion())

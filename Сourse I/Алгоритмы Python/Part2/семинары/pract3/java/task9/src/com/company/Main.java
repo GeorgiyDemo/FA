@@ -12,6 +12,15 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
+    public static void check(){
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        System.out.print(n);
+        int m = in.nextInt();
+        System.out.print(m);
+
+
+    }
     public static int recursion() {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -45,6 +54,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        //check();
+
         System.out.println(recursion()); // вызов рекурсивной функции
     }
 }
