@@ -6,24 +6,13 @@
 возвращает значение, а сразу же выводит результат на экран. Основная программа должна
 состоять только из вызова этой функции
 """
+#Какое-то странно простое условие, надеюсь я правильно его понял
+def r_oddnumbers():
+    num = int(input("Введите число -> "))
+    if num > 0:
+        if num % 2 == 1:
+            print("\033[93mНечетное: {}\033[0m".format(num))
+        r_oddnumbers()
 
-public class Solution {
-    public static void recursion() {
-        java.util.Scanner in = new java.util.Scanner(System.in);
-        int n = in.nextInt();
-        // Базовый случай
-        if (n > 0) {
-            // Шаг рекурсии / рекурсивное условие
-            if (n % 2 == 1) {
-                System.out.println(n);
-                recursion();
-            } else {
-                recursion();
-            }
-        }
-    }
-    public static void main(String[] args) {
-        recursion(); // вызов рекурсивной функции
-    }
-}
-
+if __name__ == "__main__":
+    r_oddnumbers()
