@@ -123,28 +123,29 @@ class PlaneClass(AircraftClass):
             return False
         return True
 
-    #TODO
-    def murder_opportunity(self, purpose):
+    def murder_opportunity(self, purpose_obj):
         """
         Расчет возможности поражения цели если самолет военный
         - Для бомбардировщика наземные,
         - Истребитель - любые летательные объекты
         - штурмовик - наземные и летательные объекты
         """
-        # purpose - цель, может будет объектом, не знаю 
-        """
-        dict_checker = {"истребитель"}
+        if not isinstance(purpose_obj, ObjectKilledClass):
+            raise ValueError("Неободим объект класса ObjectKilledClass")
+        
+        #Если не гражданский
         if "гражданский" not in self.object_type:
-            if self.object_type == "истребитель" # и принадлежит классy Aircraft...
+            
+            if self.object_type == "штурмовик":
                 return True
             
-            if 
+            if self.object_type == "истребитель" and purpose_obj.type == "летательный":
+                return True
 
-            "истребитель", "штурмовик", "бомбардировщик"
-
+            if self.object_type == "бомбардировщик" and purpose_obj.type == "наземный":
+                return True
+        
         return False
-        pass
-        """
 
     def flight_opportunity_current(self, distance_input):
         """
@@ -250,19 +251,52 @@ class PVOClass:
     
     def info(self):
         """Метод с информацией об объекте"""
+        d_formater = {}
+        d_formater["Название"] = self.name
+        d_formater["Высота поражения"] = self.murder_height
+        d_formater["Количество людей в расчете"] = self.people_count
+        d_formater["Количество ракет в установке"] = self.projectiles_count
+        out_str = "*Общая информация об объекте класса ПВО*\n"
+        out_str+="\n".join(list([str(k)+": "+str(v) for k, v in d_formater.items()]))
+        print(out_str)
 
 class MissileClass(PVOClass):
     """
-    Ракетные ПВО (название, высота поражения, количество людей в расчете,  количество ракет в установке, дальность, скорость ракет, стационарное или перемещаемое, скорость перемещения).
+    Ракетные ПВО
+    Общие поля с PVOClass:
+    Название, высота поражения, количество людей в расчете,  количество ракет в установке
+    Различные поля:
+    Дальность, скорость ракет, стационарное или перемещаемое, скорость перемещения
     """
-    def __init__(self):
-        pass
+    def __init__(self, name, murder_height, people_count, projectiles_count, shot_range, speed, dislocation_type, movement_speed):
+        
+        #Список для фильтрации
+        dislocation_type_list = ["стационарное", "перемещаемое"]
+        if dislocation_type not in dislocation_type_list:
+            raise ValueError("Мне передали некорректный тип дислокации ракетного ПВО, что я должен с этим делать?")
 
-    def murder_opportunity(self):
+        super().__init__(name, murder_height, people_count, projectiles_count)
+        self.shot_range = shot_range
+        self.speed = speed
+        self.dislocation_type = dislocation_type
+        self.movement_speed = movement_speed
+
+
+    def murder_opportunity(self, aircraft_obj):
         """"
-        Метод для расчеиа возможности поражения летательного объекта (скорость ракеты должна быть больше скорости летательного аппарата)
+        Метод для расчета возможности поражения летательного объекта (скорость ракеты должна быть больше скорости летательного аппарата)
         """
-        pass
+        if not isinstance(aircraft_obj, AircraftClass):
+            raise ValueError("Необходим объект класса AircraftClass!")
+        
+        #Если это вертолет, то его скорость объективно меньше самолета -> 100 процентов попадет
+        #Но на самом деле по-хорошему у HelicopterClass должно быть поле speed, аналогичное PlaneClass
+        if isinstance(aircraft_obj, HelicopterClass):
+            return True
+        
+        if self.speed > aircraft_obj.speed:
+            return True
+        return False
 
 class AntiAircraft(PVOClass):
     """
@@ -278,7 +312,11 @@ class AntiAircraft(PVOClass):
         
 
 class ObjectKilledClass:
-    """Класс Объекты поражения (название, тип)."""
+    """
+    Класс Объекты поражения (название, тип)
+    Как я понял, используются в PlaneClass.murder_opportunity
+    Тип: наземный, летательный
+    """
     def __init__(self, name, type_):
         self.name = name
         self.type = type_
