@@ -86,7 +86,7 @@ class PlaneClass(AircraftClass):
         if object_type not in type_detector_list:
             raise ValueError("Мне передали некорректный тип самолета, что дальше?")
 
-        super.__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
+        super().__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
         self.speed = speed
         self.weapon_type = weapon_type
         self.altitude_max = altitude_max
@@ -157,11 +157,94 @@ class PlaneClass(AircraftClass):
             return False
         return True
 
+"""
+Вертолеты (количество членов экипажа, грузоподъемность, высота полета, место расположение объекта).
+
+В качестве методов в дочернем классе Вертолетов должны быть реализованы:
+расчет количества вертолетов для перевозки груза за заданное количество полетов
+(Пример: если требуется перевезти 40 т. программа должна использовать только вертолеты транспортные, при заданном количестве полетов 2 возможно использование одного вертолета с грузоподъемностью более 20 т, но менее 40. Если количество полётов равно 1, то возможно использование вертолетов с грузоподъемностью более или равной 40 т., если такого вертолета нет в созданном списке объектов, то требуется уведомить о невозможности совершения грузоперевозки). 
+"""
+
 class HelicopterClass(AircraftClass):
     """Дочерний класс вертолет"""
-    pass
+
+    #Поле со всеми объектами вертолетов
+    obj_list = []
+
+    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country, people_count, carrying, current_location):
+        """
+        Общие поля с Aircraft:
+        Название, цена, тип объекта, высота полета, страна производитель, страна владелец
+        Различные поля с Aicraft:
+        Количество членов экипажа, грузоподъемность, место расположение объекта
+        """
+        #Список для фильтрации типа вертолетов
+        type_detector_list = ["военный", "медицинский", "транспортный"]
+        if object_type not in type_detector_list:
+            raise ValueError("Мне передали некорректный тип вертолета, что дальше?")
+
+        
+        super().__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
+        self.people_count = people_count
+        self.carrying = carrying
+        self.current_location = current_location
+
+        HelicopterClass.obj_list.append(self)
+    
+    def transportation_calculation(self, weight=40, flights_number = 10):
+        """
+        Расчет количества вертолетов для перевозки груза за заданное количество полетов
+        (Пример: если требуется перевезти 40 т. программа должна использовать только вертолеты транспортные, (??????)
+        при заданном количестве полетов 2 возможно использование одного вертолета с грузоподъемностью более 20 т, но менее 40.
+        
+        
+        """
+        #Список задействованных вертолетов
+        stakhanovsk_h_list = []
+        
+        #Если надо перевезти все за 1 раз, то ищем вертолеты больше или равной грузоподьемности
+        if flights_number == 1:
+            for h_obj in HelicopterClass.obj_list:
+                if h_obj.carrying >= weight:
+                    print("Осуществили перевозку {} т. груза на объекте самолета {}".format(weight, h_obj))
+                    stakhanovsk_h_list.append(h_obj)
+                    break
+        
+        #Значит больше 1 раза надо полетать
+        else:
+            #Вводим переменную доставленного груза
+            dislocated_weight = weight
+            #Среднее кол-во груза на один вертолет
+            round_weight = weight/flights_number
+
+            for h_obj in HelicopterClass.obj_list:
+                print("dislocated_weight:",dislocated_weight)
+                if dislocated_weight == 0:
+                    print("Все перевезли")
+                    return
+                if h_obj.carrying >= round_weight and  h_obj.carrying < weight:
+                    if dislocated_weight < h_obj.carrying:
+                        dislocated_weight = 0
+                    else:
+                        dislocated_weight -= h_obj.carrying
+                    stakhanovsk_h_list.append(h_obj)
+                    print("Осуществили перевозку {} т. груза на объекте самолета {}".format(h_obj.carrying, h_obj))
+                
+
+
+            #при заданном количестве полетов 2 возможно использование одного вертолета с грузоподъемностью более 20 т, но менее 40.
+
+
+        print(stakhanovsk_h_list)
+        if len(stakhanovsk_h_list) == 0:
+            print("Невозможно осуществить грузоперевозку!")
+            
+
+        
 
 
 if __name__ == "__main__":
-    o = AircraftClass("КОТ", 2445, "Военный",435345, "Россия", "Китай" )
-    o.info()
+
+    for i in range(7):
+        h = HelicopterClass("КОТ", 2445, "военный",435345, "Россия", "Китай",5,40,"Дубаи",)
+    h.transportation_calculation(170,10)
