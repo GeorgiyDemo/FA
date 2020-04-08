@@ -74,7 +74,47 @@ class AircraftClass:
 
 class PlaneClass(AircraftClass):
     """Дочерний класс самолет"""
-    pass
+    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country, speed, weapon_type, altitude_max, fuel, fuel_max, fuel_consumption):
+        """
+        Общие поля с Aircraft:
+        Название, цена, тип объекта, высота полета, страна производитель, страна владелец
+        Различные поля с Aicraft:
+        Скорость,тип вооружения, максимальная высота полета, запас топлива в баке, максимальный запас топлива, расход топлива
+        """
+        super.__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
+        
+        #Список для фильтрации типа самолетов
+        type_detector_list = ["истребитель", "штурмовик", "бомбардировщик", "гражданский транспортный", "гражданский пассажирский"]
+        self.speed = speed
+        self.weapon_type = weapon_type
+        self.altitude_max = altitude_max
+        self.fuel = fuel
+        self.fuel_max = fuel_max
+        #Это расход топлива, учим английский
+        self.fuel_consumption = fuel_consumption
+
+    
+    def fuel_calculation(self):
+        """Расчет времени полета на имеющемся запасе топлива"""
+        pass
+    
+    def flight_opportunity_max(self):
+        """Расчет возможности полета на введенное расстояние с дозаправкой (т.е. с использованием полного бака)"""
+        pass
+
+    def murder_opportunity(self):
+        """
+        Расчет возможности поражения цели если самолет военный
+        - Для бомбардировщика наземные,
+        - Истребитель - любые летательные объекты
+        - штурмовик - наземные и летательные объекты
+        """
+        pass
+
+    def flight_opportunity_current(self):
+        """расчет возможности полета на заданное расстояние без дозаправки."""
+        pass
+
 
 class HelicopterClass(AircraftClass):
     """Дочерний класс вертолет"""
