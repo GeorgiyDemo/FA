@@ -157,17 +157,8 @@ class PlaneClass(AircraftClass):
             return False
         return True
 
-"""
-Вертолеты (количество членов экипажа, грузоподъемность, высота полета, место расположение объекта).
-
-В качестве методов в дочернем классе Вертолетов должны быть реализованы:
-расчет количества вертолетов для перевозки груза за заданное количество полетов
-(Пример: если требуется перевезти 40 т. программа должна использовать только вертолеты транспортные, при заданном количестве полетов 2 возможно использование одного вертолета с грузоподъемностью более 20 т, но менее 40. Если количество полётов равно 1, то возможно использование вертолетов с грузоподъемностью более или равной 40 т., если такого вертолета нет в созданном списке объектов, то требуется уведомить о невозможности совершения грузоперевозки). 
-"""
-
 class HelicopterClass(AircraftClass):
     """Дочерний класс вертолет"""
-
     #Поле со всеми объектами вертолетов
     obj_list = []
 
@@ -214,17 +205,17 @@ class HelicopterClass(AircraftClass):
         else:
             #Вводим переменную доставленного груза
             dislocated_weight = weight
-            #Среднее кол-во груза на один вертолет
-            round_weight = weight/flights_number
 
             for h_obj in HelicopterClass.obj_list:
-                print("dislocated_weight:",dislocated_weight)
+                print("Вес, который осталось перевезти:",dislocated_weight)
+                
                 if dislocated_weight == 0:
-                    print("Все перевезли")
+                    print("Все перевезли!")
                     return
 
-                if h_obj.carrying >= round_weight and h_obj.carrying < weight:
-                    #Если меньше грузоподёемности надо загрузить
+                #Нормальная ситуация, когда грузоподъемность меньше груза
+                if h_obj.carrying <= weight:
+                    #Если меньше грузоподъёмности надо загрузить
                     if dislocated_weight < h_obj.carrying:
                         print("Осуществили перевозку {} т. груза на объекте самолета {}".format(dislocated_weight, h_obj))
                         dislocated_weight = 0
@@ -233,21 +224,21 @@ class HelicopterClass(AircraftClass):
                         print("Осуществили перевозку {} т. груза на объекте самолета {}".format(h_obj.carrying, h_obj))
                     stakhanovsk_h_list.append(h_obj)
                 
+                #Ненормальная ситуация, когда грузоподъёмность больше груза
+                if h_obj.carrying > weight:
+                    dislocated_weight = 0
+                    print("Осуществили перевозку ВСЕГО груза в кол-ве {} т. груза на объекте самолета {}".format(weight, h_obj))
+                    stakhanovsk_h_list.append(h_obj)
 
-
-            #при заданном количестве полетов 2 возможно использование одного вертолета с грузоподъемностью более 20 т, но менее 40.
-
-
-        print(stakhanovsk_h_list)
         if len(stakhanovsk_h_list) == 0:
             print("Невозможно осуществить грузоперевозку!")
-            
 
-        
+
+
 
 
 if __name__ == "__main__":
 
     for i in range(7):
         h = HelicopterClass("КОТ", 2445, "военный",435345, "Россия", "Китай",5,40,"Дубаи",)
-    h.transportation_calculation(11,10)
+    h.transportation_calculation(110,10)
