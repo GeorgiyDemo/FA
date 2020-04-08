@@ -1,6 +1,9 @@
+#TODO тут нет фильтрации ввода и у меня нет времени ее сделать
+
 from random import randint, choice
 from faker import Faker
 import data_module
+import time
 
 class AircraftClass:
     """Класс летательный аппарат"""
@@ -390,7 +393,7 @@ def main():
 
 
     #4.	выполнить расчет возможности полета на введенное расстояние без дозаправки; (для самолетов)
-    plane_range = float(input("Введите расстояние для рассчета без дозаправки"))
+    plane_range = float(input("Введите расстояние для рассчета без дозаправки -> "))
     for plane in plane_obj_list:
         plane_result, max_distance = plane.flight_opportunity_max(plane_range)
         if plane_result == True:
@@ -401,7 +404,35 @@ def main():
     
 
     print("Теперь необходимо выбрать летательный объект для самолета и задать объект поражения. Сейчас выведу краткую информацию по каждому:")
-    print("Выбор ")
+    print("Выбор самолета")
+    for i in range(len(plane_obj_list)):
+        print("[{}] Название: {}, вид: {}".format(i, plane_obj_list[i].name,  plane_obj_list[i].object_type))
+
+    plane_number = int(input("Введите номер самолета -> "))
+    print("Хорошо, самолет под номером {} выбран".format(plane_number))
+
+    print("Теперь выбираем объект для поражения:")
+    for i in range(len(killedobj_list)):
+        print("[{}] Название: {}, тип: {}".format(i, killedobj_list[i].name,  killedobj_list[i].type))
+    
+    obj_number = int(input("Введите номер объекта -> "))
+    print("Хорошо, объект под номером {} выбран".format(obj_number))
+
+    print("Стреляем..")
+    
+    time.sleep(3)
+    #Получаем результат
+    result = plane_obj_list[plane_number].murder_opportunity(killedobj_list[obj_number])
+    if result == True:
+        print("Мы уничтожили объект (в буквальном смысле)")
+        del killedobj_list[obj_number]
+    else:
+        print("Мы не смогли уничтоэить объект")
+
+
+    print("")
+    #plane_mumber = input("Введите номер самолета -> ")
+    #TODO ТУТ ВСЕ МЕТОДЫ ЕСТЬ, ТОЛЬКО ВЫЗОВ НАДО 
     #5.	для выбранного летательного объектов выполнять расчет возможности поражения заданного объекта (объект может быть летательным или наземным); (для самолетов)
     #6.	предоставлять расчет количества вертолетов для перевозки груза за заданное количество полетов; (для вертолетов)
     #7.	предоставлять расчета возможности поражения летательного объекта с учетом его скорости и высоты полета.
