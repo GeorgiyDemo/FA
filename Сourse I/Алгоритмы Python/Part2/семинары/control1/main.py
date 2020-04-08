@@ -46,9 +46,41 @@ PS. Да, я знаю, что самолеты входят в средства 
 
 class AircraftClass:
     """Класс летательный аппарат"""
+    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country):
+        """
+        Общие поля: название, цена, тип объекта, высота полета, страна производитель, страна владелец
+        """
+        self.name = name
+        self.price = price
+        self.object_type = object_type
+        self.flight_altitude = flight_altitude
+        self.producing_country = producing_country
+        self.owner_country = owner_country
 
-    def object_info(self):
+
+    def info(self):
         """Метод для вывода информации об обекте"""
+        d_formater = {}
+        d_formater["Имя"] = self.name
+        d_formater["Цена"] = self.price
+        d_formater["Тип объекта"] = self.object_type
+        d_formater["Высота полета"] = self.flight_altitude
+        d_formater["Страна-производитель"] = self.producing_country
+        d_formater["Страна-владелец"] = self.owner_country
+
+        out_str = "*Общая информация о летательном аппарате*\n"
+        out_str+="\n".join(list([str(k)+": "+str(v) for k, v in d_formater.items()]))
+        print(out_str)
 
 class PlaneClass(AircraftClass):
     """Дочерний класс самолет"""
+    pass
+
+class HelicopterClass(AircraftClass):
+    """Дочерний класс вертолет"""
+    pass
+
+
+if __name__ == "__main__":
+    o = AircraftClass("КОТ", 2445, "Военный",435345, "Россия", "Китай" )
+    o.info()
