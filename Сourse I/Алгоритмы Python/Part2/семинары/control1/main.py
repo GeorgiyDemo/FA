@@ -1,3 +1,5 @@
+#Чекнуть парочку TODO ниже
+
 """1.	Создайте класс Летательный аппарат с методом, позволяющими вывести на экран информацию об объекте. 
 
 Создайте дочерние классы для летательных аппаратов:
@@ -59,7 +61,7 @@ class AircraftClass:
 
 
     def info(self):
-        """Метод для вывода информации об обекте"""
+        """Метод для вывода информации об объекте"""
         d_formater = {}
         d_formater["Имя"] = self.name
         d_formater["Цена"] = self.price
@@ -182,6 +184,7 @@ class HelicopterClass(AircraftClass):
 
         HelicopterClass.obj_list.append(self)
     
+    #TODO
     def transportation_calculation(self, weight=40, flights_number = 10):
         """
         Расчет количества вертолетов для перевозки груза за заданное количество полетов
@@ -233,8 +236,63 @@ class HelicopterClass(AircraftClass):
         if len(stakhanovsk_h_list) == 0:
             print("Невозможно осуществить грузоперевозку!")
 
+class PVOClass:
+    """
+    Класс средств ПВО
+    Поля: название, высота поражения, количество людей в расчете, количество ракет в установке/количество снарядов (это же одно и то же, да?)
+    """
+    def __init__(self, name, murder_height, people_count, projectiles_count):
+        self.name = name
+        self.murder_height = murder_height
+        self.people_count = people_count
+        #Оу, новое слово на английском
+        self.projectiles_count = projectiles_count
+    
+    def info(self):
+        """Метод с информацией об объекте"""
 
+class MissileClass(PVOClass):
+    """
+    Ракетные ПВО (название, высота поражения, количество людей в расчете,  количество ракет в установке, дальность, скорость ракет, стационарное или перемещаемое, скорость перемещения).
+    """
+    def __init__(self):
+        pass
 
+    def murder_opportunity(self):
+        """"
+        Метод для расчеиа возможности поражения летательного объекта (скорость ракеты должна быть больше скорости летательного аппарата)
+        """
+        pass
+
+class AntiAircraft(PVOClass):
+    """
+    Зенитные (название, высота поражения,  количество людей в расчете, количество снарядов, калибр, количество стволов) 
+    """
+    def __init__(self):
+        pass
+    
+    def murder_opportunity(self):
+        """
+        Метод: расчет возможности поражения объекта по высоте (высота поражения должна быть больше высоты полета летательного объекта).
+        """
+        
+
+class ObjectKilledClass:
+    """Класс Объекты поражения (название, тип)."""
+    def __init__(self, name, type_):
+        self.name = name
+        self.type = type_
+    
+    def info(self):
+        """Вывод информации об объекте."""
+
+        d_formater = {}
+        d_formater["Имя"] = self.name
+        d_formater["Тип"] = self.type
+
+        out_str = "*Общая информация об объекте поражения*\n"
+        out_str+="\n".join(list([str(k)+": "+str(v) for k, v in d_formater.items()]))
+        print(out_str)
 
 
 if __name__ == "__main__":
