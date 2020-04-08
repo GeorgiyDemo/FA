@@ -222,13 +222,16 @@ class HelicopterClass(AircraftClass):
                 if dislocated_weight == 0:
                     print("Все перевезли")
                     return
-                if h_obj.carrying >= round_weight and  h_obj.carrying < weight:
+
+                if h_obj.carrying >= round_weight and h_obj.carrying < weight:
+                    #Если меньше грузоподёемности надо загрузить
                     if dislocated_weight < h_obj.carrying:
+                        print("Осуществили перевозку {} т. груза на объекте самолета {}".format(dislocated_weight, h_obj))
                         dislocated_weight = 0
                     else:
                         dislocated_weight -= h_obj.carrying
+                        print("Осуществили перевозку {} т. груза на объекте самолета {}".format(h_obj.carrying, h_obj))
                     stakhanovsk_h_list.append(h_obj)
-                    print("Осуществили перевозку {} т. груза на объекте самолета {}".format(h_obj.carrying, h_obj))
                 
 
 
@@ -247,4 +250,4 @@ if __name__ == "__main__":
 
     for i in range(7):
         h = HelicopterClass("КОТ", 2445, "военный",435345, "Россия", "Китай",5,40,"Дубаи",)
-    h.transportation_calculation(170,10)
+    h.transportation_calculation(11,10)
