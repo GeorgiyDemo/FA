@@ -328,39 +328,33 @@ def main():
     """
 
     fake = Faker("ru_RU")
-    print(fake.name())
 
-    aircraftclass_dict = {
-        1: PlaneClass,
-        2: HelicopterClass,
-    }
-
-    aircraft_obj_list = []
+    aircraftclass_dict = {1: PlaneClass,2: HelicopterClass,}
+    helicopter_obj_list, plane_obj_list = [], []
     aircraft_count = int(input("Введите количество объектов летательных аппаратов ->"))
-    for i in range(aircraft_count):
+    for _ in range(aircraft_count):
 
-        r_num = random.randint(1,2)
+        r_num = randint(1,2)
         #Генерируем рандомные аргументы
         aircraftclass_dictargs = {
-            1 : [fake.word(), randint(1000,200000),data_module.plane_type(),randint[1,10000],data_module.get_country(),data_module.get_country(), randint(300,2500), "ракеты", randint(500,10000), randint(1000,100000), 100000, 10],
-            2 : [fake.word(), randint(1000,200000),data_module.plane_type(),randint[1,10000],data_module.get_country(),data_module.get_country(),],
+            1 : [fake.word(), randint(1000,200000),data_module.plane_type(),randint(1,10000),data_module.get_country(),data_module.get_country(), randint(300,2500), "ракеты", randint(500,10000), randint(1000,100000), 100000, 10],
+            2 : [fake.word(), randint(1000,200000),data_module.helicopter_type(),randint(1,10000),data_module.get_country(),data_module.get_country(),randint(2,8),randint(20,40),data_module.get_country()],
         }
+        if r_num == 1: helicopter_obj_list.append(aircraftclass_dict[r_num](*aircraftclass_dictargs[r_num]))
+        else: plane_obj_list.append(aircraftclass_dict[r_num](*aircraftclass_dictargs[r_num]))
+
+    print("Хорошо, я сгенерировал {} самолетов и {} вертолетов, давайте взгляним на них?".format(len(plane_obj_list), len(helicopter_obj_list)))  
+    input()
+    for e in [helicopter_obj_list, plane_obj_list]:
+        for obj in e:
+            print()
+            obj.info()
         
-speed, weapon_type, altitude_max, fuel, fuel_max, fuel_consumption):
+    #средств ПВО
+    
+    #Объектов поражения;
 
-        #Аргументы для создания объектов
-
-        aircraft_obj_list.append()
-        
-   #хорошо, я сгеренрировал N самолетов и N вертолетов
-
-
-# САМОЛЕТ name, price, object_type, flight_altitude, producing_country, owner_country, speed, weapon_type, altitude_max, fuel, fuel_max, fuel_consumption):
-# Название, цена, тип объекта, высота полета, страна производитель, страна владелец, Скорость,тип вооружения, максимальная высота полета, запас топлива в баке, максимальный запас топлива, расход топлива
-
-#Вертолет name, price, object_type, flight_altitude, producing_country, owner_country, people_count, carrying, current_location):
-# Название, цена, тип объекта, высота полета, страна производитель, страна владелец Количество членов экипажа, грузоподъемность, место расположение объекта
-
+    
 
 
 
