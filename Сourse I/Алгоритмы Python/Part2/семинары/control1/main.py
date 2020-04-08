@@ -87,6 +87,12 @@ class PlaneClass(AircraftClass):
         type_detector_list = ["истребитель", "штурмовик", "бомбардировщик", "гражданский транспортный", "гражданский пассажирский"]
         if object_type not in type_detector_list:
             raise ValueError("Мне передали некорректный тип самолета, что дальше?")
+        
+        #Если текущие показания больше максиальных, то выставляем максимальные для текущих
+        if flight_altitude > altitude_max:
+            flight_altitude = altitude_max
+        if fuel > fuel_max:
+            fuel = fuel_max
 
         super().__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
         self.speed = speed
@@ -300,16 +306,28 @@ class MissileClass(PVOClass):
 
 class AntiAircraft(PVOClass):
     """
-    Зенитные (название, высота поражения,  количество людей в расчете, количество снарядов, калибр, количество стволов) 
+    Зенитные ПВО
+    Общие поля с PVOClass:
+    Название, высота поражения, количество людей в расчете,  количество ракет в установке
+    Различные поля:
+    Калибр, количество стволов
     """
-    def __init__(self):
-        pass
+    def __init__(self, name, murder_height, people_count, projectiles_count, caliber, barrels_number):
+        super().__init__(name, murder_height, people_count, projectiles_count)
+        self.caliber = caliber
+        self.barrels_number = barrels_number
     
-    def murder_opportunity(self):
+    def murder_opportunity(self, aircraft_obj):
         """
-        Метод: расчет возможности поражения объекта по высоте (высота поражения должна быть больше высоты полета летательного объекта).
+        Расчет возможности поражения объекта по высоте (высота поражения должна быть больше высоты полета летательного объекта).
         """
+        if not isinstance(aircraft_obj, AircraftClass):
+            raise ValueError("Необходим объект класса AircraftClass!")
+
+        if self.murder_height > aircraft_obj.flight_altitude:
+            return True
         
+        return False
 
 class ObjectKilledClass:
     """
