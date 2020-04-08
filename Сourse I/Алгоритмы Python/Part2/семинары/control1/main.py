@@ -81,10 +81,12 @@ class PlaneClass(AircraftClass):
         Различные поля с Aicraft:
         Скорость,тип вооружения, максимальная высота полета, запас топлива в баке, максимальный запас топлива, расход топлива
         """
-        super.__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
-        
         #Список для фильтрации типа самолетов
         type_detector_list = ["истребитель", "штурмовик", "бомбардировщик", "гражданский транспортный", "гражданский пассажирский"]
+        if object_type not in type_detector_list:
+            raise ValueError("Мне передали некорректный тип самолета, что дальше?")
+
+        super.__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
         self.speed = speed
         self.weapon_type = weapon_type
         self.altitude_max = altitude_max
@@ -96,25 +98,64 @@ class PlaneClass(AircraftClass):
     
     def fuel_calculation(self):
         """Расчет времени полета на имеющемся запасе топлива"""
-        pass
-    
-    def flight_opportunity_max(self):
-        """Расчет возможности полета на введенное расстояние с дозаправкой (т.е. с использованием полного бака)"""
-        pass
+        #Текущий запас топлива
+        fuel = self.fuel 
+        #Расход топлива в час времени
+        fuel_consumption = self.fuel_consumption
 
-    def murder_opportunity(self):
+        #Целое кол-во часов + дробное кол-во минут
+        result = round(fuel/fuel_consumption,2)
+
+        return result
+
+    def flight_opportunity_max(self, distance_input):
+        """"
+        Расчет возможности полета на введенное расстояние с дозаправкой (т.е. с использованием полного бака)
+        - Возвращает True или False
+        """
+        #макс топливо/расход = часы
+        max_hours = self.fuel_max/self.fuel_consumption
+        #часы* скорость = макс расстояние
+        max_distance = max_hours * self.speed
+        if max_distance < distance_input:
+            return False
+        return True
+
+    #TODO
+    def murder_opportunity(self, purpose):
         """
         Расчет возможности поражения цели если самолет военный
         - Для бомбардировщика наземные,
         - Истребитель - любые летательные объекты
         - штурмовик - наземные и летательные объекты
         """
-        pass
+        # purpose - цель, может будет объектом, не знаю 
+        """
+        dict_checker = {"истребитель"}
+        if "гражданский" not in self.object_type:
+            if self.object_type == "истребитель" # и принадлежит классy Aircraft...
+                return True
+            
+            if 
 
-    def flight_opportunity_current(self):
-        """расчет возможности полета на заданное расстояние без дозаправки."""
-        pass
+            "истребитель", "штурмовик", "бомбардировщик"
 
+        return False
+        pass
+        """
+
+    def flight_opportunity_current(self, distance_input):
+        """
+        Расчет возможности полета на заданное расстояние без дозаправки (т.е. с использованием текущего бака)
+        - Возвращает True или False
+        """
+        #макс топливо/расход = часы
+        hours = self.fuel_calculation()
+        #часы* скорость = макс расстояние
+        distance = hours * self.speed
+        if distance < distance_input:
+            return False
+        return True
 
 class HelicopterClass(AircraftClass):
     """Дочерний класс вертолет"""
