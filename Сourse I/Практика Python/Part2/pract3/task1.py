@@ -42,8 +42,8 @@ class MatrixClass():
         #Выставляем текущую матрицу
         else:
             self.matrix = matrix_list
-            self.n = n
-            self.m = m
+            self.n = len(matrix_list)
+            self.m = len(matrix_list[0])
 
     def _matrix_range_input(self):
         """Ввод данных матрицы в зависимости от флага"""
@@ -106,9 +106,7 @@ class MatrixClass():
     def __str__(self):
         """Вывод матрицы"""
         matrix = self.matrix
-        s = "Исходная матрица:\n"
-        s += '\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
-        return s
+        return '\n'+'\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
 
 
     def __mul__(self, m2):
@@ -127,20 +125,22 @@ class MatrixClass():
                 c[i].append(0)
                 for k in range(self.m):
                     c[i][j] += a[i][k] * b[k][j]
-        return c
+        return MatrixClass(matrix_list=c)
     
     def __add__(self, m2):
         """Сложение матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        return [list(map(lambda x,y: x+y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [list(map(lambda x,y: x+y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        return MatrixClass(matrix_list=c)
 
 
     def __sub__(self, m2):
         """Вычитание матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        return [list(map(lambda x,y: x-y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [list(map(lambda x,y: x-y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        return MatrixClass(matrix_list=c)
 
     #TODO
     @property
@@ -158,8 +158,9 @@ class MatrixClass():
     
     #TODO
     @property
-    def ddd(self):
+    def matrix_inverse(self):
         """Вычисление обратной матрицы (сделать проверку умножением на исходную матрицу)"""
+        pass
 
     def digital_checker(self, number):
         """Метод для проверки элемента на число"""
@@ -174,13 +175,13 @@ class MainClass():
         self.processing()
     
     def processing(self):
-        m1 = MatrixClass(1,1)
-        m2 = MatrixClass(2,1)
+        m1 = MatrixClass(1)
+        m2 = MatrixClass(1)
         print(m1)
         print(m2)
-        print("Вычитание: ", m1 - m2)
-        print("Сложение: ", m1 + m2)
-        print("Умножение: ", m1 * m2)
+        print(m1 - m2)
+        print(m1 + m2)
+        print(m1 * m2)
 
 if __name__ == "__main__":
     MainClass()
