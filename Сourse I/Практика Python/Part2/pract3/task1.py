@@ -27,24 +27,31 @@ from random import randint
 class MatrixClass():
     """Класс матрицы"""
     
-    def __init__(self, matrix_number=1, input_flag=None):
+    def __init__(self, generation_way=None, matrix_list=None):
         """
-        matrix_number - номер матрицы для красивого print, в вычислениях никакой роли не играет
-        input_flag - флаг ввода данных. 1 - 
+        generation_way - флаг ввода данных. 1 - автоматический ввод, 2 - ручной ввод
+        matrix_list - создание объекта MatrixClass из существующей матрицы в list
         """
-        self.matrix = []
-        self.matrix_number = matrix_number
-        self.input_flag = input_flag
-        self._matrix_range_input()
-        self._matrix_values_input()
+
+        self.generation_way = generation_way
+        #Генерируем новую матрицу
+        if matrix_list == None:
+            self.matrix = []
+            self._matrix_range_input()
+            self._matrix_values_input()
+        #Выставляем текущую матрицу
+        else:
+            self.matrix = matrix_list
+            self.n = n
+            self.m = m
 
     def _matrix_range_input(self):
         """Ввод данных матрицы в зависимости от флага"""
         boolean_flag = True
         # Размерность матрицы
         while boolean_flag:
-            n = input("Введите кол-во строк в матрице №{} -> ".format(self.matrix_number))
-            m = input("Введите кол-во столбцов в матрице №{} -> ".format(self.matrix_number))
+            n = input("Введите кол-во строк в матрице -> ")
+            m = input("Введите кол-во столбцов в матрице -> ")
             if self.digital_checker(n) and self.digital_checker(m):
                 boolean_flag = False
                 self.n, self.m = int(n), int(m)
@@ -58,19 +65,19 @@ class MatrixClass():
         m = self.m
         matrix = self.matrix
 
-        if self.input_flag == None:
+        if self.generation_way == None:
             boolean_flag = True
             while boolean_flag:
-                input_flag = input("Каким способом вы хотите задать значения матрицы?\n1. Автоматический ввод\n2. Ручной ввод\n-> ")
-                if input_flag in allowed_ways:
+                generation_way = input("Каким способом вы хотите задать значения матрицы?\n1. Автоматический ввод\n2. Ручной ввод\n-> ")
+                if generation_way in allowed_ways:
                     boolean_flag = False
-                    input_flag = int(input_flag)
+                    generation_way = int(generation_way)
                 else:
                     print("Некорректный ввод данных!")
         else:
-            input_flag = self.input_flag
+            generation_way = self.generation_way
         
-        if input_flag == 1:
+        if generation_way == 1:
             #Генерируем матрицу из диапазона
             for i in range(n):
                 buf_matrix = []
@@ -78,7 +85,7 @@ class MatrixClass():
                     buf_matrix.append(randint(1,10))
                 matrix.append(buf_matrix)
 
-        elif input_flag == 2:
+        elif generation_way == 2:
             #Ручной ввод матрицы
             for i in range(n):
                 buf_matrix = []
@@ -99,7 +106,7 @@ class MatrixClass():
     def __str__(self):
         """Вывод матрицы"""
         matrix = self.matrix
-        s = "Матрица №{}:\n".format(self.matrix_number)
+        s = "Исходная матрица:\n"
         s += '\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
         return s
 
@@ -139,6 +146,8 @@ class MatrixClass():
     @property
     def matrix_transposed(self):
         """Вычисление транспонированной матрицы"""
+        self.matrix
+        return 
         pass
     
     #TODO
@@ -159,7 +168,6 @@ class MatrixClass():
             return True
         except ValueError:
             return False
-
 
 class MainClass():
     def __init__(self):
