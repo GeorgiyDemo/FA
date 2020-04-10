@@ -1,4 +1,6 @@
-from random import choice 
+from random import choice
+
+
 def get():
     ways_list = [
         "Факультет анализа рисков и экономической безопасности им. профессора В.К. Сенчагова",

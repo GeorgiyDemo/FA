@@ -453,6 +453,7 @@ class Task12(object):
 
         print("Список после замены:\n" + str(self.list))
 
+
 def main():
     d = {
         "1": Task1,

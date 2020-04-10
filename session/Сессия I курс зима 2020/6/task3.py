@@ -12,8 +12,8 @@
 Добавьте в программу обработку исключений (как собственного, так и стандартных).
 """
 
-def converter(input_str):
 
+def converter(input_str):
     if type(input_str) != str:
         raise TypeError("Некорректный тип аргументов функции")
 

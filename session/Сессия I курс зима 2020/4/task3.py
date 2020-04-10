@@ -24,7 +24,6 @@ def list2dict(list_str):
 
     # Цикл по каждому элементу
     for e in list_str:
-
         # Разбиваем по ключу - значению
         key, count = e.split(" ")
 

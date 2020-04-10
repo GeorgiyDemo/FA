@@ -1,6 +1,8 @@
 def displaying(goods_list):
     for goods in goods_list:
         print(goods.get_info() + "\n")
+
+
 def search(goods_list):
     try:
         price_input = float(input("Введите цену -> "))

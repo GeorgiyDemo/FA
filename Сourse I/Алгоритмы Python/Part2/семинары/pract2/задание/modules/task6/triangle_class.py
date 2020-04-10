@@ -1,4 +1,6 @@
 from .figure_class import FigureClass
+
+
 class TriangleClass(FigureClass):
     def __init__(self, a, b, c):
         self.a = a
@@ -7,6 +9,7 @@ class TriangleClass(FigureClass):
         if self.validator():
             self.area_calculation()
             self.perimeter_calculation()
+
     def validator(self):
         a = self.a
         b = self.b
@@ -16,9 +19,11 @@ class TriangleClass(FigureClass):
             self.perimeter = "Не существует"
             return False
         return True
+
     def area_calculation(self):
         p = (self.a + self.b + self.c) / 2
-        s = pow(p * (p - self.a) * (p - self.b) * (p - self.c),1/2)
+        s = pow(p * (p - self.a) * (p - self.b) * (p - self.c), 1 / 2)
         self.area = s
+
     def perimeter_calculation(self):
         self.perimeter = self.a + self.b + self.c

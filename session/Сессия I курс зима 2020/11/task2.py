@@ -11,6 +11,7 @@
 """
 import math
 
+
 def triangle(input_tuple):
     # Стороны треугольника
     a, b, c = input_tuple
@@ -31,11 +32,11 @@ def triangle(input_tuple):
 
 if __name__ == "__main__":
 
-    input_list = [(3, 4, 5), (1,2,1), (1,2,1),(5, 2, 4)]
-    
-    #Список с результатами
+    input_list = [(3, 4, 5), (1, 2, 1), (1, 2, 1), (5, 2, 4)]
+
+    # Список с результатами
     result_list = input_list[:]
-    
+
     # Цикл по каждому элементу, где мы удаляем неправильные треугольники
     for e in input_list:
 

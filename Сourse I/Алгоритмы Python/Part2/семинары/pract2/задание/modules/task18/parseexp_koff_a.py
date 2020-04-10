@@ -1,4 +1,6 @@
 from .utils import is_digital
+
+
 def get(input_str):
     symbols = 1
     return_flag = False

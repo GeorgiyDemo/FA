@@ -6,6 +6,7 @@
 Yes No
 """
 
+
 def r_palindrome(str_input):
     if len(str_input) == 1:
         return "YES"
@@ -14,8 +15,9 @@ def r_palindrome(str_input):
             if len(str_input) == 2:
                 return "YES"
             return r_palindrome(str_input[1:-1])
-        return "NO" 
+        return "NO"
+
 
 if __name__ == "__main__":
-    str_input = input("Введите слово для проверки на палиндром -> ") #лимузинизумил
+    str_input = input("Введите слово для проверки на палиндром -> ")  # лимузинизумил
     print(r_palindrome(str_input))

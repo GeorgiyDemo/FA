@@ -1,4 +1,6 @@
 from .baseclass import Person
+
+
 class Teacher(Person):
     def __init__(self, name, birthday, way, position, years):
         super().__init__(name, birthday)
@@ -12,4 +14,3 @@ class Teacher(Person):
               "\nФакультет: " + self.way + \
               "\nДолжность: " + self.job_position + \
               "\nСтаж: " + self.job_years)
-

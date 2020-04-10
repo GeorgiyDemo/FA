@@ -124,7 +124,8 @@ def main():
         d_args = {
             1: (fake.word(), [randint(1, 100), randint(1, 100)]),
             2: (
-            fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(50, 300), randint(1000, 6000)),
+                fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(50, 300),
+                randint(1000, 6000)),
             3: (fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(1960, 2020)),
             4: (fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(50, 300), fake.word()),
         }

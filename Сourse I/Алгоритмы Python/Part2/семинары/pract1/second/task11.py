@@ -16,6 +16,7 @@ from random import randint
 from faker import Faker
 from random_color import random_color
 
+
 class ToyClass:
     """
     Класс игрушка

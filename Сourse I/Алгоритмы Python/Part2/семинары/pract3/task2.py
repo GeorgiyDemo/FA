@@ -7,8 +7,9 @@
 Ввод: 3
 Вывод: No
 """
-import math
-def r_checker(n,i=1):
+
+
+def r_checker(n, i=1):
     if i > n:
         print("NO")
         return

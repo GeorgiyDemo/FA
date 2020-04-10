@@ -5,6 +5,7 @@
 Вывод: 9
 """
 
+
 def r_sumcalc(n, s=0):
     if n <= 0:
         print("Сумма чисел: {}".format(s))
@@ -12,8 +13,7 @@ def r_sumcalc(n, s=0):
 
     s += (n % 10)
     n //= 10
-    r_sumcalc(n,s)
-
+    r_sumcalc(n, s)
 
 
 if __name__ == "__main__":

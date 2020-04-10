@@ -6,13 +6,15 @@
 функцию. Функция получает данные, считывая их с клавиатуры, а не получая их в виде
 параметров.
 """
+
+
 def def_recursion():
     n = int(input())
     if n == 1:
         m = int(input())
         if m == 1:
-            #Шаг рекурсии / рекурсивное условие
-                return def_recursion() + n + m
+            # Шаг рекурсии / рекурсивное условие
+            return def_recursion() + n + m
         else:
             k = int(input())
             if k == 1:
@@ -26,6 +28,7 @@ def def_recursion():
             return def_recursion() + n + m
         else:
             return n + m
+
 
 if __name__ == "__main__":
     print(def_recursion())

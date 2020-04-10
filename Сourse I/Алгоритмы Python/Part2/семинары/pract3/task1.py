@@ -3,14 +3,17 @@
 Ввод: 5
 Вывод 1 2 3 4 5
 """
+
+
 def r_printer(n_max, current_n=1):
-    #Останов
+    # Останов
     if current_n > n_max:
         print(" ")
         return
     print(current_n, end=" ")
-    #Вызов на уровень ниже
-    r_printer(n_max,current_n+1)
+    # Вызов на уровень ниже
+    r_printer(n_max, current_n + 1)
+
 
 if __name__ == "__main__":
     n = int(input("Введите натуральное число n -> "))

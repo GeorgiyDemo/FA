@@ -16,7 +16,6 @@ def converter(input_str):
         "5": "отлично",
     }
 
-
     # Преобразование в int
     this_list = map(int, this_list)
 

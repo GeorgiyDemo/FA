@@ -23,10 +23,9 @@
 import datetime
 from os import path
 
+import file_generator_module
 import menu_module
 import universal_module
-import file_generator_module
-import yaml
 
 
 def tt_regenerator(file_name, d, reg_flag):
@@ -81,6 +80,7 @@ def tt_regenerator(file_name, d, reg_flag):
 
     return d
 
+
 class MainClass(object):
 
     def __init__(self):
@@ -114,6 +114,7 @@ class MainClass(object):
                 file_generator_module.FileGeneratorClass(self.d, self.file_name)
 
         menu_module.MenuShower(self.d, self.file_name)
+
 
 if __name__ == "__main__":
     MainClass()

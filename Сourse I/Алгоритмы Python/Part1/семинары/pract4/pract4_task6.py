@@ -113,11 +113,11 @@ class Task6():
         for i in range(len(r)):
             print("\n" + "*" * 10 + "Маршрут №" + str(i + 1) + "*" * 10)
             print(UniversalClass.get_ways_string(r[i]["ways"]))
-            print("Общее время: "+str(r[i]["total_time"]))
+            print("Общее время: " + str(r[i]["total_time"]))
             for way in r[i]["ways"]:
-                print(way["way_from"]+" -> "+way["way_to"]+", время: "+str(way["train_time"]))
+                print(way["way_from"] + " -> " + way["way_to"] + ", время: " + str(way["train_time"]))
                 if way["waiting_time"] is not None:
-                    print("Ожидание: "+str(way["waiting_time"]))
+                    print("Ожидание: " + str(way["waiting_time"]))
 
     def main_time_detector(self):
 

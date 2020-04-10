@@ -1,4 +1,6 @@
 from .software_class import SoftwareClass
+
+
 class FreewareClass(SoftwareClass):
     def __init__(self, name, manufacturer):
         # Можно и через super, но в нашей жизни очень мало разнообразия

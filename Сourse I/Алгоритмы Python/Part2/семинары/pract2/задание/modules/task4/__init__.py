@@ -1,4 +1,6 @@
 from .task4 import Task4Class
+
+
 def main():
     print("\nЗадание 4:")
     try:

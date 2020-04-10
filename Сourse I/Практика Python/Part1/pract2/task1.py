@@ -70,6 +70,7 @@ def strlen(list1):
         i = i + 1
     return i
 
+
 def strcmp(list1, list2):
     list1 = list(list1)
     list2 = list(list2)
@@ -141,28 +142,28 @@ class TCALC():
             self.typToken = CALC_END
             return True
         elif self.IsDelim():
-            
+
             choose_dict = {
-                "+" : OP_PLUS,
-                "-" : OP_MINUS,
-                "*" : OP_MULTIPLY,
-                "/" : OP_DIVIDE,
-                "%" : OP_PERCENT,
-                "[" : CALC_L_BRACKET,
-                "(" : CALC_L_BRACKET,
-                "]" : CALC_R_BRACKET,
-                ")" : CALC_R_BRACKET,
+                "+": OP_PLUS,
+                "-": OP_MINUS,
+                "*": OP_MULTIPLY,
+                "/": OP_DIVIDE,
+                "%": OP_PERCENT,
+                "[": CALC_L_BRACKET,
+                "(": CALC_L_BRACKET,
+                "]": CALC_R_BRACKET,
+                ")": CALC_R_BRACKET,
             }
 
             self.curToken[0] = self.expr[self.pos]
             self.pos = self.pos + 1
             self.curToken[1] = TERMINATOR
             tmp = "".join(self.curToken[:strlen(self.curToken)])
-            
+
             if tmp in choose_dict:
                 self.typToken = choose_dict[tmp]
                 return True
-            
+
         elif self.IsLetter():
             i = 0
             while self.IsLetter():
@@ -431,7 +432,6 @@ class TCALC():
 
 
 if __name__ == "__main__":
-
     exp = input("Введите исходное выражение ->")
     CALC = TCALC()
     CALC.Compile(list(exp))

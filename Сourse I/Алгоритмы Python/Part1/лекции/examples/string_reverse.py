@@ -1,7 +1,5 @@
 # TODO Разобраться что происходит с итератором __next__
 
-from collections import Iterator
-
 
 class Series(object):
     def __init__(self, low, high):

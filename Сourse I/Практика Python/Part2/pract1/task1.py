@@ -41,9 +41,9 @@ class MainClass:
             if i == 0:
                 locale_c = 1
             else:
-                locale_c += 1    # знаменатель
-            locale_m = -locale_m          # знак
-            locale_p = x * locale_p   # числитель
+                locale_c += 1  # знаменатель
+            locale_m = -locale_m  # знак
+            locale_p = x * locale_p  # числитель
             locale_result = locale_m * locale_p / locale_c
             print("{}*({}/{}) = {}".format(locale_m,
                                            locale_p, locale_c, locale_result))

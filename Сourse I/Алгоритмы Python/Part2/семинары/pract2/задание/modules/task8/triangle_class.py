@@ -1,5 +1,6 @@
-import math
 from .triangleclass_calculation import *
+
+
 class TriangleClass:
     def __init__(self, a_side, b_side, angle):
         self.a_side = a_side
@@ -7,7 +8,7 @@ class TriangleClass:
         self.angle = angle
         self.c_side, self.perimeter = perimeter_calculation(a_side, b_side, angle)
         self.area = area_calculation(a_side, b_side, self.c_side)
-   
+
     def info(self, cl_name):
         a = self.area
         p = self.perimeter

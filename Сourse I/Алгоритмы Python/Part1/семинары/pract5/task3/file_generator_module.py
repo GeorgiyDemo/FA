@@ -1,6 +1,8 @@
 import datetime
-import yaml
 import random
+
+import yaml
+
 
 class FileGeneratorClass():
     """

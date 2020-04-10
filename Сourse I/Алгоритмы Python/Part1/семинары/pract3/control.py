@@ -13,16 +13,16 @@ class MatrixClass():
         s = 0
         for i in range(len(self.matrix)):
             s += self.matrix[i][len(self.matrix) - 1 - i]
-        print("Сумма элементов на побочной диагонали:\n"+str(s))
-        
+        print("Сумма элементов на побочной диагонали:\n" + str(s))
+
     def sum_E2(self):
         s = 0
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix[i])):
-                if j < i and (i+j > len(self.matrix)-1):
+                if j < i and (i + j > len(self.matrix) - 1):
                     s += self.matrix[i][j]
 
-        print("Сумма элементов нижнего треугольника:\n"+str(s))
+        print("Сумма элементов нижнего треугольника:\n" + str(s))
 
     def get_4on4(self):
         buf_matrix = []
@@ -36,7 +36,7 @@ class MatrixClass():
         for i in range(len(buf_matrix)):
             for j in range(len(buf_matrix[i])):
                 self.matrix[i][j] = buf_matrix[j][i]
-        
+
         self.show_matrix("Исходная матрица после сортировки квадрата 4x4:")
 
     def show_matrix(self, out_text=""):
@@ -45,7 +45,7 @@ class MatrixClass():
         buf = ""
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
-                buf +=" "+ str(matrix[i][j])
+                buf += " " + str(matrix[i][j])
             buf += "\n"
         print(buf)
 

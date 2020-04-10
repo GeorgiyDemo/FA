@@ -1,8 +1,8 @@
 from faker import Faker
+
 from .publication_class import PublicationClass
-from .web_class import WebClass
-from .article_class import ArticleClass
-from .book_class import BookClass
+
+
 def main():
     try:
         n = int(input("Введите количество изданий -> "))

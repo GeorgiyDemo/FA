@@ -1,4 +1,6 @@
-from random import choice 
+from random import choice
+
+
 def get():
     jobs_list = [
         "Старший научный сотрудник",

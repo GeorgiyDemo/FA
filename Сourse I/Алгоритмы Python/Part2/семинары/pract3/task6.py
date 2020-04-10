@@ -7,6 +7,7 @@
 рекурсию.
 """
 
+
 def r_numbers(num, delt=2):
     if num < 2:
         return False
@@ -14,11 +15,12 @@ def r_numbers(num, delt=2):
         return True
     elif num % delt == 0:
         return False
-    elif delt < num/2:
-        return r_numbers(num, delt+1)
+    elif delt < num / 2:
+        return r_numbers(num, delt + 1)
     return True
 
+
 if __name__ == "__main__":
-    d = {True : "YES", False: "NO"}
+    d = {True: "YES", False: "NO"}
     num = int(input("Введите число для проверки -> "))
     print(d[r_numbers(num)])

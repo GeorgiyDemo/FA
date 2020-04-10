@@ -1,10 +1,13 @@
 from .equationclass import EquationClass
+
+
 class LinearEquation(EquationClass):
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
         self.c = c
         self.calculation()
+
     def calculation(self):
         try:
             self.result = (self.c - self.b) / self.a

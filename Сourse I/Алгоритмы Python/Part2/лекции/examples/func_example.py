@@ -3,22 +3,26 @@
 """
 import functools
 
-#Функция высшего порядка
+
+# Функция высшего порядка
 def generate_power_func(n):
     def nth_power(x):
-        return x**n
+        return x ** n
+
     return nth_power
 
-def apply_operation(a,b):
+
+def apply_operation(a, b):
     e = generate_power_func(a)
     return e(b)
 
+
 if __name__ == "__main__":
-    
+
     n3 = generate_power_func(2)
     print(n3(2), n3(3), n3(4))
-    
-    value = apply_operation(2,3)
+
+    value = apply_operation(2, 3)
     print(value)
 
     str_e = "ABCDEFGH"

@@ -1,8 +1,11 @@
 import math
+
+
 class Task4Class:
     def __init__(self, x):
         self.x = x
         self.getter()
+
     def getter(self):
         x = self.x
         upper = x ** 3 * math.e ** (x - 1)

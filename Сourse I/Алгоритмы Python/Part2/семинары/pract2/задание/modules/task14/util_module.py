@@ -1,6 +1,7 @@
 def display(software_list):
     for software in software_list:
-            print(software.software_info() + "\n")
+        print(software.software_info() + "\n")
+
 
 def search(software_list):
     search_flag = False

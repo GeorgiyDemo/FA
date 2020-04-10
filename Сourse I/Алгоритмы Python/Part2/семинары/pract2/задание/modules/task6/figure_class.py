@@ -1,12 +1,17 @@
 from abc import ABCMeta, abstractmethod
+
+
 class FigureClass:
     __metaclass__ = ABCMeta
+
     @abstractmethod
     def perimeter_calculation(self):
         self.perimeter = 0
+
     @abstractmethod
     def area_calculation(self):
         self.area = 0
+
     def info(self, lclass):
         a = self.area
         p = self.perimeter

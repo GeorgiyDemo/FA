@@ -1,9 +1,11 @@
-import waysearcher_module
+import datetime
+
 import file_writer_module
-import universal_module
 import texttable
 import ticket_module
-import datetime
+import universal_module
+import waysearcher_module
+
 
 class GetAllInfoClass():
     """
@@ -62,6 +64,7 @@ class GetAllInfoClass():
 
         self.ways_index = ways_index
         self.tickets = tickets
+
 
 class MenuShower():
     def __init__(self, d, file_name):
@@ -224,7 +227,7 @@ class MenuShower():
 
             elif input_value != "0":
                 print("Такого пункта нет в меню")
-    
+
     def buying_ticket_processing(self):
         """
         Управляющая логика для покупки билетов
@@ -257,7 +260,7 @@ class MenuShower():
                     ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1],
                                                  automate_flag)
 
-                
+
 
             else:
                 print("Введенный маршрут не найден")

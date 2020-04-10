@@ -1,6 +1,8 @@
 def display(transport_list):
     for transport in transport_list:
         print(transport.info() + "\n")
+
+
 def search(transport_list):
     search_flag = False
     try:

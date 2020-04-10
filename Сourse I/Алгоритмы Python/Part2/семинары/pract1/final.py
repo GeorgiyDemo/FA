@@ -1,7 +1,7 @@
 from random import randint
-from faker import Faker
-from time import sleep
+
 import texttable
+from faker import Faker
 
 
 class DemkaPrintClass:
@@ -9,12 +9,12 @@ class DemkaPrintClass:
     @staticmethod
     def msg_warning(input_str):
         assert type(input_str) == str
-        print("\033[93m"+input_str+"\033[0m")
+        print("\033[93m" + input_str + "\033[0m")
 
     @staticmethod
     def msg_fail(input_str):
         assert type(input_str) == str
-        print("\033[91m"+input_str+"\033[0m")
+        print("\033[91m" + input_str + "\033[0m")
 
 
 class CockroachClass:
@@ -135,7 +135,7 @@ class RaceClass:
     def __init__(self, user_list):
 
         self.user_list = user_list
-        self.COCKROACH_COUNT = len(user_list)*2
+        self.COCKROACH_COUNT = len(user_list) * 2
         self.COCKROACH_ICON = "🦗"
         self.GRASS_ICON = "_"
         self.ITERATIONS_COUNT = 50
@@ -198,11 +198,10 @@ class RaceClass:
                            "Коэффициент при выигрыше"], ]
 
             for i in range(len(self.cockroach_list)):
-
                 e = self.cockroach_list[i]
-                allowed_cockroach_list.append(i+1)
+                allowed_cockroach_list.append(i + 1)
                 table_list.append(
-                    [str(i+1), e.name, str(e.speed), e.coefficient])
+                    [str(i + 1), e.name, str(e.speed), e.coefficient])
 
             table.add_rows(table_list)
             print(table.draw() + "\n")
@@ -218,11 +217,12 @@ class RaceClass:
                     if selected_cockroach not in allowed_cockroach_list:
                         raise ValueError("Некорректный ввод номера таракана")
 
-                    obj = self.cockroach_list[selected_cockroach-1]
+                    obj = self.cockroach_list[selected_cockroach - 1]
 
                     # Делаем ставку
                     money = float(input(
-                        "Введите вашу ставку на выигрыш '{}', ваш текущий баланс: {} руб.\n-> ".format(obj.name, user.all_money)))
+                        "Введите вашу ставку на выигрыш '{}', ваш текущий баланс: {} руб.\n-> ".format(obj.name,
+                                                                                                       user.all_money)))
 
                     if money <= 0.0:
                         raise ValueError()
@@ -241,7 +241,7 @@ class RaceClass:
 
                 except ValueError as e:
                     DemkaPrintClass.msg_fail(
-                        "Что-то пошло не так при вводе данных\n"+str(e))
+                        "Что-то пошло не так при вводе данных\n" + str(e))
                     continue
 
     def rating_drawer(self):
@@ -259,7 +259,7 @@ class RaceClass:
         for i in range(len(cockroach_list)):
             e = cockroach_list[i]
             table_list.append(
-                [str(i+1), e.name, str(e.current_location), self.getusers_cockroachobj(e)])
+                [str(i + 1), e.name, str(e.current_location), self.getusers_cockroachobj(e)])
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -287,19 +287,19 @@ class RaceClass:
 
         # Распределение на каждого человека
         if len(win_obj_users_list) != 0:
-            koff = lost_money/len(win_obj_users_list)
+            koff = lost_money / len(win_obj_users_list)
             for u in win_obj_users_list:
-
                 # Возвращаем поставленные деньги + коэфф по таракану
                 u.all_money += u.locale_money * winner.coefficient
                 # Высчитываем сколько заработали на коэффе
                 coefficient_diff = (
-                    u.locale_money * winner.coefficient) - u.locale_money
+                                           u.locale_money * winner.coefficient) - u.locale_money
                 # + выигранные у других пользователей
                 u.all_money += koff
                 u.locale_money = 0.0
                 DemkaPrintClass.msg_warning(
-                    "{} получает сумму {} руб!\nСреди них {} руб за коэфф и {} руб от других пользователей\nОбщее кол-во денег: {}".format(u.name, coefficient_diff+koff, coefficient_diff, koff, u.all_money))
+                    "{} получает сумму {} руб!\nСреди них {} руб за коэфф и {} руб от других пользователей\nОбщее кол-во денег: {}".format(
+                        u.name, coefficient_diff + koff, coefficient_diff, koff, u.all_money))
 
         else:
             DemkaPrintClass.msg_warning(
@@ -323,7 +323,6 @@ class RaceClass:
             self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
 
         for i in range(len(self.cockroach_list)):
-
             e = self.cockroach_list[i]
             e.movement_changer()
             self.matrix[i][e.current_location] = self.COCKROACH_ICON
@@ -334,7 +333,7 @@ class RaceClass:
         """
 
         for i in range(len(self.matrix)):
-            print(i+1, end=" ")
+            print(i + 1, end=" ")
             for j in range(len(self.matrix[i])):
                 print('{}'.format(self.matrix[i][j]), end=" ")
             print("|   Таракан '{}'".format(self.cockroach_list[i].name))
@@ -354,7 +353,6 @@ class MainClass:
 
         # Пока у одного из пользователей не 0 руб, то вызываем гонку
         while self.gameover_detector():
-
             self.usermoney_drawer()
             DemkaPrintClass.msg_warning("Нажмите любую кнопку для забега..")
             input()
@@ -384,7 +382,7 @@ class MainClass:
         table_list = [["№ места", "Имя", "Баланс"], ]
 
         for i in range(len(l)):
-            table_list.append([i+1, l[i].name, str(l[i].all_money)+" руб."])
+            table_list.append([i + 1, l[i].name, str(l[i].all_money) + " руб."])
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -398,7 +396,7 @@ class MainClass:
         table = texttable.Texttable()
         table_list = [["Имя", "Баланс"], ]
         for u in self.user_list:
-            table_list.append([u.name, str(u.all_money)+" руб."])
+            table_list.append([u.name, str(u.all_money) + " руб."])
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -419,7 +417,7 @@ class MainClass:
         # Генерируем пользователей
         for i in range(users_count):
             curent_user_name = input(
-                "Введите ФИО пользователя №{} -> ".format(i+1))
+                "Введите ФИО пользователя №{} -> ".format(i + 1))
             user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
 

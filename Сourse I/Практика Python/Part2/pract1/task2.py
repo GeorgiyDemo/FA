@@ -55,14 +55,14 @@ class MainClass:
             if i == 0:
                 locale_c = 1
             else:
-                locale_c += 1    # знаменатель
-            locale_m = -locale_m          # знак
-            locale_p = x_input * locale_p   # числитель
+                locale_c += 1  # знаменатель
+            locale_m = -locale_m  # знак
+            locale_p = x_input * locale_p  # числитель
             locale_result = locale_m * locale_p / locale_c
             print("Итерация №{}, результат: {}".format(i, locale_result))
             final_sum += locale_result
 
-            if abs(locale_m * locale_p / locale_c) < 10**-e_input:
+            if abs(locale_m * locale_p / locale_c) < 10 ** -e_input:
                 self.i = i
                 break
             else:
@@ -88,7 +88,7 @@ class MainClass:
         """
         Метод для точного вычисления с помощью math
         """
-        result = log(1+self.x)
+        result = log(1 + self.x)
         print("Результат с помощью math.log: {}".format(result))
 
 

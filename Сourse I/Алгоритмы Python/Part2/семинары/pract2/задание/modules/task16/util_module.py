@@ -1,6 +1,8 @@
 def display(toy_list):
     for toy in toy_list:
         print(toy.toy_info() + "\n")
+
+
 def search(toy_list):
     # организуйте поиск игрушек заданного цвета.
     try:

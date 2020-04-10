@@ -1,5 +1,8 @@
 import math
+
 from .triangle_class import TriangleClass
+
+
 class TectangularTriangleClass(TriangleClass):
     def __init__(self, a_side, b_side, angle=90):
         self.angle = 90
@@ -9,8 +12,10 @@ class TectangularTriangleClass(TriangleClass):
         self.perimeter_calculation()
         self.area_calculation()
         self.area_calculation()
+
     def area_calculation(self):
         self.area = (1 / 2) * self.a_side * self.b_side
+
     def perimeter_calculation(self):
         a = self.a_side
         b = self.b_side
