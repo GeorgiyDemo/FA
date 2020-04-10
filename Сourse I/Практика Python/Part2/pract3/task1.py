@@ -10,20 +10,10 @@
 Задать матрицы А(22), В(23), С(32), D(21) генератором случайных чисел из интервала [1;10]
 Найти произведения AB, CD, BC, CB.
 """
+
+from copy import deepcopy
 from random import randint
 
-"""
-    def out_result(self):
-        #Вывод результирующией матрицы
-        print("Результирующая матрица:")
-        r = self.result
-        for i in range(len(r)):
-            for j in range(len(r[i])):
-                print('{:4}'.format(r[i][j]), end=" ")
-            print()
-"""
-
-#TODO заранее 1 раз прокалькулировать все параметры, а затем просто к ним обращаться
 class MatrixClass():
     """Класс матрицы"""
     
@@ -36,12 +26,12 @@ class MatrixClass():
         self.generation_way = generation_way
         #Генерируем новую матрицу
         if matrix_list == None:
-            self.matrix = []
+            self._matrix = []
             self._matrix_range_input()
             self._matrix_values_input()
         #Выставляем текущую матрицу
         else:
-            self.matrix = matrix_list
+            self._matrix = matrix_list
             self.n = len(matrix_list)
             self.m = len(matrix_list[0])
 
@@ -52,7 +42,7 @@ class MatrixClass():
         while boolean_flag:
             n = input("Введите кол-во строк в матрице -> ")
             m = input("Введите кол-во столбцов в матрице -> ")
-            if self.digital_checker(n) and self.digital_checker(m):
+            if self._digital_checker(n) and self._digital_checker(m):
                 boolean_flag = False
                 self.n, self.m = int(n), int(m)
             else:
@@ -63,7 +53,7 @@ class MatrixClass():
         allowed_ways = ["1","2"]
         n = self.n
         m = self.m
-        matrix = self.matrix
+        matrix = self._matrix
 
         if self.generation_way == None:
             boolean_flag = True
@@ -94,18 +84,18 @@ class MatrixClass():
                     boolean_flag = True
                     while boolean_flag:
                         e = input("Введите элемент [{}][{}] -> ".format(i + 1, j + 1))
-                        if self.digital_checker(e):
+                        if self._digital_checker(e):
                             boolean_flag = False
                             buf_matrix.append(float(e))
                         else:
                             print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
 
                 matrix.append(buf_matrix)
-        self.matrix = matrix
+        self._matrix = matrix
 
     def __str__(self):
         """Вывод матрицы"""
-        matrix = self.matrix
+        matrix = self._matrix
         return '\n'+'\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
 
 
@@ -115,7 +105,7 @@ class MatrixClass():
         if self.n != m2.m:
             raise ValueError("Кол-во столбцов матрицы != кол-ву строк")
 
-        a = self.matrix
+        a = self._matrix
         b = m2.matrix
         c = []
 
@@ -131,7 +121,7 @@ class MatrixClass():
         """Сложение матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        c = [list(map(lambda x,y: x+y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [list(map(lambda x,y: x+y, self._matrix[i], m2.matrix[i])) for i in range(self.n)]
         return MatrixClass(matrix_list=c)
 
 
@@ -139,30 +129,77 @@ class MatrixClass():
         """Вычитание матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        c = [list(map(lambda x,y: x-y, self.matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [list(map(lambda x,y: x-y, self._matrix[i], m2.matrix[i])) for i in range(self.n)]
         return MatrixClass(matrix_list=c)
 
-    #TODO
-    @property
-    def matrix_transposed(self):
+    def _matrix_transposed(self):
         """Вычисление транспонированной матрицы"""
-        self.matrix
-        return 
-        pass
+        matrix = self._matrix
+        return MatrixClass(matrix_list=list(zip(*matrix)))
     
-    #TODO
-    @property
-    def matrix_determinant(self):
+    def _matrix_determinant(self, A=None, total=0):
         """Вычисление определителя матрицы"""
-        pass
-    
-    #TODO
-    @property
-    def matrix_inverse(self):
-        """Вычисление обратной матрицы (сделать проверку умножением на исходную матрицу)"""
-        pass
+        #Если первая итерация
+        if A == None:
+            A = self._matrix
 
-    def digital_checker(self, number):
+        indices = list(range(len(A)))
+        
+        #Когда доехали до матрицы 2 на 2
+        if len(A) == 2 and len(A[0]) == 2:
+            val = A[0][0] * A[1][1] - A[1][0] * A[0][1]
+            return val
+    
+        #Определяем подматрицу
+        for fc in indices: 
+
+            As = deepcopy(A)
+            As = As[1:] #Удаляем первую строку
+            height = len(As)
+    
+            for i in range(height): 
+
+                As[i] = As[i][0:fc] + As[i][fc+1:] 
+    
+            sign = (-1) ** (fc % 2)
+            sub_det = self._matrix_determinant(As)
+            total += sign * A[0][fc] * sub_det 
+    
+        return total
+
+    def _matrix_minor(self,i,j):
+        """Вычисление минора матрицы"""
+        m = self._matrix
+        return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
+
+    def _matrix_inverse(self):
+        """Вычисление обратной матрицы (сделать проверку умножением на исходную матрицу)"""
+        m = self._matrix
+        #Определитель матрицы
+        determinant = self._matrix_determinant()
+        
+        #Вычисления для матрицы 2x2
+        if len(m) == 2:
+            return MatrixClass(matrix_list=[[m[1][1]/determinant, -1*m[0][1]/determinant],[-1*m[1][0]/determinant, m[0][0]/determinant]])
+
+        #Результат
+        result_matrix = []
+        for r in range(len(m)):
+            cofactorRow = []
+            for c in range(len(m)):
+                minor = self._matrix_minor(r,c)
+                cofactorRow.append(((-1)**(r+c)) * self._matrix_determinant(minor))
+            result_matrix.append(cofactorRow)
+
+        #Транспонированная матрица
+        result_matrix = list(map(list,zip(*result_matrix)))
+
+        for r in range(len(result_matrix)):
+            for c in range(len(result_matrix)):
+                result_matrix[r][c] = result_matrix[r][c]/determinant
+        return MatrixClass(matrix_list=result_matrix)
+
+    def _digital_checker(self, number):
         """Метод для проверки элемента на число"""
         try:
             float(number)
@@ -170,18 +207,45 @@ class MatrixClass():
         except ValueError:
             return False
 
+    @property
+    def matrix(self):
+        return self._matrix
+
+    @property
+    def matrix_transposed(self):
+        """Свойство для транспонированной матрицы"""
+        return self._matrix_transposed()
+    
+    @property
+    def matrix_determinant(self):
+        """Свойство для определителя матрицы"""
+        return self._matrix_determinant()
+    
+    @property
+    def matrix_inverse(self):
+        """Свойство для обратной матрицы"""
+        return self._matrix_inverse()
+
 class MainClass():
     def __init__(self):
         self.processing()
     
     def processing(self):
         m1 = MatrixClass(1)
-        m2 = MatrixClass(1)
-        print(m1)
-        print(m2)
-        print(m1 - m2)
-        print(m1 + m2)
-        print(m1 * m2)
+        #m2 = MatrixClass(1)
+        r = m1 * m1.matrix_inverse
+        print(MatrixClass(matrix_list=[[round(y,3) for y in x] for x in r.matrix]))
+        #print(m1.matrix_determinant())
+
+
+       
+
+        
+
+        #print(m2)
+        #print(m1 - m2)
+        #print(m1 + m2)
+        #print(m1 * m2)
 
 if __name__ == "__main__":
     MainClass()
