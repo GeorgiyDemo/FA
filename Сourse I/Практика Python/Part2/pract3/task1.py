@@ -12,6 +12,7 @@
 """
 from DEMKAMatrixClass import MatrixClass
 
+
 class MainClass():
     def __init__(self):
         self.processing()

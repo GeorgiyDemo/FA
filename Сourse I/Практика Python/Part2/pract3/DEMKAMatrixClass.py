@@ -3,6 +3,7 @@
 from copy import deepcopy
 from random import randint
 
+
 class MatrixClass():
     """Класс матрицы"""
 
@@ -13,17 +14,18 @@ class MatrixClass():
         """
 
         self.generation_way = generation_way
+        self.n, self.m = n, m
         # Генерируем новую матрицу
         if matrix_list == None:
             self._matrix = []
-            self.n, self.m = n, m
             self._matrix_range_input()
             self._matrix_values_input()
         # Выставляем текущую матрицу
         else:
             self._matrix = matrix_list
-            self.n = len(matrix_list)
-            self.m = len(matrix_list[0])
+            if self.n == None and self.m == None:
+                self.n = len(matrix_list)
+                self.m = len(matrix_list[0])
 
     def _matrix_range_input(self):
         """Ввод данных матрицы в зависимости от флага"""
@@ -94,7 +96,7 @@ class MatrixClass():
     def __mul__(self, m2):
         """Умножение матриц"""
 
-        if self.n != m2.m:
+        if self.m != m2.n:
             raise ValueError("Кол-во столбцов матрицы != кол-ву строк")
 
         a = self._matrix
