@@ -6,6 +6,7 @@
 4)	Выставление итоговой оценки.
 Объект класса должен содержать поля для сохранения имени студента и истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
+from functools import reduce
 import datetime
 
 class Work:
@@ -120,7 +121,6 @@ class Work:
         if date > self.date_deadline:
             diff = date-self.date_deadline
             penalty_points = int(diff.days/7)
-            print("penalty_points", penalty_points)
             
             #Если принесли работу так поздно, что потеряли все, то 0 баллов
             if penalty_points > points:
@@ -146,7 +146,7 @@ class Certification:
         self._points = 0
         self.work_obj_list = []
 
-    def work_add(self, work_obj):
+    def add(self, work_obj):
         """Метод для добавления работы к промежуточной аттестации"""
         if not isinstance(work_obj, Work):
             raise ValueError("Объект не класса Work!")
@@ -171,11 +171,13 @@ class Certification:
         self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата начала:"] = self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
-        d["Общее кол-во баллов:"] = self._points
+        d["Общее кол-во баллов:"] = reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]) if len(self.work_obj_list) != 0 else 0
         d["Общее кол-во работ:"] = len(self.work_obj_list)
+        out_str = "\n"+self.name+"\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
         
-        out_str = self.name+"\n"+"\n".join([key+" "+str(value) for key, value in d.items()])+"Названия работ, из которых состоит:"
-        out_str += "\n".join([w.name for w in self.work_obj_list])
+        if len(self.work_obj_list) != 0:
+            out_str += "\nНазвания работ, из которых состоит:\n"
+            out_str += "\n".join([w.name for w in self.work_obj_list])
 
         return out_str
     
@@ -235,13 +237,15 @@ def main():
     В конце, в методе получения итоговой оценки, надо понять, что 
     """
     l = []
-    for _ in range(6):
-        l.append(Work("№1 Рекурсия", "практика", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
-    
-    [print(e) for e in l]
+    for i in range(3):
+        l.append(Work("№"+str(i+1), "практика", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
 
+    #[print(e) for e in l]
     certification_obj = Certification("Промежуточная аттестация 1")
-    print(certification_obj.points)
+    print(certification_obj)
+    [certification_obj.add(work) for work in l]
+    print(certification_obj)
+    #print(certification_obj.points)
     
 
 
