@@ -65,8 +65,12 @@ class Work:
         self.work_type = work_type
         self.work_completed = work_completed
         self.work_protected = work_protected
+
+        #Если есть все данные и можно считать, что работа уже сделана
+        if all(map(lambda x: False if x == None else True, [self.date_completed, self.date_protected])):
+            self.set_protection(self.date_protected.strftime("%d.%m.%Y"))
     
-    def info(self):
+    def __str__(self):
         """Информация о работе"""
 
         sub_d = {True : "✅",False : "❌",}
@@ -84,19 +88,20 @@ class Work:
     def set_complete(self, date):
         """Осуществление сдачи работы"""
 
+        #Проверка на валидные данные
         try:
             date = datetime.datetime.strptime(date, "%d.%m.%Y")
         except ValueError:
             print("Некорректная дата сдачи работы!")
             return
 
-        #Проверка на валидные данные
         self.work_completed = True
         self.date_completed = date
 
     def set_protection(self, date):
         """"Осуществление защиты работы и выставление баллов за работу"""
         
+        #Проверка на валидные данные
         try:
             date = datetime.datetime.strptime(date, "%d.%m.%Y")
         except ValueError:
@@ -113,8 +118,9 @@ class Work:
 
         #Вычисление коэффа понижения кол-ва баллов. Каждая неделя - 1 балл
         if date > self.date_deadline:
-            diff = self.date_deadline-date
+            diff = date-self.date_deadline
             penalty_points = int(diff.days/7)
+            print("penalty_points", penalty_points)
             
             #Если принесли работу так поздно, что потеряли все, то 0 баллов
             if penalty_points > points:
@@ -126,24 +132,62 @@ class Certification:
     """
     Класс промежуточной аттестации (по логике 2 промежуточных = полная аттестация за семестр)
     
-    - Добавление баллов по практической        <- это все один метод, который в зависимости от типа, добавляет объект работы в list
-    - Добавление баллов по контрольной
-    - Добавление баллов по тестированию
+    - Добавление работы
+    - Информация 
+    -
     """
-    points_counter = 0
 
     def __init__(self, name):
+        #Название аттестации
+        self.name = name
+        #Динамическое изменение временных промежутков на основе объекта Work
+        self.date_begin = None
+        self.date_end = None
+        self._points = 0
         self.work_obj_list = []
 
-    
     def work_add(self, work_obj):
         """Метод для добавления работы к промежуточной аттестации"""
         if not isinstance(work_obj, Work):
             raise ValueError("Объект не класса Work!")
+
+        date_end, date_begin = self.date_end, self.date_begin
         #Добавление работы к промежуточной аттестации
         self.work_obj_list.append(work_obj)
+        
+        #Расширение диапазона дат
+        if date_end == None or work_obj.date_deadline > date_end:
+            date_end = work_obj.date_deadline
+        
+        if date_begin == None or work_obj.date_deadline < date_begin:
+            date_begin = work_obj.date_deadline
 
+        self.date_end, self.date_begin = date_end, date_begin
 
+    def __str__(self):
+        """Информация о промежуточной аттестации"""
+        
+        d = {}
+        self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
+        d["Дата начала:"] = self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
+        d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
+        d["Общее кол-во баллов:"] = self._points
+        d["Общее кол-во работ:"] = len(self.work_obj_list)
+        
+        out_str = self.name+"\n"+"\n".join([key+" "+str(value) for key, value in d.items()])+"Названия работ, из которых состоит:"
+        out_str += "\n".join([w.name for w in self.work_obj_list])
+
+        return out_str
+    
+    @property
+    def points(self):
+
+        #TODO проверка на то, чтоб была одна контрольная и один тест!
+
+        #Если кол-во работ != необходимому из логики подсчета баллов - ошибка получения
+        if len(self.work_obj_list) != Work.WORK_COUNT:
+            raise ValueError("Количество работ больше/меньше необходимого!")
+        return self._points
 
 class Student:
     """
@@ -167,7 +211,7 @@ class Student:
     def __init__(self, name, group, course):
         pass
 
-    def info(self):
+    def __str__(self):
         """Информация о студенте"""
         pass
 
@@ -190,12 +234,15 @@ def main():
 
     В конце, в методе получения итоговой оценки, надо понять, что 
     """
-    obj = Work("№1 Рекурсия", "практика", "20.03.2020")
-    print(obj.info())
-    obj.set_complete("19.03.2020")
-    print(obj.info())
-    obj.set_protection("21.03.2020")
-    print(obj.info())
+    l = []
+    for _ in range(6):
+        l.append(Work("№1 Рекурсия", "практика", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
+    
+    [print(e) for e in l]
+
+    certification_obj = Certification("Промежуточная аттестация 1")
+    print(certification_obj.points)
+    
 
 
 if __name__ == "__main__":
