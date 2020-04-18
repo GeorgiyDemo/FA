@@ -12,9 +12,7 @@ import datetime
 class Work:
     """
     Класс работы
-    
-    При создании работы уже подразумевается то, что она выполнена
-    !! К работе не относится экзамен
+    [!] К работе не относится экзамен
     """
 
     WORK_COUNT = 6 #кол-во работ в полусеместре + 1 контрольная + 1 тестирование
@@ -31,7 +29,6 @@ class Work:
         - date_completed - дата завершения сдачи работы
         - work_protected - защита работы (True/False)
         - date_protected - дата завершения защиты работы
-
         """
         
         #Фильтрация входных данных
@@ -130,11 +127,7 @@ class Work:
 
 class Certification:
     """
-    Класс промежуточной аттестации (по логике 2 промежуточных = полная аттестация за семестр)
-    
-    - Добавление работы
-    - Информация 
-    -
+    Класс промежуточной аттестации
     """
 
     def __init__(self, name):
@@ -171,7 +164,7 @@ class Certification:
         self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата начала:"] = self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
-        d["Общее кол-во баллов:"] = reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]) if len(self.work_obj_list) != 0 else 0
+        d["Общее кол-во баллов:"] = round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1) if len(self.work_obj_list) != 0 else 0
         d["Общее кол-во работ:"] = len(self.work_obj_list)
         out_str = "\n"+self.name+"\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
         
@@ -184,20 +177,22 @@ class Certification:
     @property
     def points(self):
 
-        #TODO проверка на то, чтоб была одна контрольная и один тест!
-
         #Если кол-во работ != необходимому из логики подсчета баллов - ошибка получения
         if len(self.work_obj_list) != Work.WORK_COUNT:
             raise ValueError("Количество работ больше/меньше необходимого!")
-        return self._points
+        
+        #Чтоб присутствовала контрольная и тестирование
+        if len([e for e in self.work_obj_list if e.work_type == "контрольная"]) == 0 or len([e for e in self.work_obj_list if e.work_type == "тестирование"]) == 0:
+            raise ValueError("Отсутствие работ с типом 'контрольная'/'тестирование'")
+
+        return round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1)
 
 class Student:
     """
     Класс студент
     У студента есть:
-    - практические
-    - контрольные
-    - тестирование (тесты)
+    - 2 объекта полусеместра
+    - экзамен
     
     Методы:
     - Добавление полусеместра
@@ -206,20 +201,47 @@ class Student:
 
     - Добавление баллов по экзамену
     - Получение общего кол-ва баллов
-    - Получение статиситка по кол-ву работ
+    - Получение статистики по кол-ву работ
     - Получение итоговой оценки
 
     """
     def __init__(self, name, group, course):
+        self.name = name
+        self.group = group
+        self.course = course
+        #Объекты аттестаций
+        self.cert_obj_list = []
         pass
 
     def __str__(self):
         """Информация о студенте"""
+        #Имя
+        #Группа
+        #Курс
+        pass
+    
+    def add_certification(self, cert_obj):
+        """Метод добавления аттестации"""
+        if not isinstance(cert_obj, Certification):
+            raise ValueError("Объект не класса Certification!")
+        self.cert_obj_list.append(cert_obj)
+
+        #Если длинна 2, то вызов self.certification_patcher
+    
+    def certification_patcher(self):
+        """Метод для валидации двух аттестаций, чтоб они превратились в нормальный такой полусеместр"""
+        pass
+    
+    def add_exam(self, points):
+        """Добавление баллов за экзамен"""
+        if 0 < points < 60:
+            pass
+    
+    def get_mark(self):
+        """Получение оценки студента"""
         pass
 
-    def add_certification(self):
-        """Метод добавления аттестации"""
-        pass
+
 
 def main():
     """
@@ -237,14 +259,16 @@ def main():
     В конце, в методе получения итоговой оценки, надо понять, что 
     """
     l = []
-    for i in range(3):
+    for i in range(4):
         l.append(Work("№"+str(i+1), "практика", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
-
+    
     #[print(e) for e in l]
     certification_obj = Certification("Промежуточная аттестация 1")
-    print(certification_obj)
     [certification_obj.add(work) for work in l]
+    certification_obj.add(Work("КОНТРОЛЬНАЯ", "контрольная", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
+    certification_obj.add(Work("тестирование", "тестирование", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
     print(certification_obj)
+    print(certification_obj.points)
     #print(certification_obj.points)
     
 
