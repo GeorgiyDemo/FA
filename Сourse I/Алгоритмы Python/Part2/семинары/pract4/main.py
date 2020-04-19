@@ -8,6 +8,8 @@
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
 
+#TODO Сохранение в sqlite
+import webbrowser
 from functools import reduce
 import datetime
 class UtilClass:
@@ -242,9 +244,14 @@ class StudentClass:
 
         self.datavalidator_flag = False
         self.exam_obj = None
+
         #Объекты аттестаций
         self.cert_obj_list = []
-
+        
+        #Словарь ассоциации кол-ва баллов и оценки
+        self.mark_dict = {}
+        [self.mark_dict.update(e) for e in [{v1:v for v1 in rrange} for rrange,v in zip([range(0,51), range(51,70), range(70,85),range(85, 101)],[2,3,4,5])]]
+    
     #TODO
     def all_info(self):
         """Информация о всех подобъектах объекта класса студента"""
@@ -270,7 +277,7 @@ class StudentClass:
         d["Курс:"] = self.course
         d["Полные ли данные:"] = UtilClass.boolean_formater(self.datavalidator_flag)
         d["Количество баллов:"] = self._points
-        d["Оценка:"] = 
+        d["Оценка:"] = self.get_mark(True)
 
         return "\033[93m\n*Информация о студенте*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
@@ -314,14 +321,17 @@ class StudentClass:
         self.exam_obj = exam_obj
         self.data_validator()
 
-    @property
-    def mark(self):
+    def get_mark(self, ignore=False):
         """Получение оценки студента"""
-        if not self.datavalidator_flag:
+        if not self.datavalidator_flag and ignore == False:
             raise ValueError("Невозможно получить итоговую оценку студента! Недостаточно данных")
         d = {}
         [d.update(e) for e in [{v1:v for v1 in rrange} for rrange,v in zip([range(0,51), range(51,70), range(70,85),range(85, 101)],[2,3,4,5])]]
         return d[int(self._points)]
+    
+    @property
+    def mark(self):
+        return self.get_mark()
 
     @property
     def points(self):
@@ -343,20 +353,113 @@ def main():
     Повторяем сколько надо
     """
 
+    #Найс ассоциация, но мне нравки
+    boolean_dict = {
+        "Да" : True,
+        "ДА" : True,
+        "Нет" : False,
+        "Не" : False,
+        "нет" : False,
+        "не" : False,
+    }
+
+    work_count = int(input("Введите количество работ за половину семестра (кол-во работ в 1 и 2 половине семестра равно) -> "))
+    
+    if work_count < 3:
+        print("Слишком мало работ, ты что, в Синергии?")
+        webbrowser.open('https://synergy.ru/', new=2)
+        return
+
+
+    WorkClass.WORK_COUNT = work_count
+    students_count = int(input("Введите количество студентов для добавления -> "))
+
+    stud_obj_list = []
+    for i in range(students_count):
+        print("*Добавляем студента №{}*".format(i+1))
+        
+        s_name = input("Введите ФИО студента -> ")
+        s_group = input("Введите группу студента -> ")
+        s_course = input("Введите курс студента -> ")
+
+        student_obj = StudentClass(s_name, s_group, s_course)
+        cert_obj_list = []
+
+        for j in range(2):
+            print("\nДобавляем промежуточную аттестацию №{}".format(j+1))
+            cert_obj = CertificationClass("Промежуточная аттестация №{}".format(j+1))
+
+            work_obj_list = []
+            for k in range(work_count):
+
+                bool_flag = True
+                while bool_flag:
+                    try:
+
+                        print("\n*Добавляем работу №{}*".format(k+1))
+                        w_name = input("Введите название работы -> ")
+                        w_type = input("Введите тип работы (практика/контрольная/тестирование) -> ")
+                        w_deadline = input("Введите дату дедлайна работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
+                        w_completed = boolean_dict[input("Работа завершена? (Да/Нет) -> ")]
+                        w_date_completed, w_date_protected = None, None
+                        if w_completed:
+                            w_date_completed = input("Введите дату завершения работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
+                        w_protected = boolean_dict[input("Работа защищена? (Да/Нет) -> ")]
+                        if w_protected:
+                            w_date_protected = input("Введите дату защиты работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
+
+                        work_obj = WorkClass(w_name, w_type, w_deadline, w_completed, w_date_completed, w_protected, w_date_protected)
+                        work_obj_list.append(work_obj)
+                        
+                        bool_flag = False
+
+                    except Exception as e:
+                        print("Произошла ошибка:",e,"\nПовторите весь ввод данных по текущей работе!")
+            
+            #Добавляем работы к промежуточной аттестации
+            [cert_obj.add(w) for w in work_obj_list]
+            
+            #Добавляем промежуточную аттестацию к промежуточным аттестациям
+            cert_obj_list.append(cert_obj)
+        
+        #Добавляем аттестации студенту
+        [student_obj.add_certification(cert) for cert in cert_obj_list]
+
+        #Экзамен?
+        
+        bool_flag = True
+        while bool_flag:
+            try:
+                s_exam = UtilClass.boolean_formater(input("{} сдавал экзамен? (Да/Нет) -> ".format(s_name)))
+                if s_exam:
+                    s_name = input("Введите полное название экзамена ->")
+                    s_points = int(input("Введите кол-во баллов на экзамене (макс. 60) -> "))
+                    exam_obj = ExamClass(s_name, s_points)
+                    student_obj.add_exam(exam_obj)
+                    
+                bool_flag = False
+            except Exception as e:
+                print("Произошла ошибка:",e,"\nПовторите ввод данных!")
+
+        #Добавляем студента в список студентов
+        stud_obj_list.append(student_obj)
+
+
+
+
+
+    """
+
     l = []
     for i in range(4):
         l.append(WorkClass("№"+str(i+1), "практика", "24.03.2020",True, "18.03.2020"))
-    
-
     certification_obj1 = CertificationClass("Промежуточная аттестация 1")
     [certification_obj1.add(work) for work in l]
     certification_obj1.add(WorkClass("контрольная 1", "контрольная", "27.03.2020",True, "18.03.2020", True, "28.03.2020"))
     certification_obj1.add(WorkClass("тестирование 1", "тестирование", "27.03.2020",True, "18.03.2020", True, "29.03.2020"))
-
     l = []
     for i in range(4):
         l.append(WorkClass("№"+str(i+1), "практика", "18.06.2020",True, "18.06.2020", True, "18.06.2020"))
-    
     certification_obj2 = CertificationClass("Промежуточная аттестация 2")
     [certification_obj2.add(work) for work in l]
     certification_obj2.add(WorkClass("контрольная 2", "контрольная", "20.07.2020",True, "18.05.2020", True, "30.06.2020"))
@@ -370,6 +473,8 @@ def main():
     student_obj.all_info()
     print(student_obj.mark)
     print(student_obj.points)
+    """
+    #TODO Надо статистику в Excel по каждому студенту
 
 if __name__ == "__main__":
     main()
