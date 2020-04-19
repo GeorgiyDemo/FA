@@ -8,12 +8,15 @@
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
 
+#TODO Перезаполнить БД
 #TODO Вывод данных в Excel
+#TODO Интерфейс для изменения данных студентов?
+#TODO Удаление студентов
 
 from texttable import Texttable
 import sqlite_module
 import webbrowser
-from task_module import WorkClass, ExamClass, StudentClass, CertificationClass
+from task_module import WorkClass, ExamClass, StudentClass, CertificationClass, UtilClass
 import xlsx_module
 
 class MainClass():
@@ -28,7 +31,7 @@ class MainClass():
         }
 
         while True:
-            print("\nЧто вы хотите сделать?\n1) Просмотр информации о студентах\n2) Добавление новых данных студентов\n3) Удаление данных студентов\n4) Формирование отчета по студентам\n5) Перегрузка данных в БД\n0) Завершение работы программы")
+            print("\nЧто вы хотите сделать?\n1. Просмотр информации о студентах\n2. Добавление новых данных студентов\n3. Удаление данных студентов\n4. Формирование отчета по студентам\n5. Перегрузка данных в БД\n0. Завершение работы программы")
             method_number = int(input("-> "))
             if method_number in methods_dict:
                 methods_dict[method_number]()
@@ -53,14 +56,18 @@ class MainClass():
         
         table = Texttable()
         table.set_deco(Texttable.HEADER)
-
         table_list = [["№", "ФИО", "Группа", "Курс", "Баллы", "Оценка"]]
         table_list.extend([[str(i+1), stud_obj_list[i].name, stud_obj_list[i].group, str(stud_obj_list[i].course), str(round(stud_obj_list[i].points,2)), str(stud_obj_list[i].mark)] for i in range(len(stud_obj_list))])
         table.add_rows(table_list)
-        print(table.draw() + "\n")
+        print(table.draw())
 
-        print(stud_obj_list)
-
+        s_number = input("Введите номер студента для вывода информации о нём -> ")
+        if UtilClass.is_digital(s_number) and int(s_number) in [i+1 for i in range(0,len(stud_obj_list))]:
+            stud_obj_list[int(s_number)-1].all_info()
+        else:
+            print("Некорректный ввод, выход в главное меню..")
+    
+    #TODO
     def remove_students(self):
         """Удаление студентов"""
         pass
@@ -68,14 +75,6 @@ class MainClass():
     def set_students(self):
         """Добавление новой информации"""
         #Найс ассоциация, но мне нравки
-        boolean_dict = {
-            "Да" : True,
-            "ДА" : True,
-            "Нет" : False,
-            "Не" : False,
-            "нет" : False,
-            "не" : False,
-        }
 
         work_count = int(input("Введите количество работ за половину семестра (кол-во работ в 1 и 2 половине семестра равно) -> "))
         
@@ -112,12 +111,12 @@ class MainClass():
                             w_name = input("Введите название работы -> ")
                             w_type = input("Введите тип работы (практика/контрольная/тестирование) -> ")
                             w_deadline = input("Введите дату дедлайна работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
-                            w_completed = boolean_dict[input("Работа завершена? (Да/Нет) -> ")]
+                            w_completed = UtilClass.boolean_dict[input("Работа завершена? (Да/Нет) -> ")]
                             w_date_completed, w_date_protected = None, None
                             w_protected = False
                             if w_completed:
                                 w_date_completed = input("Введите дату завершения работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
-                                w_protected = boolean_dict[input("Работа защищена? (Да/Нет) -> ")]
+                                w_protected = UtilClass.boolean_dict[input("Работа защищена? (Да/Нет) -> ")]
                                 if w_protected:
                                     w_date_protected = input("Введите дату защиты работы в формате ДД.ММ.ГГГГ (пример: 01.01.2020) -> ")
 
@@ -142,7 +141,7 @@ class MainClass():
             bool_flag = True
             while bool_flag:
                 try:
-                    s_exam = boolean_dict[(input("{} сдавал экзамен? (Да/Нет) -> ".format(s_name)))]
+                    s_exam = UtilClass.boolean_dict[(input("{} сдавал экзамен? (Да/Нет) -> ".format(s_name)))]
                     if s_exam:
                         s_name = input("Введите полное название экзамена ->")
                         s_points = int(input("Введите кол-во баллов на экзамене (макс. 60) -> "))

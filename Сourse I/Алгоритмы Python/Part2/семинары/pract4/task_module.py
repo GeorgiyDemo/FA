@@ -1,10 +1,28 @@
 import datetime
 
 class UtilClass:
+
+    boolean_dict = {
+        "Да" : True,
+        "ДА" : True,
+        "Нет" : False,
+        "Не" : False,
+        "нет" : False,
+        "не" : False,
+    }
+
     @staticmethod
     def boolean_formater(flag):
         sub_d = {True : "✅",False : "❌",}
         return sub_d[flag]
+    
+    @staticmethod
+    def is_digital(data):
+        try:
+            float(data)
+            return True
+        except ValueError:
+            return False
 
 class WorkClass:
     """
