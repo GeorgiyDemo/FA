@@ -20,6 +20,20 @@ class SQLiteClass:
         conn.commit()
         conn.close()
 
+    def drop_tables(self):
+        """Удаление всех данных с таблиц в БД"""
+
+        conn = sqlite3.connect(self.dbname)
+        c = conn.cursor()
+
+        c.execute("DELETE FROM student")
+        c.execute("DELETE FROM exam")
+        c.execute("DELETE FROM certification")
+        c.execute("DELETE FROM work")
+
+        conn.commit()
+        conn.close()
+
     def get_students(self):
         """Получение всех объектов студентов из таблицы"""
         
