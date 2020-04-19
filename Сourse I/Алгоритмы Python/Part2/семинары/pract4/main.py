@@ -187,6 +187,25 @@ class Certification:
 
         return round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1)
 
+class ExamClass:
+    """Класс экзамена"""
+    def __init__(self, name, points):
+        self.name = name
+        if 0 <= points <= 60:
+            self._points = points
+        else:
+            raise ValueError("Некорректные данные баллов по экзамену!")
+    
+    @property
+    def points(self):
+        return self._points
+    
+    @points.setter
+    def points(self, p):
+        if not isinstance(p, int) or 0 <= points <= 60:
+            raise ValueError("Некорректные данные баллов по экзамену!")
+        self._points = p
+    
 class Student:
     """
     Класс студент
@@ -196,50 +215,87 @@ class Student:
     
     Методы:
     - Добавление полусеместра
-    - Добавление второго полусеместра
     - Добавление экзамена
 
-    - Добавление баллов по экзамену
     - Получение общего кол-ва баллов
     - Получение статистики по кол-ву работ
     - Получение итоговой оценки
-
     """
     def __init__(self, name, group, course):
         self.name = name
         self.group = group
         self.course = course
+        self._points = 0
+
+        self.datavalidator_flag = False
+        self.exam_obj = None
         #Объекты аттестаций
         self.cert_obj_list = []
-        pass
 
+    #TODO
     def __str__(self):
         """Информация о студенте"""
-        #Имя
-        #Группа
-        #Курс
-        pass
+        d = {}
+        d["ФИО:"] = self.name
+        d["Группа:"] = self.group
+        d["Курс:"] = self.course
+        d["Количество баллов:"] = self._points
+        d["Полные ли данные:"] = self.datavalidator_flag
+        return "*Информация о студенте*\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
+
     
     def add_certification(self, cert_obj):
         """Метод добавления аттестации"""
         if not isinstance(cert_obj, Certification):
             raise ValueError("Объект не класса Certification!")
-        self.cert_obj_list.append(cert_obj)
+        #Проверка на корректность валидации
+        try:
+            self._points += cert_obj._points
+            self.cert_obj_list.append(cert_obj)
+        except ValueError as e:
+            print(e)
+            return
 
-        #Если длинна 2, то вызов self.certification_patcher
+        if len(self.cert_obj_list) == 2:
+            self.certification_patcher()
+            self.data_validator()
     
     def certification_patcher(self):
-        """Метод для валидации двух аттестаций, чтоб они превратились в нормальный такой полусеместр"""
-        pass
+        """Метод для синхрона дат двух аттестаций, чтоб они превратились в полноценный полусеместр"""
+        cert1, cert2 = self.cert_obj_list
+        if cert1.date_end > cert2.date_begin:
+            cert2.date_begin = cert1.date_end
+        elif cert1.date_end < cert2.date_begin:
+            cert1.date_end = cert2.date_begin
     
-    def add_exam(self, points):
+    def data_validator(self):
+        """Проверка на полноту всех данных текущего объекта класса"""
+        if self.exam_obj != None and len(self.cert_obj_list) == 2:
+            self.datavalidator_flag = True
+        else:
+            self.datavalidator_flag = False
+
+    def add_exam(self, exam_obj):
         """Добавление баллов за экзамен"""
-        if 0 < points < 60:
-            pass
-    
-    def get_mark(self):
+        if not isinstance(exam_obj, ExamClass):
+            raise ValueError("Объект не класса ExamClass!")
+        self._points += exam_obj._points
+        self.exam_obj = exam_obj
+        self.data_validator()
+
+    #TODO
+    @property
+    def mark(self):
         """Получение оценки студента"""
-        pass
+        if not self.datavalidator_flag:
+            raise ValueError("Невозможно получить итоговую оценку студента! Недостаточно данных")
+        return "ОЦЕНКА"
+    
+    @property
+    def points(self):
+        if not self.datavalidator_flag:
+            raise ValueError("Невозможно получить итоговые баллы студента! Недостаточно данных")
+        return self._points
 
 
 
@@ -268,8 +324,13 @@ def main():
     certification_obj.add(Work("КОНТРОЛЬНАЯ", "контрольная", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
     certification_obj.add(Work("тестирование", "тестирование", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
     print(certification_obj)
-    print(certification_obj.points)
-    #print(certification_obj.points)
+
+    exam_obj = ExamClass("Экзамен", 30)
+    student_obj = Student("Кот","ПИ19-4",1)
+    student_obj.add_certification(certification_obj)
+    student_obj.add_certification(certification_obj)
+    student_obj.add_exam(exam_obj)
+    print(student_obj)
     
 
 
