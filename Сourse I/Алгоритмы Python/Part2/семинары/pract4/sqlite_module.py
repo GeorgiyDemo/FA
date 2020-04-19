@@ -1,8 +1,6 @@
 import sqlite3
+from task_module import WorkClass, ExamClass, StudentClass, CertificationClass
 
-#
-from main import StudentClass
-#
 class SQLiteClass:
     def __init__(self):
         
@@ -19,15 +17,52 @@ class SQLiteClass:
         #Работа
         c.execute("CREATE TABLE IF NOT EXISTS work (cert_id integer, student_id integer, name text, points real, work_type text, date_deadline text, date_completed text, date_protected text, work_completed integer, work_protected integer)")
 
-
-        # Save (commit) the changes
         conn.commit()
         conn.close()
 
-    #TODO
     def get_students(self):
         """Получение всех объектов студентов из таблицы"""
-        pass
+        
+        student_obj_list = []
+        conn = sqlite3.connect(self.dbname)
+        c = conn.cursor()
+
+        #По каждому студенту цикл
+        for student_args in list(c.execute("SELECT student_id, name, groups, course FROM student")):
+            current_studentid, *s  = student_args
+            student_obj = StudentClass(*s)
+
+            #Получаем экзамены студента
+            exam_args = list(c.execute("SELECT name, points FROM exam WHERE student_id="+str(current_studentid)))
+            if len(exam_args) != 0:
+                student_obj.add_exam(ExamClass(*exam_args[0]))
+
+            cert_obj_list = []
+            #Получаем аттестации студента
+            for certification in list(c.execute("SELECT cert_id, name FROM certification WHERE student_id="+str(current_studentid))):
+                
+                current_certid, name = certification
+                cert_obj = CertificationClass(name)
+
+                #Получаем работу студента
+                for work in list(c.execute("SELECT * FROM work WHERE cert_id="+str(current_certid))):
+                    d = dict(zip(["cert_id", "student_id", "name", "points", "work_type", "date_deadline", "date_completed", "date_protected", "work_completed", "work_protected"],work))
+                    work_obj = WorkClass(d["name"],d["work_type"],d["date_deadline"],bool(d["work_completed"]),d["date_completed"],bool(d["work_protected"]),d["date_protected"])
+                    
+                    #Добавляем работу к аттестации
+                    cert_obj.add(work_obj)
+
+                #Добавляем аттестации в список аттестаций
+                cert_obj_list.append(cert_obj)
+            
+            #Добавляем аттестации для студента
+            [student_obj.add_certification(cert) for cert in cert_obj_list]
+            #Добавляем студента в список студентов
+            student_obj_list.append(student_obj)
+
+        conn.close()
+        return student_obj_list
+        
 
     def set_students(self, s_obj):
         """Запись всех данных с объекта студета в БД"""
@@ -68,10 +103,9 @@ class SQLiteClass:
 
         conn.commit()
         conn.close()
-        print("ВСЕ ЗАПИСАЛИ")
 
 if __name__ == "__main__":
     sql_obj = SQLiteClass()
-    s = StudentClass("Деменчук Георгий","ПИ19-4",1)
     
-    sql_obj.set_students(s)
+    sql_obj.get_students()[0].all_info()
+    
