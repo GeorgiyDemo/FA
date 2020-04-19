@@ -7,8 +7,7 @@
 Объект класса должен содержать поля для сохранения имени студента и
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
-
-#TODO Сохранение в sqlite
+import sqlite_module
 import webbrowser
 from functools import reduce
 import datetime
@@ -151,9 +150,13 @@ class CertificationClass:
             raise ValueError("Объект не класса Work!")
 
         date_end, date_begin = self.date_end, self.date_begin
+        
         #Добавление работы к промежуточной аттестации
         self.work_obj_list.append(work_obj)
         
+        #Добавление баллов
+        self._points += work_obj.points
+
         #Расширение диапазона дат
         if date_end == None or work_obj.date_deadline > date_end:
             date_end = work_obj.date_deadline
@@ -173,7 +176,6 @@ class CertificationClass:
         d["Общее кол-во баллов:"] = round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1) if len(self.work_obj_list) != 0 else 0
         d["Общее кол-во работ:"] = len(self.work_obj_list)
         out_str = "\033[93m\n*"+self.name+"*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
-        
 
         return out_str
     
@@ -186,9 +188,9 @@ class CertificationClass:
         
         #Чтоб присутствовала контрольная и тестирование
         if len([e for e in self.work_obj_list if e.work_type == "контрольная"]) == 0 or len([e for e in self.work_obj_list if e.work_type == "тестирование"]) == 0:
-            raise ValueError("Отсутствие работ с типом 'контрольная'/'тестирование'")
-
-        return round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1)
+            print("Я конечно отдам тебе значения, но на будущее: \033[91mОтсутствие работ с типом 'контрольная'/'тестирование'!\033[0m")
+            #Тут по-хорошему должен быть Exception
+        return self._points
 
 class ExamClass:
     """Класс экзамена"""
@@ -268,7 +270,6 @@ class StudentClass:
         if self.exam_obj != None:
             print(self.exam_obj)
 
-    #TODO Ввести оценку
     def __str__(self):
         """Информация о студенте"""
         d = {}
@@ -365,10 +366,10 @@ def main():
 
     work_count = int(input("Введите количество работ за половину семестра (кол-во работ в 1 и 2 половине семестра равно) -> "))
     
-    if work_count < 3:
-        print("Слишком мало работ, ты что, в Синергии?")
-        webbrowser.open('https://synergy.ru/', new=2)
-        return
+    #if work_count < 3:
+    #    print("Слишком мало работ, ты что, в Синергии?")
+    #    webbrowser.open('https://synergy.ru/', new=2)
+    #    return
 
 
     WorkClass.WORK_COUNT = work_count
@@ -426,11 +427,10 @@ def main():
         [student_obj.add_certification(cert) for cert in cert_obj_list]
 
         #Экзамен?
-        
         bool_flag = True
         while bool_flag:
             try:
-                s_exam = UtilClass.boolean_formater(input("{} сдавал экзамен? (Да/Нет) -> ".format(s_name)))
+                s_exam = boolean_dict[(input("{} сдавал экзамен? (Да/Нет) -> ".format(s_name)))]
                 if s_exam:
                     s_name = input("Введите полное название экзамена ->")
                     s_points = int(input("Введите кол-во баллов на экзамене (макс. 60) -> "))
@@ -441,39 +441,16 @@ def main():
             except Exception as e:
                 print("Произошла ошибка:",e,"\nПовторите ввод данных!")
 
+        #Вывод всей инфы по данной структуре
+        student_obj.all_info()
+
+        #Добавляем студента в БД
+        sqlite_obj = sqlite_module.SQLiteClass()
+        sqlite_obj.set_students(student_obj)
+
         #Добавляем студента в список студентов
         stud_obj_list.append(student_obj)
 
-
-
-
-
-    """
-
-    l = []
-    for i in range(4):
-        l.append(WorkClass("№"+str(i+1), "практика", "24.03.2020",True, "18.03.2020"))
-    certification_obj1 = CertificationClass("Промежуточная аттестация 1")
-    [certification_obj1.add(work) for work in l]
-    certification_obj1.add(WorkClass("контрольная 1", "контрольная", "27.03.2020",True, "18.03.2020", True, "28.03.2020"))
-    certification_obj1.add(WorkClass("тестирование 1", "тестирование", "27.03.2020",True, "18.03.2020", True, "29.03.2020"))
-    l = []
-    for i in range(4):
-        l.append(WorkClass("№"+str(i+1), "практика", "18.06.2020",True, "18.06.2020", True, "18.06.2020"))
-    certification_obj2 = CertificationClass("Промежуточная аттестация 2")
-    [certification_obj2.add(work) for work in l]
-    certification_obj2.add(WorkClass("контрольная 2", "контрольная", "20.07.2020",True, "18.05.2020", True, "30.06.2020"))
-    certification_obj2.add(WorkClass("тестирование 2", "тестирование", "20.07.2020",True, "18.05.2020", True, "25.06.2020"))
-
-    exam_obj = ExamClass("Программурование", 60)
-    student_obj = StudentClass("Кот","ПИ19-4",1)
-    student_obj.add_certification(certification_obj1)
-    student_obj.add_certification(certification_obj2)
-    student_obj.add_exam(exam_obj)
-    student_obj.all_info()
-    print(student_obj.mark)
-    print(student_obj.points)
-    """
     #TODO Надо статистику в Excel по каждому студенту
 
 if __name__ == "__main__":
