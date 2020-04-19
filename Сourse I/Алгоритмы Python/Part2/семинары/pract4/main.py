@@ -4,12 +4,19 @@
 2)	Работа в семестре 20 баллов (практики, контрольная и тестирование во 2 половине семестра);
 3)	Экзамен 60 баллов;
 4)	Выставление итоговой оценки.
-Объект класса должен содержать поля для сохранения имени студента и истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
+Объект класса должен содержать поля для сохранения имени студента и
+истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
+
 from functools import reduce
 import datetime
+class UtilClass:
+    @staticmethod
+    def boolean_formater(flag):
+        sub_d = {True : "✅",False : "❌",}
+        return sub_d[flag]
 
-class Work:
+class WorkClass:
     """
     Класс работы
     [!] К работе не относится экзамен
@@ -70,18 +77,15 @@ class Work:
     
     def __str__(self):
         """Информация о работе"""
-
-        sub_d = {True : "✅",False : "❌",}
         d = {}
-        d["Название:"] = self.name
         d["Тип работы:"] = self.work_type
         d["Дедлайн:"] = self.date_deadline.strftime("%d.%m.%Y")
-        d["Завершение работы:"] = sub_d[self.work_completed]
-        d["Защита работы:"] = sub_d[self.work_protected]
+        d["Завершение работы:"] = UtilClass.boolean_formater(self.work_completed)
+        d["Защита работы:"] = UtilClass.boolean_formater(self.work_protected)
         d["Дата завершения работы:"] = self.date_completed.strftime("%d.%m.%Y") if self.date_completed != None else "-"
         d["Дата защиты работы:"] = self.date_protected.strftime("%d.%m.%Y") if self.date_protected != None else "-"
         d["Количество баллов:"] = self.points
-        return "*Класс работа*\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
+        return "\033[93m\n*"+self.name+"*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
     def set_complete(self, date):
         """Осуществление сдачи работы"""
@@ -112,7 +116,7 @@ class Work:
         #Штрафные баллы
         penalty_points = 0
         #Балл за работу
-        points = 20/Work.WORK_COUNT
+        points = 20/WorkClass.WORK_COUNT
 
         #Вычисление коэффа понижения кол-ва баллов. Каждая неделя - 1 балл
         if date > self.date_deadline:
@@ -125,7 +129,7 @@ class Work:
 
         self.points = points-penalty_points
 
-class Certification:
+class CertificationClass:
     """
     Класс промежуточной аттестации
     """
@@ -141,7 +145,7 @@ class Certification:
 
     def add(self, work_obj):
         """Метод для добавления работы к промежуточной аттестации"""
-        if not isinstance(work_obj, Work):
+        if not isinstance(work_obj, WorkClass):
             raise ValueError("Объект не класса Work!")
 
         date_end, date_begin = self.date_end, self.date_begin
@@ -166,11 +170,8 @@ class Certification:
         d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
         d["Общее кол-во баллов:"] = round(reduce(lambda x, y: x + y, [e.points for e in self.work_obj_list]),1) if len(self.work_obj_list) != 0 else 0
         d["Общее кол-во работ:"] = len(self.work_obj_list)
-        out_str = "\n"+self.name+"\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
+        out_str = "\033[93m\n*"+self.name+"*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
         
-        if len(self.work_obj_list) != 0:
-            out_str += "\nНазвания работ, из которых состоит:\n"
-            out_str += "\n".join([w.name for w in self.work_obj_list])
 
         return out_str
     
@@ -178,7 +179,7 @@ class Certification:
     def points(self):
 
         #Если кол-во работ != необходимому из логики подсчета баллов - ошибка получения
-        if len(self.work_obj_list) != Work.WORK_COUNT:
+        if len(self.work_obj_list) != WorkClass.WORK_COUNT:
             raise ValueError("Количество работ больше/меньше необходимого!")
         
         #Чтоб присутствовала контрольная и тестирование
@@ -196,17 +197,29 @@ class ExamClass:
         else:
             raise ValueError("Некорректные данные баллов по экзамену!")
     
+    def __str__(self):
+        """Информация об экзамене"""
+        d = {}
+        d["Название:"] = self.name
+        d["Кол-во баллов:"] = self._points
+        return "\033[93m\n*Информация об экзамене*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
+    
     @property
     def points(self):
         return self._points
     
     @points.setter
     def points(self, p):
-        if not isinstance(p, int) or 0 <= points <= 60:
+        if not isinstance(p, int) or 0 <= p <= 60:
             raise ValueError("Некорректные данные баллов по экзамену!")
         self._points = p
-    
-class Student:
+
+
+"""
+Объект класса должен содержать поля для сохранения имени студента и
+истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
+"""
+class StudentClass:
     """
     Класс студент
     У студента есть:
@@ -233,24 +246,42 @@ class Student:
         self.cert_obj_list = []
 
     #TODO
+    def all_info(self):
+        """Информация о всех подобъектах объекта класса студента"""
+        
+        #Студент
+        print(self)
+        #Аттестации
+        for cert in self.cert_obj_list:
+            print(cert)
+            for work in cert.work_obj_list:
+                print(work)
+        
+        #Экзамен
+        if self.exam_obj != None:
+            print(self.exam_obj)
+
+    #TODO Ввести оценку
     def __str__(self):
         """Информация о студенте"""
         d = {}
         d["ФИО:"] = self.name
         d["Группа:"] = self.group
         d["Курс:"] = self.course
+        d["Полные ли данные:"] = UtilClass.boolean_formater(self.datavalidator_flag)
         d["Количество баллов:"] = self._points
-        d["Полные ли данные:"] = self.datavalidator_flag
-        return "*Информация о студенте*\n"+"\n".join([key+" "+str(value) for key, value in d.items()])
+        d["Оценка:"] = 
+
+        return "\033[93m\n*Информация о студенте*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
     
     def add_certification(self, cert_obj):
         """Метод добавления аттестации"""
-        if not isinstance(cert_obj, Certification):
+        if not isinstance(cert_obj, CertificationClass):
             raise ValueError("Объект не класса Certification!")
         #Проверка на корректность валидации
         try:
-            self._points += cert_obj._points
+            self._points += cert_obj.points
             self.cert_obj_list.append(cert_obj)
         except ValueError as e:
             print(e)
@@ -279,25 +310,24 @@ class Student:
         """Добавление баллов за экзамен"""
         if not isinstance(exam_obj, ExamClass):
             raise ValueError("Объект не класса ExamClass!")
-        self._points += exam_obj._points
+        self._points += exam_obj.points
         self.exam_obj = exam_obj
         self.data_validator()
 
-    #TODO
     @property
     def mark(self):
         """Получение оценки студента"""
         if not self.datavalidator_flag:
             raise ValueError("Невозможно получить итоговую оценку студента! Недостаточно данных")
-        return "ОЦЕНКА"
-    
+        d = {}
+        [d.update(e) for e in [{v1:v for v1 in rrange} for rrange,v in zip([range(0,51), range(51,70), range(70,85),range(85, 101)],[2,3,4,5])]]
+        return d[int(self._points)]
+
     @property
     def points(self):
         if not self.datavalidator_flag:
             raise ValueError("Невозможно получить итоговые баллы студента! Недостаточно данных")
         return self._points
-
-
 
 def main():
     """
@@ -311,28 +341,35 @@ def main():
     - Добавляем объект работы к промежуточной аттестации
 
     Повторяем сколько надо
-
-    В конце, в методе получения итоговой оценки, надо понять, что 
     """
+
     l = []
     for i in range(4):
-        l.append(Work("№"+str(i+1), "практика", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
+        l.append(WorkClass("№"+str(i+1), "практика", "24.03.2020",True, "18.03.2020"))
     
-    #[print(e) for e in l]
-    certification_obj = Certification("Промежуточная аттестация 1")
-    [certification_obj.add(work) for work in l]
-    certification_obj.add(Work("КОНТРОЛЬНАЯ", "контрольная", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
-    certification_obj.add(Work("тестирование", "тестирование", "20.03.2020",True, "18.03.2020", True, "28.03.2020"))
-    print(certification_obj)
 
-    exam_obj = ExamClass("Экзамен", 30)
-    student_obj = Student("Кот","ПИ19-4",1)
-    student_obj.add_certification(certification_obj)
-    student_obj.add_certification(certification_obj)
+    certification_obj1 = CertificationClass("Промежуточная аттестация 1")
+    [certification_obj1.add(work) for work in l]
+    certification_obj1.add(WorkClass("контрольная 1", "контрольная", "27.03.2020",True, "18.03.2020", True, "28.03.2020"))
+    certification_obj1.add(WorkClass("тестирование 1", "тестирование", "27.03.2020",True, "18.03.2020", True, "29.03.2020"))
+
+    l = []
+    for i in range(4):
+        l.append(WorkClass("№"+str(i+1), "практика", "18.06.2020",True, "18.06.2020", True, "18.06.2020"))
+    
+    certification_obj2 = CertificationClass("Промежуточная аттестация 2")
+    [certification_obj2.add(work) for work in l]
+    certification_obj2.add(WorkClass("контрольная 2", "контрольная", "20.07.2020",True, "18.05.2020", True, "30.06.2020"))
+    certification_obj2.add(WorkClass("тестирование 2", "тестирование", "20.07.2020",True, "18.05.2020", True, "25.06.2020"))
+
+    exam_obj = ExamClass("Программурование", 60)
+    student_obj = StudentClass("Кот","ПИ19-4",1)
+    student_obj.add_certification(certification_obj1)
+    student_obj.add_certification(certification_obj2)
     student_obj.add_exam(exam_obj)
-    print(student_obj)
-    
-
+    student_obj.all_info()
+    print(student_obj.mark)
+    print(student_obj.points)
 
 if __name__ == "__main__":
     main()
