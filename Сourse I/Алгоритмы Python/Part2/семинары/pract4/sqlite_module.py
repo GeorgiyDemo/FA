@@ -117,9 +117,23 @@ class SQLiteClass:
 
         conn.commit()
         conn.close()
+    
+    def remove_students(self, s_obj):
+        """Удлаение объекта студента из БД"""
+        
+        conn = sqlite3.connect(self.dbname)
+        c = conn.cursor()
 
-if __name__ == "__main__":
-    sql_obj = SQLiteClass()
-    
-    sql_obj.get_students()[0].all_info()
-    
+        #Получение id студента и последующее удаление
+        r = c.execute("SELECT student_id FROM student WHERE (name='{}' AND groups='{}' AND course='{}')".format(s_obj.name, s_obj.group, s_obj.course))
+        current_studentid = list(r)[0][0]
+        c.execute("DELETE FROM student WHERE student_id={}".format(current_studentid))
+        #Удаление экзамена
+        c.execute("DELETE FROM exam WHERE student_id={}".format(current_studentid))
+        #Удаление аттестаций
+        c.execute("DELETE FROM certification WHERE student_id={}".format(current_studentid))
+        #Удаление работ
+        c.execute("DELETE FROM work WHERE student_id={}".format(current_studentid))
+
+        conn.commit()
+        conn.close()

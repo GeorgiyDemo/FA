@@ -8,10 +8,10 @@
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
 
+#TODO округление баллов
 #TODO Перезаполнить БД
 #TODO Вывод данных в Excel
 #TODO Интерфейс для изменения данных студентов?
-#TODO Удаление студентов
 
 from texttable import Texttable
 import sqlite_module
@@ -26,7 +26,7 @@ class MainClass():
             1 : self.get_students,
             2 : self.set_students,
             3 : self.remove_students,
-            4 : xlsx_module.XlsxClass,
+            4 : self.export_students,
             5 : self.sql_reload,
         }
 
@@ -49,6 +49,14 @@ class MainClass():
         [sql_obj.set_students(obj) for obj in stud_obj_list]
         print("Успешная перезапись и пересчет данных.")
 
+    def export_students(self):
+        """Формирование отчетов по студентам"""
+        #Получение данных
+        sql_obj = sqlite_module.SQLiteClass()
+
+        #Вызов парсера
+        xlsx_module.XlsxClass(sql_obj.get_students())
+
     def get_students(self):
         """Просмотр информации о студентах"""
         sql_obj = sqlite_module.SQLiteClass()
@@ -67,10 +75,23 @@ class MainClass():
         else:
             print("Некорректный ввод, выход в главное меню..")
     
-    #TODO
     def remove_students(self):
         """Удаление студентов"""
-        pass
+        sql_obj = sqlite_module.SQLiteClass()
+        stud_obj_list = sql_obj.get_students()
+        
+        table = Texttable()
+        table.set_deco(Texttable.HEADER)
+        table_list = [["№", "ФИО", "Группа", "Курс", "Баллы", "Оценка"]]
+        table_list.extend([[str(i+1), stud_obj_list[i].name, stud_obj_list[i].group, str(stud_obj_list[i].course), str(round(stud_obj_list[i].points,2)), str(stud_obj_list[i].mark)] for i in range(len(stud_obj_list))])
+        table.add_rows(table_list)
+        print(table.draw())
+
+        s_number = input("Введите номер студента для его удаления из БД -> ")
+        if UtilClass.is_digital(s_number) and int(s_number) in [i+1 for i in range(0,len(stud_obj_list))]:
+            sql_obj.remove_students(stud_obj_list[int(s_number)-1])
+        else:
+            print("Некорректный ввод, выход в главное меню..")
 
     def set_students(self):
         """Добавление новой информации"""
