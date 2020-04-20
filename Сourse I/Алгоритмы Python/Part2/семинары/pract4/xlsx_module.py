@@ -18,14 +18,26 @@ class XlsxClass():
         subdict1, subdict2 = [report_dict[key] for key in report_dict.keys()]
         sublist1 = []
         
+        #Список заголовков
+
         for student, value in subdict1.items():
             buf_list = []
+            headers_list = ["ФИО"]
+            
             buf_list.append(student)
             for work in value["works"]:
+                
+                headers_list.append(work[0])
+                work.pop(0)
+                headers_list.extend(["N" for _ in range(len(work)-1)])
                 buf_list.extend(work)
             
-            for info in value["info"].values():
-                buf_list.append(info)
+            for key, value in value["info"].items():
+                headers_list.append(key)
+                buf_list.append(value)
+            
+            print("headers_list")
+            print(headers_list)
             sublist1.append(buf_list)
         
         return sublist1
@@ -76,7 +88,7 @@ class XlsxClass():
         writer = pd.ExcelWriter(XlsxClass.OUT_XLSX_FILE, engine='xlsxwriter')
 
         # Write each dataframe to a different worksheet.
-        df0.to_excel(writer, sheet_name='Аттестация 1', index=False)
+        df0.to_excel(writer, sheet_name='Аттестация 1', index=False, header=['ФИО', 'Практика рекурсия', 'N', 'N', 'N', 'N', 'N', 'N', 'Контрольная работа', 'N', 'N', 'N', 'N', 'N', 'N', 'Тест лекция', 'N', 'N', 'N', 'N', 'N', 'N', 'Практика по модулям', 'N', 'N', 'N', 'N', 'N', 'N', 'cert_points', 'total_mark', 'total_points'])
         #df0.to_excel(writer, sheet_name='Аттестация 2', index=False)
         df1.to_excel(writer, sheet_name='Студенты', index=False)
         df2.to_excel(writer, sheet_name='Работы', index=False)
