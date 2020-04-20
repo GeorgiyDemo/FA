@@ -19,28 +19,47 @@ class XlsxClass():
         sublist1 = []
         
         #Список заголовков
-
+        mainheaders_list = []
+        mainsubheaders_list = []
         for student, value in subdict1.items():
             buf_list = []
-            headers_list = ["ФИО"]
+            headers_list = [" "]
+            subheaders_list = ["ФИО"]
             
             buf_list.append(student)
             for work in value["works"]:
                 
-                headers_list.append(work[0])
-                work.pop(0)
-                headers_list.extend(["N" for _ in range(len(work)-1)])
+                headers_list.append("{} ({})".format(work[0],work[1]))
+                work = work[2:]
+                subheaders_list.extend(["Баллы", "Дата дедлайна", "Дата завершения", "Дата защиты"])
+                headers_list.extend(["" for _ in range(len(work)-1)])
                 buf_list.extend(work)
             
-            for key, value in value["info"].items():
-                headers_list.append(key)
-                buf_list.append(value)
+            headers_list.extend(["ИТОГИ", "", ""])
+            #Это след этап странности, но мне нужна стат последовательность, что dict.items() сделать не может
+            for k, v in {"cert_points" : "Баллы за аттестацию", "total_mark" : "Общая оценка", "total_points" : "Общее кол-во баллов"}.items():
+                buf_list.append(value["info"][k])
+                subheaders_list.append(v)
             
-            print("headers_list")
-            print(headers_list)
+            #В случае, если у разных студентов разные хедеры - ориентируемся на того, у кого их больше
+            #По-хорошему, тогда надо синхронить столбцы
+            if mainheaders_list == []:
+                mainheaders_list = headers_list
+            elif len(mainheaders_list) < len(headers_list):
+                mainheaders_list = headers_list
+
+            if mainsubheaders_list == []:
+                mainsubheaders_list = subheaders_list
+            elif len(mainsubheaders_list) < len(subheaders_list):
+                mainsubheaders_list = subheaders_list
+
             sublist1.append(buf_list)
         
-        return sublist1
+        print(subheaders_list)
+        print(mainheaders_list)
+        sublist1.insert(0, subheaders_list)
+        print(sublist1)
+        return mainheaders_list, sublist1
 
 
     def converter(self, d_input):
@@ -66,8 +85,8 @@ class XlsxClass():
                 report_dict[cert.name][obj.name] = {"info" : {"cert_points" : cert.points, "total_mark" : obj.mark, "total_points" : obj.points}, "works" : []}
 
                 for work in cert.work_obj_list:
-                    report_dict[cert.name][obj.name]["works"].append([work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed), c(work.date_protected), work.work_completed, work.work_protected])
-                    work_list.append([obj.name, cert.name, work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed), c(work.date_protected), work.work_completed, work.work_protected])
+                    report_dict[cert.name][obj.name]["works"].append([work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed), c(work.date_protected)])
+                    work_list.append([obj.name, cert.name, work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed), c(work.date_protected)])
         
         for obj in self.obj_list:
             exam_list.append([obj.exam_obj.name, obj.exam_obj.points])
@@ -75,10 +94,10 @@ class XlsxClass():
         student_list = dict(zip(["ФИО","Группа","Курс","Баллы","Оценка"], self.transpose(student_list)))
         exam_list = dict(zip(["Название", "Баллы"],self.transpose(exam_list)))
         cert_list = dict(zip(["Студент", "Название", "Баллы", "Дата начала", "Дата конца"], self.transpose(cert_list)))
-        work_list = dict(zip(["Студент","Аттестация","Название работы", "Тип работы", "Баллы", "Дата дедлайна", "Дата завершения", "Дата защиты", "Завершена", "Защищена"], self.transpose(work_list)))
+        work_list = dict(zip(["Студент","Аттестация","Название работы", "Тип работы", "Баллы", "Дата дедлайна", "Дата завершения", "Дата защиты"], self.transpose(work_list)))
 
-        #self.report_processing(report_dict)
-        df0 = pd.DataFrame(self.report_processing(report_dict))
+        headers1, list1 = self.report_processing(report_dict)
+        df0 = pd.DataFrame(list1)
         df1 = pd.DataFrame(student_list)
         df2 = pd.DataFrame(work_list)
         df3 = pd.DataFrame(cert_list)
@@ -88,7 +107,7 @@ class XlsxClass():
         writer = pd.ExcelWriter(XlsxClass.OUT_XLSX_FILE, engine='xlsxwriter')
 
         # Write each dataframe to a different worksheet.
-        df0.to_excel(writer, sheet_name='Аттестация 1', index=False, header=['ФИО', 'Практика рекурсия', 'N', 'N', 'N', 'N', 'N', 'N', 'Контрольная работа', 'N', 'N', 'N', 'N', 'N', 'N', 'Тест лекция', 'N', 'N', 'N', 'N', 'N', 'N', 'Практика по модулям', 'N', 'N', 'N', 'N', 'N', 'N', 'cert_points', 'total_mark', 'total_points'])
+        df0.to_excel(writer, sheet_name='Аттестация 1', index=False, header=headers1)
         #df0.to_excel(writer, sheet_name='Аттестация 2', index=False)
         df1.to_excel(writer, sheet_name='Студенты', index=False)
         df2.to_excel(writer, sheet_name='Работы', index=False)
@@ -97,5 +116,4 @@ class XlsxClass():
 
         # Close the Pandas Excel writer and output the Excel file.
         writer.save()
-        print(report_dict)
         
