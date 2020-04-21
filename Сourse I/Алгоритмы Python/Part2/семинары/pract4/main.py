@@ -10,7 +10,6 @@
 
 #TODO Перезаполнить БД
 #TODO Интерфейс для изменения данных студентов?
-#TODO Красивые таблицы в иформации о работах студента
 
 from texttable import Texttable
 import sqlite_module

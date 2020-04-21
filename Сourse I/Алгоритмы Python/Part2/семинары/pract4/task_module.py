@@ -1,4 +1,5 @@
 import datetime
+from texttable import Texttable
 
 class UtilClass:
 
@@ -23,6 +24,12 @@ class UtilClass:
             return True
         except ValueError:
             return False
+    @staticmethod
+    def converter(d_input):
+        try:
+            return d_input.strftime("%d.%m.%Y")
+        except AttributeError:
+            return "-"
 
 class WorkClass:
     """
@@ -95,6 +102,11 @@ class WorkClass:
         d["Количество баллов:"] = self.points
         return "\033[93m\n*"+self.name+"*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
+    def get_list(self):
+        """Отдача информации для вывода в Texttable"""
+        c = UtilClass.converter
+        return [self.name, self.work_type, c(self.date_deadline), c(self.date_completed), c(self.date_protected), self.points]
+    
     def set_complete(self, date):
         """Осуществление сдачи работы"""
 
@@ -180,7 +192,7 @@ class CertificationClass:
         self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата начала:"] = self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
         d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
-        d["Общее кол-во баллов:"] = self._points
+        d["Общее кол-во баллов:"] = round(self._points)
         d["Общее кол-во работ:"] = len(self.work_obj_list)
         out_str = "\033[93m\n*"+self.name+"*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
@@ -271,8 +283,18 @@ class StudentClass:
         #Аттестации
         for cert in self.cert_obj_list:
             print(cert)
-            for work in cert.work_obj_list:
-                print(work)
+            
+            table = Texttable()
+            #table.set_deco(Texttable.BORDER | Texttable.HEADER)
+            table_list = [["№", "Название", "Тип", "Дата дедлайна", "Дата сдачи", "Дата защиты", "Баллы"]]
+
+    
+            for i in range(len(cert.work_obj_list)):
+                buf_l = [str(i+1)]+cert.work_obj_list[i].get_list()
+                table_list.append(buf_l)
+            
+            table.add_rows(table_list)
+            print("\n"+table.draw())
         
         #Экзамен
         if self.exam_obj != None:
@@ -281,7 +303,7 @@ class StudentClass:
     def __str__(self):
         """Информация о студенте"""
         d = {}
-        d["ФИО:"] = self.name
+        d["ФИО:"] = self.name.replace("\n","")
         d["Группа:"] = self.group
         d["Курс:"] = self.course
         d["Полные ли данные:"] = UtilClass.boolean_formater(self.datavalidator_flag)
@@ -290,7 +312,6 @@ class StudentClass:
 
         return "\033[93m\n*Информация о студенте*\n\033[0m"+"\n".join([key+" "+str(value) for key, value in d.items()])
 
-    
     def add_certification(self, cert_obj):
         """Метод добавления аттестации"""
         if not isinstance(cert_obj, CertificationClass):

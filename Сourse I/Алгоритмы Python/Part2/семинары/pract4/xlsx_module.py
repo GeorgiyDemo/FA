@@ -2,7 +2,7 @@
 
 import pandas as pd
 import xlsxwriter
-
+from task_module import UtilClass
 class XlsxClass():
 
     OUT_XLSX_FILE = "отчет.xlsx"
@@ -38,9 +38,9 @@ class XlsxClass():
                     headers_list.extend(["" for _ in range(len(work)-1)])
                     buf_list.extend(work)
                 
-                headers_list.extend(["ИТОГИ", "", ""])
+                headers_list.extend(["ИТОГИ", "", "", ""])
                 #Это след этап странности, но мне нужна стат последовательность, что dict.items() сделать не может
-                for k, v in {"cert_points" : "Баллы за аттестацию", "total_mark" : "Общая оценка", "total_points" : "Общее кол-во баллов"}.items():
+                for k, v in {"cert_points" : "Баллы за аттестацию", "exam_points" : "Баллы за экзамен", "total_points" : "Общее кол-во баллов", "total_mark" : "Общая оценка"}.items():
                     buf_list.append(value["info"][k])
                     subheaders_list.append(v)
                 
@@ -61,16 +61,10 @@ class XlsxClass():
             report_results_list.append([current_cert, mainheaders_list, sublist])
         
         return report_results_list
-
-    def converter(self, d_input):
-        try:
-            return d_input.strftime("%d.%m.%Y")
-        except AttributeError:
-            return "-"
     
     def processing(self):
         
-        c = self.converter
+        c = UtilClass.converter
         report_dict = {}
         student_list, work_list, exam_list, cert_list = [[] for _ in range(4)]
         for obj in self.obj_list:
@@ -82,7 +76,7 @@ class XlsxClass():
                 
                 if report_dict.get(cert.name) == None:
                     report_dict[cert.name] = {}
-                report_dict[cert.name][obj.name] = {"info" : {"cert_points" : cert.points, "total_mark" : obj.mark, "total_points" : obj.points}, "works" : []}
+                report_dict[cert.name][obj.name] = {"info" : {"cert_points" : cert.points, "exam_points": obj.exam_obj.points , "total_points" : obj.points, "total_mark" : obj.mark}, "works" : []}
 
                 for work in cert.work_obj_list:
                     report_dict[cert.name][obj.name]["works"].append([work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed), c(work.date_protected)])
