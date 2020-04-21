@@ -7,9 +7,9 @@
 Объект класса должен содержать поля для сохранения имени студента и
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
+
 #TODO разобраться с ._point и point (везде использовать point)
 #TODO Перезаполнить БД
-#TODO Интерфейс для изменения данных студентов?
 
 from texttable import Texttable
 import sqlite_module
@@ -32,17 +32,20 @@ class MainClass():
 
         while True:
             print("\nЧто вы хотите сделать?\n1. Просмотр информации о студентах\n2. Добавление новых данных студентов\n3. Редактирование данных студентов\n4. Удаление данных студентов\n5. Формирование отчета по студентам\n6. Перегрузка данных в БД\n0. Завершение работы программы")
-            try:
-                method_number = int(input("-> "))
+
+            method_number = input("-> ")
+            if UtilClass.is_digital(method_number):
+
+                method_number = int(method_number)
                 if method_number in methods_dict:
                     methods_dict[method_number]()
                 elif method_number == 0:
                     break
                 else:
-                    raise ValueError
-            except ValueError:
+                    print("Введенный номер отсутствует в списке")
+            else:
                 print("Некорректный ввод данных")
-    
+
     def sql_reload(self):
         """Перезапись данных в БД"""
         sql_obj = sqlite_module.SQLiteClass()

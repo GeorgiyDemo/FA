@@ -19,6 +19,7 @@ class XlsxClass():
         """Формирование главного отчета из словаря"""
         
         report_results_list = []
+        print(report_dict.keys())
         for current_cert, subdict in report_dict.items():
 
             sublist = []
@@ -60,7 +61,7 @@ class XlsxClass():
             
             sublist.insert(0, subheaders_list)
             report_results_list.append([current_cert, mainheaders_list, sublist])
-        
+
         return report_results_list
     
     def processing(self):

@@ -11,22 +11,24 @@ class ChangeClass:
             1 : self.sname_changer,
             2 : self.sgroup_changer,
             3 : self.scourse_changer,
-            4 : self.cert_menu,
-            5 : self.work_menu,
+            4 : self.work_menu,
         }
 
         while True:
-            print("\033[93m\nПожалуйста, учтите, что баллы студента и даты аттестаций автоматически перегенерируются за счет работ, которые они содержат\033[0m\nЧто вы хотите изменить?\n1. ФИО студента\n2. Группу студента\n3. Курс студента\n4. Название аттестаций\n5. Работы студента\n0. Выход и запись изменений")
-            try:
-                method_number = int(input("-> "))
+            print("\033[93m\nПожалуйста, учтите, что баллы студента и даты аттестаций автоматически перегенерируются за счет работ, которые они содержат\033[0m\nЧто вы хотите изменить?\n1. ФИО студента\n2. Группу студента\n3. Курс студента\n4. Работы студента\n0. Выход и запись изменений")
+
+            method_number = input("-> ")
+            if UtilClass.is_digital(method_number):
+
+                method_number = int(method_number)
                 if method_number in methods_dict:
                     methods_dict[method_number]()
                 elif method_number == 0:
                     self.new_obj = self.main_obj
                     break
                 else:
-                    raise ValueError
-            except ValueError:
+                    print("Введенный номер отсутствует в списке")
+            else:
                 print("Некорректный ввод данных")
 
     def sgroup_changer(self):
@@ -46,7 +48,6 @@ class ChangeClass:
         
         print("Введите номер работы для ее редактирования:")
         table = Texttable()
-        table.set_deco(Texttable.HEADER)
         table_list = [["№","Название аттестации", "Название", "Тип", "Дата дедлайна", "Дата сдачи", "Дата защиты", "Баллы"]]
         
         #Вводим единый список работ для 2 аттестаций для удобного выбора
@@ -61,7 +62,7 @@ class ChangeClass:
 
         main_list, allowed_keys = [], []
         for i in range(len(patched_workobj_list)):
-            cert, work, _ = patched_workobj_list[i]
+            cert, work, _, _ = patched_workobj_list[i]
             allowed_keys.append(str(i+1))
             main_list.append([str(i+1), cert.name]+work.get_list())
 
@@ -135,17 +136,21 @@ class WorkChangerClass:
 
         while True:
             print("\nЧто вы хотите изменить в работе?\n1. Название работы\n2. Тип работы\n3. Сдать работу/изменить дату сдачи\n4. Защитить работу/изменить дату защиты\n5. Изменить кол-во баллов за работу\n0. Выход и запись изменений")
-            try:
-                method_number = int(input("-> "))
+            
+            method_number = input("-> ")
+            if UtilClass.is_digital(method_number):
+
+                method_number = int(method_number)
                 if method_number in methods_dict:
                     methods_dict[method_number]()
                 elif method_number == 0:
                     self.new_obj = self.main_obj
                     break
                 else:
-                    raise ValueError
-            except ValueError:
+                    print("Введенный номер отсутствует в списке")
+            else:
                 print("Некорректный ввод данных")
+
     
     def wname_changer(self):
         """Изменение названия работы"""
@@ -157,7 +162,7 @@ class WorkChangerClass:
     def wtype_changer(self):
         """Изменение типа работы"""
         alowed_list = ["практика", "контрольная", "тестирование"]
-        new_type = input("Введите новый тип работы (практика/контрольная/тестирование) ->")
+        new_type = input("Введите новый тип работы (практика/контрольная/тестирование) -> ")
         if new_type not in alowed_list:
             print("Некорректный ввод данных")
             return
