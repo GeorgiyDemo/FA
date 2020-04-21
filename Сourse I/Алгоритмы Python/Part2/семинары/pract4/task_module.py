@@ -135,7 +135,7 @@ class WorkClass:
             if penalty_points > points:
                 penalty_points = points
 
-        self.points = points-penalty_points
+        self.points = round(points-penalty_points,1)
 
 class CertificationClass:
     """
@@ -297,7 +297,7 @@ class StudentClass:
             raise ValueError("Объект не класса Certification!")
         #Проверка на корректность валидации
         try:
-            self._points += cert_obj.points
+            self._points += round(cert_obj.points)
             self.cert_obj_list.append(cert_obj)
         except ValueError as e:
             print(e)
@@ -336,7 +336,7 @@ class StudentClass:
             raise ValueError("Невозможно получить итоговую оценку студента! Недостаточно данных")
         d = {}
         [d.update(e) for e in [{v1:v for v1 in rrange} for rrange,v in zip([range(0,51), range(51,70), range(70,85),range(85, 101)],[2,3,4,5])]]
-        return d[int(self._points)]
+        return d[round(self._points)]
     
     @property
     def mark(self):
