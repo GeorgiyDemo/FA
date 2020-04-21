@@ -62,6 +62,8 @@ class MainClass():
         #Вызов парсера
         xlsx_module.XlsxClass(sql_obj.get_students())
 
+        print("Успешное формирование отчета о студентах")
+
     def _display_students(self):
         """
         Метод для красивого вывода студентов на экран
