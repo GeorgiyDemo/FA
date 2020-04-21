@@ -36,8 +36,7 @@ class WorkClass:
     Класс работы
     [!] К работе не относится экзамен
     """
-
-    WORK_COUNT = 6 #кол-во работ в полусеместре + 1 контрольная + 1 тестирование
+    WORK_COUNT = 6 #рекомендуемое кол-во работ в полусеместре и учетом контрольной и тестирования
 
     def __init__(self, name, work_type, date_deadline, work_completed=False, date_completed=None, work_protected=False, date_protected=None):
         """
@@ -274,7 +273,6 @@ class StudentClass:
         self.mark_dict = {}
         [self.mark_dict.update(e) for e in [{v1:v for v1 in rrange} for rrange,v in zip([range(0,51), range(51,70), range(70,85),range(85, 101)],[2,3,4,5])]]
     
-    #TODO
     def all_info(self):
         """Информация о всех подобъектах объекта класса студента"""
         
@@ -285,9 +283,7 @@ class StudentClass:
             print(cert)
             
             table = Texttable()
-            #table.set_deco(Texttable.BORDER | Texttable.HEADER)
             table_list = [["№", "Название", "Тип", "Дата дедлайна", "Дата сдачи", "Дата защиты", "Баллы"]]
-
     
             for i in range(len(cert.work_obj_list)):
                 buf_l = [str(i+1)]+cert.work_obj_list[i].get_list()

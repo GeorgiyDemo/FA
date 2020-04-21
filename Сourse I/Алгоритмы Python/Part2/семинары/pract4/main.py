@@ -15,6 +15,7 @@ from texttable import Texttable
 import sqlite_module
 import webbrowser
 from task_module import WorkClass, ExamClass, StudentClass, CertificationClass, UtilClass
+from changeinfo_module import ChangeClass
 import xlsx_module
 
 class MainClass():
@@ -23,19 +24,23 @@ class MainClass():
         methods_dict = {
             1 : self.get_students,
             2 : self.set_students,
-            3 : self.remove_students,
-            4 : self.export_students,
-            5 : self.sql_reload,
+            3 : self.change_students,
+            4 : self.remove_students,
+            5 : self.export_students,
+            6 : self.sql_reload,
         }
 
         while True:
-            print("\nЧто вы хотите сделать?\n1. Просмотр информации о студентах\n2. Добавление новых данных студентов\n3. Удаление данных студентов\n4. Формирование отчета по студентам\n5. Перегрузка данных в БД\n0. Завершение работы программы")
-            method_number = int(input("-> "))
-            if method_number in methods_dict:
-                methods_dict[method_number]()
-            elif method_number == 0:
-                break
-            else:
+            print("\nЧто вы хотите сделать?\n1. Просмотр информации о студентах\n2. Добавление новых данных студентов\n3. Редактирование данных студентов\n4. Удаление данных студентов\n5. Формирование отчета по студентам\n6. Перегрузка данных в БД\n0. Завершение работы программы")
+            try:
+                method_number = int(input("-> "))
+                if method_number in methods_dict:
+                    methods_dict[method_number]()
+                elif method_number == 0:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
                 print("Некорректный ввод данных")
     
     def sql_reload(self):
@@ -55,8 +60,12 @@ class MainClass():
         #Вызов парсера
         xlsx_module.XlsxClass(sql_obj.get_students())
 
-    def get_students(self):
-        """Просмотр информации о студентах"""
+    def _display_students(self):
+        """
+        Метод для красивого вывода студентов на экран
+        - Используется в change_students
+        - Используется в get_students
+        """
         sql_obj = sqlite_module.SQLiteClass()
         stud_obj_list = sql_obj.get_students()
         
@@ -66,6 +75,33 @@ class MainClass():
         table_list.extend([[str(i+1), stud_obj_list[i].name, stud_obj_list[i].group, str(stud_obj_list[i].course), str(round(stud_obj_list[i].points,2)), str(stud_obj_list[i].mark)] for i in range(len(stud_obj_list))])
         table.add_rows(table_list)
         print(table.draw())
+
+        return stud_obj_list
+
+    def change_students(self):
+        """Изменение данных студентов"""
+        stud_obj_list = self._display_students()
+        s_number = input("Введите номер студента для редактирования информации о нём -> ")
+        
+        if UtilClass.is_digital(s_number) and int(s_number) in [i+1 for i in range(0,len(stud_obj_list))]:
+            
+            #Вызываем класс редактирования инфы
+            change_obj = ChangeClass(stud_obj_list[int(s_number)-1])
+            #Когда выйдем из его конструктора - получаем обновленный объект, который заносим в список вместо старого
+            stud_obj_list[int(s_number)-1] = change_obj.new_obj
+
+            #Теперь все удаляем с БД и записываем обновленную структуру
+            sql_obj = sqlite_module.SQLiteClass()
+            sql_obj.drop_tables()
+            [sql_obj.set_students(obj) for obj in stud_obj_list]
+            print("Успешная перезапись данных в БД")
+
+        else:
+            print("Некорректный ввод, выход в главное меню..")
+
+    def get_students(self):
+        """Просмотр информации о студентах"""
+        stud_obj_list = self._display_students()
 
         s_number = input("Введите номер студента для вывода информации о нём -> ")
         if UtilClass.is_digital(s_number) and int(s_number) in [i+1 for i in range(0,len(stud_obj_list))]:

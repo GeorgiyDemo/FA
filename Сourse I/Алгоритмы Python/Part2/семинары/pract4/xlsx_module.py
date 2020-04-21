@@ -3,6 +3,7 @@
 import pandas as pd
 import xlsxwriter
 from task_module import UtilClass
+
 class XlsxClass():
 
     OUT_XLSX_FILE = "отчет.xlsx"
