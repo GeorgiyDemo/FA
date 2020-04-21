@@ -85,18 +85,18 @@ class SQLiteClass:
         c = conn.cursor()
 
         #Запись данных студента
-        r = c.execute("INSERT INTO student (name, groups, course, points, mark) VALUES ('{}','{}','{}',{},{})".format(s_obj.name, s_obj.group, s_obj.course, s_obj._points, s_obj.get_mark(True)))
+        r = c.execute("INSERT INTO student (name, groups, course, points, mark) VALUES ('{}','{}','{}',{},{})".format(s_obj.name, s_obj.group, s_obj.course, s_obj.points, s_obj.get_mark(True)))
         current_studentid = r.lastrowid
 
         #Запись экзамена, если он существует
         exam_obj = s_obj.exam_obj
         if exam_obj != None:
-            c.execute("INSERT INTO exam VALUES ({},'{}',{})".format(current_studentid, exam_obj.name, exam_obj._points))
+            c.execute("INSERT INTO exam VALUES ({},'{}',{})".format(current_studentid, exam_obj.name, exam_obj.points))
         
         #Запись аттестаций
         if len(s_obj.cert_obj_list) != 0:
             for cert in s_obj.cert_obj_list:
-                r = c.execute("INSERT INTO certification (student_id, name, points, date_begin, date_end) VALUES ({},'{}',{},'{}','{}')".format(current_studentid, cert.name, cert._points, cert.date_begin.strftime("%d.%m.%Y"), cert.date_end.strftime("%d.%m.%Y")))
+                r = c.execute("INSERT INTO certification (student_id, name, points, date_begin, date_end) VALUES ({},'{}',{},'{}','{}')".format(current_studentid, cert.name, cert.points, cert.date_begin.strftime("%d.%m.%Y"), cert.date_end.strftime("%d.%m.%Y")))
                 current_certid = r.lastrowid
                 
                 #Запись работ

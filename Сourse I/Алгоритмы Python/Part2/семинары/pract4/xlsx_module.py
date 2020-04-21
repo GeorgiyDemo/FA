@@ -19,7 +19,6 @@ class XlsxClass():
         """Формирование главного отчета из словаря"""
         
         report_results_list = []
-        print(report_dict.keys())
         for current_cert, subdict in report_dict.items():
 
             sublist = []
