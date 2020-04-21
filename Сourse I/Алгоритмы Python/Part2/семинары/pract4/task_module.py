@@ -106,7 +106,7 @@ class WorkClass:
         c = UtilClass.converter
         return [self.name, self.work_type, c(self.date_deadline), c(self.date_completed), c(self.date_protected), self.points]
     
-    def set_complete(self, date):
+    def set_complete(self, date, info=False):
         """Осуществление сдачи работы"""
 
         #Проверка на валидные данные
@@ -119,7 +119,10 @@ class WorkClass:
         self.work_completed = True
         self.date_completed = date
 
-    def set_protection(self, date):
+        if info:
+            print("Успешно сдали работу")
+
+    def set_protection(self, date, info=False):
         """"Осуществление защиты работы и выставление баллов за работу"""
         
         #Проверка на валидные данные
@@ -127,6 +130,10 @@ class WorkClass:
             date = datetime.datetime.strptime(date, "%d.%m.%Y")
         except ValueError:
             print("Некорректная дата защиты работы!")
+            return
+        
+        if not self.work_completed:
+            print("Невозможно защитить работу не сдав её!")
             return
 
         self.work_protected = True
@@ -147,6 +154,9 @@ class WorkClass:
                 penalty_points = points
 
         self.points = round(points-penalty_points,1)
+        
+        if info:
+            print("Успешно защитили работу")
 
 class CertificationClass:
     """
