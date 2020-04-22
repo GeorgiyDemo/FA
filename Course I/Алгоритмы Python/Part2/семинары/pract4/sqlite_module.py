@@ -1,6 +1,7 @@
 import sqlite3
 from task_module import WorkClass, ExamClass, StudentClass, CertificationClass
 
+
 class SQLiteClass:
     def __init__(self):
 

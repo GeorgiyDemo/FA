@@ -1,6 +1,7 @@
 from texttable import Texttable
 from task_module import UtilClass
 
+
 class ChangeClass:
     """Класс для изменения данных студентов"""
 

@@ -2,6 +2,7 @@ import datetime
 
 from texttable import Texttable
 
+
 class UtilClass:
     boolean_dict = {
         "Да": True,
