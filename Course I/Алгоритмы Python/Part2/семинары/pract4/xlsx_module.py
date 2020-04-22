@@ -4,7 +4,6 @@ import pandas as pd
 
 from task_module import UtilClass
 
-
 class XlsxClass():
     OUT_XLSX_FILE = "отчет.xlsx"
 
@@ -90,10 +89,10 @@ class XlsxClass():
                          c(work.date_completed), c(work.date_protected)])
 
         for obj in self.obj_list:
-            exam_list.append([obj.exam_obj.name, obj.exam_obj.points])
+            exam_list.append([obj.name, obj.exam_obj.name, obj.exam_obj.points])
 
         student_list = dict(zip(["ФИО", "Группа", "Курс", "Баллы", "Оценка"], self.transpose(student_list)))
-        exam_list = dict(zip(["Название", "Баллы"], self.transpose(exam_list)))
+        exam_list = dict(zip(["Студент","Название", "Баллы"], self.transpose(exam_list)))
         cert_list = dict(zip(["Студент", "Название", "Баллы", "Дата начала", "Дата конца"], self.transpose(cert_list)))
         work_list = dict(zip(
             ["Студент", "Аттестация", "Название работы", "Тип работы", "Баллы", "Дата дедлайна", "Дата завершения",

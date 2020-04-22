@@ -8,12 +8,8 @@
 истории получения баллов (по практикам, контрольным и тестированиям) с учетом даты получения оценки по схеме: выполнено, защищено.
 """
 
-# TODO Перезаполнить БД
-
 import webbrowser
-
 from texttable import Texttable
-
 import sqlite_module
 import xlsx_module
 from changeinfo_module import ChangeClass
