@@ -28,10 +28,10 @@
             print("<a class='nav-link' href='#'><b>Добро пожаловать,".base64_decode($_COOKIE["logined"])."</b></a>");
         
         else if (isset($_COOKIE['registrated']))
-            print("<a class='nav-link' href='./login.php'>Вход</a>");
+            print("<a class='nav-link' href='./pages/login.php'>Вход</a>");
         
         else
-            print("<a class='nav-link' href='./login.php'>Регистрация</a>");
+            print("<a class='nav-link' href='./pages/login.php'>Регистрация</a>");
         ?>
     </li>
 
@@ -39,10 +39,10 @@
         <a class="nav-link active" href="#">Основное</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Работа с БД</a>
+        <a class="nav-link" href="./pages/database.php">Работа с БД</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Работа с формами</a>
+        <a class="nav-link" href="./pages/forms.php">Работа с формами</a>
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -90,7 +90,7 @@
 <?php
 if (isset($_COOKIE['logined'])) {
     print("
-				<form action='./php/loginlogic/exitbutton.php' method='POST'>
+				<form action='./loginlogic/exitbutton.php' method='POST'>
 				<button type='submit' class='btn btn-primary btn-lg'>Выход</button><br>
 				</form>");
 }

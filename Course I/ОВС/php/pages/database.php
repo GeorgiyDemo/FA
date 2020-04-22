@@ -52,14 +52,7 @@
         </div>
     </li>
 </ul>
-
-<div class="jumbotron">
-    <h1 class="display-4">Лаба ОВС</h1>
-    <p class="lead">Да пацаны, ето жестко © Джейсон Стетхем</p>
-    <hr class="my-4">
-    <p>Здесь собраны все задания, связанные с защитой 3 практической по ОВС.</p>
-    <a class="btn btn-primary btn-lg" href="https://github.com/GeorgiyDemo/FA" role="button">Мой Github</a>
-</div>
+<br>
 
 <?php
 if ((isset($_COOKIE['registrated'])) || ($_POST["setlogin"] == "booleantrue")) {
