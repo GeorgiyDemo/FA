@@ -41,18 +41,24 @@
     <li class="nav-item">
         <a class="nav-link" href="./pages/database.php">Работа с БД</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="./pages/forms.php">Работа с формами</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+           aria-expanded="false">Работа с формами</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/tasks/task5.php">Задание №5</a>
+            <a class="dropdown-item" href="/tasks/task6.php">Задание №6</a>
+            <a class="dropdown-item" href="/tasks/task7.php">Задание №7</a>
+            <a class="dropdown-item" href="/tasks/task8.php">Задание №8</a>
+        </div>
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
            aria-expanded="false">Базовые задания</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">№1</a>
-            <a class="dropdown-item" href="#">№2</a>
-            <a class="dropdown-item" href="#">№3</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" href="/tasks/task1.php">Задание №1</a>
+            <a class="dropdown-item" href="/tasks/task2.php">Задание №2</a>
+            <a class="dropdown-item" href="/tasks/task3.php">Задание №3</a>
+            <a class="dropdown-item" href="/tasks/task4.php">Задание №4</a>
         </div>
     </li>
 </ul>
