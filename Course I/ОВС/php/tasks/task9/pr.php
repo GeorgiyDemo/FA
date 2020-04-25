@@ -18,10 +18,13 @@ if (isset($_POST['new_goods'])) {
 $nomenclature_result = mysqli_query($link, "SELECT task9_nomenclature.name, task9_warehouse.name AS warehouse, task9_nomenclature.amount FROM task9_nomenclature
 INNER JOIN task9_warehouse ON task9_nomenclature.warehouse_id=task9_warehouse.id ORDER BY task9_nomenclature.name");
 
+
 print('
-<font style="font-size:16pt">
-Имеющиеся позиции товаров:</font>
-<table border=1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+Имеющиеся позиции товаров:
+    <table border=1>
 ');
 
 while ($goods = $nomenclature_result->fetch_assoc()) {
@@ -35,13 +38,12 @@ while ($goods = $nomenclature_result->fetch_assoc()) {
 
 //Генерация формы новых товаров
 print("
-</table>
-<div style='position:absolute;top:5;left:1000'>
-<font size='+2'> Форма ввода новых товаров</font>
+    </table>
+</div>
+<div class='col'>
+    
 <form method='post' action=''>
-<font style='font-size:16pt'>
-Название нового товара  :<input type='text'
-        name='new_goods' value=''>
+Название нового товара  :<input type='text' name='new_goods' value=''>
 <br>
 ");
 
@@ -61,4 +63,6 @@ print("
 <a  href='task9.php'>Вернуться на главную страницу </a>
 </div>");
 
+print("</div>
+</div>")
 ?>
