@@ -1,6 +1,7 @@
 <html>
     <body>
 <?php
+    require_once('connector.php'); 
     //Пример работ с формами c полем text, password и radio. Запись результатов в файл
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -14,15 +15,11 @@
                 $radiodata = $_POST["ways"];
                 
 
-                //Работа с БД
-                $link = mysqli_connect("127.0.0.1", "root", "root", "OVS", "8889");
                 if (mysqli_connect_errno()) {
                     printf("Не удалось подключиться: %s\n", mysqli_connect_error());
                     exit();
                 }
                 mysqli_query($link, "INSERT INTO task5 (name, radiobutton) VALUES ('".$username."','".$radiodata."')");
-                mysqli_close($link);
-
                 //Работа с файлом
                 $f = fopen($filename, 'at');
                 $text = "\n".$username." : ".$radiodata;
@@ -76,7 +73,7 @@
             результат">
             </form>'
         );
-
+    mysqli_close($link);
 ?>
 </body>
 </html>
