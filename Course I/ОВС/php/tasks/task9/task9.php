@@ -14,7 +14,7 @@ while ($row = $result->fetch_assoc())
     print("<option value='" . $row["id"] . "'>" . $row['name']);
 
 
-print("</select>Введите пароль:<br><input type='password' name='password'><br><br>
+print("</select>Введите пароль:<br><input type='password' class='form-control' name='password'><br>
     <input name='enterStart'
        type='submit' class='btn btn-outline-primary' value='Перейти к работе с базой'>
     </form>

@@ -60,6 +60,7 @@ if (isset($_COOKIE['logined']))
 <button type='submit' class='btn btn-primary btn-lg'>Выход</button><br>
 </form>");
 
+require_once('./pages/footer.php');
 print('</body></html>')
 
 ?>

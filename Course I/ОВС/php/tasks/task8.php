@@ -17,18 +17,24 @@ if (isset($_POST['okbutton'])) {
 }
 
 print('
-<html><head>
-<title> Гостевая книга </title></head>
-<body>
+
 <form method="post">
-Имя <br>
-<input type="text" name="name_of_quest">
-<br>Сообщение:<br>
-<br>
-<textarea name="message_of_quest" cols=10 rows=5>
-</textarea>
-<br><input type="submit" name="okbutton" value="OK">
+
+<div class=form-group row">
+    Имя <input type="text" class="form-control" name="name_of_quest">
+</div>
+
+<div class=form-group row">
+    <label for="exampleFormControlTextarea1">Сообщение:</label>
+    <textarea class="form-control"  name="message_of_quest" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<div class=form-group row">
+    <input type="submit" class="btn btn-outline-primary" name="okbutton" value="Отправить">
+</div>
+
 </form>
+
 ');
 $f = fopen($filename, "rt") or die("Не могу открыть файл");
 while (!feof($f)) {
