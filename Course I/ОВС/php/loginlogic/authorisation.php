@@ -17,7 +17,7 @@ if ($result->num_rows != 0) {
     print(
     "<script>
       if(!alert('Неверная пара логин/пароль'))
-        document.location = '".$URLADDRESS."/login.php';
+        document.location = '".$URLADDRESS."/pages/login.php';
     </script>"
     );
 }

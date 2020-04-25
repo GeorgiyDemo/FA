@@ -22,7 +22,7 @@ if ($result === TRUE) {
     print(
     "<script>
         if(!alert('Пользователь с таким логином уже зарегистрирован'))
-          document.location = '".$URLADDRESS."/login.php';
+          document.location = '".$URLADDRESS."/pages/login.php';
       </script>"
     );
 }
