@@ -1,16 +1,16 @@
 <?php
+require_once('../../pages/header.php');
 require_once('../connector.php');
-
 
 // Запись нового товара
 if (isset($_POST['new_goods'])) {
 
-  $new_warehouse_id = $_POST['new_warehouse'];
-  $new_goods = $_POST['new_goods'];
-  $amount = $_POST['amount'];
+    $new_warehouse_id = $_POST['new_warehouse'];
+    $new_goods = $_POST['new_goods'];
+    $amount = $_POST['amount'];
 
-  $query = "INSERT INTO task9_nomenclature (warehouse_id, name, amount) VALUES (".$new_warehouse_id.",'".$new_goods."',".$amount.")";
-  mysqli_query($link, $query);
+    $query = "INSERT INTO task9_nomenclature (warehouse_id, name, amount) VALUES (" . $new_warehouse_id . ",'" . $new_goods . "'," . $amount . ")";
+    mysqli_query($link, $query);
 }
 
 
@@ -25,12 +25,12 @@ print('
 ');
 
 while ($goods = $nomenclature_result->fetch_assoc()) {
-  //Вывод названия товара
-  print('<tr><td>' . $goods["name"] . '</td><td>');
-  //Получаем название склада
-  print($goods["warehouse"] . "</td><td>");
-  //Кол-во товара
-  print($goods["amount"] . "</td></tr>");
+    //Вывод названия товара
+    print('<tr><td>' . $goods["name"] . '</td><td>');
+    //Получаем название склада
+    print($goods["warehouse"] . "</td><td>");
+    //Кол-во товара
+    print($goods["amount"] . "</td></tr>");
 }
 
 //Генерация формы новых товаров
@@ -49,7 +49,7 @@ $result3 = mysqli_query($link, "SELECT id, name FROM task9_warehouse");
 print('Склад  :<select  name="new_warehouse">');
 
 while ($line = $result3->fetch_assoc())
-  print("<option value='" . $line["id"] . "'>" . $line["name"]);
+    print("<option value='" . $line["id"] . "'>" . $line["name"]);
 
 print("
 </select><br>
@@ -58,5 +58,7 @@ print("
  type='submit' value='Ввести товар'>
 </form>
 <br>
-<a  href='index.php'>Вернуться на главную страницу </a>
+<a  href='task9.php'>Вернуться на главную страницу </a>
 </div>");
+
+?>
