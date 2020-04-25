@@ -7,7 +7,7 @@ if ((isset($_COOKIE['registrated'])) || ($_POST["setlogin"] == "booleantrue")) {
     print("
 
 		<div class='container'>
-		<form class='form-signin' action='./loginlogic/authorisation.php' method='POST'>
+		<form class='form-signin' action='../loginlogic/authorisation.php' method='POST'>
 			<h2 class='form-signin-heading'>Авторизация</h2>
 			<label for='inputEmail' class='sr-only'>Адрес e-mail</label>
 			<input type='email' id='inputEmail' class='form-control' name='login' placeholder='Адрес e-mail' required autofocus>
@@ -25,7 +25,7 @@ if ((isset($_COOKIE['registrated'])) || ($_POST["setlogin"] == "booleantrue")) {
 } else {
     print("
 	<div class='container'>
-	<form class='form-signin' action='./loginlogic/registration.php' method='POST'>
+	<form class='form-signin' action='../loginlogic/registration.php' method='POST'>
 		<h2 class='form-signin-heading'>Регистрация</h2>
 		<label for='inputName' class='sr-only'>Имя пользователя</label>
 		<input type='text' id='inputName' class='form-control' name='name' placeholder='Имя пользователя' required autofocus>
