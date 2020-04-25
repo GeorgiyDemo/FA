@@ -1,5 +1,6 @@
 <?php
 require_once('../pages/header.php');
+print('Пример гостевой книги на PHP');
 //Пример гостевой книги
 $filename = "task8_data.txt";
 if (isset($_POST['okbutton'])) {

@@ -1,5 +1,6 @@
 <?php
 require_once('../pages/header.php');
+print('Пример формы с раскрывающимся списком и записью в файл');
 //Пример формы с раскрывающимся списком и записью в файл
 if ($_POST['enter_system'] == "OK") {
     $f = fopen("task6_data.txt", "a+t") or die("Файл не открывается");

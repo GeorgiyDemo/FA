@@ -2,6 +2,7 @@
 require_once('../pages/header.php');
 require_once('connector.php');
 //Пример работ с формами c полем text, password и radio. Запись результатов в файл
+print("Пример работы с формами c полем text, password и radio. Запись результатов в файл");
 $username = $_POST['username'];
 $password = $_POST['password'];
 $filename = "task5_data.txt";

@@ -20,49 +20,74 @@ INNER JOIN task9_warehouse ON task9_nomenclature.warehouse_id=task9_warehouse.id
 
 
 print('
+<br>
 <div class="container">
   <div class="row">
     <div class="col">
 Имеющиеся позиции товаров:
-    <table border=1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Склад</th>
+      <th scope="col">Количество</th>
+    </tr>
+  </thead>
+  <tbody>
+  
 ');
 
 while ($goods = $nomenclature_result->fetch_assoc()) {
     //Вывод названия товара
-    print('<tr><td>' . $goods["name"] . '</td><td>');
+    print('<tr><td>' . $goods["name"] . '</td>');
     //Получаем название склада
-    print($goods["warehouse"] . "</td><td>");
+    print('<td>' . $goods["warehouse"] . '</td>');
     //Кол-во товара
-    print($goods["amount"] . "</td></tr>");
+    print('<td>' . $goods["amount"] . ' шт. </td></tr>');
 }
 
 //Генерация формы новых товаров
 print("
-    </table>
+  </tbody>
+</table>
 </div>
 <div class='col'>
     
-<form method='post' action=''>
-Название нового товара  :<input type='text' name='new_goods' value=''>
-<br>
+<form method='post' >
+<div class='form-group row'>
+    Название нового товара  :<input type='text' name='new_goods' value=''>
+
+</div>
 ");
 
 $result3 = mysqli_query($link, "SELECT id, name FROM task9_warehouse");
-print('Склад  :<select  name="new_warehouse">');
+print('
+  <div class="form-group row">  Склад  :<select  class="form-control" name="new_warehouse">');
 
 while ($line = $result3->fetch_assoc())
     print("<option value='" . $line["id"] . "'>" . $line["name"]);
 
 print("
-</select><br>
-Количество  :<input type='text' name='amount' value=''>
-<br><input name='enterNew'
- type='submit' value='Ввести товар'>
-</form>
-<br>
-<a  href='task9.php'>Вернуться на главную страницу </a>
+    </select>
+    </div>
+    
+    <div class='form-group row'>
+    Количество  :<input type='text'   class='form-control' name='amount' value=''>
+    </div>
+    
+    <div class='form-group row'>
+    <input name='enterNew'
+     type='submit' class='btn btn-outline-primary' value='Внести новый товар в БД'>
+    </div>
+    
+    <div class='form-group row'>
+      <a class='btn btn-outline-primary' href='task9.php'>Вернуться на форму логина</a>
+    </div>
+    </form>
 </div>");
 
 print("</div>
 </div>")
 ?>
+
+
