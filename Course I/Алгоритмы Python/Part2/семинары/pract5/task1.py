@@ -10,3 +10,14 @@
 Задача 1. В массиве, содержащем положительные и отрицательные целые числа, вычислить
 сумму четных положительных элементов.
 """
+import array as ar
+from random import randint
+main_arr = ar.array('i', [randint(-100,100) for _ in range(50)])
+print("Исходный массив:", main_arr)
+sum_result = 0
+for e in main_arr:
+    if e > 0 and e % 2 == 0:
+        print(e)
+        sum_result += e
+
+print("Сумма: {}".format(sum_result))
