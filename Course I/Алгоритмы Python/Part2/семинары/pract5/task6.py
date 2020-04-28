@@ -11,14 +11,14 @@ def main():
     except ValueError:
         print("Некорректный ввод данных!")
         return
-    np_arr = np.array([randint(-100,100) for _ in range(n)])
-    print("Исходный массив:", np_arr)
+    np_arr = np.array([randint(1,10) for _ in range(n)])
+    print("Исходный массив:" ,np_arr)
 
     boolean_flag = True
     while boolean_flag:
         try:
             a = int(input("Введите начало интервала (число a) -> "))
-            b = int(input("Введите начало интервала (число b) -> "))
+            b = int(input("Введите конец интервала (число b) -> "))
             if a > b: b,a = a,b
             boolean_flag = False
         except ValueError:
@@ -26,8 +26,8 @@ def main():
     
     #Ухух, магия numpy
     new_arr = np_arr[(np_arr < a ) | (np_arr > b)]
-    np_arr = np.pad(np_arr, (0, np_arr.shape[0] - new_arr.shape[0]))
-    print(np_arr)
+    new_arr = np.pad(new_arr, (0, np_arr.shape[0] - new_arr.shape[0]))
+    print(new_arr)
 
 if __name__ == "__main__":
     main()
