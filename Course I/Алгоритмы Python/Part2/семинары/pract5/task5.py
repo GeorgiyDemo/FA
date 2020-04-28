@@ -11,7 +11,7 @@ def main():
     except ValueError:
         print("Некорректный ввод данных!")
         return
-    np_arr = np.matrix([randint(-100,100) for _ in range(n)])
+    np_arr = np.array([randint(-100,100) for _ in range(n)])
     print("Исходный массив:", np_arr)
 
     index1, e_min1 =  np_arr.argmin(), np_arr.min()
