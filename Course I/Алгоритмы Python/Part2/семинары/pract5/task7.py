@@ -26,9 +26,5 @@ def main():
     s = np.sum((np.absolute(new_arr)))
     print("Сумма модулей после отрицательного элемента: {}".format(s))
 
-    #new_arr = np_arr[(np_arr < a ) | (np_arr > b)]
-    #np_arr = np.pad(np_arr, (0, np_arr.shape[0] - new_arr.shape[0]))
-    #print(np_arr)
-
 if __name__ == "__main__":
     main()
