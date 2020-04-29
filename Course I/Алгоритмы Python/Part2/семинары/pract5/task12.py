@@ -7,6 +7,21 @@ import numpy as np
 
 
 
+def rolling_window(a, window):
+    shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
+    strides = a.strides + (a.strides[-1],)
+    return np.lib.stride_tricks.as_strided(a, shape=shape, strides=strides)
+
+def findFirst_numpy(a, b):
+    temp = rolling_window(a, len(b))
+    result = np.where(np.all(temp == b, axis=1))
+    print(result)
+    print(type(result))
+    if result != []:
+        return result[0][0], result[0][0]+b.shape[0]
+    return None
+
+
 class MainClass(object):
 
     def __init__(self):
@@ -14,7 +29,7 @@ class MainClass(object):
         self.sub_arr = np.array(list("itmathrepetitor"))
         self.replace_arr = np.array(list("silence"))
         self.processing()
-        self.printer()
+        #self.printer()
 
     def get_replacechar(self):
         """Генерация буферного символа, чтоб размер маски не изменялся"""
@@ -34,43 +49,32 @@ class MainClass(object):
         - Наложение маски
         - Удаление буферных символов
         """
+
         
         replace_arr = self.replace_arr
         sub_arr = self.sub_arr
         arr = self.arr
 
         print("Список до замены:\n{}".format(arr))
-        print("Длинна:",arr.shape)
-
-        #Получаем маску subarrays
-        mask = np.isin(arr, sub_arr)
-        print("МАСКА",mask)
-        #Увеличиваем кол-во знаков в replace_arr
-        #Выбираем буферный символ, которого нет в исходной строке
-        char = self.get_replacechar()
-
-        #Один элемент для замены последовательности True
-        replace_item = np.append(replace_arr,[char for _ in range(sub_arr.shape[0] - replace_arr.shape[0])])
-
-        #Формируем массив замены replace_arr по маске mask
-        replace_arr = np.array([])
-        index = 0
-        for i in np.arange(mask.shape[0]):
-            if index == replace_item.shape[0]:
-                index = 0
-            if mask[i]:
-                replace_arr = np.append(replace_arr,replace_item[index])
-                index += 1            
         
+        #Получаем все индексы до замены
 
-        #Меняем данные в массиве по маске
-        arr[mask] = replace_arr
-
-        #Удаляем буферные элементы
-        arr = arr[arr != char]
-
+        stop_flag = False
+        indexes_arr = np.array([])
+        buf_arr = np.array(arr, copy=True)
+        while not stop_flag:
+            r = findFirst_numpy(buf_arr, sub_arr)
+            print(r)
+            if r is None:
+                #Доехали до окончания
+                break
+            subbuf_arr = np.append(buf_arr[:r[0]],replace_arr)    
+            buf_arr = np.append(subbuf_arr,buf_arr[r[1]:])
+            print(buf_arr)
+        
+        
         #Выставляем результат
-        self.arr = arr
+        #self.arr = arr
 
     def printer(self):
         """Вывод результатов на экран"""
