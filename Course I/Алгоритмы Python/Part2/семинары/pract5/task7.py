@@ -22,7 +22,7 @@ def main():
     print("Индекс первого отрицательного элемента: {}".format(itemindex))
     #Новый массив
     new_arr = np_arr[itemindex+1:]
-    #Сумма по молулю
+    #Сумма по модулю
     s = np.sum((np.absolute(new_arr)))
     print("Сумма модулей после отрицательного элемента: {}".format(s))
 
