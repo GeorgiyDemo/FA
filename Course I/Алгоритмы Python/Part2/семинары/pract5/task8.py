@@ -6,3 +6,4 @@
 import array as ar
 arr = ar.array("u", ["К", "O","T"])
 print(arr)
+
