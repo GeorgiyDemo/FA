@@ -7,15 +7,20 @@
 import array as ar
 from random import randint
 
-a = ar.array("i", [])
-N = 5
-for i in range(N):
-    numb = int(input())
-    a.append(numb)
-print(a)
-numb = int(input("Число: "))
-pos = int(input("Позиция: "))
- 
-a.insert(pos-1, numb)
- 
-print(a)
+def main():
+
+    a = ar.array("i", [])
+    N = int(input("Введите кол-во элементов массива -> "))
+    for i in range(N-1):
+        n = int(input("Введите элемент массива №{} -> ".format(i+1)))
+        a.append(n)
+
+    print("Исходный массив:", a)
+    n = int(input("Введите элемент массива №{} -> ".format(N)))
+    pos = int(input("Введите номер позиции элемента для вставки -> "))
+    a.insert(pos-1, n)
+    
+    print("Результат после вставки:", a)
+
+if __name__ == "__main__":
+    main()

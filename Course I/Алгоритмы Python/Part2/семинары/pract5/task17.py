@@ -20,7 +20,6 @@ class ChangerClass:
         
         while True:
             try:
-
                 offset_num = int(input("Введите кол-во шагов для смещения или введите 0 для выхода из программы\n-> "))
                 if offset_num == 0:
                     break
@@ -30,10 +29,10 @@ class ChangerClass:
                     self.left_offset()
                 elif offset_input == "2":
                     self.right_offset()
-                
+
             except ValueError:
                 print("Некорректный ввод данных!")
-        
+
     def right_offset(self):
         """Смещение вправо"""
         arr = self.np_arr
