@@ -26,7 +26,28 @@ class Calculation:
 
         #Выводим данные
         self.printer()
+        input_value = ""
+
+        d_ways = {"1" : self.summ, "2" : self.diff, "3" : self.mul}
+        while input_value != "0":
+            input_value = input("\nКакое действие с матрицами вы хотите сделать?\n1. Сложение\n2. Вычитание\n3. Умножение\n0. Выход из меню\n-> ")
+            if input_value in d_ways:
+                d_ways[input_value]()
+            elif input_value != "0":
+                print("Некорректный ввод, повторите попытку")
+
+    def summ(self):
+        print("А + B:\n{}".format(self.m1 + self.m2))
+        print("B + A:\n{}".format(self.m2 + self.m1))
     
+    def diff(self):
+        print("А - B:\n{}".format(self.m1 - self.m2))
+        print("B - A:\n{}".format(self.m2 - self.m1))
+
+    def mul(self):
+        print("А * B:\n{}".format(self.m1 * self.m2))
+        print("B * A:\n{}".format(self.m2 * self.m1))
+
     def range_input(self):
         """Ввод размерностей двух матриц с фильтрацией данных"""
         return_list = []
@@ -52,35 +73,31 @@ class Calculation:
         self.m1 = m1
         self.m2 = m2
 
-    """
-    Адекватный ручной ввод 
-    # User input of entries in a  
-    # single line separated by space 
-    entries = list(map(int, input().split())) 
-    
-    # For printing the matrix 
-    matrix = np.array(entries).reshape(R, C) 
-    print(matrix) 
-    """
     def manual_input(self):
         """Ручной ввод матриц"""
         r1, r2 = self.range_input()
-        m1, m2 = np.matrix([]), np.matrix([])
+        m1, m2 = np.array([]), np.array([])
 
-        for m_name, m_items in {"А" : [r1, m1], "B" : [r2, m2]}.items():
+        d = {"А" : [r1, m1], "B" : [r2, m2]}
+
+        for m_name, m_items in d.items():
             print("*Заполнение матрицы {}*".format(m_name))
             for i in range(m_items[0][0]):
-                buf_arr = np.array([])
                 for j in range(m_items[0][1]):
                     bool_flag = True
                     while bool_flag:
                         try:
                             input_e = int(input("Введите элемент [{}][{}] -> ".format(i, j)))
-                            buf_arr = np.append(buf_arr, input_e)
+                            m_items[1] = np.append(m_items[1], input_e)
                             bool_flag = False
                         except ValueError:
                             print("Некорректный ввод данных, повторите попытку")
-                m_items[1] = np.append(m_items[1], buf_arr)
+
+        m1 = d["А"][1]
+        m2 = d["B"][1]
+
+        self.m1 = np.matrix(m1).reshape(*r1)
+        self.m2 = np.matrix(m2).reshape(*r2)  
 
     def printer(self):
         print("Матрица А:\n",self.m1)
@@ -88,25 +105,3 @@ class Calculation:
 
 if __name__ == "__main__":
     Calculation()
-
-"""
-
-m1 = np.matrix([[1,2,3],[5,6,3],[4,2,5]])
-m2 = np.matrix([[7,4,2],[5,6,3],[4,2,5]])
-
-print("Исходная матрица А")
-print(m1)
-print("Исходная матрица B")
-print(m2)
-
-print("Умножение")
-r = m1 * m2
-print(r)
-
-print("Сумма: ")
-print(m1 + m2)
-
-print("Разность:")
-print(m1 - m2)
-
-"""
