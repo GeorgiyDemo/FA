@@ -23,4 +23,7 @@ def main():
     print("Результат после вставки:", a)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ValueError:
+        print("Некорректный ввод данных, завершение программы..")
