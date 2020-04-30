@@ -21,24 +21,28 @@ class ChangerClass:
         while True:
             try:
 
-                self.offset = int(input("Введите кол-во шагов для смещения -> "))
-                offset_input = input("В какую стороны вы хотите сдвинуть элементы массива?\n1. Влево\n2. Вправо\n0. Выход из программы\n-> ")
+                offset_num = int(input("Введите кол-во шагов для смещения или введите 0 для выхода из программы\n-> "))
+                if offset_num == 0:
+                    break
+                self.offset = offset_num
+                offset_input = input("В какую стороны вы хотите сдвинуть элементы массива?\n1. Влево\n2. Вправо\n-> ")
                 if offset_input == "1":
                     self.left_offset()
                 elif offset_input == "2":
                     self.right_offset()
-                if offset_input == "0":
-                    break
-                else:
-                    raise ValueError
-            
+                
             except ValueError:
-                print("Некорректный ввод данных")
+                print("Некорректный ввод данных!")
         
     def right_offset(self):
         """Смещение вправо"""
         arr = self.np_arr
         offset = self.offset
+        new_arr = arr[:-offset]
+        new_arr = np.pad(new_arr, (arr.shape[0] - new_arr.shape[0], 0))
+        print("Массив после смещения на {} вправо:\n{}".format(offset, new_arr))
+        self.np_arr = new_arr
+
     
     def left_offset(self):
         """Смещение влево"""
@@ -49,7 +53,7 @@ class ChangerClass:
         new_arr = arr[offset:]
         #Добавляем нули
         new_arr = np.pad(new_arr, (0, arr.shape[0] - new_arr.shape[0]))
-        print("Массив после смещения на {}:\n{}".format(offset, new_arr))
+        print("Массив после смещения на {} влево:\n{}".format(offset, new_arr))
         self.np_arr = new_arr
 
 if __name__ == "__main__":
