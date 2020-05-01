@@ -5,21 +5,20 @@
 Вывести на экран элементы массива и посчитанные количества. Рассмотрите возможность
 использования numpy.set_printoptions для полноценного вывода занчений массива на экран.
 """
-import array as ar
+
+import sys
+import numpy as np
 from random import randint
-neg = pos = zero = 0
-a = ar.array("i", [])
-for i in range(2000):
-    numb = int(randint(-5, 4))
-    a.append(numb)
-    print(numb, end=' ')
-    if numb < 0:
-        neg += 1
-    elif numb > 0:
-        pos += 1
-    else:
-        zero += 1
- 
-print("\nПоложительных: ", pos)
-print("Отрицательных: ", neg)
-print("Равных нулю: ", zero)
+
+def main():
+
+    arr = np.array([randint(-5, 4) for _ in range(2001)])
+    np.set_printoptions(threshold=sys.maxsize)
+
+    print("Элементы массива:\n{}".format(arr))
+    print("Положительных: {}".format(arr[arr > 0].shape[0]))
+    print("Отрицательных: {}".format(arr[arr < 0].shape[0]))
+    print("Равных нулю: {}".format(arr[arr == 0].shape[0]))
+
+if __name__ == "__main__":
+    main()
