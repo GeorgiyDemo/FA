@@ -1,3 +1,4 @@
+#python3 setup.py build_ext --inplace
 """
 Задача 21:
 Сгенерировать 2000 случайных целых чисел в диапазоне от -5 до 4, записать их в ячейки
@@ -25,7 +26,7 @@ import timeit
 from DEMKA import DEMKACython
 
 def default():
-    l = [randint(-5, 4) for _ in range(20001)]
+    l = [randint(-5, 4) for _ in range(2001)]
     #print("Элементы списка:\n{}".format(l))
     print("List")
     print("Положительных: {}".format(len([e for e in l if e > 0])))
@@ -33,7 +34,7 @@ def default():
     print("Равных нулю: {}".format(len([e for e in l if e == 0])))
 
 def numpy():
-    arr = np.array([randint(-5, 4) for _ in range(20001)])
+    arr = np.array([randint(-5, 4) for _ in range(2001)])
     np.set_printoptions(threshold=sys.maxsize)
     #print("Элементы массива:\n{}".format(arr))
     print("\nNumpy:")
@@ -49,11 +50,7 @@ if __name__ == "__main__":
     a = timeit.default_timer()
     numpy()
     print("Время: {}".format(timeit.default_timer()-a))
-
-
-    # Import the extension module hello.
-from DEMKA import DEMKACython
-import timeit
-a = timeit.default_timer()
-print(DEMKACython())
-print("Время: {}".format(timeit.default_timer()-a))
+    
+    a = timeit.default_timer()
+    print("\nCython:\nПоложительных: {}\nОтрицательных: {}\nРавных нулю: {}".format(*DEMKACython()))
+    print("Время: {}".format(timeit.default_timer()-a))

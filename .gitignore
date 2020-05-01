@@ -267,3 +267,5 @@ __pycache__/
 .ipynb_checkpoints
 .idea/
 *.css
+*.so
+*.o
