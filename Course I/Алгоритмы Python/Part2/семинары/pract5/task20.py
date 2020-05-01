@@ -7,32 +7,53 @@
 
 import numpy as np
 from random import randint
-def input_N():
-    """Ввод числа N"""
-    try:
-        N = int(input("Длина массивов -> "))
-        return N
-    except ValueError:
-        print("Вводить число!")
-        return input_N()
 
-N = input_N()
-rand_arr = np.array([randint(-100, 100) for _ in range(N)])
-print("Рандомный массив:", rand_arr)
-# заменить на ручной ввод
-my_arr = np.array([])
-for i in range(N):
-    my_arr = np.append(my_arr, 0)
-print("Заполните массив:")
-for i in range(N):
-    my_arr[i] = int(input())
-print("Вводный массив:", my_arr)
+class ArrayProcessingClass:
+    def __init__(self):
+        self.inputer()
+        self.array_generator()
+        self.array_input()
+        self.processing()
 
-arr_sum = np.array([])
-for i in range(N):
-    arr_sum = np.append(arr_sum, 0)
+    def inputer(self):
+        """Ввод размерности массива"""
+        boolean_flag = True
+        while boolean_flag:
+            
+            try:
+                self.n = int(input("Введите размерность массивов -> "))
+                boolean_flag = False
+            
+            except ValueError:
+                print("Некорректный ввод!")
 
-for i in range(N):
-    arr_sum[i] = rand_arr[i] + my_arr[i]
+    def array_generator(self):
+        """Генерация массива рандомными числами"""
+        arr = np.array([randint(-100, 100) for _ in range(self.n)])
+        print("\nСгенерированный массив №1:\n{}".format(arr))
+        self.arr1 = arr
 
-print(arr_sum)
+    def array_input(self):
+        """Ввод элементов массива"""
+        arr = np.array([])
+        print("*Ввод данных массива №2*")
+        for i in range(self.n):
+            boolean_flag = True
+            while boolean_flag:
+                try:
+                    element = int(input("Введите элемент массива №{} -> ".format(i+1)))
+                    arr = np.append(arr, element)
+                    boolean_flag = False
+                except ValueError:
+                    print("Некорректный ввод данных!")
+        
+        print("\nВведенный массив №2:\n{}".format(arr))
+        self.arr2 = arr
+
+    def processing(self):
+        """Сумма первых двух массивов"""
+        result = self.arr1 + self.arr2
+        print("\nСумма двух массивов:\n{}".format(result))
+
+if __name__ == "__main__":
+    ArrayProcessingClass()
