@@ -7,6 +7,32 @@
 """
 import numpy as np
 import timeit
+import array as ar
+
+class ArrClass:
+    def __init__(self, arr):
+        self.arr = ar.array('u', arr)
+        self.old_arr = ar.array('u', 'itmathrepetitor')
+        self.new_arr = ar.array('u', 'silence')
+
+        self.processing()
+        self.printer()
+
+    def processing(self):
+
+        old = self.old_arr
+        new = self.new_arr
+        a = self.arr
+
+        for i in range(len(a) - len(old) + 1):
+            if a[i:i + len(old)] == old:
+                a[i:i + len(old)] = new
+        
+        self.arr = a
+    
+    def printer(self):
+        """Вывод результатов на экран"""
+        print("Результаты замены:\n{}".format(self.arr))
 
 
 class ListClass:
@@ -50,6 +76,7 @@ class ListClass:
 
         print("Список после замены:\n" + str(self.list))
 
+#Не всегда работает
 class NumpyClass:
 
     def __init__(self, arr):
@@ -108,5 +135,5 @@ if __name__ == "__main__":
     ListClass(s)
     print('\nвремя на работу с помощью list', timeit.default_timer()-a)
     a = timeit.default_timer()
-    NumpyClass(s)
-    print('\nвремя на работу с помощью numpy', timeit.default_timer()-a)
+    ArrClass(s)
+    print('\nвремя на работу с помощью array', timeit.default_timer()-a)

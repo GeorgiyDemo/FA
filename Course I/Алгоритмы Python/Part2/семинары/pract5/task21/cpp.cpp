@@ -4,7 +4,7 @@
 #include "timeit.h"
 using namespace std;
 
-int i, j, t, s, m, b, k, k1, k2, menu;
+int i;
 int n = 2001;
 int a[2001];
 int zeros, positive, negative;
