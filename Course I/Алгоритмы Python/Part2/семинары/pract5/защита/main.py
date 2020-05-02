@@ -3,7 +3,13 @@ import random
 #Белые - это синие
 #Черные - это красные
 
+#Война - это мир
+#Свобода - это рабство
+#Незнание - это сила
+
 #TODO 1.	Поочередно осуществляется ввод расположение шашек на доске, в этот момент пользователь должен выбрать цвет своих шашек (количество шашек ограничено 6 для каждого цвета);
+#TODO ограничения??
+
 class UtilClass:
     """Класс со всякой фигней"""
     @staticmethod
@@ -24,7 +30,7 @@ class UtilClass:
             return d[char]
         else:
             raise ValueError("Нет ключа для полученного char {}".format(char))
-     
+    
 class FieldClass:
     """
     Класс 1 клетки доски
@@ -150,8 +156,34 @@ class BoardClass:
             print("")
         return ""
 
-        
-class MainClass():
+class AnalyserClass:
+    """Класс ограничений и выявление некорретного хода"""
+    def __init__(self, command_dict):
+        self.result = False
+        self.backstep_detector()
+        self.diagonal_detector()
+    
+    def backstep_detector(self):
+        """Проверка на перемещение вперед"""
+        pass
+
+    def diagonal_detector(self):
+        """Проверка на осуществление перехода по диагонали"""
+        pass
+
+    def war_detector(self):
+        """Проверка на осуществление перехода с боем"""
+        pass
+
+    def peace_detector(self):
+        """Проверка на осуществление перехода с миром"""
+        pass
+    
+    def fieldtype_detector(self):
+        """Проверка на занятость и цвет ячейки, куда осущствляется попытка перехода"""
+        pass
+
+class MainClass:
     """Управляющий класс с логикой игры"""
     def __init__(self):
         self.stopgame_flag = False
@@ -160,10 +192,32 @@ class MainClass():
         print(board)
         self.gameprocess()
 
+    def command_parser(self, cmd):
+        """Осуществление парсинга и фильтрации команды, которую ввел пользователь"""
+        movement_type_dict = {":" : "war", "-" : "peace"}
+        #Разделитель строки на 2 части
+        spliter = None
+        detect_flag = False
+        for key in movement_type_dict.keys():
+            if key in cmd:
+                detect_flag = True
+                spliter = key
+                break
+        
+        if not detect_flag:
+            raise ValueError("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
+        
+        #Разделяем введенную команду на 2 части
+        part1, part2 = cmd.split(spliter)
+
+
     def gameprocess(self):
         """Управляющая логика работы игры"""
         while not self.stopgame_flag:
-            command_input = input("Введите команду -> ")
+            cmd = input("Введите команду -> ")
+            #Вызов фильтрации
+            #Если все ок - вызываем AnalyserClass для проверки, если все ок - осуществляем перемещение
+
             
     def computer_game(self):
         """Осуществление хода компьютером"""
