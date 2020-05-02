@@ -204,8 +204,6 @@ class AnalyserClass:
         
         print(self.results_list)
 
-
-    
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
         d = self.command_dict
@@ -231,15 +229,6 @@ class AnalyserClass:
         
         #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
 
-
-    def war_detector(self):
-        """Проверка на осуществление перехода с боем"""
-        pass
-
-    def peace_detector(self):
-        """Проверка на осуществление перехода с миром"""
-        pass
-    
     def fieldtype_detector(self):
         """
         Проверка на все, что связано с ячейкой.
@@ -247,6 +236,27 @@ class AnalyserClass:
         - Занятость ячейки
         - Цвет ячейки
         """
+        #Понятное дело, что мы ячейку на существование проверили на предыдущем шаге в diagonal_detector, но МАЛО ЛИ
+        d = self.command_dict
+        board_obj = self.board_obj
+        x = d["to"]["x"]
+        y = UtilClass.char2xint(d["to"]["y"])
+        if not board_obj.detect_element(x,y):
+            self.results_list.append(False)
+            return
+        #
+        selected_field = board_obj.board[x][y]
+        if selected_field.color == "black" and selected_field.figure_obj == None:
+            self.results_list.append(True)
+        else:
+            self.results_list.append(False)
+
+    def war_detector(self):
+        """Проверка на осуществление перехода с боем"""
+        pass
+
+    def peace_detector(self):
+        """Проверка на осуществление перехода с миром"""
         pass
 
 class MainClass:
