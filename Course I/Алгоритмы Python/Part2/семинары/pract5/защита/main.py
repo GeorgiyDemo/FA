@@ -71,9 +71,9 @@ class FieldClass:
         y = self.coord_y
 
         if (x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1):
-            color = "white"
-        else:
             color = "black"
+        else:
+            color = "white"
         
         self.color = color
     
@@ -167,17 +167,17 @@ class BoardClass:
         board = self.board
         for x in np.arange(8):
             for y in np.arange(8):
-                if x < 3 and not((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
-                    board[x][y].field_reserve(FigureClass("black", x, y))
-                elif x > 4 and not((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
+                if x < 3 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
                     board[x][y].field_reserve(FigureClass("white", x, y))
+                elif x > 4 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
+                    board[x][y].field_reserve(FigureClass("black", x, y))
         
         self.board = board
 
     def __str__(self):
         """Вывод игровой доски не экран"""
         board = self.board
-        for i in np.arange(board.shape[0]):
+        for i in np.arange(board.shape[0]-1,-1,-1):
             print("{}".format(i+1), end="")
             for j in np.arange(board.shape[1]):
                 print('{}'.format(board[i][j]), end="")
@@ -221,12 +221,12 @@ class AnalyserClass:
         d = self.command_dict
         target_x = d["from"]["x"]
         target_y = UtilClass.char2xint(d["from"]["y"])
-        self.board_obj.board[target_x][target_y].figure_obj = FigureClass("TEST", target_x, target_y)
-        ways_list = [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+1,target_y-2]]
+        #self.board_obj.board[target_x][target_y].figure_obj = FigureClass("TEST", target_x, target_y)
+        ways_list = [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+2,target_y-2]]
         
         for l in ways_list:
             x, y = l
-            #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
+            self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
                     
 
                 
