@@ -119,24 +119,11 @@ class FigureClass:
         self.coord_x = coord_x
         self.coord_y = coord_x
 
-    def movement(self, oldfield_obj, newfield_obj):
-        """
-        Осуществление перемещения фигуры
-        - Удаление привязки в ячейке
-        - Изменение координат фигуры
-        - Привязка к новой ячейке
-        """
-        oldfield_obj.figure_obj = None
-        self.coord_x = newfield_obj.coord_x
-        self.coord_x = newfield_obj.coord_y
-        newfield_obj.figure_obj = self
-
 class BoardClass:
     """Класс игровой доски"""
     def __init__(self):
         self.board = None
         self.board_generator()
-        print(self)
         self.figure_generator()
 
     def board_generator(self):
@@ -189,10 +176,12 @@ class BoardClass:
 class AnalyserClass:
     """Класс ограничений и выявление некорректного хода"""
     def __init__(self, command_dict, board_obj):
+        self.boolean_result = False
         self.results_list = []
         self.command_dict = command_dict
         self.board_obj = board_obj
 
+        self.fugure_detector()
         self.backstep_detector()
         self.diagonal_detector()
         self.fieldtype_detector()
@@ -203,6 +192,29 @@ class AnalyserClass:
             self.peace_detector()
         
         print(self.results_list)
+        if all(self.results_list):
+            self.boolean_result = True
+
+    #TODO
+    def fugure_detector(self):
+        """Определение, стоит ли на исходной клетке фигура и если стоит, то своя ли"""
+        
+        board_obj = self.board_obj
+        d = self.command_dict
+
+        #Проверка на то, существует ли ячейка, с которой мы хотим переставить фигуру
+        target_x = d["from"]["x"]
+        target_y = UtilClass.char2xint(d["from"]["y"])
+        if not board_obj.detect_element(target_x, target_y):
+            self.results_list.append(False)
+            return
+        
+        #Если есть фигура и ее цвет тот, за который мы играем
+        selected_field = board_obj.board[target_x][target_y]
+        if selected_field.figure_obj != None and selected_field.figure_obj.color == d["user_color"]:
+            self.results_list.append(True)
+        else:
+            self.results_list.append(False)
 
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
@@ -244,7 +256,7 @@ class AnalyserClass:
         if not board_obj.detect_element(x,y):
             self.results_list.append(False)
             return
-        #
+
         selected_field = board_obj.board[x][y]
         if selected_field.color == "black" and selected_field.figure_obj == None:
             self.results_list.append(True)
@@ -264,9 +276,9 @@ class MainClass:
     def __init__(self):
         self.stopgame_flag = False
         #Создаем доску
-        board = BoardClass()
-        print(board)
-        self.board = board
+        board_obj = BoardClass()
+        print(board_obj)
+        self.board_obj = board_obj
         self.gameprocess()
 
     def command_parser(self, cmd):
@@ -288,7 +300,8 @@ class MainClass:
             print("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
             return {}
         
-        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter]}
+        #TODO На будущее выбирать, за кого играть
+        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : "white"}
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
@@ -305,18 +318,44 @@ class MainClass:
     def gameprocess(self):
         """Управляющая логика работы игры"""
         while not self.stopgame_flag:
-            cmd = input("Введите команду -> ")
-            result = self.command_parser(cmd)
-            if result != {}:
-                obj = AnalyserClass(result, self.board)
-                print(self.board)
-
-
-            #Вызов фильтрации
-            #Если все ок - вызываем AnalyserClass для проверки, если все ок - осуществляем перемещение
-
             
-    def computer_game(self):
+            cmd = input("Введите команду -> ")
+            result_dict = self.command_parser(cmd)
+            
+            if result_dict != {}:
+                self.result_dict = result_dict
+                obj = AnalyserClass(result_dict, self.board_obj)
+                
+                if obj.boolean_result:
+                    self.user_mode()
+                    self.computer_mode()
+                    print(self.board_obj)
+    
+    def user_mode(self):
+        """
+        Осуществление хода пользователем
+        """
+        #TODO Если есть фигура, которую убили - удалить ее
+        d = self.result_dict
+        board = self.board_obj.board
+        mode = d["mode"]
+        f1 = [d["from"]["x"], UtilClass.char2xint(d["from"]["y"])]
+        f2 = [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])]
+        field_from = board[f1[0]][f1[1]]
+        field_to = board[f2[0]][f2[1]]
+
+        #Получаем объект фигуры с ячейки и выставлем для него обновленные координаты
+        figure_obj = field_from.figure_obj
+        figure_obj.coord_x, figure_obj.coord_y = f2
+        
+        #Присваиваем фигуру обновленной ячейке
+        field_to.field_reserve(figure_obj)
+        #Освобождаем из старой
+        field_from.field_free()
+
+        self.board_obj.board = board
+            
+    def computer_mode(self):
         """Осуществление хода компьютером"""
         pass
 
