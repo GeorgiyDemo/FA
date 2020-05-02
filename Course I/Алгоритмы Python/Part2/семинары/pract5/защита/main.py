@@ -25,7 +25,9 @@ class UtilClass:
     @staticmethod
     def char2xint(char):
         """Конвертирование буквы в число"""
-        d = {"A" : 0, "B" : 1, "C" : 2, "D": 3, "E":4, "F":5, "G":6 , "H":7}
+        d = {"A" : 0, "B" : 1, "C" : 2, "D": 3, "E":4, "F":5, "G":6 , "H":7,
+            "a": 0, "b" : 1, "c" :2, "d" : 3, "e" : 4, "f" : 5, "g" : 6, "h" : 7
+        }
         if char in d:
             return d[char]
         else:
@@ -38,7 +40,7 @@ class UtilClass:
             return False
 
         l1 = ["A", "B", "C", "D", "E", "F", "G", "H", "a","b", "c", "d", "e", "f", "g", "h"]
-        l2 = list(range(0,9))
+        l2 = list(map(str, range(1,9)))
         if part[0] in l1 and part[1] in l2:
             return True
         return False
@@ -96,7 +98,8 @@ class FieldClass:
     def __str__(self):
         """Вывод ячейки на экран"""
         board_color2print_dict = {"black" : "⬛️", "white": "⬜️"}
-        figure_color2print_dict = {"black" : "🔴", "white": "🔵"}
+        #TODO figure_color2print_dict = {"black" : "🔴", "white": "🔵", "TEST" : "🍺"}
+        figure_color2print_dict = {"black" : "👹", "white": "🍺", "TEST" : "💩"}
         #Если ячейка свободная -> выводим просто ее цвет на экран
         if self.isfree():
             return board_color2print_dict[self.color]
@@ -147,6 +150,18 @@ class BoardClass:
         
         self.board = np.array(board.reshape(8,8))
 
+    def detect_element(self, search_x, search_y):
+        """
+        Определяем, есть ли элемент с такими координатами на доске
+        Это необходимо для того, чтоб не выехать за массив
+        """
+        board = self.board
+        for x in np.arange(8):
+            for y in np.arange(8):
+                if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y:
+                    return True
+        return False
+
     def figure_generator(self):
         """Расстановка фигур по полю и их генерация"""
         board = self.board
@@ -163,17 +178,19 @@ class BoardClass:
         """Вывод игровой доски не экран"""
         board = self.board
         for i in np.arange(board.shape[0]):
+            print("{}".format(i+1), end="")
             for j in np.arange(board.shape[1]):
                 print('{}'.format(board[i][j]), end="")
             print("")
+        print("  A B C D E F G H")
         return ""
 
 class AnalyserClass:
     """Класс ограничений и выявление некорректного хода"""
-    def __init__(self, command_dict, board):
-        self.result = False
+    def __init__(self, command_dict, board_obj):
+        self.results_list = []
         self.command_dict = command_dict
-        self.board = board
+        self.board_obj = board_obj
 
         self.backstep_detector()
         self.diagonal_detector()
@@ -183,16 +200,38 @@ class AnalyserClass:
             self.war_detector()
         else:
             self.peace_detector()
+        
+        print(self.results_list)
 
 
     
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
-        pass
+        d = self.command_dict
+        print(d)
+        if d["from"]["y"] > d["to"]["y"]:
+            self.results_list.append(False)
+        else:
+            self.results_list.append(True)
 
     def diagonal_detector(self):
         """Проверка на осуществление перехода по диагонали"""
-        pass
+        #Возможные пути, куда может пойти шашка (их всего 4)
+        board_obj = self.board_obj
+        d = self.command_dict
+        target_x = d["from"]["x"]
+        target_y = UtilClass.char2xint(d["from"]["y"])
+        self.board_obj.board[target_x][target_y].figure_obj = FigureClass("TEST", target_x, target_y)
+        ways_list = [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+1,target_y-2]]
+        
+        for l in ways_list:
+            x, y = l
+            #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
+                    
+
+                
+
+        
 
     def war_detector(self):
         """Проверка на осуществление перехода с боем"""
@@ -203,7 +242,12 @@ class AnalyserClass:
         pass
     
     def fieldtype_detector(self):
-        """Проверка на занятость и цвет ячейки, куда осущствляется попытка перехода"""
+        """
+        Проверка на все, что связано с ячейкой.
+        - Проверка на существование ячейки
+        - Занятость ячейки
+        - Цвет ячейки
+        """
         pass
 
 class MainClass:
@@ -239,13 +283,13 @@ class MainClass:
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
-            command_dict["from"]["x"] = part1[0]
-            command_dict["from"]["y"] = part1[1]
-            command_dict["to"]["x"] = part2[0]
-            command_dict["to"]["y"] = part2[1]
+            command_dict["from"]["y"] = part1[0]
+            command_dict["from"]["x"] = int(part1[1])-1
+            command_dict["to"]["y"] = part2[0]
+            command_dict["to"]["x"] = int(part2[1])-1
             return command_dict
 
-        print("некорректный ввод данных!")
+        print("Некорректный ввод данных!")
         return {}
 
         
