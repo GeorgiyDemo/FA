@@ -8,7 +8,6 @@ import random
 #Незнание - это сила
 
 #TODO 1.	Поочередно осуществляется ввод расположение шашек на доске, в этот момент пользователь должен выбрать цвет своих шашек (количество шашек ограничено 6 для каждого цвета);
-#TODO ограничения??
 
 class UtilClass:
     """Класс со всякой фигней"""
@@ -98,7 +97,7 @@ class FieldClass:
     def __str__(self):
         """Вывод ячейки на экран"""
         board_color2print_dict = {"black" : "⬛️", "white": "⬜️"}
-        #TODO figure_color2print_dict = {"black" : "🔴", "white": "🔵", "TEST" : "🍺"}
+        # figure_color2print_dict = {"black" : "🔴", "white": "🔵", "TEST" : "🍺"}
         figure_color2print_dict = {"black" : "👹", "white": "🍺", "TEST" : "💩"}
         #Если ячейка свободная -> выводим просто ее цвет на экран
         if self.isfree():
@@ -185,7 +184,6 @@ class AnalyserClass:
         self.backstep_detector()
         self.diagonal_detector()
         self.fieldtype_detector()
-
         if command_dict["mode"] == "war":
             self.war_detector()
         else:
@@ -195,7 +193,6 @@ class AnalyserClass:
         if all(self.results_list):
             self.boolean_result = True
 
-    #TODO
     def fugure_detector(self):
         """Определение, стоит ли на исходной клетке фигура и если стоит, то своя ли"""
         
@@ -232,7 +229,14 @@ class AnalyserClass:
         target_x = d["from"]["x"]
         target_y = UtilClass.char2xint(d["from"]["y"])
         #Возможные клетки, куда можно пойти и которые есть на доске
-        validated_points = [e for e in [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+2,target_y-2]] if board_obj.detect_element(*e)]
+
+        #Т.к. использование "коротких" перемещений при атаке просто невозможно
+        if d["mode"] == "war":
+            allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
+        else:
+            allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
+        
+        validated_points = [e for e in allowedfields_list if board_obj.detect_element(*e)]
 
         if [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])] in validated_points:
             self.results_list.append(True)
@@ -248,6 +252,7 @@ class AnalyserClass:
         - Занятость ячейки
         - Цвет ячейки
         """
+
         #Понятное дело, что мы ячейку на существование проверили на предыдущем шаге в diagonal_detector, но МАЛО ЛИ
         d = self.command_dict
         board_obj = self.board_obj
@@ -263,10 +268,40 @@ class AnalyserClass:
         else:
             self.results_list.append(False)
 
+    #TODO
     def war_detector(self):
-        """Проверка на осуществление перехода с боем"""
+        """
+        Проверка на осуществление перехода с боем
+        - Проверка на то, чтоб была фигура, которую мы атакуем
+        - Поиск и установление координат фигуры, выставление в self.command_dict
+        - Проверка на то, чтоб была фигура, которую мы переходим
+        - Проверка на то, чтоб цвет фигуры был не наш
+        """
+        d = self.command_dict
+        board_obj = self.board_obj
+
+        x_start = d["from"]["x"]
+        y_start = UtilClass.char2xint(d["from"]["y"])
+
+        x_finish = d["to"]["x"]
+        y_finish = UtilClass.char2xint(d["from"]["y"])
+        
+        #Соседние точки относительно точки назначения
+        middle_points = np.array([e for e in set([x_finish-1,y_finish-3], [x_finish-1,y_finish-1]) if board_obj.detect_element(*e)])
+        print(middle_points)
+        #Возможные точки, где стоит фигура
+        validated_points = np.array([e for e in [[x_start+1,y_start+1], [x_start+1,y_start-1]] if board_obj.detect_element(*e)])
+        print(validated_points)
+
+        print(np.intersect1d(middle_points, validated_points))
+
+
+
+
+        #Проверить 
         pass
 
+    #TODO
     def peace_detector(self):
         """Проверка на осуществление перехода с миром"""
         pass
@@ -327,6 +362,7 @@ class MainClass:
                 obj = AnalyserClass(result_dict, self.board_obj)
                 
                 if obj.boolean_result:
+                    self.result_dict = obj.command_dict
                     self.user_mode()
                     self.computer_mode()
                     print(self.board_obj)
@@ -338,7 +374,9 @@ class MainClass:
         #TODO Если есть фигура, которую убили - удалить ее
         d = self.result_dict
         board = self.board_obj.board
+        
         mode = d["mode"]
+
         f1 = [d["from"]["x"], UtilClass.char2xint(d["from"]["y"])]
         f2 = [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])]
         field_from = board[f1[0]][f1[1]]
@@ -352,6 +390,13 @@ class MainClass:
         field_to.field_reserve(figure_obj)
         #Освобождаем из старой
         field_from.field_free()
+
+        #TODO
+        #Если мы кого-то бъём, то удаляем фигуру с той ячейки
+        if mode == "war":
+            pass
+
+
 
         self.board_obj.board = board
             
