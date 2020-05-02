@@ -155,6 +155,7 @@ class BoardClass:
         Определяем, есть ли элемент с такими координатами на доске
         Это необходимо для того, чтоб не выехать за массив
         """
+        search_x = UtilClass.xint2char(search_x)
         board = self.board
         for x in np.arange(8):
             for y in np.arange(8):
@@ -208,8 +209,7 @@ class AnalyserClass:
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
         d = self.command_dict
-        print(d)
-        if d["from"]["y"] > d["to"]["y"]:
+        if d["from"]["x"] > d["to"]["x"]:
             self.results_list.append(False)
         else:
             self.results_list.append(True)
@@ -221,17 +221,16 @@ class AnalyserClass:
         d = self.command_dict
         target_x = d["from"]["x"]
         target_y = UtilClass.char2xint(d["from"]["y"])
-        #self.board_obj.board[target_x][target_y].figure_obj = FigureClass("TEST", target_x, target_y)
-        ways_list = [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+2,target_y-2]]
-        
-        for l in ways_list:
-            x, y = l
-            self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
-                    
+        #Возможные клетки, куда можно пойти и которые есть на доске
+        validated_points = [e for e in [[target_x+1,target_y+1], [target_x+2,target_y+2], [target_x+1,target_y-1], [target_x+2,target_y-2]] if board_obj.detect_element(*e)]
 
-                
-
+        if [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])] in validated_points:
+            self.results_list.append(True)
+        else:
+            self.results_list.append(False)    
         
+        #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
+
 
     def war_detector(self):
         """Проверка на осуществление перехода с боем"""
@@ -283,10 +282,10 @@ class MainClass:
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
-            command_dict["from"]["y"] = part1[0]
             command_dict["from"]["x"] = int(part1[1])-1
-            command_dict["to"]["y"] = part2[0]
+            command_dict["from"]["y"] = part1[0]
             command_dict["to"]["x"] = int(part2[1])-1
+            command_dict["to"]["y"] = part2[0]
             return command_dict
 
         print("Некорректный ввод данных!")
