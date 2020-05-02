@@ -26,7 +26,7 @@ def main():
     
     #Ухух, магия numpy
     new_arr = np_arr[(np_arr < a ) | (np_arr > b)]
-    new_arr = np.pad(new_arr, (0, np_arr.shape[0] - new_arr.shape[0]))
+    new_arr = np.concatenate((new_arr, np.zeros((1, len(np_arr)-len(new_arr)), dtype=np.int32)[0]), axis=0)
     print(new_arr)
 
 if __name__ == "__main__":
