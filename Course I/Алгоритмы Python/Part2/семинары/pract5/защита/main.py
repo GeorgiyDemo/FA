@@ -31,6 +31,18 @@ class UtilClass:
         else:
             raise ValueError("Нет ключа для полученного char {}".format(char))
     
+    @staticmethod
+    def checkxy_value(part):
+        """Проверка на корректные на координаты xy"""
+        if type(part) != str or len(part) != 2:
+            return False
+
+        l1 = ["A", "B", "C", "D", "E", "F", "G", "H", "a","b", "c", "d", "e", "f", "g", "h"]
+        l2 = list(range(0,9))
+        if part[0] in l1 and part[1] in l2:
+            return True
+        return False
+
 class FieldClass:
     """
     Класс 1 клетки доски
@@ -157,11 +169,22 @@ class BoardClass:
         return ""
 
 class AnalyserClass:
-    """Класс ограничений и выявление некорретного хода"""
-    def __init__(self, command_dict):
+    """Класс ограничений и выявление некорректного хода"""
+    def __init__(self, command_dict, board):
         self.result = False
+        self.command_dict = command_dict
+        self.board = board
+
         self.backstep_detector()
         self.diagonal_detector()
+        self.fieldtype_detector()
+
+        if command_dict["mode"] == "war":
+            self.war_detector()
+        else:
+            self.peace_detector()
+
+
     
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
@@ -190,10 +213,14 @@ class MainClass:
         #Создаем доску
         board = BoardClass()
         print(board)
+        self.board = board
         self.gameprocess()
 
     def command_parser(self, cmd):
-        """Осуществление парсинга и фильтрации команды, которую ввел пользователь"""
+        """
+        Осуществление парсинга и фильтрации команды, которую ввел пользователь
+        Если все хорошо - вызывается проверка на уровне
+        """
         movement_type_dict = {":" : "war", "-" : "peace"}
         #Разделитель строки на 2 части
         spliter = None
@@ -205,16 +232,33 @@ class MainClass:
                 break
         
         if not detect_flag:
-            raise ValueError("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
+            print("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
+            return {}
         
+        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter]}
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
+        if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
+            command_dict["from"]["x"] = part1[0]
+            command_dict["from"]["y"] = part1[1]
+            command_dict["to"]["x"] = part2[0]
+            command_dict["to"]["y"] = part2[1]
+            return command_dict
 
+        print("некорректный ввод данных!")
+        return {}
 
+        
     def gameprocess(self):
         """Управляющая логика работы игры"""
         while not self.stopgame_flag:
             cmd = input("Введите команду -> ")
+            result = self.command_parser(cmd)
+            if result != {}:
+                obj = AnalyserClass(result, self.board)
+                print(self.board)
+
+
             #Вызов фильтрации
             #Если все ок - вызываем AnalyserClass для проверки, если все ок - осуществляем перемещение
 
