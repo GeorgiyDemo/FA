@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import time
 #Белые - это синие
 #Черные - это красные
 
@@ -338,7 +339,6 @@ class AnalyserClass:
         #Соседние точки относительно точки назначения
         middle_points = np.array([e for e in [[x_finish-1,y_finish-1], [x_finish-1,y_finish+1]] if board_obj.detect_element(*e)])
 
-
         #Возможные точки, где стоит фигура
         validated_points = np.array([e for e in [[x_start+1,y_start+1], [x_start+1,y_start-1]] if board_obj.detect_element(*e)])
 
@@ -369,8 +369,10 @@ class AnalyserClass:
 #TODO
 class GameOverClass:
     """Класс определения окончания игры"""
-    def __init__(self, board):
+    def __init__(self, board, user_color):
         self.result = False
+        self.won_color = ""
+        self.user_color = user_color
         self.board = board
 
         self.queen_detector()
@@ -379,7 +381,24 @@ class GameOverClass:
     
     def queen_detector(self):
         """Определение прохода шашки одного из игроков в дамки"""
-        pass
+        board = self.board
+        
+        uc = self.user_color
+        reverse_uc = "black" if uc == "white" else "white"
+        #Проверка на выигрыш белых
+
+        for i in np.arange(board.shape[0]):
+            if not board[0][i].isfree() and board[0][i].figure_obj.color == reverse_uc:
+                self.result = True
+                self.won_color = reverse_uc
+                break
+        
+        for i in np.arange(board.shape[0]):
+            if not board[7][i].isfree() and board[7][i].figure_obj.color == uc:
+                self.result = True
+                self.won_color = uc
+                break
+
 
     def nofigures_detector(self):
         """Определение того, что у одного из игроков больше нет фигур"""
@@ -444,31 +463,43 @@ class MainClass:
         
     def gameprocess(self):
         """Управляющая логика работы игры"""
+        
+        #Номер итерации
+        i = 0
         print("\033[93m*Игра началась*\033[0m")
         stopgame_flag = True
         while stopgame_flag:
+
+            #Ходит пользователь
+            if i % 2 == 0:
+                print("Ход №{}. Ходит пользователь".format(i+1))
+                cmd = input("Введите команду -> ")
+                result_dict = self.command_parser(cmd)
+                
+                #Если норально прошло фильтрацию
+                if result_dict != {}:
+                    self.result_dict = result_dict
+                    #Проверка на все критерии
+                    obj = AnalyserClass(result_dict, self.board_obj)
+                    #Если все хорошо, то осуществлем ход
+                    if obj.boolean_result:
+                        self.result_dict = obj.command_dict
+                        #Пользователь ходит
+                        self.user_mode()
+                        i+=1
             
-            cmd = input("Введите команду -> ")
-            result_dict = self.command_parser(cmd)
-            
-            #Если норально прошло фильтрацию
-            if result_dict != {}:
-                self.result_dict = result_dict
-                #Проверка на все критерии
-                obj = AnalyserClass(result_dict, self.board_obj)
-                #Если все хорошо, то осуществлем ход
-                if obj.boolean_result:
-                    self.result_dict = obj.command_dict
-                    #Пользователь ходит
-                    self.user_mode()
-                    #Компьютер ходит
-                    self.computer_mode()
+            #Компьютер ходит
+            else:
+                print("Ход №{}. Ходит компьютер".format(i+1))
+                self.computer_mode()
+                i+=1
 
             #Проверяем на окончание игры
-            obj = GameOverClass(self.board_obj.board)
+            obj = GameOverClass(self.board_obj.board, self.usercolor)
             if obj.result:
                 stopgame_flag = False
-
+                print("Выиграл цвет: {}".format(obj.won_color))
+            
             #Вывод доски
             print(self.board_obj)
     
