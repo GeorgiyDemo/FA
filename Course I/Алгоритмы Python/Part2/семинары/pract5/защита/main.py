@@ -170,25 +170,30 @@ class BoardClass:
                     board[x][y].field_reserve(FigureClass("black", x, y))
         self.board = board
 
+    #TODO
     def boardfigure_setter(self, color, search_y, search_x):
         """
         Поиск координат фигуры и ее постановка
         Возврат True - фигура поставлена
         Возврат False - фигура с координатами не найдена
         """
-        #search_x = search_x.upper()
-        print(search_x)
-        print(search_y)
+        board = self.board
+        y = UtilClass.char2xint(search_x)
+        x = search_y
+        board[x][y].field_reserve(FigureClass(color, x,y))
+        return True
+
+        """
 
         board = self.board
         for x in np.arange(8):
             for y in np.arange(8):
-                if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y and board[x][y].isfree():
+                if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y and board[x][y].isfree() and board[x][y].color == "black":
                     board[x][y].field_reserve(FigureClass(color, x,y))
                     self.board = board
                     return True
         return False
-
+        """
 
     def figuremanual_generator(self):
 
