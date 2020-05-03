@@ -175,6 +175,7 @@ class BoardClass:
 class AnalyserClass:
     """Класс ограничений и выявление некорректного хода"""
     def __init__(self, command_dict, board_obj):
+        
         self.boolean_result = False
         self.results_list = []
         self.command_dict = command_dict
@@ -186,10 +187,9 @@ class AnalyserClass:
         self.fieldtype_detector()
         if command_dict["mode"] == "war":
             self.war_detector()
-        else:
-            self.peace_detector()
         
         print(self.results_list)
+
         if all(self.results_list):
             self.boolean_result = True
 
@@ -208,7 +208,7 @@ class AnalyserClass:
         
         #Если есть фигура и ее цвет тот, за который мы играем
         selected_field = board_obj.board[target_x][target_y]
-        if selected_field.figure_obj != None and selected_field.figure_obj.color == d["user_color"]:
+        if not selected_field.isfree() and selected_field.figure_obj.color == d["user_color"]:
             self.results_list.append(True)
         else:
             self.results_list.append(False)
@@ -233,6 +233,7 @@ class AnalyserClass:
         #Т.к. использование "коротких" перемещений при атаке просто невозможно
         if d["mode"] == "war":
             allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
+        #При тихом ходе возмодны только короткие перемещения
         else:
             allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
         
@@ -263,18 +264,16 @@ class AnalyserClass:
             return
 
         selected_field = board_obj.board[x][y]
-        if selected_field.color == "black" and selected_field.figure_obj == None:
+        if selected_field.color == "black" and selected_field.isfree():
             self.results_list.append(True)
         else:
             self.results_list.append(False)
 
-    #TODO
     def war_detector(self):
         """
         Проверка на осуществление перехода с боем
         - Проверка на то, чтоб была фигура, которую мы атакуем
         - Поиск и установление координат фигуры, выставление в self.command_dict
-        - Проверка на то, чтоб была фигура, которую мы переходим
         - Проверка на то, чтоб цвет фигуры был не наш
         """
         d = self.command_dict
@@ -284,27 +283,38 @@ class AnalyserClass:
         y_start = UtilClass.char2xint(d["from"]["y"])
 
         x_finish = d["to"]["x"]
-        y_finish = UtilClass.char2xint(d["from"]["y"])
+        y_finish = UtilClass.char2xint(d["to"]["y"])
         
         #Соседние точки относительно точки назначения
-        middle_points = np.array([e for e in set([x_finish-1,y_finish-3], [x_finish-1,y_finish-1]) if board_obj.detect_element(*e)])
-        print(middle_points)
+        middle_points = np.array([e for e in [[x_finish-1,y_finish-1], [x_finish-1,y_finish+1]] if board_obj.detect_element(*e)])
+
+
         #Возможные точки, где стоит фигура
         validated_points = np.array([e for e in [[x_start+1,y_start+1], [x_start+1,y_start-1]] if board_obj.detect_element(*e)])
-        print(validated_points)
 
-        print(np.intersect1d(middle_points, validated_points))
+        attack_points = []
+        for i in np.arange(middle_points.shape[0]):
+            for j in np.arange(validated_points.shape[0]):
+                if middle_points[i][0] == validated_points[j][0] and middle_points[i][1] == validated_points[j][1]:
+                    attack_points = middle_points[i]
+                    break
 
+        #Если нет точек пересечения
+        if len(attack_points) == 0:
+            self.results_list.append(False)
+            return
 
+        self.command_dict["enemy"] = {}
+        self.command_dict["enemy"]["x"], self.command_dict["enemy"]["y"] = attack_points
+        attack_x, attack_y = attack_points
 
-
-        #Проверить 
-        pass
-
-    #TODO
-    def peace_detector(self):
-        """Проверка на осуществление перехода с миром"""
-        pass
+        #Выбрали точку, где располагается предполагаемый враг
+        attack_field = board_obj.board[attack_x][attack_y]
+        #Если есть чужая фигура на этой точке
+        if not attack_field.isfree() and attack_field.figure_obj.color != d["user_color"]:
+            self.results_list.append(True)
+        else:
+            self.results_list.append(False)
 
 class MainClass:
     """Управляющий класс с логикой игры"""
@@ -313,6 +323,9 @@ class MainClass:
         #Создаем доску
         board_obj = BoardClass()
         print(board_obj)
+
+        board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
+
         self.board_obj = board_obj
         self.gameprocess()
 
@@ -323,7 +336,7 @@ class MainClass:
         """
         movement_type_dict = {":" : "war", "-" : "peace"}
         #Разделитель строки на 2 части
-        spliter = None
+        spliter = ""
         detect_flag = False
         for key in movement_type_dict.keys():
             if key in cmd:
@@ -376,11 +389,12 @@ class MainClass:
         board = self.board_obj.board
         
         mode = d["mode"]
-
         f1 = [d["from"]["x"], UtilClass.char2xint(d["from"]["y"])]
         f2 = [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])]
-        field_from = board[f1[0]][f1[1]]
-        field_to = board[f2[0]][f2[1]]
+        x1, y1 = f1
+        x2, y2 = f2
+        field_from = board[x1][y1]
+        field_to = board[x2][y2]
 
         #Получаем объект фигуры с ячейки и выставлем для него обновленные координаты
         figure_obj = field_from.figure_obj
@@ -391,12 +405,10 @@ class MainClass:
         #Освобождаем из старой
         field_from.field_free()
 
-        #TODO
         #Если мы кого-то бъём, то удаляем фигуру с той ячейки
         if mode == "war":
-            pass
-
-
+            attack_x, attack_y = d["enemy"]["x"], d["enemy"]["y"]
+            board[attack_x][attack_y].field_free()
 
         self.board_obj.board = board
             
