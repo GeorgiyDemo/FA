@@ -6,6 +6,7 @@ from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
 #TODO При ручной настройке заносить инфо о фигуре
+#TODO Подробно вывести суть ошибок, которые возникат в ошибки  UserAnalyserClass
 #Белые - это синие
 #Черные - это красные
 
@@ -158,7 +159,7 @@ class MainClass:
 
             #Проверяем на окончание игры
             obj = GameOverClass(self.board_obj.board, self.user_color)
-            if obj.result:
+            if not obj.result:
                 stopgame_flag = False
                 print("Выиграл цвет: {}".format(obj.won_color))
 

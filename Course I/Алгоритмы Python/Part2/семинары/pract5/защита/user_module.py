@@ -10,7 +10,7 @@ class UserAnalyserClass:
         self.command_dict = command_dict
         self.board_obj = board_obj
 
-        self.fugure_detector()
+        self.figure_detector()
         self.backstep_detector()
         self.diagonal_detector()
         self.fieldtype_detector()
@@ -22,7 +22,7 @@ class UserAnalyserClass:
         if all(self.results_list):
             self.boolean_result = True
 
-    def fugure_detector(self):
+    def figure_detector(self):
         """Определение, стоит ли на исходной клетке фигура и если стоит, то своя ли"""
         
         board_obj = self.board_obj
