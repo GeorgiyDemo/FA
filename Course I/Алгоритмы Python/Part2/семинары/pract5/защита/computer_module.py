@@ -2,6 +2,7 @@ from user_module import UserAnalyserClass
 import random
 import numpy as np
 from util_module import UtilClass
+from elements_module import FigureClass
 
 #{'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': 'black'}
 #TODO
@@ -163,10 +164,12 @@ class ComputerGameClass:
     - Суть заключается просто в рандомном генерировани словаря dict относительно своих фигур по типу
       {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': 'black'}
     """
-    def __init__(self, board, user_color):
+    
+    #TODO при осуществлении хода - отвязка и приявязка фигуры
+    def __init__(self, board_obj, user_color):
         #Используется для контроля тупикового хода со стороны компьютера
         self.result = False
-        self.board = board
+        self.board_obj = board_obj
         self.user_color = user_color
         self.processing()
 
@@ -176,7 +179,7 @@ class ComputerGameClass:
         reverse_uc = "black" if uc == "white" else "white"
         myfields_arr = np.array([])
         all_d = np.array([])
-        board = self.board
+        board = self.board_obj.board
         print(board.shape)
 
         for i in np.arange(board.shape[0]):
@@ -186,9 +189,70 @@ class ComputerGameClass:
         
         #Для каждой шашки формируем возможные новые координаты, перемешиваем это и закидываем в ComputerAnalyserClass
         
-        [print(e) for e in myfields_arr]
 
-        for e in myfields_arr:
+        
+        ############################################################################################################################################
+        """
+        [print(e) for e in myfields_arr]
+        x = 3
+        y = 4
+        board[x][y].figure_obj = FigureClass("TEST", x, y)
+
+
+        middle_points = np.array([e for e in [[x-1,y-1], [x-1,y+1]] if self.board_obj.detect_element(*e)])
+        for l in middle_points:
+            bufx,bufy = l
+            board[bufx][bufy].figure_obj = FigureClass("TEST", bufx, bufy)
+
+        middle_points = np.array([e for e in [[x-2,y+2], [x-2,y-2]] if self.board_obj.detect_element(*e)])
+        for l in middle_points:
+            bufx,bufy = l
+            board[bufx][bufy].figure_obj = FigureClass("TEST", bufx, bufy)
+        """
+        ############################################################################################################################################
+        
+        
+        for i in np.arange(myfields_arr.shape[0]-1,-1,-1):
+            #Я тоже не понял, что тут происходит
+            y, x = UtilClass.char2xint(myfields_arr[i].coord_x), myfields_arr[i].coord_y
+            print(y, x)
+
+
+
+            #[x-1,y-1], [x-1,y+1]
+            #Опираемся на координаты поля, а не фигуры!
+            if self.board_obj.detect_element(y+1,x+1):
+                print("ТАКОЙ ЕСТЬ")
+                new_y, new_x = UtilClass.xint2char(y+1), x+1
+                print({'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+                all_d = np.append(all_d,{'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+                #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
+
+        for d in all_d:
+             print(d)
+            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
+
+            #[x-2,y+2], [x-2,y-2]
+            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
+            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
+            #print(e.coord_x, e.coord_y)
+            #print(x,y)
+        """
+            middle_points = np.array([e for e in [[x-1,y-1], [x-1,y+1]] if self.board_obj.detect_element(*e)])
+            for l in middle_points:
+                x,y = l
+                self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
+            break
+            
+        """
+
+        """
+            allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
+        #При тихом ходе возмодны только короткие перемещения
+        else:
+            allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
+        
+
             all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
             all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
             all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
@@ -203,3 +267,4 @@ class ComputerGameClass:
         d = {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc}
         pass
         
+        """

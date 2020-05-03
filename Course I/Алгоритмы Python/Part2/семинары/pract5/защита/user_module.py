@@ -62,7 +62,7 @@ class UserAnalyserClass:
         #Т.к. использование "коротких" перемещений при атаке просто невозможно
         if d["mode"] == "war":
             allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
-        #При тихом ходе возмодны только короткие перемещения
+        #При тихом ходе возможны только короткие перемещения
         else:
             allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
         
