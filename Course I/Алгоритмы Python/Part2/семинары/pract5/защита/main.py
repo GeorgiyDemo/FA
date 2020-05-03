@@ -7,8 +7,6 @@ import random
 #Свобода - это рабство
 #Незнание - это сила
 
-#TODO 1.	Поочередно осуществляется ввод расположение шашек на доске, в этот момент пользователь должен выбрать цвет своих шашек (количество шашек ограничено 6 для каждого цвета);
-
 class UtilClass:
     """Класс со всякой фигней"""
     @staticmethod
@@ -120,12 +118,11 @@ class FigureClass:
 
 class BoardClass:
     """Класс игровой доски"""
-    def __init__(self, generator_way):
+    def __init__(self, generator_way, user_color):
 
+        self.user_color = user_color
         figuregenerator_dict = {
-            #Ручная расстановка, 6 фигур (по заданию)
             1 : self.figuremanual_generator,
-            #Стандартная расстановка, 12 фигур (классика)
             2 : self.figureauto_generator,
         }
         self.board = None
@@ -161,39 +158,33 @@ class BoardClass:
 
     def figureauto_generator(self):
         """Автоматическая расстановка 12 фигур по полю"""
+        uc = self.user_color
+        reverse_uc = "black" if uc == "white" else "white"
+
         board = self.board
         for x in np.arange(8):
             for y in np.arange(8):
                 if x < 3 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
-                    board[x][y].field_reserve(FigureClass("white", x, y))
+                    board[x][y].field_reserve(FigureClass(uc, x, y))
                 elif x > 4 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
-                    board[x][y].field_reserve(FigureClass("black", x, y))
+                    board[x][y].field_reserve(FigureClass(reverse_uc, x, y))
         self.board = board
 
-    #TODO
-    def boardfigure_setter(self, color, search_y, search_x):
+    def boardfigure_setter(self, color, search_x, search_y):
         """
         Поиск координат фигуры и ее постановка
         Возврат True - фигура поставлена
         Возврат False - фигура с координатами не найдена
         """
+        x = search_x
+        y = UtilClass.char2xint(search_y)
         board = self.board
-        y = UtilClass.char2xint(search_x)
-        x = search_y
-        board[x][y].field_reserve(FigureClass(color, x,y))
-        return True
 
-        """
-
-        board = self.board
-        for x in np.arange(8):
-            for y in np.arange(8):
-                if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y and board[x][y].isfree() and board[x][y].color == "black":
-                    board[x][y].field_reserve(FigureClass(color, x,y))
-                    self.board = board
-                    return True
+        if board[x][y].isfree() and board[x][y].color == "black":
+            board[x][y].field_reserve(FigureClass(color, x,y))
+            self.board = board
+            return True
         return False
-        """
 
     def figuremanual_generator(self):
 
@@ -375,14 +366,41 @@ class AnalyserClass:
         else:
             self.results_list.append(False)
 
+#TODO
+class GameOverClass:
+    """Класс определения окончания игры"""
+    def __init__(self, board):
+        self.result = False
+        self.board = board
+
+        self.queen_detector()
+        self.nofigures_detector()
+        self.deadlock_detector()
+    
+    def queen_detector(self):
+        """Определение прохода шашки одного из игроков в дамки"""
+        pass
+
+    def nofigures_detector(self):
+        """Определение того, что у одного из игроков больше нет фигур"""
+        pass
+
+    def deadlock_detector(self):
+        """
+        Определение тупиковой ситуации
+        Использует логику, аналогичную рандомному ходу компьютера
+        """
+        pass
+
 class MainClass:
     """Управляющий класс с логикой игры"""
     def __init__(self):
-        self.stopgame_flag = False
         #Создаем доску
-
-        generator_mode = input("Введите способ генерации фигур на доске:\n1. Ручная расстановка, 6 фигур (по-умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> ")
-        board_obj = BoardClass(2) if generator_mode == "2" else BoardClass(1)
+        usercolor = input("Выберите цвет шашек:\n1. Белый (по умолчанию)\n2. Черный\n-> ")
+        self.usercolor = "black" if usercolor == "2" else "white"
+        
+        generator_mode = input("Введите способ генерации шашек на доске:\n1. Ручная расстановка, 6 фигур (по умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> ")
+        board_obj = BoardClass(2, self.usercolor) if generator_mode == "2" else BoardClass(1, self.usercolor)
         print(board_obj)
 
         #board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
@@ -395,6 +413,7 @@ class MainClass:
         Осуществление парсинга и фильтрации команды, которую ввел пользователь
         Если все хорошо - вызывается проверка на уровне
         """
+
         movement_type_dict = {":" : "war", "-" : "peace"}
         #Разделитель строки на 2 части
         spliter = ""
@@ -408,9 +427,8 @@ class MainClass:
         if not detect_flag:
             print("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
             return {}
-        
-        #TODO На будущее выбирать, за кого играть
-        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : "white"}
+
+        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : self.usercolor}
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
@@ -426,20 +444,33 @@ class MainClass:
         
     def gameprocess(self):
         """Управляющая логика работы игры"""
-        while not self.stopgame_flag:
+        print("\033[93m*Игра началась*\033[0m")
+        stopgame_flag = True
+        while stopgame_flag:
             
             cmd = input("Введите команду -> ")
             result_dict = self.command_parser(cmd)
             
+            #Если норально прошло фильтрацию
             if result_dict != {}:
                 self.result_dict = result_dict
+                #Проверка на все критерии
                 obj = AnalyserClass(result_dict, self.board_obj)
-                
+                #Если все хорошо, то осуществлем ход
                 if obj.boolean_result:
                     self.result_dict = obj.command_dict
+                    #Пользователь ходит
                     self.user_mode()
+                    #Компьютер ходит
                     self.computer_mode()
-                    print(self.board_obj)
+
+            #Проверяем на окончание игры
+            obj = GameOverClass(self.board_obj.board)
+            if obj.result:
+                stopgame_flag = False
+
+            #Вывод доски
+            print(self.board_obj)
     
     def user_mode(self):
         """
@@ -471,7 +502,8 @@ class MainClass:
             board[attack_x][attack_y].field_free()
 
         self.board_obj.board = board
-            
+    
+    #TODO
     def computer_mode(self):
         """Осуществление хода компьютером"""
         pass
