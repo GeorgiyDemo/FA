@@ -73,7 +73,7 @@ class FigureClass:
     def __init__(self, color, coord_x, coord_y):
         self.color = color
         self.coord_x = coord_x
-        self.coord_y = coord_x
+        self.coord_y = coord_y
     
     def __str__(self):
         return "Тип: *Шашка обыкновенная*\n*Координаты* x:{}, y:{}\n*Цвет* {}".format(self.coord_x, self.coord_y, self.color)
@@ -110,7 +110,7 @@ class BoardClass:
         Определяем, есть ли элемент с такими координатами на доске
         Это необходимо для того, чтоб не выехать за массив
         """
-        if search_x < 0 or search_y < 0:
+        if search_x not in range(0,8) or search_y not in range(0,8):
             return False
 
         search_x = UtilClass.xint2char(search_x)

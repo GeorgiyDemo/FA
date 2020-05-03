@@ -184,8 +184,8 @@ class ComputerGameClass:
 
         for i in np.arange(board.shape[0]):
             for j in np.arange(board.shape[1]):
-                if not board[i][j].isfree() and board[i][j].figure_obj.color == reverse_uc:
-                    myfields_arr = np.append(board[i][j], myfields_arr)
+                if not board[i][j].isfree() and board[i][j].figure_obj.color == uc:
+                    myfields_arr = np.append(myfields_arr, board[i][j])
         
         #Для каждой шашки формируем возможные новые координаты, перемешиваем это и закидываем в ComputerAnalyserClass
         
@@ -212,24 +212,34 @@ class ComputerGameClass:
         ############################################################################################################################################
         
         
-        for i in np.arange(myfields_arr.shape[0]-1,-1,-1):
+        for i in np.arange(myfields_arr.shape[0]):
             #Я тоже не понял, что тут происходит
-            y, x = UtilClass.char2xint(myfields_arr[i].coord_x), myfields_arr[i].coord_y
-            print(y, x)
+            x, y = myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y
+            #Опираемся на координаты ФИГУРЫ
+            #print(myfields_arr[i].figure_obj)
+            print("Клетка: x{}, y{} Фигура: x{}, y{}".format(myfields_arr[i].coord_x, myfields_arr[i].coord_y, myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y))
 
 
 
             #[x-1,y-1], [x-1,y+1]
-            #Опираемся на координаты поля, а не фигуры!
+            #Опираемся на координаты ФИГУРЫ
             if self.board_obj.detect_element(y+1,x+1):
-                print("ТАКОЙ ЕСТЬ")
+                #print("ТАКОЙ ЕСТЬ")
                 new_y, new_x = UtilClass.xint2char(y+1), x+1
-                print({'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+                #print({'from': {'x': y, 'y': UtilClass.xint2char(x)}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
                 all_d = np.append(all_d,{'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
                 #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
 
-        for d in all_d:
-             print(d)
+            if self.board_obj.detect_element(y-1,x+1):
+                #print("ТАКОЙ ЕСТЬ")
+                new_y, new_x = UtilClass.xint2char(y-1), x+1
+                #print({'from': {'x': y, 'y': UtilClass.xint2char(x)}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+                all_d = np.append(all_d,{'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+                #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
+        
+        
+        for e in all_d:
+            print(e)
             #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
 
             #[x-2,y+2], [x-2,y-2]

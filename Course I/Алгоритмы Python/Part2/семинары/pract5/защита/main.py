@@ -5,6 +5,7 @@ from user_module import UserAnalyserClass
 from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
+#TODO При ручной настройке заносить инфо о фигуре
 #Белые - это синие
 #Черные - это красные
 
@@ -126,9 +127,9 @@ class MainClass:
         print("\033[93m*Игра началась*\033[0m")
         stopgame_flag = True
         while stopgame_flag:
-
+            
             #Ходит пользователь
-            if i % 2 == 0:
+            if i % 2 == 1:
                 print("Ход №{}. Ходит пользователь".format(i+1))
                 cmd = input("Введите команду -> ")
                 result_dict = self.command_parser(cmd)
