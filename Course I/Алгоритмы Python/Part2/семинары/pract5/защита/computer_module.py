@@ -213,68 +213,41 @@ class ComputerGameClass:
         
         
         for i in np.arange(myfields_arr.shape[0]):
-            #Я тоже не понял, что тут происходит
-            x, y = myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y
-            #Опираемся на координаты ФИГУРЫ
+
             #print(myfields_arr[i].figure_obj)
-            print("Клетка: x{}, y{} Фигура: x{}, y{}".format(myfields_arr[i].coord_x, myfields_arr[i].coord_y, myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y))
+            print("Клетка: x{}, y{} Фигура: x{}, y{}, если преобразуем коорды фигуры: x{}, y{}".format(myfields_arr[i].coord_x, myfields_arr[i].coord_y, myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y, myfields_arr[i].figure_obj.coord_x, UtilClass.xint2char(myfields_arr[i].figure_obj.coord_y)))
 
+            x, y = myfields_arr[i].figure_obj.coord_x, myfields_arr[i].figure_obj.coord_y
+            y_char = UtilClass.xint2char(y)
 
-
-            #[x-1,y-1], [x-1,y+1]
-            #Опираемся на координаты ФИГУРЫ
-            if self.board_obj.detect_element(y+1,x+1):
-                #print("ТАКОЙ ЕСТЬ")
-                new_y, new_x = UtilClass.xint2char(y+1), x+1
-                #print({'from': {'x': y, 'y': UtilClass.xint2char(x)}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
-                all_d = np.append(all_d,{'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
-                #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
-
+            #Возможные короткие шаги
+            #[target_x+1,target_y-1]
             if self.board_obj.detect_element(y-1,x+1):
-                #print("ТАКОЙ ЕСТЬ")
                 new_y, new_x = UtilClass.xint2char(y-1), x+1
-                #print({'from': {'x': y, 'y': UtilClass.xint2char(x)}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
-                all_d = np.append(all_d,{'from': {'x': x, 'y': myfields_arr[i].coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
-                #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
-        
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+
+            #[target_x+1,target_y+1]
+            if self.board_obj.detect_element(y+1,x+1):
+                new_y, new_x = UtilClass.xint2char(y+1), x+1
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+
+            #Длинные шаги
+            #[target_x+2,target_y+2]
+            if self.board_obj.detect_element(y+2,x+2):
+                new_y, new_x = UtilClass.xint2char(y+2), x+2
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': uc})
+
+            #[target_x+2,target_y-2]
+            if self.board_obj.detect_element(y-2,x+2):
+                new_y, new_x = UtilClass.xint2char(y-2), x+2
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': uc})
         
         for e in all_d:
             print(e)
-            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
 
-            #[x-2,y+2], [x-2,y-2]
-            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
-            #all_d = np.append(all_d, {'from': {'x': e.coord_y, 'y': e.coord_x}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
-            #print(e.coord_x, e.coord_y)
-            #print(x,y)
-        """
-            middle_points = np.array([e for e in [[x-1,y-1], [x-1,y+1]] if self.board_obj.detect_element(*e)])
-            for l in middle_points:
-                x,y = l
-                self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
-            break
-            
-        """
-
-        """
-            allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
-        #При тихом ходе возмодны только короткие перемещения
-        else:
-            allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
-        
-
-            all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
-            all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc})
-            all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
-            all_d = np.append(all_d, {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'war', 'user_color': reverse_uc})
-            print(e.coord_x, e.coord_y)
-
-        #print(myfields_arr)
-        #print()
-        #for i in range(8):
-        #    for j in range
-
-        d = {'from': {'x': 2, 'y': 'c'}, 'to': {'x': 3, 'y': 'b'}, 'mode': 'peace', 'user_color': reverse_uc}
-        pass
-        
-        """
+            f1 = [e["from"]["x"], UtilClass.char2xint(e["from"]["y"])]
+            f2 = [e["to"]["x"], UtilClass.char2xint(e["to"]["y"])]
+            x1, y1 = f1
+            x2, y2 = f2
+            #field_from = board[x1][y1]
+            field_to = board[x2][y2].field_reserve(FigureClass("TEST", x, y))
