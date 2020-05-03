@@ -120,10 +120,21 @@ class FigureClass:
 
 class BoardClass:
     """Класс игровой доски"""
-    def __init__(self):
+    def __init__(self, generator_way):
+
+        figuregenerator_dict = {
+            #Ручная расстановка, 6 фигур (по заданию)
+            1 : self.figuremanual_generator,
+            #Стандартная расстановка, 12 фигур (классика)
+            2 : self.figureauto_generator,
+        }
         self.board = None
         self.board_generator()
-        self.figure_generator()
+
+        if generator_way in figuregenerator_dict:
+            figuregenerator_dict[generator_way]()
+        else:
+            raise ValueError("Нет запрашиваемого метода расстановки фигур {}!".format(generator_way))
 
     def board_generator(self):
         """Создание чистого игрового поля без фигур"""
@@ -133,7 +144,6 @@ class BoardClass:
             for y in np.arange(8):
                 field_obj = FieldClass(UtilClass.xint2char(x), y) 
                 board = np.append(field_obj, board)
-        
         self.board = np.array(board.reshape(8,8))
 
     def detect_element(self, search_x, search_y):
@@ -149,8 +159,8 @@ class BoardClass:
                     return True
         return False
 
-    def figure_generator(self):
-        """Расстановка фигур по полю и их генерация"""
+    def figureauto_generator(self):
+        """Автоматическая расстановка 12 фигур по полю"""
         board = self.board
         for x in np.arange(8):
             for y in np.arange(8):
@@ -158,8 +168,52 @@ class BoardClass:
                     board[x][y].field_reserve(FigureClass("white", x, y))
                 elif x > 4 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
                     board[x][y].field_reserve(FigureClass("black", x, y))
-        
         self.board = board
+
+    def boardfigure_setter(self, color, search_y, search_x):
+        """
+        Поиск координат фигуры и ее постановка
+        Возврат True - фигура поставлена
+        Возврат False - фигура с координатами не найдена
+        """
+        #search_x = search_x.upper()
+        print(search_x)
+        print(search_y)
+
+        board = self.board
+        for x in np.arange(8):
+            for y in np.arange(8):
+                if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y and board[x][y].isfree():
+                    board[x][y].field_reserve(FigureClass(color, x,y))
+                    self.board = board
+                    return True
+        return False
+
+
+    def figuremanual_generator(self):
+
+        """Ручная расстановка 6 фигур по полю"""
+        format_dict = {"white" : "белого", "black":"чёрного"}
+        for color in ("white", "black"):
+            print("\033[93m*Выставляем шашки {} цвета*\033[0m".format(format_dict[color]))
+            for i in range(5):
+                
+                boolean_flag = True
+                while boolean_flag:
+                    print(self)
+                    coord_input = input("Введите координаты расположения шашки №{} -> ".format(i+1))
+                    if UtilClass.checkxy_value(coord_input):
+                        coord_x = int(coord_input[1])-1
+                        coord_y = coord_input[0]
+                        result = self.boardfigure_setter(color, coord_x, coord_y)
+                        if result:
+                            print("Успешная постановка шашки на координаты ")
+                            boolean_flag = False
+                        else:
+                            print("Некорретный ввод координат!")
+                    else: 
+                        print("Некорретный ввод данных, пример координат: h2")
+
 
     def __str__(self):
         """Вывод игровой доски не экран"""
@@ -321,10 +375,12 @@ class MainClass:
     def __init__(self):
         self.stopgame_flag = False
         #Создаем доску
-        board_obj = BoardClass()
+
+        generator_mode = input("Введите способ генерации фигур на доске:\n1. Ручная расстановка, 6 фигур (по-умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> ")
+        board_obj = BoardClass(2) if generator_mode == "2" else BoardClass(1)
         print(board_obj)
 
-        board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
+        #board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
 
         self.board_obj = board_obj
         self.gameprocess()
@@ -384,7 +440,6 @@ class MainClass:
         """
         Осуществление хода пользователем
         """
-        #TODO Если есть фигура, которую убили - удалить ее
         d = self.result_dict
         board = self.board_obj.board
         
@@ -399,7 +454,7 @@ class MainClass:
         #Получаем объект фигуры с ячейки и выставлем для него обновленные координаты
         figure_obj = field_from.figure_obj
         figure_obj.coord_x, figure_obj.coord_y = f2
-        
+
         #Присваиваем фигуру обновленной ячейке
         field_to.field_reserve(figure_obj)
         #Освобождаем из старой
