@@ -1,47 +1,11 @@
 import numpy as np
 import random
 import time
+from util_module import UtilClass
+from user_module import UserAnalyserClass 
+from computer_module import ComputerGameClass
 #Белые - это синие
 #Черные - это красные
-
-#Война - это мир
-#Свобода - это рабство
-#Незнание - это сила
-
-class UtilClass:
-    """Класс со всякой фигней"""
-    @staticmethod
-    def xint2char(xint):
-        """Конвертирование числа в букву"""
-        d = {0:"A",1:"B", 2:"C", 3:"D", 4:"E", 5: "F", 6: "G", 7: "H"}
-        
-        if xint in d:
-            return d[xint]
-        else:
-            raise ValueError("Нет ключа для полученного xint {}".format(xint))
-     
-    @staticmethod
-    def char2xint(char):
-        """Конвертирование буквы в число"""
-        d = {"A" : 0, "B" : 1, "C" : 2, "D": 3, "E":4, "F":5, "G":6 , "H":7,
-            "a": 0, "b" : 1, "c" :2, "d" : 3, "e" : 4, "f" : 5, "g" : 6, "h" : 7
-        }
-        if char in d:
-            return d[char]
-        else:
-            raise ValueError("Нет ключа для полученного char {}".format(char))
-    
-    @staticmethod
-    def checkxy_value(part):
-        """Проверка на корректные на координаты xy"""
-        if type(part) != str or len(part) != 2:
-            return False
-
-        l1 = ["A", "B", "C", "D", "E", "F", "G", "H", "a","b", "c", "d", "e", "f", "g", "h"]
-        l2 = list(map(str, range(1,9)))
-        if part[0] in l1 and part[1] in l2:
-            return True
-        return False
 
 class FieldClass:
     """
@@ -223,150 +187,7 @@ class BoardClass:
         print("  A B C D E F G H")
         return ""
 
-class AnalyserClass:
-    """Класс ограничений и выявление некорректного хода"""
-    def __init__(self, command_dict, board_obj):
-        
-        self.boolean_result = False
-        self.results_list = []
-        self.command_dict = command_dict
-        self.board_obj = board_obj
 
-        self.fugure_detector()
-        self.backstep_detector()
-        self.diagonal_detector()
-        self.fieldtype_detector()
-        if command_dict["mode"] == "war":
-            self.war_detector()
-        
-        print(self.results_list)
-
-        if all(self.results_list):
-            self.boolean_result = True
-
-    def fugure_detector(self):
-        """Определение, стоит ли на исходной клетке фигура и если стоит, то своя ли"""
-        
-        board_obj = self.board_obj
-        d = self.command_dict
-
-        #Проверка на то, существует ли ячейка, с которой мы хотим переставить фигуру
-        target_x = d["from"]["x"]
-        target_y = UtilClass.char2xint(d["from"]["y"])
-        if not board_obj.detect_element(target_x, target_y):
-            self.results_list.append(False)
-            return
-        
-        #Если есть фигура и ее цвет тот, за который мы играем
-        selected_field = board_obj.board[target_x][target_y]
-        if not selected_field.isfree() and selected_field.figure_obj.color == d["user_color"]:
-            self.results_list.append(True)
-        else:
-            self.results_list.append(False)
-
-    def backstep_detector(self):
-        """Проверка на перемещение вперед"""
-        d = self.command_dict
-        if d["from"]["x"] > d["to"]["x"]:
-            self.results_list.append(False)
-        else:
-            self.results_list.append(True)
-
-    def diagonal_detector(self):
-        """Проверка на осуществление перехода по диагонали"""
-        #Возможные пути, куда может пойти шашка (их всего 4)
-        board_obj = self.board_obj
-        d = self.command_dict
-        target_x = d["from"]["x"]
-        target_y = UtilClass.char2xint(d["from"]["y"])
-        #Возможные клетки, куда можно пойти и которые есть на доске
-
-        #Т.к. использование "коротких" перемещений при атаке просто невозможно
-        if d["mode"] == "war":
-            allowedfields_list = [[target_x+2,target_y+2], [target_x+2,target_y-2]]
-        #При тихом ходе возмодны только короткие перемещения
-        else:
-            allowedfields_list = [[target_x+1,target_y+1], [target_x+1,target_y-1]]
-        
-        validated_points = [e for e in allowedfields_list if board_obj.detect_element(*e)]
-
-        if [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])] in validated_points:
-            self.results_list.append(True)
-        else:
-            self.results_list.append(False)    
-        
-        #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
-
-    def fieldtype_detector(self):
-        """
-        Проверка на все, что связано с ячейкой.
-        - Проверка на существование ячейки
-        - Занятость ячейки
-        - Цвет ячейки
-        """
-
-        #Понятное дело, что мы ячейку на существование проверили на предыдущем шаге в diagonal_detector, но МАЛО ЛИ
-        d = self.command_dict
-        board_obj = self.board_obj
-        x = d["to"]["x"]
-        y = UtilClass.char2xint(d["to"]["y"])
-        if not board_obj.detect_element(x,y):
-            self.results_list.append(False)
-            return
-
-        selected_field = board_obj.board[x][y]
-        if selected_field.color == "black" and selected_field.isfree():
-            self.results_list.append(True)
-        else:
-            self.results_list.append(False)
-
-    def war_detector(self):
-        """
-        Проверка на осуществление перехода с боем
-        - Проверка на то, чтоб была фигура, которую мы атакуем
-        - Поиск и установление координат фигуры, выставление в self.command_dict
-        - Проверка на то, чтоб цвет фигуры был не наш
-        """
-        d = self.command_dict
-        board_obj = self.board_obj
-
-        x_start = d["from"]["x"]
-        y_start = UtilClass.char2xint(d["from"]["y"])
-
-        x_finish = d["to"]["x"]
-        y_finish = UtilClass.char2xint(d["to"]["y"])
-        
-        #Соседние точки относительно точки назначения
-        middle_points = np.array([e for e in [[x_finish-1,y_finish-1], [x_finish-1,y_finish+1]] if board_obj.detect_element(*e)])
-
-        #Возможные точки, где стоит фигура
-        validated_points = np.array([e for e in [[x_start+1,y_start+1], [x_start+1,y_start-1]] if board_obj.detect_element(*e)])
-
-        attack_points = []
-        for i in np.arange(middle_points.shape[0]):
-            for j in np.arange(validated_points.shape[0]):
-                if middle_points[i][0] == validated_points[j][0] and middle_points[i][1] == validated_points[j][1]:
-                    attack_points = middle_points[i]
-                    break
-
-        #Если нет точек пересечения
-        if len(attack_points) == 0:
-            self.results_list.append(False)
-            return
-
-        self.command_dict["enemy"] = {}
-        self.command_dict["enemy"]["x"], self.command_dict["enemy"]["y"] = attack_points
-        attack_x, attack_y = attack_points
-
-        #Выбрали точку, где располагается предполагаемый враг
-        attack_field = board_obj.board[attack_x][attack_y]
-        #Если есть чужая фигура на этой точке
-        if not attack_field.isfree() and attack_field.figure_obj.color != d["user_color"]:
-            self.results_list.append(True)
-        else:
-            self.results_list.append(False)
-
-#TODO
 class GameOverClass:
     """Класс определения окончания игры"""
     def __init__(self, board, user_color):
@@ -375,6 +196,7 @@ class GameOverClass:
         self.user_color = user_color
         self.board = board
 
+        #На одной итерации может сработать только один из этих методов (не путать с логикой работы UserAnalyserClass)
         self.queen_detector()
         self.nofigures_detector()
         self.deadlock_detector()
@@ -385,7 +207,6 @@ class GameOverClass:
         
         uc = self.user_color
         reverse_uc = "black" if uc == "white" else "white"
-        #Проверка на выигрыш белых
 
         for i in np.arange(board.shape[0]):
             if not board[0][i].isfree() and board[0][i].figure_obj.color == reverse_uc:
@@ -402,8 +223,24 @@ class GameOverClass:
 
     def nofigures_detector(self):
         """Определение того, что у одного из игроков больше нет фигур"""
-        pass
+        board = self.board
+        black_count, white_count = 0, 0
+        for i in np.arange(8):
+            for j in np.arange(8):
+                if not board[i][j].isfree() and board[i][j].figure_obj.color == "black":
+                    black_count += 1
+                elif not board[i][j].isfree() and board[i][j].figure_obj.color == "white":
+                    white_count += 1
+        
+        if white_count == 0:
+            self.result = True
+            self.won_color = "black"
 
+        if black_count == 0:
+            self.result = True
+            self.won_color = "white"   
+
+    #TODO ?????
     def deadlock_detector(self):
         """
         Определение тупиковой ситуации
@@ -415,11 +252,11 @@ class MainClass:
     """Управляющий класс с логикой игры"""
     def __init__(self):
         #Создаем доску
-        usercolor = input("Выберите цвет шашек:\n1. Белый (по умолчанию)\n2. Черный\n-> ")
-        self.usercolor = "black" if usercolor == "2" else "white"
+        user_color = input("Выберите цвет шашек:\n1. Белый (по умолчанию)\n2. Черный\n-> ")
+        self.user_color = "black" if user_color == "2" else "white"
         
         generator_mode = input("Введите способ генерации шашек на доске:\n1. Ручная расстановка, 6 фигур (по умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> ")
-        board_obj = BoardClass(2, self.usercolor) if generator_mode == "2" else BoardClass(1, self.usercolor)
+        board_obj = BoardClass(2, self.user_color) if generator_mode == "2" else BoardClass(1, self.user_color)
         print(board_obj)
 
         #board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
@@ -447,7 +284,7 @@ class MainClass:
             print("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
             return {}
 
-        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : self.usercolor}
+        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : self.user_color}
         #Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
@@ -480,7 +317,7 @@ class MainClass:
                 if result_dict != {}:
                     self.result_dict = result_dict
                     #Проверка на все критерии
-                    obj = AnalyserClass(result_dict, self.board_obj)
+                    obj = UserAnalyserClass(result_dict, self.board_obj)
                     #Если все хорошо, то осуществлем ход
                     if obj.boolean_result:
                         self.result_dict = obj.command_dict
@@ -491,15 +328,18 @@ class MainClass:
             #Компьютер ходит
             else:
                 print("Ход №{}. Ходит компьютер".format(i+1))
-                self.computer_mode()
+                computergame_obj = ComputerGameClass(self.board_obj.board, self.user_color)
+                #Если тупиковый ход со стороны компьютера
+                if computergame_obj.result:
+                    stopgame_flag = False
                 i+=1
 
             #Проверяем на окончание игры
-            obj = GameOverClass(self.board_obj.board, self.usercolor)
+            obj = GameOverClass(self.board_obj.board, self.user_color)
             if obj.result:
                 stopgame_flag = False
                 print("Выиграл цвет: {}".format(obj.won_color))
-            
+
             #Вывод доски
             print(self.board_obj)
     
@@ -533,11 +373,6 @@ class MainClass:
             board[attack_x][attack_y].field_free()
 
         self.board_obj.board = board
-    
-    #TODO
-    def computer_mode(self):
-        """Осуществление хода компьютером"""
-        pass
 
 if __name__ == "__main__":
     MainClass()
