@@ -1,5 +1,4 @@
 import numpy as np
-import random
 import time
 from util_module import UtilClass
 from user_module import UserAnalyserClass 
@@ -80,6 +79,9 @@ class FigureClass:
         self.color = color
         self.coord_x = coord_x
         self.coord_y = coord_x
+    
+    def __str__(self):
+        return "Тип: *Шашка обыкновенная*\n*Координаты* x:{}, y:{}\n*Цвет* {}".format(self.coord_x, self.coord_y, self.color)
 
 class BoardClass:
     """Класс игровой доски"""
@@ -115,8 +117,8 @@ class BoardClass:
         """
         search_x = UtilClass.xint2char(search_x)
         board = self.board
-        for x in np.arange(8):
-            for y in np.arange(8):
+        for x in np.arange(board.shape[0]):
+            for y in np.arange(board.shape[1]):
                 if board[x][y].coord_x == search_x and board[x][y].coord_y == search_y:
                     return True
         return False
@@ -127,8 +129,8 @@ class BoardClass:
         reverse_uc = "black" if uc == "white" else "white"
 
         board = self.board
-        for x in np.arange(8):
-            for y in np.arange(8):
+        for x in np.arange(board.shape[0]):
+            for y in np.arange(board.shape[1]):
                 if x < 3 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
                     board[x][y].field_reserve(FigureClass(uc, x, y))
                 elif x > 4 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
@@ -208,13 +210,13 @@ class GameOverClass:
         uc = self.user_color
         reverse_uc = "black" if uc == "white" else "white"
 
-        for i in np.arange(board.shape[0]):
+        for i in np.arange(board.shape[1]):
             if not board[0][i].isfree() and board[0][i].figure_obj.color == reverse_uc:
                 self.result = True
                 self.won_color = reverse_uc
                 break
         
-        for i in np.arange(board.shape[0]):
+        for i in np.arange(board.shape[1]):
             if not board[7][i].isfree() and board[7][i].figure_obj.color == uc:
                 self.result = True
                 self.won_color = uc
@@ -225,8 +227,8 @@ class GameOverClass:
         """Определение того, что у одного из игроков больше нет фигур"""
         board = self.board
         black_count, white_count = 0, 0
-        for i in np.arange(8):
-            for j in np.arange(8):
+        for i in np.arange(board.shape[0]):
+            for j in np.arange(board.shape[1]):
                 if not board[i][j].isfree() and board[i][j].figure_obj.color == "black":
                     black_count += 1
                 elif not board[i][j].isfree() and board[i][j].figure_obj.color == "white":
@@ -317,6 +319,7 @@ class MainClass:
                 if result_dict != {}:
                     self.result_dict = result_dict
                     #Проверка на все критерии
+                    print(result_dict)
                     obj = UserAnalyserClass(result_dict, self.board_obj)
                     #Если все хорошо, то осуществлем ход
                     if obj.boolean_result:
