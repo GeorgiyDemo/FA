@@ -11,7 +11,7 @@ class GetDataClass(object):
         self.processing()
 
     def processing(self):
-        with open("./task14.yml", 'r') as stream:
+        with open("./task14.yml", 'rb') as stream:
             self.d = yaml.safe_load(stream)
 
 
@@ -35,13 +35,15 @@ class Groups(object):
     """
     Класс для создания коллекции групп в виде двусвязного списка
     Поля:
-    - value - значение объекта
+    - value - имя объекта(название группы)
+    - students - значение объекта(список студентов)
     - next - ссылка на след объект в коллекции
     - previous - ссылка на предыдущий объект коллекции
     """
 
-    def __init__(self, value=None, next=None, previous=None):
+    def __init__(self, value=None, students=None, next=None, previous=None):
         self.value = value
+        self.students = students
         self.next = next
         self.previous = previous
 
@@ -71,7 +73,7 @@ class ProcessingClass(object):
                 for i in range(len(student_list) - 1):
                     student_list[i].next = student_list[i + 1]
 
-            group_list.append((group, Groups(student_list)))
+            group_list.append((group, Groups(group, student_list)))
             print("Занесли студентов группы", group)
 
             for i in range(len(group_list) - 1):
@@ -83,7 +85,7 @@ class ProcessingClass(object):
             print("*" * 60)
             print(group[1].previous, "->", group[0], "->", group[1].next)
             print("Элементы группы:")
-            for student in group[1].value:
+            for student in group[1].students:
                 print(student.value, "->", student.next)
 
 
