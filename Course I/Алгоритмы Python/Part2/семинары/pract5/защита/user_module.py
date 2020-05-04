@@ -83,6 +83,8 @@ class UserAnalyserClass:
         else:
             if self.info:
                 print("\033[91m[Ошибка]\033[0m Шашки могут ходить только по диагонали, ход с боем - длинное перемещение, тихий ход - короткое перемещение.")
+                #TODO Предложение о возможных ходах для фишки при некорректном ходе
+                print("Возможные команды для корректного кода с клетки {}:")
             self.results_list.append(False)    
         
         #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)

@@ -6,8 +6,61 @@ from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
 #TODO Запись ходов
+
 #Белые - это синие
 #Черные - это красные
+
+
+class JournalWriterClass:
+    """Класс для записи данных о ходах каждого участника и формирования отчетов"""
+    def __init__(self, user_color="white"):
+        self.journal_arr = np.array([])
+        self.bufstr = ""
+
+    def add_result(self, d):
+        """
+        Метод для добавления данных хода
+        """
+
+        journal = self.journal_arr
+        if self.bufstr == "" and d["user_color"] == "black":
+            raise ValueError("Белые всегда начинают ходить первые")
+        
+        #g3-f4 f6-e5
+        movementtype_dict = {"war":":", "peace":"-"}
+        locale_str = d["from"]["y"].lower()+ str(d["from"]["x"]+1)+ movementtype_dict[d["mode"]]+  d["to"]["y"].lower()+ str(d["to"]["x"]+1)
+        if self.bufstr == "":
+            self.bufstr = locale_str
+        
+        else:
+            self.journal_arr = np.append(journal, self.bufstr+" "+locale_str)
+            self.bufstr = ""
+
+    #TODO ПРОВЕРИТЬ КАК РАБОТАЕТ
+    def winlose_add(self, win_color):
+        """Добавление результатов игры"""
+
+        #Если у черных нет больше ходов и игра завершена (т.е. у кого-то больше нет вариантов, как пойти)
+        journal = self.journal_arr
+        if self.bufstr != "":
+            self.journal_arr = np.append(journal, self.bufstr+"X")
+        
+        #Иначе работаем с последним элементом массива
+        else:
+            e = journal[-1]
+            print("Последний элемент: ",e)
+            white, black = e.split(" ")
+            if win_color == "white":
+                white+="X"
+            else:
+                black+="X"
+            
+            self.journal_arr[-1] = white+" "+black 
+
+    def __str__(self):
+        """Информация о записанном"""
+        print(self.journal_arr)
+        return "Результаты игры:"
 
 #TODO Передалать так, чтоб можно было несколько обновременно вызывать
 class GameOverClass:
@@ -173,15 +226,19 @@ class MainClass:
         userstepcolor_dict = {"black" : 1, "white" : 0}
         user_color = self.user_color
         userstep = userstepcolor_dict[user_color]
+        
         #Номер итерации
         i = 0
-        print("\033[93m*Игра началась*\033[0m")
+        won_color = ""
 
+        print("\033[93m*Игра началась*\033[0m")
+        journal = JournalWriterClass()
         while True:
             
             #Проверяем на окончание игры
             obj = GameOverClass(self.board_obj, user_color)
             if obj.result:
+                won_color = obj.won_color
                 print("Выиграл цвет: {}".format(obj.won_color))
                 break
 
@@ -195,13 +252,13 @@ class MainClass:
                 if result_dict != {}:
                     self.result_dict = result_dict
                     #Проверка на все критерии
-                    print(result_dict)
                     obj = UserAnalyserClass(result_dict, self.board_obj, True)
                     #Если все хорошо, то осуществлем ход
                     if obj.boolean_result:
                         self.result_dict = obj.command_dict
                         #Пользователь ходит
                         self.user_mode()
+                        journal.add_result(obj.command_dict)
                         i+=1
                     else:
                         print("\033[91m[Ошибка]\033[0m Некорректный ход")
@@ -213,17 +270,27 @@ class MainClass:
                 print("Ход №{}. Ходит компьютер..".format(i+1))
                 time.sleep(3)
                 computergame_obj = ComputerGameClass(self.board_obj, user_color)
-                print("ХОД КОМПА:", computergame_obj.result_dict)
-                
+                d = computergame_obj.result_dict
+                print("{} -> {}".format(UtilClass.getfail_coords(d["from"]), UtilClass.getfail_coords(d["to"])))
                 #Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
+                    won_color = user_color
                     print("Выиграл цвет: {}".format(user_color))
                     break
+                
+                journal.add_result(d)
                 i+=1
 
             #Вывод доски
             print(self.board_obj)
+            print(journal)
+        
+
+        #Добавление окончания
+        journal.add_result(won_color)
+        print(journal)
     
+
     def user_mode(self):
         """
         Осуществление хода пользователем

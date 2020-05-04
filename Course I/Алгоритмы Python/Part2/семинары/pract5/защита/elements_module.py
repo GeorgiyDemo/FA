@@ -3,7 +3,7 @@ from util_module import UtilClass
 
 class FieldClass:
     """
-    Класс 1 клетки доски
+    Класс одной клетки доски
     Поля:
     - Координата X
     - Координата Y
@@ -140,11 +140,17 @@ class BoardClass:
         y = UtilClass.char2xint(search_y)
         board = self.board
 
-        print("boardfigure_setter, x: {}, y: {}".format(x,y))
         if board[x][y].isfree() and board[x][y].color == "black":
             board[x][y].field_reserve(FigureClass(color, x,y))
             self.board = board
             return True
+        
+        if not board[x][y].isfree():
+            print("\033[91m[Ошибка]\033[0m Клетка с координатами {}{} уже занята".format(search_y, search_x+1))
+        
+        if board[x][y].color == "white":
+             print("\033[91m[Ошибка]\033[0m Цвет клетки с координатами {}{} белый".format(search_y, search_x+1))
+        
         return False
 
     def figuremanual_generator(self):
@@ -163,12 +169,10 @@ class BoardClass:
                         coord_y = coord_input[0]
                         result = self.boardfigure_setter(color, coord_x, coord_y)
                         if result:
-                            print("Успешная постановка шашки на координаты ")
+                            print("Успешная постановка шашки на координаты {}".format(coord_input))
                             boolean_flag = False
-                        else:
-                            print("Некорретный ввод координат!")
                     else: 
-                        print("Некорретный ввод данных, пример координат: h2")
+                        print("\033[91m[Ошибка]\033[0m Некорретный ввод данных, пример координат: h2")
 
 
     def __str__(self):
