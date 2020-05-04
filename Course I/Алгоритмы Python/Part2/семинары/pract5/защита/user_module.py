@@ -41,10 +41,13 @@ class UserAnalyserClass:
         selected_field = board_obj.board[target_x][target_y]
         if not selected_field.isfree() and selected_field.figure_obj.color == d["user_color"]:
             self.results_list.append(True)
-        else:
-            #TODO
+        elif selected_field.isfree():
             if self.info:
-                print("\033[91m[Ошибка]\033[0m Выбранная клетка {} пуста ИЛИ фигура на ней не вашего цвета.".format(UtilClass.getfail_coords(d["from"])))
+                print("\033[91m[Ошибка]\033[0m Выбранная клетка {} пуста".format(UtilClass.getfail_coords(d["from"])))
+            self.results_list.append(False)
+        else:
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Фигура на клетке {} не вашего цвета.".format(UtilClass.getfail_coords(d["from"])))
             self.results_list.append(False)
 
     def backstep_detector(self):
@@ -104,10 +107,13 @@ class UserAnalyserClass:
         selected_field = board_obj.board[x][y]
         if selected_field.color == "black" and selected_field.isfree():
             self.results_list.append(True)
-        else:
-            #TODO
+        elif not selected_field.isfree():
             if self.info:
-                print("\033[91m[Ошибка]\033[0m Вы пытаетесь поставить шашку на занятую клетку ИЛИ клетку белого цвета")
+                print("\033[91m[Ошибка]\033[0m Вы пытаетесь поставить шашку на занятую клетку {}".format(UtilClass.getfail_coords(d["to"])))
+            self.results_list.append(False)
+        else:
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Вы пытаетесь поставить шашку на клетку белого цвета {}".format(UtilClass.getfail_coords(d["to"])))
             self.results_list.append(False)
 
     def war_detector(self):

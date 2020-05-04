@@ -5,7 +5,6 @@ from user_module import UserAnalyserClass
 from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
-#TODO Подробно вывести суть ошибок, которые возникат в ошибки UserAnalyserClass
 #TODO Запись ходов
 #Белые - это синие
 #Черные - это красные
