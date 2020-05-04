@@ -26,8 +26,8 @@ class JournalWriterClass:
         if self.bufstr == "" and d["user_color"] == "black":
             raise ValueError("Белые всегда начинают ходить первые")
         
-        #g3-f4 f6-e5
         movementtype_dict = {"war":":", "peace":"-"}
+        print(d)
         locale_str = d["from"]["y"].lower()+ str(d["from"]["x"]+1)+ movementtype_dict[d["mode"]]+  d["to"]["y"].lower()+ str(d["to"]["x"]+1)
         if self.bufstr == "":
             self.bufstr = locale_str
@@ -287,7 +287,7 @@ class MainClass:
         
 
         #Добавление окончания
-        journal.add_result(won_color)
+        journal.winlose_add(won_color)
         print(journal)
     
 
