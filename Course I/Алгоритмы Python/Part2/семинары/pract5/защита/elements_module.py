@@ -55,7 +55,7 @@ class FieldClass:
         """Вывод ячейки на экран"""
         board_color2print_dict = {"black" : "⬛️", "white": "⬜️"}
         # figure_color2print_dict = {"black" : "🔴", "white": "🔵", "TEST" : "🍺"}
-        figure_color2print_dict = {"black" : "👹", "white": "🍺", "TEST" : "💩"}
+        figure_color2print_dict = {"black" : "👹", "white": "🍺"}
         #Если ячейка свободная -> выводим просто ее цвет на экран
         if self.isfree():
             return board_color2print_dict[self.color]

@@ -131,7 +131,7 @@ class MainClass:
             
             #Ходит пользователь
             if i % 2 == 1:
-                print("Ход №{}. Ходит пользователь".format(i+1))
+                print("Ход №{}. Ходит пользователь..".format(i+1))
                 cmd = input("Введите команду -> ")
                 result_dict = self.command_parser(cmd)
                 
@@ -150,16 +150,18 @@ class MainClass:
             
             #Компьютер ходит
             else:
-                print("Ход №{}. Ходит компьютер".format(i+1))
+                print("Ход №{}. Ходит компьютер..".format(i+1))
+                time.sleep(3)
                 computergame_obj = ComputerGameClass(self.board_obj, self.user_color)
                 #Если тупиковый ход со стороны компьютера
-                if computergame_obj.result:
+                if not computergame_obj.result:
+                    print("ХОД КОМПА:", computergame_obj.result_dict)
                     stopgame_flag = False
                 i+=1
 
             #Проверяем на окончание игры
             obj = GameOverClass(self.board_obj.board, self.user_color)
-            if not obj.result:
+            if obj.result:
                 stopgame_flag = False
                 print("Выиграл цвет: {}".format(obj.won_color))
 
@@ -183,6 +185,7 @@ class MainClass:
 
         #Получаем объект фигуры с ячейки и выставлем для него обновленные координаты
         figure_obj = field_from.figure_obj
+        #TODO Посмотреть, нормально ли они тут выставляются вообще
         figure_obj.coord_x, figure_obj.coord_y = f2
 
         #Присваиваем фигуру обновленной ячейке
