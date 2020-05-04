@@ -3,8 +3,10 @@ import numpy as np
 
 class UserAnalyserClass:
     """Класс ограничений и выявление некорректного хода"""
-    def __init__(self, command_dict, board_obj):
+    def __init__(self, command_dict, board_obj, info=False):
         
+        #Флаг, необходимый для сообщения об ошибках
+        self.info = info
         self.boolean_result = False
         self.results_list = []
         self.command_dict = command_dict
@@ -16,8 +18,6 @@ class UserAnalyserClass:
         self.fieldtype_detector()
         if command_dict["mode"] == "war":
             self.war_detector()
-        
-        print(self.results_list)
 
         if all(self.results_list):
             self.boolean_result = True
@@ -32,6 +32,8 @@ class UserAnalyserClass:
         target_x = d["from"]["x"]
         target_y = UtilClass.char2xint(d["from"]["y"])
         if not board_obj.detect_element(target_x, target_y):
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Выбранной шашки по координатам {} не существует.".format(UtilClass.getfail_coords(d["from"])))
             self.results_list.append(False)
             return
         
@@ -40,12 +42,17 @@ class UserAnalyserClass:
         if not selected_field.isfree() and selected_field.figure_obj.color == d["user_color"]:
             self.results_list.append(True)
         else:
+            #TODO
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Выбранная клетка {} пуста ИЛИ фигура на ней не вашего цвета.".format(UtilClass.getfail_coords(d["from"])))
             self.results_list.append(False)
 
     def backstep_detector(self):
         """Проверка на перемещение вперед"""
         d = self.command_dict
         if d["from"]["x"] > d["to"]["x"]:
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Шашки могут ходить только вперед.")
             self.results_list.append(False)
         else:
             self.results_list.append(True)
@@ -71,6 +78,8 @@ class UserAnalyserClass:
         if [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])] in validated_points:
             self.results_list.append(True)
         else:
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Шашки могут ходить только по диагонали, ход с боем - длинное перемещение, тихий ход - короткое перемещение.")
             self.results_list.append(False)    
         
         #self.board_obj.board[x][y].figure_obj = FigureClass("TEST", x, y)
@@ -96,6 +105,9 @@ class UserAnalyserClass:
         if selected_field.color == "black" and selected_field.isfree():
             self.results_list.append(True)
         else:
+            #TODO
+            if self.info:
+                print("\033[91m[Ошибка]\033[0m Вы пытаетесь поставить шашку на занятую клетку ИЛИ клетку белого цвета")
             self.results_list.append(False)
 
     def war_detector(self):
@@ -142,4 +154,7 @@ class UserAnalyserClass:
         if not attack_field.isfree() and attack_field.figure_obj.color != d["user_color"]:
             self.results_list.append(True)
         else:
+            if self.info:
+                f = UtilClass.getfail_coords
+                print("\033[91m[Ошибка]\033[0m Противников между координатами {} и {} нет. Используйте тихий ход для перемещения без боя".format(f(d["from"]), f(d["to"])))
             self.results_list.append(False)

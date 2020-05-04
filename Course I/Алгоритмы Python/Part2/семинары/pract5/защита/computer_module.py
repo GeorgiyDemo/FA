@@ -14,12 +14,13 @@ class ComputerAnalyserClass(UserAnalyserClass):
     - war_detector - переписываем
     - fieldtype_detector - у UserAnalyserClass
     """
-    def __init__(self, command_dict, board_obj):
+    def __init__(self, command_dict, board_obj, info=False):
         
         self.boolean_result = False
         self.results_list = []
         self.command_dict = command_dict
         self.board_obj = board_obj
+        self.info = info
 
         self.figure_detector()
         self.backstep_detector()

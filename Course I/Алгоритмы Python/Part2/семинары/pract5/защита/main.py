@@ -6,9 +6,11 @@ from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
 #TODO Подробно вывести суть ошибок, которые возникат в ошибки UserAnalyserClass
+#TODO Запись ходов
 #Белые - это синие
 #Черные - это красные
 
+#TODO Передалать так, чтоб можно было несколько обновременно вызывать
 class GameOverClass:
     """Класс определения окончания игры"""
     def __init__(self, board_obj, user_color):
@@ -152,7 +154,6 @@ class MainClass:
                 break
         
         if not detect_flag:
-            print("Не найден разделитель комманд! Пример: ':' - перемещение с боем, '-' - тихое перемещение")
             return {}
 
         command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : self.user_color}
@@ -165,7 +166,6 @@ class MainClass:
             command_dict["to"]["y"] = part2[0]
             return command_dict
 
-        print("Некорректный ввод данных!")
         return {}
 
         
@@ -177,9 +177,15 @@ class MainClass:
         #Номер итерации
         i = 0
         print("\033[93m*Игра началась*\033[0m")
-        stopgame_flag = True
-        while stopgame_flag:
+
+        while True:
             
+            #Проверяем на окончание игры
+            obj = GameOverClass(self.board_obj, user_color)
+            if obj.result:
+                print("Выиграл цвет: {}".format(obj.won_color))
+                break
+
             #Ходит пользователь
             if i % 2 == userstep:
                 print("Ход №{}. Ходит пользователь..".format(i+1))
@@ -191,13 +197,17 @@ class MainClass:
                     self.result_dict = result_dict
                     #Проверка на все критерии
                     print(result_dict)
-                    obj = UserAnalyserClass(result_dict, self.board_obj)
+                    obj = UserAnalyserClass(result_dict, self.board_obj, True)
                     #Если все хорошо, то осуществлем ход
                     if obj.boolean_result:
                         self.result_dict = obj.command_dict
                         #Пользователь ходит
                         self.user_mode()
                         i+=1
+                    else:
+                        print("\033[91m[Ошибка]\033[0m Некорректный ход")
+                else:
+                    print("\033[91m[Ошибка]\033[0m Некорректный ввод данных. Пример: 'c3:e5' - перемещение с боем, 'c3-b4' - тихое перемещение")
             
             #Компьютер ходит
             else:
@@ -208,15 +218,9 @@ class MainClass:
                 
                 #Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
-                    stopgame_flag = False
                     print("Выиграл цвет: {}".format(user_color))
+                    break
                 i+=1
-
-            #Проверяем на окончание игры
-            obj = GameOverClass(self.board_obj, user_color)
-            if obj.result:
-                stopgame_flag = False
-                print("Выиграл цвет: {}".format(obj.won_color))
 
             #Вывод доски
             print(self.board_obj)

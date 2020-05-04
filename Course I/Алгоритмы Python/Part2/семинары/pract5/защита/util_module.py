@@ -32,3 +32,10 @@ class UtilClass:
         if part[0] in l1 and part[1] in l2:
             return True
         return False
+    
+    @staticmethod
+    def getfail_coords(dict_input):
+        """Возварщает координаты Y/X+1 для красивого вывода в ошибках"""
+        x = dict_input["x"]+1
+        y = dict_input["y"]
+        return str(y)+str(x)
