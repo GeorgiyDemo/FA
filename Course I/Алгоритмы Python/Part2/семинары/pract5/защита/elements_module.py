@@ -40,22 +40,18 @@ class FieldClass:
         return False
 
     def field_reserve(self, figure_obj):
-        """
-        Занятие клетки фигурой
-        """
+        """Занятие клетки фигурой"""
         self.figure_obj = figure_obj
 
     def field_free(self):
-        """
-        Освобождение клетки фигурой
-        """
+        """Освобождение клетки фигурой"""
         self.figure_obj = None
 
     def __str__(self):
         """Вывод ячейки на экран"""
         board_color2print_dict = {"black" : "⬛️", "white": "⬜️"}
         # figure_color2print_dict = {"black" : "🔴", "white": "🔵", "TEST" : "🍺"}
-        figure_color2print_dict = {"black" : "👹", "white": "🍺"}
+        figure_color2print_dict = {"black" : "👹", "white": "🍺", "TEST" : "🔵"}
         #Если ячейка свободная -> выводим просто ее цвет на экран
         if self.isfree():
             return board_color2print_dict[self.color]
@@ -97,7 +93,6 @@ class BoardClass:
 
     def board_generator(self):
         """Создание чистого игрового поля без фигур"""
-
         board = np.array([])
         for x in np.arange(8):
             for y in np.arange(8):
@@ -145,6 +140,7 @@ class BoardClass:
         y = UtilClass.char2xint(search_y)
         board = self.board
 
+        print("boardfigure_setter, x: {}, y: {}".format(x,y))
         if board[x][y].isfree() and board[x][y].color == "black":
             board[x][y].field_reserve(FigureClass(color, x,y))
             self.board = board
@@ -152,12 +148,11 @@ class BoardClass:
         return False
 
     def figuremanual_generator(self):
-
         """Ручная расстановка 6 фигур по полю"""
         format_dict = {"white" : "белого", "black":"чёрного"}
         for color in ("white", "black"):
             print("\033[93m*Выставляем шашки {} цвета*\033[0m".format(format_dict[color]))
-            for i in range(5):
+            for i in range(6):
                 
                 boolean_flag = True
                 while boolean_flag:

@@ -5,18 +5,17 @@ from user_module import UserAnalyserClass
 from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
-#TODO При ручной настройке заносить инфо о фигуре
-#TODO Подробно вывести суть ошибок, которые возникат в ошибки  UserAnalyserClass
+#TODO Подробно вывести суть ошибок, которые возникат в ошибки UserAnalyserClass
 #Белые - это синие
 #Черные - это красные
 
 class GameOverClass:
     """Класс определения окончания игры"""
-    def __init__(self, board, user_color):
+    def __init__(self, board_obj, user_color):
         self.result = False
         self.won_color = ""
         self.user_color = user_color
-        self.board = board
+        self.board_obj = board_obj
 
         #На одной итерации может сработать только один из этих методов (не путать с логикой работы UserAnalyserClass)
         self.queen_detector()
@@ -25,7 +24,7 @@ class GameOverClass:
     
     def queen_detector(self):
         """Определение прохода шашки одного из игроков в дамки"""
-        board = self.board
+        board = self.board_obj.board
         
         uc = self.user_color
         reverse_uc = "black" if uc == "white" else "white"
@@ -45,7 +44,7 @@ class GameOverClass:
 
     def nofigures_detector(self):
         """Определение того, что у одного из игроков больше нет фигур"""
-        board = self.board
+        board = self.board_obj.board
         black_count, white_count = 0, 0
         for i in np.arange(board.shape[0]):
             for j in np.arange(board.shape[1]):
@@ -62,13 +61,63 @@ class GameOverClass:
             self.result = True
             self.won_color = "white"   
 
-    #TODO ?????
     def deadlock_detector(self):
         """
-        Определение тупиковой ситуации
+        Определение тупиковой ситуации для пользователя
         Использует логику, аналогичную рандомному ходу компьютера
         """
-        pass
+        board_obj = self.board_obj
+        board = board_obj.board
+        
+        uc = self.user_color
+        reverse_uc = "black" if uc == "white" else "white"
+        
+        all_d = np.array([])
+        myfields_arr = np.array([])
+        #Ищем все фигуры пользователя
+        for i in np.arange(board.shape[0]):
+            for j in np.arange(board.shape[1]):
+                if not board[i][j].isfree() and board[i][j].figure_obj.color == uc:
+                    myfields_arr = np.append(myfields_arr, board[i][j])
+
+        #Для каждой шашки формируем возможные новые координаты:
+        for field in myfields_arr:
+
+            x, y = field.figure_obj.coord_x, field.figure_obj.coord_y
+            y_char = UtilClass.xint2char(y)
+
+            #Возможные короткие шаги
+            #[x+1,y-1]
+            if board_obj.detect_element(y-1,x+1):
+                new_y, new_x = UtilClass.xint2char(y-1), x+1
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+
+            #[x+1,y+1]
+            if board_obj.detect_element(y+1,x+1):
+                new_y, new_x = UtilClass.xint2char(y+1), x+1
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': uc})
+
+            #Длинные шаги
+            #[x+2,y+2]
+            if board_obj.detect_element(y+2,x+2):
+                new_y, new_x = UtilClass.xint2char(y+2), x+2
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': uc})
+
+            #[x+2,y-2]
+            if board_obj.detect_element(y-2,x+2):
+                new_y, new_x = UtilClass.xint2char(y-2), x+2
+                all_d = np.append(all_d,{'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': uc})
+        
+        #Перебираем все возможные ходы пользователя
+        for d in all_d:
+            obj = UserAnalyserClass(d, self.board_obj)
+            if obj.boolean_result:
+                break
+        
+        else:
+            self.result = True
+            self.won_color = reverse_uc  
+            print("\033[91mУ пользователя тупиковая ситуация!\033[0m")
 
 class MainClass:
     """Управляющий класс с логикой игры"""
@@ -103,7 +152,7 @@ class MainClass:
                 break
         
         if not detect_flag:
-            print("Не найден разделитель комманд! ':' - перемещение с боем, '-' - тихое перемещение")
+            print("Не найден разделитель комманд! Пример: ':' - перемещение с боем, '-' - тихое перемещение")
             return {}
 
         command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color" : self.user_color}
@@ -122,7 +171,9 @@ class MainClass:
         
     def gameprocess(self):
         """Управляющая логика работы игры"""
-        
+        userstepcolor_dict = {"black" : 1, "white" : 0}
+        user_color = self.user_color
+        userstep = userstepcolor_dict[user_color]
         #Номер итерации
         i = 0
         print("\033[93m*Игра началась*\033[0m")
@@ -130,12 +181,12 @@ class MainClass:
         while stopgame_flag:
             
             #Ходит пользователь
-            if i % 2 == 1:
+            if i % 2 == userstep:
                 print("Ход №{}. Ходит пользователь..".format(i+1))
                 cmd = input("Введите команду -> ")
                 result_dict = self.command_parser(cmd)
                 
-                #Если норально прошло фильтрацию
+                #Если нормально прошло фильтрацию
                 if result_dict != {}:
                     self.result_dict = result_dict
                     #Проверка на все критерии
@@ -152,15 +203,17 @@ class MainClass:
             else:
                 print("Ход №{}. Ходит компьютер..".format(i+1))
                 time.sleep(3)
-                computergame_obj = ComputerGameClass(self.board_obj, self.user_color)
+                computergame_obj = ComputerGameClass(self.board_obj, user_color)
+                print("ХОД КОМПА:", computergame_obj.result_dict)
+                
                 #Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
-                    print("ХОД КОМПА:", computergame_obj.result_dict)
                     stopgame_flag = False
+                    print("Выиграл цвет: {}".format(user_color))
                 i+=1
 
             #Проверяем на окончание игры
-            obj = GameOverClass(self.board_obj.board, self.user_color)
+            obj = GameOverClass(self.board_obj, user_color)
             if obj.result:
                 stopgame_flag = False
                 print("Выиграл цвет: {}".format(obj.won_color))
@@ -185,9 +238,7 @@ class MainClass:
 
         #Получаем объект фигуры с ячейки и выставлем для него обновленные координаты
         figure_obj = field_from.figure_obj
-        #TODO Посмотреть, нормально ли они тут выставляются вообще
         figure_obj.coord_x, figure_obj.coord_y = f2
-
         #Присваиваем фигуру обновленной ячейке
         field_to.field_reserve(figure_obj)
         #Освобождаем из старой

@@ -157,13 +157,12 @@ class ComputerGameClass:
                 all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace', 'user_color': reverse_uc})
 
             #Длинные шаги
-            #[[x-2,y+2]
-
+            #[x-2,y+2]
             if self.board_obj.detect_element(y+2,x-2):
                 new_y, new_x = UtilClass.xint2char(y+2), x-2
                 all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': reverse_uc})
 
-            #[x-2,y-2]]
+            #[x-2,y-2]
             if self.board_obj.detect_element(y-2,x-2):
                 new_y, new_x = UtilClass.xint2char(y-2), x-2
                 all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war', 'user_color': reverse_uc})
@@ -180,7 +179,7 @@ class ComputerGameClass:
                 break
         else:
             self.result = False
-            print("У компьютера тупиковая ситуация..")
+            print("\033[91mУ компьютера тупиковая ситуация!\033[0m")
 
 
     def computer_mode(self):
