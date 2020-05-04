@@ -5,12 +5,9 @@ from user_module import UserAnalyserClass
 from computer_module import ComputerGameClass
 from elements_module import FieldClass, FigureClass, BoardClass
 
-#TODO Запись ходов
-
 #Белые - это синие
 #Черные - это красные
-
-
+#TODO Осталось предложение о возможных ходах для фишки при некорректном ходе
 class JournalWriterClass:
     """Класс для записи данных о ходах каждого участника и формирования отчетов"""
     def __init__(self, user_color="white"):
@@ -18,16 +15,13 @@ class JournalWriterClass:
         self.bufstr = ""
 
     def add_result(self, d):
-        """
-        Метод для добавления данных хода
-        """
+        """Метод для добавления данных хода"""
 
         journal = self.journal_arr
         if self.bufstr == "" and d["user_color"] == "black":
             raise ValueError("Белые всегда начинают ходить первые")
         
         movementtype_dict = {"war":":", "peace":"-"}
-        print(d)
         locale_str = d["from"]["y"].lower()+ str(d["from"]["x"]+1)+ movementtype_dict[d["mode"]]+  d["to"]["y"].lower()+ str(d["to"]["x"]+1)
         if self.bufstr == "":
             self.bufstr = locale_str
@@ -36,7 +30,6 @@ class JournalWriterClass:
             self.journal_arr = np.append(journal, self.bufstr+" "+locale_str)
             self.bufstr = ""
 
-    #TODO ПРОВЕРИТЬ КАК РАБОТАЕТ
     def winlose_add(self, win_color):
         """Добавление результатов игры"""
 
@@ -48,21 +41,18 @@ class JournalWriterClass:
         #Иначе работаем с последним элементом массива
         else:
             e = journal[-1]
-            print("Последний элемент: ",e)
             white, black = e.split(" ")
             if win_color == "white":
                 white+="X"
             else:
                 black+="X"
-            
             self.journal_arr[-1] = white+" "+black 
 
     def __str__(self):
         """Информация о записанном"""
-        print(self.journal_arr)
-        return "Результаты игры:"
+        return "\033[93mЗапись ходов:\033[0m\n"+"\n".join([str(i+1)+". "+self.journal_arr[i] for i in np.arange(self.journal_arr.shape[0])])
 
-#TODO Передалать так, чтоб можно было несколько обновременно вызывать
+
 class GameOverClass:
     """Класс определения окончания игры"""
     def __init__(self, board_obj, user_color):
