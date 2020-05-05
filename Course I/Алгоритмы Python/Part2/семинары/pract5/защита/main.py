@@ -214,6 +214,7 @@ class MainClass:
     def gameprocess(self):
         """Управляющая логика работы игры"""
         userstepcolor_dict = {"black" : 1, "white" : 0}
+        usercolor_dict = {"black" : "Черный", "white" : "Белый"}
         user_color = self.user_color
         userstep = userstepcolor_dict[user_color]
         
@@ -229,7 +230,7 @@ class MainClass:
             obj = GameOverClass(self.board_obj, user_color)
             if obj.result:
                 won_color = obj.won_color
-                print("Выиграл цвет: {}".format(obj.won_color))
+                print("Выиграл цвет: {}".format(usercolor_dict[obj.won_color]))
                 break
 
             #Ходит пользователь
@@ -265,7 +266,7 @@ class MainClass:
                 #Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
                     won_color = user_color
-                    print("Выиграл цвет: {}".format(user_color))
+                    print("Выиграл цвет: {}".format(usercolor_dict[user_color]))
                     break
                 
                 journal.add_result(d)
@@ -273,7 +274,6 @@ class MainClass:
 
             #Вывод доски
             print(self.board_obj)
-            print(journal)
         
 
         #Добавление окончания
