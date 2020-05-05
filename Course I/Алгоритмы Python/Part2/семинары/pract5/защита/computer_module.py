@@ -180,7 +180,6 @@ class ComputerGameClass:
                 break
         else:
             self.result = False
-            print("\033[91mУ компьютера тупиковая ситуация!\033[0m")
 
 
     def computer_mode(self):

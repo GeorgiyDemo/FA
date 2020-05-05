@@ -7,7 +7,6 @@ from elements_module import FieldClass, FigureClass, BoardClass
 
 #Белые - это синие
 #Черные - это красные
-#TODO Осталось предложение о возможных ходах для фишки при некорректном ходе
 class JournalWriterClass:
     """Класс для записи данных о ходах каждого участника и формирования отчетов"""
     def __init__(self, user_color="white"):
@@ -77,12 +76,14 @@ class GameOverClass:
             if not board[0][i].isfree() and board[0][i].figure_obj.color == reverse_uc:
                 self.result = True
                 self.won_color = reverse_uc
+                print("\033[93m[ИНФО]\033[0m Шашка прошла в дамки")
                 break
         
         for i in np.arange(board.shape[1]):
             if not board[7][i].isfree() and board[7][i].figure_obj.color == uc:
                 self.result = True
                 self.won_color = uc
+                print("\033[93m[ИНФО]\033[0m Шашка прошла в дамки")
                 break
 
 
@@ -100,10 +101,12 @@ class GameOverClass:
         if white_count == 0:
             self.result = True
             self.won_color = "black"
+            print("\033[93m[ИНФО]\033[0m Белых шашек больше нет на поле")
 
         if black_count == 0:
             self.result = True
-            self.won_color = "white"   
+            self.won_color = "white"
+            print("\033[93m[ИНФО]\033[0m Черных шашек больше нет на поле")   
 
     def deadlock_detector(self):
         """
@@ -161,7 +164,7 @@ class GameOverClass:
         else:
             self.result = True
             self.won_color = reverse_uc  
-            print("\033[91mУ пользователя тупиковая ситуация!\033[0m")
+            print("\033[91m[ИНФО]\033[0m У пользователя тупиковая ситуация")
 
 class MainClass:
     """Управляющий класс с логикой игры"""
@@ -266,6 +269,7 @@ class MainClass:
                 #Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
                     won_color = user_color
+                    print("\033[91m[ИНФО]\033[0m У компьютера тупиковая ситуация")
                     print("Выиграл цвет: {}".format(usercolor_dict[user_color]))
                     break
                 
