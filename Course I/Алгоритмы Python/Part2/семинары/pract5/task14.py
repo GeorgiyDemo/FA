@@ -6,6 +6,7 @@
 
 import yaml
 
+
 class GetDataClass(object):
     def __init__(self):
         self.processing()

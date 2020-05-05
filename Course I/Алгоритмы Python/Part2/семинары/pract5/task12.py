@@ -5,9 +5,11 @@
 Используется ВСЕ, чтоб точно понять, что более подходящее
 """
 
-import numpy as np
-import timeit
 import array as ar
+import timeit
+
+import numpy as np
+
 
 class ArrClass:
     def __init__(self, arr):
@@ -27,9 +29,9 @@ class ArrClass:
         for i in range(len(a) - len(old) + 1):
             if a[i:i + len(old)] == old:
                 a[i:i + len(old)] = new
-        
+
         self.arr = a
-    
+
     def printer(self):
         """Вывод результатов на экран"""
         print("Результаты замены:\n{}".format(self.arr))
@@ -76,12 +78,13 @@ class ListClass:
 
         print("Список после замены:\n" + str(self.list))
 
-#Не всегда работает
+
+# Не всегда работает
 
 class NumpyClass(object):
 
     def __init__(self, l):
-        self.arr = np.array(list(l +' '))
+        self.arr = np.array(list(l + ' '))
         self.sub_arr = np.array(list("itmathrepetitor"))
         self.replace_arr = np.array(list("silence"))
         self.processing()
@@ -91,7 +94,7 @@ class NumpyClass(object):
         shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
         temp_array = np.array([])
         for step in range(shape[0]):
-            temp_array = np.concatenate((temp_array, a[step:shape[-1]+step]))
+            temp_array = np.concatenate((temp_array, a[step:shape[-1] + step]))
         return np.reshape(temp_array, shape)
 
     def finder(self, a, b):
@@ -99,7 +102,7 @@ class NumpyClass(object):
         try:
             warnings.simplefilter(action='ignore', category=FutureWarning)
             result = np.where(np.all(b == temp, axis=1))
-            return result[0][0], result[0][0]+b.shape[0]
+            return result[0][0], result[0][0] + b.shape[0]
         except IndexError:
             return None
 
@@ -111,20 +114,20 @@ class NumpyClass(object):
         arr = self.arr
 
         print("Список до замены:\n{}".format(arr))
-        
+
         buf_arr = np.array(arr, copy=True)
         while True:
             try:
                 r = self.finder(buf_arr, sub_arr)
                 if r is None:
-                    #Доехали до окончания
+                    # Доехали до окончания
                     break
-                subbuf_arr = np.append(buf_arr[:r[0]], replace_arr)    
+                subbuf_arr = np.append(buf_arr[:r[0]], replace_arr)
                 buf_arr = np.append(subbuf_arr, buf_arr[r[1]:])
             except Exception:
                 break
-    
-        #Выставляем результат
+
+        # Выставляем результат
         self.arr = buf_arr[:-1]
 
     def printer(self):
@@ -137,10 +140,10 @@ if __name__ == "__main__":
 
     a = timeit.default_timer()
     ListClass(s)
-    print('\nВремя на работу с помощью list', timeit.default_timer()-a)
+    print('\nВремя на работу с помощью list', timeit.default_timer() - a)
     a = timeit.default_timer()
     ArrClass(s)
-    print('\nВремя на работу с помощью array', timeit.default_timer()-a)
+    print('\nВремя на работу с помощью array', timeit.default_timer() - a)
     a = timeit.default_timer()
     NumpyClass(s)
-    print('\nВремя на работу с помощью numpy', timeit.default_timer()-a)
+    print('\nВремя на работу с помощью numpy', timeit.default_timer() - a)

@@ -5,8 +5,10 @@
 массивов на экран.
 """
 
-import numpy as np
 from random import randint
+
+import numpy as np
+
 
 class ArrayProcessingClass:
     def __init__(self):
@@ -19,11 +21,11 @@ class ArrayProcessingClass:
         """Ввод размерности массива"""
         boolean_flag = True
         while boolean_flag:
-            
+
             try:
                 self.n = int(input("Введите размерность массивов -> "))
                 boolean_flag = False
-            
+
             except ValueError:
                 print("Некорректный ввод!")
 
@@ -41,12 +43,12 @@ class ArrayProcessingClass:
             boolean_flag = True
             while boolean_flag:
                 try:
-                    element = int(input("Введите элемент массива №{} -> ".format(i+1)))
+                    element = int(input("Введите элемент массива №{} -> ".format(i + 1)))
                     arr = np.append(arr, element)
                     boolean_flag = False
                 except ValueError:
                     print("Некорректный ввод данных!")
-        
+
         print("\nВведенный массив №2:\n{}".format(arr))
         self.arr2 = arr
 
@@ -54,6 +56,7 @@ class ArrayProcessingClass:
         """Сумма первых двух массивов"""
         result = self.arr1 + self.arr2
         print("\nСумма двух массивов:\n{}".format(result))
+
 
 if __name__ == "__main__":
     ArrayProcessingClass()

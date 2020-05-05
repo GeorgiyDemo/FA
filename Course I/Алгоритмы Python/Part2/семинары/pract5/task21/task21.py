@@ -1,4 +1,4 @@
-#python3 setup.py build_ext --inplace
+# python3 setup.py build_ext --inplace
 """
 Задача 21:
 Сгенерировать 2000 случайных целых чисел в диапазоне от -5 до 4, записать их в ячейки
@@ -20,23 +20,26 @@ Numpy
 """
 
 import sys
-import numpy as np
-from random import randint
 import timeit
+from random import randint
+
+import numpy as np
 from DEMKA import DEMKACython
+
 
 def default():
     l = [randint(-5, 4) for _ in range(2001)]
-    #print("Элементы списка:\n{}".format(l))
+    # print("Элементы списка:\n{}".format(l))
     print("List")
     print("Положительных: {}".format(len([e for e in l if e > 0])))
     print("Отрицательных: {}".format(len([e for e in l if e < 0])))
     print("Равных нулю: {}".format(len([e for e in l if e == 0])))
 
+
 def numpy():
     arr = np.array([randint(-5, 4) for _ in range(2001)])
     np.set_printoptions(threshold=sys.maxsize)
-    #print("Элементы массива:\n{}".format(arr))
+    # print("Элементы массива:\n{}".format(arr))
     print("\nNumpy:")
     print("Положительных: {}".format(arr[arr > 0].shape[0]))
     print("Отрицательных: {}".format(arr[arr < 0].shape[0]))
@@ -46,11 +49,11 @@ def numpy():
 if __name__ == "__main__":
     a = timeit.default_timer()
     default()
-    print("Время: {}".format(timeit.default_timer()-a))
+    print("Время: {}".format(timeit.default_timer() - a))
     a = timeit.default_timer()
     numpy()
-    print("Время: {}".format(timeit.default_timer()-a))
-    
+    print("Время: {}".format(timeit.default_timer() - a))
+
     a = timeit.default_timer()
     print("\nCython:\nПоложительных: {}\nОтрицательных: {}\nРавных нулю: {}".format(*DEMKACython()))
-    print("Время: {}".format(timeit.default_timer()-a))
+    print("Время: {}".format(timeit.default_timer() - a))

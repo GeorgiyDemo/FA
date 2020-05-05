@@ -19,23 +19,25 @@ Numpy
 """
 
 import sys
-import numpy as np
-from random import randint
 import timeit
-from DEMKA import DEMKACython
+from random import randint
+
+import numpy as np
+
 
 def default():
     l = [randint(-5, 4) for _ in range(20001)]
-    #print("Элементы списка:\n{}".format(l))
+    # print("Элементы списка:\n{}".format(l))
     print("List")
     print("Положительных: {}".format(len([e for e in l if e > 0])))
     print("Отрицательных: {}".format(len([e for e in l if e < 0])))
     print("Равных нулю: {}".format(len([e for e in l if e == 0])))
 
+
 def numpy():
     arr = np.array([randint(-5, 4) for _ in range(20001)])
     np.set_printoptions(threshold=sys.maxsize)
-    #print("Элементы массива:\n{}".format(arr))
+    # print("Элементы массива:\n{}".format(arr))
     print("\nNumpy:")
     print("Положительных: {}".format(arr[arr > 0].shape[0]))
     print("Отрицательных: {}".format(arr[arr < 0].shape[0]))
@@ -45,15 +47,15 @@ def numpy():
 if __name__ == "__main__":
     a = timeit.default_timer()
     default()
-    print("Время: {}".format(timeit.default_timer()-a))
+    print("Время: {}".format(timeit.default_timer() - a))
     a = timeit.default_timer()
     numpy()
-    print("Время: {}".format(timeit.default_timer()-a))
-
+    print("Время: {}".format(timeit.default_timer() - a))
 
     # Import the extension module hello.
 from DEMKA import DEMKACython
 import timeit
+
 a = timeit.default_timer()
 print(DEMKACython())
-print("Время: {}".format(timeit.default_timer()-a))
+print("Время: {}".format(timeit.default_timer() - a))

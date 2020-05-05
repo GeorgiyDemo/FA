@@ -11,6 +11,7 @@ import numpy as np
 
 TXT_FILE = "./task13.txt"
 
+
 class Node(object):
 
     def __init__(self, value=None, next=None, previous=None):
@@ -20,6 +21,7 @@ class Node(object):
 
     def __str__(self):
         return str(self.value)
+
 
 class ProcessingClass(object):
 
@@ -55,7 +57,7 @@ class ProcessingClass(object):
             obj_arr = np.append(obj_arr, Node(len(txt)))
             print("Занесли '" + txt + "' " + str(len(txt)))
 
-        for i in np.arange(obj_arr.shape[0]-1):
+        for i in np.arange(obj_arr.shape[0] - 1):
             obj_arr[i].next = obj_arr[i + 1]
             obj_arr[i + 1].previous = obj_arr[i]
 

@@ -5,22 +5,22 @@
 указанное число в заданную позицию, подвинув элементы после него.
 """
 import array as ar
-from random import randint
+
 
 def main():
-
     a = ar.array("i", [])
     N = int(input("Введите кол-во элементов массива -> "))
-    for i in range(N-1):
-        n = int(input("Введите элемент массива №{} -> ".format(i+1)))
+    for i in range(N - 1):
+        n = int(input("Введите элемент массива №{} -> ".format(i + 1)))
         a.append(n)
 
     print("Исходный массив:", a)
     n = int(input("Введите элемент массива №{} -> ".format(N)))
     pos = int(input("Введите номер позиции элемента для вставки -> "))
-    a.insert(pos-1, n)
-    
+    a.insert(pos - 1, n)
+
     print("Результат после вставки:", a)
+
 
 if __name__ == "__main__":
     try:
