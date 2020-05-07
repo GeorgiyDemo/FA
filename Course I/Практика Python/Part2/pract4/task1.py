@@ -42,7 +42,7 @@ def simpson(f, a, b, n):
     return result
 
 
-def iterate_upto_precision(method, f, a, b, precision=10**-6):
+def iterate_upto_precision(method, f, a, b, precision=10**-7):
     """Интегрирование с заданной точностью"""
     n = 4
     while True:
@@ -56,12 +56,12 @@ def iterate_upto_precision(method, f, a, b, precision=10**-6):
 
 def main():
 
-    main_list = [{"f":f1, "a": 0, "b" : 0.6},{"f": f2, "a": 0, "b" : 1}]
+    main_list = [{"f":f1, "a": 0, "b" : 0.6},{"f": f2, "a": 0.000000000000000001, "b" : 1}]
     for d in main_list:
         n, res = iterate_upto_precision(trapezoid, **d)
-        print('Интегрирование методом трапеций\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
+        print('\n*Интегрирование методом трапеций*\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
         n, res = iterate_upto_precision(simpson, **d)
-        print('Интегрирование методом Симпсона\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
+        print('*Интегрирование методом Симпсона*\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
 
 if __name__ == "__main__":
     main()
