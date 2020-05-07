@@ -8,10 +8,13 @@
 import math
 
 
-def f_1(x):
-    """То, что именно мы интегрируем"""
-    return x*math.tan(x**2+1)
+def f1(x):
+    """Функция для интегрирования №1"""
+    return x*math.tan(pow(x,2)+1)
 
+def f2(x):
+    """Функция для интегрирования №2"""
+    return ((pow(math.log(x+1),2))/x)*pow(math.e,-x)
 
 def trapezoid(f, a, b, n):
     """Метод трапеций"""
@@ -53,16 +56,12 @@ def iterate_upto_precision(method, f, a, b, precision=10**-6):
 
 def main():
 
-    a = 0
-    b = 0.6
-
-    n, res = iterate_upto_precision(trapezoid, f_1, a, b)
-    print(
-        f'Интегрирование методом трапеций\nРезультат: {res}, число разбиений интервала n = {n}')
-    n, res = iterate_upto_precision(simpson, f_1, a, b)
-    print(
-        f'Интегрирование методом Симпсона\nРезультат: {res}, число разбиений интервала n = {n}')
-
+    main_list = [{"f":f1, "a": 0, "b" : 0.6},{"f": f2, "a": 0, "b" : 1}]
+    for d in main_list:
+        n, res = iterate_upto_precision(trapezoid, **d)
+        print('Интегрирование методом трапеций\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
+        n, res = iterate_upto_precision(simpson, **d)
+        print('Интегрирование методом Симпсона\nРезультат: {}, число разбиений интервала n = {}'.format(res, n))
 
 if __name__ == "__main__":
     main()
