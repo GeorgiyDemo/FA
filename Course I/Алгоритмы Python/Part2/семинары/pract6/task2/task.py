@@ -1,8 +1,8 @@
 """
 Выполнить графовое представление и программную реализацию с помощью бинарного дерева следующие вычисления:
 """
-
 import operator
+
 class BinaryTree:
     """Улучшенный класс бинарного дерева"""
 
@@ -106,7 +106,6 @@ class Str2Tree:
         
         self.tree = tree
 
-#TODO
 class Tree2Result:
     """Вычисление выражений на основе бинарного дерева"""
     def __init__(self, binarytree_obj):
@@ -118,13 +117,17 @@ class Tree2Result:
     def processing(self, token):
         operators = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 
+        #Левые/правые значения
         left_value = token.get_left_child()
         right_value = token.get_right_child()
 
+        #Если оба есть - падаем ниже
         if left_value and right_value:
             fn = operators[token.get_root_val()]
+            #Отдаем результат выражения
             return fn(self.processing(left_value),self.processing(right_value))
         else:
+            #Иначе, если уже некуда падать, отдаем текущее значение
             return token.get_root_val()
 
 if __name__ == "__main__":
