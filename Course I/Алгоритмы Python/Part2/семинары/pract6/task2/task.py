@@ -131,7 +131,10 @@ class Tree2Result:
             return token.get_root_val()
 
 if __name__ == "__main__":
-    obj = Str2Tree("(3+(4*5))")
-    print(obj.tree)
-    exp_r = Tree2Result(obj.tree)
-    print(exp_r.result)
+    exp_list = ["(2+2)","((2+3)*4)","((7+8)*(2-1))","((7+8)*(2-1)+7)","((7+8)*(5-2)/(2-1))"]
+    for e in exp_list:
+        print("\nВыражение: {}".format(e))
+        obj = Str2Tree(e)
+        print("Разложение: {}".format(obj.tree))
+        r_obj = Tree2Result(obj.tree)
+        print("Результат: {}".format(r_obj.result))
