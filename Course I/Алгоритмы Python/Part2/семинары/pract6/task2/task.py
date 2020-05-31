@@ -77,32 +77,39 @@ class Str2Tree:
         except ValueError:
             return False
 
+
+
+
     def processing(self):
 
         tree = self.tree
         current = tree
-
+        
         for token in self.exp:
 
             if token == "(":
                 # добавляем новый узел в качестве левого узла
                 current = current.insert_left()
             
-            if token in ["+","−","/","*"]:
+            elif token in ["+","-","/","*"]:
                 # устанавливаем значение в текущем узле
                 current.set_root_val(token)
                 # добавляем узел в качестве правого узла и спускаемся в него.
                 current = current.insert_right()
 
-            if self.digital_checker(token):
+            elif self.digital_checker(token):
                 # устанавливаем значение в текущем узле
                 current.set_root_val(int(token))
                 # переходим к родительскому узлу. 
                 current = current.get_parent()
 
-            if token == ")":
+            elif token == ")":
                 #переходим к родителю текущего узла. 
                 current = current.get_parent()
+            
+            else:
+                print(token)
+                raise ValueError("Я не понимаю что это")
         
         self.tree = tree
 
