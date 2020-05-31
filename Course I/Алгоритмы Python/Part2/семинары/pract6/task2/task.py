@@ -60,7 +60,7 @@ class BinaryTree:
 
 
 class Str2Tree:
-    """РАБОЧИЙ Класс для перевода строки в бинарное дерево"""
+    """ Класс для перевода строки в бинарное дерево"""
     
     def __init__(self, exp):
         
@@ -105,6 +105,36 @@ class Str2Tree:
         
         self.tree = tree
 
+#TODO
+class Tree2Result:
+    """Вычисление выражений на основе бинарного дерева"""
+    def __init__(self, binarytree_obj):
+        if not isinstance(binarytree_obj, BinaryTree):
+            raise ValueError("Объект не является объектом класса BinaryTree!")
+        
+    
+    def counter(self, token, value=0):
+        
+        #Значит это число и мы достигли самого дна
+        if token.get_left_child().get_root_val() == None and token.get_right_child().get_root_val() == None:
+            return
+        
+        operation = token.get_root_val()
+        first_value = token.get_left_child().get_root_val()
+        second_value = token.get_second_child().get_root_val()
+        
+
+        value += eval(first_value+operation+second_value)
+        print(value)
+        self.counter()
+
+
+
+
+        else:
+            
+
+        super().__init__()
 if __name__ == "__main__":
     obj = Str2Tree("(3+(4*5))")
     print(obj.tree)
