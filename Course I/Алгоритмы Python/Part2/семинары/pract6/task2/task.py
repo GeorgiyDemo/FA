@@ -2,6 +2,7 @@
 Выполнить графовое представление и программную реализацию с помощью бинарного дерева следующие вычисления:
 """
 
+import operator
 class BinaryTree:
     """Улучшенный класс бинарного дерева"""
 
@@ -95,7 +96,7 @@ class Str2Tree:
 
             if self.digital_checker(token):
                 # устанавливаем значение в текущем узле
-                current.set_root_val(token)
+                current.set_root_val(int(token))
                 # переходим к родительскому узлу. 
                 current = current.get_parent()
 
@@ -112,29 +113,22 @@ class Tree2Result:
         if not isinstance(binarytree_obj, BinaryTree):
             raise ValueError("Объект не является объектом класса BinaryTree!")
         
+        self.result = self.processing(binarytree_obj)
     
-    def counter(self, token, value=0):
-        
-        #Значит это число и мы достигли самого дна
-        if token.get_left_child().get_root_val() == None and token.get_right_child().get_root_val() == None:
-            return
-        
-        operation = token.get_root_val()
-        first_value = token.get_left_child().get_root_val()
-        second_value = token.get_second_child().get_root_val()
-        
+    def processing(self, token):
+        operators = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 
-        value += eval(first_value+operation+second_value)
-        print(value)
-        self.counter()
+        left_value = token.get_left_child()
+        right_value = token.get_right_child()
 
-
-
-
+        if left_value and right_value:
+            fn = operators[token.get_root_val()]
+            return fn(self.processing(left_value),self.processing(right_value))
         else:
-            
+            return token.get_root_val()
 
-        super().__init__()
 if __name__ == "__main__":
     obj = Str2Tree("(3+(4*5))")
     print(obj.tree)
+    exp_r = Tree2Result(obj.tree)
+    print(exp_r.result)
