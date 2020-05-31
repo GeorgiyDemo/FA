@@ -19,6 +19,8 @@ class BinaryTree:
             t = BinaryTree(new_node)
             t.left_child = self.left_child
             self.left_child = t
+        
+        return self.left_child
 
     def insert_right(self, new_node):
         """Вставка элемента справа"""
@@ -28,6 +30,8 @@ class BinaryTree:
             t = BinaryTree(new_node)
             t.right_child = self.right_child
             self.right_child = t
+
+        return self.right_child
 
     def get_right_child(self):
         """Получение подэлемента справа"""
@@ -51,14 +55,13 @@ class BinaryTree:
 
 
 def main():
+
     # Элемент на 1 уровне
     r = BinaryTree('8')
-    r.insert_left('4')
-    r.insert_right('12')
 
-    # Элементы на 2 уровне
-    r_1 = r.get_left_child()
-    r_2 = r.get_right_child()
+    #Элементы на 2 уровне
+    r_1 = r.insert_left('4')
+    r_2 = r.insert_right('12')
 
     r_1.insert_left('2')
     r_1.insert_right('6')
