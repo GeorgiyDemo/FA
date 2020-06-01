@@ -17,7 +17,7 @@
 программных реализациях.
 
 """
-from ...sortedbinarytree_module import SortedTree
+from sortedbinarytree_module import SortedTree
 
 
 items = [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57]

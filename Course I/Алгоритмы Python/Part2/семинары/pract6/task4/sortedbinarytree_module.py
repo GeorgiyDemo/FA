@@ -116,11 +116,6 @@ class SortedTreeNode:
         lines = _build_tree_string(self, 0, False, '-')[0]
         return '\n' + '\n'.join((line.rstrip() for line in lines))
 
-        left_val = "-" if self.left_child is None else self.left_child
-        right_val = "-" if self.right_child is None else self.right_child
-
-        return '{} ({}, {})'.format(self.value, left_val, right_val)
-
 
     
 class SortedTree:
