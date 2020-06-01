@@ -18,29 +18,39 @@
 
 """
 from sortedbinarytree_module import SortedTree
+from array import array
+import timeit
+import random
+
+
+def search_arr(a, search_e):
+    """Реализовать поиск элементов в массиве с учетом времени на поиск"""
+    for e in a:
+        if search_e == e:
+            print("Элемент найден")
+            break
+    else:
+        print("Элемент не найден")
 
 def search_tree(thistree, search_e):
-    """3. Реализовать поиск элемента в бинарном дереве с учетом времени на поиск"""
+    """Реализовать поиск элемента в бинарном дереве с учетом времени на поиск"""
     
+    #print(thistree)
     #Если есть результат
-    print(thistree.get_root_val())
     if thistree is None:
-        print("ЭЛЕМЕНТ НЕ НАЙДЕН")
+        print("Элемент не найден")
         return
     
     elif thistree.get_root_val() == search_e:
-        print("МЫ НАШЛИ ЭЛЕМЕНТ")
+        print("Элемент найден")
         return
-    
     
     #Если значение меньше - идем влево
     elif search_e < thistree.get_root_val():
-        print("ПОШЛИ НАЛЕВО")
         search_tree(thistree.get_left_child(),search_e)
     
     #Если значение больше или равно - идем вправо
     elif search_e >= thistree.get_root_val():
-        print("ПОШЛИ НАПРАВО")
         search_tree(thistree.get_right_child(),search_e)
     
     
@@ -53,29 +63,33 @@ def search_tree(thistree, search_e):
 def main():
 
     #Элемент для поиска
-    search_e = 33
-    items = [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57]
-
+    search_e = 24
+    items = array("i", [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57])
     #1. Реализовать представление данных с помощью бинарного дерева;
     tree = SortedTree()
     for value in items:
         tree.push(value)
-    print(tree)
+    #print(tree)
     #print(tree.merge())
     
 
-
     #2. Реализовать поиск элементов в массиве с учетом времени на поиск
-    for e in items:
-        if search_e == e:
-            print("Элемент найден!")
-            break
-    else:
-        print("Элемент не найден!")
+    print("Поиск элементов в массиве")
+    a = timeit.default_timer()
+    search_arr(items,search_e)
+    print("Время: {}".format(timeit.default_timer() - a))
 
 
     #3. Реализовать поиск элемента в бинарном дереве с учетом времени на поиск
+    print("Поиск элементов в бинарном дереве")
+    a = timeit.default_timer()
     search_tree(tree.root, search_e)
+    print("Время: {}".format(timeit.default_timer() - a))
+
+
+    #4. Реализовать поиск элементов в отсортированном массиве с учетом времени на поиск
+
+
 
 
 if __name__ == "__main__":
