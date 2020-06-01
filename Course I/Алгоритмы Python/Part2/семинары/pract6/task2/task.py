@@ -4,7 +4,7 @@
 import operator
 
 class BinaryTree:
-    """Улучшенный класс бинарного дерева"""
+    """Класс бинарного дерева"""
 
     def __init__(self, root=None, parent=None):
         self.key = root
@@ -122,6 +122,7 @@ class Tree2Result:
         self.result = self.processing(binarytree_obj)
     
     def processing(self, token):
+        """Обход бинарного дерева в обратном порядке"""
         operators = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 
         #Левые/правые значения
@@ -138,8 +139,10 @@ class Tree2Result:
             return token.get_root_val()
 
 if __name__ == "__main__":
-    exp_list = ["(2+2)","((2+3)*4)","((7+8)*(2-1))","((7+8)*(2-1)+7)","((7+8)*(5-2)/(2-1))"]
+    exp_list = ["(2+2)","((2+3)*4)","((7+8)*(2-1))","((7+8)*(2-1)+7)","(((7+8)*(5-2))/(2-1))"]
+    
     for e in exp_list:
+        
         print("\nВыражение: {}".format(e))
         obj = Str2Tree(e)
         print("Разложение: {}".format(obj.tree))
