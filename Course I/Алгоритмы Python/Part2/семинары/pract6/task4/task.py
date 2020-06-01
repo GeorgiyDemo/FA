@@ -19,12 +19,64 @@
 """
 from sortedbinarytree_module import SortedTree
 
+def search_tree(thistree, search_e):
+    """3. Реализовать поиск элемента в бинарном дереве с учетом времени на поиск"""
+    
+    #Если есть результат
+    print(thistree.get_root_val())
+    if thistree is None:
+        print("ЭЛЕМЕНТ НЕ НАЙДЕН")
+        return
+    
+    elif thistree.get_root_val() == search_e:
+        print("МЫ НАШЛИ ЭЛЕМЕНТ")
+        return
+    
+    
+    #Если значение меньше - идем влево
+    elif search_e < thistree.get_root_val():
+        print("ПОШЛИ НАЛЕВО")
+        search_tree(thistree.get_left_child(),search_e)
+    
+    #Если значение больше или равно - идем вправо
+    elif search_e >= thistree.get_root_val():
+        print("ПОШЛИ НАПРАВО")
+        search_tree(thistree.get_right_child(),search_e)
+    
+    
+    #Если что-то аномальное
+    else:
+        raise ValueError("Что-то странное сейчас произошло")
 
-items = [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57]
 
-tree = SortedTree()
 
-for value in items:
-    tree.push(value)
-print(tree)
-print(tree.merge())
+def main():
+
+    #Элемент для поиска
+    search_e = 33
+    items = [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57]
+
+    #1. Реализовать представление данных с помощью бинарного дерева;
+    tree = SortedTree()
+    for value in items:
+        tree.push(value)
+    print(tree)
+    #print(tree.merge())
+    
+
+
+    #2. Реализовать поиск элементов в массиве с учетом времени на поиск
+    for e in items:
+        if search_e == e:
+            print("Элемент найден!")
+            break
+    else:
+        print("Элемент не найден!")
+
+
+    #3. Реализовать поиск элемента в бинарном дереве с учетом времени на поиск
+    search_tree(tree.root, search_e)
+
+
+if __name__ == "__main__":
+    main()

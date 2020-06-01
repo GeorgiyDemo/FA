@@ -43,17 +43,11 @@ class SortedTreeNode:
         if self.left_child:
             self.left_child = self.left_child.sort()
         else:
-          
             self.left_child = []
-
-     
         if self.right_child:
             self.right_child = self.right_child.sort()
         else:
-
             self.right_child = []
-
-
         return self.left_child + [self.key] + self.right_child
 
     def tree_string(self, root, curr_index, index=False, delimiter='-'):
@@ -75,7 +69,6 @@ class SortedTreeNode:
             self.tree_string(root.left_child, 2 * curr_index + 1, index, delimiter)
         r_box, r_box_width, r_root_start, r_root_end = \
             self.tree_string(root.right_child, 2 * curr_index + 2, index, delimiter)
-
 
         if l_box_width > 0:
             l_root = (l_root_start + l_root_end) // 2 + 1

@@ -1,3 +1,4 @@
+
 class BinaryTree:
     """Класс бинарного дерева"""
 
@@ -9,17 +10,19 @@ class BinaryTree:
 
     def insert_left(self, new_node=None):
         """Вставка элемента слева"""
+
         if self.left_child == None:
             self.left_child = BinaryTree(new_node, self)
         else:
             t = BinaryTree(new_node, self)
             t.left_child = self.left_child
             self.left_child = t
-        
+
         return self.left_child
 
     def insert_right(self, new_node=None):
         """Вставка элемента справа"""
+
         if self.right_child == None:
             self.right_child = BinaryTree(new_node, self)
         else:
@@ -31,27 +34,32 @@ class BinaryTree:
 
     def get_parent(self):
         """Получение узла-родителя"""
+
         return self.parent
 
     def get_right_child(self):
         """Получение подэлемента справа"""
+
         return self.right_child
 
     def get_left_child(self):
         """Получение подэлемента слева"""
+
         return self.left_child
 
     def set_root_val(self, obj):
         """Выставление значения"""
+
         self.key = obj
 
     def get_root_val(self):
         """Получение значения"""
-        return self.key    
+
+        return self.key
 
     def tree_string(self, root, curr_index, index=False, delimiter='-'):
         """Красивое дерево"""
-        
+
         if root is None:
             return [], 0, 0, 0
 
@@ -65,10 +73,11 @@ class BinaryTree:
         new_root_width = gap_size = len(node_repr)
 
         l_box, l_box_width, l_root_start, l_root_end = \
-            self.tree_string(root.left_child, 2 * curr_index + 1, index, delimiter)
+            self.tree_string(root.left_child, 2 *
+                             curr_index + 1, index, delimiter)
         r_box, r_box_width, r_root_start, r_root_end = \
-            self.tree_string(root.right_child, 2 * curr_index + 2, index, delimiter)
-
+            self.tree_string(root.right_child, 2 *
+                             curr_index + 2, index, delimiter)
 
         if l_box_width > 0:
             l_root = (l_root_start + l_root_end) // 2 + 1
