@@ -57,8 +57,11 @@ class BinaryTree:
 
     def __str__(self):
         """Вывод структуры на экран"""
-        return '{} ({}, {})'.format(self.get_root_val(), str(self.get_left_child()), str(self.get_right_child()))
 
+        left_val = "-" if self.get_left_child() is None else self.get_left_child()
+        right_val = "-" if self.get_right_child() is None else self.get_right_child()
+
+        return '{} ({}, {})'.format(self.get_root_val(), left_val, right_val)
 
 class Orders:
     """Стат методы для обхода дерева"""

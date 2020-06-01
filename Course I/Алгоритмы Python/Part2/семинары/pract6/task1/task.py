@@ -51,8 +51,11 @@ class BinaryTree:
 
     def __str__(self):
         """Вывод структуры на экран"""
-        return '{} ({}, {})'.format(self.get_root_val(), str(self.get_left_child()), str(self.get_right_child()))
 
+        left_val = "-" if self.get_left_child() is None else self.get_left_child()
+        right_val = "-" if self.get_right_child() is None else self.get_right_child()
+
+        return '{} ({}, {})'.format(self.get_root_val(), left_val, right_val)
 
 def main():
 
@@ -63,17 +66,12 @@ def main():
     r_1 = r.insert_left('4')
     r_2 = r.insert_right('12')
 
-    r_1.insert_left('2')
-    r_1.insert_right('6')
-    r_2.insert_left('10')
-    r_2.insert_right('14')
-
     # Элементы на 3 уровне
-    r_11 = r_1.get_left_child()
-    r_12 = r_1.get_right_child()
+    r_11 = r_1.insert_left('2')
+    r_12 = r_1.insert_right('6')
+    r_21 = r_2.insert_left('10')
+    r_22 = r_2.insert_right('14')
 
-    r_21 = r_2.get_left_child()
-    r_22 = r_2.get_right_child()
 
     # Добавление элементов на 4 уровень
 
@@ -87,7 +85,7 @@ def main():
     r_22.insert_left('13')
     r_22.insert_right('15')
 
-    print("Реализованное дерево по заданию 1:")
+    print("Реализованное дерево:")
     print(r)
 
 
