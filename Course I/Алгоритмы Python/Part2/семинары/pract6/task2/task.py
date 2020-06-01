@@ -59,7 +59,6 @@ class BinaryTree:
         return '{} ({}, {})'.format(self.get_root_val(), str(self.get_left_child()), str(self.get_right_child()))
 
 
-
 class Str2Tree:
     """ Класс для перевода строки в бинарное дерево"""
     
@@ -76,9 +75,6 @@ class Str2Tree:
             return True
         except ValueError:
             return False
-
-
-
 
     def processing(self):
 
