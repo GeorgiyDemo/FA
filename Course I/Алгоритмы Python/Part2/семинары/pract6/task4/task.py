@@ -11,9 +11,6 @@
 программных реализациях.
 """
 
-# TODO Совершенно не понятно то, что имеется ввиду под 1 и 4. Можно ли тупо через in или for и == сделать?
-# Если у вас есть идеи - напишите мне плз https://vk.com/dem_g
-
 from sortedbinarytree_module import SortedTree
 from array import array
 import timeit
@@ -59,15 +56,15 @@ def search_tree(thistree, search_e):
 def main():
 
     #Элемент для поиска
-    search_e = 24
+    search_e = 42
     items = array("i", [81, 77, 79, 68, 10, 12, 13, 20, 15, 24, 27, 42, 33, 51, 57])
+    
     #1. Реализовать представление данных с помощью бинарного дерева;
     tree = SortedTree()
     for value in items:
         tree.push(value)
-    #print(tree)
-    #print(tree.merge())
     
+    print(tree)
 
     #2. Реализовать поиск элементов в массиве с учетом времени на поиск
     print("Поиск элементов в массиве")
@@ -77,15 +74,18 @@ def main():
 
 
     #3. Реализовать поиск элемента в бинарном дереве с учетом времени на поиск
-    print("Поиск элементов в бинарном дереве")
+    print("\nПоиск элементов в бинарном дереве")
     a = timeit.default_timer()
     search_tree(tree.root, search_e)
     print("Время: {}".format(timeit.default_timer() - a))
 
-    #TODO 
+
     #4. Реализовать поиск элементов в отсортированном массиве с учетом времени на поиск
-
-
+    print("\nПоиск элементов в отсортированном массиве")
+    items = array("i", tree.merge())
+    a = timeit.default_timer()
+    search_arr(items,search_e)
+    print("Время: {}".format(timeit.default_timer() - a))
 
 
 if __name__ == "__main__":
