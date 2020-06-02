@@ -1,4 +1,5 @@
 class SortedTreeNode:
+    """Сортированное бинарное дерево"""
 
     def __init__(self, key=None):
         self.key = key
@@ -107,18 +108,59 @@ class SortedTreeNode:
 
         lines = self.tree_string(self, 0, False, '-')[0]
         return '\n' + '\n'.join((line.rstrip() for line in lines))
+     
+    def min_value(self, node): 
+        """Отдает минимальное значение дерева"""
+        current = node 
+    
+        # Едем влево, пока не упадем на дно социальной лесницы
+        while(current.get_left_child() is not None): 
+            current = current.get_left_child()  
+        return current  
+   
+    def remove_by_key(self, root, key): 
+        """Удаление по ключу"""
+  
+        if root is None: 
+            return root  
+        if key < root.key: 
+            root.left_child = self.remove_by_key(root.left_child, key) 
+        elif (key > root.key): 
+            root.right_child = self.remove_by_key(root.right_child, key) 
+        else: 
+            if root.left_child is None : 
+                buf = root.right_child  
+                root = None 
+                return buf  
+                
+            elif root.right_child is None : 
+                buf = root.left_child  
+                root = None
+                return buf 
+    
+            buf = self.min_value(root.right_child) 
+            root.key = buf.key 
+            root.right_child = self.remove_by_key(root.right_child , buf.key) 
+        return root
 
     
 class SortedTree:
+    """Отсортированное бинарное дерево"""
 
     def __init__(self):
         self.root = None
 
     def push(self, key):
+        """Добавляет элементы"""
         if self.root:
             self.root.compare(key)
         else:
             self.root = SortedTreeNode(key)
+
+    def pull(self, key):
+        """Удаляет элементы"""
+        self.root.remove_by_key(self.root, key)
+
 
     def merge(self):
         return self.root.sort()

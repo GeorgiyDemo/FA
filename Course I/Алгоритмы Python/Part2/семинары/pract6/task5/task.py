@@ -16,6 +16,8 @@ if __name__ == "__main__":
     tree = SortedTree()
     for value in items:
         tree.push(value)
+
+    print("Исходное дерево")
     print(tree)
 
 
@@ -23,10 +25,16 @@ if __name__ == "__main__":
     add_list = [38, 20, 8, 13, 47]
     for value in add_list:
         tree.push(value)
+    print("Дерево после добавления элементов",add_list)
     print(tree)
 
     #TODO
     #Удаляем элементы
     remove_list = [33, 14, 5, 32]
+    for value in remove_list:
+        tree.pull(value)
     
+    print("Дерево после удаления элементов", remove_list)
+    print(tree)
+
 
