@@ -5,3 +5,15 @@
 3. графически для заданных элементов удаления чисел: 33, 14, 5, 32.
 4. программную реализацию удаления элементов.
 """
+
+from sortedbinarytree_module import SortedTree
+
+
+if __name__ == "__main__":
+
+    items = [21, 7, 32, 5, 14, 4, 6, 2, 12, 9, 18, 27, 25, 24, 30, 37, 34, 39, 33]
+    tree = SortedTree()
+    for value in items:
+        tree.push(value)
+    
+    print(tree)
