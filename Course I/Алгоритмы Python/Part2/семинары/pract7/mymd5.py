@@ -1,6 +1,11 @@
+"""
+Выполнить собственную программную реализацию MD5.
+"""
+
 import struct
 from enum import Enum
 from math import floor, sin
+
 from bitarray import bitarray
 
 
@@ -9,6 +14,7 @@ class MD5Buffer(Enum):
     B = 0xEFCDAB89
     C = 0x98BADCFE
     D = 0x10325476
+
 
 class MD5:
     string = None
@@ -76,8 +82,8 @@ class MD5:
 
         for chunk_index in range(N // 16):
             start = chunk_index * 512
-            X = [step_2_result[start + (x * 32) : start + (x * 32) + 32] for x in range(16)]
-.
+            X = [step_2_result[start + (x * 32): start + (x * 32) + 32] for x in range(16)]
+
             X = [int.from_bytes(word.tobytes(), byteorder="little") for word in X]
 
             A = cls.buffers[MD5Buffer.A]
@@ -103,7 +109,7 @@ class MD5:
                     s = [6, 10, 15, 21]
                     buff = I(B, C, D)
 
-                #Тут происходит модульное значение
+                # Тут происходит модульное значение
                 buff = modular_add(buff, X[k])
                 buff = modular_add(buff, T[i])
                 buff = modular_add(buff, A)
@@ -116,7 +122,7 @@ class MD5:
                 C = B
                 B = buff
 
-            #Обновление буферов
+            # Обновление буферов
             cls.buffers[MD5Buffer.A] = modular_add(cls.buffers[MD5Buffer.A], A)
             cls.buffers[MD5Buffer.B] = modular_add(cls.buffers[MD5Buffer.B], B)
             cls.buffers[MD5Buffer.C] = modular_add(cls.buffers[MD5Buffer.C], C)
@@ -130,5 +136,5 @@ class MD5:
         C = struct.unpack("<I", struct.pack(">I", cls.buffers[MD5Buffer.C]))[0]
         D = struct.unpack("<I", struct.pack(">I", cls.buffers[MD5Buffer.D]))[0]
 
-        #Форматирование на выходе
+        # Форматирование на выходе
         return f"{format(A, '08x')}{format(B, '08x')}{format(C, '08x')}{format(D, '08x')}"
