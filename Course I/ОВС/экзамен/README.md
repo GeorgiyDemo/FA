@@ -8,7 +8,7 @@
 git clone https://github.com/GeorgiyDemo/FA
 ```
 Или зеленая кнопка сверху в главном меню "Clone or download" -> Download ZIP<br>
-и перейти в **/Course I/ОВС/exam/**
+и перейти в **/Course I/ОВС/экзамен/**
 
 **2. Установить зависимости**
 ```console
