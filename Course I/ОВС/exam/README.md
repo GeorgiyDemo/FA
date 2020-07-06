@@ -5,9 +5,10 @@
 
 **1. Скачать репо**
 ```console
-git clone https://github.com/GeorgiyDemo/vlsmCalculator_ipv4
+git clone https://github.com/GeorgiyDemo/FA
 ```
-Или зеленая кнопка сверху "Clone or download" -> Download ZIP
+Или зеленая кнопка сверху в главном меню "Clone or download" -> Download ZIP<br>
+и перейти в **/Course I/ОВС/exam/**
 
 **2. Установить зависимости**
 ```console
