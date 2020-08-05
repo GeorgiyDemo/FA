@@ -10,7 +10,8 @@
 
 # Красивоо
 def r_printer(n, a=0):
-    if n == 0: return a
+    if n == 0:
+        return a
     return r_printer(n // 10, 10 * a + n % 10)
 
 

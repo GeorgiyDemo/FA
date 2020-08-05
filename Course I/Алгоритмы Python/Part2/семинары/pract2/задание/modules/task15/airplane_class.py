@@ -9,6 +9,15 @@ class AirplaneClass(TransportClass):
         self.max_height = max_height
 
     def info(self):
-        return "[Класс самолёт]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nКол-во пассажиров: " + str(
-            self.passengers_number) + "\nМакс. скорость: " + str(self.max_speed) + "\nМакс. высота: " + str(
-            self.max_height)
+        return (
+            "[Класс самолёт]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nКол-во пассажиров: "
+            + str(self.passengers_number)
+            + "\nМакс. скорость: "
+            + str(self.max_speed)
+            + "\nМакс. высота: "
+            + str(self.max_height)
+        )

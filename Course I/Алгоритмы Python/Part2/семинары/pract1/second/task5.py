@@ -28,8 +28,16 @@ class GoodsClass:
         self.expiration_date = expiration_date
 
     def get_info(self):
-        return "[Товар]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + " руб.\nДата производства: " + self.manufacture_date + "\nСрок годности: " + self.expiration_date
+        return (
+            "[Товар]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nДата производства: "
+            + self.manufacture_date
+            + "\nСрок годности: "
+            + self.expiration_date
+        )
 
     def opportunity_detector(self, user_price):
         if user_price >= self.price:
@@ -46,8 +54,16 @@ class ProductClass(GoodsClass):
         super().__init__(name, price, manufacture_date, expiration_date)
 
     def get_info(self):
-        return "[Продукт]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + " руб.\nДата производства: " + self.manufacture_date + "\nСрок годности: " + self.expiration_date
+        return (
+            "[Продукт]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nДата производства: "
+            + self.manufacture_date
+            + "\nСрок годности: "
+            + self.expiration_date
+        )
 
 
 class GroupClass(GoodsClass):
@@ -60,9 +76,18 @@ class GroupClass(GoodsClass):
         self.amount = amount
 
     def get_info(self):
-        return "[Партия]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + " руб.\nДата производства: " + self.manufacture_date + "\nСрок годности: " + self.expiration_date + "\nКоличество штук: " + str(
-            self.amount)
+        return (
+            "[Партия]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nДата производства: "
+            + self.manufacture_date
+            + "\nСрок годности: "
+            + self.expiration_date
+            + "\nКоличество штук: "
+            + str(self.amount)
+        )
 
 
 class PhoneClass(GoodsClass):
@@ -72,7 +97,9 @@ class PhoneClass(GoodsClass):
         self.price = price
 
     def get_info(self):
-        return "[Телефон]\nНазвание: " + self.name + "\nЦена: " + str(self.price) + " руб."
+        return (
+            "[Телефон]\nНазвание: " + self.name + "\nЦена: " + str(self.price) + " руб."
+        )
 
 
 def main():
@@ -89,16 +116,31 @@ def main():
         4: PhoneClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     goods_list = []
     for _ in range(n):
         r_int = randint(1, 4)
 
         d_args = {
-            1: (fake.word(), randint(1, 1000000), fake.date(pattern='%d.%m.%Y'), fake.date(pattern='%d.%m.%Y')),
-            2: (fake.word(), randint(1, 1000000), fake.date(pattern='%d.%m.%Y'), fake.date(pattern='%d.%m.%Y')),
-            3: (fake.word(), randint(1, 1000000), fake.date(pattern='%d.%m.%Y'), fake.date(pattern='%d.%m.%Y'),
-                randint(1, 100000)),
+            1: (
+                fake.word(),
+                randint(1, 1000000),
+                fake.date(pattern="%d.%m.%Y"),
+                fake.date(pattern="%d.%m.%Y"),
+            ),
+            2: (
+                fake.word(),
+                randint(1, 1000000),
+                fake.date(pattern="%d.%m.%Y"),
+                fake.date(pattern="%d.%m.%Y"),
+            ),
+            3: (
+                fake.word(),
+                randint(1, 1000000),
+                fake.date(pattern="%d.%m.%Y"),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(1, 100000),
+            ),
             4: (fake.word(), randint(1, 1000000)),
         }
 

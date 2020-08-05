@@ -51,7 +51,11 @@ class TriangleClass:
         # Можно сделать вот так вообще, потому что периметр не влияет вовсе
         if type(self.area) == float:
             a = str(round(self.area, 2))
-        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(cl_name, a, p))
+        print(
+            "\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(
+                cl_name, a, p
+            )
+        )
 
 
 class TectangularTriangleClass(TriangleClass):

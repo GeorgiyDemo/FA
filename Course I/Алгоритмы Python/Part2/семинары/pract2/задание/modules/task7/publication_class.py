@@ -9,4 +9,9 @@ class PublicationClass:
         self.author_name = str(author_name)
 
     def info(self):
-        print("Информация об издании\nНазвание:" + self.name + "\nАвтор:" + self.author_name)
+        print(
+            "Информация об издании\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+        )

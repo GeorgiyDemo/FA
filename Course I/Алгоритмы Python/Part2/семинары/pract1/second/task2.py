@@ -24,7 +24,12 @@ class PublicationClass:
         self.author_name = str(author_name)
 
     def info(self):
-        print("Информация об издании\nНазвание:" + self.name + "\nАвтор:" + self.author_name)
+        print(
+            "Информация об издании\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+        )
 
 
 class BookClass(PublicationClass):
@@ -39,7 +44,16 @@ class BookClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация о книге\nНазвание:" + self.name + "\nАвтор:" + self.author_name + "\n" + "Год издания:" + self.publish_year + "\nИздательство:" + self.publishing_house)
+            "Информация о книге\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+            + "\n"
+            + "Год издания:"
+            + self.publish_year
+            + "\nИздательство:"
+            + self.publishing_house
+        )
 
 
 class ArticleClass(PublicationClass):
@@ -55,7 +69,18 @@ class ArticleClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация о статье\nНазвание:" + self.name + "\nАвтор:" + self.author_name + "\n" + "Год издания:" + self.publish_year + "\nНазвание журнала:" + self.journal_name + "\nНомер журнала" + self.journal_number)
+            "Информация о статье\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+            + "\n"
+            + "Год издания:"
+            + self.publish_year
+            + "\nНазвание журнала:"
+            + self.journal_name
+            + "\nНомер журнала"
+            + self.journal_number
+        )
 
 
 class WebClass(PublicationClass):
@@ -70,7 +95,16 @@ class WebClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация об электронном ресурсе\nНазвание: " + self.name + "\nАвтор: " + self.author_name + "\n" + "Ссылка: " + self.link + "\nАннотация" + self.annotation)
+            "Информация об электронном ресурсе\nНазвание: "
+            + self.name
+            + "\nАвтор: "
+            + self.author_name
+            + "\n"
+            + "Ссылка: "
+            + self.link
+            + "\nАннотация"
+            + self.annotation
+        )
 
 
 def main():
@@ -80,7 +114,7 @@ def main():
         print("Некорректный ввод данных")
         return
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     all_publications_list = []
 
     for _ in range(n):

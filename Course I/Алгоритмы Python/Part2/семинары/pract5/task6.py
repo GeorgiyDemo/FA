@@ -22,7 +22,8 @@ def main():
         try:
             a = int(input("Введите начало интервала (число a) -> "))
             b = int(input("Введите конец интервала (число b) -> "))
-            if a > b: b, a = a, b
+            if a > b:
+                b, a = a, b
             boolean_flag = False
         except ValueError:
             print("Некорректный ввод данных!")

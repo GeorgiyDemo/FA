@@ -6,8 +6,8 @@
 
 alpha1 = "0123456789abcldefghijkmnopqrstuvwxyz"
 alpha2 = "abcldefghijkmnopqrstuvwxyz0123456789"
-step = int(input('Введите шаг:='))
-s = input('Введите строку для шифрования:=')
+step = int(input("Введите шаг:="))
+s = input("Введите строку для шифрования:=")
 
 new_alpha1 = alpha1[step:] + alpha1[:step]
 new_alpha2 = alpha2[step:] + alpha2[:step]

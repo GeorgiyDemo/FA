@@ -9,7 +9,6 @@ from random import randint
 
 
 class ProgressionClass:
-
     def get_sum(self):
         return self.s
 
@@ -32,8 +31,16 @@ class ArithmeticClass(ProgressionClass):
         self.s = (self.a1 + self.a2) * self.n / 2
 
     def info(self):
-        return "[Арифметическая прогрессия]\n1-й элемент: " + str(self.a1) + "\n2-й элемент: " + str(
-            self.a2) + "\nШаг: " + str(self.n) + "\nСумма: " + str(self.s)
+        return (
+            "[Арифметическая прогрессия]\n1-й элемент: "
+            + str(self.a1)
+            + "\n2-й элемент: "
+            + str(self.a2)
+            + "\nШаг: "
+            + str(self.n)
+            + "\nСумма: "
+            + str(self.s)
+        )
 
 
 class GeometricClass(ProgressionClass):
@@ -46,8 +53,14 @@ class GeometricClass(ProgressionClass):
         self.s = self.b1 / (1 - self.q)
 
     def info(self):
-        return "[Геометрическая прогрессия]\nЗнаменатель прогрессии: " + str(self.q) + "\n1-й элемент: " + str(
-            self.b1) + "\nСумма: " + str(self.s)
+        return (
+            "[Геометрическая прогрессия]\nЗнаменатель прогрессии: "
+            + str(self.q)
+            + "\n1-й элемент: "
+            + str(self.b1)
+            + "\nСумма: "
+            + str(self.s)
+        )
 
 
 def main():

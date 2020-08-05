@@ -4,7 +4,15 @@ from objectkilled_module import ObjectKilledClass
 class AircraftClass:
     """Класс летательный аппарат"""
 
-    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country):
+    def __init__(
+        self,
+        name,
+        price,
+        object_type,
+        flight_altitude,
+        producing_country,
+        owner_country,
+    ):
         """
         Общие поля: название, цена, тип объекта, высота полета, страна производитель, страна владелец
         """
@@ -26,15 +34,30 @@ class AircraftClass:
         d_formater["Страна-владелец"] = self.owner_country
 
         out_str = "*Общая информация о летательном аппарате*\n"
-        out_str += "\n".join(list([str(k) + ": " + str(v) for k, v in d_formater.items()]))
+        out_str += "\n".join(
+            list([str(k) + ": " + str(v) for k, v in d_formater.items()])
+        )
         print(out_str)
 
 
 class PlaneClass(AircraftClass):
     """Дочерний класс самолет"""
 
-    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country, speed, weapon_type,
-                 altitude_max, fuel, fuel_max, fuel_consumption):
+    def __init__(
+        self,
+        name,
+        price,
+        object_type,
+        flight_altitude,
+        producing_country,
+        owner_country,
+        speed,
+        weapon_type,
+        altitude_max,
+        fuel,
+        fuel_max,
+        fuel_consumption,
+    ):
         """
         Общие поля с Aircraft:
         Название, цена, тип объекта, высота полета, страна производитель, страна владелец
@@ -42,8 +65,13 @@ class PlaneClass(AircraftClass):
         Скорость,тип вооружения, максимальная высота полета, запас топлива в баке, максимальный запас топлива, расход топлива
         """
         # Список для фильтрации типа самолетов
-        type_detector_list = ["истребитель", "штурмовик", "бомбардировщик", "гражданский транспортный",
-                              "гражданский пассажирский"]
+        type_detector_list = [
+            "истребитель",
+            "штурмовик",
+            "бомбардировщик",
+            "гражданский транспортный",
+            "гражданский пассажирский",
+        ]
         if object_type not in type_detector_list:
             raise ValueError("Мне передали некорректный тип самолета, что дальше?")
 
@@ -56,7 +84,9 @@ class PlaneClass(AircraftClass):
         if "гражданский" in object_type:
             weapon_type = "-"
 
-        super().__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
+        super().__init__(
+            name, price, object_type, flight_altitude, producing_country, owner_country
+        )
         self.speed = speed
         self.weapon_type = weapon_type
         self.altitude_max = altitude_max
@@ -130,11 +160,22 @@ class PlaneClass(AircraftClass):
 
 class HelicopterClass(AircraftClass):
     """Дочерний класс вертолет"""
+
     # Поле со всеми объектами вертолетов
     obj_list = []
 
-    def __init__(self, name, price, object_type, flight_altitude, producing_country, owner_country, people_count,
-                 carrying, current_location):
+    def __init__(
+        self,
+        name,
+        price,
+        object_type,
+        flight_altitude,
+        producing_country,
+        owner_country,
+        people_count,
+        carrying,
+        current_location,
+    ):
         """
         Общие поля с Aircraft:
         Название, цена, тип объекта, высота полета, страна производитель, страна владелец
@@ -146,7 +187,9 @@ class HelicopterClass(AircraftClass):
         if object_type not in type_detector_list:
             raise ValueError("Мне передали некорректный тип вертолета, что дальше?")
 
-        super().__init__(name, price, object_type, flight_altitude, producing_country, owner_country)
+        super().__init__(
+            name, price, object_type, flight_altitude, producing_country, owner_country
+        )
         self.people_count = people_count
         self.carrying = carrying
         self.current_location = current_location
@@ -169,7 +212,11 @@ class HelicopterClass(AircraftClass):
         if flights_number == 1:
             for h_obj in HelicopterClass.obj_list:
                 if h_obj.carrying >= weight:
-                    print("Осуществили перевозку {} т. груза на объекте самолета {}".format(weight, h_obj))
+                    print(
+                        "Осуществили перевозку {} т. груза на объекте самолета {}".format(
+                            weight, h_obj
+                        )
+                    )
                     stakhanovsk_h_list.append(h_obj)
                     break
 
@@ -190,18 +237,28 @@ class HelicopterClass(AircraftClass):
                     # Если меньше грузоподъёмности надо загрузить
                     if dislocated_weight < h_obj.carrying:
                         print(
-                            "Осуществили перевозку {} т. груза на объекте самолета {}".format(dislocated_weight, h_obj))
+                            "Осуществили перевозку {} т. груза на объекте самолета {}".format(
+                                dislocated_weight, h_obj
+                            )
+                        )
                         dislocated_weight = 0
                     else:
                         dislocated_weight -= h_obj.carrying
-                        print("Осуществили перевозку {} т. груза на объекте самолета {}".format(h_obj.carrying, h_obj))
+                        print(
+                            "Осуществили перевозку {} т. груза на объекте самолета {}".format(
+                                h_obj.carrying, h_obj
+                            )
+                        )
                     stakhanovsk_h_list.append(h_obj)
 
                 # Ненормальная ситуация, когда грузоподъёмность больше груза
                 if h_obj.carrying > weight:
                     dislocated_weight = 0
-                    print("Осуществили перевозку ВСЕГО груза в кол-ве {} т. груза на объекте самолета {}".format(weight,
-                                                                                                                 h_obj))
+                    print(
+                        "Осуществили перевозку ВСЕГО груза в кол-ве {} т. груза на объекте самолета {}".format(
+                            weight, h_obj
+                        )
+                    )
                     stakhanovsk_h_list.append(h_obj)
 
         if len(stakhanovsk_h_list) == 0:

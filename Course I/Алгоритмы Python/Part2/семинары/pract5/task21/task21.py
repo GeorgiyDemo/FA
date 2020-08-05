@@ -55,5 +55,9 @@ if __name__ == "__main__":
     print("Время: {}".format(timeit.default_timer() - a))
 
     a = timeit.default_timer()
-    print("\nCython:\nПоложительных: {}\nОтрицательных: {}\nРавных нулю: {}".format(*DEMKACython()))
+    print(
+        "\nCython:\nПоложительных: {}\nОтрицательных: {}\nРавных нулю: {}".format(
+            *DEMKACython()
+        )
+    )
     print("Время: {}".format(timeit.default_timer() - a))

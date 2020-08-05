@@ -31,8 +31,16 @@ class TransportClass:
         self.carrying = carrying
 
     def get_info(self):
-        return "[Транспорт]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying)
+        return (
+            "[Транспорт]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+        )
 
     def get_carrying(self):
         return self.carrying
@@ -47,8 +55,16 @@ class CarClass(TransportClass):
         super().__init__(model, number, speed, carrying)
 
     def get_info(self):
-        return "[Автомобиль]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying)
+        return (
+            "[Автомобиль]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+        )
 
 
 class MotorcycleClass(TransportClass):
@@ -73,9 +89,18 @@ class MotorcycleClass(TransportClass):
             self.carrying = 0
 
     def get_info(self):
-        return "[Мотоцикл]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying) + "\nНаличие коляски: " + self.formater_dict[
-                   self.addition]
+        return (
+            "[Мотоцикл]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+            + "\nНаличие коляски: "
+            + self.formater_dict[self.addition]
+        )
 
 
 # Я бы занаследовался бы от мотоцикла
@@ -98,9 +123,18 @@ class TruckClass(TransportClass):
             self.carrying *= 2
 
     def get_info(self):
-        return "[Грузовик]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying) + "\nНаличие прицепа: " + self.formater_dict[
-                   self.addition]
+        return (
+            "[Грузовик]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+            + "\nНаличие прицепа: "
+            + self.formater_dict[self.addition]
+        )
 
 
 def main():
@@ -123,8 +157,20 @@ def main():
         d_args = {
             1: (random_auto(), random_number(), randint(60, 300), randint(500, 10000)),
             2: (random_auto(), random_number(), randint(60, 300), randint(500, 10000)),
-            3: (random_auto(), random_number(), randint(60, 300), randint(500, 10000), bool(randint(0, 1))),
-            4: (random_auto(), random_number(), randint(60, 300), randint(500, 10000), bool(randint(0, 1))),
+            3: (
+                random_auto(),
+                random_number(),
+                randint(60, 300),
+                randint(500, 10000),
+                bool(randint(0, 1)),
+            ),
+            4: (
+                random_auto(),
+                random_number(),
+                randint(60, 300),
+                randint(500, 10000),
+                bool(randint(0, 1)),
+            ),
         }
         transport_list.append(d[r_int](*d_args[r_int]))
 

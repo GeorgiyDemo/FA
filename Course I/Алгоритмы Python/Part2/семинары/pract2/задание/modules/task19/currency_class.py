@@ -10,5 +10,11 @@ class CurrencyClass:
         return round(self.balance * self.exchange, 2)
 
     def info(self):
-        return "[Родительский класс валюты]\nКол-во: " + str(self.balance) + "\nКурс обмена: " + str(
-            self.exchange) + "\nСконвертированная валюта: " + str(self.converter())
+        return (
+            "[Родительский класс валюты]\nКол-во: "
+            + str(self.balance)
+            + "\nКурс обмена: "
+            + str(self.exchange)
+            + "\nСконвертированная валюта: "
+            + str(self.converter())
+        )

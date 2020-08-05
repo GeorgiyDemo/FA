@@ -16,6 +16,7 @@ class BodyClass:
     """
     Абстрактный класс тела
     """
+
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -33,7 +34,11 @@ class BodyClass:
         if type(self.surface_area) == float or type(self.volume) == float:
             a = str(round(self.surface_area, 2))
             v = str(round(self.volume, 2))
-        print("\nВызов от {}\nПлощадь поверхности фигуры: {}\nОбъем фигуры: {}".format(lclass, a, v))
+        print(
+            "\nВызов от {}\nПлощадь поверхности фигуры: {}\nОбъем фигуры: {}".format(
+                lclass, a, v
+            )
+        )
 
 
 class ParallelepipedClass(BodyClass):

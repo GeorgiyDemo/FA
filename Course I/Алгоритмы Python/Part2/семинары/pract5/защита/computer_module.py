@@ -52,12 +52,20 @@ class ComputerAnalyserClass(UserAnalyserClass):
 
         # Т.к. использование "коротких" перемещений при атаке просто невозможно
         if d["mode"] == "war":
-            allowedfields_list = [[target_x - 2, target_y + 2], [target_x - 2, target_y - 2]]
+            allowedfields_list = [
+                [target_x - 2, target_y + 2],
+                [target_x - 2, target_y - 2],
+            ]
         # При тихом ходе возмодны только короткие перемещения
         else:
-            allowedfields_list = [[target_x - 1, target_y + 1], [target_x - 1, target_y - 1]]
+            allowedfields_list = [
+                [target_x - 1, target_y + 1],
+                [target_x - 1, target_y - 1],
+            ]
 
-        validated_points = [e for e in allowedfields_list if board_obj.detect_element(*e)]
+        validated_points = [
+            e for e in allowedfields_list if board_obj.detect_element(*e)
+        ]
 
         if [d["to"]["x"], UtilClass.char2xint(d["to"]["y"])] in validated_points:
             self.results_list.append(True)
@@ -82,16 +90,29 @@ class ComputerAnalyserClass(UserAnalyserClass):
 
         # Соседние точки относительно точки назначения
         middle_points = np.array(
-            [e for e in [[x_finish + 1, y_finish - 1], [x_finish + 1, y_finish + 1]] if board_obj.detect_element(*e)])
+            [
+                e
+                for e in [[x_finish + 1, y_finish - 1], [x_finish + 1, y_finish + 1]]
+                if board_obj.detect_element(*e)
+            ]
+        )
 
         # Возможные точки, где стоит фигура
         validated_points = np.array(
-            [e for e in [[x_start - 1, y_start + 1], [x_start - 1, y_start - 1]] if board_obj.detect_element(*e)])
+            [
+                e
+                for e in [[x_start - 1, y_start + 1], [x_start - 1, y_start - 1]]
+                if board_obj.detect_element(*e)
+            ]
+        )
 
         attack_points = []
         for i in np.arange(middle_points.shape[0]):
             for j in np.arange(validated_points.shape[0]):
-                if middle_points[i][0] == validated_points[j][0] and middle_points[i][1] == validated_points[j][1]:
+                if (
+                    middle_points[i][0] == validated_points[j][0]
+                    and middle_points[i][1] == validated_points[j][1]
+                ):
                     attack_points = middle_points[i]
                     break
 
@@ -107,7 +128,10 @@ class ComputerAnalyserClass(UserAnalyserClass):
         # Выбрали точку, где располагается предполагаемый враг
         attack_field = board_obj.board[attack_x][attack_y]
         # Если есть чужая фигура на этой точке
-        if not attack_field.isfree() and attack_field.figure_obj.color != d["user_color"]:
+        if (
+            not attack_field.isfree()
+            and attack_field.figure_obj.color != d["user_color"]
+        ):
             self.results_list.append(True)
         else:
             self.results_list.append(False)
@@ -140,7 +164,10 @@ class ComputerGameClass:
 
         for i in np.arange(board.shape[0]):
             for j in np.arange(board.shape[1]):
-                if not board[i][j].isfree() and board[i][j].figure_obj.color == reverse_uc:
+                if (
+                    not board[i][j].isfree()
+                    and board[i][j].figure_obj.color == reverse_uc
+                ):
                     myfields_arr = np.append(myfields_arr, board[i][j])
 
         # Для каждой шашки формируем возможные новые координаты, перемешиваем это и закидываем в ComputerAnalyserClass
@@ -153,27 +180,51 @@ class ComputerGameClass:
             # [x-1,y-1]
             if self.board_obj.detect_element(y - 1, x - 1):
                 new_y, new_x = UtilClass.xint2char(y - 1), x - 1
-                all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace',
-                              'user_color': reverse_uc})
+                all_d.append(
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "peace",
+                        "user_color": reverse_uc,
+                    }
+                )
 
             # [x-1,y+1]
             if self.board_obj.detect_element(y + 1, x - 1):
                 new_y, new_x = UtilClass.xint2char(y + 1), x - 1
-                all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace',
-                              'user_color': reverse_uc})
+                all_d.append(
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "peace",
+                        "user_color": reverse_uc,
+                    }
+                )
 
             # Длинные шаги
             # [x-2,y+2]
             if self.board_obj.detect_element(y + 2, x - 2):
                 new_y, new_x = UtilClass.xint2char(y + 2), x - 2
-                all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war',
-                              'user_color': reverse_uc})
+                all_d.append(
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "war",
+                        "user_color": reverse_uc,
+                    }
+                )
 
             # [x-2,y-2]
             if self.board_obj.detect_element(y - 2, x - 2):
                 new_y, new_x = UtilClass.xint2char(y - 2), x - 2
-                all_d.append({'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war',
-                              'user_color': reverse_uc})
+                all_d.append(
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "war",
+                        "user_color": reverse_uc,
+                    }
+                )
 
         random.shuffle(all_d)
         all_d.sort(key=lambda x: x["mode"], reverse=True)

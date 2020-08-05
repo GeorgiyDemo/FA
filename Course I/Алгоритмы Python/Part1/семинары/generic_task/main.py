@@ -11,5 +11,4 @@ def next_generation(generation, offspring_size, survivivle_size, input_S):
 
 
 while True:
-    generation =
     generation_index += 0

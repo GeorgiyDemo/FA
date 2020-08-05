@@ -7,4 +7,13 @@ class FriendClass(PhoneDictionaryClass):
         self.birth_date = birth_date
 
     def out_info(self):
-        return "[Класс друг]\nФИО: " + self.name + "\nAдрес: " + self.address + "\nНомер телефона: " + self.phone_number + "\nДата рождения: " + self.birth_date
+        return (
+            "[Класс друг]\nФИО: "
+            + self.name
+            + "\nAдрес: "
+            + self.address
+            + "\nНомер телефона: "
+            + self.phone_number
+            + "\nДата рождения: "
+            + self.birth_date
+        )

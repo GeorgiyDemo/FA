@@ -14,7 +14,9 @@ def main():
     }
     input_str = ""
     while input_str != "0":
-        input_str = input("\033[93mВведите номер задания (1-3) или 0 для завершения работы -> \033[0m")
+        input_str = input(
+            "\033[93mВведите номер задания (1-3) или 0 для завершения работы -> \033[0m"
+        )
         if input_str in selector_dict:
             selector_dict[input_str].MainClass()
         else:

@@ -6,5 +6,13 @@ class CarClass(TransportClass):
         super().__init__(model, number, speed, carrying)
 
     def get_info(self):
-        return "[Автомобиль]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying)
+        return (
+            "[Автомобиль]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+        )

@@ -20,7 +20,7 @@ from word2number import w2n
 from yandex.Translater import Translater
 
 
-class FileClass():
+class FileClass:
     """
     Возвращает токен Яндекс Переводчика с yaml
     """
@@ -29,11 +29,11 @@ class FileClass():
         self.read_file()
 
     def read_file(self):
-        with open("./token.yml", 'r') as outfile:
+        with open("./token.yml", "r") as outfile:
             self.content = yaml.safe_load(outfile)["token"]
 
 
-class TranslaterClass():
+class TranslaterClass:
     def __init__(self, token, ru_str):
         self.token = token
         self.ru_str = ru_str
@@ -43,30 +43,78 @@ class TranslaterClass():
         ru_str = self.ru_str
         tr = Translater()
         tr.set_key(self.token)
-        tr.set_from_lang('ru')
-        tr.set_to_lang('en')
+        tr.set_from_lang("ru")
+        tr.set_to_lang("en")
         tr.set_text(ru_str)
         en_str = tr.translate()
         self.result = en_str
         print("Перевод:", self.result)
 
 
-class String2NumClass():
+class String2NumClass:
     """
     Представление прописи в виде числа
     """
 
     def __init__(self, number_string):
-        self.arr_1 = [['ноль'], ['один', 'одна'], ['два', 'две'], ['три'], ['четыре'], ['пять'], ['шесть'], ['семь'],
-                      ['восемь'], ['девять']]
-        self.arr_2 = ["одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
-                      "семнадцать", "восемнадцать", "девятнадцать"]
+        self.arr_1 = [
+            ["ноль"],
+            ["один", "одна"],
+            ["два", "две"],
+            ["три"],
+            ["четыре"],
+            ["пять"],
+            ["шесть"],
+            ["семь"],
+            ["восемь"],
+            ["девять"],
+        ]
+        self.arr_2 = [
+            "одиннадцать",
+            "двенадцать",
+            "тринадцать",
+            "четырнадцать",
+            "пятнадцать",
+            "шестнадцать",
+            "семнадцать",
+            "восемнадцать",
+            "девятнадцать",
+        ]
         self.arr_3_4 = [
-            ["десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят",
-             "девяносто"],
-            ["сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"]]
-        self.arr_5 = ["тысяч", "миллион", "миллиард", "триллион", "квадриллион", "квинтиллион", "секстилион",
-                      "септилион", "окталион"]
+            [
+                "десять",
+                "двадцать",
+                "тридцать",
+                "сорок",
+                "пятьдесят",
+                "шестьдесят",
+                "семьдесят",
+                "восемьдесят",
+                "девяносто",
+            ],
+            [
+                "сто",
+                "двести",
+                "триста",
+                "четыреста",
+                "пятьсот",
+                "шестьсот",
+                "семьсот",
+                "восемьсот",
+                "девятьсот",
+            ],
+        ]
+        self.arr_5 = [
+            "тысяч",
+            "миллион",
+            "миллиард",
+            "триллион",
+            "квадриллион",
+            "квинтиллион",
+            "секстилион",
+            "септилион",
+            "окталион",
+        ]
         self.number_string = number_string
         self.processing()
 
@@ -121,8 +169,12 @@ class String2NumClass():
                 continue
 
             for i, test_multiplier in enumerate(self.arr_5):
-                if word == test_multiplier or word == "{}{}".format(test_multiplier, 'а') \
-                        or word == "{}{}".format(test_multiplier, 'ов') or word == "{}{}".format(test_multiplier, 'и'):
+                if (
+                    word == test_multiplier
+                    or word == "{}{}".format(test_multiplier, "а")
+                    or word == "{}{}".format(test_multiplier, "ов")
+                    or word == "{}{}".format(test_multiplier, "и")
+                ):
                     result += result_temp * (1000 ** (i + 1))
                     result_temp = 0
                     found = True
@@ -133,16 +185,21 @@ class String2NumClass():
 
             self.result = None
 
-        self.result = (result + result_temp)
+        self.result = result + result_temp
 
 
-class MainClass():
+class MainClass:
     def __init__(self, input_str):
 
         obj_token = FileClass()
         self.token = obj_token.content
         self.input_str = input_str
-        self.operations_list = {"плюс": "+", "минус": "-", "умножить на": "*", "умножить": "*"}
+        self.operations_list = {
+            "плюс": "+",
+            "минус": "-",
+            "умножить на": "*",
+            "умножить": "*",
+        }
         self.r_operations_list = {"+": "сложение", "-": "вычитание", "*": "умножение"}
         self.splitter()
         self.number_collector()

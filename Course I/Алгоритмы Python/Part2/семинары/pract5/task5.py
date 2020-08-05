@@ -20,8 +20,11 @@ def main():
     index1, e_min1 = np_arr.argmin(), np_arr.min()
     np_arr = np.delete(np_arr, index1)
     index2, e_min2 = np_arr.argmin(), np_arr.min()
-    print("Наименьший элемент №1: {} с индексом {}\nНаименьший элемент №2: {} с индексом {}".format(e_min1, index1,
-                                                                                                    e_min2, index2))
+    print(
+        "Наименьший элемент №1: {} с индексом {}\nНаименьший элемент №2: {} с индексом {}".format(
+            e_min1, index1, e_min2, index2
+        )
+    )
 
 
 if __name__ == "__main__":

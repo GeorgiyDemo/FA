@@ -75,8 +75,9 @@ class FigureClass:
         self.coord_y = coord_y
 
     def __str__(self):
-        return "Тип: *Шашка обыкновенная*\n*Координаты* x:{}, y:{}\n*Цвет* {}".format(self.coord_x, self.coord_y,
-                                                                                      self.color)
+        return "Тип: *Шашка обыкновенная*\n*Координаты* x:{}, y:{}\n*Цвет* {}".format(
+            self.coord_x, self.coord_y, self.color
+        )
 
 
 class BoardClass:
@@ -95,7 +96,9 @@ class BoardClass:
         if generator_way in figuregenerator_dict:
             figuregenerator_dict[generator_way]()
         else:
-            raise ValueError("Нет запрашиваемого метода расстановки фигур {}!".format(generator_way))
+            raise ValueError(
+                "Нет запрашиваемого метода расстановки фигур {}!".format(generator_way)
+            )
 
     def board_generator(self):
         """Создание чистого игрового поля без фигур"""
@@ -130,9 +133,13 @@ class BoardClass:
         board = self.board
         for x in np.arange(board.shape[0]):
             for y in np.arange(board.shape[1]):
-                if x < 3 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
+                if x < 3 and (
+                    (x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)
+                ):
                     board[x][y].field_reserve(FigureClass(uc, x, y))
-                elif x > 4 and ((x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)):
+                elif x > 4 and (
+                    (x % 2 == 0 and y % 2 == 0) or (y % 2 == 1 and x % 2 == 1)
+                ):
                     board[x][y].field_reserve(FigureClass(reverse_uc, x, y))
         self.board = board
 
@@ -152,10 +159,18 @@ class BoardClass:
             return True
 
         if not board[x][y].isfree():
-            print("\033[91m[Ошибка]\033[0m Клетка с координатами {}{} уже занята".format(search_y, search_x + 1))
+            print(
+                "\033[91m[Ошибка]\033[0m Клетка с координатами {}{} уже занята".format(
+                    search_y, search_x + 1
+                )
+            )
 
         if board[x][y].color == "white":
-            print("\033[91m[Ошибка]\033[0m Цвет клетки с координатами {}{} белый".format(search_y, search_x + 1))
+            print(
+                "\033[91m[Ошибка]\033[0m Цвет клетки с координатами {}{} белый".format(
+                    search_y, search_x + 1
+                )
+            )
 
         return False
 
@@ -163,22 +178,32 @@ class BoardClass:
         """Ручная расстановка 6 фигур по полю"""
         format_dict = {"white": "белого", "black": "чёрного"}
         for color in ("white", "black"):
-            print("\033[93m*Выставляем шашки {} цвета*\033[0m".format(format_dict[color]))
+            print(
+                "\033[93m*Выставляем шашки {} цвета*\033[0m".format(format_dict[color])
+            )
             for i in range(6):
 
                 boolean_flag = True
                 while boolean_flag:
                     print(self)
-                    coord_input = input("Введите координаты расположения шашки №{} -> ".format(i + 1))
+                    coord_input = input(
+                        "Введите координаты расположения шашки №{} -> ".format(i + 1)
+                    )
                     if UtilClass.checkxy_value(coord_input):
                         coord_x = int(coord_input[1]) - 1
                         coord_y = coord_input[0]
                         result = self.boardfigure_setter(color, coord_x, coord_y)
                         if result:
-                            print("Успешная постановка шашки на координаты {}".format(coord_input))
+                            print(
+                                "Успешная постановка шашки на координаты {}".format(
+                                    coord_input
+                                )
+                            )
                             boolean_flag = False
                     else:
-                        print("\033[91m[Ошибка]\033[0m Некорретный ввод данных, пример координат: h2")
+                        print(
+                            "\033[91m[Ошибка]\033[0m Некорретный ввод данных, пример координат: h2"
+                        )
 
     def __str__(self):
         """Вывод игровой доски не экран"""
@@ -186,7 +211,7 @@ class BoardClass:
         for i in np.arange(board.shape[0] - 1, -1, -1):
             print("{}".format(i + 1), end="")
             for j in np.arange(board.shape[1]):
-                print('{}'.format(board[i][j]), end="")
+                print("{}".format(board[i][j]), end="")
             print("")
         print("  A B C D E F G H")
         return ""

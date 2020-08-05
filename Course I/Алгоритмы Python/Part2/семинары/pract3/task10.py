@@ -5,8 +5,10 @@
 
 
 def ranges_detector(a, b):
-    if a > b + 1: return 0
-    if a == 0 or b == 0: return 1
+    if a > b + 1:
+        return 0
+    if a == 0 or b == 0:
+        return 1
     result_plus = ranges_detector(a, b - 1) + ranges_detector(a - 1, b - 1)
     return result_plus
 

@@ -9,7 +9,7 @@ import os
 from random import randint
 
 
-class MetaClass():
+class MetaClass:
     def __init__(self):
         d = {
             0: AttributeError,
@@ -30,7 +30,7 @@ class ExceptionClass(IndexError):
         return self.description
 
 
-class FileProcessing():
+class FileProcessing:
     def __init__(self):
 
         select_d = {
@@ -45,7 +45,8 @@ class FileProcessing():
         input_str = ""
         while input_str != "0":
             input_str = input(
-                "1. Добавление файла\n2. Удаление файла\n3. Чтение из файла\n4. Запись файла\n0. Выход\n-> ")
+                "1. Добавление файла\n2. Удаление файла\n3. Чтение из файла\n4. Запись файла\n0. Выход\n-> "
+            )
             try:
                 select_d[input_str]()
             except KeyError:

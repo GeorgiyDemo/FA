@@ -4,7 +4,7 @@ import random
 import yaml
 
 
-class FileGeneratorClass():
+class FileGeneratorClass:
     """
     Класс-генератор свободных мест на рейсы и запись в файл
     """
@@ -24,9 +24,13 @@ class FileGeneratorClass():
         - Принимает словарь поезда
         - Отдаёт временные промежутки отправления и прибытия поезда
         """
-        train_begin_time = datetime.datetime.strptime(train["begin_time"], "%d.%m.%Y %H:%M")
+        train_begin_time = datetime.datetime.strptime(
+            train["begin_time"], "%d.%m.%Y %H:%M"
+        )
         train_begin_time_str = train_begin_time.strftime("%H:%M:%S %d/%m/%Y")
-        train_finish_time = train_begin_time + datetime.timedelta(minutes=train["time_range"])
+        train_finish_time = train_begin_time + datetime.timedelta(
+            minutes=train["time_range"]
+        )
         train_finish_time_str = train_finish_time.strftime("%H:%M:%S %d/%m/%Y")
         return train_begin_time_str, train_finish_time_str
 
@@ -49,12 +53,11 @@ class FileGeneratorClass():
                         "time_begin": time_begin,
                         "time_finish": time_finish,
                         "train": {},
-                        "info":
-                            {
-                                "places_free": total_free_places,
-                                "places_count": self.places_count - 1,
-                                "car_count": self.car_count - 1,
-                            }
+                        "info": {
+                            "places_free": total_free_places,
+                            "places_count": self.places_count - 1,
+                            "car_count": self.car_count - 1,
+                        },
                     }
                 )
 
@@ -78,8 +81,12 @@ class FileGeneratorClass():
                 for k in range(self.places_count):
                     price = random.randint(999, 3300)
                     place_type = place_type_dict[place_type_counter]
-                    car_places_dict["cars"][str(k + 1)] = {"name": None, "price": price, "type": place_type,
-                                                           "payment": 0}
+                    car_places_dict["cars"][str(k + 1)] = {
+                        "name": None,
+                        "price": price,
+                        "type": place_type,
+                        "payment": 0,
+                    }
                     place_type_counter += 1
                     if place_type_counter == 6:
                         place_type_counter = 0
@@ -91,6 +98,6 @@ class FileGeneratorClass():
         self.result = sum_train_list
 
     def file_writer(self):
-        with open(self.file_name, 'w') as outfile:
+        with open(self.file_name, "w") as outfile:
             yaml.safe_dump(self.result, outfile, allow_unicode=True)
         print("Перегенерация завершена")

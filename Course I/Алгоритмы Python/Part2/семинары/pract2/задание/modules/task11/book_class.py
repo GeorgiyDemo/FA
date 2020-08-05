@@ -7,6 +7,15 @@ class BookClass(GoodsClass):
         self.author = author
 
     def get_info(self):
-        return "[Информация о книге]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nИздательство: " + self.manufacturer + "\nВозраст, на который рассчитана: " + str(
-            self.age) + "\nАвтор: " + self.author
+        return (
+            "[Информация о книге]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nИздательство: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитана: "
+            + str(self.age)
+            + "\nАвтор: "
+            + self.author
+        )

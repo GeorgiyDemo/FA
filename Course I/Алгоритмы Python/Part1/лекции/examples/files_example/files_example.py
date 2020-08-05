@@ -14,8 +14,8 @@ check_elements = {}
 for i in range(6):
     check_elements[i] = i
 
-with open('./obj.pickle', 'wb') as f:
+with open("./obj.pickle", "wb") as f:
     pickle.dump(check_elements, f)
 
-with open("./obj.yml", 'w') as stream:
+with open("./obj.yml", "w") as stream:
     yaml.safe_dump(check_elements, stream)

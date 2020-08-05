@@ -11,4 +11,13 @@ class WebClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация об электронном ресурсе\nНазвание: " + self.name + "\nАвтор: " + self.author_name + "\n" + "Ссылка: " + self.link + "\nАннотация" + self.annotation)
+            "Информация об электронном ресурсе\nНазвание: "
+            + self.name
+            + "\nАвтор: "
+            + self.author_name
+            + "\n"
+            + "Ссылка: "
+            + self.link
+            + "\nАннотация"
+            + self.annotation
+        )

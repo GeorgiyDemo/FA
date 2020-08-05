@@ -11,11 +11,18 @@ def main():
     except ValueError:
         print("Некорректный ввод данных")
         return
-    d = {1: ParallelepipedClass, 2: BallClass, 3: PyramidClass, }
+    d = {
+        1: ParallelepipedClass,
+        2: BallClass,
+        3: PyramidClass,
+    }
     figures_list = []
     for _ in range(n):
-        d_args = {1: [randint(1, 1000), randint(1, 1000), randint(1, 1000)], 2: [randint(1, 1000)],
-                  3: [randint(1, 1000), randint(1, 1000), randint(1, 1000)], }
+        d_args = {
+            1: [randint(1, 1000), randint(1, 1000), randint(1, 1000)],
+            2: [randint(1, 1000)],
+            3: [randint(1, 1000), randint(1, 1000), randint(1, 1000)],
+        }
         r_number = randint(1, 3)
         figures_list.append(d[r_number](*d_args[r_number]))
     for figure in figures_list:

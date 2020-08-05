@@ -9,5 +9,13 @@ class CarClass(ToyClass):
         self.manufacturer = manufacturer
 
     def toy_info(self):
-        return "[Машинка]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Машинка]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )

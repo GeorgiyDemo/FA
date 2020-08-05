@@ -22,7 +22,9 @@ class PVOClass:
         d_formater["Количество людей в расчете"] = self.people_count
         d_formater["Количество ракет в установке"] = self.projectiles_count
         out_str = "*Общая информация об объекте класса ПВО*\n"
-        out_str += "\n".join(list([str(k) + ": " + str(v) for k, v in d_formater.items()]))
+        out_str += "\n".join(
+            list([str(k) + ": " + str(v) for k, v in d_formater.items()])
+        )
         print(out_str)
 
 
@@ -35,13 +37,24 @@ class MissileClass(PVOClass):
     Дальность, скорость ракет, стационарное или перемещаемое, скорость перемещения
     """
 
-    def __init__(self, name, murder_height, people_count, projectiles_count, shot_range, speed, dislocation_type,
-                 movement_speed):
+    def __init__(
+        self,
+        name,
+        murder_height,
+        people_count,
+        projectiles_count,
+        shot_range,
+        speed,
+        dislocation_type,
+        movement_speed,
+    ):
 
         # Список для фильтрации
         dislocation_type_list = ["стационарное", "перемещаемое"]
         if dislocation_type not in dislocation_type_list:
-            raise ValueError("Мне передали некорректный тип дислокации ракетного ПВО, что я должен с этим делать?")
+            raise ValueError(
+                "Мне передали некорректный тип дислокации ракетного ПВО, что я должен с этим делать?"
+            )
 
         super().__init__(name, murder_height, people_count, projectiles_count)
         self.shot_range = shot_range
@@ -75,7 +88,15 @@ class AntiAircraft(PVOClass):
     Калибр, количество стволов
     """
 
-    def __init__(self, name, murder_height, people_count, projectiles_count, caliber, barrels_number):
+    def __init__(
+        self,
+        name,
+        murder_height,
+        people_count,
+        projectiles_count,
+        caliber,
+        barrels_number,
+    ):
         super().__init__(name, murder_height, people_count, projectiles_count)
         self.caliber = caliber
         self.barrels_number = barrels_number

@@ -43,8 +43,16 @@ def main():
 
     arr = np.array([randint(-100, 100) for _ in range(n)])
     print("Исходный массив:\n{}".format(arr))
-    print("Упорядочьте по возрастанию только положительные числа:\n{}".format(a_processing(arr)))
-    print("Упорядочьте по возрастанию только элементы с четными порядковыми номерами:\n{}".format(b_processing(arr)))
+    print(
+        "Упорядочьте по возрастанию только положительные числа:\n{}".format(
+            a_processing(arr)
+        )
+    )
+    print(
+        "Упорядочьте по возрастанию только элементы с четными порядковыми номерами:\n{}".format(
+            b_processing(arr)
+        )
+    )
 
 
 if __name__ == "__main__":

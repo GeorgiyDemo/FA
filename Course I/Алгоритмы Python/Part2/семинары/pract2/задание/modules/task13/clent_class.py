@@ -6,8 +6,17 @@ class ClentClass:
         self.percent = percent
 
     def get_info(self):
-        return "[Информация о клиенте]\nФИО: " + self.name + "\nДата оформления операции: " + self.open_date + "\nРазмер денежных единиц в операции: " + str(
-            self.money_count) + " руб.\nПроцент: " + str(self.percent) + "%"
+        return (
+            "[Информация о клиенте]\nФИО: "
+            + self.name
+            + "\nДата оформления операции: "
+            + self.open_date
+            + "\nРазмер денежных единиц в операции: "
+            + str(self.money_count)
+            + " руб.\nПроцент: "
+            + str(self.percent)
+            + "%"
+        )
 
     def date_calculation(self, input_date):
         if input_date == self.open_date:

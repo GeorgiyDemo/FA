@@ -3,7 +3,7 @@ import datetime
 import yaml
 
 
-class FileClass():
+class FileClass:
     """
     Класс для работы с файлом file_name, который передаётся в конструктр из main
     - Записывает данные в файл
@@ -17,19 +17,18 @@ class FileClass():
             self.read_file()
 
     def set_file(self, content):
-        with open(self.file_name, 'w') as outfile:
+        with open(self.file_name, "w") as outfile:
             yaml.safe_dump(content, outfile, allow_unicode=True)
 
     def read_file(self):
-        with open(self.file_name, 'r') as outfile:
+        with open(self.file_name, "r") as outfile:
             self.content = yaml.safe_load(outfile)
 
     def get_text(self):
         return self.content
 
 
-class UniversalClass():
-
+class UniversalClass:
     @staticmethod
     def get_train_time(*time_ranges):
         """

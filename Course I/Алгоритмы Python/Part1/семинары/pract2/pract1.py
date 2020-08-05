@@ -6,7 +6,7 @@ import math
 import matplotlib.pyplot as plt
 
 
-class GraphClass():
+class GraphClass:
     """
     Вариант задания для операторов цикла + график
 
@@ -33,7 +33,7 @@ class GraphClass():
         plt.show()
 
 
-class MathUpper():
+class MathUpper:
     """
     Вариант задания на условные операторы
 
@@ -69,7 +69,7 @@ class MathUpper():
         self.result = first - buf_log
 
 
-class CycleClass():
+class CycleClass:
     """
     Вариант задания для операторов цикла
 

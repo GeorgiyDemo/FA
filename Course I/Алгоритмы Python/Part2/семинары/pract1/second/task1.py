@@ -14,6 +14,7 @@ class FigureClass:
     """
     Абстрактный класс фигуры
     """
+
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -31,7 +32,11 @@ class FigureClass:
         if type(self.area) == float or type(self.perimeter) == float:
             a = str(round(self.area, 2))
             p = str(round(self.perimeter, 2))
-        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(lclass, a, p))
+        print(
+            "\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(
+                lclass, a, p
+            )
+        )
 
 
 class RectangleClass(FigureClass):
@@ -124,7 +129,7 @@ def main():
         d_args = {
             0: [randint(1, 100), randint(1, 100)],
             1: [randint(1, 100)],
-            2: [randint(1, 100), randint(1, 100), randint(1, 100)]
+            2: [randint(1, 100), randint(1, 100), randint(1, 100)],
         }
 
         r_number = randint(0, 2)

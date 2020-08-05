@@ -19,7 +19,7 @@ from random import randint
 from faker import Faker
 
 
-class TransportClass():
+class TransportClass:
     """
     Родительский класс транспорт
     """
@@ -45,7 +45,12 @@ class TransportClass():
         return "[" + str(x) + ", " + str(y) + "]"
 
     def info(self):
-        return "[Родительский класс транспорт]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str()
+        return (
+            "[Родительский класс транспорт]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+        )
 
 
 class AirplaneClass(TransportClass):
@@ -60,9 +65,18 @@ class AirplaneClass(TransportClass):
         self.max_height = max_height
 
     def info(self):
-        return "[Класс самолёт]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nКол-во пассажиров: " + str(
-            self.passengers_number) + "\nМакс. скорость: " + str(self.max_speed) + "\nМакс. высота: " + str(
-            self.max_height)
+        return (
+            "[Класс самолёт]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nКол-во пассажиров: "
+            + str(self.passengers_number)
+            + "\nМакс. скорость: "
+            + str(self.max_speed)
+            + "\nМакс. высота: "
+            + str(self.max_height)
+        )
 
 
 class CarClass(TransportClass):
@@ -76,8 +90,16 @@ class CarClass(TransportClass):
         self.year = year
 
     def info(self):
-        return "[Класс автомобиль]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nНомер: " + str(
-            self.number) + "\nГод выпуска: " + str(self.year)
+        return (
+            "[Класс автомобиль]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nНомер: "
+            + str(self.number)
+            + "\nГод выпуска: "
+            + str(self.year)
+        )
 
 
 class ShipClass(TransportClass):
@@ -92,9 +114,18 @@ class ShipClass(TransportClass):
         self.destination_name = destination_name
 
     def info(self):
-        return "[Класс корабль]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nКол-во пассажиров: " + str(
-            self.passengers_number) + "\nМакс. скорость: " + str(
-            self.max_speed) + "\nПорт приписки: " + self.destination_name
+        return (
+            "[Класс корабль]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nКол-во пассажиров: "
+            + str(self.passengers_number)
+            + "\nМакс. скорость: "
+            + str(self.max_speed)
+            + "\nПорт приписки: "
+            + self.destination_name
+        )
 
 
 def main():
@@ -116,7 +147,7 @@ def main():
         4: ShipClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     transport_list = []
     for _ in range(n):
         r_int = randint(1, 4)
@@ -124,10 +155,25 @@ def main():
         d_args = {
             1: (fake.word(), [randint(1, 100), randint(1, 100)]),
             2: (
-                fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(50, 300),
-                randint(1000, 6000)),
-            3: (fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(1960, 2020)),
-            4: (fake.word(), [randint(1, 100), randint(1, 100)], randint(1, 1000), randint(50, 300), fake.word()),
+                fake.word(),
+                [randint(1, 100), randint(1, 100)],
+                randint(1, 1000),
+                randint(50, 300),
+                randint(1000, 6000),
+            ),
+            3: (
+                fake.word(),
+                [randint(1, 100), randint(1, 100)],
+                randint(1, 1000),
+                randint(1960, 2020),
+            ),
+            4: (
+                fake.word(),
+                [randint(1, 100), randint(1, 100)],
+                randint(1, 1000),
+                randint(50, 300),
+                fake.word(),
+            ),
         }
 
         transport_list.append(d[r_int](*d_args[r_int]))

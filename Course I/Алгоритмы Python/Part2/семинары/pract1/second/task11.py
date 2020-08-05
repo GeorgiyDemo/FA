@@ -29,8 +29,17 @@ class ToyClass:
         self.size = size
 
     def toy_info(self):
-        return "[Базовый класс игрушка]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nМатериал: " + self.material + "\nРазмер: " + str(self.size) + " см."
+        return (
+            "[Базовый класс игрушка]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nМатериал: "
+            + self.material
+            + "\nРазмер: "
+            + str(self.size)
+            + " см."
+        )
 
     def color_detector(self, color_input):
         if color_input == self.color:
@@ -47,8 +56,17 @@ class CubeClass(ToyClass):
         super().__init__(color, price, material, size)
 
     def toy_info(self):
-        return "[Кубик]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nМатериал: " + self.material + "\nРазмер ребра: " + str(self.size) + " см."
+        return (
+            "[Кубик]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nМатериал: "
+            + self.material
+            + "\nРазмер ребра: "
+            + str(self.size)
+            + " см."
+        )
 
 
 class BallClass(ToyClass):
@@ -60,8 +78,17 @@ class BallClass(ToyClass):
         super().__init__(color, price, material, size)
 
     def toy_info(self):
-        return "[Мяч]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nМатериал: " + self.material + "\nДиаметр: " + str(self.size) + " см."
+        return (
+            "[Мяч]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nМатериал: "
+            + self.material
+            + "\nДиаметр: "
+            + str(self.size)
+            + " см."
+        )
 
 
 class CarClass(ToyClass):
@@ -76,8 +103,16 @@ class CarClass(ToyClass):
         self.manufacturer = manufacturer
 
     def toy_info(self):
-        return "[Машинка]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Машинка]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )
 
 
 def main():
@@ -99,7 +134,7 @@ def main():
         4: CarClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     toy_list = []
     for _ in range(n):
         r_int = randint(1, 4)
@@ -108,7 +143,12 @@ def main():
             1: (random_color(), randint(1, 1000), "пластик", randint(1, 20)),
             2: (random_color(), randint(1, 1000), "пластик", randint(1, 20)),
             3: (random_color(), randint(1, 1000), "пластик", randint(1, 20)),
-            4: (random_color(), randint(1, 1000), fake.word(), fake.word() + " " + fake.word()),
+            4: (
+                random_color(),
+                randint(1, 1000),
+                fake.word(),
+                fake.word() + " " + fake.word(),
+            ),
         }
 
         toy_list.append(d[r_int](*d_args[r_int]))

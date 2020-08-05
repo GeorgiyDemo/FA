@@ -27,7 +27,7 @@ class DEMKACollection(MutableSequence):
 
         # Дёргаем конструктор MutableSequence
         super(DEMKACollection, self).__init__()
-        if (data is not None):
+        if data is not None:
             self._list = list(data)
         else:
             self._list = list()
@@ -60,7 +60,7 @@ class DEMKACollection(MutableSequence):
         self.insert(len(self._list), val)
 
 
-class MainClass():
+class MainClass:
     def __init__(self):
         self.my_collection = DEMKACollection([1, 5, 3, 2, 5])
         self.task_2()
@@ -86,7 +86,13 @@ class MainClass():
         print(locale_collection.__getitem__(0))
         for i in range(len(locale_collection)):
             if "ab" in str(locale_collection.__getitem__(i)):
-                print("Подстрока \"ab\" есть в элементе №" + str(i) + " с содержимым \"" + locale_collection[i] + "\"")
+                print(
+                    'Подстрока "ab" есть в элементе №'
+                    + str(i)
+                    + ' с содержимым "'
+                    + locale_collection[i]
+                    + '"'
+                )
 
     def task_6(self):
         print(self.my_collection)
@@ -120,5 +126,5 @@ class MainClass():
         task_11_module.Task11_2(DEMKACollection)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     MainClass()

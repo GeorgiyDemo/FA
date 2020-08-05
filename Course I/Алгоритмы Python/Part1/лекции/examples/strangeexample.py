@@ -1,5 +1,4 @@
 class ExampleClass(object):
-
     def __init__(self, number):
         self.X = int
         self.number = number

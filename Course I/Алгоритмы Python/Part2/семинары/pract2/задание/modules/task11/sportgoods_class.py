@@ -6,5 +6,13 @@ class SportGoodsClass(GoodsClass):
         super().__init__(name, price, manufacturer, age)
 
     def get_info(self):
-        return "[Информация о спортинвентаре]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nПроизводитель: " + self.manufacturer + "\nВозраст, на который рассчитан: " + str(self.age)
+        return (
+            "[Информация о спортинвентаре]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитан: "
+            + str(self.age)
+        )

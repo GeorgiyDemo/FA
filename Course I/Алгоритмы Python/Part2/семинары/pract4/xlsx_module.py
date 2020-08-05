@@ -5,7 +5,7 @@ import pandas as pd
 from task_module import UtilClass
 
 
-class XlsxClass():
+class XlsxClass:
     OUT_XLSX_FILE = "отчет.xlsx"
 
     def __init__(self, obj_list):
@@ -34,14 +34,20 @@ class XlsxClass():
                 for work in value["works"]:
                     headers_list.append("{} ({})".format(work[0], work[1]))
                     work = work[2:]
-                    subheaders_list.extend(["Баллы", "Дата дедлайна", "Дата завершения", "Дата защиты"])
+                    subheaders_list.extend(
+                        ["Баллы", "Дата дедлайна", "Дата завершения", "Дата защиты"]
+                    )
                     headers_list.extend(["" for _ in range(len(work) - 1)])
                     buf_list.extend(work)
 
                 headers_list.extend(["ИТОГИ", "", "", ""])
                 # Это след этап странности, но мне нужна стат последовательность, что dict.items() сделать не может
-                for k, v in {"cert_points": "Баллы за аттестацию", "exam_points": "Баллы за экзамен",
-                             "total_points": "Общее кол-во баллов", "total_mark": "Общая оценка"}.items():
+                for k, v in {
+                    "cert_points": "Баллы за аттестацию",
+                    "exam_points": "Баллы за экзамен",
+                    "total_points": "Общее кол-во баллов",
+                    "total_mark": "Общая оценка",
+                }.items():
                     buf_list.append(value["info"][k])
                     subheaders_list.append(v)
 
@@ -73,31 +79,85 @@ class XlsxClass():
 
             # Аттестации
             for cert in obj.cert_obj_list:
-                cert_list.append([obj.name, cert.name, cert.points, c(cert.date_begin), c(cert.date_end)])
+                cert_list.append(
+                    [
+                        obj.name,
+                        cert.name,
+                        cert.points,
+                        c(cert.date_begin),
+                        c(cert.date_end),
+                    ]
+                )
 
                 if report_dict.get(cert.name) == None:
                     report_dict[cert.name] = {}
                 report_dict[cert.name][obj.name] = {
-                    "info": {"cert_points": cert.points, "exam_points": obj.exam_obj.points, "total_points": obj.points,
-                             "total_mark": obj.mark}, "works": []}
+                    "info": {
+                        "cert_points": cert.points,
+                        "exam_points": obj.exam_obj.points,
+                        "total_points": obj.points,
+                        "total_mark": obj.mark,
+                    },
+                    "works": [],
+                }
 
                 for work in cert.work_obj_list:
                     report_dict[cert.name][obj.name]["works"].append(
-                        [work.name, work.work_type, work.points, c(work.date_deadline), c(work.date_completed),
-                         c(work.date_protected)])
+                        [
+                            work.name,
+                            work.work_type,
+                            work.points,
+                            c(work.date_deadline),
+                            c(work.date_completed),
+                            c(work.date_protected),
+                        ]
+                    )
                     work_list.append(
-                        [obj.name, cert.name, work.name, work.work_type, work.points, c(work.date_deadline),
-                         c(work.date_completed), c(work.date_protected)])
+                        [
+                            obj.name,
+                            cert.name,
+                            work.name,
+                            work.work_type,
+                            work.points,
+                            c(work.date_deadline),
+                            c(work.date_completed),
+                            c(work.date_protected),
+                        ]
+                    )
 
         for obj in self.obj_list:
             exam_list.append([obj.name, obj.exam_obj.name, obj.exam_obj.points])
 
-        student_list = dict(zip(["ФИО", "Группа", "Курс", "Баллы", "Оценка"], self.transpose(student_list)))
-        exam_list = dict(zip(["Студент", "Название", "Баллы"], self.transpose(exam_list)))
-        cert_list = dict(zip(["Студент", "Название", "Баллы", "Дата начала", "Дата конца"], self.transpose(cert_list)))
-        work_list = dict(zip(
-            ["Студент", "Аттестация", "Название работы", "Тип работы", "Баллы", "Дата дедлайна", "Дата завершения",
-             "Дата защиты"], self.transpose(work_list)))
+        student_list = dict(
+            zip(
+                ["ФИО", "Группа", "Курс", "Баллы", "Оценка"],
+                self.transpose(student_list),
+            )
+        )
+        exam_list = dict(
+            zip(["Студент", "Название", "Баллы"], self.transpose(exam_list))
+        )
+        cert_list = dict(
+            zip(
+                ["Студент", "Название", "Баллы", "Дата начала", "Дата конца"],
+                self.transpose(cert_list),
+            )
+        )
+        work_list = dict(
+            zip(
+                [
+                    "Студент",
+                    "Аттестация",
+                    "Название работы",
+                    "Тип работы",
+                    "Баллы",
+                    "Дата дедлайна",
+                    "Дата завершения",
+                    "Дата защиты",
+                ],
+                self.transpose(work_list),
+            )
+        )
 
         cert1, cert2 = self.report_processing(report_dict)
         df1 = pd.DataFrame(cert1[2])
@@ -107,13 +167,13 @@ class XlsxClass():
         df5 = pd.DataFrame(cert_list)
         df6 = pd.DataFrame(exam_list)
 
-        writer = pd.ExcelWriter(XlsxClass.OUT_XLSX_FILE, engine='xlsxwriter')
+        writer = pd.ExcelWriter(XlsxClass.OUT_XLSX_FILE, engine="xlsxwriter")
 
         df1.to_excel(writer, sheet_name=cert1[0], index=False, header=cert1[1])
         df2.to_excel(writer, sheet_name=cert2[0], index=False, header=cert2[1])
-        df3.to_excel(writer, sheet_name='Студенты', index=False)
-        df4.to_excel(writer, sheet_name='Работы', index=False)
-        df5.to_excel(writer, sheet_name='Аттестации', index=False)
-        df6.to_excel(writer, sheet_name='Экзамены', index=False)
+        df3.to_excel(writer, sheet_name="Студенты", index=False)
+        df4.to_excel(writer, sheet_name="Работы", index=False)
+        df5.to_excel(writer, sheet_name="Аттестации", index=False)
+        df6.to_excel(writer, sheet_name="Экзамены", index=False)
 
         writer.save()

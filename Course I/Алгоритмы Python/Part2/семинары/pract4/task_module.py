@@ -15,7 +15,10 @@ class UtilClass:
 
     @staticmethod
     def boolean_formater(flag):
-        sub_d = {True: "✅", False: "❌", }
+        sub_d = {
+            True: "✅",
+            False: "❌",
+        }
         return sub_d[flag]
 
     @staticmethod
@@ -39,10 +42,19 @@ class WorkClass:
     Класс работы
     [!] К работе не относится экзамен
     """
+
     WORK_COUNT = 6  # рекомендуемое кол-во работ в полусеместре и учетом контрольной и тестирования
 
-    def __init__(self, name, work_type, date_deadline, work_completed=False, date_completed=None, work_protected=False,
-                 date_protected=None):
+    def __init__(
+        self,
+        name,
+        work_type,
+        date_deadline,
+        work_completed=False,
+        date_completed=None,
+        work_protected=False,
+        date_protected=None,
+    ):
         """
         Поля конструктора:
         - name - название работы
@@ -65,14 +77,18 @@ class WorkClass:
 
         if work_completed:
             try:
-                self.date_completed = datetime.datetime.strptime(date_completed, "%d.%m.%Y")
+                self.date_completed = datetime.datetime.strptime(
+                    date_completed, "%d.%m.%Y"
+                )
             except ValueError:
                 raise ValueError("Некорректный ввод даты сдачи работы!")
         else:
             self.date_completed = None
         if work_protected:
             try:
-                self.date_protected = datetime.datetime.strptime(date_protected, "%d.%m.%Y")
+                self.date_protected = datetime.datetime.strptime(
+                    date_protected, "%d.%m.%Y"
+                )
             except ValueError:
                 raise ValueError("Некорректный ввод даты защиты работы!")
         else:
@@ -90,7 +106,12 @@ class WorkClass:
         self.work_protected = work_protected
 
         # Если есть все данные и можно считать, что работа уже сделана
-        if all(map(lambda x: False if x == None else True, [self.date_completed, self.date_protected])):
+        if all(
+            map(
+                lambda x: False if x == None else True,
+                [self.date_completed, self.date_protected],
+            )
+        ):
             self.set_protection(self.date_protected.strftime("%d.%m.%Y"))
 
     def __str__(self):
@@ -100,17 +121,35 @@ class WorkClass:
         d["Дедлайн:"] = self.date_deadline.strftime("%d.%m.%Y")
         d["Завершение работы:"] = UtilClass.boolean_formater(self.work_completed)
         d["Защита работы:"] = UtilClass.boolean_formater(self.work_protected)
-        d["Дата завершения работы:"] = self.date_completed.strftime("%d.%m.%Y") if self.date_completed != None else "-"
-        d["Дата защиты работы:"] = self.date_protected.strftime("%d.%m.%Y") if self.date_protected != None else "-"
+        d["Дата завершения работы:"] = (
+            self.date_completed.strftime("%d.%m.%Y")
+            if self.date_completed != None
+            else "-"
+        )
+        d["Дата защиты работы:"] = (
+            self.date_protected.strftime("%d.%m.%Y")
+            if self.date_protected != None
+            else "-"
+        )
         d["Количество баллов:"] = self.points
-        return "\033[93m\n*" + self.name + "*\n\033[0m" + "\n".join(
-            [key + " " + str(value) for key, value in d.items()])
+        return (
+            "\033[93m\n*"
+            + self.name
+            + "*\n\033[0m"
+            + "\n".join([key + " " + str(value) for key, value in d.items()])
+        )
 
     def get_list(self):
         """Отдача информации для вывода в Texttable"""
         c = UtilClass.converter
-        return [self.name, self.work_type, c(self.date_deadline), c(self.date_completed), c(self.date_protected),
-                self.points]
+        return [
+            self.name,
+            self.work_type,
+            c(self.date_deadline),
+            c(self.date_completed),
+            c(self.date_protected),
+            self.points,
+        ]
 
     def set_complete(self, date, info=False):
         """Осуществление сдачи работы"""
@@ -206,12 +245,20 @@ class CertificationClass:
 
         d = {}
         self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
-        d["Дата начала:"] = self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
-        d["Дата окончания:"] = self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
+        d["Дата начала:"] = (
+            self.date_begin.strftime("%d.%m.%Y") if self.date_begin != None else "-"
+        )
+        d["Дата окончания:"] = (
+            self.date_end.strftime("%d.%m.%Y") if self.date_end != None else "-"
+        )
         d["Общее кол-во баллов:"] = round(self._points)
         d["Общее кол-во работ:"] = len(self.work_obj_list)
-        out_str = "\033[93m\n*" + self.name + "*\n\033[0m" + "\n".join(
-            [key + " " + str(value) for key, value in d.items()])
+        out_str = (
+            "\033[93m\n*"
+            + self.name
+            + "*\n\033[0m"
+            + "\n".join([key + " " + str(value) for key, value in d.items()])
+        )
 
         return out_str
 
@@ -220,13 +267,22 @@ class CertificationClass:
 
         # Если кол-во работ != необходимому из логики подсчета баллов - ошибка получения
         if len(self.work_obj_list) != WorkClass.WORK_COUNT:
-            print("\033[91mКоличество работ больше/меньше рекомендуемого ({} шт.)\033[0m".format(WorkClass.WORK_COUNT))
+            print(
+                "\033[91mКоличество работ больше/меньше рекомендуемого ({} шт.)\033[0m".format(
+                    WorkClass.WORK_COUNT
+                )
+            )
             # raise ValueError("Количество работ больше/меньше необходимого!")
 
         # Чтоб присутствовала контрольная и тестирование
-        if len([e for e in self.work_obj_list if e.work_type == "контрольная"]) == 0 or len(
-                [e for e in self.work_obj_list if e.work_type == "тестирование"]) == 0:
-            print("\033[91mОтсутствие работ с типом 'контрольная'/'тестирование'. Рекомендуется внести!\033[0m")
+        if (
+            len([e for e in self.work_obj_list if e.work_type == "контрольная"]) == 0
+            or len([e for e in self.work_obj_list if e.work_type == "тестирование"])
+            == 0
+        ):
+            print(
+                "\033[91mОтсутствие работ с типом 'контрольная'/'тестирование'. Рекомендуется внести!\033[0m"
+            )
             # Тут по-хорошему должен быть Exception
         return self._points
 
@@ -247,7 +303,8 @@ class ExamClass:
         d["Название:"] = self.name
         d["Кол-во баллов:"] = self._points
         return "\033[93m\n*Информация об экзамене*\n\033[0m" + "\n".join(
-            [key + " " + str(value) for key, value in d.items()])
+            [key + " " + str(value) for key, value in d.items()]
+        )
 
     @property
     def points(self):
@@ -296,9 +353,16 @@ class StudentClass:
 
         # Словарь ассоциации кол-ва баллов и оценки
         self.mark_dict = {}
-        [self.mark_dict.update(e) for e in [{v1: v for v1 in rrange} for rrange, v in
-                                            zip([range(0, 51), range(51, 70), range(70, 85), range(85, 101)],
-                                                [2, 3, 4, 5])]]
+        [
+            self.mark_dict.update(e)
+            for e in [
+                {v1: v for v1 in rrange}
+                for rrange, v in zip(
+                    [range(0, 51), range(51, 70), range(70, 85), range(85, 101)],
+                    [2, 3, 4, 5],
+                )
+            ]
+        ]
 
     def all_info(self):
         """Информация о всех подобъектах объекта класса студента"""
@@ -310,7 +374,17 @@ class StudentClass:
             print(cert)
 
             table = Texttable()
-            table_list = [["№", "Название", "Тип", "Дата дедлайна", "Дата сдачи", "Дата защиты", "Баллы"]]
+            table_list = [
+                [
+                    "№",
+                    "Название",
+                    "Тип",
+                    "Дата дедлайна",
+                    "Дата сдачи",
+                    "Дата защиты",
+                    "Баллы",
+                ]
+            ]
 
             for i in range(len(cert.work_obj_list)):
                 buf_l = [str(i + 1)] + cert.work_obj_list[i].get_list()
@@ -334,7 +408,8 @@ class StudentClass:
         d["Оценка:"] = self.get_mark(True)
 
         return "\033[93m\n*Информация о студенте*\n\033[0m" + "\n".join(
-            [key + " " + str(value) for key, value in d.items()])
+            [key + " " + str(value) for key, value in d.items()]
+        )
 
     def add_certification(self, cert_obj):
         """Метод добавления аттестации"""
@@ -378,10 +453,20 @@ class StudentClass:
     def get_mark(self, ignore=False):
         """Получение оценки студента"""
         if not self.datavalidator_flag and ignore == False:
-            raise ValueError("Невозможно получить итоговую оценку студента! Недостаточно данных")
+            raise ValueError(
+                "Невозможно получить итоговую оценку студента! Недостаточно данных"
+            )
         d = {}
-        [d.update(e) for e in [{v1: v for v1 in rrange} for rrange, v in
-                               zip([range(0, 51), range(51, 70), range(70, 85), range(85, 101)], [2, 3, 4, 5])]]
+        [
+            d.update(e)
+            for e in [
+                {v1: v for v1 in rrange}
+                for rrange, v in zip(
+                    [range(0, 51), range(51, 70), range(70, 85), range(85, 101)],
+                    [2, 3, 4, 5],
+                )
+            ]
+        ]
         return d[round(self._points)]
 
     @property
@@ -391,5 +476,7 @@ class StudentClass:
     @property
     def points(self):
         if not self.datavalidator_flag:
-            raise ValueError("Невозможно получить итоговые баллы студента! Недостаточно данных")
+            raise ValueError(
+                "Невозможно получить итоговые баллы студента! Недостаточно данных"
+            )
         return self._points

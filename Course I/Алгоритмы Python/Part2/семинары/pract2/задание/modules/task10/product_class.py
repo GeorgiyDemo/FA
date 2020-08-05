@@ -6,5 +6,13 @@ class ProductClass(GoodsClass):
         super().__init__(name, price, manufacture_date, expiration_date)
 
     def get_info(self):
-        return "[Продукт]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + " руб.\nДата производства: " + self.manufacture_date + "\nСрок годности: " + self.expiration_date
+        return (
+            "[Продукт]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nДата производства: "
+            + self.manufacture_date
+            + "\nСрок годности: "
+            + self.expiration_date
+        )

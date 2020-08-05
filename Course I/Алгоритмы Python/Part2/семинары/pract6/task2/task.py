@@ -4,11 +4,12 @@
 import operator
 from tree_module import BinaryTree
 
+
 class Str2Tree:
     """ Класс для перевода строки в бинарное дерево"""
 
     def __init__(self, exp):
-        self.exp = ["("]+list(exp.replace(" ", ""))+[")"]
+        self.exp = ["("] + list(exp.replace(" ", "")) + [")"]
         self.tree = BinaryTree()
         self.processing()
 
@@ -64,8 +65,12 @@ class Tree2Result:
 
     def processing(self, token):
         """Обход бинарного дерева в обратном порядке"""
-        operators = {'+': operator.add, '-': operator.sub,
-                     '*': operator.mul, '/': operator.truediv}
+        operators = {
+            "+": operator.add,
+            "-": operator.sub,
+            "*": operator.mul,
+            "/": operator.truediv,
+        }
 
         # Левые/правые значения
         left_value = token.get_left_child()
@@ -82,8 +87,7 @@ class Tree2Result:
 
 
 if __name__ == "__main__":
-    exp_list = ["2+2", "(2+3)*4", "(7+8)*(2-1)",
-                "(7+8)*(2-1)+7", "((7+8)*(5-2))/(2-1)"]
+    exp_list = ["2+2", "(2+3)*4", "(7+8)*(2-1)", "(7+8)*(2-1)+7", "((7+8)*(5-2))/(2-1)"]
 
     for e in exp_list:
 

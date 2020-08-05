@@ -31,8 +31,17 @@ class ClentClass:
         self.percent = percent
 
     def get_info(self):
-        return "[Информация о клиенте]\nФИО: " + self.name + "\nДата оформления операции: " + self.open_date + "\nРазмер денежных единиц в операции: " + str(
-            self.money_count) + " руб.\nПроцент: " + str(self.percent) + "%"
+        return (
+            "[Информация о клиенте]\nФИО: "
+            + self.name
+            + "\nДата оформления операции: "
+            + self.open_date
+            + "\nРазмер денежных единиц в операции: "
+            + str(self.money_count)
+            + " руб.\nПроцент: "
+            + str(self.percent)
+            + "%"
+        )
 
     def date_calculation(self, input_date):
         if input_date == self.open_date:
@@ -49,8 +58,17 @@ class ContributorClass(ClentClass):
         super().__init__(name, open_date, money_count, percent)
 
     def get_info(self):
-        return "[Информация о вкладчике]\nФИО: " + self.name + "\nДата открытия вклада: " + self.open_date + "\nРазмер вклада: " + str(
-            self.money_count) + " руб.\nПроцент по вкладу: " + str(self.percent) + "%"
+        return (
+            "[Информация о вкладчике]\nФИО: "
+            + self.name
+            + "\nДата открытия вклада: "
+            + self.open_date
+            + "\nРазмер вклада: "
+            + str(self.money_count)
+            + " руб.\nПроцент по вкладу: "
+            + str(self.percent)
+            + "%"
+        )
 
 
 class CreditorClass(ClentClass):
@@ -63,9 +81,19 @@ class CreditorClass(ClentClass):
         self.balance_owed = balance_owed
 
     def get_info(self):
-        return "[Информация о кредиторе]\nФИО: " + self.name + "\nДата выдачи кредита: " + self.open_date + "\nРазмер кредита: " + str(
-            self.money_count) + " руб.\nПроцент по кредиту: " + str(self.percent) + "%\nОстаток долга: " + str(
-            self.balance_owed) + " руб."
+        return (
+            "[Информация о кредиторе]\nФИО: "
+            + self.name
+            + "\nДата выдачи кредита: "
+            + self.open_date
+            + "\nРазмер кредита: "
+            + str(self.money_count)
+            + " руб.\nПроцент по кредиту: "
+            + str(self.percent)
+            + "%\nОстаток долга: "
+            + str(self.balance_owed)
+            + " руб."
+        )
 
 
 class OrganizationClass(ClentClass):
@@ -80,8 +108,17 @@ class OrganizationClass(ClentClass):
         self.balance = balance
 
     def get_info(self):
-        return "[Информация об организации]\nНазвание: " + self.name + "\nДата открытия счёта: " + self.open_date + "\nНомер счёта: " + str(
-            self.account_number) + "\nСумма на счету: " + str(self.balance) + " руб."
+        return (
+            "[Информация об организации]\nНазвание: "
+            + self.name
+            + "\nДата открытия счёта: "
+            + self.open_date
+            + "\nНомер счёта: "
+            + str(self.account_number)
+            + "\nСумма на счету: "
+            + str(self.balance)
+            + " руб."
+        )
 
 
 def main():
@@ -102,16 +139,37 @@ def main():
         4: OrganizationClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     bankclients_list = []
     for _ in range(n):
         r_int = randint(1, 4)
 
         d_args = {
-            1: (fake.name(), fake.date(pattern='%d.%m.%Y'), randint(1, 1000000), randint(0, 100)),
-            2: (fake.name(), fake.date(pattern='%d.%m.%Y'), randint(1, 1000000), randint(0, 100)),
-            3: (fake.name(), fake.date(pattern='%d.%m.%Y'), randint(1, 1000000), randint(0, 100), randint(1, 1000000)),
-            4: (fake.word(), fake.date(pattern='%d.%m.%Y'), randint(1000000, 9999999), randint(1, 1000000)),
+            1: (
+                fake.name(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(1, 1000000),
+                randint(0, 100),
+            ),
+            2: (
+                fake.name(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(1, 1000000),
+                randint(0, 100),
+            ),
+            3: (
+                fake.name(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(1, 1000000),
+                randint(0, 100),
+                randint(1, 1000000),
+            ),
+            4: (
+                fake.word(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(1000000, 9999999),
+                randint(1, 1000000),
+            ),
         }
 
         bankclients_list.append(d[r_int](*d_args[r_int]))

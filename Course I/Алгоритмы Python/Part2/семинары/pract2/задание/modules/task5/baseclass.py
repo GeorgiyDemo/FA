@@ -18,8 +18,13 @@ class Person:
         self.year = year_now - year
 
     def info(self):
-        print("\n*Класс персона*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday)
+        print(
+            "\n*Класс персона*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+        )
 
     def years_old(self):
         print("Возраст: " + str(self.year))

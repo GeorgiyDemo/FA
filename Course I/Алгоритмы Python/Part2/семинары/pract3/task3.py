@@ -11,7 +11,7 @@ def r_sumcalc(n, s=0):
         print("Сумма чисел: {}".format(s))
         return
 
-    s += (n % 10)
+    s += n % 10
     n //= 10
     r_sumcalc(n, s)
 

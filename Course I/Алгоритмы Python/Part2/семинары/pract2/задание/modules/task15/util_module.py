@@ -10,8 +10,10 @@ def search(transport_list):
         y1_input = int(input("Ввдетие координату y1 -> "))
         x2_input = int(input("Введите координату x2 -> "))
         y2_input = int(input("Ввдетие координату y2 -> "))
-        if x1_input < x2_input: x2_input, x1_input = x1_input, x2_input
-        if y1_input < y2_input: y2_input, y1_input = y1_input, y2_input
+        if x1_input < x2_input:
+            x2_input, x1_input = x1_input, x2_input
+        if y1_input < y2_input:
+            y2_input, y1_input = y1_input, y2_input
     except ValueError:
         print("Некорректный ввод данных")
         return
@@ -21,4 +23,5 @@ def search(transport_list):
         if transport.coords_detector(l):
             print(transport.info() + "\n")
             search_flag = True
-    if not search_flag: print("ТС не найдены")
+    if not search_flag:
+        print("ТС не найдены")

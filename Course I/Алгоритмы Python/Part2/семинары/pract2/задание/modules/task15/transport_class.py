@@ -1,4 +1,4 @@
-class TransportClass():
+class TransportClass:
     def __init__(self, name, coords):
         self.name = name
         self.coords = coords
@@ -17,4 +17,9 @@ class TransportClass():
         return "[" + str(x) + ", " + str(y) + "]"
 
     def info(self):
-        return "[Родительский класс транспорт]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str()
+        return (
+            "[Родительский класс транспорт]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+        )

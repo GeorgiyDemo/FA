@@ -9,8 +9,7 @@ import datetime
 TIME_WAIT = 30
 
 
-class UniversalClass():
-
+class UniversalClass:
     @staticmethod
     def get_train_time(*time_ranges):
         """
@@ -56,8 +55,7 @@ class UniversalClass():
         return " -> ".join(results)
 
 
-class Task6():
-
+class Task6:
     def __init__(self):
         """
         Конструктор класса
@@ -67,33 +65,68 @@ class Task6():
         date = datetime.datetime.now().date().strftime("%d.%m.%Y ")
         self.d = {
             "Одинцово": [
-                {"begin_time": date + "21:30", "time_range": 30, "name": "Белорусский Вокзал"},
+                {
+                    "begin_time": date + "21:30",
+                    "time_range": 30,
+                    "name": "Белорусский Вокзал",
+                },
                 {"begin_time": date + "14:40", "time_range": 3, "name": "Баковка"},
                 {"begin_time": date + "10:30", "time_range": 15, "name": "Отрадное"},
             ],
-
             "Баковка": [
                 {"begin_time": date + "07:45", "time_range": 3, "name": "Одинцово"},
-                {"begin_time": date + "14:20", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": date + "08:10", "time_range": 25, "name": "Савёловский Вокзал"},
+                {
+                    "begin_time": date + "14:20",
+                    "time_range": 10,
+                    "name": "Курский Вокзал",
+                },
+                {
+                    "begin_time": date + "08:10",
+                    "time_range": 25,
+                    "name": "Савёловский Вокзал",
+                },
             ],
             "Отрадное": [
                 {"begin_time": date + "08:10", "time_range": 15, "name": "Одинцово"},
-                {"begin_time": date + "09:40", "time_range": 60, "name": "Курский Вокзал"},
-                {"begin_time": date + "18:21", "time_range": 38, "name": "Савёловский Вокзал"},
+                {
+                    "begin_time": date + "09:40",
+                    "time_range": 60,
+                    "name": "Курский Вокзал",
+                },
+                {
+                    "begin_time": date + "18:21",
+                    "time_range": 38,
+                    "name": "Савёловский Вокзал",
+                },
             ],
             "Белорусский Вокзал": [
                 {"begin_time": date + "11:15", "time_range": 30, "name": "Одинцово"},
-                {"begin_time": date + "13:50", "time_range": 10, "name": "Курский Вокзал"},
-                {"begin_time": date + "20:52", "time_range": 5, "name": "Савёловский Вокзал"},
+                {
+                    "begin_time": date + "13:50",
+                    "time_range": 10,
+                    "name": "Курский Вокзал",
+                },
+                {
+                    "begin_time": date + "20:52",
+                    "time_range": 5,
+                    "name": "Савёловский Вокзал",
+                },
             ],
             "Курский Вокзал": [
-                {"begin_time": date + "17:02", "time_range": 10, "name": "Белорусский Вокзал"},
+                {
+                    "begin_time": date + "17:02",
+                    "time_range": 10,
+                    "name": "Белорусский Вокзал",
+                },
                 {"begin_time": date + "17:10", "time_range": 10, "name": "Баковка"},
                 {"begin_time": date + "15:58", "time_range": 60, "name": "Отрадное"},
             ],
             "Савёловский Вокзал": [
-                {"begin_time": date + "11:18", "time_range": 5, "name": "Белорусский Вокзал"},
+                {
+                    "begin_time": date + "11:18",
+                    "time_range": 5,
+                    "name": "Белорусский Вокзал",
+                },
                 {"begin_time": date + "15:26", "time_range": 25, "name": "Баковка"},
                 {"begin_time": date + "19:10", "time_range": 38, "name": "Отрадное"},
             ],
@@ -115,7 +148,13 @@ class Task6():
             print(UniversalClass.get_ways_string(r[i]["ways"]))
             print("Общее время: " + str(r[i]["total_time"]))
             for way in r[i]["ways"]:
-                print(way["way_from"] + " -> " + way["way_to"] + ", время: " + str(way["train_time"]))
+                print(
+                    way["way_from"]
+                    + " -> "
+                    + way["way_to"]
+                    + ", время: "
+                    + str(way["train_time"])
+                )
                 if way["waiting_time"] is not None:
                     print("Ожидание: " + str(way["waiting_time"]))
 
@@ -143,15 +182,29 @@ class Task6():
             little_way_dict = []
             for j in range(len(times)):
                 train_time = times[j][1] - times[j][0]
-                checked_value = UniversalClass.detect_station_waiting_time(points[j + 1], all_wait_list[i])
+                checked_value = UniversalClass.detect_station_waiting_time(
+                    points[j + 1], all_wait_list[i]
+                )
 
                 if checked_value[0]:
-                    little_way_dict.append({"way_from": points[j], "way_to": points[j + 1], "train_time": train_time,
-                                            "waiting_time": checked_value[1]})
+                    little_way_dict.append(
+                        {
+                            "way_from": points[j],
+                            "way_to": points[j + 1],
+                            "train_time": train_time,
+                            "waiting_time": checked_value[1],
+                        }
+                    )
                     train_time += checked_value[1]
                 else:
-                    little_way_dict.append({"way_from": points[j], "way_to": points[j + 1], "train_time": train_time,
-                                            "waiting_time": None})
+                    little_way_dict.append(
+                        {
+                            "way_from": points[j],
+                            "way_to": points[j + 1],
+                            "train_time": train_time,
+                            "waiting_time": None,
+                        }
+                    )
 
                 if total_time is None:
                     total_time = train_time
@@ -196,14 +249,19 @@ class Task6():
                 for i in range(len(pairs_time)):
 
                     # Если не успевает на след поезд от премени предыдущего поезда + 30 мин, то + 24 часа
-                    if pairs_time[i][0] + datetime.timedelta(minutes=TIME_WAIT) > pairs_time[i][1]:
+                    if (
+                        pairs_time[i][0] + datetime.timedelta(minutes=TIME_WAIT)
+                        > pairs_time[i][1]
+                    ):
                         pairs_time[i][1] = pairs_time[i][1] + datetime.timedelta(days=1)
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
 
                     else:
                         diff_time = pairs_time[i][1] - pairs_time[i][0]
 
-                    wait_dict["ways"].append({"point": way["points"][i + 1], "time": diff_time})
+                    wait_dict["ways"].append(
+                        {"point": way["points"][i + 1], "time": diff_time}
+                    )
 
             all_wait_list.append(wait_dict)
         self.all_wait_list = all_wait_list
@@ -233,60 +291,148 @@ class Task6():
             for first_element in d[point_a]:
 
                 if first_element["name"] == point_b:
-                    print("[Вложенность 0] " + point_a + " - > " + first_element["name"])
+                    print(
+                        "[Вложенность 0] " + point_a + " - > " + first_element["name"]
+                    )
 
                     all_ways_list.append(
-                        dict(points=[point_a, first_element["name"]], times=UniversalClass.get_train_time(
-                            (first_element["time_range"], first_element["begin_time"])), detector_number=0))
+                        dict(
+                            points=[point_a, first_element["name"]],
+                            times=UniversalClass.get_train_time(
+                                (
+                                    first_element["time_range"],
+                                    first_element["begin_time"],
+                                )
+                            ),
+                            detector_number=0,
+                        )
+                    )
 
                 if first_element["name"] in d:
                     for second_element in d[first_element["name"]]:
                         if second_element["name"] == point_b:
-                            print("[Вложенность 1] " + point_a + " - > " + first_element["name"] + " -> " +
-                                  second_element["name"])
+                            print(
+                                "[Вложенность 1] "
+                                + point_a
+                                + " - > "
+                                + first_element["name"]
+                                + " -> "
+                                + second_element["name"]
+                            )
 
                             all_ways_list.append(
-                                dict(points=[point_a, first_element["name"], second_element["name"]],
-                                     times=UniversalClass.get_train_time(
-                                         (first_element["time_range"], first_element["begin_time"]),
-                                         (second_element["time_range"], second_element["begin_time"])
-                                     ), detector_number=1))
+                                dict(
+                                    points=[
+                                        point_a,
+                                        first_element["name"],
+                                        second_element["name"],
+                                    ],
+                                    times=UniversalClass.get_train_time(
+                                        (
+                                            first_element["time_range"],
+                                            first_element["begin_time"],
+                                        ),
+                                        (
+                                            second_element["time_range"],
+                                            second_element["begin_time"],
+                                        ),
+                                    ),
+                                    detector_number=1,
+                                )
+                            )
 
                         if second_element["name"] in d:
                             for third_element in d[second_element["name"]]:
                                 if third_element["name"] == point_b:
-                                    print("[Вложенность 2] " + point_a + " - > " + first_element["name"] + " -> " +
-                                          second_element["name"] + " -> " + third_element["name"])
+                                    print(
+                                        "[Вложенность 2] "
+                                        + point_a
+                                        + " - > "
+                                        + first_element["name"]
+                                        + " -> "
+                                        + second_element["name"]
+                                        + " -> "
+                                        + third_element["name"]
+                                    )
                                     all_ways_list.append(
                                         {
-                                            "points": [point_a, first_element["name"], second_element["name"],
-                                                       third_element["name"]],
+                                            "points": [
+                                                point_a,
+                                                first_element["name"],
+                                                second_element["name"],
+                                                third_element["name"],
+                                            ],
                                             "times": UniversalClass.get_train_time(
-                                                (first_element["time_range"], first_element["begin_time"]),
-                                                (second_element["time_range"], second_element["begin_time"]),
-                                                (third_element["time_range"], third_element["begin_time"]),
+                                                (
+                                                    first_element["time_range"],
+                                                    first_element["begin_time"],
+                                                ),
+                                                (
+                                                    second_element["time_range"],
+                                                    second_element["begin_time"],
+                                                ),
+                                                (
+                                                    third_element["time_range"],
+                                                    third_element["begin_time"],
+                                                ),
                                             ),
                                             "detector_number": 2,
-                                        })
+                                        }
+                                    )
 
                                 if third_element["name"] in d:
                                     for fourth_element in d[third_element["name"]]:
                                         if fourth_element["name"] == point_b:
-                                            print("[Вложенность 3] " + point_a + " - > " + first_element[
-                                                "name"] + " -> " + second_element["name"] + " -> " + third_element[
-                                                      "name"] + " -> " + fourth_element["name"])
+                                            print(
+                                                "[Вложенность 3] "
+                                                + point_a
+                                                + " - > "
+                                                + first_element["name"]
+                                                + " -> "
+                                                + second_element["name"]
+                                                + " -> "
+                                                + third_element["name"]
+                                                + " -> "
+                                                + fourth_element["name"]
+                                            )
                                             all_ways_list.append(
                                                 {
-                                                    "points": [point_a, first_element["name"], second_element["name"],
-                                                               third_element["name"], fourth_element["name"]],
+                                                    "points": [
+                                                        point_a,
+                                                        first_element["name"],
+                                                        second_element["name"],
+                                                        third_element["name"],
+                                                        fourth_element["name"],
+                                                    ],
                                                     "times": UniversalClass.get_train_time(
-                                                        (first_element["time_range"], first_element["begin_time"]),
-                                                        (second_element["time_range"], second_element["begin_time"]),
-                                                        (third_element["time_range"], third_element["begin_time"]),
-                                                        (fourth_element["time_range"], fourth_element["begin_time"]),
+                                                        (
+                                                            first_element["time_range"],
+                                                            first_element["begin_time"],
+                                                        ),
+                                                        (
+                                                            second_element[
+                                                                "time_range"
+                                                            ],
+                                                            second_element[
+                                                                "begin_time"
+                                                            ],
+                                                        ),
+                                                        (
+                                                            third_element["time_range"],
+                                                            third_element["begin_time"],
+                                                        ),
+                                                        (
+                                                            fourth_element[
+                                                                "time_range"
+                                                            ],
+                                                            fourth_element[
+                                                                "begin_time"
+                                                            ],
+                                                        ),
                                                     ),
                                                     "detector_number": 3,
-                                                })
+                                                }
+                                            )
 
             self.all_ways_list = all_ways_list
 

@@ -14,5 +14,11 @@ class GeometricClass(ProgressionClass):
             self.s = -1
 
     def info(self):
-        return "[Геометрическая прогрессия]\nЗнаменатель прогрессии: " + str(self.q) + "\n1-й элемент: " + str(
-            self.b1) + "\nСумма: " + str(self.s)
+        return (
+            "[Геометрическая прогрессия]\nЗнаменатель прогрессии: "
+            + str(self.q)
+            + "\n1-й элемент: "
+            + str(self.b1)
+            + "\nСумма: "
+            + str(self.s)
+        )

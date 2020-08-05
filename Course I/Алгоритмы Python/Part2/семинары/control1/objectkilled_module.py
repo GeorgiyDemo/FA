@@ -17,5 +17,7 @@ class ObjectKilledClass:
         d_formater["Тип"] = self.type
 
         out_str = "*Общая информация об объекте поражения*\n"
-        out_str += "\n".join(list([str(k) + ": " + str(v) for k, v in d_formater.items()]))
+        out_str += "\n".join(
+            list([str(k) + ": " + str(v) for k, v in d_formater.items()])
+        )
         print(out_str)

@@ -7,7 +7,6 @@ TXT_FILE = "./text.txt"
 
 
 class Node(object):
-
     def __init__(self, value=None, next=None, previous=None):
         self.value = value
         self.next = next
@@ -18,13 +17,12 @@ class Node(object):
 
 
 class ProcessingClass(object):
-
     def __init__(self):
         self.file2text()
         self.processing()
 
     def file2text(self):
-        with open(TXT_FILE, 'r') as stream:
+        with open(TXT_FILE, "r") as stream:
             list_m = stream.readlines()
             self.text = [e.replace("\n", "") for e in list_m]
 

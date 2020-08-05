@@ -6,5 +6,14 @@ class ContributorClass(ClentClass):
         super().__init__(name, open_date, money_count, percent)
 
     def get_info(self):
-        return "[Информация о вкладчике]\nФИО: " + self.name + "\nДата открытия вклада: " + self.open_date + "\nРазмер вклада: " + str(
-            self.money_count) + " руб.\nПроцент по вкладу: " + str(self.percent) + "%"
+        return (
+            "[Информация о вкладчике]\nФИО: "
+            + self.name
+            + "\nДата открытия вклада: "
+            + self.open_date
+            + "\nРазмер вклада: "
+            + str(self.money_count)
+            + " руб.\nПроцент по вкладу: "
+            + str(self.percent)
+            + "%"
+        )

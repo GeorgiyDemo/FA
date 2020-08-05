@@ -83,7 +83,7 @@ class DEMKAdict(MutableMapping):
         return key
 
 
-class Task10_1():
+class Task10_1:
     """
     Cоздать словарь телефонного справочника. Заполнить его 50 элементами. Реализовать поиск по телефону
     """

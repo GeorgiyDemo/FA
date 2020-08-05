@@ -7,7 +7,7 @@
 import array as ar
 from random import randint
 
-main_arr = ar.array('i', [randint(-100, 100) for _ in range(50)])
+main_arr = ar.array("i", [randint(-100, 100) for _ in range(50)])
 print("Исходный массив:", main_arr)
 max_element = -100
 for i in range(len(main_arr)):

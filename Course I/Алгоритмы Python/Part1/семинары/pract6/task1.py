@@ -6,8 +6,7 @@
 import math
 
 
-class DescrSolver():
-
+class DescrSolver:
     def __init__(self, input_str):
         try:
             self.input_str = input_str
@@ -42,7 +41,7 @@ class DescrSolver():
 
             symbols += 1
 
-        index_a = input_str[:symbols - 2]
+        index_a = input_str[: symbols - 2]
 
         # Определяем коэффициент b
         symbols = input_str.rindex("x")

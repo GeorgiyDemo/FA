@@ -6,7 +6,7 @@
 
 dictionaries = {
     0: "abcdefghijklmnopqrstuvwxyz0123456789",
-    1: "abc0123456789ldefghijkmnopqrstuvwxyz"
+    1: "abc0123456789ldefghijkmnopqrstuvwxyz",
 }
 
 
@@ -26,7 +26,6 @@ def check_values(check_str):
 
 
 class PolyWordClass(object):
-
     def __init__(self, s, key):
 
         self.s = s

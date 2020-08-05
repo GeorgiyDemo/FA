@@ -12,5 +12,13 @@ class ArithmeticClass(ProgressionClass):
         self.s = (self.a1 + self.a2) * self.n / 2
 
     def info(self):
-        return "[Арифметическая прогрессия]\n1-й элемент: " + str(self.a1) + "\n2-й элемент: " + str(
-            self.a2) + "\nШаг: " + str(self.n) + "\nСумма: " + str(self.s)
+        return (
+            "[Арифметическая прогрессия]\n1-й элемент: "
+            + str(self.a1)
+            + "\n2-й элемент: "
+            + str(self.a2)
+            + "\nШаг: "
+            + str(self.n)
+            + "\nСумма: "
+            + str(self.s)
+        )

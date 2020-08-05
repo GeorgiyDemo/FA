@@ -1,15 +1,28 @@
 d = {"MEOW": 222, "KOT": 3240}
 # ПРАВИЛЬНЫЙ обход пар ключ-значение:
 for k, v in d.items():
-    print('key: {}, value: {}'.format(k, v))
+    print("key: {}, value: {}".format(k, v))
 # Получаем значение с помощью get
 print(d.get("MEOW"))
 
 d["KEY"] = 1
-d.update([('a', 6), ('b', 4)])
-check = list(zip(('a', 6), ('b', 4)))
+d.update([("a", 6), ("b", 4)])
+check = list(zip(("a", 6), ("b", 4)))
 
-example = (6, 6, 1, 1, 2, 4, 5, 5, 7, 6, 6, 6,)
+example = (
+    6,
+    6,
+    1,
+    1,
+    2,
+    4,
+    5,
+    5,
+    7,
+    6,
+    6,
+    6,
+)
 print(example)
 d = {}
 d[tuple(list(set(example)))] = "CAT"
@@ -58,8 +71,8 @@ print(a, b, c)
 print("------")
 print([(1, 2, 3), (4, 5, 6, 7), (9,)])
 for a, *b in [(1, 2, 3), (4, 5, 6, 7), (9,)]:
-    print('a = {}, b = {}'.format(a, b))
+    print("a = {}, b = {}".format(a, b))
 
-keys = ['a', 'b']  # Список с ключами
-values = [1, 2]  # Список со  значениями 
+keys = ["a", "b"]  # Список с ключами
+values = [1, 2]  # Список со  значениями
 d18 = {k: v for (k, v) in zip(keys, values)}

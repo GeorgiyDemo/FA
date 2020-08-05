@@ -6,7 +6,7 @@
 import copy
 
 
-class MainClass():
+class MainClass:
     def __init__(self):
         self.matrix = []
         boolean_flag = True
@@ -54,7 +54,11 @@ class MainClass():
                         boolean_flag = False
                         buf_matrix.append(float(e))
                     else:
-                        print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
+                        print(
+                            "Некорректный ввод элемента [{}][{}], повторите попытку.".format(
+                                i + 1, j + 1
+                            )
+                        )
 
             matrix.append(buf_matrix)
         self.matrix = matrix
@@ -73,7 +77,7 @@ class MainClass():
         matrix = self.matrix
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
-                print('{:4}'.format(matrix[i][j]), end=" ")
+                print("{:4}".format(matrix[i][j]), end=" ")
             print()
         print("Введенное число для умножения: {}".format(self.number))
 
@@ -83,7 +87,7 @@ class MainClass():
         result = self.result
         for i in range(len(result)):
             for j in range(len(result[i])):
-                print('{:4}'.format(result[i][j]), end=" ")
+                print("{:4}".format(result[i][j]), end=" ")
             print()
 
     def calculating(self):

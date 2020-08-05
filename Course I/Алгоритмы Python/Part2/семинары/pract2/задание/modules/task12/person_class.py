@@ -6,4 +6,11 @@ class PersonClass(PhoneDictionaryClass):
         super().__init__(name, address, phone_number)
 
     def out_info(self):
-        return "[Класс персона]\nФИО: " + self.name + "\nAдрес: " + self.address + "\nНомер телефона: " + self.phone_number
+        return (
+            "[Класс персона]\nФИО: "
+            + self.name
+            + "\nAдрес: "
+            + self.address
+            + "\nНомер телефона: "
+            + self.phone_number
+        )

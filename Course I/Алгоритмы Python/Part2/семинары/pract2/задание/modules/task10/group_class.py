@@ -7,6 +7,15 @@ class GroupClass(GoodsClass):
         self.amount = amount
 
     def get_info(self):
-        return "[Партия]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + " руб.\nДата производства: " + self.manufacture_date + "\nСрок годности: " + self.expiration_date + "\nКоличество штук: " + str(
-            self.amount)
+        return (
+            "[Партия]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nДата производства: "
+            + self.manufacture_date
+            + "\nСрок годности: "
+            + self.expiration_date
+            + "\nКоличество штук: "
+            + str(self.amount)
+        )

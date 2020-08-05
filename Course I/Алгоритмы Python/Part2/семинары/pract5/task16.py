@@ -14,7 +14,8 @@ class Calculation:
             while bool_flag:
 
                 value = input(
-                    "Как вы хотите внести элементы матрицы?\n1. Автоматическая генерация\n2. Ручной ввод\n-> ")
+                    "Как вы хотите внести элементы матрицы?\n1. Автоматическая генерация\n2. Ручной ввод\n-> "
+                )
                 if value in d_ways:
                     d_ways[value]()
                     bool_flag = False
@@ -31,7 +32,8 @@ class Calculation:
         d_ways = {"1": self.summ, "2": self.diff, "3": self.mul}
         while input_value != "0":
             input_value = input(
-                "\nКакое действие с матрицами вы хотите сделать?\n1. Сложение\n2. Вычитание\n3. Умножение\n0. Выход из меню\n-> ")
+                "\nКакое действие с матрицами вы хотите сделать?\n1. Сложение\n2. Вычитание\n3. Умножение\n0. Выход из меню\n-> "
+            )
             if input_value in d_ways:
                 d_ways[input_value]()
             elif input_value != "0":
@@ -88,7 +90,9 @@ class Calculation:
                     bool_flag = True
                     while bool_flag:
                         try:
-                            input_e = int(input("Введите элемент [{}][{}] -> ".format(i, j)))
+                            input_e = int(
+                                input("Введите элемент [{}][{}] -> ".format(i, j))
+                            )
                             m_items[1] = np.append(m_items[1], input_e)
                             bool_flag = False
                         except ValueError:

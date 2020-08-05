@@ -12,4 +12,15 @@ class ArticleClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация о статье\nНазвание:" + self.name + "\nАвтор:" + self.author_name + "\n" + "Год издания:" + self.publish_year + "\nНазвание журнала:" + self.journal_name + "\nНомер журнала" + self.journal_number)
+            "Информация о статье\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+            + "\n"
+            + "Год издания:"
+            + self.publish_year
+            + "\nНазвание журнала:"
+            + self.journal_name
+            + "\nНомер журнала"
+            + self.journal_number
+        )

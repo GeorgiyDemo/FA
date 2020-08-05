@@ -2,10 +2,10 @@ import copy
 import pickle
 from os import system
 
-oper = '+-'
-poweroper = '-'
-oper0 = '^'
-digit = '1234567890.'
+oper = "+-"
+poweroper = "-"
+oper0 = "^"
+digit = "1234567890."
 
 
 def minus(list1, list2):
@@ -42,19 +42,22 @@ def fill(m, n=1, number=0.1):
 def compilator(listt):
     for primer in range(len(listt)):
         left = True
-        res = ''
+        res = ""
         for i in range(len(listt[primer])):
-            if listt[primer][i] == '=':
+            if listt[primer][i] == "=":
                 left = False
                 middle = i
             if not left:
-                if listt[primer][i] in digit and listt[primer][middle + 1:i].replace(' ', '') == '':
-                    res += '-' + listt[primer][i]
-                elif listt[primer][i] == '+':
-                    res += '-'
-                elif listt[primer][i] == '-':
-                    res += '+'
-                elif listt[primer][i] == '=':
+                if (
+                    listt[primer][i] in digit
+                    and listt[primer][middle + 1 : i].replace(" ", "") == ""
+                ):
+                    res += "-" + listt[primer][i]
+                elif listt[primer][i] == "+":
+                    res += "-"
+                elif listt[primer][i] == "-":
+                    res += "+"
+                elif listt[primer][i] == "=":
                     pass
                 else:
                     res += listt[primer][i]
@@ -62,8 +65,8 @@ def compilator(listt):
                 res += listt[primer][i]
         listt[primer] = res
     for primer in range(len(listt)):
-        listt[primer] = listt[primer].replace(' 0 ', '')
-        listt[primer] = listt[primer].replace(' ', '')
+        listt[primer] = listt[primer].replace(" 0 ", "")
+        listt[primer] = listt[primer].replace(" ", "")
     return listt
 
 
@@ -98,16 +101,27 @@ def solver(dictt, uravnenie, x0):
                     konst = False
 
             try:
-                if uravnenie[stop] in oper and (uravnenie[start - 1] in oper or start == 0):
-                    if uravnenie[start - 1] == '-':
+                if uravnenie[stop] in oper and (
+                    uravnenie[start - 1] in oper or start == 0
+                ):
+                    if uravnenie[start - 1] == "-":
                         start -= 1
                     summ += float(uravnenie[start:stop])
             except IndexError:
-                if stop == len(uravnenie) and uravnenie[start - 1] in oper or start == 0 and uravnenie[stop] in oper:
-                    if uravnenie[start - 1] == '-':
+                if (
+                    stop == len(uravnenie)
+                    and uravnenie[start - 1] in oper
+                    or start == 0
+                    and uravnenie[stop] in oper
+                ):
+                    if uravnenie[start - 1] == "-":
                         start -= 1
                     summ += float(uravnenie[start:stop])
-        elif uravnenie[s] not in oper and uravnenie[s] not in oper0 and uravnenie[s] not in digit:
+        elif (
+            uravnenie[s] not in oper
+            and uravnenie[s] not in oper0
+            and uravnenie[s] not in digit
+        ):
             k = 1
             power = 1
             if uravnenie[s - 1] in digit and s != 0:
@@ -119,10 +133,10 @@ def solver(dictt, uravnenie, x0):
                     if uravnenie[stop] not in digit:
                         dig = False
                 try:
-                    k = float(uravnenie[stop:start + 1])
+                    k = float(uravnenie[stop : start + 1])
                 except ValueError:
-                    k = float(uravnenie[0:start + 1])
-            elif uravnenie[s - 1] == '-':
+                    k = float(uravnenie[0 : start + 1])
+            elif uravnenie[s - 1] == "-":
                 k = -1
             try:
                 if uravnenie[s + 1] in oper0:
@@ -132,8 +146,12 @@ def solver(dictt, uravnenie, x0):
                     while poww:
                         stop += 1
                         try:
-                            if uravnenie[stop] not in digit and uravnenie[stop] not in poweroper or uravnenie[
-                                stop - 1] in digit and uravnenie[stop] in poweroper:
+                            if (
+                                uravnenie[stop] not in digit
+                                and uravnenie[stop] not in poweroper
+                                or uravnenie[stop - 1] in digit
+                                and uravnenie[stop] in poweroper
+                            ):
                                 poww = False
                         except IndexError:
                             poww = False
@@ -180,7 +198,7 @@ def CombineRows(A, B, row, source_row, weight):
 
 def Gauss(A, B):
     column = 0
-    while (column < len(B)):
+    while column < len(B):
 
         current_row = None
         for r in range(column, len(A)):
@@ -201,7 +219,7 @@ def Gauss(A, B):
 
     X = [0 for b in B]
     for i in range(len(B) - 1, -1, -1):
-        X[i] = B[i] - sum(x * a for x, a in zip(X[(i + 1):], A[i][(i + 1):]))
+        X[i] = B[i] - sum(x * a for x, a in zip(X[(i + 1) :], A[i][(i + 1) :]))
 
     return X
 
@@ -250,7 +268,7 @@ try:
     x, iter = newton(f, x0, dictt, sistem)
     for i in range(len(x)):
         print(f'{"".join(sistem[i])}=0        {reverce[i]} = {rounded(x[i])}')
-    print('\n')
+    print("\n")
 except ValueError:
     print("Data isn't correct\n")
 except TypeError:

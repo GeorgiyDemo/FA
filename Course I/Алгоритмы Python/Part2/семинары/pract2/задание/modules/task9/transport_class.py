@@ -6,8 +6,16 @@ class TransportClass:
         self.carrying = carrying
 
     def get_info(self):
-        return "[Транспорт]\nМарка: " + self.model + "\nНомер: " + self.number + "\nСкорость: " + str(
-            self.speed) + "\nГрузоподъёмность: " + str(self.carrying)
+        return (
+            "[Транспорт]\nМарка: "
+            + self.model
+            + "\nНомер: "
+            + self.number
+            + "\nСкорость: "
+            + str(self.speed)
+            + "\nГрузоподъёмность: "
+            + str(self.carrying)
+        )
 
     def get_carrying(self):
         return self.carrying

@@ -45,8 +45,7 @@ class MainClass:
             locale_m = -locale_m  # знак
             locale_p = x * locale_p  # числитель
             locale_result = locale_m * locale_p / locale_c
-            print("{}*({}/{}) = {}".format(locale_m,
-                                           locale_p, locale_c, locale_result))
+            print("{}*({}/{}) = {}".format(locale_m, locale_p, locale_c, locale_result))
             final_sum += locale_result
 
         self.final_sum = final_sum

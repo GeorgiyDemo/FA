@@ -7,7 +7,12 @@
 
 class TaskClass:
     def __init__(self, input_exp):
-        d_function = dict(sin=self.sin_solver, cos=self.cos_solver, tan=self.tan_solver, ctg=self.ctg_solver)
+        d_function = dict(
+            sin=self.sin_solver,
+            cos=self.cos_solver,
+            tan=self.tan_solver,
+            ctg=self.ctg_solver,
+        )
         # Поле результата
         self.r = None
         self.input_exp = input_exp
@@ -24,9 +29,19 @@ class TaskClass:
         """
         Метод для записи исходного выражения в файл
         """
-        result_str = "Входные данные\n" + self.input_exp + "\nЗначение:" + str(
-            self.number) + "\nФункция:" + self.function + "\nКоэффициент:" + str(self.koff) + "\n\nОтвет:\n" + str(
-            self.r) + "\n"
+        result_str = (
+            "Входные данные\n"
+            + self.input_exp
+            + "\nЗначение:"
+            + str(self.number)
+            + "\nФункция:"
+            + self.function
+            + "\nКоэффициент:"
+            + str(self.koff)
+            + "\n\nОтвет:\n"
+            + str(self.r)
+            + "\n"
+        )
         with open("result.txt", "w") as f:
             f.write(result_str)
 
@@ -40,14 +55,14 @@ class TaskClass:
         """
 
         exp = self.input_exp
-        self.number = float(exp[exp.find("=") + 1:len(exp)])
+        self.number = float(exp[exp.find("=") + 1 : len(exp)])
 
         function = exp[0:3]
         self.function = function
         if exp.find("x") - exp.find("(") == 1:
             self.koff = 1
         else:
-            self.koff = float(exp[exp.find("(") + 1:exp.find("x")])
+            self.koff = float(exp[exp.find("(") + 1 : exp.find("x")])
 
     def get_result(self):
         """
@@ -66,15 +81,88 @@ class TaskClass:
         number = self.number
         k = self.koff
         d_number = {
-            0.5: "π/" + str(6 * k) + "+2πk" + "/" + str(k) + "\n" + "(5π/" + str(6 * k) + "+2πk)" + "/" + str(k),
-            0.7: "π/" + str(4 * k) + "+2πk" + "/" + str(k) + "\n" + "(3π/" + str(4 * k) + "+2πk)" + "/" + str(k),
-            0.866: "π/" + str(3 * k) + "+2πk" + "/" + str(k) + "\n" + "(2π/" + str(3 * k) + "+2πk)" + "/" + str(k),
-            -0.5: "-π/" + str(6 * k) + "+2πk" + "/" + str(k) + "\n" + "(-5π/" + str(6 * k) + "+2πk)" + "/" + str(k),
-            -0.7: "-π/" + str(4 * k) + "+2πk" + "/" + str(k) + "\n" + "(-3π/" + str(4 * k) + "+2πk)" + "/" + str(k),
-            -0.866: "-π/" + str(3 * k) + "+2πk" + "/" + str(k) + "\n" + "(-2π/" + str(3 * k) + "+2πk)" + "/" + str(k),
+            0.5: "π/"
+            + str(6 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(5π/"
+            + str(6 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
+            0.7: "π/"
+            + str(4 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(3π/"
+            + str(4 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
+            0.866: "π/"
+            + str(3 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(2π/"
+            + str(3 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
+            -0.5: "-π/"
+            + str(6 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(-5π/"
+            + str(6 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
+            -0.7: "-π/"
+            + str(4 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(-3π/"
+            + str(4 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
+            -0.866: "-π/"
+            + str(3 * k)
+            + "+2πk"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(-2π/"
+            + str(3 * k)
+            + "+2πk)"
+            + "/"
+            + str(k),
         }
-        self.r = d_number[number] if number in d_number else "(arcsin(" + str(number) + ")+2πk)" + "/" + str(
-            k) + "\n" + "(π-arcsin(" + str(number) + ")+2πk)" + "/" + str(k)
+        self.r = (
+            d_number[number]
+            if number in d_number
+            else "(arcsin("
+            + str(number)
+            + ")+2πk)"
+            + "/"
+            + str(k)
+            + "\n"
+            + "(π-arcsin("
+            + str(number)
+            + ")+2πk)"
+            + "/"
+            + str(k)
+        )
 
     def cos_solver(self):
         """
@@ -90,7 +178,11 @@ class TaskClass:
             -0.866: "+-5π/" + str(6 * k) + "+2πk" + "/" + str(k),
             -0.7: "+-3π/" + str(4 * k) + "+2πk" + "/" + str(k),
         }
-        self.r = d_number[number] if number in d_number else "(+-arccos(" + str(number) + ")+2πk)" + "/" + str(k)
+        self.r = (
+            d_number[number]
+            if number in d_number
+            else "(+-arccos(" + str(number) + ")+2πk)" + "/" + str(k)
+        )
 
     def tan_solver(self):
         """
@@ -106,7 +198,11 @@ class TaskClass:
             -1: "-π/" + str(4 * k) + "+πk" + "/" + str(k),
             -1.732: "-π/" + str(3 * k) + "+πk" + "/" + str(k),
         }
-        self.r = d_number[number] if number in d_number else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        self.r = (
+            d_number[number]
+            if number in d_number
+            else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        )
 
     def ctg_solver(self):
         """
@@ -122,7 +218,11 @@ class TaskClass:
             -1: "3π/" + str(4 * k) + "+πk" + "/" + str(k),
             -1.732: "5π/" + str(6 * k) + "+πk" + "/" + str(k),
         }
-        self.r = d_number[number] if number in d_number else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        self.r = (
+            d_number[number]
+            if number in d_number
+            else "(arctan(" + str(number) + ")+πk)" + "/" + str(k)
+        )
 
 
 if __name__ == "__main__":

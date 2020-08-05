@@ -9,9 +9,10 @@ def main():
     except ValueError:
         print("Некорректный ввод данных")
         return
-    fake, search_flag = Faker(['ru_RU']), False
+    fake, search_flag = Faker(["ru_RU"]), False
     all_publications_list = []
-    for _ in range(n): all_publications_list.append(PublicationClass(fake.word(), fake.name()))
+    for _ in range(n):
+        all_publications_list.append(PublicationClass(fake.word(), fake.name()))
     for pub in all_publications_list:
         pub.info()
         print()

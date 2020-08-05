@@ -4,7 +4,7 @@ from copy import deepcopy
 from random import randint
 
 
-class MatrixClass():
+class MatrixClass:
     """Класс матрицы"""
 
     def __init__(self, generation_way=None, matrix_list=None, n=None, m=None):
@@ -53,7 +53,8 @@ class MatrixClass():
             boolean_flag = True
             while boolean_flag:
                 generation_way = input(
-                    "Каким способом вы хотите задать значения матрицы?\n1. Автоматический ввод\n2. Ручной ввод\n-> ")
+                    "Каким способом вы хотите задать значения матрицы?\n1. Автоматический ввод\n2. Ручной ввод\n-> "
+                )
                 if generation_way in allowed_ways:
                     boolean_flag = False
                     generation_way = int(generation_way)
@@ -83,7 +84,11 @@ class MatrixClass():
                             boolean_flag = False
                             buf_matrix.append(float(e))
                         else:
-                            print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
+                            print(
+                                "Некорректный ввод элемента [{}][{}], повторите попытку.".format(
+                                    i + 1, j + 1
+                                )
+                            )
 
                 matrix.append(buf_matrix)
         self._matrix = matrix
@@ -91,7 +96,9 @@ class MatrixClass():
     def __str__(self):
         """Вывод матрицы"""
         matrix = self._matrix
-        return '\n' + '\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
+        return "\n" + "\n".join(
+            ["\t".join([str(cell) for cell in row]) for row in matrix]
+        )
 
     def __mul__(self, m2):
         """Умножение матриц"""
@@ -115,14 +122,20 @@ class MatrixClass():
         """Сложение матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        c = [list(map(lambda x, y: x + y, self._matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [
+            list(map(lambda x, y: x + y, self._matrix[i], m2.matrix[i]))
+            for i in range(self.n)
+        ]
         return MatrixClass(matrix_list=c)
 
     def __sub__(self, m2):
         """Вычитание матриц"""
         if self.n != m2.n or self.m != m2.m:
             raise ValueError("Матрицы разного порядка!")
-        c = [list(map(lambda x, y: x - y, self._matrix[i], m2.matrix[i])) for i in range(self.n)]
+        c = [
+            list(map(lambda x, y: x - y, self._matrix[i], m2.matrix[i]))
+            for i in range(self.n)
+        ]
         return MatrixClass(matrix_list=c)
 
     def _matrix_transposed(self):
@@ -151,7 +164,7 @@ class MatrixClass():
             height = len(As)
 
             for i in range(height):
-                As[i] = As[i][0:fc] + As[i][fc + 1:]
+                As[i] = As[i][0:fc] + As[i][fc + 1 :]
 
             sign = (-1) ** (fc % 2)
             sub_det = self._matrix_determinant(As)
@@ -162,7 +175,7 @@ class MatrixClass():
     def _matrix_minor(self, i, j):
         """Вычисление минора матрицы"""
         m = self._matrix
-        return [row[:j] + row[j + 1:] for row in (m[:i] + m[i + 1:])]
+        return [row[:j] + row[j + 1 :] for row in (m[:i] + m[i + 1 :])]
 
     def _matrix_inverse(self):
         """Вычисление обратной матрицы (сделать проверку умножением на исходную матрицу)"""
@@ -172,8 +185,12 @@ class MatrixClass():
 
         # Вычисления для матрицы 2x2
         if len(m) == 2:
-            return MatrixClass(matrix_list=[[m[1][1] / determinant, -1 * m[0][1] / determinant],
-                                            [-1 * m[1][0] / determinant, m[0][0] / determinant]])
+            return MatrixClass(
+                matrix_list=[
+                    [m[1][1] / determinant, -1 * m[0][1] / determinant],
+                    [-1 * m[1][0] / determinant, m[0][0] / determinant],
+                ]
+            )
 
         # Результат
         result_matrix = []

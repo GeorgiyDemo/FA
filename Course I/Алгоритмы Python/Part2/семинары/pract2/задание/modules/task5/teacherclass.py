@@ -9,8 +9,16 @@ class Teacher(Person):
         self.job_years = str(years)
 
     def info(self):
-        print("\n*Класс учителя*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way + \
-              "\nДолжность: " + self.job_position + \
-              "\nСтаж: " + self.job_years)
+        print(
+            "\n*Класс учителя*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+            + "\nДолжность: "
+            + self.job_position
+            + "\nСтаж: "
+            + self.job_years
+        )

@@ -73,7 +73,9 @@ class Task2(object):
             if v > 1:
                 result.append(k)
 
-        self.result = "Повторяющиеся значения:\n" + "".join(str(x) + " " for x in result)
+        self.result = "Повторяющиеся значения:\n" + "".join(
+            str(x) + " " for x in result
+        )
 
 
 class Task3(object):
@@ -121,7 +123,13 @@ class Task3(object):
             if v == 0:
                 print("Столбец №" + str(k + 1) + " - значений нет")
             else:
-                print("Столбец №" + str(k + 1) + " - повторение значения " + str(v) + " раз(а)")
+                print(
+                    "Столбец №"
+                    + str(k + 1)
+                    + " - повторение значения "
+                    + str(v)
+                    + " раз(а)"
+                )
 
 
 class Task4(object):
@@ -150,7 +158,11 @@ class Task4(object):
         for i in range(self.n):
             l.append([])
             for j in range(self.n):
-                l[i].append(self.check_digit(input("Введите элемент [" + str(i) + "][" + str(j) + "] ->")))
+                l[i].append(
+                    self.check_digit(
+                        input("Введите элемент [" + str(i) + "][" + str(j) + "] ->")
+                    )
+                )
 
         print("\nИсходная матрица:")
         for e in l:
@@ -161,7 +173,7 @@ class Task4(object):
 
         d = {
             True: "Список является симметричным",
-            False: "Список НЕ является симметричным"
+            False: "Список НЕ является симметричным",
         }
 
         l = self.out_l
@@ -181,7 +193,16 @@ class Task5(object):
     """
 
     def __init__(self):
-        self.l = list(set([self.check_digit(e) for e in input("Введите элементы списка через запятую -> ").split(",")]))
+        self.l = list(
+            set(
+                [
+                    self.check_digit(e)
+                    for e in input("Введите элементы списка через запятую -> ").split(
+                        ","
+                    )
+                ]
+            )
+        )
         self.processing()
 
     def check_digit(self, e):
@@ -201,7 +222,7 @@ class Task5(object):
             buf_list1 = buf_list[:]
             buf_list1.sort()
 
-            if (buf_list1 == buf_list):
+            if buf_list1 == buf_list:
                 print("Удалили элементы", e[0], "и", e[1], "\nПолучили:", buf_list)
                 break
 
@@ -268,7 +289,9 @@ class Task8(object):
         print("Введенный list:\n" + str(self.books_list))
 
     def add_new_value(self):
-        self.new_book = input("Введите название книги для добавления в существующий список ->")
+        self.new_book = input(
+            "Введите название книги для добавления в существующий список ->"
+        )
         self.add_book_to_list()
 
     def add_book_to_list(self):
@@ -284,7 +307,7 @@ class Task8(object):
         out_list = self.books_list[:index] + [self.new_book] + self.books_list[index:]
         print("Результирующий list:\n" + str(out_list))
 
-        # Driver function 
+        # Driver function
         # list = [1, 2, 4]
         # n = 3
 
@@ -311,7 +334,10 @@ class Task9(object):
         self.a_processing()
         self.b_processing()
         print("Упорядочьте по возрастанию только положительные числа:\n", self.a_l)
-        print("Упорядочьте по возрастанию только элементы с четными порядковыми номерами в списке:\n", self.b_l)
+        print(
+            "Упорядочьте по возрастанию только элементы с четными порядковыми номерами в списке:\n",
+            self.b_l,
+        )
 
     def a_processing(self):
         buf_list = []
@@ -415,7 +441,9 @@ class Task12(object):
     """
 
     def __init__(self):
-        self.list = list(input("Введите строку для замены 'itmathrepetitor' на 'silence' -> "))
+        self.list = list(
+            input("Введите строку для замены 'itmathrepetitor' на 'silence' -> ")
+        )
         self.sub_list = list("itmathrepetitor")
         self.replace_list = list("silence")
         self.processing()
@@ -433,7 +461,7 @@ class Task12(object):
                 indx = lst.index(first, indx + 1)
             except ValueError:
                 break
-            if sub == lst[indx: indx + sublen]:
+            if sub == lst[indx : indx + sublen]:
                 return True, indx, indx + len(sub)
         return False, 0, 0
 
@@ -446,8 +474,8 @@ class Task12(object):
             index_tuple = self.get_sublist_index()
             if index_tuple[0] == True:
                 print("Замена подсписка по индексам", index_tuple[1], index_tuple[2])
-                del self.list[index_tuple[1]:index_tuple[2]]
-                self.list[index_tuple[1]:index_tuple[1]] = self.replace_list
+                del self.list[index_tuple[1] : index_tuple[2]]
+                self.list[index_tuple[1] : index_tuple[1]] = self.replace_list
             else:
                 processing_flag = False
 

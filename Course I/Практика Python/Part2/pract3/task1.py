@@ -13,7 +13,7 @@
 from DEMKAMatrixClass import MatrixClass
 
 
-class MainClass():
+class MainClass:
     def __init__(self):
         self.processing()
 
@@ -32,7 +32,9 @@ class MainClass():
             print("Транспонированная матрица:{}".format(m_list[i].matrix_transposed))
             print("Обратная матрица: {}".format(m_list[i].matrix_inverse))
             r = m_list[i] * m_list[i].matrix_inverse
-            check = MatrixClass(matrix_list=[[round(y, 3) for y in x] for x in r.matrix])
+            check = MatrixClass(
+                matrix_list=[[round(y, 3) for y in x] for x in r.matrix]
+            )
             print("Проверка: {}".format(check))
 
         # Задать матрицы А(22), В(23), С(32), D(21) генератором случайных чисел из интервала [1;10]
@@ -43,10 +45,18 @@ class MainClass():
 
         # Вывод всех сгенерированных матриц
         matrix_list = [{"A": A}, {"B": B}, {"C": C}, {"D": D}]
-        [[print("\nМатрица {}: {}".format(key, value)) for key, value in e.items()] for e in matrix_list]
+        [
+            [print("\nМатрица {}: {}".format(key, value)) for key, value in e.items()]
+            for e in matrix_list
+        ]
 
         # Найти произведения AB, CD, BC, CB.
-        calculate_list = [{"A": A, "B": B}, {"C": C, "D": D}, {"B": B, "C": C}, {"C": C, "B": B}]
+        calculate_list = [
+            {"A": A, "B": B},
+            {"C": C, "D": D},
+            {"B": B, "C": C},
+            {"C": C, "B": B},
+        ]
         for e in calculate_list:
             try:
                 print("\n[" + "*".join(e.keys()) + "]")

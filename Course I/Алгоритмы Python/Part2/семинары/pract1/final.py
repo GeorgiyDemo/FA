@@ -5,7 +5,6 @@ from faker import Faker
 
 
 class DemkaPrintClass:
-
     @staticmethod
     def msg_warning(input_str):
         assert type(input_str) == str
@@ -140,7 +139,7 @@ class RaceClass:
         self.GRASS_ICON = "_"
         self.ITERATIONS_COUNT = 50
 
-        fake = Faker(['ru_RU'])
+        fake = Faker(["ru_RU"])
 
         # Хранит объекты тараканов
         self.cockroach_list = []
@@ -159,8 +158,7 @@ class RaceClass:
         # Основная логика
         for current_iteration in range(self.ITERATIONS_COUNT):
 
-            DemkaPrintClass.msg_warning(
-                "Итерация №{}".format(current_iteration))
+            DemkaPrintClass.msg_warning("Итерация №{}".format(current_iteration))
             # Отображение рейтинга тараканов
             self.rating_drawer()
             self.game_field_drawer()
@@ -194,14 +192,14 @@ class RaceClass:
             allowed_cockroach_list = []
 
             table = texttable.Texttable()
-            table_list = [["№", "Кличка", "Скорость",
-                           "Коэффициент при выигрыше"], ]
+            table_list = [
+                ["№", "Кличка", "Скорость", "Коэффициент при выигрыше"],
+            ]
 
             for i in range(len(self.cockroach_list)):
                 e = self.cockroach_list[i]
                 allowed_cockroach_list.append(i + 1)
-                table_list.append(
-                    [str(i + 1), e.name, str(e.speed), e.coefficient])
+                table_list.append([str(i + 1), e.name, str(e.speed), e.coefficient])
 
             table.add_rows(table_list)
             print(table.draw() + "\n")
@@ -210,7 +208,8 @@ class RaceClass:
             while processing_flag:
                 try:
                     DemkaPrintClass.msg_warning(
-                        "Выберите № таракана для игрока '{}'".format(user.name))
+                        "Выберите № таракана для игрока '{}'".format(user.name)
+                    )
 
                     # Выбираем таракана
                     selected_cockroach = int(input("-> "))
@@ -220,9 +219,13 @@ class RaceClass:
                     obj = self.cockroach_list[selected_cockroach - 1]
 
                     # Делаем ставку
-                    money = float(input(
-                        "Введите вашу ставку на выигрыш '{}', ваш текущий баланс: {} руб.\n-> ".format(obj.name,
-                                                                                                       user.all_money)))
+                    money = float(
+                        input(
+                            "Введите вашу ставку на выигрыш '{}', ваш текущий баланс: {} руб.\n-> ".format(
+                                obj.name, user.all_money
+                            )
+                        )
+                    )
 
                     if money <= 0.0:
                         raise ValueError()
@@ -236,12 +239,16 @@ class RaceClass:
                         processing_flag = False
 
                     else:
-                        DemkaPrintClass.msg_fail("У Вас недостаточно денег для ставки на {} в размере {} руб.".format(
-                            obj.name, money))
+                        DemkaPrintClass.msg_fail(
+                            "У Вас недостаточно денег для ставки на {} в размере {} руб.".format(
+                                obj.name, money
+                            )
+                        )
 
                 except ValueError as e:
                     DemkaPrintClass.msg_fail(
-                        "Что-то пошло не так при вводе данных\n" + str(e))
+                        "Что-то пошло не так при вводе данных\n" + str(e)
+                    )
                     continue
 
     def rating_drawer(self):
@@ -259,7 +266,13 @@ class RaceClass:
         for i in range(len(cockroach_list)):
             e = cockroach_list[i]
             table_list.append(
-                [str(i + 1), e.name, str(e.current_location), self.getusers_cockroachobj(e)])
+                [
+                    str(i + 1),
+                    e.name,
+                    str(e.current_location),
+                    self.getusers_cockroachobj(e),
+                ]
+            )
 
         table.add_rows(table_list)
         print(table.draw() + "\n")
@@ -268,8 +281,9 @@ class RaceClass:
         """
         Метод, определяющий то, какой таракан выиграл
         """
-        winner = sorted(self.cockroach_list,
-                        key=lambda e: e.current_location, reverse=True)[0]
+        winner = sorted(
+            self.cockroach_list, key=lambda e: e.current_location, reverse=True
+        )[0]
         DemkaPrintClass.msg_warning("Победитель: {}".format(winner.name))
         self.rating_drawer()
 
@@ -293,25 +307,35 @@ class RaceClass:
                 u.all_money += u.locale_money * winner.coefficient
                 # Высчитываем сколько заработали на коэффе
                 coefficient_diff = (
-                                           u.locale_money * winner.coefficient) - u.locale_money
+                    u.locale_money * winner.coefficient
+                ) - u.locale_money
                 # + выигранные у других пользователей
                 u.all_money += koff
                 u.locale_money = 0.0
                 DemkaPrintClass.msg_warning(
                     "{} получает сумму {} руб!\nСреди них {} руб за коэфф и {} руб от других пользователей\nОбщее кол-во денег: {}".format(
-                        u.name, coefficient_diff + koff, coefficient_diff, koff, u.all_money))
+                        u.name,
+                        coefficient_diff + koff,
+                        coefficient_diff,
+                        koff,
+                        u.all_money,
+                    )
+                )
 
         else:
             DemkaPrintClass.msg_warning(
-                "Выиграл компьютер! Он заработал {} руб.".format(lost_money))
+                "Выиграл компьютер! Он заработал {} руб.".format(lost_money)
+            )
 
     def start_matrix_generator(self):
         """
         Метод генерации начальной матрицы
         """
         # Начальная матрица
-        self.matrix = [[self.GRASS_ICON for c in range(
-            self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        self.matrix = [
+            [self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)]
+            for r in range(self.COCKROACH_COUNT)
+        ]
         for i in range(len(self.matrix)):
             self.matrix[i][0] = self.COCKROACH_ICON
 
@@ -319,8 +343,10 @@ class RaceClass:
         """
         Осуществление перемещения таракана
         """
-        self.matrix = [[self.GRASS_ICON for c in range(
-            self.ITERATIONS_COUNT)] for r in range(self.COCKROACH_COUNT)]
+        self.matrix = [
+            [self.GRASS_ICON for c in range(self.ITERATIONS_COUNT)]
+            for r in range(self.COCKROACH_COUNT)
+        ]
 
         for i in range(len(self.cockroach_list)):
             e = self.cockroach_list[i]
@@ -335,14 +361,13 @@ class RaceClass:
         for i in range(len(self.matrix)):
             print(i + 1, end=" ")
             for j in range(len(self.matrix[i])):
-                print('{}'.format(self.matrix[i][j]), end=" ")
+                print("{}".format(self.matrix[i][j]), end=" ")
             print("|   Таракан '{}'".format(self.cockroach_list[i].name))
 
         print("\n")
 
 
 class MainClass:
-
     def __init__(self):
 
         # Храние объектов игроков
@@ -379,7 +404,9 @@ class MainClass:
         DemkaPrintClass.msg_warning("Окончание игры, результаты:")
 
         table = texttable.Texttable()
-        table_list = [["№ места", "Имя", "Баланс"], ]
+        table_list = [
+            ["№ места", "Имя", "Баланс"],
+        ]
 
         for i in range(len(l)):
             table_list.append([i + 1, l[i].name, str(l[i].all_money) + " руб."])
@@ -394,7 +421,9 @@ class MainClass:
         """
 
         table = texttable.Texttable()
-        table_list = [["Имя", "Баланс"], ]
+        table_list = [
+            ["Имя", "Баланс"],
+        ]
         for u in self.user_list:
             table_list.append([u.name, str(u.all_money) + " руб."])
 
@@ -416,8 +445,7 @@ class MainClass:
 
         # Генерируем пользователей
         for i in range(users_count):
-            curent_user_name = input(
-                "Введите ФИО пользователя №{} -> ".format(i + 1))
+            curent_user_name = input("Введите ФИО пользователя №{} -> ".format(i + 1))
             user_obj = GamerClass(curent_user_name)
             self.user_list.append(user_obj)
 

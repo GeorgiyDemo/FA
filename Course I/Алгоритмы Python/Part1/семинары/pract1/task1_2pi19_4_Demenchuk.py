@@ -11,7 +11,6 @@ GLOBAL_STR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 class UtilClass(object):
-
     @staticmethod
     def check_dubl(check_str):
         """
@@ -43,7 +42,6 @@ class UtilClass(object):
 
 
 class WordClass(object):
-
     def __init__(self, keyword, s):
         """
         Конструктор с вводом данных
@@ -104,7 +102,9 @@ def main():
         return
 
     if UtilClass.check_dubl(keyword) == False:
-        print("Есть дубликат символов в введенной строке!\nТакие слова как WOOD, BOOK и т.д. нельзя использовать")
+        print(
+            "Есть дубликат символов в введенной строке!\nТакие слова как WOOD, BOOK и т.д. нельзя использовать"
+        )
         return
 
     WordClass(keyword, s)

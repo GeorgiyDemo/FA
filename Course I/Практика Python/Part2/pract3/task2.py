@@ -24,10 +24,18 @@ class MatrixSolver:
         matrix = self.matrix
         obj = MatrixClass(matrix_list=matrix)
         delta_main = obj.matrix_determinant
-        print("*Решение методом Крамера*\n\nИсходная матрица: {}\nΔ главная: {}".format(obj, delta_main))
+        print(
+            "*Решение методом Крамера*\n\nИсходная матрица: {}\nΔ главная: {}".format(
+                obj, delta_main
+            )
+        )
 
         more_matrix = [matrix[i] + [self.results_list[i]] for i in range(len(matrix))]
-        print("\nРасширенная исходная матрица:{}".format(MatrixClass(matrix_list=more_matrix)))
+        print(
+            "\nРасширенная исходная матрица:{}".format(
+                MatrixClass(matrix_list=more_matrix)
+            )
+        )
         # Список результатов остальных дельт
         sub_deltas_list = []
         # Переворачиваем матрицу для более удобной работы
@@ -56,14 +64,19 @@ class MatrixSolver:
 
     def _rotate(self, matrix):
         """Метод для переворота матрицы"""
-        return [[matrix[j][i] for j in range(len(matrix[i]))] for i in range(len(matrix))]
+        return [
+            [matrix[j][i] for j in range(len(matrix[i]))] for i in range(len(matrix))
+        ]
 
     def inverse_matrix(self):
         """Решение СЛУ с помощью обратной матрицы"""
         matrix_A = MatrixClass(matrix_list=self.matrix)
         matrix_B = MatrixClass(n=4, m=1, matrix_list=[[e] for e in self.results_list])
-        print("------------------------\n*Решение методом обратной матрицы*\n\nМатрица А:{}\n\nМатрица B:{}".format(
-            matrix_A, matrix_B))
+        print(
+            "------------------------\n*Решение методом обратной матрицы*\n\nМатрица А:{}\n\nМатрица B:{}".format(
+                matrix_A, matrix_B
+            )
+        )
         print("\nМатрица A^-1:{}".format(matrix_A.matrix_inverse))
         # X = A^-1*B
         result = matrix_A.matrix_inverse * matrix_B

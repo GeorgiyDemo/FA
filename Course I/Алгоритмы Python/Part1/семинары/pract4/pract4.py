@@ -55,7 +55,7 @@ UNIC_NAMES_LIST = [
 ]
 
 
-class Task1():
+class Task1:
     """
     Создать словарь адресной книги, содержащий ФИО и адрес. Заполнить его 50 элементами, реализовать поиск по адресу
     """
@@ -82,7 +82,7 @@ class Task1():
                         print("Возможно вы имели ввиду '" + p + "' по '" + k + "'")
 
 
-class Task2():
+class Task2:
     """
     Cоздать словарь телефонного справочника. Заполнить его 50 элементами. Реализовать поиск по телефону
     """
@@ -142,7 +142,9 @@ class Task1Plus(Task1):
             [print(x) for x in self.d[s]]
         else:
             print("Адрес не найден, но мы его добавим в систему")
-            names = input("Введите ФИО людей, проживающих по этому адресу через заптую -> ")
+            names = input(
+                "Введите ФИО людей, проживающих по этому адресу через заптую -> "
+            )
             self.d[s] = names.split(",")
             print("Обновлённый словарь:")
             for k, v in self.d.items():
@@ -200,7 +202,11 @@ class Task4(object):
             for j in range(self.max_values):
                 for k in range(self.max_values):
                     self.d[(i, j, k)] = [
-                        {"multiplication": self.all_multipy(i, j, k), "sum": self.all_counter(i, j, k)}]
+                        {
+                            "multiplication": self.all_multipy(i, j, k),
+                            "sum": self.all_counter(i, j, k),
+                        }
+                    ]
 
     def check_digit(self, e):
         try:
@@ -235,7 +241,7 @@ class Task5(object):
     def get_random_flight(self):
 
         letters = string.ascii_uppercase
-        chars = ''.join(random.choice(letters) for i in range(3))
+        chars = "".join(random.choice(letters) for i in range(3))
         numbers = str(random.randint(1000, 9999))
         return chars + "-" + numbers
 
@@ -265,7 +271,14 @@ class Task5(object):
         for flight, value in self.flight_d.items():
             if value["from"] == point_a and value["to"] == point_b:
                 search_flag = True
-                print("План перелёта\nСуществует прямой рейс №" + flight + "\n" + point_a + " -> " + point_b)
+                print(
+                    "План перелёта\nСуществует прямой рейс №"
+                    + flight
+                    + "\n"
+                    + point_a
+                    + " -> "
+                    + point_b
+                )
 
         if search_flag == False:
             buf_list = []
@@ -277,21 +290,29 @@ class Task5(object):
                 for flight, value in self.flight_d.items():
                     if element[2] == value["from"] and point_b == value["to"]:
                         search_flag = True
-                        print("План перелёта:\nНа рейсе №" + element[0] + " " + element[1] + " -> " + element[2])
-                        print("На рейсе №" + flight + " " + value["from"] + " -> " + value["to"])
+                        print(
+                            "План перелёта:\nНа рейсе №"
+                            + element[0]
+                            + " "
+                            + element[1]
+                            + " -> "
+                            + element[2]
+                        )
+                        print(
+                            "На рейсе №"
+                            + flight
+                            + " "
+                            + value["from"]
+                            + " -> "
+                            + value["to"]
+                        )
 
             if search_flag == False:
                 print("По вашему запросу ничего не найдено")
 
 
 if __name__ == "__main__":
-    d = {
-        "1": Task1,
-        "2": Task2,
-        "3": Task3,
-        "4": Task4,
-        "5": Task5
-    }
+    d = {"1": Task1, "2": Task2, "3": Task3, "4": Task4, "5": Task5}
     s = input("Введите номер задания -> ")
     if s in d:
         d[s]()

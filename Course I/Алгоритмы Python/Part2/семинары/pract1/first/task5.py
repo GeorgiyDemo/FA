@@ -35,8 +35,13 @@ class Person:
         self.year = year_now - year
 
     def info(self):
-        print("\n*Класс персона*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday)
+        print(
+            "\n*Класс персона*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+        )
 
     def years_old(self):
         print("Возраст: " + str(self.year))
@@ -51,9 +56,15 @@ class Abiturient(Person):
         self.way = way
 
     def info(self):
-        print("\n*Класс абитуриента*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way)
+        print(
+            "\n*Класс абитуриента*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+        )
 
 
 class Student(Person):
@@ -63,10 +74,17 @@ class Student(Person):
         self.course = str(course)
 
     def info(self):
-        print("\n*Класс студента*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way + \
-              "\nКурс: " + self.course)
+        print(
+            "\n*Класс студента*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+            + "\nКурс: "
+            + self.course
+        )
 
 
 class Teacher(Person):
@@ -77,18 +95,32 @@ class Teacher(Person):
         self.job_years = str(years)
 
     def info(self):
-        print("\n*Класс учителя*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way + \
-              "\nДолжность: " + self.job_position + \
-              "\nСтаж: " + self.job_years)
+        print(
+            "\n*Класс учителя*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+            + "\nДолжность: "
+            + self.job_position
+            + "\nСтаж: "
+            + self.job_years
+        )
 
 
 def main():
     try:
         n = int(input("Ведите количество персон -> "))
         person_range = list(
-            map(int, input("Введите диапазон для поиска персон по возрасту\nПример: 36-40\n-> ").split("-")))
+            map(
+                int,
+                input(
+                    "Введите диапазон для поиска персон по возрасту\nПример: 36-40\n-> "
+                ).split("-"),
+            )
+        )
         min_age, max_age = sorted(person_range)
 
     except ValueError:
@@ -122,10 +154,10 @@ def main():
         "Докторант",
         "Главный научный сотрудник",
         "Ведущий научный сотрудник",
-        "Ассистент"
+        "Ассистент",
     ]
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     all_obj_list = []
 
     d = {
@@ -139,8 +171,19 @@ def main():
         d_args = {
             1: [fake.name(), fake.date()],
             2: [fake.name(), fake.date(), random.choice(ways_list)],
-            3: [fake.name(), fake.date(), random.choice(ways_list), random.randint(1, 4)],
-            4: [fake.name(), fake.date(), random.choice(ways_list), random.choice(jobs_list), random.randint(5, 35)],
+            3: [
+                fake.name(),
+                fake.date(),
+                random.choice(ways_list),
+                random.randint(1, 4),
+            ],
+            4: [
+                fake.name(),
+                fake.date(),
+                random.choice(ways_list),
+                random.choice(jobs_list),
+                random.randint(5, 35),
+            ],
         }
 
         r = random.randint(1, 4)

@@ -12,7 +12,7 @@ class GetDataClass(object):
         self.processing()
 
     def processing(self):
-        with open("./task14.yml", 'rb') as stream:
+        with open("./task14.yml", "rb") as stream:
             self.d = yaml.safe_load(stream)
 
 
@@ -53,7 +53,6 @@ class Groups(object):
 
 
 class ProcessingClass(object):
-
     def __init__(self):
         self.get_data()
         self.processing()

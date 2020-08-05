@@ -15,4 +15,8 @@ class TriangleClass:
         p = str(round(self.perimeter, 2))
         if type(self.area) == float:
             a = str(round(self.area, 2))
-        print("\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(cl_name, a, p))
+        print(
+            "\nВызов от {}\nПлощадь фигуры: {}\nПериметр фигуры: {}".format(
+                cl_name, a, p
+            )
+        )

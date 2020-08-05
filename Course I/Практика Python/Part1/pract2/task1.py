@@ -87,7 +87,7 @@ def strcmp(list1, list2):
 
 
 def atof(text):
-    text = "".join(text[:strlen(text)])
+    text = "".join(text[: strlen(text)])
     integer = int(text)
     double = float(text)
     if integer == double:
@@ -96,7 +96,7 @@ def atof(text):
         return double
 
 
-class TCALCNode():
+class TCALCNode:
     value = 0
     left = None
     right = None
@@ -107,7 +107,7 @@ class TCALCNode():
         self.value = _value
 
 
-class TCALC():
+class TCALC:
     root = None
     expr = [TERMINATOR for i in range(0, MAX_EXPR_LEN)]
     curToken = [TERMINATOR for i in range(0, MAX_TOKEN_LEN)]
@@ -124,11 +124,18 @@ class TCALC():
         return False
 
     def IsLetter(self):
-        return ((ord(self.expr[self.pos]) >= ord('a') and ord(self.expr[self.pos]) <= ord('z')) or (
-                ord(self.expr[self.pos]) >= ord('A') and ord(self.expr[self.pos]) <= ord('Z')))
+        return (
+            ord(self.expr[self.pos]) >= ord("a")
+            and ord(self.expr[self.pos]) <= ord("z")
+        ) or (
+            ord(self.expr[self.pos]) >= ord("A")
+            and ord(self.expr[self.pos]) <= ord("Z")
+        )
 
     def IsDigit(self):
-        return (ord(self.expr[self.pos]) >= ord('0') and ord(self.expr[self.pos]) <= ord('9'))
+        return ord(self.expr[self.pos]) >= ord("0") and ord(self.expr[self.pos]) <= ord(
+            "9"
+        )
 
     def IsPoint(self):
         return self.expr[self.pos] == "."
@@ -158,7 +165,7 @@ class TCALC():
             self.curToken[0] = self.expr[self.pos]
             self.pos = self.pos + 1
             self.curToken[1] = TERMINATOR
-            tmp = "".join(self.curToken[:strlen(self.curToken)])
+            tmp = "".join(self.curToken[: strlen(self.curToken)])
 
             if tmp in choose_dict:
                 self.typToken = choose_dict[tmp]
@@ -173,8 +180,10 @@ class TCALC():
             self.curToken[i] = TERMINATOR
             len = strlen(self.curToken)
             for i in range(0, len):
-                if ord(self.curToken[i]) >= ord('A') and ord(self.curToken[i]) <= ord('Z'):
-                    self.curToken[i] = chr(ord(self.curToken[i]) + ord('a') - ord('A'))
+                if ord(self.curToken[i]) >= ord("A") and ord(self.curToken[i]) <= ord(
+                    "Z"
+                ):
+                    self.curToken[i] = chr(ord(self.curToken[i]) + ord("a") - ord("A"))
             if not strcmp(self.curToken, list("leet")):
                 self.typToken = CALC_LEET
                 return True
@@ -341,7 +350,7 @@ class TCALC():
             print("Пустое выражение")
         elif errNum == 2:
             print("Внезапный конец выражения")
-        elif (errNum == 3):
+        elif errNum == 3:
             print("Конец выражения ожидается")
         elif errNum == 4:
             print("Пропущеннаи открывающая скобка")
@@ -349,7 +358,7 @@ class TCALC():
             print("Пропущенна закрывающая скобка")
         else:
             print("Неизвестная ошибка")
-        raise Exception('')
+        raise Exception("")
 
     def Compile(self, _expr):
         self.pos = 0
@@ -414,10 +423,14 @@ class TCALC():
                 return (math.exp(temp) + math.exp(-temp)) / 2.0
             elif op == OP_TH:
                 temp = self.CalcTree(tree.left)
-                return (math.exp(temp) - math.exp(-temp)) / (math.exp(temp) + math.exp(-temp))
+                return (math.exp(temp) - math.exp(-temp)) / (
+                    math.exp(temp) + math.exp(-temp)
+                )
             elif op == OP_CTH:
                 temp = self.CalcTree(tree.left)
-                return (math.exp(temp) + math.exp(-temp)) / (math.exp(temp) - math.exp(-temp))
+                return (math.exp(temp) + math.exp(-temp)) / (
+                    math.exp(temp) - math.exp(-temp)
+                )
             elif op == OP_EXP:
                 return math.exp(self.CalcTree(tree.left))
             elif op == OP_LG:

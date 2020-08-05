@@ -72,7 +72,7 @@ def iteration(x0, a, b, c, d, e, k):
 
     det = np.linalg.det(Yakobi)
     if det == 0.0:
-        print('DET=0, ERROR')
+        print("DET=0, ERROR")
 
     Yakobi_inverse = find_Yakobi_inverse(Yakobi)
     y1 = matmult(Yakobi_inverse, fx0)
@@ -88,24 +88,28 @@ d = -1.5
 e = 2
 k = 1
 
-a = int(input('Введите значение a:'))
-b = int(input('Введите значение b:'))
-c = int(input('Введите значение c:'))
-d = int(input('Введите значение d:'))
-e = int(input('Введите значение e:'))
-k = int(input('Введите значение k:'))
-aa = float(input('Введите погрешность:'))
+a = int(input("Введите значение a:"))
+b = int(input("Введите значение b:"))
+c = int(input("Введите значение c:"))
+d = int(input("Введите значение d:"))
+e = int(input("Введите значение e:"))
+k = int(input("Введите значение k:"))
+aa = float(input("Введите погрешность:"))
 
 x0 = [0.5, 0.5]
 
 x = x0[0]
 y = x0[1]
 
-while abs(a * math.cos(x) + b * math.sin(y) - c) >= aa or abs(e * math.sin(x) + d * math.cos(y) - k) >= aa:
+while (
+    abs(a * math.cos(x) + b * math.sin(y) - c) >= aa
+    or abs(e * math.sin(x) + d * math.cos(y) - k) >= aa
+):
     x0 = iteration(x0, a, b, c, d, e, k)
     x = x0[0]
     y = x0[1]
 
-print('x=', x0[0], 'y=', x0[1])
+print("x=", x0[0], "y=", x0[1])
 print(
-    'Решение получено с помощью метода Ньютона. О нём можно прочитать здесь: [url]http://www.exponenta.ru/educat/systemat/hanova/equation/loc.asp[/url]')
+    "Решение получено с помощью метода Ньютона. О нём можно прочитать здесь: [url]http://www.exponenta.ru/educat/systemat/hanova/equation/loc.asp[/url]"
+)

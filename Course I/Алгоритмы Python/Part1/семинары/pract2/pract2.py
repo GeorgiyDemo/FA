@@ -16,7 +16,7 @@ def get_scale(x, y):
     return y
 
 
-class LineGraphClass():
+class LineGraphClass:
     """
     Функции y=y(x), заданные графически*
     """
@@ -44,7 +44,7 @@ class LineGraphClass():
         # Аннотации к правой линии
         n2 = ["-d", "c", ""]
 
-        plt.style.use('seaborn-dark')
+        plt.style.use("seaborn-dark")
         ax = plt.figure().gca()
 
         # Ось координат X

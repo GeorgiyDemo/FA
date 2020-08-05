@@ -7,6 +7,12 @@ class Abiturient(Person):
         self.way = way
 
     def info(self):
-        print("\n*Класс абитуриента*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way)
+        print(
+            "\n*Класс абитуриента*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+        )

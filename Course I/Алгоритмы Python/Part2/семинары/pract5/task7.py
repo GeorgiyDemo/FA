@@ -24,7 +24,7 @@ def main():
     itemindex = np.where(np_arr < 0)[0][0]
     print("Индекс первого отрицательного элемента: {}".format(itemindex))
     # Новый массив
-    new_arr = np_arr[itemindex + 1:]
+    new_arr = np_arr[itemindex + 1 :]
     # Сумма по модулю
     s = np.sum((np.absolute(new_arr)))
     print("Сумма модулей после отрицательного элемента: {}".format(s))

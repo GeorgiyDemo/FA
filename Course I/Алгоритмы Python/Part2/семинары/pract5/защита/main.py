@@ -24,8 +24,13 @@ class JournalWriterClass:
             raise ValueError("Белые всегда начинают ходить первые")
 
         movementtype_dict = {"war": ":", "peace": "-"}
-        locale_str = d["from"]["y"].lower() + str(d["from"]["x"] + 1) + movementtype_dict[d["mode"]] + d["to"][
-            "y"].lower() + str(d["to"]["x"] + 1)
+        locale_str = (
+            d["from"]["y"].lower()
+            + str(d["from"]["x"] + 1)
+            + movementtype_dict[d["mode"]]
+            + d["to"]["y"].lower()
+            + str(d["to"]["x"] + 1)
+        )
         if self.bufstr == "":
             self.bufstr = locale_str
 
@@ -54,7 +59,11 @@ class JournalWriterClass:
     def __str__(self):
         """Информация о записанном"""
         return "\033[93mЗапись ходов:\033[0m\n" + "\n".join(
-            [str(i + 1) + ". " + self.journal_arr[i] for i in np.arange(self.journal_arr.shape[0])])
+            [
+                str(i + 1) + ". " + self.journal_arr[i]
+                for i in np.arange(self.journal_arr.shape[0])
+            ]
+        )
 
 
 class GameOverClass:
@@ -100,7 +109,9 @@ class GameOverClass:
             for j in np.arange(board.shape[1]):
                 if not board[i][j].isfree() and board[i][j].figure_obj.color == "black":
                     black_count += 1
-                elif not board[i][j].isfree() and board[i][j].figure_obj.color == "white":
+                elif (
+                    not board[i][j].isfree() and board[i][j].figure_obj.color == "white"
+                ):
                     white_count += 1
 
         if white_count == 0:
@@ -142,29 +153,55 @@ class GameOverClass:
             # [x+1,y-1]
             if board_obj.detect_element(y - 1, x + 1):
                 new_y, new_x = UtilClass.xint2char(y - 1), x + 1
-                all_d = np.append(all_d,
-                                  {'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace',
-                                   'user_color': uc})
+                all_d = np.append(
+                    all_d,
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "peace",
+                        "user_color": uc,
+                    },
+                )
 
             # [x+1,y+1]
             if board_obj.detect_element(y + 1, x + 1):
                 new_y, new_x = UtilClass.xint2char(y + 1), x + 1
-                all_d = np.append(all_d,
-                                  {'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'peace',
-                                   'user_color': uc})
+                all_d = np.append(
+                    all_d,
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "peace",
+                        "user_color": uc,
+                    },
+                )
 
             # Длинные шаги
             # [x+2,y+2]
             if board_obj.detect_element(y + 2, x + 2):
                 new_y, new_x = UtilClass.xint2char(y + 2), x + 2
-                all_d = np.append(all_d, {'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war',
-                                          'user_color': uc})
+                all_d = np.append(
+                    all_d,
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "war",
+                        "user_color": uc,
+                    },
+                )
 
             # [x+2,y-2]
             if board_obj.detect_element(y - 2, x + 2):
                 new_y, new_x = UtilClass.xint2char(y - 2), x + 2
-                all_d = np.append(all_d, {'from': {'x': x, 'y': y_char}, 'to': {'x': new_x, 'y': new_y}, 'mode': 'war',
-                                          'user_color': uc})
+                all_d = np.append(
+                    all_d,
+                    {
+                        "from": {"x": x, "y": y_char},
+                        "to": {"x": new_x, "y": new_y},
+                        "mode": "war",
+                        "user_color": uc,
+                    },
+                )
 
         # Перебираем все возможные ходы пользователя
         for d in all_d:
@@ -183,12 +220,19 @@ class MainClass:
 
     def __init__(self):
         # Создаем доску
-        user_color = input("Выберите цвет шашек:\n1. Белый (по умолчанию)\n2. Черный\n-> ")
+        user_color = input(
+            "Выберите цвет шашек:\n1. Белый (по умолчанию)\n2. Черный\n-> "
+        )
         self.user_color = "black" if user_color == "2" else "white"
 
         generator_mode = input(
-            "Введите способ генерации шашек на доске:\n1. Ручная расстановка, 6 фигур (по умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> ")
-        board_obj = BoardClass(2, self.user_color) if generator_mode == "2" else BoardClass(1, self.user_color)
+            "Введите способ генерации шашек на доске:\n1. Ручная расстановка, 6 фигур (по умолчанию)\n2. Стандартная авторасстановка, 12 фигур\n-> "
+        )
+        board_obj = (
+            BoardClass(2, self.user_color)
+            if generator_mode == "2"
+            else BoardClass(1, self.user_color)
+        )
         print(board_obj)
 
         # board_obj.board[3][3].figure_obj = FigureClass("TEST", 3, 3)
@@ -215,7 +259,12 @@ class MainClass:
         if not detect_flag:
             return {}
 
-        command_dict = {"from": {}, "to": {}, "mode": movement_type_dict[spliter], "user_color": self.user_color}
+        command_dict = {
+            "from": {},
+            "to": {},
+            "mode": movement_type_dict[spliter],
+            "user_color": self.user_color,
+        }
         # Разделяем введенную команду на 2 части
         part1, part2 = cmd.split(spliter)
         if UtilClass.checkxy_value(part1) and UtilClass.checkxy_value(part2):
@@ -271,7 +320,8 @@ class MainClass:
                         print("\033[91m[Ошибка]\033[0m Некорректный ход")
                 else:
                     print(
-                        "\033[91m[Ошибка]\033[0m Некорректный ввод данных. Пример: 'c3:e5' - перемещение с боем, 'c3-b4' - тихое перемещение")
+                        "\033[91m[Ошибка]\033[0m Некорректный ввод данных. Пример: 'c3:e5' - перемещение с боем, 'c3-b4' - тихое перемещение"
+                    )
 
             # Компьютер ходит
             else:
@@ -279,7 +329,12 @@ class MainClass:
                 time.sleep(3)
                 computergame_obj = ComputerGameClass(self.board_obj, user_color)
                 d = computergame_obj.result_dict
-                print("{} -> {}".format(UtilClass.getfail_coords(d["from"]), UtilClass.getfail_coords(d["to"])))
+                print(
+                    "{} -> {}".format(
+                        UtilClass.getfail_coords(d["from"]),
+                        UtilClass.getfail_coords(d["to"]),
+                    )
+                )
                 # Если тупиковый ход со стороны компьютера
                 if not computergame_obj.result:
                     won_color = user_color

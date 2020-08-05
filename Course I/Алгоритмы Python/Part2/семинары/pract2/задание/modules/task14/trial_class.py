@@ -15,7 +15,9 @@ class TrialClass(SoftwareClass):
         return False
 
     def __days_calculation(self):
-        days_left = self.install_date + datetime.timedelta(days=self.days_trial) - self.date
+        days_left = (
+            self.install_date + datetime.timedelta(days=self.days_trial) - self.date
+        )
         return str(abs(days_left.days))
 
     def software_info(self):
@@ -24,6 +26,18 @@ class TrialClass(SoftwareClass):
         if self.opportunity_detector() == True:
             status_msg = "Активировано, осталось " + days_left_str + " дня/дней"
         else:
-            status_msg = "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
-        return "[Условно бесплатное ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer + "\nДата установки: " + install_date + "\nКоличество дней: " + str(
-            self.days_trial) + "\nСтатус: " + status_msg
+            status_msg = (
+                "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
+            )
+        return (
+            "[Условно бесплатное ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nДата установки: "
+            + install_date
+            + "\nКоличество дней: "
+            + str(self.days_trial)
+            + "\nСтатус: "
+            + status_msg
+        )

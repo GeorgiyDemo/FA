@@ -43,7 +43,9 @@ class ArrayProcessingClass:
             boolean_flag = True
             while boolean_flag:
                 try:
-                    element = int(input("Введите элемент массива №{} -> ".format(i + 1)))
+                    element = int(
+                        input("Введите элемент массива №{} -> ".format(i + 1))
+                    )
                     arr = np.append(arr, element)
                     boolean_flag = False
                 except ValueError:

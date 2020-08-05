@@ -13,9 +13,9 @@ import numpy as np
 
 class ArrClass:
     def __init__(self, arr):
-        self.arr = ar.array('u', arr)
-        self.old_arr = ar.array('u', 'itmathrepetitor')
-        self.new_arr = ar.array('u', 'silence')
+        self.arr = ar.array("u", arr)
+        self.old_arr = ar.array("u", "itmathrepetitor")
+        self.new_arr = ar.array("u", "silence")
 
         self.processing()
         self.printer()
@@ -27,8 +27,8 @@ class ArrClass:
         a = self.arr
 
         for i in range(len(a) - len(old) + 1):
-            if a[i:i + len(old)] == old:
-                a[i:i + len(old)] = new
+            if a[i : i + len(old)] == old:
+                a[i : i + len(old)] = new
 
         self.arr = a
 
@@ -38,7 +38,6 @@ class ArrClass:
 
 
 class ListClass:
-
     def __init__(self, l):
         self.list = list(l)
         self.sub_list = list("itmathrepetitor")
@@ -58,7 +57,7 @@ class ListClass:
                 indx = lst.index(first, indx + 1)
             except ValueError:
                 break
-            if sub == lst[indx: indx + sublen]:
+            if sub == lst[indx : indx + sublen]:
                 return True, indx, indx + len(sub)
         return False, 0, 0
 
@@ -71,8 +70,8 @@ class ListClass:
             index_tuple = self.get_sublist_index()
             if index_tuple[0] == True:
                 print("Замена подсписка по индексам", index_tuple[1], index_tuple[2])
-                del self.list[index_tuple[1]:index_tuple[2]]
-                self.list[index_tuple[1]:index_tuple[1]] = self.replace_list
+                del self.list[index_tuple[1] : index_tuple[2]]
+                self.list[index_tuple[1] : index_tuple[1]] = self.replace_list
             else:
                 processing_flag = False
 
@@ -81,10 +80,10 @@ class ListClass:
 
 # Не всегда работает
 
-class NumpyClass(object):
 
+class NumpyClass(object):
     def __init__(self, l):
-        self.arr = np.array(list(l + ' '))
+        self.arr = np.array(list(l + " "))
         self.sub_arr = np.array(list("itmathrepetitor"))
         self.replace_arr = np.array(list("silence"))
         self.processing()
@@ -94,13 +93,13 @@ class NumpyClass(object):
         shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
         temp_array = np.array([])
         for step in range(shape[0]):
-            temp_array = np.concatenate((temp_array, a[step:shape[-1] + step]))
+            temp_array = np.concatenate((temp_array, a[step : shape[-1] + step]))
         return np.reshape(temp_array, shape)
 
     def finder(self, a, b):
         temp = self.rolling_window(a, len(b))
         try:
-            warnings.simplefilter(action='ignore', category=FutureWarning)
+            warnings.simplefilter(action="ignore", category=FutureWarning)
             result = np.where(np.all(b == temp, axis=1))
             return result[0][0], result[0][0] + b.shape[0]
         except IndexError:
@@ -122,8 +121,8 @@ class NumpyClass(object):
                 if r is None:
                     # Доехали до окончания
                     break
-                subbuf_arr = np.append(buf_arr[:r[0]], replace_arr)
-                buf_arr = np.append(subbuf_arr, buf_arr[r[1]:])
+                subbuf_arr = np.append(buf_arr[: r[0]], replace_arr)
+                buf_arr = np.append(subbuf_arr, buf_arr[r[1] :])
             except Exception:
                 break
 
@@ -140,10 +139,10 @@ if __name__ == "__main__":
 
     a = timeit.default_timer()
     ListClass(s)
-    print('\nВремя на работу с помощью list', timeit.default_timer() - a)
+    print("\nВремя на работу с помощью list", timeit.default_timer() - a)
     a = timeit.default_timer()
     ArrClass(s)
-    print('\nВремя на работу с помощью array', timeit.default_timer() - a)
+    print("\nВремя на работу с помощью array", timeit.default_timer() - a)
     a = timeit.default_timer()
     NumpyClass(s)
-    print('\nВремя на работу с помощью numpy', timeit.default_timer() - a)
+    print("\nВремя на работу с помощью numpy", timeit.default_timer() - a)

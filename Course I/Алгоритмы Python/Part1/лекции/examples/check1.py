@@ -1,4 +1,4 @@
-class ExampleClass():
+class ExampleClass:
     def __init__(self):
         self.types()
         self.operations()

@@ -22,11 +22,17 @@ class ChangerClass:
 
         while True:
             try:
-                offset_num = int(input("Введите кол-во шагов для смещения или введите 0 для выхода из программы\n-> "))
+                offset_num = int(
+                    input(
+                        "Введите кол-во шагов для смещения или введите 0 для выхода из программы\n-> "
+                    )
+                )
                 if offset_num == 0:
                     break
                 self.offset = offset_num
-                offset_input = input("В какую стороны вы хотите сдвинуть элементы массива?\n1. Влево\n2. Вправо\n-> ")
+                offset_input = input(
+                    "В какую стороны вы хотите сдвинуть элементы массива?\n1. Влево\n2. Вправо\n-> "
+                )
                 if offset_input == "1":
                     self.left_offset()
                 elif offset_input == "2":

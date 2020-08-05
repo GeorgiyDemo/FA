@@ -7,6 +7,15 @@ class ToyClass(GoodsClass):
         self.material = material
 
     def get_info(self):
-        return "[Информация об игрушке]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nПроизводитель: " + self.manufacturer + "\nВозраст, на который рассчитана: " + str(
-            self.age) + "\nМатериал: " + self.material
+        return (
+            "[Информация об игрушке]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитана: "
+            + str(self.age)
+            + "\nМатериал: "
+            + self.material
+        )

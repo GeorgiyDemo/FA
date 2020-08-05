@@ -13,7 +13,7 @@
 import array as ar
 from random import randint
 
-main_arr = ar.array('i', [randint(-100, 100) for _ in range(50)])
+main_arr = ar.array("i", [randint(-100, 100) for _ in range(50)])
 print("Исходный массив:", main_arr)
 sum_result = 0
 for e in main_arr:

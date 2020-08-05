@@ -13,7 +13,9 @@ class BookClass:
         boolean_flag = True
 
         while boolean_flag:
-            input_way = input("Как вы хотите создать список книг?\n1. Автоматическая генерация\n2. Ручной ввод\n-> ")
+            input_way = input(
+                "Как вы хотите создать список книг?\n1. Автоматическая генерация\n2. Ручной ввод\n-> "
+            )
             if input_way in d_ways:
                 d_ways[input_way]()
                 boolean_flag = False

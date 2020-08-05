@@ -6,5 +6,14 @@ class BallClass(ToyClass):
         super().__init__(color, price, material, size)
 
     def toy_info(self):
-        return "[Мяч]\nЦвет: " + self.color + "\nЦена: " + str(
-            self.price) + " руб.\nМатериал: " + self.material + "\nДиаметр: " + str(self.size) + " см."
+        return (
+            "[Мяч]\nЦвет: "
+            + self.color
+            + "\nЦена: "
+            + str(self.price)
+            + " руб.\nМатериал: "
+            + self.material
+            + "\nДиаметр: "
+            + str(self.size)
+            + " см."
+        )

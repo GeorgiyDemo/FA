@@ -5,7 +5,7 @@ def search(obj_list):
         print("Некорректный ввод данных")
         return
 
-    print("\n*Абоненты системы с фамилией \"" + input_name + "\"*")
+    print('\n*Абоненты системы с фамилией "' + input_name + '"*')
 
     search_flag = False
     for obj in obj_list:

@@ -32,11 +32,17 @@ class MainClass:
 
         print("\n*Заполнение массива №1*")
         for i in np.arange(n1):
-            base_arr1 = np.append(base_arr1, self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))))
+            base_arr1 = np.append(
+                base_arr1,
+                self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))),
+            )
 
         print("\n*Заполнение массива №2*")
         for i in np.arange(n2):
-            base_arr2 = np.append(base_arr2, self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))))
+            base_arr2 = np.append(
+                base_arr2,
+                self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))),
+            )
 
         self.arr1 = np.array(base_arr1)
         self.arr2 = np.array(base_arr2)

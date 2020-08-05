@@ -8,5 +8,13 @@ class CarClass(TransportClass):
         self.year = year
 
     def info(self):
-        return "[Класс автомобиль]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nНомер: " + str(
-            self.number) + "\nГод выпуска: " + str(self.year)
+        return (
+            "[Класс автомобиль]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nНомер: "
+            + str(self.number)
+            + "\nГод выпуска: "
+            + str(self.year)
+        )

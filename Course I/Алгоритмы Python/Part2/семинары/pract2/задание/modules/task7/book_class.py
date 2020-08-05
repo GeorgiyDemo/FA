@@ -11,4 +11,13 @@ class BookClass(PublicationClass):
 
     def info(self):
         print(
-            "Информация о книге\nНазвание:" + self.name + "\nАвтор:" + self.author_name + "\n" + "Год издания:" + self.publish_year + "\nИздательство:" + self.publishing_house)
+            "Информация о книге\nНазвание:"
+            + self.name
+            + "\nАвтор:"
+            + self.author_name
+            + "\n"
+            + "Год издания:"
+            + self.publish_year
+            + "\nИздательство:"
+            + self.publishing_house
+        )

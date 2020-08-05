@@ -19,5 +19,15 @@ class LinearEquation(EquationClass):
         b = self.b
         c = self.c
         equation_str = str(a) + "x+" + str(b) + "=" + str(c)
-        return "*Информация о простом линейном уравнении*\nОбщий вид: " + equation_str + "\nКоэффициент a = " + str(
-            a) + "\nКоэффициент b = " + str(b) + "\nКоэффициент c = " + str(c) + "\nОтвет:\n" + str(self.result)
+        return (
+            "*Информация о простом линейном уравнении*\nОбщий вид: "
+            + equation_str
+            + "\nКоэффициент a = "
+            + str(a)
+            + "\nКоэффициент b = "
+            + str(b)
+            + "\nКоэффициент c = "
+            + str(c)
+            + "\nОтвет:\n"
+            + str(self.result)
+        )

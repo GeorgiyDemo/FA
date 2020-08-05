@@ -4,10 +4,15 @@ from random import randrange
 class Task3Class:
     def __init__(self):
         try:
-            d = {"1": self.user_input, "2": self.random_input, }
+            d = {
+                "1": self.user_input,
+                "2": self.random_input,
+            }
             self.main_list = []
             self.list_len = int(input("Введите длинну последовательности -> "))
-            method_number = input("Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> ")
+            method_number = input(
+                "Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> "
+            )
             if method_number in d:
                 d[method_number]()
                 self.out_list()
@@ -24,7 +29,9 @@ class Task3Class:
 
     def user_input(self):
         for i in range(self.list_len):
-            locale_element = self.number_checker(input("Введите элемент №" + str(i + 1) + " -> "))
+            locale_element = self.number_checker(
+                input("Введите элемент №" + str(i + 1) + " -> ")
+            )
             self.main_list.append(locale_element)
 
     def random_input(self):

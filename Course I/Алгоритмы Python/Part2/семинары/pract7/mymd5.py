@@ -17,6 +17,7 @@ class MD5Buffer(Enum):
     задаются начальные значения шестнадцатеричными числами
     (порядок байтов little-endian, сначала младший байт):
     """
+
     A = 0x67452301
     B = 0xEFCDAB89
     C = 0x98BADCFE
@@ -95,16 +96,26 @@ class MD5:
         """
 
         # 1-й раунд
-        def F(x, y, z): return (x & y) | (~x & z)
-        # 2-й раунд
-        def G(x, y, z): return (x & z) | (y & ~z)
-        # 3-й раунд
-        def H(x, y, z): return x ^ y ^ z
-        # 4-й раунд
-        def I(x, y, z): return y ^ (x | ~z)
+        def F(x, y, z):
+            return (x & y) | (~x & z)
 
-        def rotate_left(x, n): return (x << n) | (x >> (32 - n))
-        def modular_add(a, b): return (a + b) % pow(2, 32)
+        # 2-й раунд
+        def G(x, y, z):
+            return (x & z) | (y & ~z)
+
+        # 3-й раунд
+        def H(x, y, z):
+            return x ^ y ^ z
+
+        # 4-й раунд
+        def I(x, y, z):
+            return y ^ (x | ~z)
+
+        def rotate_left(x, n):
+            return (x << n) | (x >> (32 - n))
+
+        def modular_add(a, b):
+            return (a + b) % pow(2, 32)
 
         # Определение таблицы констант T
         T = [floor(pow(2, 32) * abs(sin(i + 1))) for i in range(64)]
@@ -115,11 +126,12 @@ class MD5:
 
             start = chunk_index * 512
             # Каждый 512-битный блок проходит 4 этапа вычислений по 16 раундов. Для этого блок представляется в виде массива X из 16 слов по 32 бита.
-            X = [step_2_result[start + (x * 32): start + (x * 32) + 32]
-                 for x in range(16)]
+            X = [
+                step_2_result[start + (x * 32) : start + (x * 32) + 32]
+                for x in range(16)
+            ]
             # Переводим все в int из байтов
-            X = [int.from_bytes(word.tobytes(), byteorder="little")
-                 for word in X]
+            X = [int.from_bytes(word.tobytes(), byteorder="little") for word in X]
 
             # Получаем значение из буферов
             A = cls.buffers[MD5Buffer.A]
@@ -135,7 +147,7 @@ class MD5:
                     s = [7, 12, 17, 22]
                     buff = F(B, C, D)
 
-                 # 2-й раунд
+                # 2-й раунд
                 elif 16 <= i <= 31:
                     k = ((5 * i) + 1) % 16
                     s = [5, 9, 14, 20]
@@ -186,4 +198,6 @@ class MD5:
         D = struct.unpack("<I", struct.pack(">I", cls.buffers[MD5Buffer.D]))[0]
 
         # Форматирование на выходе
-        return f"{format(A, '08x')}{format(B, '08x')}{format(C, '08x')}{format(D, '08x')}"
+        return (
+            f"{format(A, '08x')}{format(B, '08x')}{format(C, '08x')}{format(D, '08x')}"
+        )

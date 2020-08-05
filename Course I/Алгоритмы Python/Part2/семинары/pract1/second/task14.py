@@ -11,6 +11,7 @@ class CurrencyClass:
     """
     Родительский класс с абстрактной валютой
     """
+
     # Стат поля
     eur_currency = 70.94
     usd_currency = 65.27
@@ -23,8 +24,14 @@ class CurrencyClass:
         return self.balance * self.exchange
 
     def info(self):
-        return "[Родительский класс валюты]\nКол-во: " + str(self.balance) + "\nКурс обмена: " + str(
-            self.exchange) + "\nСконвертированная валюта: " + str(self.converter())
+        return (
+            "[Родительский класс валюты]\nКол-во: "
+            + str(self.balance)
+            + "\nКурс обмена: "
+            + str(self.exchange)
+            + "\nСконвертированная валюта: "
+            + str(self.converter())
+        )
 
 
 class EURClass(CurrencyClass):
@@ -40,8 +47,14 @@ class EURClass(CurrencyClass):
         return self.balance * self.currency
 
     def info(self):
-        return "[EUR]\nКол-во EUR: " + str(self.balance) + "\nКурс обмена: " + str(
-            self.currency) + "\nСконвертированная валюта в RUB: " + str(self.converter())
+        return (
+            "[EUR]\nКол-во EUR: "
+            + str(self.balance)
+            + "\nКурс обмена: "
+            + str(self.currency)
+            + "\nСконвертированная валюта в RUB: "
+            + str(self.converter())
+        )
 
 
 class USDClass(CurrencyClass):
@@ -57,8 +70,14 @@ class USDClass(CurrencyClass):
         return self.balance * self.currency
 
     def info(self):
-        return "[USD]\nКол-во USD: " + str(self.balance) + "\nКурс обмена: " + str(
-            self.currency) + "\nСконвертированная валюта в RUB: " + str(self.converter())
+        return (
+            "[USD]\nКол-во USD: "
+            + str(self.balance)
+            + "\nКурс обмена: "
+            + str(self.currency)
+            + "\nСконвертированная валюта в RUB: "
+            + str(self.converter())
+        )
 
 
 def main():

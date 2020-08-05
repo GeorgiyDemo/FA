@@ -15,7 +15,15 @@ class MainProcessingClass(object):
 
         self.student_list = [
             ["Деменчук", "Георгий", "Максимович", "1999", 3, "ПИ19-4", [2, 5, 3, 4, 5]],
-            ["Анатолий", "Анатолий", "Анатольевич", "1995", 3, "ПИ19-2", [2, 5, 3, 4, 5]],
+            [
+                "Анатолий",
+                "Анатолий",
+                "Анатольевич",
+                "1995",
+                3,
+                "ПИ19-2",
+                [2, 5, 3, 4, 5],
+            ],
             ["Уткин", "Даниил", "Сова", "2001", 1, "ПИ19-2", [5, 4, 5, 3, 5]],
             ["Ваня", "Ваня", "Иванович", "2000", 1, "ПИ18-2", [2, 3, 3, 4, 5]],
         ]
@@ -46,13 +54,20 @@ class MainProcessingClass(object):
                     datadict["data"][collection[5]] = {"best": best_student}
 
                 datadict["data"][collection[5]]["subjects"]["sum"] = [
-                    sum(x) for x in zip(collection[6], datadict["data"][collection[5]]["subjects"]["sum"])
+                    sum(x)
+                    for x in zip(
+                        collection[6],
+                        datadict["data"][collection[5]]["subjects"]["sum"],
+                    )
                 ]
 
                 datadict["data"][collection[5]]["subjects"]["count"] += 1
 
             else:
-                datadict["data"][collection[5]] = {"best": best_student, "subjects": {"count": 1, "sum": collection[6]}}
+                datadict["data"][collection[5]] = {
+                    "best": best_student,
+                    "subjects": {"count": 1, "sum": collection[6]},
+                }
 
             if int(datadict["youngest"]) < int(collection[3]):
                 datadict["youngest"] = collection[3]
@@ -60,8 +75,10 @@ class MainProcessingClass(object):
                 datadict["oldest"] = collection[3]
 
         for stat in datadict["data"]:
-            datadict["data"][stat]["subjects"] = [x / datadict["data"][stat]["subjects"]["count"] for x in
-                                                  datadict["data"][stat]["subjects"]["sum"]]
+            datadict["data"][stat]["subjects"] = [
+                x / datadict["data"][stat]["subjects"]["count"]
+                for x in datadict["data"][stat]["subjects"]["sum"]
+            ]
 
         self.student_list = student_list
         self.datadict = datadict
@@ -69,12 +86,23 @@ class MainProcessingClass(object):
     def out_data(self):
         d = self.datadict
         print("Отсортированный словарь:\n", self.student_list, "\n")
-        print("Самый старший студент " + d["oldest"] + "-го года\nСамый младший студент " + d["youngest"] + "-го года")
+        print(
+            "Самый старший студент "
+            + d["oldest"]
+            + "-го года\nСамый младший студент "
+            + d["youngest"]
+            + "-го года"
+        )
         for group, data in d["data"].items():
             print("\n*Группа " + group + "*")
             b = data["best"]
-            print("Луший студент группы:\n" + b["fio"] + " " + b["date"] + ",", b["course"], "курс,", "cумма баллов",
-                  b["sum"])
+            print(
+                "Луший студент группы:\n" + b["fio"] + " " + b["date"] + ",",
+                b["course"],
+                "курс,",
+                "cумма баллов",
+                b["sum"],
+            )
             print("Средние баллы группы по предметам:", data["subjects"])
 
 

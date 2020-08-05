@@ -9,6 +9,15 @@ class ShipClass(TransportClass):
         self.destination_name = destination_name
 
     def info(self):
-        return "[Класс корабль]\nМодель: " + self.name + "\nКоординаты: " + self.coords_formater_str() + "\nКол-во пассажиров: " + str(
-            self.passengers_number) + "\nМакс. скорость: " + str(
-            self.max_speed) + "\nПорт приписки: " + self.destination_name
+        return (
+            "[Класс корабль]\nМодель: "
+            + self.name
+            + "\nКоординаты: "
+            + self.coords_formater_str()
+            + "\nКол-во пассажиров: "
+            + str(self.passengers_number)
+            + "\nМакс. скорость: "
+            + str(self.max_speed)
+            + "\nПорт приписки: "
+            + self.destination_name
+        )

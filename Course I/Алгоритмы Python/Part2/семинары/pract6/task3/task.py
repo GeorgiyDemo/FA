@@ -6,9 +6,10 @@
 
 from tree_module import BinaryTree
 
+
 class Orders:
     """Стат методы для обхода дерева"""
-        
+
     @staticmethod
     def preorder(tree):
         """Прямой обход дерева"""
@@ -33,20 +34,21 @@ class Orders:
             Orders.postorder(tree.get_right_child())
             print(tree.get_root_val())
 
+
 def main():
     # Элемент на 1 уровне
-    A = BinaryTree('A')
+    A = BinaryTree("A")
 
-    #Элементы на 2 уровне
-    B = A.insert_left('B')
-    C = A.insert_right('C')
+    # Элементы на 2 уровне
+    B = A.insert_left("B")
+    C = A.insert_right("C")
 
-    #Элементы на 3 уровне
+    # Элементы на 3 уровне
     D = B.insert_left("D")
     E = B.insert_right("E")
     F = C.insert_right("F")
 
-    #Элементы на 4 уровне
+    # Элементы на 4 уровне
     E.insert_left("G")
     F.insert_left("H")
     F.insert_right("I")
@@ -54,17 +56,18 @@ def main():
     print("Построенное дерево:")
     print(A)
 
-    #Обход в прямом порядке
+    # Обход в прямом порядке
     print("Прямой обход дерева:")
     Orders.preorder(A)
 
-    #Обратный обход 
+    # Обратный обход
     print("Обратный обход дерева:")
     Orders.postorder(A)
 
-    #Cимметричный обход 
+    # Cимметричный обход
     print("Cимметричный обход дерева:")
     Orders.inorder(A)
+
 
 if __name__ == "__main__":
     main()

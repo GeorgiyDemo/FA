@@ -5,7 +5,7 @@
 import os
 
 
-class FileProcessing():
+class FileProcessing:
     def __init__(self):
 
         select_d = {
@@ -19,7 +19,8 @@ class FileProcessing():
         input_str = ""
         while input_str != "0":
             input_str = input(
-                "1. Добавление файла\n2. Удаление файла\n3. Чтение из файла\n4. Запись файла\n0. Выход\n-> ")
+                "1. Добавление файла\n2. Удаление файла\n3. Чтение из файла\n4. Запись файла\n0. Выход\n-> "
+            )
             if input_str in select_d:
                 select_d[input_str]()
             elif input_str != "0":

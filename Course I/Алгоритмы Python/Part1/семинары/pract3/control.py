@@ -1,4 +1,4 @@
-class MatrixClass():
+class MatrixClass:
     def __init__(self):
         self.except_flag = True
         self.generator()

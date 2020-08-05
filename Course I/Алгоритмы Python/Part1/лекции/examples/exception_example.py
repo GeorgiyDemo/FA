@@ -33,7 +33,7 @@ except ZeroDivisionError as err:
 
 try:
     raise ValueError("Onиcaниe исключения")
-except ValueError  as  msg:
+except ValueError as msg:
     print(msg)  # Выведет: Описание исключения
 
 ##########################################################
@@ -41,15 +41,15 @@ CHECK_FLAG = True
 try:
     assert CHECK_FLAG, "CHECK_FLAG ИСКЛЮЧЕНИЕ БРАТ"
 except AssertionError as err:
-    print(err)  # Выдает: Сообщение об ошибке 
+    print(err)  # Выдает: Сообщение об ошибке
 
 
 # Пример использования assert
 def factorial(n):
     """Возвращает Факториал числа n.
     Аргумент n - не отрицательное целое число."""
-    assert n >= 0, 'Аргумент n должен быть больше 0!'
-    assert n % 1 == 0, 'Аргумент n должен быть целым!'
+    assert n >= 0, "Аргумент n должен быть больше 0!"
+    assert n % 1 == 0, "Аргумент n должен быть целым!"
     f = 1
     for i in range(2, n + 1):
         f *= i

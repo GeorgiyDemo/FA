@@ -8,7 +8,12 @@ class SoftwareClass:
         self.date = datetime.datetime.now()
 
     def software_info(self):
-        return "[Родительский класс ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Родительский класс ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )
 
     def opportunity_detector(self):
         # Его все равно переопределят

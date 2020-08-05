@@ -29,7 +29,12 @@ class SoftwareClass:
         self.date = datetime.datetime.now()
 
     def software_info(self):
-        return "[Родительский класс ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Родительский класс ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )
 
     def opportunity_detector(self):
         # Его все равно переопределят
@@ -47,7 +52,12 @@ class FreewareClass(SoftwareClass):
         self.manufacturer = manufacturer
 
     def software_info(self):
-        return "[Свободное ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Свободное ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )
 
     def opportunity_detector(self):
         # Т.к. свободное ПО всегда можно использовать
@@ -71,7 +81,9 @@ class TrialClass(SoftwareClass):
         return False
 
     def __days_calculation(self):
-        days_left = self.install_date + datetime.timedelta(days=self.days_trial) - self.date
+        days_left = (
+            self.install_date + datetime.timedelta(days=self.days_trial) - self.date
+        )
         return str(abs(days_left.days))
 
     def software_info(self):
@@ -82,10 +94,22 @@ class TrialClass(SoftwareClass):
         if self.opportunity_detector() == True:
             status_msg = "Активировано, осталось " + days_left_str + " дня/дней"
         else:
-            status_msg = "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
+            status_msg = (
+                "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
+            )
 
-        return "[Условно бесплатное ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer + "\nДата установки: " + install_date + "\nКоличество дней: " + str(
-            self.days_trial) + "\nСтатус: " + status_msg
+        return (
+            "[Условно бесплатное ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nДата установки: "
+            + install_date
+            + "\nКоличество дней: "
+            + str(self.days_trial)
+            + "\nСтатус: "
+            + status_msg
+        )
 
 
 class CommercialClass(SoftwareClass):
@@ -95,7 +119,7 @@ class CommercialClass(SoftwareClass):
 
     def __init__(self, name, manufacturer, install_date, days_pay):
         super().__init__(name, manufacturer)
-        self.install_date = datetime.datetime.strptime(install_date, '%d.%m.%Y')
+        self.install_date = datetime.datetime.strptime(install_date, "%d.%m.%Y")
         self.days_pay = int(days_pay)
 
     def opportunity_detector(self):
@@ -105,7 +129,9 @@ class CommercialClass(SoftwareClass):
         return False
 
     def __days_calculation(self):
-        days_left = self.install_date + datetime.timedelta(days=self.days_pay) - self.date
+        days_left = (
+            self.install_date + datetime.timedelta(days=self.days_pay) - self.date
+        )
         return str(abs(days_left.days))
 
     def software_info(self):
@@ -116,10 +142,22 @@ class CommercialClass(SoftwareClass):
         if self.opportunity_detector() == True:
             status_msg = "Активировано, осталось " + days_left_str + " дня/дней"
         else:
-            status_msg = "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
+            status_msg = (
+                "Проблемы с активацией, просрочено на " + days_left_str + " дня/дней"
+            )
 
-        return "[Коммерческое ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer + "\nДата установки: " + install_date + "\nКоличество дней: " + str(
-            self.days_pay) + "\nСтатус: " + status_msg
+        return (
+            "[Коммерческое ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nДата установки: "
+            + install_date
+            + "\nКоличество дней: "
+            + str(self.days_pay)
+            + "\nСтатус: "
+            + status_msg
+        )
 
 
 def main():
@@ -139,15 +177,25 @@ def main():
         3: CommercialClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     software_list = []
     for _ in range(n):
         r_int = randint(1, 3)
 
         d_args = {
             1: (fake.word(), fake.word() + " " + fake.word()),
-            2: (fake.word(), fake.word() + " " + fake.word(), fake.date(pattern='%d.%m.%Y'), randint(0, 1800)),
-            3: (fake.word(), fake.word() + " " + fake.word(), fake.date(pattern='%d.%m.%Y'), randint(0, 1800)),
+            2: (
+                fake.word(),
+                fake.word() + " " + fake.word(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(0, 1800),
+            ),
+            3: (
+                fake.word(),
+                fake.word() + " " + fake.word(),
+                fake.date(pattern="%d.%m.%Y"),
+                randint(0, 1800),
+            ),
         }
 
         software_list.append(d[r_int](*d_args[r_int]))

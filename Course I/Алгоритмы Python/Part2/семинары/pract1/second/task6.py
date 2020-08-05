@@ -28,8 +28,16 @@ class GoodsClass:
         self.age = age
 
     def get_info(self):
-        return "[Информация о товаре]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nПроизводитель: " + self.manufacturer + "\nВозраст, на который рассчитан: " + str(self.age)
+        return (
+            "[Информация о товаре]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитан: "
+            + str(self.age)
+        )
 
     def age_calculation(self, age_input):
         if age_input >= self.age:
@@ -47,9 +55,18 @@ class ToyClass(GoodsClass):
         self.material = material
 
     def get_info(self):
-        return "[Информация об игрушке]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nПроизводитель: " + self.manufacturer + "\nВозраст, на который рассчитана: " + str(
-            self.age) + "\nМатериал: " + self.material
+        return (
+            "[Информация об игрушке]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитана: "
+            + str(self.age)
+            + "\nМатериал: "
+            + self.material
+        )
 
 
 class BookClass(GoodsClass):
@@ -62,9 +79,18 @@ class BookClass(GoodsClass):
         self.author = author
 
     def get_info(self):
-        return "[Информация о книге]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nИздательство: " + self.manufacturer + "\nВозраст, на который рассчитана: " + str(
-            self.age) + "\nАвтор: " + self.author
+        return (
+            "[Информация о книге]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nИздательство: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитана: "
+            + str(self.age)
+            + "\nАвтор: "
+            + self.author
+        )
 
 
 class SportGoodsClass(GoodsClass):
@@ -76,8 +102,16 @@ class SportGoodsClass(GoodsClass):
         super().__init__(name, price, manufacturer, age)
 
     def get_info(self):
-        return "[Информация о спортинвентаре]\nНазвание: " + self.name + "\nЦена: " + str(
-            self.price) + "\nПроизводитель: " + self.manufacturer + "\nВозраст, на который рассчитан: " + str(self.age)
+        return (
+            "[Информация о спортинвентаре]\nНазвание: "
+            + self.name
+            + "\nЦена: "
+            + str(self.price)
+            + "\nПроизводитель: "
+            + self.manufacturer
+            + "\nВозраст, на который рассчитан: "
+            + str(self.age)
+        )
 
 
 def main():
@@ -99,16 +133,27 @@ def main():
         4: SportGoodsClass,
     }
 
-    fake = Faker(['ru_RU'])
+    fake = Faker(["ru_RU"])
     goods_list = []
     for _ in range(n):
         r_int = randint(1, 4)
 
         d_args = {
-
             1: (fake.word(), randint(1, 1000000), fake.word(), randint(1, 18)),
-            2: (fake.word(), randint(1, 1000000), fake.word(), randint(1, 18), "пластик"),
-            3: (fake.word(), randint(1, 1000000), fake.word(), randint(1, 18), fake.name()),
+            2: (
+                fake.word(),
+                randint(1, 1000000),
+                fake.word(),
+                randint(1, 18),
+                "пластик",
+            ),
+            3: (
+                fake.word(),
+                randint(1, 1000000),
+                fake.word(),
+                randint(1, 18),
+                fake.name(),
+            ),
             4: (fake.word(), randint(1, 1000000), fake.word(), randint(1, 18)),
         }
 

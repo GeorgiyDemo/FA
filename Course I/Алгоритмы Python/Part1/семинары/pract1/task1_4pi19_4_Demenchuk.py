@@ -14,7 +14,7 @@ def filter_input(s):
     """
 
     try:
-        s.encode(encoding='utf-8').decode('ascii')
+        s.encode(encoding="utf-8").decode("ascii")
         return True
     except:
         return False
@@ -46,7 +46,7 @@ def crypter(w, k):
         sum_outdict[i] = w[i] + k[buf], w[i] - k[buf]
         outdict[i] = w[i], k[buf]
         buf += 1
-        if (buf >= len(k)):
+        if buf >= len(k):
             buf = 0
 
     return (outdict, sum_outdict)
@@ -142,8 +142,8 @@ def main():
     obj = VigenereClass(s, k)
 
     print("\n**Входные данные**")
-    print('Слово: ', obj.w, "\nИндексы слова: ", obj.w_indexes)
-    print('Ключ: ', obj.k, "\nИндексы ключа: ", obj.k_indexes)
+    print("Слово: ", obj.w, "\nИндексы слова: ", obj.w_indexes)
+    print("Ключ: ", obj.k, "\nИндексы ключа: ", obj.k_indexes)
 
     print("\n**Шифрование**")
     print("List: ", obj.encoded_list, "\nСлово: ", obj.encoded)

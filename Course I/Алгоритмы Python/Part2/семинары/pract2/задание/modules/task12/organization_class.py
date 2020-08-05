@@ -8,7 +8,18 @@ class OrganizationClass(PhoneDictionaryClass):
         self.contact_person = contact_person
 
     def out_info(self):
-        return "[Класс организация]\nНазвание: " + self.name + "\nAдрес: " + self.address + "\nНомер телефона: " + self.phone_number + "\nФакс: " + self.fax + "\nКонтактое лицо: " + self.contact_person
+        return (
+            "[Класс организация]\nНазвание: "
+            + self.name
+            + "\nAдрес: "
+            + self.address
+            + "\nНомер телефона: "
+            + self.phone_number
+            + "\nФакс: "
+            + self.fax
+            + "\nКонтактое лицо: "
+            + self.contact_person
+        )
 
     def search(self, input_name):
         if input_name in self.contact_person:

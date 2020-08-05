@@ -46,7 +46,7 @@ while True:
         break
 print(product)
 
-st = 'Hello world'
+st = "Hello world"
 for e in enumerate(st):
     print(str(e) + " index: " + str(e[0]) + " char: " + e[1])
 

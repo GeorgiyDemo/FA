@@ -5,7 +5,7 @@
 """
 
 
-class MatrixClass():
+class MatrixClass:
     """Класс матрицы"""
 
     def __init__(self, matrix_number=1):
@@ -19,8 +19,12 @@ class MatrixClass():
         boolean_flag = True
         # Размерность матрицы
         while boolean_flag:
-            n = input("Введите кол-во строк в матрице №{} -> ".format(self.matrix_number))
-            m = input("Введите кол-во столбцов в матрице №{} -> ".format(self.matrix_number))
+            n = input(
+                "Введите кол-во строк в матрице №{} -> ".format(self.matrix_number)
+            )
+            m = input(
+                "Введите кол-во столбцов в матрице №{} -> ".format(self.matrix_number)
+            )
             if self.digital_checker(n) and self.digital_checker(m):
                 boolean_flag = False
                 self.n, self.m = int(n), int(m)
@@ -43,7 +47,11 @@ class MatrixClass():
                         boolean_flag = False
                         buf_matrix.append(float(e))
                     else:
-                        print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
+                        print(
+                            "Некорректный ввод элемента [{}][{}], повторите попытку.".format(
+                                i + 1, j + 1
+                            )
+                        )
 
             matrix.append(buf_matrix)
         self.matrix = matrix
@@ -54,7 +62,7 @@ class MatrixClass():
         matrix = self.matrix
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
-                print('{:4}'.format(matrix[i][j]), end=" ")
+                print("{:4}".format(matrix[i][j]), end=" ")
             print()
 
     def digital_checker(self, number):
@@ -66,7 +74,7 @@ class MatrixClass():
             return False
 
 
-class MainClass():
+class MainClass:
     def __init__(self):
         if self.matrix_creator():
             self.matrix_multiplication()
@@ -113,7 +121,7 @@ class MainClass():
         r = self.result
         for i in range(len(r)):
             for j in range(len(r[i])):
-                print('{:4}'.format(r[i][j]), end=" ")
+                print("{:4}".format(r[i][j]), end=" ")
             print()
 
 

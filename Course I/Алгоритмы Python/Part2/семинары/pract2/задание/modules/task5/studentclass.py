@@ -8,7 +8,14 @@ class Student(Person):
         self.course = str(course)
 
     def info(self):
-        print("\n*Класс студента*\nФИО: " + self.name + \
-              "\n" + "Дата рождения: " + self.birthday + \
-              "\nФакультет: " + self.way + \
-              "\nКурс: " + self.course)
+        print(
+            "\n*Класс студента*\nФИО: "
+            + self.name
+            + "\n"
+            + "Дата рождения: "
+            + self.birthday
+            + "\nФакультет: "
+            + self.way
+            + "\nКурс: "
+            + self.course
+        )

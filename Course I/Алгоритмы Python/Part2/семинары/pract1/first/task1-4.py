@@ -42,7 +42,9 @@ class Task3Class:
             }
             self.main_list = []
             self.list_len = int(input("Введите длинну последовательности -> "))
-            method_number = input("Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> ")
+            method_number = input(
+                "Как вы хотите заполнить последовательность?\n1. Вручную\n2. Автоматически\n-> "
+            )
 
             if method_number in d:
                 d[method_number]()
@@ -67,7 +69,9 @@ class Task3Class:
         Ручное заполнение последовательности
         """
         for i in range(self.list_len):
-            locale_element = self.number_checker(input("Введите элемент №" + str(i + 1) + " -> "))
+            locale_element = self.number_checker(
+                input("Введите элемент №" + str(i + 1) + " -> ")
+            )
             self.main_list.append(locale_element)
 
     def random_input(self):

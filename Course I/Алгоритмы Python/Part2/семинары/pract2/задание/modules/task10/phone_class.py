@@ -7,4 +7,6 @@ class PhoneClass(GoodsClass):
         self.price = price
 
     def get_info(self):
-        return "[Телефон]\nНазвание: " + self.name + "\nЦена: " + str(self.price) + " руб."
+        return (
+            "[Телефон]\nНазвание: " + self.name + "\nЦена: " + str(self.price) + " руб."
+        )

@@ -4,7 +4,7 @@
 """
 
 
-class MainClass():
+class MainClass:
     def __init__(self):
         self.matrix = []
         self.vector = []
@@ -42,7 +42,11 @@ class MainClass():
                     boolean_flag = False
                     vector.append(float(e))
                 else:
-                    print("Некорректный ввод элемента вектора №{}, повторите попытку.".format(i + 1))
+                    print(
+                        "Некорректный ввод элемента вектора №{}, повторите попытку.".format(
+                            i + 1
+                        )
+                    )
 
         self.vector = vector
 
@@ -62,7 +66,11 @@ class MainClass():
                         boolean_flag = False
                         buf_matrix.append(float(e))
                     else:
-                        print("Некорректный ввод элемента [{}][{}], повторите попытку.".format(i + 1, j + 1))
+                        print(
+                            "Некорректный ввод элемента [{}][{}], повторите попытку.".format(
+                                i + 1, j + 1
+                            )
+                        )
 
             matrix.append(buf_matrix)
         self.matrix = matrix
@@ -81,7 +89,7 @@ class MainClass():
         matrix = self.matrix
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
-                print('{:4}'.format(matrix[i][j]), end=" ")
+                print("{:4}".format(matrix[i][j]), end=" ")
             print()
 
     def vector_print(self):

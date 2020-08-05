@@ -9,5 +9,14 @@ class OrganizationClass(ClentClass):
         self.balance = balance
 
     def get_info(self):
-        return "[Информация об организации]\nНазвание: " + self.name + "\nДата открытия счёта: " + self.open_date + "\nНомер счёта: " + str(
-            self.account_number) + "\nСумма на счету: " + str(self.balance) + " руб."
+        return (
+            "[Информация об организации]\nНазвание: "
+            + self.name
+            + "\nДата открытия счёта: "
+            + self.open_date
+            + "\nНомер счёта: "
+            + str(self.account_number)
+            + "\nСумма на счету: "
+            + str(self.balance)
+            + " руб."
+        )

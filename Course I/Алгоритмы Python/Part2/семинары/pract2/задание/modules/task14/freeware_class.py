@@ -8,7 +8,12 @@ class FreewareClass(SoftwareClass):
         self.manufacturer = manufacturer
 
     def software_info(self):
-        return "[Свободное ПО]\nНазвание: " + self.name + "\nПроизводитель: " + self.manufacturer
+        return (
+            "[Свободное ПО]\nНазвание: "
+            + self.name
+            + "\nПроизводитель: "
+            + self.manufacturer
+        )
 
     def opportunity_detector(self):
         # Т.к. свободное ПО всегда можно использовать

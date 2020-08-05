@@ -34,7 +34,10 @@ class MainClass:
 
         print("\n*Заполнение массива №1*")
         for i in np.arange(n):
-            base_arr = np.append(base_arr, self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))))
+            base_arr = np.append(
+                base_arr,
+                self.digital_checker(input("Введите элемент №{} -> ".format(i + 1))),
+            )
 
         self.arr = np.array(base_arr)
 

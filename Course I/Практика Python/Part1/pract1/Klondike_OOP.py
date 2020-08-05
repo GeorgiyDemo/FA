@@ -28,8 +28,16 @@ class CheckWinClass(object):
 
     def check_dots(self, x, y):
         out_d = []
-        xy_range = [(x - 1, y - 1), (x, y), (x - 1, y + 1), (x, y + 1), (x, y - 1), (x + 1, y), (x + 1, y + 1),
-                    (x + 1, y - 1)]
+        xy_range = [
+            (x - 1, y - 1),
+            (x, y),
+            (x - 1, y + 1),
+            (x, y + 1),
+            (x, y - 1),
+            (x + 1, y),
+            (x + 1, y + 1),
+            (x + 1, y - 1),
+        ]
         for item in xy_range:
             if self.check_range(*item):
                 out_d.append(item)
@@ -105,7 +113,9 @@ class MainClass(object):
             print(i, self.matrix[i])
 
     def enter_number(self):
-        check_tuple = check_input(input("Введите координаты по x,y для постановки фишки через запятую ->"))
+        check_tuple = check_input(
+            input("Введите координаты по x,y для постановки фишки через запятую ->")
+        )
         if not check_tuple[0]:
             print("[!] Неправильный ввод")
         else:

@@ -23,9 +23,9 @@ print(lst_gen2)
 filt_list = [1, 3, 2, 8, 4, 11, 8, 9]
 for ind in range(len(filt_list) - 1, -1, -1):  # идем с конца в начало с шагом -1
     el = filt_list[ind]
-    print(f'ind: {ind}, el: {el}')
+    print(f"ind: {ind}, el: {el}")
     #     do_action(element)
     if el % 2 == 0:
-        print('removing')
+        print("removing")
         del filt_list[ind]
 print(filt_list)  # РАБОТАЕТ!

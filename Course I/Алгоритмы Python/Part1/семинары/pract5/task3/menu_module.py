@@ -7,7 +7,7 @@ import universal_module
 import waysearcher_module
 
 
-class GetAllInfoClass():
+class GetAllInfoClass:
     """
     Класс для отдачи всей информации, связанной с именем
     - Время отправления и прибытия поездов
@@ -51,22 +51,24 @@ class GetAllInfoClass():
                         price_str = str(current_place_dict["price"])
 
                         ways_index.append(i)
-                        tickets.append([
-                            d[i]["from"] + " -> " + d[i]["to"],
-                            car,
-                            place,
-                            price_str + " руб.",
-                            current_place_dict["type"],
-                            self.d_payment_formater[current_place_dict["payment"]],
-                            train_begin_time,
-                            train_time_finish,
-                        ])
+                        tickets.append(
+                            [
+                                d[i]["from"] + " -> " + d[i]["to"],
+                                car,
+                                place,
+                                price_str + " руб.",
+                                current_place_dict["type"],
+                                self.d_payment_formater[current_place_dict["payment"]],
+                                train_begin_time,
+                                train_time_finish,
+                            ]
+                        )
 
         self.ways_index = ways_index
         self.tickets = tickets
 
 
-class MenuShower():
+class MenuShower:
     def __init__(self, d, file_name):
         self.d = d
         self.file_name = file_name
@@ -109,8 +111,18 @@ class MenuShower():
 
                         table = texttable.Texttable(180)
                         table_list = [
-                            ["№", "Поезд", "№ вагона", "№ места", "Цена", "Тип места", "Статус", "Время отправления",
-                             "Время прибытия"], ]
+                            [
+                                "№",
+                                "Поезд",
+                                "№ вагона",
+                                "№ места",
+                                "Цена",
+                                "Тип места",
+                                "Статус",
+                                "Время отправления",
+                                "Время прибытия",
+                            ],
+                        ]
                         for i in range(len(check_name_tuple)):
                             ticket_list.append(str(i + 1))
                             buf_list = [i + 1] + check_name_tuple[i]
@@ -120,7 +132,8 @@ class MenuShower():
                         print(table.draw() + "\n")
 
                         reserve_input = input(
-                            "Введите номер бронирования для управления им или 0 для выхода из подменю -> ")
+                            "Введите номер бронирования для управления им или 0 для выхода из подменю -> "
+                        )
                         if reserve_input == "0":
                             exit_flag = True
 
@@ -132,84 +145,169 @@ class MenuShower():
 
                                 payment_show = True
                                 print(
-                                    "Бронирование №" + reserve_input + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета\n3. Оплата билета")
+                                    "Бронирование №"
+                                    + reserve_input
+                                    + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета\n3. Оплата билета"
+                                )
 
                             else:
                                 print(
-                                    "Бронирование №" + reserve_input + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета")
+                                    "Бронирование №"
+                                    + reserve_input
+                                    + "\nДоступные действия:\n1. Отмена бронирования\n2. Формирование электронного билета"
+                                )
 
                             input_command = input("Введите номер действия -> ")
 
                             way_index = ways_indexes[int(reserve_input) - 1]
                             if input_command == "1":
-                                ticket_obj = ticket_module.RemoveTicketClass(self.file_name, self.content,
-                                                                             self.new_name, way_index,
-                                                                             current_reserve[1], current_reserve[2])
+                                ticket_obj = ticket_module.RemoveTicketClass(
+                                    self.file_name,
+                                    self.content,
+                                    self.new_name,
+                                    way_index,
+                                    current_reserve[1],
+                                    current_reserve[2],
+                                )
                                 self.content = ticket_obj.content
 
                             elif input_command == "2":
 
                                 # Формируем электронный билет об оплате
-                                date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
-                                report_filename = "Электронный билет " + self.new_name + " от " + date_now + ".pdf"
+                                date_now = datetime.datetime.now().strftime(
+                                    "%H.%M.%S %d:%m:%Y"
+                                )
+                                report_filename = (
+                                    "Электронный билет "
+                                    + self.new_name
+                                    + " от "
+                                    + date_now
+                                    + ".pdf"
+                                )
                                 header_str = "Электронный билет"
-                                main_text_str_name = "ФИО клиента: " + self.new_name + "\nДата и время формирования: " + date_now
+                                main_text_str_name = (
+                                    "ФИО клиента: "
+                                    + self.new_name
+                                    + "\nДата и время формирования: "
+                                    + date_now
+                                )
 
                                 current_ticket = table_list[int(reserve_input)]
 
-                                main_text_str_ticket = "\nБилет\nСтанция и время отправления: " + \
-                                                       self.content[way_index]["from"] + " " + self.content[way_index][
-                                                           "time_begin"] + "\n" + "Место и время прибытия: " + \
-                                                       self.content[way_index]["to"] + " " + self.content[way_index][
-                                                           "time_finish"] + "\nМесто: №" + current_ticket[
-                                                           3] + " вагон " + current_ticket[2] + " [" + current_ticket[
-                                                           5] + "]"
+                                main_text_str_ticket = (
+                                    "\nБилет\nСтанция и время отправления: "
+                                    + self.content[way_index]["from"]
+                                    + " "
+                                    + self.content[way_index]["time_begin"]
+                                    + "\n"
+                                    + "Место и время прибытия: "
+                                    + self.content[way_index]["to"]
+                                    + " "
+                                    + self.content[way_index]["time_finish"]
+                                    + "\nМесто: №"
+                                    + current_ticket[3]
+                                    + " вагон "
+                                    + current_ticket[2]
+                                    + " ["
+                                    + current_ticket[5]
+                                    + "]"
+                                )
 
-                                main_text_str_payment = "\nОплата\nСтоимость билета: " + str(
-                                    current_ticket[4]) + "\n" + "Статус оплаты: " + current_ticket[6]
-                                main_text_str = main_text_str_name + "\n" + main_text_str_ticket + "\n" + main_text_str_payment
+                                main_text_str_payment = (
+                                    "\nОплата\nСтоимость билета: "
+                                    + str(current_ticket[4])
+                                    + "\n"
+                                    + "Статус оплаты: "
+                                    + current_ticket[6]
+                                )
+                                main_text_str = (
+                                    main_text_str_name
+                                    + "\n"
+                                    + main_text_str_ticket
+                                    + "\n"
+                                    + main_text_str_payment
+                                )
                                 qr_text = main_text_str
-                                PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str, qr_text,
-                                                                       report_filename)
+                                PDF_obj = file_writer_module.PDFWriter(
+                                    header_str, main_text_str, qr_text, report_filename
+                                )
                                 if PDF_obj.processed_flag == True:
                                     print("Электронный билет сформирован")
-
 
                             elif input_command == "3" and payment_show == True:
                                 payment_obj = ticket_module.PaymentClass()
 
                                 if payment_obj.result == True:
 
-                                    self.content[way_index]["train"][current_reserve[1]]["cars"][current_reserve[2]][
-                                        "payment"] = 1
+                                    self.content[way_index]["train"][
+                                        current_reserve[1]
+                                    ]["cars"][current_reserve[2]]["payment"] = 1
 
                                     # Формируем квитанцию об оплате
-                                    date_now = datetime.datetime.now().strftime("%H.%M.%S %d:%m:%Y")
-                                    report_filename = "Квитанция об оплате " + self.new_name + " от " + date_now + ".pdf"
-                                    header_str = "Квитанция об оплате заказа от\n" + date_now
+                                    date_now = datetime.datetime.now().strftime(
+                                        "%H.%M.%S %d:%m:%Y"
+                                    )
+                                    report_filename = (
+                                        "Квитанция об оплате "
+                                        + self.new_name
+                                        + " от "
+                                        + date_now
+                                        + ".pdf"
+                                    )
+                                    header_str = (
+                                        "Квитанция об оплате заказа от\n" + date_now
+                                    )
                                     main_text_str_name = "ФИО клиента: " + self.new_name
 
                                     current_ticket = table_list[int(reserve_input)]
-                                    main_text_str_ticket = "\nБилет\nСтанция и время отправления: " + \
-                                                           self.content[way_index]["from"] + " " + \
-                                                           self.content[way_index][
-                                                               "time_begin"] + "\n" + "Место и время прибытия: " + \
-                                                           self.content[way_index]["to"] + " " + \
-                                                           self.content[way_index]["time_finish"] + "\nМесто: №" + \
-                                                           current_ticket[3] + " вагон " + current_ticket[2] + " [" + \
-                                                           current_ticket[5] + "]"
-                                    main_text_str_payment = "\nОплата\nСтоимость билета: " + str(
-                                        current_ticket[4]) + "\n" + "Статус оплаты: ОПЛАЧЕНО"
-                                    main_text_str = main_text_str_name + "\n" + main_text_str_ticket + "\n" + main_text_str_payment
+                                    main_text_str_ticket = (
+                                        "\nБилет\nСтанция и время отправления: "
+                                        + self.content[way_index]["from"]
+                                        + " "
+                                        + self.content[way_index]["time_begin"]
+                                        + "\n"
+                                        + "Место и время прибытия: "
+                                        + self.content[way_index]["to"]
+                                        + " "
+                                        + self.content[way_index]["time_finish"]
+                                        + "\nМесто: №"
+                                        + current_ticket[3]
+                                        + " вагон "
+                                        + current_ticket[2]
+                                        + " ["
+                                        + current_ticket[5]
+                                        + "]"
+                                    )
+                                    main_text_str_payment = (
+                                        "\nОплата\nСтоимость билета: "
+                                        + str(current_ticket[4])
+                                        + "\n"
+                                        + "Статус оплаты: ОПЛАЧЕНО"
+                                    )
+                                    main_text_str = (
+                                        main_text_str_name
+                                        + "\n"
+                                        + main_text_str_ticket
+                                        + "\n"
+                                        + main_text_str_payment
+                                    )
                                     qr_text = main_text_str
-                                    PDF_obj = file_writer_module.PDFWriter(header_str, main_text_str, qr_text,
-                                                                           report_filename)
+                                    PDF_obj = file_writer_module.PDFWriter(
+                                        header_str,
+                                        main_text_str,
+                                        qr_text,
+                                        report_filename,
+                                    )
                                     if PDF_obj.processed_flag == True:
-                                        print("Квитанция об оплате успешно сформирована")
+                                        print(
+                                            "Квитанция об оплате успешно сформирована"
+                                        )
 
                                     # Записываем все в файл
                                     print("Записываем изменения..")
-                                    writer_obj = universal_module.FileClass(self.file_name)
+                                    writer_obj = universal_module.FileClass(
+                                        self.file_name
+                                    )
                                     writer_obj.set_file(self.content)
                                 else:
                                     print("Оплата не прошла..")
@@ -246,7 +344,8 @@ class MenuShower():
                 self.content = obj.get_text()
                 processing_ways_list = all_ways[way_number_input]
                 auto_selecter_input = input(
-                    "Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути?\nЕсли нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) -> ")
+                    "Выбор режима покупки\nХотите, чтоб система оформила наиболее дешевые билеты автоматически для каждого отдельного пути?\nЕсли нет, то вам придётся вручную делать оформление каждого отдельного билета (Да/Нет) -> "
+                )
 
                 if auto_selecter_input == "Да":
                     automate_flag = True
@@ -257,10 +356,14 @@ class MenuShower():
                     return
 
                 for way in processing_ways_list:
-                    ticket_module.AddTicketClass(self.content, self.file_name, self.new_name, way[0], way[1],
-                                                 automate_flag)
-
-
+                    ticket_module.AddTicketClass(
+                        self.content,
+                        self.file_name,
+                        self.new_name,
+                        way[0],
+                        way[1],
+                        automate_flag,
+                    )
 
             else:
                 print("Введенный маршрут не найден")
