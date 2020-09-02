@@ -13,5 +13,9 @@
 * [Математика](https://github.com/GeorgiyDemo/FA/tree/master/Course%20I/%D0%9C%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0)
 * [История](https://github.com/GeorgiyDemo/FA/tree/master/Course%20I/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F)
 
+### 2 Курс
+* [Современные технологии программирования](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%A1%D0%A2%D0%9F)
+* [Банковские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%91%D0%98%D0%A1)
+
 ### Сессия
 * [I курс (зима 2020)](https://github.com/GeorgiyDemo/FA/tree/master/session/%D0%A1%D0%B5%D1%81%D1%81%D0%B8%D1%8F%20I%20%D0%BA%D1%83%D1%80%D1%81%20%D0%B7%D0%B8%D0%BC%D0%B0%202020)
