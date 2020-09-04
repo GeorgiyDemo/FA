@@ -1,15 +1,25 @@
 package com.demka;
 
-import java.util.*;
 public class Main {
 
-
-    public  static int subtracter(int number){
-        return number-21;
+    public static double pointerCalc(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
-    public static double HypotenuseCalculator(double cathetus1, double cathetus2){
-        return Math.sqrt( Math.pow(cathetus1, 2.0) + Math.pow(cathetus2, 2.0));
+    public static double geometricMean(int value1, int value2) {
+        return Math.sqrt(value1 * value2);
+    }
+
+    public static double arithmeticMean(int value1, int value2) {
+        return (value1 + value2) / 2;
+    }
+
+    public static int subtracter(int number) {
+        return number - 21;
+    }
+
+    public static double HypotenuseCalculator(double cathetus1, double cathetus2) {
+        return Math.sqrt(Math.pow(cathetus1, 2.0) + Math.pow(cathetus2, 2.0));
     }
 
     public static void main(String[] args) {
@@ -72,7 +82,7 @@ public class Main {
 
         //8. Дано двухзначное число. Найдите число десятков в нем
         int value8 = 51;
-        System.out.println(value8/10);
+        System.out.println(value8 / 10);
 
         //9. Реализуйте метод, который получает целое число на вход и возвращает разницу между данным числом и 21
         //Выведите значения на экран с различными целыми числами
@@ -80,8 +90,23 @@ public class Main {
         System.out.println(subtracter(24));
         System.out.println(subtracter(21));
 
+        //10. Реализуйте метод, в который передаётся две целочисленные переменные
+        // и возврвщает их среднее арифметическое
+        System.out.println(arithmeticMean(4, 5));
+        System.out.println(arithmeticMean(8, 10));
+        System.out.println(arithmeticMean(3, 2));
 
+        //11. Реализуйте метод, в который передаётся две целочисленные переменные
+        // и возврвщает их среднее геометрическое
+        System.out.println(geometricMean(3, 4));
+        System.out.println(geometricMean(2, 45));
+        System.out.println(geometricMean(5, 1));
 
+        //12. Реализуйте метод, в который передаётся 4 числа с плавающей точкой.
+        // Первые два числа - координаты x, y первой точки
+        // Вторые два числа - координаты x, y второй точки. Найдите расстояние между двумя точками
+        double result = pointerCalc(3.434, 5.533, 10.5356, 6.30240);
+        System.out.println("\nРасстояние между двумя точками: " + result);
 
     }
 }
