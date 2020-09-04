@@ -3,10 +3,11 @@ package com.demka;
 import java.util.*;
 public class Main {
 
-    /*
-    Метод для рассчета гипотенузы по заданию №5
-    На вход принимает 2 катета в double
-     */
+
+    public  static int subtracter(int number){
+        return number-21;
+    }
+
     public static double HypotenuseCalculator(double cathetus1, double cathetus2){
         return Math.sqrt( Math.pow(cathetus1, 2.0) + Math.pow(cathetus2, 2.0));
     }
@@ -55,5 +56,32 @@ public class Main {
         double side1 = 3.4;
         double side2 = 4.6;
         System.out.println(HypotenuseCalculator(side1, side2));
+
+        //6. Дано натуральное число. Выведите его последнюю цифру.
+        int value = 1003;
+        String valueStr = String.valueOf(value);
+        System.out.println(valueStr.charAt(valueStr.length()-1));
+
+        //7. Дано неотрицательное целое число. Найдите число десятков в его десятичной записи
+        // (т.е. вторую справа цифру его десятичной записи
+        int mainValue = 255026;
+        if (mainValue > 0)
+            System.out.println(mainValue % 100 / 10);
+        else
+            System.out.println("Значение не отрицательно");
+
+        //8. Дано двухзначное число. Найдите число десятков в нем
+        int value8 = 51;
+        System.out.println(value8/10);
+
+        //9. Реализуйте метод, который получает целое число на вход и возвращает разницу между данным числом и 21
+        //Выведите значения на экран с различными целыми числами
+        System.out.println(subtracter(50));
+        System.out.println(subtracter(24));
+        System.out.println(subtracter(21));
+
+
+
+
     }
 }
