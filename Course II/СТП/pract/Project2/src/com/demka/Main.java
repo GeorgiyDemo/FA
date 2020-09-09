@@ -12,7 +12,7 @@ class Matrix {
     int[][] thisMatrix;
 
     /*
-    Конструктор
+    Конструктор по дефолту
      */
     public Matrix(int n, int m) {
         this.thisMatrix = new int[n][m];
@@ -20,6 +20,16 @@ class Matrix {
         this.m = m;
         this.initiliser();
 
+    }
+
+    /*
+    Констуктор при передаче готовой матрицы
+     */
+    public Matrix(int [][] thisMatrix)
+    {
+        this.thisMatrix = thisMatrix;
+        this.n = thisMatrix.length;
+        this.m  = thisMatrix[0].length;
     }
 
     /*
@@ -39,7 +49,6 @@ class Matrix {
     Вывод матрицы на экран
      */
     public void getvalue() {
-        System.out.println("\nИсходная матрица: ");
         for (int i = 0; i < thisMatrix.length; i++) {
             for (int j = 0; j < thisMatrix[i].length; j++) {
                 System.out.print(thisMatrix[i][j] + " ");
@@ -54,7 +63,7 @@ class Matrix {
 
 }
 
-/* TODO Возвращаем экземпляр матрицы
+/*
 Операции с несколькими матрицами
  */
 class MatrixExecuter {
@@ -67,19 +76,23 @@ class MatrixExecuter {
         this.matrix2 = obj2;
     }
 
-    public void summ() {
-
-        System.out.println("\nСумма матриц:");
+    public Matrix summ() {
         if ((matrix1.n != matrix2.n) || (matrix1.m != matrix2.m)) {
             System.out.println("Неправильная размерность матрицы");
+            return null;
         } else {
+
+            int[][] resultMatrix = new int[matrix1.n][matrix1.m];
+
             for (int i = 0; i < matrix1.n; i++) {
                 for (int j = 0; j < matrix1.m; j++) {
                     int result = matrix1.thisMatrix[i][j] + matrix2.thisMatrix[i][j];
-                    System.out.print(result + " ");
+                    resultMatrix[i][j] = result;
                 }
-                System.out.print("\n");
             }
+
+            Matrix obj = new Matrix(resultMatrix);
+            return obj;
         }
     }
 }
@@ -91,12 +104,16 @@ public class Main {
 
         Matrix obj1 = new Matrix(3, 5);
         Matrix obj2 = new Matrix(3, 5);
+        System.out.println("Матрица А:");
         obj1.getvalue();
+        System.out.println("\nМатрица B:");
         obj2.getvalue();
 
         //Сумма матриц
         MatrixExecuter executerObj = new MatrixExecuter(obj1, obj2);
-        executerObj.summ();
+        System.out.println("\nРезультат:");
+        Matrix result = executerObj.summ();
+        result.getvalue();
 
         //Матрица на число
     }
