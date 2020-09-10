@@ -9,32 +9,25 @@ class Matrix {
 
     int n;
     int m;
-    int[][] thisMatrix;
+    double[][] thisMatrix;
 
-    /*
-    Конструктор по дефолту
-     */
+    //Конструктор по дефолту
     public Matrix(int n, int m) {
-        this.thisMatrix = new int[n][m];
+        this.thisMatrix = new double[n][m];
         this.n = n;
         this.m = m;
         this.initiliser();
 
     }
 
-    /*
-    Констуктор при передаче готовой матрицы
-     */
-    public Matrix(int [][] thisMatrix)
-    {
+    //Констуктор при передаче готовой матрицы
+    public Matrix(double[][] thisMatrix) {
         this.thisMatrix = thisMatrix;
         this.n = thisMatrix.length;
-        this.m  = thisMatrix[0].length;
+        this.m = thisMatrix[0].length;
     }
 
-    /*
-    Инициализация матрицы
-     */
+    //Инициализация матрицы
     private void initiliser() {
 
         Random random = new Random();
@@ -51,23 +44,29 @@ class Matrix {
     public void getvalue() {
         for (int i = 0; i < thisMatrix.length; i++) {
             for (int j = 0; j < thisMatrix[i].length; j++) {
-                System.out.print(thisMatrix[i][j] + " ");
+                System.out.printf("%.3f  ",thisMatrix[i][j]);
             }
             System.out.print("\n");
         }
     }
 
-    /* TODO
-    Умножение матрицы на число
-     */
-    /*
-    a.	Сложение и вычитание матриц.
-    b.	Умножение матрицы на число.
-    c.	Произведение двух матриц.
-    d.	Транспонированная матрица.
-    e.	Возведение матрицы в степень.
-     */
 
+    public Matrix numberMultiplication(double inputNumber){
+        double[][] resultMatrix = new double[this.n][this.m];
+
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.m; j++) {
+                double result = this.thisMatrix[i][j] * inputNumber;
+                resultMatrix[i][j] = result;
+            }
+        }
+        return new Matrix(resultMatrix);
+    }
+
+    /* TODO Умножение матрицы на число
+    TODO d.	Транспонированная матрица.
+    TODO e.	Возведение матрицы в степень.
+     */
 
 }
 
@@ -76,6 +75,7 @@ class Matrix {
  */
 class MatrixExecuter {
 
+    //TODO c.	Произведение двух матриц.
     Matrix matrix1;
     Matrix matrix2;
 
@@ -84,23 +84,42 @@ class MatrixExecuter {
         this.matrix2 = obj2;
     }
 
+    //Сумма
     public Matrix summ() {
         if ((matrix1.n != matrix2.n) || (matrix1.m != matrix2.m)) {
             System.out.println("Неправильная размерность матрицы");
             return null;
         } else {
 
-            int[][] resultMatrix = new int[matrix1.n][matrix1.m];
+            double[][] resultMatrix = new double[matrix1.n][matrix1.m];
 
             for (int i = 0; i < matrix1.n; i++) {
                 for (int j = 0; j < matrix1.m; j++) {
-                    int result = matrix1.thisMatrix[i][j] + matrix2.thisMatrix[i][j];
+                    double result = matrix1.thisMatrix[i][j] + matrix2.thisMatrix[i][j];
+                    resultMatrix[i][j] = result;
+                }
+            }
+            return new Matrix(resultMatrix);
+        }
+    }
+
+    //Разность
+    public Matrix difference() {
+        if ((matrix1.n != matrix2.n) || (matrix1.m != matrix2.m)) {
+            System.out.println("Неправильная размерность матрицы");
+            return null;
+        } else {
+
+            double[][] resultMatrix = new double[matrix1.n][matrix1.m];
+
+            for (int i = 0; i < matrix1.n; i++) {
+                for (int j = 0; j < matrix1.m; j++) {
+                    double result = matrix1.thisMatrix[i][j] - matrix2.thisMatrix[i][j];
                     resultMatrix[i][j] = result;
                 }
             }
 
-            Matrix obj = new Matrix(resultMatrix);
-            return obj;
+            return new Matrix(resultMatrix);
         }
     }
 }
@@ -117,13 +136,23 @@ public class Main {
         System.out.println("\nМатрица B:");
         obj2.getvalue();
 
+        double multiNumber = 4.2;
+        System.out.println("\nУмножение матрицы А на число "+multiNumber);
+        Matrix matrixResult = obj1.numberMultiplication(multiNumber);
+        matrixResult.getvalue();
+
+
         //Сумма матриц
         MatrixExecuter executerObj = new MatrixExecuter(obj1, obj2);
-        System.out.println("\nРезультат:");
+        System.out.println("\nСумма:");
         Matrix result = executerObj.summ();
         result.getvalue();
 
-        //Матрица на число
+        //Разность
+        System.out.println("\nРазность:");
+        result = executerObj.difference();
+        result.getvalue();
+
 
     }
 }
