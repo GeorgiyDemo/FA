@@ -1,3 +1,6 @@
+#Запуск перегенерации данных
+python3 generator.py
+echo "---"
 mkdir -p analytics
 for i in {1..10}
 do
