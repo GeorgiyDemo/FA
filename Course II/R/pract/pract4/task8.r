@@ -8,4 +8,3 @@ N = 10
 w <-unlist(strsplit("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ",""))
 result<-sample(w,N)
 print(result)
-
