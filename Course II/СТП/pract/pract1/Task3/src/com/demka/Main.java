@@ -9,39 +9,44 @@
 package com.demka;
 
 class Shape {
-    double volume;
+    private double volume;
 
+    //Получение объёма
     public double getVolume() {
-        return volume;
+        return this.volume;
+    }
+
+    //Установка объёма
+    public void setVolume(double volume) {
+        this.volume = volume;
     }
 }
 
 class Pyramid extends Shape {
-    double s;
-    double h;
+    private double s;
+    private double h;
 
 }
 
 
-/*
-TODO Класс Box является контейнером,
- Нужно добавлять новые фигуры до тех пор, пока для них хватаем места в Box
- (будем считать только объём, игнорируя форму. Допустим, мы переливаем жидкость).
- Если места для добавления новой фигуры не хватает, то метод должен вернуть false.
- */
 class Box extends Shape {
 
-    void Box(double value) {
-        System.out.println("Метод Box");
-    }
 
+    //Добавление фигуры в контейнер
     public boolean add(Shape shape) {
-        return false;
+        if (this.getVolume() < shape.getVolume()) {
+            return false;
+        } else {
+            //Оставшееся свободное место
+            double freeVolume = this.getVolume() - shape.getVolume();
+            this.setVolume(freeVolume);
+            return true;
+        }
     }
 }
 
 class SolidOfRevolution extends Shape {
-    double radius;
+    private double radius;
 
     public double getRadius() {
         return radius;
@@ -50,7 +55,7 @@ class SolidOfRevolution extends Shape {
 }
 
 class Cylinder extends SolidOfRevolution {
-    double height;
+    private double height;
 
 
 }
@@ -63,6 +68,30 @@ class Ball extends SolidOfRevolution {
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
+        // Коробка
+        Box box = new Box();
+        //Максимальный объём коробки
+        box.setVolume(100.5);
+
+        //Шар с объёмом 33.5
+        Ball ball1 = new Ball();
+        ball1.setVolume(33.5);
+
+
+        //Добавляем шар в коробку
+        System.out.println("\nОбъём коробки: " + box.getVolume());
+        boolean result = box.add(ball1);
+        System.out.println("Флаг добавления объекта: " + result);
+        System.out.println("Объём коробки: " + box.getVolume());
+
+        //Добавляем оч объёмный объект в коробку
+        SolidOfRevolution obj = new SolidOfRevolution();
+        obj.setVolume(435);
+        System.out.println("\nОбъём коробки: " + box.getVolume());
+        result = box.add(obj);
+        System.out.println("Флаг добавления объекта: " + result);
+        System.out.println("Объём коробки: " + box.getVolume());
+
+
     }
 }
