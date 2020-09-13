@@ -38,19 +38,18 @@ class Matrix {
         }
     }
 
-    /*
-    Вывод матрицы на экран
-     */
+
+    //Вывод матрицы на экран
     public void getvalue() {
         for (int i = 0; i < thisMatrix.length; i++) {
             for (int j = 0; j < thisMatrix[i].length; j++) {
-                System.out.printf("%.3f  ",thisMatrix[i][j]);
+                System.out.printf("%.2f  ", thisMatrix[i][j]);
             }
             System.out.print("\n");
         }
     }
 
-
+    //Умножение матрицы на число
     public Matrix numberMultiplication(double inputNumber){
         double[][] resultMatrix = new double[this.n][this.m];
 
@@ -63,11 +62,35 @@ class Matrix {
         return new Matrix(resultMatrix);
     }
 
-    /* TODO Умножение матрицы на число
-    TODO d.	Транспонированная матрица.
-    TODO e.	Возведение матрицы в степень.
-     */
+    //Вычисление транспонированной матрицы
+    public Matrix transpose() {
 
+        double[][] resultMatrix = new double[this.m][this.n];
+        for (int i = 0; i < this.n; i++)
+            for (int j = 0; j < this.m; j++)
+                resultMatrix[j][i] = thisMatrix[i][j];
+        return new Matrix(resultMatrix);
+    }
+
+    //Возведение в степень
+    public Matrix exponentiation(int N) {
+
+        if (this.n != this.m) {
+            System.out.println("Необходима квадратная матрица для ее возведения в степень!");
+            return null;
+        }
+
+        Matrix newMatrix = this;
+        Matrix currentMatrix = this;
+
+        int currentN = 1;
+        while (currentN < N) {
+            MatrixExecuter obj = new MatrixExecuter(newMatrix, currentMatrix);
+            newMatrix = obj.composition();
+            currentN++;
+        }
+        return newMatrix;
+    }
 }
 
 /*
@@ -75,13 +98,31 @@ class Matrix {
  */
 class MatrixExecuter {
 
-    //TODO c.	Произведение двух матриц.
     Matrix matrix1;
     Matrix matrix2;
 
     public MatrixExecuter(Matrix obj1, Matrix obj2) {
         this.matrix1 = obj1;
         this.matrix2 = obj2;
+    }
+
+    //Произведение
+    public Matrix composition() {
+
+        if (matrix1.m != matrix2.n) {
+            System.out.println("Кол-во столбцов матрицы != кол-ву строк");
+            return null;
+        }
+        double[][] resultMatrix = new double[matrix1.n][matrix2.m];
+
+        for (int i = 0; i < matrix1.n; i++) {
+            for (int j = 0; j < matrix2.m; j++) {
+                for (int k = 0; k < matrix1.m; k++) {
+                    resultMatrix[i][j] += matrix1.thisMatrix[i][k] * matrix2.thisMatrix[k][j];
+                }
+            }
+        }
+        return new Matrix(resultMatrix);
     }
 
     //Сумма
@@ -136,23 +177,54 @@ public class Main {
         System.out.println("\nМатрица B:");
         obj2.getvalue();
 
-        double multiNumber = 4.2;
-        System.out.println("\nУмножение матрицы А на число "+multiNumber);
-        Matrix matrixResult = obj1.numberMultiplication(multiNumber);
-        matrixResult.getvalue();
+        System.out.println("\nТранспонированная матрца A:");
+        Matrix transposed_obj1 = obj1.transpose();
+        transposed_obj1.getvalue();
+        System.out.println("\nТранспонированная матрца B:");
+        Matrix transposed_obj2 = obj2.transpose();
+        transposed_obj2.getvalue();
 
+        double multiNumber = 4.2;
+        System.out.println("\nУмножение матрицы А на число " + multiNumber);
+        Matrix result = obj1.numberMultiplication(multiNumber);
+        if (result != null)
+            result.getvalue();
 
         //Сумма матриц
         MatrixExecuter executerObj = new MatrixExecuter(obj1, obj2);
         System.out.println("\nСумма:");
-        Matrix result = executerObj.summ();
-        result.getvalue();
+        result = executerObj.summ();
+        if (result != null)
+            result.getvalue();
 
         //Разность
         System.out.println("\nРазность:");
         result = executerObj.difference();
-        result.getvalue();
+        if (result != null)
+            result.getvalue();
 
+        //Другая размерность матриц для произведения
+        Matrix obj3 = new Matrix(2, 3);
+        Matrix obj4 = new Matrix(3, 2);
+        System.out.println("\nМатрица C:");
+        obj3.getvalue();
+        System.out.println("\nМатрица D:");
+        obj4.getvalue();
+        executerObj = new MatrixExecuter(obj3, obj4);
+        System.out.println("\nПроизведение C*D:");
+        result = executerObj.composition();
+        if (result != null)
+            result.getvalue();
+
+        //Возведение квадратной матрицы в степень
+        int N = 3;
+        Matrix obj5 = new Matrix(2, 2);
+        System.out.println("\nМатрица E:");
+        obj5.getvalue();
+        System.out.println("\nМатрица E в степени " + N);
+        result = obj5.exponentiation(N);
+        if (result != null)
+            result.getvalue();
 
     }
 }
