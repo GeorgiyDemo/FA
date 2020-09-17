@@ -1,0 +1,117 @@
+    1  rm .bash_history 
+    2  ls
+    3  history 
+    4  ls && ls -al 
+    5  pwd
+    6  cd /
+    7  ls */ > /home/georgiydemo/filelist.lst
+    8  sudo ls */ > /home/georgiydemo/filelist.lst
+    9  cd
+   10  ls
+   11  cat filelist.lst 
+   12  ls -alr
+   13  ls -alR
+   14  cd 
+   15  ls
+   16  mkdir src
+   17  mkdir dst
+   18  mkdir temp
+   19  rm -rf tmp
+   20  cd src/
+   21  touch f1 && cat /dev/random >> f1
+   22  cat f1 
+   23  ls
+   24  echo "NEW DATA" > f1 
+   25  cd ../
+   26  ls
+   27  touch user.txt
+   28  touch root.txt
+   29  touch stud.txt
+   30  ls
+   31  cp *.txt src/
+   32  rm *.txt
+   33  cd src/
+   34  ls
+   35  echo 1 > root.txt 
+   36  echo 2 > stud.txt 
+   37  echo 3 > user.txt 
+   38  cat f1 root.txt stud.txt user.txt 
+   39  ls 
+   40  cd ../dst/ 
+   41  ln ../src/f1 f1_hardlink
+   42  ls
+   43  ln ../src/root.txt root_hardlink
+   44  ln ../src/stud.txt stud_hardlink
+   45  ln ../src/user.txt user_hardlink
+   46  ls
+   47  cd 
+   48  ln -s ./src/f1 f1_link
+   49  ln -s ./src/root.txt root_link
+   50  ln -s ./src/stud.txt stud_link
+   51  ln -s ./src/user.txt user_link
+   52  ls
+   53  cat root_link 
+   54  ls -alR
+   55  ls -R
+   56  ls -alR | grep hardlink
+   57  ls -aR
+   58  ls -lR
+   59  cat src/f1 
+   60  cat dst/f1_hardlink 
+   61  cat f1_link 
+   62  tar -czvf archive.tar.gz src/
+   63  ls
+   64  tar -xzvf archive.tar.gz -C /backup
+   65  mkdir backup
+   66  tar -xzvf archive.tar.gz -C /backup
+   67  ls
+   68  ls
+   69  cd ../
+   70  tar -xzvf archive.tar.gz -C ./backup
+   71  cd backup/
+   72  ls
+   73  cd 
+   74  find . -name "*.txt"
+   75  cd src/
+   76  ls
+   77  rm f1 
+   78  ls -aR
+   79  cd ../
+   80  ls -aR
+   81  ls -lR
+   82  cat f1_link 
+   83  cat dst/f1_hardlink 
+   84  rm -rf dst/
+   85  mv temp/ src/
+   86  rm -rf src/
+   87  cat /etc/fstab 
+   88  cat /etc/fstab | grep swapfile
+   89  cat /etc/fstab | grep dev
+   90  cat /etc/fstab 
+   91  history
+   92  cat /etc/fstab 
+   93  nano /etc/fstab 
+   94  sudo nano /etc/fstab 
+   95  sudo fdisk -l
+   96  sudo unmount /dev/sdb
+   97  sudo umount /dev/sdb
+   98  sudo mount /dev/sdb /home/usb
+   99  mkdir usb
+  100  sudo mount /dev/sdb /home/usb
+  101  ls
+  102  sudo mount  /home/usb /dev/sdb
+  103  sudo mount /dev/sdb /home/georgiydemo/usb/
+  104  sudo umount /dev/sdb
+  105  sudo fdisk -l
+  106  sudo umount /dev/sdb2
+  107  sudo mount /dev/sdb2 /home/georgiydemo/usb/
+  108  cd usb/
+  109  ls
+  110  cd ../
+  111  mkdir usb2
+  112  sudo umount /dev/sdb2
+  113  sudo mount /dev/sdb2 /home/georgiydemo/usb2/
+  114  cd usb2/
+  115  ls
+  116  cd ../
+  117  history > RESULT_LAST
