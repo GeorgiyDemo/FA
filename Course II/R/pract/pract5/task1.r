@@ -6,56 +6,43 @@
 "
 
 {
-  N <- as.integer(readline("Введите число -> "))
+  number <- as.integer(readline("Введите число -> "))
+  year <- number %/% 360 + 1
+  number <- number %% 360
+  month <- (number %/% 30) + 1
+  day <- number %% 7
+  monthwrite <- switch(
+    month,
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь"
+  )
+  daywrite <- switch (
+    day,
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+    "Воскресенье"
+  )
   
-  #Вектора с именами
-  days_names <-
-    c("Понедельник",
-      "Вторник",
-      "Среда",
-      "Четверг",
-      "Пятница",
-      "Суббота",
-      "Воскресенье")
-  month_names <-
-    c(
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь"
-    )
-  
-  #Дни
-  if (N < 8) {
-    day_name <- days_names[N]
-  } else {
-    number <- N %% 7
-    if (number == 0)
-      number = 7
-    day_name <- days_names[number]
-  }
-  
-  #Месяцы
-  if (N < 13) {
-    month_name <- month_names[N]
-  } else {
-    number <- N %% 12
-    if (number == 0)
-      number = 12
-    month_name <- month_names[number]
-  }
-  
-  #Года
-  year_name <- N %% 360
-  
-  
-  print(paste("Введенное значение N соответствует", day_name, month_name, year_name, "год"))
+  print(paste(
+    "Введенное значение N соответствует",
+    day ,
+    daywrite,
+    monthwrite,
+    year,
+    "год"
+  ))
 }
