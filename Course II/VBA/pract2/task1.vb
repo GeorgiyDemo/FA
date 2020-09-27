@@ -1,21 +1,18 @@
 'Заданы целые числа. a, b, c. Вычислить значение выражения
 Option Explicit
 Sub MAIN()
-    Dim x, y, z As Integer
-    Dim result1, result2, first_part, second_part As Double
+
+    Dim a, b, x As Integer
+    Dim s, k As Double
     
-    x = Val(InputBox("Введите X"))
-    y = Val(InputBox("Введите Y"))
-    z = Val(InputBox("Введите Z"))
+    a = Val(InputBox("Введите a"))
+    b = Val(InputBox("Введите b"))
+    x = Val(InputBox("Введите x"))
     
-    first_part = z * Sqr(x) - y ^ 2 * x ^ (1 / 3)
-    second_part = (x + 0.5) ^ (1 / 5)
-    result1 = first_part / second_part
+    s = 1 + Tan(x / (1 + Sqr(x)))
+    k = 3 * Cos(a) + b / 7
     
-    result2 =cos(
-    
-    
-    MsgBox "Результат выражения №1: " & CStr(result1)
-    MsgBox "Результат выражения №2: " & CStr(result2)
+    MsgBox "Результат выражения №1" + vbCrLf + "s=" + CStr(s)
+    MsgBox "Результат выражения №2" + vbCrLf + "k=" + CStr(k)
     
 End Sub
