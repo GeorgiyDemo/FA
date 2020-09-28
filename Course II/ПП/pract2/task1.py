@@ -18,6 +18,7 @@ def sgn(x):
 
 
 def processing(canvas, a, b, n):
+    """Метод отрисовки суперэллипса"""
     na = 2 / n
     # defining the accuracy
     step = 1000
@@ -41,25 +42,47 @@ def processing(canvas, a, b, n):
 
     else:
         print("Точки не совпадают")
-    # plt.plot(xp, yp) # plotting all point from array xp, yp
+
+#TODO
+def onScale(number):
+    """Обработка ползунка"""
+    print(number)
+    #c - canvas
+    #a, b = center_x, center_y
+
+    #processing(c, a, b, n)
 
 
-if __name__ == "__main__":
+def main():
 
     width = 600
     height = 600
     center_x = width // 2
     center_y = height // 2
 
-    root = tk.Tk()
-    c = tk.Canvas(root, width=width, heigh=height)
 
+    root = tk.Tk()
+    #Основной канвас
+    c = tk.Canvas(root, width=width, heigh=height)
+    
+    #Начальное значение n
     n = 0.4
     while n != 2.5:
+        #
         a, b = center_x, center_y
+
         processing(c, a, b, n)
         n = round(n + 0.1, 1)
         break
-    c.pack()
+    
+    #Распаковка канваса
+    c.pack(fill=tk.BOTH, expand=1)
+    #Распаковка ползунка
+    scale = tk.Scale(root, from_=0.35, to=2.75, digits = 3, resolution = 0.01, command=onScale, orient=tk.HORIZONTAL)
+    scale.pack(side=tk.LEFT, padx=5)
 
     root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
