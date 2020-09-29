@@ -2,13 +2,17 @@ package sample;
 
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 
 public class Main extends Application  {
@@ -17,7 +21,6 @@ public class Main extends Application  {
     Обработка нажатия на Button
      */
     public void buttonClick(String data){
-
         System.out.println(data);
 
     }
@@ -27,27 +30,13 @@ public class Main extends Application  {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Операции над векторами");
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("./mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
 
-        TextField textField = new TextField();
-        Button button = new Button("Ввод");
-        button.setOnAction(action -> {
-            buttonClick(textField.getText());
-        });
-        Label label = new Label("ПРИМЕР");
-        label.setAlignment(Pos.CENTER);
-
-        HBox hbox = new HBox(textField, button, label);
-
-
-        //Сцена
-        Scene scene = new Scene(hbox, 300, 300);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-
-
-
     }
 
     public static void main(String[] args) {
