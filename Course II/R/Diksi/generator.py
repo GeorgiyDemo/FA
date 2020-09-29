@@ -3,23 +3,33 @@
 import os
 from random import randint
 
+
 def data_generator():
     """Генератор данных для магазина"""
 
-    day_list = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    day_list = [
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница",
+        "Суббота",
+        "Воскресенье",
+    ]
     infile_str = '"День.недели" "Поставки"\n'
     outfile_str = infile_str
 
     for day in day_list:
-        infile_value = randint(100,1000)
+        infile_value = randint(100, 1000)
         infile_str += '"{}" {}\n'.format(day, infile_value)
-        outfile_value = randint(int(infile_value/4),infile_value)
+        outfile_value = randint(int(infile_value / 4), infile_value)
         outfile_str += '"{}" {}\n'.format(day, outfile_value)
     return infile_str, outfile_str
-    
+
+
 def main():
 
-    dir_list = list(range(1,11))
+    dir_list = list(range(1, 11))
 
     for shop in dir_list:
         print("Перегенерация данных для магазина №{}".format(shop))
