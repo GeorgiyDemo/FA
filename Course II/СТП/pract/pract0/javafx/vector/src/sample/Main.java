@@ -24,7 +24,7 @@ public class Main extends Application  {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("./mainScene.fxml"));
-        MainSceneController controller = loader.getController();
+        Controller controller = loader.getController();
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root));

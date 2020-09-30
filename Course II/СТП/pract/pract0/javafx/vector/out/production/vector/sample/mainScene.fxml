@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainSceneController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -47,16 +47,61 @@
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label alignment="CENTER" layoutX="223.0" layoutY="23.0" style="&#10;" text="Задание №2. Вектора" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                <Label alignment="CENTER" layoutX="223.0" layoutY="14.0" style="&#10;" text="Задание №2. Вектора" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="14.0" layoutY="83.0" text="Введите элементы вектора №1 (x,y,z)" />
-                <Button layoutX="14.0" layoutY="228.0" mnemonicParsing="false" text="Ввод" onAction="#buttonHandler"/>
-                <TextField layoutX="14.0" layoutY="109.0" />
-                <Label layoutX="14.0" layoutY="155.0" text="Введите элементы вектора №2 (x,y,z)" />
-                <TextField layoutX="14.0" layoutY="182.0" />
+                <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="50.0" prefHeight="298.0" prefWidth="281.0" text="Ввод">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="15.0" layoutY="24.0" text="Элементы вектора A (x,y,z)" />
+                                <Button id="mainButton" layoutX="17.0" layoutY="211.0" mnemonicParsing="false" onAction="#mainButtonClick" prefHeight="39.0" prefWidth="245.0" text="Ввод" />
+                                <TextField fx:id="vectorATextField" layoutX="14.0" layoutY="61.0" />
+                                <Label layoutX="15.0" layoutY="98.0" text="Элементы вектора B (x,y,z)" />
+                                <TextField fx:id="vectorBTextField" layoutX="14.0" layoutY="135.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </TitledPane>
+                <TitledPane animated="false" collapsible="false" layoutX="310.0" layoutY="50.0" prefHeight="298.0" prefWidth="316.0" text="Вывод">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="lengthALabel" layoutX="15.0" layoutY="17.0" text="Длина вектора A">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                                </Label>
+                                <Label fx:id="lengthBLabel" layoutX="15.0" layoutY="52.0" text="Длина вектора B">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                                <Label fx:id="dotProductLabel" layoutX="15.0" layoutY="87.0" text="Скалярное произведение вектора A и B">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                                <Label fx:id="crossProductLabel" layoutX="15.0" layoutY="122.0" text="Векторное произведение вектора A и B">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                                <Label fx:id="vectorCosLabel" layoutX="15.0" layoutY="157.0" text="Угол между векторами A и B: ">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                                <Label fx:id="summLabel" layoutX="15.0" layoutY="192.0" text="Сумма векторов A и B">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                                <Label fx:id="diffLabel" layoutX="15.0" layoutY="227.0" text="Разность векторов A и B">
+                           <font>
+                              <Font size="12.0" />
+                           </font></Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </TitledPane>
             </children>
         </AnchorPane>
     </children>
