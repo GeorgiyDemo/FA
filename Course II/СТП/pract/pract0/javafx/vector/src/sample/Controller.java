@@ -1,7 +1,7 @@
 package sample;
 
-import javafx.scene.control.Label;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /*
@@ -36,7 +36,7 @@ class FilterInput{
 
             buffer = v2String.split(",");
             for (int i = 0; i < buffer.length; i++)
-                v1result[i] = Integer.parseInt(buffer[i]);
+                v2result[i] = Integer.parseInt(buffer[i]);
 
             return true;
         }
@@ -71,15 +71,18 @@ public class Controller {
     @FXML
     private  Label lengthBLabel;
     @FXML
-    private  Label dotProductLabel;
+    private Label dotProductLabel;
     @FXML
-    private  Label crossProductLabel;
+    private Label crossProductLabel;
     @FXML
-    private  Label vectorCosLabel;
+    private Label vectorCosLabel;
     @FXML
-    private  Label summLabel;
+    private Label summLabel;
     @FXML
-    private  Label diffLabel;
+    private Label diffLabel;
+    @FXML
+    private Label wrongInputLabel;
+
 
     /*
     Основной обработчик нажатия на button
@@ -93,6 +96,7 @@ public class Controller {
         //Если успешно прошли валидацию данных
         if (filter.Validate()){
 
+            wrongInputLabel.setVisible(false);
             int [] buf1 = filter.getV1result();
             int [] buf2 = filter.getV2result();
 
@@ -111,7 +115,7 @@ public class Controller {
 
         }
         else {
-            System.out.println("Некорректные данные");
+            wrongInputLabel.setVisible(true);
         }
 
 

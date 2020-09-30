@@ -1,6 +1,5 @@
 package sample;
 
-
 import java.util.Random;
 
 public class Vector {
