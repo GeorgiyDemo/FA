@@ -20,7 +20,7 @@ class Vector {
 
     int x;
     int y;
-    int 
+    int z;
 
     //a. Конструктор
     public Vector(int x, int y, int z) {
