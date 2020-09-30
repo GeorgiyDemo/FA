@@ -2,6 +2,7 @@ package sample;
 
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -14,16 +15,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
-
 public class Main extends Application  {
-
-    /*
-    Обработка нажатия на Button
-     */
-    public void buttonClick(String data){
-        System.out.println(data);
-
-    }
 
     /*
     GUI
@@ -31,12 +23,21 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("./mainScene.fxml");
-        loader.setLocation(xmlUrl);
+        loader.setLocation(getClass().getResource("./mainScene.fxml"));
+        MainSceneController controller = loader.getController();
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    /*
+    Обработка нажатия на Button
+     */
+    @FXML
+    public void buttonClick(String data){
+        System.out.println(data);
+
     }
 
     public static void main(String[] args) {
