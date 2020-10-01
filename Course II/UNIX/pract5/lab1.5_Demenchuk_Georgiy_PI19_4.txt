@@ -1,0 +1,152 @@
+    1  ls
+    2  ls -al
+    3  echo "" > .bash_history 
+    4  cat .bash_history 
+    5  ls 
+    6  cat .bash_history 
+    7  cd 
+    8  ls
+    9  history
+   10  echo "Pract 5 Demenchuk Georgiy"
+   11  cat /etc/passwd
+   12  cat /etc/shadow
+   13  sudo cat /etc/shadow
+   14  cat /etc/group
+   15  sudo groupadd workers
+   16  sudo groupadd teachers
+   17  sudo groupadd students
+   18  cat /etc/group
+   19  sudo adduser user_1 --uid=2001
+   20  sudo adduser user_2 --uid=2002
+   21  sudo adduser user_3 --uid=2003
+   22  sudo adduser user_4 --uid=2004
+   23  sudo adduser user_5 --uid=2005
+   24  ls
+   25  cd ../
+   26  ls
+   27  cd 
+   28  ls
+   29  ls 
+   30  nano /etc/groups/
+   31  nano /etc/group
+   32  sudo nano /etc/group
+   33  sudo usermod -a -G students user_3
+   34  sudo usermod -a -G students user_4
+   35  sudo usermod -a -G students user_5
+   36  sudo nano /etc/group
+   37  sudo adduser student --uid=3000
+   38  sudo usermod -a -G students student
+   39  passwd student
+   40  sudo passwd student
+   41  sudo passwd user_1
+   42  sudo passwd user_2
+   43  sudo passwd user_3
+   44  sudo passwd user_4
+   45  sudo passwd user_5
+   46  cd 
+   47  ls
+   48  histroy
+   49  history 
+   50  mkdir library
+   51  mkdir tests
+   52  mkdir labs
+   53  mv library/ labs/
+   54  mv tests/ labs/
+   55  ls
+   56  cd labs/
+   57  ls
+   58  cd library/
+   59  touch book_Demenchuk_N
+   60  touch book_Demenchuk_1
+   61  touch book_Demenchuk_2
+   62  touch book_Demenchuk_3
+   63  touch book_Demenchuk_4
+   64  touch book_Demenchuk_5
+   65  touch book_Demenchuk_6
+   66  ls
+   67  rm book_Demenchuk_N
+   68  cd ../tests/
+   69  touch test_Demenchuk
+   70  ls
+   71  nano test_Demenchuk 
+   72  chmod +x test_Demenchuk 
+   73  ./test_Demenchuk meow
+   74  nano test_Demenchuk 
+   75  ./test_Demenchuk meow
+   76  ./test_Demenchuk meow434tret
+   77  nano test_Demenchuk 
+   78  ./test_Demenchuk 10
+   79  nano test_Demenchuk 
+   80  ls 
+   81  ./test_Demenchuk 100
+   82  nano test_Demenchuk 
+   83  ./test_Demenchuk 100
+   84  userdel user100
+   85  sudo userdel user100
+   86  ./test_Demenchuk 100
+   87  ./test_Demenchuk 1000
+   88  cat test_Demenchuk 
+   89  ./test_Demenchuk 500
+   90  nano test_Demenchuk 
+   91  userdel user1000
+   92  sudo userdel user1000
+   93  sudo userdel user500
+   94  sudo userdel user100
+   95  ./test_Demenchuk 100
+   96  nano test_Demenchuk 
+   97  sudo userdel user100
+   98  ./test_Demenchuk 100
+   99  chmod -x test_Demenchuk 
+  100  chmod u+x test_Demenchuk 
+  101  ls
+  102  nano test_Demenchuk 
+  103  ./test_Demenchuk 1000
+  104  nano test_Demenchuk 
+  105  ./test_Demenchuk 999
+  106  nano test_Demenchuk 
+  107  nano test_Demenchuk 777
+  108  ./test_Demenchuk 777
+  109  nano test_Demenchuk 777
+  110  ./test_Demenchuk 777
+  111  ls 
+  112  sudo chown georgiydemo:students
+  113  sudo chown georgiydemo:students test_Demenchuk 
+  114  ls -al test_Demenchuk 
+  115  chmod g+x test_Demenchuk 
+  116  ls -al
+  117  chmod u-x test_Demenchuk 
+  118  ls -al test_Demenchuk 
+  119  cd ../
+  120  pwd
+  121  cd && cd /etc/ && ls > /home/georgiydemo/labs/list && cat list
+  122  cd 
+  123* 
+  124  ls
+  125  cat list 
+  126  cd ../
+  127  ls
+  128  mv labs/ /
+  129  sudo mv labs/ /
+  130  cd /
+  131  ls
+  132  cd labs/
+  133  ls
+  134  sudo chown teacher:workers list 
+  135  sudo adduser teacher
+  136  sudo chown teacher:workers list 
+  137  ls -al list 
+  138  chmod o-r list 
+  139  sudo chmod o-r list 
+  140  ls -al list 
+  141  ls g-w list 
+  142  chmod g-w list 
+  143  sudo chmod g-w list 
+  144  ls -al list 
+  145  ls -al
+  146  sudo chown -R georgiydemo:teachers library/
+  147  sudo chown -R georgiydemo:teachers tests/
+  148  ls -al
+  149  sudo chmod 775 library/
+  150  sudo chmod 775 tests/
+  151  ls -al
+  152  history > lab1.5_Demenchuk_Georgiy_PI19_4.txt
