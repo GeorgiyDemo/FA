@@ -6,10 +6,9 @@
 'TODO Валидация данных
 
 'Функция получения минимального и максимального значения по товару
-Function MaxMinPriceGetter(good_name As String) As Variant
+Function MaxMinPriceGetter(good_name As String) As Variant()
     Dim good_maxprice, good_minprice As Double
-    Dim returnArray As Variant
-    ReDim returnArray(1 To 3)
+    Dim returnArray(0 To 1) As Variant
     
     Sheets("Лист2").Select
     Set d2 = Range("A1").CurrentRegion
@@ -39,9 +38,9 @@ Sub AddCorrectionToList3(good_number As String)
     'Определяем ячейку для записи
     x_max = d3.Rows.Count
     
-    MsgBox (Cells(x_max, 1).Value)
-    
+    Cells(x_max + 1, 1) = good_number
     Sheets("Лист1").Select
+    
 End Sub
 
 Sub MAIN()
@@ -68,14 +67,13 @@ Sub MAIN()
         good_name = Cells(x, 2).Value
         good_price = Cells(x, 3).Value
                 
-        MaxMinResult = MaxMinPriceGetter(good_name)
+        MaxMinResult = MaxMinPriceGetter((good_name))
 
         good_maxprice = MaxMinResult(0)
         good_minprice = MaxMinResult(1)
         
         'Если цена товара меньше минимального
         If good_price < good_minprice Then
-            MsgBox ("Меньше минимального")
             'Запись данных на 3 лист
             AddCorrectionToList3 (good_number)
             'Исправление значения
@@ -84,7 +82,6 @@ Sub MAIN()
         
         'Если цена больше максимального
         If good_price > good_maxprice Then
-            MsgBox ("Больше максимального")
             'Запись данных на 3 лист
             AddCorrectionToList3 (good_number)
             'Исправление значения
