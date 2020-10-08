@@ -9,8 +9,6 @@ from math import sin, cos, pi
 # Начальные позиции
 width = 600
 height = 600
-center_x = width // 2
-center_y = height // 2
 root = tk.Tk()
 # Основной канвас
 c = tk.Canvas(root, width=width, heigh=height)
@@ -42,7 +40,7 @@ def sign(x):
 def processing(canvas, n):
     """Метод отрисовки суперэллипса"""
 
-    a, b = center_x, center_y
+    a, b = width // 2, height // 2
     na = 2 / n
 
     # шаг отрисовки точек-овалов. если лагает - исправить на меньший коэфф
@@ -52,7 +50,7 @@ def processing(canvas, n):
     yp = []
 
     t = 0
-    for t1 in range(step + 1):
+    for _ in range(step + 1):
 
         # т.к sin ^ n(x)  математически это то же самое, что (sin(x))^n...
         x = (abs((cos(t))) ** na) * a * sign(cos(t))
