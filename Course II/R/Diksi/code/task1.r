@@ -7,6 +7,11 @@ getwd()
 setwd("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/analytics")
 dir()
 
+#Параметры
+P <- 5000
+P_supply <- 650
+P_until <-  300
+
 #Ввод входных данных
 in1 <- read.table(file = "store1_in.txt", head = TRUE)
 in2 <- read.table(file = "store2_in.txt", head = TRUE)
@@ -31,27 +36,25 @@ out8 <- read.table(file = "store8_out.txt", head = TRUE)
 out9 <- read.table(file = "store9_out.txt", head = TRUE)
 out10 <- read.table(file = "store10_out.txt", head = TRUE)
 
-#Параметры
-P <- 8000
-P_supply <- 5500
-P_until <-  400
+#Выручка
 rev <- rep(0, 12)
+#Прибыль
 profit <- rep(0, length(rev))
 
 #Столбец B с названиями
 res.tab <-
   data.frame(
     " " = c(
-      "Магазин 1",
-      "Магазин 2",
-      "Магазин 3",
-      "Магазин 4",
-      "Магазин 5",
-      "Магазин 6",
-      "Магазин 7",
-      "Магазин 8",
-      "Магазин 9",
-      "Магазин 10",
+      "shop1",
+      "shop2",
+      "shop3",
+      "shop4",
+      "shop5",
+      "shop6",
+      "shop7",
+      "shop8",
+      "shop9",
+      "shop10",
       "Итого",
       "Среднее"
     ),

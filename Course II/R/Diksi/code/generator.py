@@ -34,9 +34,9 @@ def main():
     for shop in dir_list:
         print("Перегенерация данных для магазина №{}".format(shop))
         in_file, out_file = data_generator()
-        with open("./shop{}/in.txt".format(shop), "w") as f:
+        with open("../shop{}/in.txt".format(shop), "w") as f:
             f.write(in_file)
-        with open("./shop{}/out.txt".format(shop), "w") as f:
+        with open("../shop{}/out.txt".format(shop), "w") as f:
             f.write(out_file)
 
 
