@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="68ECDBAC-7128-8B9F-DEED-47A9430F6295" name="AUTHOR">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 11:21:20 UTC</createdTime>
+<ownerDesignName>Pract0</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="E37DB78A-ADE7-897A-8B4D-983C544B85B5">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 11:21:29 UTC</createdTime>
+<ownerDesignName>Pract0</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NAME" id="283951D4-9E89-0A84-1778-64257D6CD482">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 11:21:43 UTC</createdTime>
+<ownerDesignName>Pract0</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="BOOK_ID" id="9C9E408E-A770-DA6C-39BF-70DC09A97AB4">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 11:26:30 UTC</createdTime>
+<generatorID>E5118CEA-78F2-5962-D815-4C12B58378D7</generatorID>
+<ownerDesignName>Pract0</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<referedAttribute>C4574429-F125-82E3-B55D-E1496C9257D9</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1AB806B0-A813-E7D8-E6D4-78F257921BF4" name="AUTHOR PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 11:21:39 UTC</createdTime>
+<ownerDesignName>Pract0</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E37DB78A-ADE7-897A-8B4D-983C544B85B5</attributeRef>
+<attributeRef>9C9E408E-A770-DA6C-39BF-70DC09A97AB4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
