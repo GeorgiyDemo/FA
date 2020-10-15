@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4C56801B-3404-6F91-2027-BE53E8EB3DC5" name="BOOK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:35:58 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="BOOK_ID" id="EDCF6B13-AB55-76D6-0730-C44ACDA8DBDC">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:37:13 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TITLE" id="60912934-9681-8132-EE41-D1E4718FFFF5">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:39:43 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PUBLISHER_ID" id="4D253F34-49BE-1ED8-110B-7EE32F59A29E">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:40:26 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="AUTHOR_ID" id="DC947684-2B8B-BAB8-38FA-5E5F53CC31F2">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:42:52 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="085DD260-1E11-B193-9F80-32BC8A9C1613">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 10:04:44 UTC</createdTime>
+<generatorID>D2ECAE1F-8370-0273-037F-5D391689E157</generatorID>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<referedAttribute>9BDACB80-7BBC-3004-E748-B4565AF4F8DA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3AB1946A-DFE3-4932-BDA0-3FF9CA7530A9" name="BOOK PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:49:55 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EDCF6B13-AB55-76D6-0730-C44ACDA8DBDC</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="75031F51-AC6C-FFAE-6B42-912F3D6E32C1" name="BOOK TITLE ID">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-15 09:55:57 UTC</createdTime>
+<ownerDesignName>Pract1</ownerDesignName>
+<engineerTo>
+<item key="E53B6E5F-9282-53DC-0DD7-0B4676B63262" value="true"/>
+</engineerTo>
+<newElementsIDs>60912934-9681-8132-EE41-D1E4718FFFF5</newElementsIDs>
+<usedAttributes>
+<attributeRef>60912934-9681-8132-EE41-D1E4718FFFF5</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
