@@ -1,55 +1,28 @@
-    1  history 
+    1  history
     2  rm .bash_history 
-    3  history 
-    4  echo "Pract 6. Georgiy Demenchuk"
-    5  man ps
-    6  ps
-    7  top
-    8  htop
-    9  top
-   10  ps
-   11  top
-   12  kill -15 3752
-   13  ps
-   14  top
-   15  htop
-   16  find / *.html
-   17  man bash
-   18  top
-   19  ps
-   20  ps | grep man
-   21  kill -15 2077
-   22  kill -15 7319
-   23  top
-   24  htop
-   25  kill -15 8479
-   26  kill -15 8465
-   27  jobs
-   28  fg 3
-   29  fg %3
-   30  jobs
-   31  fg %1
-   32  jobs
-   33  kill -9 %2
-   34  jobs
-   35  bg %1
-   36  bg %2
-   37  htop
-   38  ps -aux | less
-   39  kill -9 8530
-   40  history > result
-   41  cat result 
-   42  top
-   43  ps -aux --sort mem | less
-   44  ps -aux --sort -%mem | less
-   45  ps -aux --sort -%cpu | less
-   46  history > result
-   47  ps -aux --sort -rss | less
-   48  ps -aux --sort -vsz | less
-   49  jobs
-   50  history > result
-   51  cat history
-   52  cat result 
-   53  ps -aux | grep init
-   54  ls 
-   55  history > result
+    3  history
+    4  rm .bash_history 
+    5  history
+    6  man ps
+    7  ps --less
+    8  history
+    9  ps
+   10  ps -aux --sort mem | less
+   11  ps -aux --sort -%mem | less
+   12  ps -aux --sort -%cpu | less
+   13  ps -aux --sort | grep init
+   14  ps -aux | grep init
+   15  ps -aux | grep nano
+   16  kill -15 1396 1399
+   17  top
+   18  find / *.html
+   19  man bash
+   20  jobs
+   21  fg %5
+   22  ps -aux | grep find
+   23  kill -9 1417
+   24  ps -aux | grep find
+   25  kill -9 1439
+   26  ps -aux | grep find
+   27  ls
+   28  history > Georgiy_Demenchuk_result
