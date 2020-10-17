@@ -1,5 +1,6 @@
 #install.packages('rJava', type='mac.binary')
 #install.packages('xlsx', type='mac.binary')
+{
 library("xlsx")
 
 #Цена продукта, который мы продаём
@@ -44,7 +45,7 @@ for (i in 1:10){
   out1 <- read.table(file = paste0('store',as.character(i),'_out.txt'), head = TRUE)
   
   # Название магазина
-  shop_names <- append(shop_names, paste0('store',as.character(i)))
+  shop_names <- append(shop_names, paste0('shop',as.character(i)))
   
   # Списание
   buf_writeoff <- sum(in1[, 2]) - sum(out1[, 2])
@@ -79,13 +80,10 @@ for (i in 1:10){
   shop_sales_mindays <- append(shop_sales_mindays, out1[which.min(out1[, 2]), 1])
   
   # Списание макс
-  shop_writeoff_max <- append(shop_writeoff_max,c(in1[, 2] - out1[, 2]))
+  shop_writeoff_max <- append(shop_writeoff_max,max(c(in1[, 2] - out1[, 2])))
 
   # День списания макс
   shop_writeoff_maxdays <- append(shop_writeoff_maxdays, in1[which.max(c(in1[, 2] - out1[, 2])), 1])
-  
-  print("ВЫПОЛНИЛИСЬ N РАЗ")
-  print(i)
 }
 
 
@@ -93,7 +91,7 @@ for (i in 1:10){
 table <- data.frame(shop_names,shop_revenues,shop_profits,shop_sales ,shop_writeoffs,shop_sr,shop_sales_max,shop_sales_maxdays,shop_sales_min,shop_sales_mindays,shop_writeoff_max,shop_writeoff_maxdays)
 
 #Проставляем заголовки
-col_headings <- c("Магазин" ,"Выручка (руб)" ,"Прибыль","Реализация" ,"Списание, конт.","Равномерность продаж" ,"Продажи макс","День продажи макс", "Продажи мин","День продажи мин" ,"Списание макс","День макс списания")
+col_headings <- c("Магазин" ,"Выручка, руб" ,"Прибыль","Реализация" ,"Списание, конт.","Равномерность продаж" ,"Продажи макс","День продажи макс", "Продажи мин","День продажи мин" ,"Списание макс","День макс списания")
 names(table) <- col_headings
 
 # Запись в .csv
@@ -112,3 +110,4 @@ write.xlsx(table,
            file = "/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/таблица.xlsx",
            sheetName = "DATA",
            append = FALSE)
+}
