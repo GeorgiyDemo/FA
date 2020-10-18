@@ -20,7 +20,7 @@ Sub MAIN()
     End If
     
     'Вычисляем y
-    y = Exp(1) ^ z + 3.5 - Cos(x * z) ^ 3
+    y = Exp(z) + 3.5 - Cos(x * z) ^ 3
     'Вывод данных
     MsgBox ("Результат: y = " + CStr(y) + vbCrLf + "Выполнилось условие №" + CStr(way))
 
