@@ -1,7 +1,7 @@
 #Максимальное число попыток, чтоб сгенерировать данные
 MAX_TRY <- 10000
 #Уровень продаж в процентах
-SALE_LEVEL <- 85
+SALE_LEVELS <- c(85,75,20,60,36,55,95,64,35,50)
 
 #Генерация поставок
 generate.in <- function(nDays = 7, min = 50, max= 120){
@@ -43,7 +43,7 @@ generate.out <- function(data.in, saleLevel = 50){
     dataIn <- generate.in(nDays=7,min=40, max=150)
     
     #генерируем продажи
-    dataOut <-generate.out(dataIn,saleLevel = SALE_LEVEL)
+    dataOut <-generate.out(dataIn,saleLevel = SALE_LEVELS[i])
     
     #Закидываем во фрейм поставок
     in.tabl <- data.frame("День недели" = a, "Поставки" = dataIn)
