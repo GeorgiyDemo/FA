@@ -3,11 +3,12 @@
 {
 library("xlsx")
 
-#Цена продукта, который мы продаём
-PRODUCT_PRICE <- 500
-#цена поставки
-SUPPLY_PRICE <- 65
-UNTIL_PRICE <- 30
+#Цена продажи
+PRODUCT_PRICE <- 8000
+#Цена поставки
+SUPPLY_PRICE <- 5000
+#Цена утилизации
+UTIL_PRICE <- 400
 
 #Устанавливаем директорию
 setwd("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/analytics")
@@ -56,7 +57,7 @@ for (i in 1:10){
   shop_revenues <- append(shop_revenues, buf_shoprevenue)
   
   # Затраты
-  buf_cost <- (sum(in1[, 2]) * SUPPLY_PRICE) + (buf_writeoff * UNTIL_PRICE)
+  buf_cost <- (sum(in1[, 2]) * SUPPLY_PRICE) + (buf_writeoff * UTIL_PRICE)
   
   # Прибыль
   shop_profits <- append(shop_profits, buf_shoprevenue - buf_cost)
@@ -86,6 +87,19 @@ for (i in 1:10){
   shop_writeoff_maxdays <- append(shop_writeoff_maxdays, in1[which.max(c(in1[, 2] - out1[, 2])), 1])
 }
 
+#Высчитываем итог и среднее для выручки, прибыли, реализации, списании, равномерности
+shop_names <-c(shop_names, c("Итог", "Среднее"))
+shop_revenues <- c(shop_revenues, c(sum(shop_revenues), mean(shop_revenues)))
+shop_profits <- c(shop_profits, c(sum(shop_profits), mean(shop_profits)))
+shop_sales <- c(shop_sales, c(sum(shop_sales), mean(shop_sales)))
+shop_writeoffs <- c(shop_writeoffs, c(sum(shop_writeoffs), mean(shop_writeoffs)))
+shop_sr <- c(shop_sr, c(sum(shop_sr), mean(shop_sr)))
+shop_sales_max <- c(shop_sales_max, c("",""))
+shop_sales_maxdays <- c(shop_sales_maxdays, c("",""))
+shop_sales_min <- c(shop_sales_min, c("",""))
+shop_sales_mindays <- c(shop_sales_mindays, c("",""))
+shop_writeoff_max <- c(shop_writeoff_max, c("",""))
+shop_writeoff_maxdays <- c(shop_writeoff_maxdays, c("",""))
 
 #Формируем датафрейм
 table <- data.frame(shop_names,shop_revenues,shop_profits,shop_sales ,shop_writeoffs,shop_sr,shop_sales_max,shop_sales_maxdays,shop_sales_min,shop_sales_mindays,shop_writeoff_max,shop_writeoff_maxdays)
@@ -109,5 +123,7 @@ write.table(
 write.xlsx(table,
            file = "/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/таблица.xlsx",
            sheetName = "DATA",
+           col.names = TRUE,
+           row.names = FALSE,
            append = FALSE)
 }
