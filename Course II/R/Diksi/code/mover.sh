@@ -1,7 +1,6 @@
 #Запуск перегенерации данных
-python3 generator.py
 echo "---"
-mkdir -p analytics
+mkdir -p ../analytics
 for i in {1..10}
 do
    echo "Переместили данные магазина №$i"
