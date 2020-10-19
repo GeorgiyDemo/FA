@@ -5,7 +5,7 @@ SALE_LEVELS <- c(85,75,20,60,36,55,95,64,35,50)
 
 #Генерация поставок
 generate.in <- function(nDays = 7, min = 50, max= 120){
-  return(as.integer(runif(n=nDays, min=min,max=max)))
+  return(floor((runif(nDays) * ((max - min) + 1)) + min))
 }
 
 #Генерация продаж
@@ -18,7 +18,7 @@ generate.out <- function(data.in, saleLevel = 50){
     
     data.out <- 0
     for(i in 1:length(data.in)){
-      data.out[i] <- as.integer(runif(n=1,min=0,max=data.in[i]))
+      data.out[i]  <- floor((runif(1) * ((data.in[i] - 0) + 1)) + 0)
     }
     
     sum.out <- sum(data.out)
@@ -31,7 +31,6 @@ generate.out <- function(data.in, saleLevel = 50){
   
   return(data.out)
 }
-
 
 {
   a <- c("Понедельник", "Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье")
