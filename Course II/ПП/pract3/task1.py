@@ -8,14 +8,17 @@
 """
 
 import tkinter as tk
+from tkinter import ttk
 
 # Начальные позиции
 width = 750
 height = 750
 root = tk.Tk()
+checkbox_flag = tk.BooleanVar()
 
 # Основной канвас
 c = tk.Canvas(root, width=width, heigh=height)
+#Список всех линий, чтоб их удалять
 alllines_list = []
 
 class PointF:
@@ -53,11 +56,13 @@ def Fractal(p1, p2, p3, iter, buflines_list=[]):
     
     if iter > 0:
 
-        print(buflines_list)
-        if len(buflines_list) != 0:
-            for line in buflines_list:
-                c.delete(line)
-            buflines_list = []
+        #Если отключено полное построение, то удаляем линии с предыдущей итерации
+        if not checkbox_flag.get():
+            if len(buflines_list) != 0:
+                for line in buflines_list:
+                    c.delete(line)
+                buflines_list = []
+
 
         p4 = PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3)
         p5 = PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3)
@@ -66,16 +71,20 @@ def Fractal(p1, p2, p3, iter, buflines_list=[]):
         ps = PointF((p2.X + p1.X) / 2, (p2.Y + p1.Y) / 2)
         pn = PointF((4 * ps.X - p3.X) / 3, (4 * ps.Y - p3.Y) / 3)
         
-        #рисуем его
-
+        #Рисуем линии
         line1 = c.create_line(p4.X,p4.Y, pn.X, pn.Y,fill="white")
         line2 = c.create_line(p5.X,p5.Y, pn.X, pn.Y, fill="white")
         line3 = c.create_line(p4.X,p4.Y, p5.X, p5.Y, fill="white")
 
-        buflines_list.extend([line1,line2,line3])
+        #Добавляем в список всех линий, которые потом удалим в Drawer
         alllines_list.extend([line1,line2,line3])
 
-        #рекурсивно вызываем функцию нужное число раз
+        #Если не включено полное построение
+        if not checkbox_flag.get():
+            #Добавляем временные линии, которые потом удалим в Fractal
+            buflines_list.extend([line1,line2,line3])
+
+        #Рекурсивно вызываем эту же функцию нужное число раз
         Fractal(p4, pn, p5, iter - 1, buflines_list)
         Fractal(pn, p5, p4, iter - 1, buflines_list)
         Fractal(p1, p4, PointF((2 * p1.X + p3.X) / 3, (2 * p1.Y + p3.Y) / 3), iter - 1, buflines_list)
@@ -86,7 +95,6 @@ def Fractal(p1, p2, p3, iter, buflines_list=[]):
 
 def scale_processing(number):
     """Обработка значения ползунка"""
-
     number = int(number)
     Draw(number)
 
@@ -101,12 +109,15 @@ def main():
     scale = tk.Scale(
         root,
         from_=0,
-        to=6,
+        to=5,
         command=scale_processing,
         orient=tk.HORIZONTAL,
     )
 
     scale.pack(side=tk.LEFT, padx=5)
+    checkbox_flag.set(0)
+    checkbox = ttk.Checkbutton(text="Полное построение", variable=checkbox_flag,onvalue=1, offvalue=0)
+    checkbox.pack(side=tk.LEFT)
 
     root.mainloop()
 
