@@ -6,15 +6,13 @@
 Реализуйте похожим образом другие известные фрактальные кривые, например, кривую дракона.
 Отрефакторите код таким образом, чтобы алгоритм построения фрактала и логика отрисовки были изолированными частями программы.
 """
-
 import tkinter as tk
-import time
-from math import sin, cos, pi
 
 # Начальные позиции
-width = 600
-height = 600
+width = 750
+height = 750
 root = tk.Tk()
+
 # Основной канвас
 c = tk.Canvas(root, width=width, heigh=height)
 
@@ -24,18 +22,18 @@ class PointF:
         self.X = x
         self.Y = y
 
-def Draw():
+def Draw(number):
 
     #Определим коорднаты исходного треугольника
-    point1 = PointF(200, 200)
-    point2 = PointF(500, 200)
-    point3 = PointF(350, 400)
+    point1 = PointF(66, 559)
+    point2 = PointF(694, 559)
+    point3 = PointF(380, 14)
 
     #Вызываем функцию Fractal для того, чтобы
     #нарисовать три кривых Коха на сторонах треугольника
-    Fractal(point1, point2, point3, 5)
-    Fractal(point2, point3, point1, 5)
-    Fractal(point3, point1, point2, 5)
+    Fractal(point1, point2, point3, number)
+    Fractal(point2, point3, point1, number)
+    Fractal(point3, point1, point2, number)
 
 def Fractal(p1, p2, p3, iter):
 
@@ -49,13 +47,9 @@ def Fractal(p1, p2, p3, iter):
         
         #рисуем его
 
-        c.create_line(p4.X,p4.Y, pn.X, pn.Y)
-        c.create_line(p5.X,p5.Y, pn.X, pn.Y)
-        c.create_line(p4.X,p4.Y, p5.X, p5.Y)
-        
-        #g.DrawLine(pen1, p4, pn)
-        #g.DrawLine(pen1, p5, pn)
-        #g.DrawLine(pen2, p4, p5)
+        c.create_line(p4.X,p4.Y, pn.X, pn.Y,fill="white")
+        c.create_line(p5.X,p5.Y, pn.X, pn.Y, fill="white")
+        c.create_line(p4.X,p4.Y, p5.X, p5.Y, fill="white")
         
         #рекурсивно вызываем функцию нужное число раз
         Fractal(p4, pn, p5, iter - 1)
@@ -66,22 +60,30 @@ def Fractal(p1, p2, p3, iter):
     else:
         return iter
 
-
-
-
+def scale_processing(number):
+    """Обработка значения ползунка"""
+    number = int(number)
+    Draw(number)
 
 def main():
 
     root.title("Снежинка Коха")
-
     # Распаковка канваса
-    c.configure(bg="white")
+    c.configure(bg="black")
     c.pack(fill=tk.BOTH, expand=1)
 
-    Draw()
+    # Распаковка ползунка
+    scale = tk.Scale(
+        root,
+        from_=1,
+        to=5,
+        command=scale_processing,
+        orient=tk.HORIZONTAL,
+    )
+
+    scale.pack(side=tk.LEFT, padx=5)
     root.mainloop()
 
 
 if __name__ == "__main__":
     main()
-
