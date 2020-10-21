@@ -6,6 +6,7 @@
 Реализуйте похожим образом другие известные фрактальные кривые, например, кривую дракона.
 Отрефакторите код таким образом, чтобы алгоритм построения фрактала и логика отрисовки были изолированными частями программы.
 """
+
 import tkinter as tk
 
 # Начальные позиции
@@ -15,6 +16,7 @@ root = tk.Tk()
 
 # Основной канвас
 c = tk.Canvas(root, width=width, heigh=height)
+alllines_list = []
 
 class PointF:
     """Класс точки"""
@@ -23,7 +25,15 @@ class PointF:
         self.Y = y
 
 def Draw(number):
+    """Отрисовка снежинки"""
+    global alllines_list
 
+    #Если уже что-то отрисовано - удаляем это
+    if len(alllines_list) != 0:
+        for line in alllines_list:
+            c.delete(line)
+        alllines_list = []
+    
     #Определим коорднаты исходного треугольника
     point1 = PointF(66, 559)
     point2 = PointF(694, 559)
@@ -31,25 +41,42 @@ def Draw(number):
 
     #Вызываем функцию Fractal для того, чтобы
     #нарисовать три кривых Коха на сторонах треугольника
+    
     Fractal(point1, point2, point3, number)
     Fractal(point2, point3, point1, number)
     Fractal(point3, point1, point2, number)
 
-def Fractal(p1, p2, p3, iter):
+    
 
+def Fractal(p1, p2, p3, iter):
+    """Рекурсивная функция для вычисления фрактальных точек"""
+    
     if iter > 0:
+
+        #print(buflines_list)
+        #if len(buflines_list) != 0:
+        #    for line in buflines_list:
+        #        c.delete(line)
+        #    buflines_list = []
+
         p4 = PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3)
         p5 = PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3)
         
-        #координаты вершины угла
+        #Координаты вершины угла
         ps = PointF((p2.X + p1.X) / 2, (p2.Y + p1.Y) / 2)
         pn = PointF((4 * ps.X - p3.X) / 3, (4 * ps.Y - p3.Y) / 3)
         
         #рисуем его
 
-        c.create_line(p4.X,p4.Y, pn.X, pn.Y,fill="white")
-        c.create_line(p5.X,p5.Y, pn.X, pn.Y, fill="white")
-        c.create_line(p4.X,p4.Y, p5.X, p5.Y, fill="white")
+        line1 = c.create_line(p4.X,p4.Y, pn.X, pn.Y,fill="white")
+        line2 = c.create_line(p5.X,p5.Y, pn.X, pn.Y, fill="white")
+        line3 = c.create_line(p4.X,p4.Y, p5.X, p5.Y, fill="white")
+
+        #buflines_list.extend([line1,line2,line3])
+        alllines_list.extend([line1,line2,line3])
+
+
+        
         
         #рекурсивно вызываем функцию нужное число раз
         Fractal(p4, pn, p5, iter - 1)
@@ -62,6 +89,7 @@ def Fractal(p1, p2, p3, iter):
 
 def scale_processing(number):
     """Обработка значения ползунка"""
+
     number = int(number)
     Draw(number)
 
@@ -75,8 +103,8 @@ def main():
     # Распаковка ползунка
     scale = tk.Scale(
         root,
-        from_=1,
-        to=5,
+        from_=0,
+        to=6,
         command=scale_processing,
         orient=tk.HORIZONTAL,
     )
