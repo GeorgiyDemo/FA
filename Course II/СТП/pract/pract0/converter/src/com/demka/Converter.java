@@ -1,13 +1,24 @@
 package com.demka;
 
-public abstract class Converter {
-    public abstract double getTemp(double value);
-}
-
-class Fahrenheit extends  Converter{
+class Converter implements ConverterInterface {
 
     @Override
-    public double getTemp(double value) {
-        return 9.0/5.0 * value + 32;
+    public double Celsius2Fahrenheit(double value) {
+        return 1.8 * value + 32;
+    }
+
+    @Override
+    public double Fahrenheit2Celsius(double value) {
+        return (value - 32) / 1.8;
+    }
+
+    @Override
+    public  double Celsius2Kelvin(double value){
+        return value + 273.15;
+    }
+
+    @Override
+    public double Kelvin2Celsius(double value) {
+        return value - 273.15;
     }
 }
