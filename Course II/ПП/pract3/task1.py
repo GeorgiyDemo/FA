@@ -48,16 +48,16 @@ def Draw(number):
 
     
 
-def Fractal(p1, p2, p3, iter):
+def Fractal(p1, p2, p3, iter, buflines_list=[]):
     """Рекурсивная функция для вычисления фрактальных точек"""
     
     if iter > 0:
 
-        #print(buflines_list)
-        #if len(buflines_list) != 0:
-        #    for line in buflines_list:
-        #        c.delete(line)
-        #    buflines_list = []
+        print(buflines_list)
+        if len(buflines_list) != 0:
+            for line in buflines_list:
+                c.delete(line)
+            buflines_list = []
 
         p4 = PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3)
         p5 = PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3)
@@ -72,17 +72,14 @@ def Fractal(p1, p2, p3, iter):
         line2 = c.create_line(p5.X,p5.Y, pn.X, pn.Y, fill="white")
         line3 = c.create_line(p4.X,p4.Y, p5.X, p5.Y, fill="white")
 
-        #buflines_list.extend([line1,line2,line3])
+        buflines_list.extend([line1,line2,line3])
         alllines_list.extend([line1,line2,line3])
 
-
-        
-        
         #рекурсивно вызываем функцию нужное число раз
-        Fractal(p4, pn, p5, iter - 1)
-        Fractal(pn, p5, p4, iter - 1)
-        Fractal(p1, p4, PointF((2 * p1.X + p3.X) / 3, (2 * p1.Y + p3.Y) / 3), iter - 1)
-        Fractal(p5, p2, PointF((2 * p2.X + p3.X) / 3, (2 * p2.Y + p3.Y) / 3), iter - 1)
+        Fractal(p4, pn, p5, iter - 1, buflines_list)
+        Fractal(pn, p5, p4, iter - 1, buflines_list)
+        Fractal(p1, p4, PointF((2 * p1.X + p3.X) / 3, (2 * p1.Y + p3.Y) / 3), iter - 1, buflines_list)
+        Fractal(p5, p2, PointF((2 * p2.X + p3.X) / 3, (2 * p2.Y + p3.Y) / 3), iter - 1, buflines_list)
 
     else:
         return iter
@@ -110,6 +107,7 @@ def main():
     )
 
     scale.pack(side=tk.LEFT, padx=5)
+
     root.mainloop()
 
 
