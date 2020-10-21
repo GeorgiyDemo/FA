@@ -37,19 +37,25 @@ def Draw(number):
             c.delete(line)
         alllines_list = []
     
-    #Определим коорднаты исходного треугольника
+    #Определим начальные коорднаты исходного треугольника и проводим линии 
+    begin_line1 = c.create_line(66,559, 694, 559,fill="white")
+    begin_line2 = c.create_line(694,559, 380, 14,fill="white")
+    begin_line3 = c.create_line(380,14, 66, 559,fill="white")
+
     point1 = PointF(66, 559)
     point2 = PointF(694, 559)
     point3 = PointF(380, 14)
 
+    begin_list = [begin_line1,begin_line2,begin_line3]
+    alllines_list.extend(begin_list)
+
+
     #Вызываем функцию Fractal для того, чтобы
     #нарисовать три кривых Коха на сторонах треугольника
     
-    Fractal(point1, point2, point3, number)
-    Fractal(point2, point3, point1, number)
-    Fractal(point3, point1, point2, number)
-
-    
+    Fractal(point1, point2, point3, number, begin_list)
+    Fractal(point2, point3, point1, number, begin_list)
+    Fractal(point3, point1, point2, number, begin_list)
 
 def Fractal(p1, p2, p3, iter, buflines_list=[]):
     """Рекурсивная функция для вычисления фрактальных точек"""
@@ -62,7 +68,6 @@ def Fractal(p1, p2, p3, iter, buflines_list=[]):
                 for line in buflines_list:
                     c.delete(line)
                 buflines_list = []
-
 
         p4 = PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3)
         p5 = PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3)
@@ -109,18 +114,17 @@ def main():
     scale = tk.Scale(
         root,
         from_=0,
-        to=5,
+        to=6,
         command=scale_processing,
         orient=tk.HORIZONTAL,
     )
-
     scale.pack(side=tk.LEFT, padx=5)
+
+    #Распаковка checkbox'а
     checkbox_flag.set(0)
     checkbox = ttk.Checkbutton(text="Полное построение", variable=checkbox_flag,onvalue=1, offvalue=0)
     checkbox.pack(side=tk.LEFT)
-
     root.mainloop()
-
 
 if __name__ == "__main__":
     main()
