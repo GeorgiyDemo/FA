@@ -2,8 +2,12 @@
 MAX_TRY <- 10000
 #Уровень продаж в процентах
 SALE_LEVELS <- c(85,75,20,60,36,55,95,64,35,50)
+#Позиции товаров
+SALE_PRODUCTS <- c("Кофе", "Молоко","Творог")
+#Дни недели
+days <- c("Понедельник", "Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье")
 
-#Генерация поставок
+#Генерация поставок для 1 товара
 generate.in <- function(nDays = 7, min = 50, max= 120){
   return(floor((runif(nDays) * ((max - min) + 1)) + min))
 }
@@ -32,24 +36,39 @@ generate.out <- function(data.in, saleLevel = 50){
   return(data.out)
 }
 
+
 {
-  a <- c("Понедельник", "Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье")
   
   #Цикл по каждому магазину
   for (i in 1:10){
     
-    #генерируем поставки
-    dataIn <- generate.in(nDays=7,min=40, max=150)
-    
-    #генерируем продажи
-    dataOut <-generate.out(dataIn,saleLevel = SALE_LEVELS[i])
     
     #Закидываем во фрейм поставок
-    in.tabl <- data.frame("День недели" = a, "Поставки" = dataIn)
+    in.tabl <- data.frame("День недели" = days)
     
     #Закидываем во фрейм продаж
-    out.tabl <- data.frame("День недели" = a, "Поставки" = dataOut)
+    out.tabl <- data.frame("День недели" = days)
     
+    #Цикл по каждому товару
+    for (good in SALE_PRODUCTS){
+      
+      #генерируем поставки для конкретного товара
+      dataIn <- generate.in(nDays=7,min=40, max=150)
+      
+      #генерируем продажи для конкретного товара
+      dataOut <-generate.out(dataIn,saleLevel = SALE_LEVELS[i])
+      
+      #Записываем в общий фрейм
+      in.tabl <- data.frame(in.tabl, dataIn)
+      out.tabl <- data.frame(out.tabl, dataOut)
+
+      print(paste("Генерация данных по товару",good,"для магазина",i,"успешна"))
+    }
+    
+    #Выставляем заголовки
+    colnames(in.tabl) <- c("День недели",SALE_PRODUCTS)
+    colnames(out.tabl) <- c("День недели",SALE_PRODUCTS)
+
     #Записываем файл поставок
     write.table(
       in.tabl,
@@ -74,8 +93,6 @@ generate.out <- function(data.in, saleLevel = 50){
       sep = ' ',
       dec = ','
     )
-    
-    print(paste("Генерация данных для магазина",i,"успешна"))
   }
 }
 
