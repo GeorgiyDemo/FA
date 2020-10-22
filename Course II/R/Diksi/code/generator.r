@@ -1,7 +1,7 @@
 #Максимальное число попыток, чтоб сгенерировать данные
 MAX_TRY <- 10000
 #Уровень продаж в процентах
-SALE_LEVELS <- c(85, 75, 20, 60, 36, 55, 95, 64, 35, 50)
+SALE_LEVELS <- c(10, 75, 20, 60, 36, 55, 95, 64, 35, 50)
 #Позиции товаров
 SALE_PRODUCTS <- c("Кофе", "Молоко", "Творог")
 #Дни недели
@@ -49,7 +49,6 @@ generate.out <- function(data.in, saleLevel = 50) {
 
 # Генерация цен товара
 generate.price <- function(direction, name.prod) {
-  
   price.tab <-
     #Все заполняем начальными значениями
     data.frame(
@@ -154,7 +153,9 @@ generate.price <- function(direction, name.prod) {
     generate.price(
       direction = paste0(
         '/Users/georgiydemo/Projects/FA/Course II/R/Diksi/shop',
-        as.character(i),'/price.txt'),
+        as.character(i),
+        '/price.txt'
+      ),
       name.prod = SALE_PRODUCTS
     )
     
