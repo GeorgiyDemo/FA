@@ -107,6 +107,13 @@
         append(shop_writeoff_maxdays, in1[which.max(c(in1[, prod] - out1[, prod])), 1])
     }
     
+    
+    #График по прибыли магазинов в зависимости от дня недели
+    barplot(shop_sales_min, horiz=TRUE)
+    
+    
+
+    
     #Высчитываем итог и среднее для выручки, прибыли, реализации, списании, равномерности
     shop_names <- c(shop_names, c("Итог", "Среднее"))
     shop_revenues <-
