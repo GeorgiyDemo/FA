@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="14F6C73F-86EE-F2B2-5C48-29131153F567" name="PART">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:07:04 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>4F85B5D2-DD09-77DD-332B-63DB597F64A7</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="FACULTY" id="C716F601-A6D8-A5C1-E0E3-62FB7B639901">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:12:47 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Salary_hour" id="156528A9-D6AD-9309-4014-83B5E15BC245">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:09:44 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="C1D8C21C-1930-7C19-E99A-B957C55F818C" name="FACULTY PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:07:04 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C716F601-A6D8-A5C1-E0E3-62FB7B639901</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
