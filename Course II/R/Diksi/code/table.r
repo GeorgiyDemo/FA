@@ -106,13 +106,6 @@
         append(shop_writeoff_maxdays, in1[which.max(c(in1[, prod] - out1[, prod])), 1])
     }
     
-    
-    #График по прибыли магазинов в зависимости от дня недели
-    barplot(shop_sales_min, horiz=TRUE)
-    
-    
-
-    
     #Высчитываем итог и среднее для выручки, прибыли, реализации, списании, равномерности
     shop_names <- c(shop_names, c("Итог", "Среднее"))
     shop_revenues <-
@@ -198,46 +191,59 @@
   
   
   ############ Формируем графики ###################################
-  #График объёма продаж товарав в первом магазине по дням
-  in1 <-read.table(file = paste0('store1_in.txt'), head = TRUE)
-  out1 <-read.table(file = paste0('store1_out.txt'), head = TRUE)
-
-  #Продажа товара
-  tovar1 = out1[, "Кофе"]
-  tovar2 = out1[, "Молоко"]
-  tovar3 = out1[, "Творог"]
   
-  # вычислим диапазон дней
-  xrange = range(seq(1,7))
-  # диапазон по Оу
-  yrange = range(in1[,"Кофе"], in1[,"Молоко"], in1[,"Творог"])
+  #Цикл по каждому магазу
+  for (i in 1:10) {
+    in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
+    out1 <- read.table(file = paste0('store',as.character(i),'_out.txt'), head = TRUE)
   
-  plot(xrange,
-       yrange,
-       main='Продажа товаров в первом магазине', 
-       xlab="День недели", 
-       ylab="Количество проданного товара, шт",
-       type = "n",
-       ylim=c(1,100)
-       ) 
+    
+    #График объёма продаж товарав в первом магазине по дням
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
+    xrange = range(seq(1,7))
+    yrange = range(in1[,"Кофе"], in1[,"Молоко"], in1[,"Творог"])
+    
+    graph <- plot(xrange,
+         yrange,
+         main=paste0('Объём продаж в магазине ',as.character(i)), 
+         xlab="День недели", 
+         ylab="Количество проданного товара, шт",
+         type = "n",
+         ylim=c(1,150)
+         ) 
   
-  print("кофе")
-  print(tovar1)
-  points(seq(1,7),tovar1, pch=20, col="red3")
-  lines(seq(1,7),tovar1, pch=20, col="red3")
+    points(seq(1,7),out1[, "Кофе"], pch=20, col="red3")
+    lines(seq(1,7),out1[, "Кофе"], pch=20, col="red3")
+    points(seq(1,7),out1[, "Молоко"], pch=22, col="forestgreen")
+    lines(seq(1,7),out1[, "Молоко"], pch=22, col="forestgreen")
+    points(seq(1,7),out1[, "Творог"], pch=24, col="steelblue")
+    lines(seq(1,7),out1[, "Творог"], pch=24, col="steelblue")
+    legend("topright", legend=c("Кофе", "Молоко", "Творог"),col=c("red3", "forestgreen", "steelblue"), pch=c(20,22,24))
+    dev.off()
   
-  print("молоко")
-  print(tovar2)
+    price1 <- read.table(file = paste0('store',as.character(i),'_price.txt'), head = TRUE)
+    print(price1)
+    
+    #Цикл по каждому продукту в каждом магазине
+    for (prod in goods){
+    
+      element_index <- which(goods.table == prod)
+      #Цена продажи
+      product_price <- goods.table[element_index, 3]
+      #Цена поставки
+      supply_price <- goods.table[element_index, 2]
+      #Цена утилизации
+      util_price <- goods.table[element_index, 4]
+      
+    }
+  }
   
-  points(seq(1,7),tovar2, pch=22, col="forestgreen")
-  lines(seq(1,7),tovar2, pch=22, col="forestgreen")
   
-  print("творог")
-  print(tovar3)
-  points(seq(1,7),tovar3, pch=24, col="steelblue")
-  lines(seq(1,7),tovar3, pch=24, col="steelblue")
-  # Легенда
   
-  legend("topright", legend=c("Кофе", "Молоко", "Творог"),col=c("red3", "forestgreen", "steelblue"), pch=c(20,22,24))
+  # Выручка
+  
+  #buf_shoprevenue <- product_price * sum(out1[, prod])
+  #shop_revenues <- append(shop_revenues, buf_shoprevenue)
+  #plot(reven1, main='Выручка по дням в N магазине', xlab='День', ylab='Выручка, руб.',type='o')
   
 }
