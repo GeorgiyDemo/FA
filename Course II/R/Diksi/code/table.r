@@ -300,6 +300,7 @@
     plot(summ_shopprofits, main=paste0('Прибыль по дням в магазине ',as.character(i)), xlab='День', ylab='Общая прибыль, руб.',type='S')
     dev.off()
     
+    #Строим общий график списаний по дням
     xrange = range(seq(1,7))
     yrange = range(summ_writeoffs)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общее списание магазин ",as.character(i),".png"),width=600, height=350)
@@ -308,6 +309,7 @@
     lines(seq(1,7), summ_writeoffs, pch=19, col="black")
     dev.off()
     
+    #TODO РЕНТАБЕЛЬНОСТЬ?
     
     #Прибавляем выручку к общей выручке
     super_summ_shoprevenue <- super_summ_shoprevenue + summ_shoprevenue
@@ -316,5 +318,27 @@
     #Прибавляем списания к общим списаниям
     super_summ_writeoffs <- super_summ_writeoffs + summ_writeoffs
   }
+  
+  
+  #Строим график общей выручки
+  png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая выручка.png"), width=600, height=350)
+  plot(super_summ_shoprevenue, main='Выручка во всех магазинах по дням', xlab='День', ylab="Общая выручка, руб.",type='o')
+  dev.off()
+  
+  #Строим график общей прибыли
+  png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль.png"), width=600, height=350)
+  plot(super_summ_shopprofits, main='Прибыль во всех магазинах по дням', xlab='День', ylab='Общая прибыль, руб.',type='S')
+  dev.off()
+  
+  #Строим график общих списаний
+  xrange = range(seq(1,7))
+  yrange = range(super_summ_writeoffs)
+  png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общее списание.png"),width=600, height=350)
+  plot(xrange,yrange,main='Списание во всех магазинах по дням', xlab="День", ylab="Списание, шт.", type = "n")
+  points(seq(1,7), super_summ_writeoffs, pch=19, col="red")
+  lines(seq(1,7), super_summ_writeoffs, pch=19, col="black")
+  dev.off()
+  
+  
 
 }
