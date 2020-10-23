@@ -10,6 +10,8 @@
   goods.table <- read.table(file = 'store1_price.txt', head = TRUE)
   goods <- goods.table[, 1]
   
+  ############ Работаем только с таблицей .csv и .xlsx #########################
+  
   for (prod in goods) {
     #Индекс продукта
     element_index <- which(goods.table == prod)
@@ -190,13 +192,16 @@
   }
   
   
-  ############ Формируем графики ###################################
+  ######################## Формируем графики ###################################
   
   
   #Общая выручка со всех магазинов и со всех продуктов
   super_summ_shoprevenue  <- rep(0,7)
   #Общая прибыль со всех магазинов и со всех продуктов
   super_summ_shopprofits <- rep(0,7)
+  #Общее списание со всех магазинов и со всех продуктов
+  super_summ_writeoffs <- rep(0,7)
+  
   #Цикл по каждому магазу
   for (i in 1:10) {
     in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
@@ -232,6 +237,7 @@
     #Общая выручка со всех продуктов
     summ_shopprofits <- rep(0,7)
     summ_shoprevenue <- rep(0,7)
+    summ_writeoffs <- rep(0,7)
     for (prod in goods){
     
       element_index <- which(goods.table == prod)
@@ -250,6 +256,20 @@
       
       # Списание
       buf_writeoff <- in1[, prod] - out1[, prod]
+      xrange = range(seq(1,7))
+      yrange = range(buf_writeoff)
+      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списание магазин ",as.character(i)," (",prod,").png"),width=600, height=350)
+      plot(xrange,
+           yrange,
+           main=paste0('Списание ',prod,' в ',as.character(i),' магазине'), 
+           xlab="День", 
+           ylab="Списание, шт.",
+           type = "n"
+           )
+      points(seq(1,7), buf_writeoff, pch=19, col="red")
+      lines(seq(1,7), buf_writeoff, pch=19, col="black")
+      dev.off()
+      
       # Затраты
       buf_cost <- (in1[, prod] * supply_price) + (buf_writeoff * util_price)
       # Прибыль
@@ -264,23 +284,37 @@
       summ_shoprevenue <- summ_shoprevenue + buf_shoprevenue
       #Прибавляем к сумме прибыли
       summ_shopprofits <- summ_shopprofits + shop_profits
+      #Прибавляем к сумме списаний
+      summ_writeoffs <- summ_writeoffs + buf_writeoff
+    
     }
     
-
+    
     #Строим общий график выручки по дням
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i)," (Общая).png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая выручка магазин ",as.character(i),".png"),width=600, height=350)
     plot(summ_shoprevenue, main=paste0('Выручка по дням в магазине ',as.character(i)), xlab='День', ylab=paste0("Общая выручка, руб."),type='o')
     dev.off()
     
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Прибыль магазин ",as.character(i)," (Общая).png"),width=600, height=350)
-    
+    #Строим общий график прибыли по дням
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая прибыль магазин ",as.character(i),".png"),width=600, height=350)
     plot(summ_shopprofits, main=paste0('Прибыль по дням в магазине ',as.character(i)), xlab='День', ylab='Общая прибыль, руб.',type='S')
     dev.off()
+    
+    xrange = range(seq(1,7))
+    yrange = range(summ_writeoffs)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общее списание магазин ",as.character(i),".png"),width=600, height=350)
+    plot(xrange,yrange,main=paste0('Списания по дням в ',as.character(i),' магазине'), xlab="День", ylab="Списание, шт.", type = "n")
+    points(seq(1,7), summ_writeoffs, pch=19, col="red")
+    lines(seq(1,7), summ_writeoffs, pch=19, col="black")
+    dev.off()
+    
     
     #Прибавляем выручку к общей выручке
     super_summ_shoprevenue <- super_summ_shoprevenue + summ_shoprevenue
     #Прибавляем прибыль к общей прибыли
     super_summ_shopprofits <- super_summ_shopprofits + summ_shopprofits
+    #Прибавляем списания к общим списаниям
+    super_summ_writeoffs <- super_summ_writeoffs + summ_writeoffs
   }
 
 }
