@@ -52,7 +52,6 @@
         read.table(file = paste0('store', as.character(i), '_in.txt'),
                    head = TRUE)
       
-      print(in1)
       out1 <-
         read.table(file = paste0('store', as.character(i), '_out.txt'),
                    head = TRUE)
@@ -196,4 +195,49 @@
       append = FALSE
     )
   }
+  
+  
+  ############ Формируем графики ###################################
+  #График объёма продаж товарав в первом магазине по дням
+  in1 <-read.table(file = paste0('store1_in.txt'), head = TRUE)
+  out1 <-read.table(file = paste0('store1_out.txt'), head = TRUE)
+
+  #Продажа товара
+  tovar1 = out1[, "Кофе"]
+  tovar2 = out1[, "Молоко"]
+  tovar3 = out1[, "Творог"]
+  
+  # вычислим диапазон дней
+  xrange = range(seq(1,7))
+  # диапазон по Оу
+  yrange = range(in1[,"Кофе"], in1[,"Молоко"], in1[,"Творог"])
+  
+  plot(xrange,
+       yrange,
+       main='Продажа товаров в первом магазине', 
+       xlab="День недели", 
+       ylab="Количество проданного товара, шт",
+       type = "n",
+       ylim=c(1,100)
+       ) 
+  
+  print("кофе")
+  print(tovar1)
+  points(seq(1,7),tovar1, pch=20, col="red3")
+  lines(seq(1,7),tovar1, pch=20, col="red3")
+  
+  print("молоко")
+  print(tovar2)
+  
+  points(seq(1,7),tovar2, pch=22, col="forestgreen")
+  lines(seq(1,7),tovar2, pch=22, col="forestgreen")
+  
+  print("творог")
+  print(tovar3)
+  points(seq(1,7),tovar3, pch=24, col="steelblue")
+  lines(seq(1,7),tovar3, pch=24, col="steelblue")
+  # Легенда
+  
+  legend("topright", legend=c("Кофе", "Молоко", "Творог"),col=c("red3", "forestgreen", "steelblue"), pch=c(20,22,24))
+  
 }
