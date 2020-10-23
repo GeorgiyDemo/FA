@@ -192,11 +192,13 @@
   
   ############ Формируем графики ###################################
   
+  
+  #Общая выручка со всех магазинов и со всех продуктов
+  super_summ_shoprevenue  <- rep(0,7)
   #Цикл по каждому магазу
   for (i in 1:10) {
     in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
     out1 <- read.table(file = paste0('store',as.character(i),'_out.txt'), head = TRUE)
-  
     
     #График объёма продаж товарав в первом магазине по дням
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
@@ -222,9 +224,12 @@
     dev.off()
   
     price1 <- read.table(file = paste0('store',as.character(i),'_price.txt'), head = TRUE)
-    print(price1)
     
     #Цикл по каждому продукту в каждом магазине
+    
+    #Общая выручка со всех продуктов
+    summ_shoprevenue <- rep(0,7)
+    print(summ_shoprevenue)
     for (prod in goods){
     
       element_index <- which(goods.table == prod)
@@ -235,15 +240,38 @@
       #Цена утилизации
       util_price <- goods.table[element_index, 4]
       
+      # Выручка
+      buf_shoprevenue <- product_price * out1[, prod]
+      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i)," (",prod,").png"),width=600, height=350)
+      plot(buf_shoprevenue, main=paste0('Выручка по дням в магазине ',as.character(i),' (',prod,')'), xlab='День', ylab=paste0("Выручка по товару '",prod,"', руб."),type='o')
+      dev.off()
+      
+      
+      
+      
+      
+      #Прибавляем к сумме выручки
+      summ_shoprevenue <- summ_shoprevenue + buf_shoprevenue
+      print(buf_shoprevenue)
     }
+    
+
+    #Строим общий график выручки по дням
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i)," (Общая).png"),width=600, height=350)
+    plot(summ_shoprevenue, main=paste0('Выручка по дням в магазине ',as.character(i)), xlab='День', ylab=paste0("Общая выручка, руб."),type='o')
+    dev.off()
+    
+    
+    
+    
+    
+    #Прибавляем выручку к общей выручке
+    super_summ_shoprevenue <- super_summ_shoprevenue + summ_shoprevenue
   }
   
+  #ВЫВОДИМ ГРАФИК ОБЩЕЙ ВЫРУЧКИ ПО ВСЕМ МАГАЗАМ super_summ_shoprevenue
   
   
-  # Выручка
   
-  #buf_shoprevenue <- product_price * sum(out1[, prod])
-  #shop_revenues <- append(shop_revenues, buf_shoprevenue)
-  #plot(reven1, main='Выручка по дням в N магазине', xlab='День', ylab='Выручка, руб.',type='o')
-  
+
 }
