@@ -296,17 +296,15 @@
       
     }
     
-    ############################################Графики с несколькими товарами в одном##########################
+    ############################################Графики с несколькими товарами на одном графике##########################
     
     #График объёма продаж товарав в первом магазине по дням
     df_salesvolume = subset(df_salesvolume, select = -c(buf))
     names(df_salesvolume) <- goods
-    
     plot_colors = c("red3","forestgreen", "steelblue")
     plot_pchs = c(20,22,24)
     xrange = range(seq(1,7))
     yrange = range(df_salesvolume)
-    
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -315,8 +313,6 @@
                   ylab="Количество проданного товара, шт",
                   type = "n",
     )
-    
-    
     for (j in 1:length(goods)){
       points(seq(1,7),df_salesvolume[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
       lines(seq(1,7), df_salesvolume[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
@@ -337,8 +333,6 @@
                   ylab="Выручка, руб",
                   type = "n",
     )
-    
-    
     for (j in 1:length(goods)){
       points(seq(1,7),df_shoprevenue[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
       lines(seq(1,7), df_shoprevenue[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
@@ -346,7 +340,25 @@
     legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
     dev.off()
 
-    #TODO График прибыли от товарав по дням
+    # График прибыли от товарав по дням
+    df_shopprofits = subset(df_shopprofits, select = -c(buf))
+    names(df_shopprofits) <- goods
+    xrange = range(seq(1,7))
+    yrange = range(df_shopprofits)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Прибыль магазин ",as.character(i),".png"),width=600, height=450)
+    graph <- plot(xrange,
+                  yrange,
+                  main=paste0('Прибыль в магазине ',as.character(i)," по товарам"), 
+                  xlab="День недели", 
+                  ylab="Прибыль, руб",
+                  type = "n",
+    )
+    for (j in 1:length(goods)){
+      points(seq(1,7),df_shopprofits[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7), df_shopprofits[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+    }
+    legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
+    dev.off()
 
     #TODO График списания товарав по дням
 
