@@ -8,6 +8,7 @@
   
   #Цикл по каждому товару. Надеемся на то, что во всех магазах одинаковые товары
   goods.table <- read.table(file = 'store1_price.txt', head = TRUE)
+  print(goods.table)
   goods <- goods.table[, 1]
   
   ############ Работаем только с таблицей .csv и .xlsx #########################
@@ -191,9 +192,13 @@
     )
   }
   
-  
   ######################## Формируем графики ###################################
   
+  #TODO Вектор всех возможных цветов для построения товаров
+  plot_colors <- c("red3","forestgreen", "steelblue", "darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1","chocolate1","blue","black","brown", "darkseagreen" )
+  #TODO Вектор всех возможных значков для товаров
+  plot_pchs <- rev(seq(1:25))
+  print(plot_pchs)
   
   #Общая выручка со всех магазинов и со всех продуктов
   super_summ_shoprevenue  <- rep(0,7)
@@ -251,8 +256,8 @@
       
       # Списание
       buf_writeoff <- in1[, prod] - out1[, prod]
-      xrange = range(seq(1,7))
-      yrange = range(buf_writeoff)
+      xrange <- range(seq(1,7))
+      yrange <- range(buf_writeoff)
       png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списание магазин ",as.character(i)," (",prod,").png"),width=600, height=450)
       plot(xrange,
            yrange,
@@ -299,12 +304,10 @@
     ############################################Графики с несколькими товарами на одном графике##########################
     
     #График объёма продаж товарав в первом магазине по дням
-    df_salesvolume = subset(df_salesvolume, select = -c(buf))
+    df_salesvolume <- subset(df_salesvolume, select = -c(buf))
     names(df_salesvolume) <- goods
-    plot_colors = c("red3","forestgreen", "steelblue")
-    plot_pchs = c(20,22,24)
-    xrange = range(seq(1,7))
-    yrange = range(df_salesvolume)
+    xrange <- range(seq(1,7))
+    yrange <- range(df_salesvolume)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -321,10 +324,10 @@
     dev.off()
     
     #График выручки от товарав по дням
-    df_shoprevenue = subset(df_shoprevenue, select = -c(buf))
+    df_shoprevenue <- subset(df_shoprevenue, select = -c(buf))
     names(df_shoprevenue) <- goods
-    xrange = range(seq(1,7))
-    yrange = range(df_shoprevenue)
+    xrange <- range(seq(1,7))
+    yrange <- range(df_shoprevenue)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -341,10 +344,10 @@
     dev.off()
 
     # График прибыли от товарав по дням
-    df_shopprofits = subset(df_shopprofits, select = -c(buf))
+    df_shopprofits <- subset(df_shopprofits, select = -c(buf))
     names(df_shopprofits) <- goods
-    xrange = range(seq(1,7))
-    yrange = range(df_shopprofits)
+    xrange <- range(seq(1,7))
+    yrange <- range(df_shopprofits)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Прибыль магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -361,10 +364,10 @@
     dev.off()
 
     # График списания товарав по дням
-    df_writeoffs = subset(df_writeoffs, select = -c(buf))
+    df_writeoffs <- subset(df_writeoffs, select = -c(buf))
     names(df_writeoffs) <- goods
-    xrange = range(seq(1,7))
-    yrange = range(df_writeoffs)
+    xrange <- range(seq(1,7))
+    yrange <- range(df_writeoffs)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списания магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -380,11 +383,11 @@
     legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
     dev.off()
 
-    #TODO График рентабельности товарав по дням
-    df_profitability = subset(df_profitability, select = -c(buf))
+    # График рентабельности товарав по дням
+    df_profitability <- subset(df_profitability, select = -c(buf))
     names(df_profitability) <- goods
-    xrange = range(seq(1,7))
-    yrange = range(df_profitability)
+    xrange <- range(seq(1,7))
+    yrange <- range(df_profitability)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Рентабельность магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
@@ -411,8 +414,8 @@
     dev.off()
     
     #Строим общий график списаний по дням
-    xrange = range(seq(1,7))
-    yrange = range(summ_writeoffs)
+    xrange <- range(seq(1,7))
+    yrange <- range(summ_writeoffs)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общее списание магазин ",as.character(i),".png"),width=600, height=450)
     plot(xrange,yrange,main=paste0('Списания по дням в ',as.character(i),' магазине'), xlab="День", ylab="Списание, шт.", type = "n")
     points(seq(1,7), summ_writeoffs, pch=19, col="red")
@@ -421,8 +424,8 @@
     
     #Строим график рентабельности для магазина
     summ_profitability <- floor((summ_shopprofits/summ_shoprevenue) * 100)
-    xrange = range(seq(1,7))
-    yrange = range(summ_profitability)
+    xrange <- range(seq(1,7))
+    yrange <- range(summ_profitability)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая рентабельность магазин ",as.character(i),".png"),width=600, height=450)
     plot(xrange,
          yrange,
@@ -462,8 +465,8 @@
   dev.off()
   
   #Строим график общих списаний
-  xrange = range(seq(1,7))
-  yrange = range(super_summ_writeoffs)
+  xrange <- range(seq(1,7))
+  yrange <- range(super_summ_writeoffs)
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общее списание.png",width=600, height=450)
   plot(xrange,yrange,main='Списание во всех магазинах по дням', xlab="День", ylab="Списание, шт.", type = "n")
   points(seq(1,7), super_summ_writeoffs, pch=19, col="red")
@@ -472,8 +475,8 @@
   
   #Строим график рентабельности
   super_summ_profitability <- floor((super_summ_shopprofits/super_summ_shoprevenue) * 100)
-  xrange = range(seq(1,7))
-  yrange = range(super_summ_profitability)
+  xrange <- range(seq(1,7))
+  yrange <- range(super_summ_profitability)
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность.png",width=600, height=450)
   plot(xrange,
        yrange,
@@ -487,12 +490,11 @@
   
   ########################Строим сложный график рентабельности##########################
   #Выкидываем нулевой столбец
-  super_df_profitability = subset(super_df_profitability, select = -c(buf))
+  super_df_profitability <- subset(super_df_profitability, select = -c(buf))
   #Присваиваем имена столбцам для обращения по ним
   names(super_df_profitability) <- paste0("shop",as.character(seq(1:10)))
-  plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
-  xrange = range(seq(1,7))
-  yrange = range(super_df_profitability)
+  xrange <- range(seq(1,7))
+  yrange <- range(super_df_profitability)
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность подробно.png",width=716, height=630)
   plot(xrange,
        yrange,
@@ -509,13 +511,12 @@
   
   ########################Строим сложный график прибыли##########################
   #Выкидываем нулевой столбец
-  super_df_shopprofits = subset(super_df_shopprofits, select = -c(buf))
+  super_df_shopprofits <- subset(super_df_shopprofits, select = -c(buf))
   #Присваиваем имена столбцам для обращения по ним
   names(super_df_shopprofits) <- paste0("shop",as.character(seq(1:10)))
   super_df_shopprofits <- super_df_shopprofits / 1000
-  plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
-  xrange = range(seq(1,7))
-  yrange = range(super_df_shopprofits)
+  xrange <- range(seq(1,7))
+  yrange <- range(super_df_shopprofits)
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль подробно.png",width=716, height=630)
   plot(xrange,
        yrange,
