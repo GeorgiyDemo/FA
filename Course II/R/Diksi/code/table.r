@@ -202,6 +202,12 @@
   #Общее списание со всех магазинов и со всех продуктов
   super_summ_writeoffs <- rep(0,7)
   
+  #Датафрейм с прибылью
+  super_df_shopprofits <- data.frame(buf=rep(0,7))
+  #Датафрейм с рентабельностью
+  super_df_profitability <- data.frame(buf=rep(0,7))
+  
+  
   #Цикл по каждому магазу
   for (i in 1:10) {
     in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
@@ -285,7 +291,7 @@
       summ_shopprofits <- summ_shopprofits + shop_profits
       #Прибавляем к сумме списаний
       summ_writeoffs <- summ_writeoffs + buf_writeoff
-    
+      
     }
     
     
@@ -330,6 +336,12 @@
     super_summ_shopprofits <- super_summ_shopprofits + summ_shopprofits
     #Прибавляем списания к общим списаниям
     super_summ_writeoffs <- super_summ_writeoffs + summ_writeoffs
+    
+    #Прибавляем к датафрейму рентабельности
+    super_df_profitability <- data.frame(super_df_profitability, summ_profitability)
+    #Прибавляем к датафрейму прибыли
+    super_df_shopprofits <- data.frame(super_df_shopprofits, summ_shopprofits)
+  
   }
   
   #Строим график общей выручки
@@ -365,6 +377,34 @@
   )
   lines(seq(1,7), super_summ_profitability, pch=20, col="red3",lwd = 3, lty = 2)
   dev.off()
+  
+  
+  
+  ########################### Формируем сложные и красивые графики #############
+  
+  #Выкидываем нулевой столбец
+  super_df_profitability = subset(super_df_profitability, select = -c(buf))
+  #Присваимваем имена столбцам для обращения по ним
+  names(super_df_profitability) <- as.character(seq(1:10))
+  #print(super_df_profitability)
+  #Строим график рентабельности
+  plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
+  xrange = range(seq(1,7))
+  yrange = range(super_df_profitability)
+  plot(xrange,
+       yrange,
+       main='Рентабельность по дням в магазинах', 
+       xlab="День", 
+       ylab="Рентабельность, %",
+       type = "n"
+    )
+  print(super_df_profitability)
+  for (i in 1:length(super_df_profitability)){
+    points(seq(1,7), super_df_profitability[,i], pch=19, col=plot_colors[i])
+  }
+  
+  # Легенда
+  legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(19))
   
 
 }
