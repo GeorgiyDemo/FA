@@ -345,13 +345,15 @@
   }
   
   #Строим график общей выручки
+  super_summ_shoprevenue1 <- super_summ_shoprevenue / 1000
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая выручка.png", width=600, height=350)
-  plot(super_summ_shoprevenue, main='Выручка во всех магазинах по дням', xlab='День', ylab="Общая выручка, руб.",type='o')
+  plot(super_summ_shoprevenue1, main='Выручка во всех магазинах по дням', xlab='День', ylab="Общая выручка, тыс руб.",type='o')
   dev.off()
   
   #Строим график общей прибыли
+  super_summ_shopprofits1 <- super_summ_shopprofits / 1000
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль.png", width=600, height=350)
-  plot(super_summ_shopprofits, main='Прибыль во всех магазинах по дням', xlab='День', ylab='Общая прибыль, руб.',type='S')
+  plot(super_summ_shopprofits1, main='Прибыль во всех магазинах по дням', xlab='День', ylab='Общая прибыль, тыс руб.',type='S')
   dev.off()
   
   #Строим график общих списаний
@@ -409,6 +411,7 @@
   plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
   xrange = range(seq(1,7))
   yrange = range(super_df_shopprofits)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль подробно.png",width=716, height=630)
   plot(xrange,
        yrange,
        main='Прибыль по дням в магазинах', 
@@ -417,7 +420,11 @@
        type = "n"
   )
   for (i in 1:length(super_df_shopprofits)){
-    points(seq(1,7), super_df_shopprofits[,paste0("shop",as.character(i))], pch=18, col=plot_colors[i])
+    points(seq(1,7), super_df_shopprofits[,paste0("shop",as.character(i))], pch=18, col=plot_colors[i], cex=2.0)
   }
   legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(18))
+  dev.off()
+
+  print("Завершение работы скрипта")
+  
 }
