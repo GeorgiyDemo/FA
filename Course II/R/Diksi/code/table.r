@@ -360,9 +360,45 @@
     legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
     dev.off()
 
-    #TODO График списания товарав по дням
+    # График списания товарав по дням
+    df_writeoffs = subset(df_writeoffs, select = -c(buf))
+    names(df_writeoffs) <- goods
+    xrange = range(seq(1,7))
+    yrange = range(df_writeoffs)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списания магазин ",as.character(i),".png"),width=600, height=450)
+    graph <- plot(xrange,
+                  yrange,
+                  main=paste0('Списания в магазине ',as.character(i)," по товарам"), 
+                  xlab="День недели", 
+                  ylab="Количество списанного товара, шт",
+                  type = "n",
+    )
+    for (j in 1:length(goods)){
+      points(seq(1,7),df_writeoffs[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7), df_writeoffs[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+    }
+    legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
+    dev.off()
 
     #TODO График рентабельности товарав по дням
+    df_profitability = subset(df_profitability, select = -c(buf))
+    names(df_profitability) <- goods
+    xrange = range(seq(1,7))
+    yrange = range(df_profitability)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Рентабельность магазин ",as.character(i),".png"),width=600, height=450)
+    graph <- plot(xrange,
+                  yrange,
+                  main=paste0('Рентабельность в магазине ',as.character(i)," по товарам"), 
+                  xlab="День", 
+                  ylab="Рентабельность, %",
+                  type = "n"
+    )
+    for (j in 1:length(goods)){
+      points(seq(1,7),df_profitability[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7), df_profitability[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+    }
+    legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
+    dev.off()
     
     #Строим общий график выручки по дням
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая выручка магазин ",as.character(i),".png"),width=600, height=450)
