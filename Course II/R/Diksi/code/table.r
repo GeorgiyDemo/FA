@@ -193,10 +193,10 @@
   
   ######################## Формируем графики ###################################
   
-  #TODO Вектор всех возможных цветов для построения товаров
+  # Вектор всех возможных цветов для построения товаров
   plot_colors <- c("red3","forestgreen", "steelblue", "darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1","chocolate1","blue","black","brown", "darkseagreen" )
-  #TODO Вектор всех возможных значков для товаров
-  plot_pchs <- rev(seq(1:25))
+  # Вектор всех возможных значков для товаров
+  plot_pchs <- seq(15,25)
   
   #Общая выручка со всех магазинов и со всех продуктов
   super_summ_shoprevenue  <- rep(0,7)
@@ -210,7 +210,8 @@
   #Датафрейм с рентабельностью
   super_df_profitability <- data.frame(buf=rep(0,7))
   
-  
+  #Список датафреймов всего товара по магазинам. Нужен для динамики продаж всех товаров по всем магазина
+  goods_list <- list()
   #Цикл по каждому магазу
   for (i in 1:10) {
     in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
@@ -301,9 +302,11 @@
     
     ############################################Графики с несколькими товарами на одном графике##########################
     
-    #График объёма продаж товарав в первом магазине по дням
+    #График объёма продаж товарав в магазине по дням
     df_salesvolume <- subset(df_salesvolume, select = -c(buf))
     names(df_salesvolume) <- goods
+    #Закидываем в list
+    goods_list[[paste0("shop",as.character(i))]] <- df_salesvolume
     xrange <- range(seq(1,7))
     yrange <- range(df_salesvolume)
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=450)
@@ -490,7 +493,7 @@
   #Выкидываем нулевой столбец
   super_df_profitability <- subset(super_df_profitability, select = -c(buf))
   #Присваиваем имена столбцам для обращения по ним
-  names(super_df_profitability) <- paste0("shop",as.character(seq(1:10)))
+  names(super_df_profitability) <- paste0("shop",as.character(seq(1,10)))
   xrange <- range(seq(1,7))
   yrange <- range(super_df_profitability)
   png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность подробно.png",width=716, height=630)
@@ -504,14 +507,14 @@
   for (i in 1:length(super_df_profitability)){
     points(seq(1,7), super_df_profitability[,paste0("shop",as.character(i))], pch=19, col=plot_colors[i])
   }
-  legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(19))
+  legend("bottomleft", legend=paste("Магазин", seq(1,10)),col=plot_colors,pch=c(19))
   dev.off()
   
   ########################Строим сложный график прибыли##########################
   #Выкидываем нулевой столбец
   super_df_shopprofits <- subset(super_df_shopprofits, select = -c(buf))
   #Присваиваем имена столбцам для обращения по ним
-  names(super_df_shopprofits) <- paste0("shop",as.character(seq(1:10)))
+  names(super_df_shopprofits) <- paste0("shop",as.character(seq(1,10)))
   super_df_shopprofits <- super_df_shopprofits / 1000
   xrange <- range(seq(1,7))
   yrange <- range(super_df_shopprofits)
@@ -526,9 +529,32 @@
   for (i in 1:length(super_df_shopprofits)){
     points(seq(1,7), super_df_shopprofits[,paste0("shop",as.character(i))], pch=18, col=plot_colors[i], cex=2.0)
   }
-  legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(18))
+  legend("bottomleft", legend=paste("Магазин", seq(1,10)),col=plot_colors,pch=c(18))
   dev.off()
-
+  
+  ############################График динамики продаж товаров по всем магазинам#####################
+  #Каждый магазин выделять своим цветом
+  #Каждый товар выделять своим значком.
+  
+  xrange <- range(seq(1,7))
+  yrange <- range(goods_list)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Динамика продаж товаров.png",width=800, height=1000)
+  plot(xrange,
+       yrange,
+       main='Динамика продаж товаров по всем магазинам', 
+       xlab="День", 
+       ylab="Продажа, шт.",
+       type = "n"
+  )
+  for (i in 1:length(goods_list)){
+    for (j in 1:length(goods_list[[paste0("shop",as.character(i))]])){
+      points(seq(1,7), goods_list[[paste0("shop",as.character(i))]][j][, 1], pch=plot_pchs[j], col=plot_colors[i])
+    }
+  }
+  legend("bottomright", legend=paste("Магазин", seq(1,10)),col=plot_colors,pch=19)
+  legend("topright", legend=goods,col="black",pch=plot_pchs)
+  dev.off()
+  
   print("Завершение работы скрипта")
   
 }
