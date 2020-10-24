@@ -245,7 +245,7 @@
       
       # Выручка
       buf_shoprevenue <- product_price * out1[, prod]
-      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i)," (",prod,").png"),width=600, height=350)
+      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i)," (",prod,").png"),width=600, height=450)
       plot(buf_shoprevenue, main=paste0('Выручка по дням в магазине ',as.character(i),' (',prod,')'), xlab='День', ylab=paste0("Выручка по товару '",prod,"', руб."),type='o')
       dev.off()
       
@@ -253,7 +253,7 @@
       buf_writeoff <- in1[, prod] - out1[, prod]
       xrange = range(seq(1,7))
       yrange = range(buf_writeoff)
-      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списание магазин ",as.character(i)," (",prod,").png"),width=600, height=350)
+      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Списание магазин ",as.character(i)," (",prod,").png"),width=600, height=450)
       plot(xrange,
            yrange,
            main=paste0('Списание ',prod,' в ',as.character(i),' магазине'), 
@@ -270,7 +270,7 @@
       # Прибыль
       shop_profits <- buf_shoprevenue - buf_cost
       
-      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Прибыль магазин ",as.character(i)," (",prod,").png"),width=600, height=350)
+      png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Прибыль магазин ",as.character(i)," (",prod,").png"),width=600, height=450)
       plot(shop_profits, main=paste0('Прибыль по дням в ',as.character(i),' магазине (',prod,')'), xlab='День', ylab='Прибыль, .руб.',type='S')
       dev.off()
       
@@ -307,14 +307,13 @@
     xrange = range(seq(1,7))
     yrange = range(df_salesvolume)
     
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=450)
     graph <- plot(xrange,
                   yrange,
-                  main=paste0('Объём продаж в магазине ',as.character(i)), 
+                  main=paste0('Объём продаж в магазине ',as.character(i)," по товарам"), 
                   xlab="День недели", 
                   ylab="Количество проданного товара, шт",
                   type = "n",
-                  ylim=c(1,150)
     )
     
     
@@ -325,8 +324,27 @@
     legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
     dev.off()
     
+    #График выручки от товарав по дням
+    df_shoprevenue = subset(df_shoprevenue, select = -c(buf))
+    names(df_shoprevenue) <- goods
+    xrange = range(seq(1,7))
+    yrange = range(df_shoprevenue)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Выручка магазин ",as.character(i),".png"),width=600, height=450)
+    graph <- plot(xrange,
+                  yrange,
+                  main=paste0('Выручка в магазине ',as.character(i)," по товарам"), 
+                  xlab="День недели", 
+                  ylab="Выручка, руб",
+                  type = "n",
+    )
     
-    #TODO График выручки от товарав по дням
+    
+    for (j in 1:length(goods)){
+      points(seq(1,7),df_shoprevenue[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7), df_shoprevenue[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+    }
+    legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
+    dev.off()
 
     #TODO График прибыли от товарав по дням
 
@@ -335,19 +353,19 @@
     #TODO График рентабельности товарав по дням
     
     #Строим общий график выручки по дням
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая выручка магазин ",as.character(i),".png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая выручка магазин ",as.character(i),".png"),width=600, height=450)
     plot(summ_shoprevenue, main=paste0('Выручка по дням в магазине ',as.character(i)), xlab='День', ylab=paste0("Общая выручка, руб."),type='o')
     dev.off()
     
     #Строим общий график прибыли по дням
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая прибыль магазин ",as.character(i),".png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая прибыль магазин ",as.character(i),".png"),width=600, height=450)
     plot(summ_shopprofits, main=paste0('Прибыль по дням в магазине ',as.character(i)), xlab='День', ylab='Общая прибыль, руб.',type='S')
     dev.off()
     
     #Строим общий график списаний по дням
     xrange = range(seq(1,7))
     yrange = range(summ_writeoffs)
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общее списание магазин ",as.character(i),".png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общее списание магазин ",as.character(i),".png"),width=600, height=450)
     plot(xrange,yrange,main=paste0('Списания по дням в ',as.character(i),' магазине'), xlab="День", ylab="Списание, шт.", type = "n")
     points(seq(1,7), summ_writeoffs, pch=19, col="red")
     lines(seq(1,7), summ_writeoffs, pch=19, col="black")
@@ -357,7 +375,7 @@
     summ_profitability <- floor((summ_shopprofits/summ_shoprevenue) * 100)
     xrange = range(seq(1,7))
     yrange = range(summ_profitability)
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая рентабельность магазин ",as.character(i),".png"),width=600, height=350)
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая рентабельность магазин ",as.character(i),".png"),width=600, height=450)
     plot(xrange,
          yrange,
          main=paste("Рентабельность по дням в",as.character(i),"магазине"), 
@@ -385,20 +403,20 @@
   
   #Строим график общей выручки
   super_summ_shoprevenue1 <- super_summ_shoprevenue / 1000
-  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая выручка.png", width=600, height=350)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая выручка.png", width=600, height=450)
   plot(super_summ_shoprevenue1, main='Выручка во всех магазинах по дням', xlab='День', ylab="Общая выручка, тыс руб.",type='o')
   dev.off()
   
   #Строим график общей прибыли
   super_summ_shopprofits1 <- super_summ_shopprofits / 1000
-  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль.png", width=600, height=350)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая прибыль.png", width=600, height=450)
   plot(super_summ_shopprofits1, main='Прибыль во всех магазинах по дням', xlab='День', ylab='Общая прибыль, тыс руб.',type='S')
   dev.off()
   
   #Строим график общих списаний
   xrange = range(seq(1,7))
   yrange = range(super_summ_writeoffs)
-  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общее списание.png",width=600, height=350)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общее списание.png",width=600, height=450)
   plot(xrange,yrange,main='Списание во всех магазинах по дням', xlab="День", ylab="Списание, шт.", type = "n")
   points(seq(1,7), super_summ_writeoffs, pch=19, col="red")
   lines(seq(1,7), super_summ_writeoffs, pch=19, col="black")
@@ -408,7 +426,7 @@
   super_summ_profitability <- floor((super_summ_shopprofits/super_summ_shoprevenue) * 100)
   xrange = range(seq(1,7))
   yrange = range(super_summ_profitability)
-  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность.png",width=600, height=350)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность.png",width=600, height=450)
   plot(xrange,
        yrange,
        main="Рентабельность по дням общая", 
