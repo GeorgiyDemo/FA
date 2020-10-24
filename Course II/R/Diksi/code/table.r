@@ -212,37 +212,13 @@
   for (i in 1:10) {
     in1 <- read.table(file = paste0('store',as.character(i),'_in.txt'), head = TRUE)
     out1 <- read.table(file = paste0('store',as.character(i),'_out.txt'), head = TRUE)
-    
-    #График объёма продаж товарав в первом магазине по дням
-    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
-    xrange = range(seq(1,7))
-    yrange = range(in1[,"Кофе"], in1[,"Молоко"], in1[,"Творог"])
-    graph <- plot(xrange,
-         yrange,
-         main=paste0('Объём продаж в магазине ',as.character(i)), 
-         xlab="День недели", 
-         ylab="Количество проданного товара, шт",
-         type = "n",
-         ylim=c(1,150)
-         ) 
-  
-    points(seq(1,7),out1[, "Кофе"], pch=20, col="red3")
-    lines(seq(1,7),out1[, "Кофе"], pch=20, col="red3")
-    points(seq(1,7),out1[, "Молоко"], pch=22, col="forestgreen")
-    lines(seq(1,7),out1[, "Молоко"], pch=22, col="forestgreen")
-    points(seq(1,7),out1[, "Творог"], pch=24, col="steelblue")
-    lines(seq(1,7),out1[, "Творог"], pch=24, col="steelblue")
-    legend("topright", legend=c("Кофе", "Молоко", "Творог"),col=c("red3", "forestgreen", "steelblue"), pch=c(20,22,24))
-    dev.off()
-  
     price1 <- read.table(file = paste0('store',as.character(i),'_price.txt'), head = TRUE)
-    
-    #Цикл по каждому продукту в каждом магазине
     
     #Общая выручка со всех продуктов
     summ_shopprofits <- rep(0,7)
     summ_shoprevenue <- rep(0,7)
     summ_writeoffs <- rep(0,7)
+    #Цикл по каждому продукту в каждом магазине
     for (prod in goods){
     
       element_index <- which(goods.table == prod)
@@ -293,6 +269,28 @@
       summ_writeoffs <- summ_writeoffs + buf_writeoff
       
     }
+    
+    ############################################Графики с несколькими товарами в одном##########################
+    #График объёма продаж товарав в первом магазине по дням
+    plot_colors = c("red3","forestgreen", "steelblue")
+    plot_pchs = c(20,22,24)
+    xrange = range(seq(1,7))
+    yrange = range(in1[,goods[1]])
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
+    graph <- plot(xrange,
+                  yrange,
+                  main=paste0('Объём продаж в магазине ',as.character(i)), 
+                  xlab="День недели", 
+                  ylab="Количество проданного товара, шт",
+                  type = "n",
+                  ylim=c(1,150)
+    )
+    for (j in 1:length(goods)){
+      points(seq(1,7),out1[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7),out1[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+    }
+    legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
+    dev.off()
     
     
     #Строим общий график выручки по дням
