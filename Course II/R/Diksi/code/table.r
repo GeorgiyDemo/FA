@@ -218,6 +218,20 @@
     summ_shopprofits <- rep(0,7)
     summ_shoprevenue <- rep(0,7)
     summ_writeoffs <- rep(0,7)
+    
+    
+    #Датафреймы по каждому продукту для вывода единых графиков с несколькими продуктами
+    #объем продаж
+    df_salesvolume <- data.frame(buf=rep(0,7))
+    #выручка
+    df_shoprevenue <- data.frame(buf=rep(0,7))
+    #прибыль
+    df_shopprofits <- data.frame(buf=rep(0,7))
+    #Списание
+    df_writeoffs <- data.frame(buf=rep(0,7))
+    #Рентабельность
+    df_profitability <- data.frame(buf=rep(0,7))
+    
     #Цикл по каждому продукту в каждом магазине
     for (prod in goods){
     
@@ -260,6 +274,18 @@
       plot(shop_profits, main=paste0('Прибыль по дням в ',as.character(i),' магазине (',prod,')'), xlab='День', ylab='Прибыль, .руб.',type='S')
       dev.off()
       
+      #Добавляем данные во фреймы для построения графиков ниже
+      #Объём продаж
+      df_salesvolume <- data.frame(df_salesvolume, out1[, prod])
+      #выручка
+      df_shoprevenue <- data.frame(df_shoprevenue, buf_shoprevenue)
+      #прибыль
+      df_shopprofits <- data.frame(df_shopprofits, shop_profits)
+      #Списание
+      df_writeoffs <- data.frame(df_writeoffs, buf_writeoff)
+      #Рентабельность
+      df_profitability <- data.frame(df_profitability, floor((shop_profits/buf_shoprevenue) * 100))
+      
       
       #Прибавляем к сумме выручки
       summ_shoprevenue <- summ_shoprevenue + buf_shoprevenue
@@ -271,11 +297,16 @@
     }
     
     ############################################Графики с несколькими товарами в одном##########################
+    
     #График объёма продаж товарав в первом магазине по дням
+    df_salesvolume = subset(df_salesvolume, select = -c(buf))
+    names(df_salesvolume) <- goods
+    
     plot_colors = c("red3","forestgreen", "steelblue")
     plot_pchs = c(20,22,24)
     xrange = range(seq(1,7))
-    yrange = range(in1[,goods[1]])
+    yrange = range(df_salesvolume)
+    
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Объём продаж магазин ",as.character(i),".png"),width=600, height=350)
     graph <- plot(xrange,
                   yrange,
@@ -285,13 +316,23 @@
                   type = "n",
                   ylim=c(1,150)
     )
+    
+    
     for (j in 1:length(goods)){
-      points(seq(1,7),out1[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
-      lines(seq(1,7),out1[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      points(seq(1,7),df_salesvolume[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
+      lines(seq(1,7), df_salesvolume[, goods[j]], pch=plot_pchs[j], col=plot_colors[j])
     }
     legend("topright", legend=goods,col=plot_colors, pch=plot_pchs)
     dev.off()
     
+    
+    #TODO График выручки от товарав по дням
+
+    #TODO График прибыли от товарав по дням
+
+    #TODO График списания товарав по дням
+
+    #TODO График рентабельности товарав по дням
     
     #Строим общий график выручки по дням
     png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/shop",as.character(i),"/Общая выручка магазин ",as.character(i),".png"),width=600, height=350)
