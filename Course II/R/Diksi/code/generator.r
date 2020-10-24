@@ -72,7 +72,6 @@ generate.price <- function(direction, name.prod) {
   write.table(
     price.tab,
     file = direction,
-    quote = FALSE,
     row.names = FALSE,
     col.names = TRUE,
     sep = ' ',

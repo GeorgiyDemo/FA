@@ -8,7 +8,6 @@
   
   #Цикл по каждому товару. Надеемся на то, что во всех магазах одинаковые товары
   goods.table <- read.table(file = 'store1_price.txt', head = TRUE)
-  print(goods.table)
   goods <- goods.table[, 1]
   
   ############ Работаем только с таблицей .csv и .xlsx #########################
@@ -198,7 +197,6 @@
   plot_colors <- c("red3","forestgreen", "steelblue", "darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1","chocolate1","blue","black","brown", "darkseagreen" )
   #TODO Вектор всех возможных значков для товаров
   plot_pchs <- rev(seq(1:25))
-  print(plot_pchs)
   
   #Общая выручка со всех магазинов и со всех продуктов
   super_summ_shoprevenue  <- rep(0,7)
