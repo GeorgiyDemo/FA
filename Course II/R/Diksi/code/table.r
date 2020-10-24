@@ -378,19 +378,15 @@
   lines(seq(1,7), super_summ_profitability, pch=20, col="red3",lwd = 3, lty = 2)
   dev.off()
   
-  
-  
-  ########################### Формируем сложные и красивые графики #############
-  
+  ########################Строим сложный график рентабельности##########################
   #Выкидываем нулевой столбец
   super_df_profitability = subset(super_df_profitability, select = -c(buf))
-  #Присваимваем имена столбцам для обращения по ним
-  names(super_df_profitability) <- as.character(seq(1:10))
-  #print(super_df_profitability)
-  #Строим график рентабельности
+  #Присваиваем имена столбцам для обращения по ним
+  names(super_df_profitability) <- paste0("shop",as.character(seq(1:10)))
   plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
   xrange = range(seq(1,7))
   yrange = range(super_df_profitability)
+  png(file="/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Общая рентабельность подробно.png",width=716, height=630)
   plot(xrange,
        yrange,
        main='Рентабельность по дням в магазинах', 
@@ -398,13 +394,30 @@
        ylab="Рентабельность, %",
        type = "n"
     )
-  print(super_df_profitability)
   for (i in 1:length(super_df_profitability)){
-    points(seq(1,7), super_df_profitability[,i], pch=19, col=plot_colors[i])
+    points(seq(1,7), super_df_profitability[,paste0("shop",as.character(i))], pch=19, col=plot_colors[i])
   }
-  
-  # Легенда
   legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(19))
+  dev.off()
   
-
+  ########################Строим сложный график прибыли##########################
+  #Выкидываем нулевой столбец
+  super_df_shopprofits = subset(super_df_shopprofits, select = -c(buf))
+  #Присваиваем имена столбцам для обращения по ним
+  names(super_df_shopprofits) <- paste0("shop",as.character(seq(1:10)))
+  super_df_shopprofits <- super_df_shopprofits / 1000
+  plot_colors = c("darkgreen","darkolivegreen3", "darkorange1","firebrick1","gold1", "lightcoral","mediumvioletred","navyblue", "tan1","turquoise1")
+  xrange = range(seq(1,7))
+  yrange = range(super_df_shopprofits)
+  plot(xrange,
+       yrange,
+       main='Прибыль по дням в магазинах', 
+       xlab="День", 
+       ylab="Прибыль, тыс руб",
+       type = "n"
+  )
+  for (i in 1:length(super_df_shopprofits)){
+    points(seq(1,7), super_df_shopprofits[,paste0("shop",as.character(i))], pch=18, col=plot_colors[i])
+  }
+  legend("bottomleft", legend=paste("Магазин", seq(1:10)),col=plot_colors,pch=c(18))
 }
