@@ -555,6 +555,26 @@
   legend("topright", legend=goods,col="black",pch=plot_pchs)
   dev.off()
   
+  #Подготовить диаграмму, на которой будет представлены объемы
+  #продаж одного товара сразу по всем магазинам. Каждый магазин
+  #выделять своим цветом.
+  
+  for (good in goods){
+    
+    #Значения 
+    good_values <- c()
+    for (i in 1:length(goods_list)){
+      
+      value <- goods_list[[paste0("shop",as.character(i))]][, good]
+      #Записываем сумму товара за неделю
+      good_values <- append(good_values, sum(value))
+      
+    }
+    png(file=paste0("/Users/georgiydemo/Projects/FA/Course II/R/Diksi/result/graph/Объём продаж ",good,".png"),width=650, height=500)
+    barplot(height = good_values, names=seq(1,10),main=paste0('Объём продаж товара ', good, " по магазинам"), col="#69b3a2",xlab="№ магазина", ylab="Объём продаж, шт")
+    dev.off()
+  }
+
   print("Завершение работы скрипта")
   
 }
