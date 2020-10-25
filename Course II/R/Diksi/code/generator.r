@@ -1,7 +1,6 @@
-#Максимальное число попыток, чтоб сгенерировать данные
-MAX_TRY <- 100000
 #Уровень продаж в процентах
-SALE_LEVELS <-  c(50, 75, 20, 60, 36, 55, 95, 64, 35, 50)
+MAX_ITERATION = 500000
+SALE_LEVELS <-  c(50, 75, 20, 10, 86, 65, 95, 64, 45, 90)
 #Позиции товаров
 SALE_PRODUCTS <- c("Кофе", "Молоко", "Творог")
 #Дни недели
@@ -24,28 +23,42 @@ generate.in <- function(nDays = 7,
 }
 
 #Генерация продаж
-generate.out <- function(data.in, saleLevel = 50) {
-  sum.in <- sum(data.in)
-  n <- 0 #счетчик цикла
-  repeat {
-    n <- n + 1
+generate.out <- function(data.in, saleLevel = 50) { 
+  n <- 0 
+  data.out <- c() 
+  tmp.data.out <- c() 
+  temp.ratio <- 200
+  repeat { 
     
-    data.out <- 0
-    for (i in 1:length(data.in)) {
-      data.out[i]  <- floor((runif(1) * ((data.in[i] - 0) + 1)) + 0)
-    }
+    #Генерим данные
+    for (i in 1:length(data.in)) { 
+      data.out[i] <- as.integer(runif(1, 0, data.in[i])) 
+    } 
     
-    sum.out <- sum(data.out)
-    ratio <- sum.out / sum.in * 100
+    #Погрешность
+    ratio = (sum(data.out) / sum(data.in)) * 100
     
-    if ((ratio <= saleLevel * 1.005) &&
-        (ratio >= saleLevel * 0.995) || (n == MAX_TRY)) {
-      break
-    }
-  }
-  
-  return(data.out)
+    #Если попадает в диапазон - заносим в буфер
+    if ((ratio >= saleLevel * 0.9975) && (ratio <= saleLevel * 1.0025)){ 
+      tmp.data.out = data.out 
+      temp.ratio = ratio 
+      break 
+      
+    } else if (n == MAX_ITERATION){ 
+      break 
+    } else if (abs(ratio - saleLevel) <= abs(temp.ratio - saleLevel)) { 
+      tmp.data.out = data.out 
+      temp.ratio = ratio 
+      n <- n + 1 
+    } else { 
+      n <- n + 1 
+    } 
+    
+  } 
+  print(paste0("Итерации:", n,', уровень продаж -> ', temp.ratio,", требуемый -> ", saleLevel)) 
+  return (tmp.data.out) 
 }
+
 
 # Генерация цен товара
 generate.price <- function(direction, name.prod) {
@@ -81,6 +94,7 @@ generate.price <- function(direction, name.prod) {
   
 }
 
+######################Основная программа########################################
 {
   #Цикл по каждому магазину
   for (i in 1:10) {
@@ -159,4 +173,6 @@ generate.price <- function(direction, name.prod) {
     )
     
   }
+  
+  print("Завершение работы генератора данных")
 }
