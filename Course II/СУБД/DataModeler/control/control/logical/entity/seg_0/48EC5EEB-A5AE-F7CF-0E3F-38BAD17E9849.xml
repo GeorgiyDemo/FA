@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8E91ECBA-A879-7BCF-820C-D79B2BB9CDE9" name="HOUSES">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="48EC5EEB-A5AE-F7CF-0E3F-38BAD17E9849" name="HOUSES_STAFF">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 13:56:59 UTC</createdTime>
+<createdTime>2020-10-26 09:25:40 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="F76B316D-4384-7A58-0C01-2DF361787E24">
+<Attribute name="id" id="9E0EFCC5-06BD-647A-846F-050FF3933CC6">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:19:56 UTC</createdTime>
+<createdTime>2020-10-26 09:25:55 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -27,42 +27,53 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="price" id="81C89F0A-E9D3-73BA-460B-F0281E20C488">
+<Attribute name="house_id" id="946F4C71-903C-0CF0-A184-D477CE4C33AC">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:20:04 UTC</createdTime>
+<createdTime>2020-10-26 09:26:01 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT021</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="staff_id" id="28747DF6-622B-7701-40BD-C39375B059FB">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:59:47 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id2" id="AB41D93E-301F-544F-1EBD-C80A5C2DC132">
+<Attribute name="staff_id" id="1E95AE82-5269-028B-1A59-891713C48240">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:11:41 UTC</createdTime>
-<generatorID>65A42B2E-F065-BAA3-7029-EC8628F45144</generatorID>
+<createdTime>2020-10-26 09:26:16 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="7197F774-56E3-15B8-A132-24DADBBA4EC6">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-26 09:27:18 UTC</createdTime>
+<generatorID>C2881EFA-4AD6-35A8-FC1F-5E67F892C24B</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>F76B316D-4384-7A58-0C01-2DF361787E24</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="5AB8E3D4-974A-9255-12FC-BF5B2734080D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-26 09:27:28 UTC</createdTime>
+<generatorID>6245C3EE-ACFC-63B4-1B26-65B5BF79F511</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>3455BF78-C5DF-8948-FED0-C1A867CD8144</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -70,16 +81,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="9CFB74DD-8844-1A5B-DBC2-8FC32561391E" name="HOUSES PK">
+<identifier id="ADAE6CB8-229A-3513-BC4B-99A8CB19914D" name="HOUSES_STAFF PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:20:02 UTC</createdTime>
+<createdTime>2020-10-26 09:25:58 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>F76B316D-4384-7A58-0C01-2DF361787E24</attributeRef>
+<attributeRef>9E0EFCC5-06BD-647A-846F-050FF3933CC6</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

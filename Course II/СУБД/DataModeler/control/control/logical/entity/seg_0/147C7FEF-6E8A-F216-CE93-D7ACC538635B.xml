@@ -22,7 +22,6 @@
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -40,5 +39,46 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="title" id="703F9761-EB27-6034-41BF-5B8081E115C6">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-26 08:47:00 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="0A732FD4-EE52-CF17-469D-3EA554DEC0FF">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-26 09:29:06 UTC</createdTime>
+<generatorID>98235F4D-3461-34B2-91DA-04410BC07400</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>F76B316D-4384-7A58-0C01-2DF361787E24</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="724B2DB2-0954-6BCC-A833-D49D3194C766" name="FRIDGES PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-26 08:54:01 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C0628CFE-13E7-6A6C-48BB-1E0EABD58AE3</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

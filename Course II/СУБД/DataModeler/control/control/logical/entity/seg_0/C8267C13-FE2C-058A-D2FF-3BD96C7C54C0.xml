@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0DB05A1-2E15-BFF8-E9E7-BF2BF363D057" name="DOCUMENTS">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C8267C13-FE2C-058A-D2FF-3BD96C7C54C0" name="FRIDGES_CONTENT">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 13:57:14 UTC</createdTime>
+<createdTime>2020-10-26 08:56:58 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC">
+<Attribute name="id" id="55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:22:58 UTC</createdTime>
+<createdTime>2020-10-26 08:57:12 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -27,9 +27,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="client_id" id="BA3CB06A-8E8C-617F-BFA7-E2F25BD57E20">
+<Attribute name="fridge_id" id="D976E942-F7D3-1293-EAE7-B5DE11867B9C">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:21:20 UTC</createdTime>
+<createdTime>2020-10-26 08:57:22 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -39,9 +39,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="title" id="8FCB710B-A5F3-82B6-CAE0-FFF1E27344FF">
+<Attribute name="title" id="910BEBB1-4DBF-8702-3E42-60AF9A8C2C98">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:23:01 UTC</createdTime>
+<createdTime>2020-10-26 08:57:31 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -51,21 +51,21 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="FILE" id="76C2F328-93D4-56AF-C04B-6087DCB091A5">
+<Attribute name="price" id="49E8D30D-BBBE-0CBA-7ACF-7319928C92D7">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:26:06 UTC</createdTime>
+<createdTime>2020-10-26 08:57:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT029</logicalDatatype>
+<logicalDatatype>LOGDT021</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="text_content" id="18292867-6109-22B5-82C8-D3DF155F747A">
+<Attribute name="count" id="5B1E44C9-430D-73DA-B1F0-8D23F6B9AB16">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:26:21 UTC</createdTime>
+<createdTime>2020-10-26 09:06:13 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -73,31 +73,33 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="comments" id="8E3E6346-704E-562A-371E-620FFB56B231">
+<Attribute name="id1" id="D86A2D95-588A-8B86-6CEE-F7B8FD860A12">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:23:09 UTC</createdTime>
+<createdTime>2020-10-26 09:11:34 UTC</createdTime>
+<generatorID>3A4F1942-C340-B609-99A4-9D5AA7E02A36</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
+<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="96F70D55-3553-1168-E245-6B7781CFA8E8">
+<Attribute name="id2" id="882F784D-E632-9256-162A-451D78B212D2">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:22:16 UTC</createdTime>
-<generatorID>2CFBC385-8727-B3C8-4A68-3CA4373FA25E</generatorID>
+<createdTime>2020-10-26 09:30:36 UTC</createdTime>
+<generatorID>217DC057-49A5-79EF-67EA-2F0E793501BB</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
+<referedAttribute>C0628CFE-13E7-6A6C-48BB-1E0EABD58AE3</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -105,16 +107,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="E200B522-A429-3A59-2724-0E2862A3DD8A" name="DOCUMENTS PK">
+<identifier id="646D5682-C1E4-6212-C9A0-D5101B1914C0" name="FRIDGES_CONTENT PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:50:46 UTC</createdTime>
+<createdTime>2020-10-26 08:57:20 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC</attributeRef>
+<attributeRef>55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
