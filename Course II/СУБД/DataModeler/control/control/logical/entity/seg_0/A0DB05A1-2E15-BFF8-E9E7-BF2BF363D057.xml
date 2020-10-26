@@ -51,7 +51,7 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="FILE" id="76C2F328-93D4-56AF-C04B-6087DCB091A5">
+<Attribute name="file" id="76C2F328-93D4-56AF-C04B-6087DCB091A5">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 14:26:06 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
