@@ -65,6 +65,18 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="count" id="E5EE4D45-6E7C-0064-C8B8-596DC6C5439E">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-28 10:20:28 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="4790DCE9-CE67-E8EA-B11C-EAD14699BA1F" name="ORDERS PK">

@@ -51,6 +51,45 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="ac" id="E0F2042B-C449-0DE3-7B3B-A97DE8FC69B2">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-28 10:52:03 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tv" id="5C47C57E-50A1-C834-2BEE-67921FD713AE">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-28 10:56:44 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="safe" id="3A7EA077-B0F9-A37E-19A7-58A9CE798F3D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-28 10:57:30 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="id2" id="AB41D93E-301F-544F-1EBD-C80A5C2DC132">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 09:11:41 UTC</createdTime>

@@ -51,6 +51,18 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="position" id="B133C198-FC91-C206-9BD8-482C74C61AB4">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-28 10:04:05 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="phone" id="6E0B2FFD-768D-DBCE-DA63-566D912FE1D7">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 20:52:36 UTC</createdTime>
