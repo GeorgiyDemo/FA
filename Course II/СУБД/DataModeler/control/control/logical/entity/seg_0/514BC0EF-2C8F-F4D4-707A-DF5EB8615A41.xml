@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="65986E18-AC7D-FD33-A30C-BCAC40136B69" name="CLIENT_ORDERS_HOUSES">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="514BC0EF-2C8F-F4D4-707A-DF5EB8615A41" name="CLIENT_ORDERS_FRIDGES">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 13:57:07 UTC</createdTime>
+<createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="BD6CDB1B-72D6-F856-4F06-857D1408B42C">
+<Attribute name="id" id="36209BC0-5310-5142-789F-D5B289ACB9F6">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 14:08:47 UTC</createdTime>
+<createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -27,9 +27,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="client_id" id="625AFD18-4A34-9394-3472-E6B928708482">
+<Attribute name="client_id" id="3AB72B13-A477-6AE8-2F51-7418AB49290E">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:52:37 UTC</createdTime>
+<createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -39,9 +39,9 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="house_id" id="5B68CA69-3AC3-2410-9310-B4A573BD7235">
+<Attribute name="order_id" id="4532D01C-0DE3-5632-65F8-4BF222697BA8">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:03:58 UTC</createdTime>
+<createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -51,10 +51,10 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="3364DECD-DB1E-1048-3864-97CB4FCFED7A">
+<Attribute name="id2" id="0ACE0F5D-39B8-11AF-3760-AE9439B28D4C">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:15:13 UTC</createdTime>
-<generatorID>F3C01224-F9C7-3FF3-8011-7F57BC0410CE</generatorID>
+<createdTime>2020-10-27 10:19:06 UTC</createdTime>
+<generatorID>92FBF4A6-283E-F6A7-1982-C3FDB6B59BB2</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -67,16 +67,16 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="4790DCE9-CE67-E8EA-B11C-EAD14699BA1F" name="ORDERS PK">
+<identifier id="916A701F-64BD-A2F6-4B01-FACD1A384D08" name="ORDERS PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:54:12 UTC</createdTime>
+<createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>BD6CDB1B-72D6-F856-4F06-857D1408B42C</attributeRef>
+<attributeRef>36209BC0-5310-5142-789F-D5B289ACB9F6</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

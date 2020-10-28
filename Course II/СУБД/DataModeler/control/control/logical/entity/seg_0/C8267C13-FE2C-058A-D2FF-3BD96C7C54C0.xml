@@ -75,21 +75,6 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="D86A2D95-588A-8B86-6CEE-F7B8FD860A12">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:11:34 UTC</createdTime>
-<generatorID>3A4F1942-C340-B609-99A4-9D5AA7E02A36</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="id2" id="882F784D-E632-9256-162A-451D78B212D2">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 09:30:36 UTC</createdTime>
@@ -99,6 +84,21 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <referedAttribute>C0628CFE-13E7-6A6C-48BB-1E0EABD58AE3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id3" id="BA8C042B-231D-E68B-826E-7562161366A9">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-27 10:21:10 UTC</createdTime>
+<generatorID>E060AD6F-6515-ACCB-A1C6-86A12A754117</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>36209BC0-5310-5142-789F-D5B289ACB9F6</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
