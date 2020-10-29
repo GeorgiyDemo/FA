@@ -15,33 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="BD6CDB1B-72D6-F856-4F06-857D1408B42C">
+<Attribute name="order_number" id="BD6CDB1B-72D6-F856-4F06-857D1408B42C">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 14:08:47 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="client_id" id="625AFD18-4A34-9394-3472-E6B928708482">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:52:37 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="house_id" id="5B68CA69-3AC3-2410-9310-B4A573BD7235">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:03:58 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>

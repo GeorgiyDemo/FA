@@ -15,18 +15,6 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="9E0EFCC5-06BD-647A-846F-050FF3933CC6">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:25:55 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="house_id" id="946F4C71-903C-0CF0-A184-D477CE4C33AC">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 09:26:01 UTC</createdTime>
@@ -90,7 +78,8 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>9E0EFCC5-06BD-647A-846F-050FF3933CC6</attributeRef>
+<attributeRef>7197F774-56E3-15B8-A132-24DADBBA4EC6</attributeRef>
+<attributeRef>5AB8E3D4-974A-9255-12FC-BF5B2734080D</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -27,18 +27,6 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="fridge_id" id="D976E942-F7D3-1293-EAE7-B5DE11867B9C">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:57:22 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="title" id="910BEBB1-4DBF-8702-3E42-60AF9A8C2C98">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 08:57:31 UTC</createdTime>
@@ -75,21 +63,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id2" id="882F784D-E632-9256-162A-451D78B212D2">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:30:36 UTC</createdTime>
-<generatorID>217DC057-49A5-79EF-67EA-2F0E793501BB</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<referedAttribute>C0628CFE-13E7-6A6C-48BB-1E0EABD58AE3</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id3" id="BA8C042B-231D-E68B-826E-7562161366A9">
+<Attribute name="order_number" id="BA8C042B-231D-E68B-826E-7562161366A9">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-27 10:21:10 UTC</createdTime>
 <generatorID>E060AD6F-6515-ACCB-A1C6-86A12A754117</generatorID>
