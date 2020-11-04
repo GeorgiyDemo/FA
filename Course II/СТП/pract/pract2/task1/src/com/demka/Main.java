@@ -61,15 +61,30 @@ public class Main {
         SearcherClass.BinarySearch(arr2, 0, arrayLength, randomValue);
         endTime = System.nanoTime();
         duration = (endTime - startTime);
-        System.out.println("Время работы метода бинарного поиска: "+ duration);
+        System.out.println("Время работы метода бинарного поиска: " + duration);
 
-        ExpSolverClass obj3 = new ExpSolverClass(0.0,10.0);
-        System.out.println("Результат уравнения с 3 задания: "+obj3.getResult());
+        ExpSolverClass obj3 = new ExpSolverClass(0.0, 10.0);
+        System.out.println("Результат уравнения с 3 задания: " + obj3.getResult());
 
-        BinaryTreeClass tree1Obj = new BinaryTreeClass("KOT");
-        BinaryTreeClass tree2Obj = new BinaryTreeClass("КОТ ЛЕВЫЙ ОБЪЕКТ");
+        BinaryTreeClass tree1Obj = new BinaryTreeClass("ГЛАВНЫЙ ОБЪЕКТ 0");
+        BinaryTreeClass tree2Obj = new BinaryTreeClass("ОБЪЕКТ 0-1 ЛЕВО");
+
+        //Можно передать объект BinaryTreeClass
         tree1Obj.InsertLeft(tree2Obj);
-        tree1Obj.InsertRight("КОТ ПРАВЫЙ СТРОКА");
+
+        //А можно просто строку и он сам не основе ее создаст объект BinaryTreeClass
+        tree1Obj.InsertRight("СТРОКА 0-1 ПРАВО");
+        tree2Obj.InsertLeft("СТРОКА 0-1-2 ЛЕВО");
+        tree2Obj.InsertRight("СТРОКА 0-1-2 ПРАВО");
+        tree1Obj.getRight().InsertRight("СТРОКА 0-1-2 ПРАВО");
+
+        //Тут можно создать объект класса BinaryTreeClass, чтоб не стучаться через tree2Obj.getRight().getLeft().InsertLeft()..
+        BinaryTreeClass tree3Obj = new BinaryTreeClass("ОБЪЕКТ 0-1-2-3 ЛЕВО");
+        tree2Obj.getRight().InsertLeft(tree3Obj);
+        tree3Obj.InsertLeft("СТРОКА 0-1-2-3-4 ЛЕВО");
+
+        //Красивый вывод структуры дерева
+        TreePrinter.print(tree1Obj);
 
     }
 

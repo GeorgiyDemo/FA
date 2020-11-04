@@ -1,14 +1,14 @@
 package com.demka;
 
 
-public class BinaryTreeClass {
+public class BinaryTreeClass implements TreePrinter.PrintableNode {
 
     String key;
     BinaryTreeClass parent = null;
     BinaryTreeClass leftChild = null;
     BinaryTreeClass rightChild = null;
 
-    public BinaryTreeClass(String key, BinaryTreeClass parent){
+    public BinaryTreeClass(String key, BinaryTreeClass parent) {
         this.key = key;
         this.parent = parent;
     }
@@ -80,11 +80,12 @@ public class BinaryTreeClass {
     }
 
     //Получение элемента справа
-    public BinaryTreeClass getrightChild() {
+    public BinaryTreeClass getRight() {
         return rightChild;
     }
+
     //Получение элемента слева
-    public BinaryTreeClass getleftChild() {
+    public BinaryTreeClass getLeft() {
         return leftChild;
     }
 
@@ -94,7 +95,9 @@ public class BinaryTreeClass {
     }
 
     //Получение значения
-    public String getKey() {
+    public String getText() {
         return key;
     }
 }
+
+
