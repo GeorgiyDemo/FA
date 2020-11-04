@@ -66,11 +66,10 @@ public class Main {
         ExpSolverClass obj3 = new ExpSolverClass(0.0,10.0);
         System.out.println("Результат уравнения с 3 задания: "+obj3.getResult());
 
-
-
         BinaryTreeClass tree1Obj = new BinaryTreeClass("KOT");
-
-        BinaryTreeClass tree2Obj = new BinaryTreeClass("КОТ ЛЕВЫЙ");
+        BinaryTreeClass tree2Obj = new BinaryTreeClass("КОТ ЛЕВЫЙ ОБЪЕКТ");
+        tree1Obj.InsertLeft(tree2Obj);
+        tree1Obj.InsertRight("КОТ ПРАВЫЙ СТРОКА");
 
     }
 
