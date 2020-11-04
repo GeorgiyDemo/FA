@@ -1,84 +1,14 @@
 package com.demka;
 
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Random;
-
-
-
-class RecurserClass{
-
-    /*
-        1)	Дано натуральное число n. Выведите все числа от 1 до n.
-     */
-    public void task1(int n){
-        System.out.println(n);
-        n--;
-        if (n == -1)
-            return;
-        else
-            task1(n);
-    }
-
-}
-
-class Searcher {
-    /*
-    2)	Напишите метод, который проверяет, входит ли в массив заданный элемент или нет.
-        Используйте перебор и двоичный поиск для решения этой задачи.
-        Сравните время выполнения обоих решений для больших массивов (например, 100000000 элементов).
-    */
-
-    int [] array;
-    public Searcher(int [] array){
-        this.array = array;
-    }
-
-    public boolean SimpleSearcher(int searchValue){
-        for (int i = 0; i < array.length; i++) {
-
-            if (array[i] == searchValue){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /*
-    Рекурсивный бинарный поиск
-     */
-    public static int BinarySearch(int arr[], int firstElement, int lastElement, int elementToSearch) {
-
-        // условие прекращения
-        if (lastElement >= firstElement) {
-
-            //Серединка
-            int mid = firstElement + (lastElement - firstElement) / 2;
-
-            // если средний элемент - целевой элемент, вернуть его индекс
-            if (arr[mid] == elementToSearch)
-                return mid;
-
-            // если средний элемент больше целевого
-            // вызываем метод рекурсивно по суженным данным
-            if (arr[mid] > elementToSearch)
-                return BinarySearch(arr, firstElement, mid - 1, elementToSearch);
-
-            // также, вызываем метод рекурсивно по суженным данным
-            return BinarySearch(arr, mid + 1, lastElement, elementToSearch);
-        }
-
-        return -1;
-    }
-
-}
-
+import java.util.Scanner;
 
 public class Main {
 
 
     /*
-    Стат генератор массивов
+    Генератор массивов
      */
     public static int [] generator(int n){
 
@@ -117,7 +47,7 @@ public class Main {
         int [] arr2 = generator(arrayLength);
         int randomValue = getRandom(arr2);
 
-        Searcher obj2 = new Searcher(arr2);
+        SearcherClass obj2 = new SearcherClass(arr2);
 
         System.out.println("Поиск числа "+randomValue);
         //Вычисляем время выполнения обыкновенного поиска
@@ -128,10 +58,13 @@ public class Main {
         System.out.println("Время работы метода простого поиска: "+ duration);
 
         startTime = System.nanoTime();
-        Searcher.BinarySearch(arr2,0,arrayLength,randomValue);
+        SearcherClass.BinarySearch(arr2, 0, arrayLength, randomValue);
         endTime = System.nanoTime();
         duration = (endTime - startTime);
         System.out.println("Время работы метода бинарного поиска: "+ duration);
+
+        ExpSolverClass obj3 = new ExpSolverClass(0.0,10.0);
+        System.out.println("Результат уравнения с 3 задания: "+obj3.getResult());
 
     }
 
