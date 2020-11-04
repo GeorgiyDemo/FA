@@ -1,5 +1,6 @@
 package com.demka;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -84,17 +85,23 @@ public class Main {
         int [] thisarr = new int[n];
         Random random = new Random();
         for (int i = 0; i < n; i++)
-            thisarr[i] = random.nextInt(100);
+            thisarr[i] = random.nextInt(100000);
+
+
+        //Сортируем массив, чтоб бинарный поиск работал быстрее
+        Arrays.sort(thisarr);
         return thisarr;
 
     }
 
     /*
-    Получение рандомного элемента в массиве
+    Взятие элемента с середины массива для усткорения бинарного поиска
      */
     public static int getRandom(int[] array) {
-        int rnd = new Random().nextInt(array.length);
-        return array[rnd];
+
+        int rnd = new Random().nextInt(array.length/10);
+        int value = array.length/2+rnd;
+        return array[value];
     }
 
     public static void main(String[] args) {
@@ -112,6 +119,7 @@ public class Main {
 
         Searcher obj2 = new Searcher(arr2);
 
+        System.out.println("Поиск числа "+randomValue);
         //Вычисляем время выполнения обыкновенного поиска
         long startTime = System.nanoTime();
         obj2.SimpleSearcher(randomValue);
