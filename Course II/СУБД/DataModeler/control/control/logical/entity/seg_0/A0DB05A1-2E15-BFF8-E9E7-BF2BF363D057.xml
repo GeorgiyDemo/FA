@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0DB05A1-2E15-BFF8-E9E7-BF2BF363D057" name="DOCUMENTS">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0DB05A1-2E15-BFF8-E9E7-BF2BF363D057" name="Документ">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 13:57:14 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
@@ -18,18 +18,6 @@
 <Attribute name="id" id="BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 14:22:58 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="client_id" id="BA3CB06A-8E8C-617F-BFA7-E2F25BD57E20">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:21:20 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>

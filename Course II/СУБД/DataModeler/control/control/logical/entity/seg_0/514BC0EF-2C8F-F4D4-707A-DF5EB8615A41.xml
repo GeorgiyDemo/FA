@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="514BC0EF-2C8F-F4D4-707A-DF5EB8615A41" name="CLIENT_ORDERS_FRIDGES">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="514BC0EF-2C8F-F4D4-707A-DF5EB8615A41" name="Заказы">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-27 10:11:17 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
@@ -53,6 +53,17 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="date" id="BE0ADC5A-1B4A-7EE6-D51E-6A0665C18F41">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 11:21:15 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="916A701F-64BD-A2F6-4B01-FACD1A384D08" name="ORDERS PK">
@@ -63,9 +74,6 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<usedAttributes>
-<attributeRef>36209BC0-5310-5142-789F-D5B289ACB9F6</attributeRef>
-</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>
