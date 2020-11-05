@@ -27,5 +27,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="date" id="449947CC-B359-C20D-DC2B-01B39B354B12">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 12:20:27 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 </Entity>

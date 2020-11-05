@@ -15,7 +15,7 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id_2" id="BD6CDB1B-72D6-F856-4F06-857D1408B42C">
+<Attribute name="id" id="BD6CDB1B-72D6-F856-4F06-857D1408B42C">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 14:08:47 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
@@ -53,14 +53,23 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="admin id" id="895BF6B5-1BBC-15FD-9E61-77ECAFB62DE1">
+<Attribute name="date_in" id="19DA9E36-9AFC-EBC5-D9F2-E29ED9E131AD">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 11:19:44 UTC</createdTime>
+<createdTime>2020-11-05 12:18:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date_out" id="1BAC4AEF-B78B-B590-73AB-229A3B01D690">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 12:18:43 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>

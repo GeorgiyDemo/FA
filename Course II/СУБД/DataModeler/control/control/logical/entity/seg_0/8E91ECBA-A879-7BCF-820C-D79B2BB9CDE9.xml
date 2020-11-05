@@ -112,6 +112,20 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id1" id="99D07049-1ADA-E96C-A6D5-7CC40B4EB441">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 11:40:59 UTC</createdTime>
+<generatorID>193F09C9-7F1D-1DE6-2DBF-3C8E1657CDA9</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="9CFB74DD-8844-1A5B-DBC2-8FC32561391E" name="HOUSES PK">

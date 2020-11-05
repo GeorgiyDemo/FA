@@ -14,4 +14,42 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="E523CF23-7613-98D8-FB63-E82D68B6E5B6">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 12:03:33 UTC</createdTime>
+<generatorID>5C6EAFC0-CF95-EA93-FC46-95CBA16B7DFE</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_1" id="9B9610E0-6FB0-7677-E60A-0115C465BD9F">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 12:04:52 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="date" id="63E3271A-1E6C-1ABA-D4AD-BD190D59BB20">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-05 12:19:59 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>
