@@ -1,0 +1,31 @@
+    1  rm .bash_history 
+    2  ls
+    3  rm result 
+    4  history
+    5  apt-get
+    6  history
+    7  free -g
+    8  free -m
+    9  free
+   10  free -t
+   11  free -m -s 5 -c 2
+   12  cd ../
+   13  ls
+   14  du -sh georgiydemo
+   15  du -sh /etc
+   16  du -sh /etc/*
+   17  du -sh /tmp/*
+   18  cd 
+   19  ls
+   20  touch test.txt
+   21  find *.txt
+   22  find -name *.txt
+   23  ls -l | wc
+   24  find . | wc
+   25  cat /etc/fstab
+   26  cat /etc/fstab | grep ect4
+   27  cat /etc/fstab | grep ext4
+   28  cat /etc/fstab | grep swap
+   29  cat /etc/fstab | grep /
+   30  cat /etc/fstab | grep UUID
+   31  history > result 
