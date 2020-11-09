@@ -75,20 +75,6 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="C157A16B-9DE7-18E6-97B7-97F0621620A9">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 11:40:19 UTC</createdTime>
-<generatorID>FAC706DD-DBB3-9C98-7339-E46061188580</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="972365AE-09D8-74E6-5B18-62AA02D085C4" name="STAFF PK">

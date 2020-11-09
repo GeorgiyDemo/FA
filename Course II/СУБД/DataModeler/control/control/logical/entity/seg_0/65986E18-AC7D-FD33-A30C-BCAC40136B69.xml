@@ -73,6 +73,20 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="id2" id="BF98B90A-4F06-EC23-C36B-2DA668C9DCDA">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 09:03:45 UTC</createdTime>
+<generatorID>FAC706DD-DBB3-9C98-7339-E46061188580</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>3455BF78-C5DF-8948-FED0-C1A867CD8144</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="4790DCE9-CE67-E8EA-B11C-EAD14699BA1F" name="ORDERS PK">

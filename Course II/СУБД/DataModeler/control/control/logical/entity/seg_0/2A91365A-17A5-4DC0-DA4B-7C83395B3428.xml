@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="514BC0EF-2C8F-F4D4-707A-DF5EB8615A41" name="Заказы">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2A91365A-17A5-4DC0-DA4B-7C83395B3428" name="количество продуктов">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-27 10:11:17 UTC</createdTime>
+<createdTime>2020-11-09 08:48:52 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,65 +15,58 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="36209BC0-5310-5142-789F-D5B289ACB9F6">
+<Attribute name="id" id="3C8D81AC-391B-B010-9D21-C23C577A45D1">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-27 10:11:17 UTC</createdTime>
+<createdTime>2020-11-09 08:49:51 UTC</createdTime>
+<generatorID>A6633229-688F-6AF4-4805-52C7F6206F8A</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
+<referedAttribute>55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="count" id="5B759A89-015E-80DD-8550-09D8331E2E8F">
+<Attribute name="id1" id="E4B21212-9087-39D5-1C7C-04EC429F0B95">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-28 10:19:45 UTC</createdTime>
+<createdTime>2020-11-09 08:53:15 UTC</createdTime>
+<generatorID>BBE75A78-8260-0015-CB90-474AE0BF46C6</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id2" id="0ACE0F5D-39B8-11AF-3760-AE9439B28D4C">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-27 10:19:06 UTC</createdTime>
-<generatorID>92FBF4A6-283E-F6A7-1982-C3FDB6B59BB2</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="date" id="BE0ADC5A-1B4A-7EE6-D51E-6A0665C18F41">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 11:21:15 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
+<referedAttribute>2DB8B3D3-721E-58FA-24D9-B66453A1B879</referedAttribute>
 <use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Count" id="A883F9E1-5A81-923E-FEFD-84EE71B82C6D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 08:57:33 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="916A701F-64BD-A2F6-4B01-FACD1A384D08" name="ORDERS PK">
+<identifier id="9A0AF081-C55D-2ED8-F4F6-AC52C2676B0D" name="количество продуктов PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-27 10:11:17 UTC</createdTime>
+<createdTime>2020-11-09 08:57:07 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
+<usedAttributes>
+<attributeRef>E4B21212-9087-39D5-1C7C-04EC429F0B95</attributeRef>
+<attributeRef>3C8D81AC-391B-B010-9D21-C23C577A45D1</attributeRef>
+</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

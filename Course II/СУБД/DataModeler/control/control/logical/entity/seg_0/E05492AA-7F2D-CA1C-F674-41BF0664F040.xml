@@ -15,28 +15,13 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="E523CF23-7613-98D8-FB63-E82D68B6E5B6">
+<Attribute name="id" id="03B6618B-23A9-BD02-5104-89642F056275">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 12:03:33 UTC</createdTime>
-<generatorID>5C6EAFC0-CF95-EA93-FC46-95CBA16B7DFE</generatorID>
+<createdTime>2020-11-09 09:07:49 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id_1" id="9B9610E0-6FB0-7677-E60A-0115C465BD9F">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 12:04:52 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
@@ -51,5 +36,56 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="payment_type" id="7547594F-3898-ECD8-6D55-0D1A6EE7CFA1">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 09:06:51 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="BBF11F26-3B5E-235B-D9FF-0BCC786430D9">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 09:14:42 UTC</createdTime>
+<generatorID>95EC93FD-0829-9422-9E90-DD0C9784888D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>2DB8B3D3-721E-58FA-24D9-B66453A1B879</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="8B8F7FF8-F9E9-5C5A-D330-AC1A7D43D696">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 09:19:20 UTC</createdTime>
+<generatorID>2F636559-DCDF-D59B-D985-2A5631827F16</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>F76B316D-4384-7A58-0C01-2DF361787E24</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E4C06453-90A0-632F-9019-72D9EECF0D32" name="Счет PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 09:07:51 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>03B6618B-23A9-BD02-5104-89642F056275</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

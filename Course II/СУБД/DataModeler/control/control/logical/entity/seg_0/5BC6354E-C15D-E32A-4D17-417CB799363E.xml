@@ -88,20 +88,6 @@
 <logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="8B65C2E0-EB23-31F9-68BD-3B5B463726CC">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-29 13:38:36 UTC</createdTime>
-<generatorID>2CFBC385-8727-B3C8-4A68-3CA4373FA25E</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<referedAttribute>BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="846793F3-F63E-2FD0-5677-2F40A1D59DE2" name="CLIENTS PK">

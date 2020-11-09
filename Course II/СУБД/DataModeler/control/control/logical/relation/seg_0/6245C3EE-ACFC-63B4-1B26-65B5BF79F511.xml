@@ -7,9 +7,9 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <targetPk>972365AE-09D8-74E6-5B18-62AA02D085C4</targetPk>
-<identifying>true</identifying>
+<identifying>false</identifying>
 <optionalSource>false</optionalSource>
-<optionalTarget>false</optionalTarget>
+<optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
 <sourceEntity>48EC5EEB-A5AE-F7CF-0E3F-38BAD17E9849</sourceEntity>
 <targetCardinalityString>1</targetCardinalityString>

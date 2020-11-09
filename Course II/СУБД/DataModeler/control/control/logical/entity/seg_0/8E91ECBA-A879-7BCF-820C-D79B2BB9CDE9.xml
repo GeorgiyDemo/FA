@@ -39,18 +39,6 @@
 <logicalDatatype>LOGDT021</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="staff_id" id="28747DF6-622B-7701-40BD-C39375B059FB">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:59:47 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="ac" id="E0F2042B-C449-0DE3-7B3B-A97DE8FC69B2">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-28 10:52:03 UTC</createdTime>
@@ -112,14 +100,15 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id1" id="99D07049-1ADA-E96C-A6D5-7CC40B4EB441">
+<Attribute name="id1" id="F2CC1C57-2408-6F9D-F3D8-A15C4B2C6253">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 11:40:59 UTC</createdTime>
+<createdTime>2020-11-09 09:00:16 UTC</createdTime>
 <generatorID>193F09C9-7F1D-1DE6-2DBF-3C8E1657CDA9</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <referedAttribute>BD6CDB1B-72D6-F856-4F06-857D1408B42C</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

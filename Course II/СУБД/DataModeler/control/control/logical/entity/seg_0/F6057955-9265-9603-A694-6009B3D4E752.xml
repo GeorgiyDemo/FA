@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="EA14CB37-F3DD-733A-4CD0-DAD24BBBEB1F" name="Тип оплаты счет">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F6057955-9265-9603-A694-6009B3D4E752" name="Заказ">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 09:20:27 UTC</createdTime>
+<createdTime>2020-11-09 08:52:18 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,21 +15,19 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="1C85439B-BCAA-6245-753B-C7189AD92DE6">
+<Attribute name="id" id="2DB8B3D3-721E-58FA-24D9-B66453A1B879">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 11:23:28 UTC</createdTime>
-<generatorID>00128AF7-6605-B5F1-10ED-52A59563DBFB</generatorID>
+<createdTime>2020-11-09 08:52:32 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<referedAttribute>5D7925D9-8DAE-C708-04B5-9FE18AE2997B</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="date" id="449947CC-B359-C20D-DC2B-01B39B354B12">
+<Attribute name="date" id="404442A5-50CA-FA1F-84F9-6063A5570BC5">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 12:20:27 UTC</createdTime>
+<createdTime>2020-11-09 08:52:37 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -39,4 +37,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="BA445500-D35C-9E16-52FE-DFCBD54AD593" name="Entity_13 PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 08:52:34 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>2DB8B3D3-721E-58FA-24D9-B66453A1B879</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

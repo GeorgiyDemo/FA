@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0512D3DD-7C6C-AFD5-4C78-1C86241BDD83" name="Тип оплаты">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="5601FC30-3264-5619-D502-C056E5EB7643" name="КлиентЗаказ">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 09:19:49 UTC</createdTime>
+<createdTime>2020-11-09 08:53:46 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,38 +15,45 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="5D7925D9-8DAE-C708-04B5-9FE18AE2997B">
+<Attribute name="id" id="02CB7CC7-1A21-EB1B-DBF0-1F34545D4BAD">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 09:20:09 UTC</createdTime>
+<createdTime>2020-11-09 08:55:01 UTC</createdTime>
+<generatorID>9A5EEE51-CDE0-8C75-4658-CF371C78BBEE</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="type" id="883243CD-B3DC-4CAC-21CA-FF112FE18E72">
+<Attribute name="id1" id="675DBF50-7DBA-DBB7-553A-14218B808315">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 09:20:12 UTC</createdTime>
+<createdTime>2020-11-09 08:56:22 UTC</createdTime>
+<generatorID>F539A923-4A70-C2E4-5D20-31C07056C3DB</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
+<referedAttribute>2DB8B3D3-721E-58FA-24D9-B66453A1B879</referedAttribute>
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="D7F249D9-7152-FB2C-2EC2-3105E183B8B0" name="PAY TYPE PK">
+<identifier id="BD81CFC5-B4CB-B757-7703-0CAF376CA0FD" name="КлиентЗаказ PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-05 09:20:24 UTC</createdTime>
+<createdTime>2020-11-09 08:55:57 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>5D7925D9-8DAE-C708-04B5-9FE18AE2997B</attributeRef>
+<attributeRef>02CB7CC7-1A21-EB1B-DBF0-1F34545D4BAD</attributeRef>
+<attributeRef>675DBF50-7DBA-DBB7-553A-14218B808315</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
