@@ -15,9 +15,9 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="2DB8B3D3-721E-58FA-24D9-B66453A1B879">
+<Attribute name="id" id="93CD565B-1576-BC6C-D1BD-05FDDDD9DA47">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-09 08:52:32 UTC</createdTime>
+<createdTime>2020-11-09 13:16:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -28,6 +28,31 @@
 <Attribute name="date" id="404442A5-50CA-FA1F-84F9-6063A5570BC5">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-09 08:52:37 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id1" id="5AA7F3C4-A571-1489-D53C-493D947BF063">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 13:17:21 UTC</createdTime>
+<generatorID>8E8633A4-A725-380D-9714-1B47647FA490</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cost" id="31C96D49-4CBA-AAD3-4A87-DD45151D2808">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 13:48:18 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -47,7 +72,7 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>2DB8B3D3-721E-58FA-24D9-B66453A1B879</attributeRef>
+<attributeRef>93CD565B-1576-BC6C-D1BD-05FDDDD9DA47</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

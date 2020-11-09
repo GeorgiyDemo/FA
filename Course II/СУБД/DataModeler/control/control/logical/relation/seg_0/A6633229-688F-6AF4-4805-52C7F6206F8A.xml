@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_16" directorySegmentName="seg_0" id="A6633229-688F-6AF4-4805-52C7F6206F8A">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_19v2" directorySegmentName="seg_0" id="A6633229-688F-6AF4-4805-52C7F6206F8A">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-09 08:49:51 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
@@ -8,6 +8,8 @@
 </engineerTo>
 <sourcePk>646D5682-C1E4-6212-C9A0-D5101B1914C0</sourcePk>
 <identifying>true</identifying>
+<nameOnSource>находится в</nameOnSource>
+<nameOnTarget>содержит</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

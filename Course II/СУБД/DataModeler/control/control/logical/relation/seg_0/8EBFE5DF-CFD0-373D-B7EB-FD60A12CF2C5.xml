@@ -8,6 +8,8 @@
 </engineerTo>
 <sourcePk>846793F3-F63E-2FD0-5677-2F40A1D59DE2</sourcePk>
 <identifying>false</identifying>
+<nameOnSource>имеет</nameOnSource>
+<nameOnTarget>имеется у</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

@@ -7,7 +7,8 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <targetPk>972365AE-09D8-74E6-5B18-62AA02D085C4</targetPk>
-<identifying>false</identifying>
+<identifying>true</identifying>
+<nameOnTarget>обслуживает</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>

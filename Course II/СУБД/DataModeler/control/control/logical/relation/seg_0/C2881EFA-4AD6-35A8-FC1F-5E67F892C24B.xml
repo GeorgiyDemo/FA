@@ -8,6 +8,7 @@
 </engineerTo>
 <sourcePk>9CFB74DD-8844-1A5B-DBC2-8FC32561391E</sourcePk>
 <identifying>true</identifying>
+<nameOnSource>обслуживается</nameOnSource>
 <optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

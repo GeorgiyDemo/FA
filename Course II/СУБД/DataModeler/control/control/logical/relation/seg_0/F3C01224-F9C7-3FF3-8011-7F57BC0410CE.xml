@@ -9,6 +9,8 @@
 <sourcePk>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</sourcePk>
 <targetPk>846793F3-F63E-2FD0-5677-2F40A1D59DE2</targetPk>
 <identifying>false</identifying>
+<nameOnSource>должен быть</nameOnSource>
+<nameOnTarget>может быть</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>

@@ -8,6 +8,8 @@
 </engineerTo>
 <sourcePk>BA445500-D35C-9E16-52FE-DFCBD54AD593</sourcePk>
 <identifying>true</identifying>
+<nameOnSource>содержит</nameOnSource>
+<nameOnTarget>находится в</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

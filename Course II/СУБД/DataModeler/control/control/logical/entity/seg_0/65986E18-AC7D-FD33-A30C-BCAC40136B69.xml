@@ -41,18 +41,6 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="count" id="E5EE4D45-6E7C-0064-C8B8-596DC6C5439E">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-28 10:20:28 UTC</createdTime>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="date_in" id="19DA9E36-9AFC-EBC5-D9F2-E29ED9E131AD">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-05 12:18:34 UTC</createdTime>
@@ -73,6 +61,17 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="count" id="4EEF352D-84ED-3A18-7B62-EDFBF0D34CA5">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 13:47:21 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="id2" id="BF98B90A-4F06-EC23-C36B-2DA668C9DCDA">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-09 09:03:45 UTC</createdTime>
@@ -85,6 +84,17 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cost" id="D0342335-6FD6-1688-7F7C-214916E6589D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-09 13:49:27 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

@@ -7,8 +7,9 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <sourcePk>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</sourcePk>
-<targetPk>9CFB74DD-8844-1A5B-DBC2-8FC32561391E</targetPk>
 <identifying>false</identifying>
+<nameOnSource>заказывает</nameOnSource>
+<nameOnTarget>заказывается</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
