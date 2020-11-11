@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="48EC5EEB-A5AE-F7CF-0E3F-38BAD17E9849" name="ДомСотрудник">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="48EC5EEB-A5AE-F7CF-0E3F-38BAD17E9849" name="ДомОбслуживающийПерсонал">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 09:25:40 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
@@ -29,18 +29,17 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id2" id="5AB8E3D4-974A-9255-12FC-BF5B2734080D">
+<Attribute name="id" id="62FF29E5-6136-AA5A-F797-B5C5D0985DCD">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 09:27:28 UTC</createdTime>
-<generatorID>6245C3EE-ACFC-63B4-1B26-65B5BF79F511</generatorID>
+<createdTime>2020-11-11 16:49:58 UTC</createdTime>
+<generatorID>2B93A640-025F-1C0E-F577-11404EC1DD6C</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<referedAttribute>3455BF78-C5DF-8948-FED0-C1A867CD8144</referedAttribute>
+<referedAttribute>E6529327-A2A7-405F-8DCE-C345B8169992</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -55,7 +54,7 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>7197F774-56E3-15B8-A132-24DADBBA4EC6</attributeRef>
-<attributeRef>5AB8E3D4-974A-9255-12FC-BF5B2734080D</attributeRef>
+<attributeRef>62FF29E5-6136-AA5A-F797-B5C5D0985DCD</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

@@ -8,8 +8,8 @@
 </engineerTo>
 <sourcePk>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</sourcePk>
 <identifying>false</identifying>
-<nameOnSource>заказывает</nameOnSource>
-<nameOnTarget>заказывается</nameOnTarget>
+<nameOnSource>включает</nameOnSource>
+<nameOnTarget>включается в</nameOnTarget>
 <optionalSource>false</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>1</sourceCardinality>

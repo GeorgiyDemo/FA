@@ -29,7 +29,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Count" id="A883F9E1-5A81-923E-FEFD-84EE71B82C6D">
+<Attribute name="count" id="A883F9E1-5A81-923E-FEFD-84EE71B82C6D">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-09 08:57:33 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>

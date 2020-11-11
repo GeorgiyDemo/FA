@@ -10,7 +10,7 @@
 <identifying>true</identifying>
 <nameOnSource>находится в</nameOnSource>
 <nameOnTarget>содержит</nameOnTarget>
-<optionalSource>true</optionalSource>
+<optionalSource>false</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>C8267C13-FE2C-058A-D2FF-3BD96C7C54C0</sourceEntity>

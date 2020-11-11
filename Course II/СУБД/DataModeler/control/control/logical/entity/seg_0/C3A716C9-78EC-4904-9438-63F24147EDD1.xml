@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9FC10782-CD85-A8A4-A9AD-A9EB269BF685" name="Администратор">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-24 13:58:02 UTC</createdTime>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3A716C9-78EC-4904-9438-63F24147EDD1" name="Обслуживающий персонал">
+<createdBy>ivanb</createdBy>
+<createdTime>2020-11-11 14:39:02 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,78 +15,69 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="3455BF78-C5DF-8948-FED0-C1A867CD8144">
+<Attribute name="id" id="E6529327-A2A7-405F-8DCE-C345B8169992">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:47:16 UTC</createdTime>
+<createdTime>2020-11-11 16:49:08 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="first_name" id="2BD0E477-A114-E951-2CDD-B30A6717644B">
+<Attribute name="first_name" id="23D99210-6EC1-C6C3-991B-616495056695">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:47:29 UTC</createdTime>
+<createdTime>2020-11-11 16:49:15 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="last_name" id="1E839EFC-CF83-0FA5-EA1B-DD1E443203E7">
+<Attribute name="last_name" id="EDAA2679-DBF5-8E61-BF1E-118577B0034D">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:47:47 UTC</createdTime>
+<createdTime>2020-11-11 16:49:24 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="position" id="B133C198-FC91-C206-9BD8-482C74C61AB4">
+<Attribute name="position" id="8BD90BD5-35E0-6F10-7661-8EDBE464C091">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-28 10:04:05 UTC</createdTime>
+<createdTime>2020-11-11 16:49:29 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="phone" id="6E0B2FFD-768D-DBCE-DA63-566D912FE1D7">
+<Attribute name="phone" id="4FDE73BD-00DB-1B58-8013-9CA707869B05">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 20:52:36 UTC</createdTime>
+<createdTime>2020-11-11 16:49:51 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="972365AE-09D8-74E6-5B18-62AA02D085C4" name="STAFF PK">
+<identifier id="D24EC1A3-9D99-B623-F77A-851A5F99AAB6" name="Обслуживающий персонал PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-10-26 08:47:57 UTC</createdTime>
+<createdTime>2020-11-11 16:49:13 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>3455BF78-C5DF-8948-FED0-C1A867CD8144</attributeRef>
+<attributeRef>E6529327-A2A7-405F-8DCE-C345B8169992</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
