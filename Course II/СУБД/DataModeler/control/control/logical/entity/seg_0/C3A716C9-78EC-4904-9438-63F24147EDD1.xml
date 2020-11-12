@@ -56,6 +56,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="type" id="6C2C4B64-6BCD-0C74-66DD-0D06E68DBEB3">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-11-12 11:39:24 UTC</createdTime>
+<ownerDesignName>control</ownerDesignName>
+<engineerTo>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="phone" id="4FDE73BD-00DB-1B58-8013-9CA707869B05">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-11 16:49:51 UTC</createdTime>

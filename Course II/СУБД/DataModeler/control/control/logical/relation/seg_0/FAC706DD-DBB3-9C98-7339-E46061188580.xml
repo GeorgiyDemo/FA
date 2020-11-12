@@ -16,7 +16,7 @@
 <sourceCardinality>*</sourceCardinality>
 <sourceEntity>65986E18-AC7D-FD33-A30C-BCAC40136B69</sourceEntity>
 <targetCardinalityString>1</targetCardinalityString>
-<targetEntity>9FC10782-CD85-A8A4-A9AD-A9EB269BF685</targetEntity>
+<targetEntity>C3A716C9-78EC-4904-9438-63F24147EDD1</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
 </Relation>

@@ -7,6 +7,7 @@
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <sourcePk>846793F3-F63E-2FD0-5677-2F40A1D59DE2</sourcePk>
+<targetPk>E200B522-A429-3A59-2724-0E2862A3DD8A</targetPk>
 <identifying>false</identifying>
 <nameOnSource>имеет</nameOnSource>
 <nameOnTarget>имеется у</nameOnTarget>
@@ -14,7 +15,7 @@
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>5BC6354E-C15D-E32A-4D17-417CB799363E</sourceEntity>
-<targetCardinalityString>*</targetCardinalityString>
+<targetCardinalityString>1</targetCardinalityString>
 <targetEntity>A0DB05A1-2E15-BFF8-E9E7-BF2BF363D057</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
