@@ -5427,7 +5427,7 @@
 																<ChildrenCount>2</ChildrenCount>
 																<Control>
 																	<Key>{80317570-8FF6-4E38-A1B0-D1450D25F8EA}</Key>
-																	<ScreenRect>369;118;1437;483</ScreenRect>
+																	<ScreenRect>369;118;1437;178</ScreenRect>
 																	<Caption>Кросс-таблица</Caption>
 																	<ShowCaption>2</ShowCaption>
 																	<AHOrientation>4</AHOrientation>
@@ -5438,7 +5438,7 @@
 																</Control>
 																<Control.1>
 																	<Key>{0B09E4C8-A8CC-403A-A609-344984F55FEF}</Key>
-																	<ScreenRect>369;487;1437;855</ScreenRect>
+																	<ScreenRect>369;182;1437;855</ScreenRect>
 																	<Caption>Кросс-диаграмма</Caption>
 																	<Alignment>4</Alignment>
 																	<AHOrientation>4</AHOrientation>
