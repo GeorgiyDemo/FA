@@ -5,14 +5,11 @@ Choice (сортировка методом выбора и обработка �
 
 package com.demka;
 
-
-import java.util.Arrays;
 import java.util.Random;
 
 class Bubble implements Container{
 
     double [] array;
-
     public Bubble(double [] array){
         this.array = array;
     }
@@ -50,26 +47,40 @@ class Bubble implements Container{
 }
 
 
-class Choise implements Container{
-
+class Choice implements Container{
 
     double [] array;
-
-    public Choise(double [] array){
+    public Choice(double [] array){
         this.array = array;
     }
 
     @Override
     //сортировка методом выбора
     public double[] sort() {
-        return  array;
+        for (int i = 0; i < array.length; i++) {
+            int position = i;
+            double min = array[i];
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < min) {
+                    //индекс наименьшего элемента
+                    position = j;
+                    min = array[j];
+                }
+            }
+            array[position] = array[i];
+            // меняем местами наименьший с array[i]
+            array[i] = min;
+        }
+
+        return array;
     }
 
     @Override
     //вычисление логарифма
     public double[] foreach() {
-        return  array;
-
+        for (int i = 0; i < array.length; i++)
+            array[i] = Math.log(array[i]);
+        return array;
     }
 
 }
@@ -100,6 +111,13 @@ public class Main {
         System.out.println("Массив после извлечения квадратного корня из каждого элемента:");
         printer(obj1.foreach());
 
-        Container obj2 = new Choise(array);
+        System.out.println("\n------");
+        Container obj2 = new Choice(array);
+        System.out.println("Массив после сортировки выбором:");
+        printer(obj2.sort());
+        System.out.println("Массив после извлечения log из каждого элемента:");
+        printer(obj2.foreach());
+
+        System.out.println(obj2.sort() == obj1.sort());
     }
 }
