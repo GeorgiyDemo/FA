@@ -1,0 +1,66 @@
+    1  history
+    2  echo "" > .bash_history 
+    3  exit
+    4  history
+    5  echo "FILE TEXT" > file1.txt
+    6  echo "FILE TEXT" > file2.txt
+    7  md5sum file1.txt 
+    8  md5sum file2.txt 
+    9  echo "FILE TEXT2"> > file2.txt
+   10  echo "FILE TEXT2" >> file2.txt
+   11  md5sum file1.txt file2.txt 
+   12  adduser test22
+   13  sudo adduser test22
+   14  cat /etc/passwd
+   15  cat /etc/shadow
+   16  sudo cat /etc/shadow
+   17  cat /etc/group
+   18  mkdir tmp
+   19  ls
+   20  touch script.sh
+   21  chmod +x script.sh
+   22  nano script.sh 
+   23  ./script.sh 
+   24  nano script.sh 
+   25  ./script.sh 
+   26  nano script.sh 
+   27  ls
+   28  ./script.sh 
+   29  cd tmp/
+   30  ls
+   31  cd ../
+   32  nano script.sh 
+   33  ./script.sh 
+   34  ls
+   35  cd tmp/
+   36  ls
+   37  cd ../
+   38  nano script.sh 
+   39  ./script.sh 
+   40  nano script.sh 
+   41  ./script.sh 
+   42  nano script.sh 
+   43  ./script.sh 
+   44  rm tmp/passwd.backup 
+   45  ./script.sh 
+   46  cat tmp/passwd.backup 
+   47  nano script.sh 
+   48  ./script.sh 
+   49  nano script.sh 
+   50  ./script.sh 
+   51  nano script.sh 
+   52  ./script.sh 
+   53  nano script.sh 
+   54  ./script.sh 
+   55  nano script.sh 
+   56  ./script.sh 
+   57  nano script.sh 
+   58  ls
+   59  cd tmp/
+   60  ls
+   61  cd ../
+   62  echo "CHECK" > tmp/passwd.backup 
+   63  ./script.sh 
+   64  cat tmp/passwd.backup 
+   65  ls
+   66  history > pract_history.txt
