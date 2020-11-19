@@ -21,46 +21,12 @@
    21  chmod +x script.sh
    22  nano script.sh 
    23  ./script.sh 
-   24  nano script.sh 
-   25  ./script.sh 
-   26  nano script.sh 
-   27  ls
-   28  ./script.sh 
-   29  cd tmp/
-   30  ls
-   31  cd ../
-   32  nano script.sh 
-   33  ./script.sh 
-   34  ls
-   35  cd tmp/
-   36  ls
-   37  cd ../
-   38  nano script.sh 
-   39  ./script.sh 
-   40  nano script.sh 
-   41  ./script.sh 
-   42  nano script.sh 
-   43  ./script.sh 
-   44  rm tmp/passwd.backup 
-   45  ./script.sh 
-   46  cat tmp/passwd.backup 
-   47  nano script.sh 
-   48  ./script.sh 
-   49  nano script.sh 
-   50  ./script.sh 
-   51  nano script.sh 
-   52  ./script.sh 
-   53  nano script.sh 
-   54  ./script.sh 
-   55  nano script.sh 
-   56  ./script.sh 
-   57  nano script.sh 
-   58  ls
-   59  cd tmp/
-   60  ls
-   61  cd ../
-   62  echo "CHECK" > tmp/passwd.backup 
-   63  ./script.sh 
-   64  cat tmp/passwd.backup 
-   65  ls
-   66  history > pract_history.txt
+   24  ls
+   25  cd tmp/
+   26  ls
+   27  cd ../
+   28  echo "CHECK" > tmp/passwd.backup 
+   29  ./script.sh 
+   30  cat tmp/passwd.backup 
+   31  ls
+   32  history > pract_history.txt
