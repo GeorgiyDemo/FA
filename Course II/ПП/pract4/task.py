@@ -6,7 +6,7 @@ class Generator:
         for i in range(n):
             matrix[i].append([])
             for j in range(m):
-                matrix[i][j].append(0)
+                matrix[i][j].append(Field(i, j))
         print(matrix)
                 
         
