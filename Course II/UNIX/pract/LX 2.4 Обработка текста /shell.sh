@@ -3,10 +3,18 @@
 #Список процессов
 ps -aux > ps.out
 
-#TODO ЦИКЛ ПО КАЖДОМУ ПОЛЬЗОВАТЕЛЮ
-
 #Отсортированный список процессов по имени пользователя-владельца
 sort ps.out > sorted.ps
+
+#TODO ЦИКЛ ПО КАЖДОМУ ПОЛЬЗОВАТЕЛЮ
+DATA=$(cat sorted.ps)
+for user in $DATA
+    do
+        OUT=$(cut -d " " -f 1)
+        echo $OUT
+
+    done
+
 cat sorted.ps | grep root > root.ps
 cat sorted.ps | grep $(whoami) > user.ps
 
