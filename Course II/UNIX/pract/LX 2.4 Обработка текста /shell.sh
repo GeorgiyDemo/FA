@@ -1,10 +1,11 @@
 #!/bin/bash
-cd
 
-#Расширенный список процессов
-ps aux > ps.out
+#Список процессов
+ps -aux > ps.out
 
-#Отсортированный расширенный список процессов по имени пользователя-владельца
+#TODO ЦИКЛ ПО КАЖДОМУ ПОЛЬЗОВАТЕЛЮ
+
+#Отсортированный список процессов по имени пользователя-владельца
 sort ps.out > sorted.ps
 cat sorted.ps | grep root > root.ps
 cat sorted.ps | grep $(whoami) > user.ps
@@ -18,10 +19,12 @@ echo "<p><b>Итого процессов: $(cat root.html | wc -l) </b></p>" > 
 echo "<p><b>Итого процессов: $(cat user.html | wc -l) </b></p>" > user.total
 
 #Создание файла index.html
-noshade='<hr noshade>'
-body='<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"><title>Статистика процессов</title></head><body><header><nav class="navbar navbar-light bg-light"><div class="container"><h1><a style="font-size:1.3rem" class="navbar-brand">Распределение процессов по пользователям</a></h1></div></nav></header><div class="container"><div class="row"><div class="col-12">'
-footer='</div></div></div></body></html>'
+splitter='<hr noshade>'
+body='<html><head><meta charset="utf-8"><title>Статистика процессов</title></head><body><h1>Распределение процессов по пользователям</h1><div class="row"><div class="col-12">'
+footer='</div></div></body></html>'
 echo $body > index.html
 
-#Создание файла
-echo $(cat index.html) $noshade $(cat root.total) "Пользователь root" $noshade $(cat root.html) $noshade $(cat user.total) "Пользователь" $(whoami) $noshade $(cat user.html) $footer > index.html
+#Создание файла index.html
+echo $(cat index.html) $splitter $(cat root.total) "Пользователь root" $splitter $(cat root.html) $splitter $(cat user.total) "Пользователь" $(whoami) $splitter $(cat user.html) $footer > index.html
+
+echo "Завершение работы скрипта"
