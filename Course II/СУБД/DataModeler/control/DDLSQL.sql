@@ -1,14 +1,11 @@
-CREATE TABLE bookings (
-    id         NUMBER,
-    client_id  NUMBER NOT NULL,
-    date_in    DATE NOT NULL,
-    date_out   DATE NOT NULL,
-    cost       FLOAT NOT NULL,
-    staff_id   NUMBER NOT NULL,
-    CONSTRAINT booking_pk PRIMARY KEY ( id ),
-    CONSTRAINT booking_client_fk FOREIGN KEY ( client_id ) REFERENCES clients ( id ),
-    CONSTRAINT booking_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id )
-);
+DROP TABLE products_count;
+DROP TABLE products;
+DROP TABLE orders;
+DROP TABLE staffs;
+DROP TABLE staffs_houses;
+DROP TABLE houses;
+DROP TABLE clients;
+DROP TABLE bookings;
 
 CREATE TABLE clients (
     id                 NUMBER,
@@ -24,6 +21,28 @@ CREATE TABLE clients (
     CONSTRAINT client_pk PRIMARY KEY ( id )
 );
 
+CREATE TABLE staffs (
+    id          NUMBER,
+    first_name  VARCHAR2(400) NOT NULL,
+    last_name   VARCHAR2(400) NOT NULL,
+    position    VARCHAR2(400) NOT NULL,
+    type        VARCHAR2(400) NOT NULL,
+    phone       VARCHAR2(400) NOT NULL,
+    CONSTRAINT staff_pk PRIMARY KEY ( id )
+);
+
+CREATE TABLE bookings (
+    id         NUMBER,
+    client_id  NUMBER NOT NULL,
+    date_in    DATE NOT NULL,
+    date_out   DATE NOT NULL,
+    cost       FLOAT NOT NULL,
+    staff_id   NUMBER NOT NULL,
+    CONSTRAINT booking_pk PRIMARY KEY ( id ),
+    CONSTRAINT booking_client_fk FOREIGN KEY ( client_id ) REFERENCES clients ( id ),
+    CONSTRAINT booking_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id )
+);
+
 CREATE TABLE houses (
     id           NUMBER,
     name         VARCHAR2(400) NOT NULL,
@@ -37,6 +56,8 @@ CREATE TABLE houses (
     CONSTRAINT house_pk PRIMARY KEY ( id ),
     CONSTRAINT house_booking_fk FOREIGN KEY ( booking_id ) REFERENCES bookings ( id )
 );
+
+
 
 CREATE TABLE orders (
     id         NUMBER,
@@ -63,15 +84,6 @@ CREATE TABLE products_count (
     CONSTRAINT product_count_product_fk FOREIGN KEY ( product_id ) REFERENCES products ( id )
 );
 
-CREATE TABLE staffs (
-    id          NUMBER,
-    first_name  VARCHAR2(400) NOT NULL,
-    last_name   VARCHAR2(400) NOT NULL,
-    position    VARCHAR2(400) NOT NULL,
-    type        VARCHAR2(400) NOT NULL,
-    phone       VARCHAR2(400) NOT NULL,
-    CONSTRAINT staff_pk PRIMARY KEY ( id )
-);
 
 CREATE TABLE staffs_houses (
     house_id  NUMBER NOT NULL,
@@ -80,5 +92,3 @@ CREATE TABLE staffs_houses (
     CONSTRAINT staff_house_house_fk FOREIGN KEY ( house_id ) REFERENCES houses ( id ),
     CONSTRAINT staff_house_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id )
 );
-
-
