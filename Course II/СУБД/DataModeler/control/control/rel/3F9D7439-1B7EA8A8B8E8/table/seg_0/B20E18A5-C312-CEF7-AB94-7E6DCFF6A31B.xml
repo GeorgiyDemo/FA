@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B20E18A5-C312-CEF7-AB94-7E6DCFF6A31B" name="PRODUCTS">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>C8267C13-FE2C-058A-D2FF-3BD96C7C54C0</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<ordsAlias>product</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="DBD6267E-7D57-A624-8905-D39020FA435B">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="title" id="92856CFF-6C08-F05C-BA9D-5502D65C0884">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>910BEBB1-4DBF-8702-3E42-60AF9A8C2C98</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="price" id="201883A0-1117-AEA2-D291-05B7756407EE">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>49E8D30D-BBBE-0CBA-7ACF-7319928C92D7</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3BD19CCD-59F2-EE12-8CDB-CDC50705C6B5" name="PRODUCT_PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>646D5682-C1E4-6212-C9A0-D5101B1914C0</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DBD6267E-7D57-A624-8905-D39020FA435B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

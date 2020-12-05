@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="48D7F4C3-DE7C-A878-C921-DFBCA61D8DA1" name="PRODUCTS_COUNT">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>2A91365A-17A5-4DC0-DA4B-7C83395B3428</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<ordsAlias>product_count</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRODUCT_id" id="537B4771-A5E4-0612-0306-955FBB84D7EA">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>3C8D81AC-391B-B010-9D21-C23C577A45D1</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EA404BEF-5411-0CA5-491C-BBC0C6880CEC" referredColumn="DBD6267E-7D57-A624-8905-D39020FA435B"/>
+</associations>
+</Column>
+<Column name="count" id="AE306D25-BC8B-B64B-696A-5ED72D1C96AB">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>A883F9E1-5A81-923E-FEFD-84EE71B82C6D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_id" id="920CF7B7-DC6D-1339-88F0-8D44E22FF30B">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>5337BB1F-1BDF-A2D8-F2B1-6E464B3706F2</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A0890072-90D6-A77B-99B3-07FC7E8554E6" referredColumn="D593D5E9-7FD4-B1D1-7F6C-5D4B8EB1AC81"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E6A27E41-C48C-62DD-E8BD-AFF5D5666540" name="PRODUCT_COUNT_PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>9A0AF081-C55D-2ED8-F4F6-AC52C2676B0D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="537B4771-A5E4-0612-0306-955FBB84D7EA"/>
+<colUsage columnID="920CF7B7-DC6D-1339-88F0-8D44E22FF30B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E9F4089D-0BFE-5DBE-635F-458F65A8BDE6" name="PRODUCT_COUNT_ORDER_FK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>BBE75A78-8260-0015-CB90-474AE0BF46C6</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="920CF7B7-DC6D-1339-88F0-8D44E22FF30B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE18ADAC-D585-F864-A12C-9C568D509B37" name="PRODUCT_COUNT_PRODUCT_FK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<generatorID>A6633229-688F-6AF4-4805-52C7F6206F8A</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="537B4771-A5E4-0612-0306-955FBB84D7EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
