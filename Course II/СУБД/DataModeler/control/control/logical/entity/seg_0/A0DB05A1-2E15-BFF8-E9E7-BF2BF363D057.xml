@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3A716C9-78EC-4904-9438-63F24147EDD1" name="Обслуживающий персонал">
-<createdBy>ivanb</createdBy>
-<createdTime>2020-11-11 14:39:02 UTC</createdTime>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0DB05A1-2E15-BFF8-E9E7-BF2BF363D057" name="Документ">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-24 13:57:14 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
@@ -15,79 +15,94 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="id" id="E6529327-A2A7-405F-8DCE-C345B8169992">
+<Attribute name="id" id="BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:08 UTC</createdTime>
+<createdTime>2020-10-24 14:22:58 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="first_name" id="23D99210-6EC1-C6C3-991B-616495056695">
+<Attribute name="title" id="8FCB710B-A5F3-82B6-CAE0-FFF1E27344FF">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:15 UTC</createdTime>
+<createdTime>2020-10-24 14:23:01 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="last_name" id="EDAA2679-DBF5-8E61-BF1E-118577B0034D">
+<Attribute name="file" id="76C2F328-93D4-56AF-C04B-6087DCB091A5">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:24 UTC</createdTime>
+<createdTime>2020-10-24 14:26:06 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="position" id="8BD90BD5-35E0-6F10-7661-8EDBE464C091">
+<Attribute name="text_content" id="18292867-6109-22B5-82C8-D3DF155F747A">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:29 UTC</createdTime>
+<createdTime>2020-10-24 14:26:21 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="type" id="6C2C4B64-6BCD-0C74-66DD-0D06E68DBEB3">
+<Attribute name="comments" id="8E3E6346-704E-562A-371E-620FFB56B231">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-12 11:39:24 UTC</createdTime>
+<createdTime>2020-10-24 14:23:09 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="phone" id="4FDE73BD-00DB-1B58-8013-9CA707869B05">
+<Attribute name="id1" id="12293363-A551-9ECB-66E7-FEEA7D7690FD">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:51 UTC</createdTime>
+<createdTime>2020-11-09 08:44:07 UTC</createdTime>
+<generatorID>8EBFE5DF-CFD0-373D-B7EB-FD60A12CF2C5</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<use>0</use>
+<referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="D24EC1A3-9D99-B623-F77A-851A5F99AAB6" name="Обслуживающий персонал PK">
+<identifier id="E200B522-A429-3A59-2724-0E2862A3DD8A" name="DOCUMENTS PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-11-11 16:49:13 UTC</createdTime>
+<createdTime>2020-10-26 08:50:46 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
 <item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>E6529327-A2A7-405F-8DCE-C345B8169992</attributeRef>
+<attributeRef>BD3D1F27-9A0D-FAFA-1A1C-EB0F452099AC</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

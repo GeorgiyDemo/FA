@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="65986E18-AC7D-FD33-A30C-BCAC40136B69" name="BOOKING">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="65986E18-AC7D-FD33-A30C-BCAC40136B69" name="Бронирование">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-24 13:57:07 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2020-10-24 14:08:47 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,7 +33,7 @@
 <generatorID>F3C01224-F9C7-3FF3-8011-7F57BC0410CE</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -46,11 +46,9 @@
 <createdTime>2020-11-05 12:18:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT008</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="date_out" id="1BAC4AEF-B78B-B590-73AB-229A3B01D690">
@@ -58,11 +56,9 @@
 <createdTime>2020-11-05 12:18:43 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT008</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="cost" id="D0342335-6FD6-1688-7F7C-214916E6589D">
@@ -70,25 +66,9 @@
 <createdTime>2020-11-09 13:49:27 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT021</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="id2" id="31CD3D07-BA49-6EDC-A47F-B5B7C076AA3E">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 10:12:42 UTC</createdTime>
-<generatorID>FAC706DD-DBB3-9C98-7339-E46061188580</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
-</engineerTo>
-<referedAttribute>E6529327-A2A7-405F-8DCE-C345B8169992</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -98,7 +78,7 @@
 <createdTime>2020-10-26 08:54:12 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="8810B6B9-90E0-782F-3125-C0C81C919352" value="true"/>
+<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
