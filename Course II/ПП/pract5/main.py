@@ -1,17 +1,21 @@
-# program template for Spaceship
 import simpleguitk as simplegui
 import math
 import random
+from copy import copy
 
-# globals for user interface
+#Константы
 WIDTH = 800
-HEIGHT = 600
+HEIGHT = 800
 score = 0
 lives = 3
 time = 0
 started = False
 
 class ImageInfo:
+    """
+    Класс с информацией об изображении
+    Аргументы: центр, размер, радиус, 
+    """
     def __init__(self, center, size, radius = 0, lifespan = None, animated = False):
         self.center = center
         self.size = size
@@ -37,9 +41,7 @@ class ImageInfo:
     def get_animated(self):
         return self.animated
 
-    
-# art assets created by Kim Lathrop, may be freely re-used in non-commercial projects, please credit Kim
-    
+     
 # debris images - debris1_brown.png, debris2_brown.png, debris3_brown.png, debris4_brown.png
 #                 debris1_blue.png, debris2_blue.png, debris3_blue.png, debris4_blue.png, debris_blend.png
 debris_info = ImageInfo([320, 240], [640, 480])
@@ -243,10 +245,10 @@ def draw(canvas):
     canvas.draw_image(debris_image, center, size, (wtime - WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
     canvas.draw_image(debris_image, center, size, (wtime + WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
     
-    str1 = "Score: " + str(score)
-    str2 = "Lives: " + str(lives)
-    canvas.draw_text(str(str2),[30,20],20,'white')
-    canvas.draw_text(str(str1),[700,20],20,'white')
+    str1 = "Счёт: " + str(score)
+    str2 = "Жизни: " + str(lives)
+    canvas.draw_text(str(str2),[30,40],20,'white')
+    canvas.draw_text(str(str1),[680,40],20,'white')
     
     
     # draw ship and sprites
@@ -348,7 +350,8 @@ def group_collide(s,other_object):
 def group_group_collide(group1,group2):
 
     count = 0	
-    for sprite in group1:
+    for sprite in copy(group1):
+
         if group_collide(group2,sprite) :
             group1.discard(sprite)
             count += 1
