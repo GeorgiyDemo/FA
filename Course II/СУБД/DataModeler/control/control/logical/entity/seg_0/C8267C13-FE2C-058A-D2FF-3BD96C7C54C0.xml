@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C8267C13-FE2C-058A-D2FF-3BD96C7C54C0" name="Продукт">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C8267C13-FE2C-058A-D2FF-3BD96C7C54C0" name="PRODUCT">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 08:56:58 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="807194B5-07B0-F30C-F6D0-4E9DBABD6E8C" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2020-10-26 08:57:12 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="807194B5-07B0-F30C-F6D0-4E9DBABD6E8C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -32,19 +32,20 @@
 <createdTime>2020-10-26 08:57:31 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="807194B5-07B0-F30C-F6D0-4E9DBABD6E8C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="price" id="49E8D30D-BBBE-0CBA-7ACF-7319928C92D7">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-10-26 08:57:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="807194B5-07B0-F30C-F6D0-4E9DBABD6E8C" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -58,7 +59,7 @@
 <createdTime>2020-10-26 08:57:20 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="807194B5-07B0-F30C-F6D0-4E9DBABD6E8C" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

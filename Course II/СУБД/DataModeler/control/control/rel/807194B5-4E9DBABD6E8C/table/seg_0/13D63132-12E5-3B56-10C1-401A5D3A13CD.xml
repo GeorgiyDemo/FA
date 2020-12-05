@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="13D63132-12E5-3B56-10C1-401A5D3A13CD" name="CLIENT">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>5BC6354E-C15D-E32A-4D17-417CB799363E</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="CAB6032A-2CC2-2D7B-C60D-91B1B614D415">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>54DA5F95-00B2-A345-179E-D0F1A247DBAD</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="first_name" id="21AA9173-551E-6E53-33EB-8A202154B66F">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>7E09F18B-92EC-B04D-527B-AABF01026A02</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="last_name" id="A3743611-DB33-22DB-1482-B7A2004C0E9F">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>A4D8BBA4-877C-283A-1181-7FCCF579BAF8</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="CADBAC54-FC77-EC2D-10A3-06EB9BF83DE3">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>F0061E73-B198-5F35-4068-C41E340169EE</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="phone" id="5C053D30-70FB-7210-F12D-BC53612BD9D6">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>6AA1EC28-C531-346D-97FB-13922C165955</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="document_title" id="003AAD02-027B-CC2F-EA73-496E0F2B0E30">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>55CD5D1E-6C25-9991-FAB3-B6F0EED4DB3B</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="document_file" id="3BA9F8D8-A51E-5B1B-8526-EB0AF85E44F7">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>6C696E06-18D4-A7CF-03E5-B981268EB06E</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="special_requests" id="29609EFC-17BF-C3CD-6F0E-7CC064B86E57">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>55E413C3-8868-8410-88BB-9F41BBB0C99D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="document_text" id="487F9A28-7A7E-8F0A-2762-DC2E13A19B7D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>D3210A9F-D98A-28D6-7C27-9C4A134E785D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="document_comments" id="1D3B69A4-5981-D2FC-2A41-B06C79B5BEF1">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>3F384481-70B6-9245-5E03-D9B0DB54069A</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4940F75C-ECB9-EE69-C996-C8EBB3385859" name="CLIENT_PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>846793F3-F63E-2FD0-5677-2F40A1D59DE2</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CAB6032A-2CC2-2D7B-C60D-91B1B614D415"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

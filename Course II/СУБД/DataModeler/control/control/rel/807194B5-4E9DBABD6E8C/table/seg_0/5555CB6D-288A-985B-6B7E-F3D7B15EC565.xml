@@ -1,0 +1,122 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5555CB6D-288A-985B-6B7E-F3D7B15EC565" name="BOOKING">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>65986E18-AC7D-FD33-A30C-BCAC40136B69</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="AA78D1C8-CD97-EA79-D07B-8485A061EDD6">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>BD6CDB1B-72D6-F856-4F06-857D1408B42C</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_id" id="3B1276A0-D027-AFA1-55C5-AD338F79669F">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>3364DECD-DB1E-1048-3864-97CB4FCFED7A</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F899ED1A-A2D6-E2B1-A960-56FE5F6D8E17" referredColumn="CAB6032A-2CC2-2D7B-C60D-91B1B614D415"/>
+</associations>
+</Column>
+<Column name="date_in" id="7A6A5D89-A3A4-499A-F1D1-F78BA642DE5E">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>19DA9E36-9AFC-EBC5-D9F2-E29ED9E131AD</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="date_out" id="0857620F-B3CC-B09B-3442-60CCEB39E2E8">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>1BAC4AEF-B78B-B590-73AB-229A3B01D690</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cost" id="671C5BB8-FADB-2048-34A7-2BB416709863">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>D0342335-6FD6-1688-7F7C-214916E6589D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STAFF_id" id="1B6E504F-20AF-57BE-DB09-895114A54986">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>31CD3D07-BA49-6EDC-A47F-B5B7C076AA3E</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="09A58FFE-DC6F-F7CE-4E9D-E039AD3AF7FB" referredColumn="239AECE7-4C85-EE63-1127-E8463AF937FC"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6B259A78-FB7F-B3E9-05E5-805FD82F060F" name="BOOKING_PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA78D1C8-CD97-EA79-D07B-8485A061EDD6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="81A99469-9300-A23F-0924-A37A6E92D854" name="BOOKING_STAFF_FK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>FAC706DD-DBB3-9C98-7339-E46061188580</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1B6E504F-20AF-57BE-DB09-895114A54986"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5D33B359-7F1B-82EC-21CD-E431ED223C36" name="BOOKING_CLIENT_FK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-05 10:57:25 UTC</createdTime>
+<generatorID>F3C01224-F9C7-3FF3-8011-7F57BC0410CE</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B1276A0-D027-AFA1-55C5-AD338F79669F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
