@@ -1,28 +1,28 @@
-DROP TABLE student_course_detail;
-DROP TABLE exam_result;
-DROP TABLE exam;
-DROP TABLE exam_type;
-DROP TABLE faculty_course_detail;
-DROP TABLE faculty_login_detail;
-DROP TABLE student_attendance;
-DROP TABLE student;
-DROP TABLE parent_information;
-DROP TABLE full_time;
-DROP TABLE part_time;
-DROP TABLE faculty;
-DROP TABLE course;
-DROP TABLE department;
+DROP TABLE STUDENT_COURSE_DETAILS;
+DROP TABLE EXAM_RESULTS;
+DROP TABLE EXAMS;
+DROP TABLE EXAM_TYPES;
+DROP TABLE FACULTY_COURSE_DETAILS;
+DROP TABLE FACULTY_LOGIN_DETAILS;
+DROP TABLE STUDENT_ATTENDANCES;
+DROP TABLE STUDENTS;
+DROP TABLE PARENTS_INFORMATION;
+DROP TABLE FULL_TIMES;
+DROP TABLE PART_TIMES;
+DROP TABLE FACULTIES;
+DROP TABLE COURSES;
+DROP TABLE DEPARTMENTS;
 DROP TABLE "ONLINE";
-DROP TABLE seated;
-DROP TABLE academic_session;
+DROP TABLE SEATED;
+DROP TABLE ACADEMIC_SESSIONS;
 
-CREATE TABLE academic_session (
+CREATE TABLE ACADEMIC_SESSIONS (
     id    NUMBER NOT NULL,
     name  VARCHAR2(400) NOT NULL,
     CONSTRAINT academic_session_pk PRIMARY KEY ( id )
 );
 
-CREATE TABLE seated (
+CREATE TABLE SEATED (
     building     VARCHAR2(400) NOT NULL,
     room         VARCHAR2(400) NOT NULL,
     "DateTime"  TIMESTAMP NOT NULL,
@@ -35,14 +35,14 @@ CREATE TABLE "ONLINE" (
     CONSTRAINT online_pk PRIMARY KEY ( logon_id )
 );
 
-CREATE TABLE department (
+CREATE TABLE DEPARTMENTS (
     id    NUMBER NOT NULL,
     name  VARCHAR2(400) NOT NULL,
     head  VARCHAR2(400) NOT NULL,
     CONSTRAINT department_pk PRIMARY KEY ( id )
 );
 
-CREATE TABLE course (
+CREATE TABLE COURSES (
     id                   NUMBER NOT NULL,
     name                 VARCHAR2(400) NOT NULL,
     department_id        NUMBER NOT NULL,
@@ -57,13 +57,13 @@ CREATE TABLE course (
     room                 VARCHAR2(400) NOT NULL,
     CONSTRAINT course_pk PRIMARY KEY ( id ),
     CONSTRAINT arc_1 CHECK ( ( ( online_logon_id IS NOT NULL ) AND ( SEATED_DateTime IS NULL ) AND ( seated_building IS NULL ) AND ( seated_room IS NULL ) ) OR ( ( SEATED_DateTime IS NOT NULL ) AND ( seated_building IS NOT NULL ) AND ( seated_room IS NOT NULL ) AND ( online_logon_id IS NULL ) ) ),
-    CONSTRAINT course_academic_session_fk FOREIGN KEY ( academic_session_id ) REFERENCES academic_session ( id ),
-    CONSTRAINT course_department_fk FOREIGN KEY ( department_id ) REFERENCES department ( id ),
+    CONSTRAINT course_academic_session_fk FOREIGN KEY ( academic_session_id ) REFERENCES ACADEMIC_SESSIONS ( id ),
+    CONSTRAINT course_department_fk FOREIGN KEY ( department_id ) REFERENCES DEPARTMENTS ( id ),
     CONSTRAINT course_online_fk FOREIGN KEY ( online_logon_id ) REFERENCES "ONLINE" ( logon_id ),
-    CONSTRAINT course_seated_fk FOREIGN KEY ( SEATED_DateTime, seated_building, seated_room ) REFERENCES seated ( "DateTime", building, room )
+    CONSTRAINT course_seated_fk FOREIGN KEY ( SEATED_DateTime, seated_building, seated_room ) REFERENCES SEATED ( "DateTime", building, room )
 );
 
-CREATE TABLE faculty (
+CREATE TABLE FACULTIES (
     id             NUMBER NOT NULL,
     first_name     VARCHAR2(400) NOT NULL,
     last_name      VARCHAR2(400) NOT NULL,
@@ -71,26 +71,26 @@ CREATE TABLE faculty (
     department_id  NUMBER NOT NULL,
     id1            NUMBER NOT NULL,
     CONSTRAINT faculty_pk PRIMARY KEY ( id ),
-    CONSTRAINT faculty_department_fk FOREIGN KEY ( department_id ) REFERENCES department ( id )
+    CONSTRAINT faculty_department_fk FOREIGN KEY ( department_id ) REFERENCES DEPARTMENTS ( id )
 );
 
-CREATE TABLE full_time (
+CREATE TABLE FULL_TIMES (
     id              NUMBER NOT NULL,
     salary          NUMBER NOT NULL,
     insurance_plan  VARCHAR2(400) NOT NULL,
     CONSTRAINT full_time_pk PRIMARY KEY ( id ),
-    CONSTRAINT full_time_faculty_fk FOREIGN KEY ( id ) REFERENCES faculty ( id )
+    CONSTRAINT full_time_faculty_fk FOREIGN KEY ( id ) REFERENCES FACULTIES ( id )
 );
 
-CREATE TABLE part_time (
+CREATE TABLE PART_TIMES (
     id           NUMBER NOT NULL,
     hourly_rate  NUMBER NOT NULL,
     CONSTRAINT part_time_pk PRIMARY KEY ( id ),
-    CONSTRAINT part_time_faculty_fk FOREIGN KEY ( id ) REFERENCES faculty ( id )
+    CONSTRAINT part_time_faculty_fk FOREIGN KEY ( id ) REFERENCES FACULTIES ( id )
 
 );
 
-CREATE TABLE parent_information (
+CREATE TABLE PARENTS_INFORMATION (
     id                   NUMBER NOT NULL,
     parent_1_first_name  VARCHAR2(400) NOT NULL,
     parent_1_last_name   VARCHAR2(400) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE parent_information (
     CONSTRAINT parent_information_pk PRIMARY KEY ( id )
 );
 
-CREATE TABLE student (
+CREATE TABLE STUDENTS (
     id                     NUMBER NOT NULL,
     first_name             VARCHAR2(400) NOT NULL,
     last_name              VARCHAR2(400) NOT NULL,
@@ -108,10 +108,10 @@ CREATE TABLE student (
     parent_information_id  NUMBER,
     id1                    NUMBER,
     CONSTRAINT student_pk PRIMARY KEY ( id ),
-    CONSTRAINT student_parent_information_fk FOREIGN KEY ( parent_information_id ) REFERENCES parent_information ( id )
+    CONSTRAINT student_parent_information_fk FOREIGN KEY ( parent_information_id ) REFERENCES PARENTS_INFORMATION ( id )
 );
 
-CREATE TABLE student_attendance (
+CREATE TABLE STUDENT_ATTENDANCES (
     number_of_working_days  NUMBER NOT NULL,
     number_of_days_off      NUMBER NOT NULL,
     eligibility_for_exam    NUMBER,
@@ -120,28 +120,28 @@ CREATE TABLE student_attendance (
     id                      NUMBER NOT NULL,
     id1                     NUMBER NOT NULL,
     CONSTRAINT student_attendance_pk PRIMARY KEY ( id, id1 ),
-    CONSTRAINT student_aa_session_fk FOREIGN KEY ( academic_session_id ) REFERENCES academic_session ( id ),
-    CONSTRAINT student_attendance_student_fk FOREIGN KEY ( student_id ) REFERENCES student ( id )
+    CONSTRAINT student_aa_session_fk FOREIGN KEY ( academic_session_id ) REFERENCES ACADEMIC_SESSIONS ( id ),
+    CONSTRAINT student_attendance_student_fk FOREIGN KEY ( student_id ) REFERENCES STUDENTS ( id )
 
 );
 
-CREATE TABLE faculty_login_detail (
+CREATE TABLE FACULTY_LOGIN_DETAILS (
     login_datetime  TIMESTAMP NOT NULL,
     faculty_id      NUMBER NOT NULL,
     CONSTRAINT faculty_login_detail_pk PRIMARY KEY ( faculty_id ),
-    CONSTRAINT faculty_ldetail_faculty_fk FOREIGN KEY ( faculty_id ) REFERENCES faculty ( id )
+    CONSTRAINT faculty_ldetail_faculty_fk FOREIGN KEY ( faculty_id ) REFERENCES FACULTIES ( id )
 );
 
-CREATE TABLE faculty_course_detail (
+CREATE TABLE FACULTY_COURSE_DETAILS (
     contact_hours  VARCHAR2(400) NOT NULL,
     course_id      NUMBER NOT NULL,
     faculty_id     NUMBER NOT NULL,
     CONSTRAINT faculty_course_detail_pk PRIMARY KEY ( course_id, faculty_id ),
-    CONSTRAINT faculty_cdetail_course_fk FOREIGN KEY ( course_id ) REFERENCES course ( id ),
-    CONSTRAINT faculty_cdetail_faculty_fk FOREIGN KEY ( faculty_id ) REFERENCES faculty ( id )
+    CONSTRAINT faculty_cdetail_course_fk FOREIGN KEY ( course_id ) REFERENCES COURSES ( id ),
+    CONSTRAINT faculty_cdetail_faculty_fk FOREIGN KEY ( faculty_id ) REFERENCES FACULTIES ( id )
 );
 
-CREATE TABLE exam_type (
+CREATE TABLE EXAM_TYPES (
     type         NUMBER NOT NULL,
     name         VARCHAR2(400) NOT NULL,
     description  VARCHAR2(400),
@@ -149,40 +149,40 @@ CREATE TABLE exam_type (
 );
 
 
-CREATE TABLE exam (
+CREATE TABLE EXAMS (
     id              NUMBER NOT NULL,
     start_date      TIMESTAMP,
     course_id       NUMBER NOT NULL,
     exam_type_type  NUMBER NOT NULL,
     CONSTRAINT exam_pk PRIMARY KEY ( id ),
-    CONSTRAINT exam_course_fk FOREIGN KEY ( course_id ) REFERENCES course ( id ),
-    CONSTRAINT exam_exam_type_fk FOREIGN KEY ( exam_type_type ) REFERENCES exam_type ( type )
+    CONSTRAINT exam_course_fk FOREIGN KEY ( course_id ) REFERENCES COURSES ( id ),
+    CONSTRAINT exam_exam_type_fk FOREIGN KEY ( exam_type_type ) REFERENCES EXAM_TYPES ( type )
 );
 
-CREATE TABLE exam_result (
+CREATE TABLE EXAM_RESULTS (
     grade       NUMBER NOT NULL,
     course_id   NUMBER NOT NULL,
     student_id  NUMBER NOT NULL,
     exam_id     NUMBER NOT NULL,
     id          NUMBER NOT NULL,
-    CONSTRAINT exam_result_pk PRIMARY KEY ( course_id, exam_id, id ),
-    CONSTRAINT exam_result_course_fk FOREIGN KEY ( course_id ) REFERENCES course ( id ),
-    CONSTRAINT exam_result_exam_fk FOREIGN KEY ( exam_id ) REFERENCES exam ( id ),
-    CONSTRAINT exam_result_student_fk FOREIGN KEY ( student_id ) REFERENCES student ( id )
+    CONSTRAINT EXAM_RESULTS_pk PRIMARY KEY ( course_id, exam_id, id ),
+    CONSTRAINT EXAM_RESULTS_course_fk FOREIGN KEY ( course_id ) REFERENCES COURSES ( id ),
+    CONSTRAINT EXAM_RESULTS_exam_fk FOREIGN KEY ( exam_id ) REFERENCES EXAMS ( id ),
+    CONSTRAINT EXAM_RESULTS_student_fk FOREIGN KEY ( student_id ) REFERENCES STUDENTS ( id )
 );
 
-CREATE TABLE student_course_detail (
+CREATE TABLE STUDENT_COURSE_DETAILS (
     grade       NUMBER NOT NULL,
     course_id   NUMBER NOT NULL,
     student_id  NUMBER NOT NULL,
     id          NUMBER NOT NULL,
-    CONSTRAINT student_course_detail_pk PRIMARY KEY ( course_id, id ),
-    CONSTRAINT student_cdetail_course_fk FOREIGN KEY ( course_id ) REFERENCES course ( id ),
-    CONSTRAINT student_cdetail_student_fk FOREIGN KEY ( student_id ) REFERENCES student ( id )
+    CONSTRAINT STUDENT_COURSE_DETAILS_pk PRIMARY KEY ( course_id, id ),
+    CONSTRAINT student_cdetail_course_fk FOREIGN KEY ( course_id ) REFERENCES COURSES ( id ),
+    CONSTRAINT student_cdetail_student_fk FOREIGN KEY ( student_id ) REFERENCES STUDENTS ( id )
 );
 
-CREATE OR REPLACE TRIGGER fkntm_exam_result BEFORE
-    UPDATE OF student_id ON exam_result
+CREATE OR REPLACE TRIGGER fkntm_EXAM_RESULTS BEFORE
+    UPDATE OF student_id ON EXAM_RESULTS
 BEGIN
-    raise_application_error(-20225, 'Non Transferable FK constraint  on table EXAM_RESULT is violated');
+    raise_application_error(-20225, 'Non Transferable FK constraint  on table EXAM_RESULTS is violated');
 END;
