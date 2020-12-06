@@ -1,124 +1,143 @@
-DROP TABLE STUDENTS;
-DROP TABLE PARENTS_INFORMATION;
-DROP TABLE STUDENT_ATTENDANCES;
-DROP TABLE ACADEMIC_SESSIONS;
-DROP TABLE EXAMS_RESULT;
+DROP TABLE STUDENT_COURSE_DETAILS;
+DROP TABLE EXAM_RESULTS;
 DROP TABLE EXAMS;
 DROP TABLE EXAM_TYPES;
-DROP TABLE COURSES;
-DROP TABLE ONLINE_1;
-DROP TABLE SEATED;
-DROP TABLE FACULTY_LOGIN_DETAILS;
-DROP TABLE FACULTIES;
-DROP TABLE DEPARTMENTS;
-DROP TABLE STUDENT_COURSE_DETAILS;
 DROP TABLE FACULTY_COURSE_DETAILS;
+DROP TABLE FACULTY_LOGIN_DETAILS;
+DROP TABLE STUDENT_ATTENDANCES;
+DROP TABLE STUDENTS;
+DROP TABLE PARENTS_INFORMATION;
+DROP TABLE FULL_TIMES;
+DROP TABLE PART_TIMES;
+DROP TABLE FACULTIES;
+DROP TABLE COURSES;
+DROP TABLE DEPARTMENTS;
+DROP TABLE "ONLINE";
+DROP TABLE SEATED;
+DROP TABLE ACADEMIC_SESSIONS;
 
-CREATE TABLE STUDENTS(
-    id NUMBER NOT NULL,
-    firstname VARCHAR2(100) NOT NULL,
-    lastname  VARCHAR2 (100) NOT NULL,
-    regyear TIMESTAMP NOT NULL,
-    email VARCHAR2(100) NOT NULL,
-    PARENT_id NUMBER NOT NULL,
-    CONSTRAINT STUDENTS_pk PRIMARY KEY ( id )
+CREATE TABLE ACADEMIC_SESSIONS (
+    id    NUMBER NOT NULL,
+    name  VARCHAR2(400) NOT NULL
+);
+
+CREATE TABLE SEATED (
+    building     VARCHAR2(400) NOT NULL,
+    room         VARCHAR2(400) NOT NULL,
+    "DateTime"  TIMESTAMP NOT NULL
+);
+
+CREATE TABLE "ONLINE" (
+    logon_id  NUMBER NOT NULL,
+    password  VARCHAR2(400) NOT NULL
+);
+
+CREATE TABLE DEPARTMENTS (
+    id    NUMBER NOT NULL,
+    name  VARCHAR2(400) NOT NULL,
+    head  VARCHAR2(400) NOT NULL
+);
+
+CREATE TABLE COURSES (
+    id                   NUMBER NOT NULL,
+    name                 VARCHAR2(400) NOT NULL,
+    department_id        NUMBER NOT NULL,
+    academic_session_id  NUMBER NOT NULL,
+    online_logon_id      NUMBER,
+    seated_building      VARCHAR2(400),
+    seated_room          VARCHAR2(400),
+    SEATED_DateTime   TIMESTAMP,
+    id1                  NUMBER NOT NULL,
+    id2                  NUMBER NOT NULL,
+    building             VARCHAR2(400) NOT NULL,
+    room                 VARCHAR2(400) NOT NULL
+);
+
+CREATE TABLE FACULTIES (
+    id             NUMBER NOT NULL,
+    first_name     VARCHAR2(400) NOT NULL,
+    last_name      VARCHAR2(400) NOT NULL,
+    email          VARCHAR2(400) NOT NULL,
+    department_id  NUMBER NOT NULL,
+    id1            NUMBER NOT NULL
+
+);
+
+CREATE TABLE FULL_TIMES (
+    id              NUMBER NOT NULL,
+    salary          NUMBER NOT NULL,
+    insurance_plan  VARCHAR2(400) NOT NULL
+);
+
+CREATE TABLE PART_TIMES (
+    id           NUMBER NOT NULL,
+    hourly_rate  NUMBER NOT NULL
 );
 
 CREATE TABLE PARENTS_INFORMATION (
-    id NUMBER NOT NULL,
-    par1firstname VARCHAR2(100) NOT NULL,
-    par2firstname VARCHAR2(100) NOT NULL,
-    par1lastname VARCHAR2(100) NOT NULL,
-    par2lastname VARCHAR2(100) NOT NULL,
-    CONSTRAINT PARENTS_INFORMATION_pk PRIMARY KEY ( id )
+    id                   NUMBER NOT NULL,
+    parent_1_first_name  VARCHAR2(400) NOT NULL,
+    parent_1_last_name   VARCHAR2(400) NOT NULL,
+    parent_2_first_name  VARCHAR2(400) NOT NULL,
+    parent_2_last_name   VARCHAR2(400) NOT NULL
 );
 
-CREATE TABLE ACADEMIC_SESSIONS(
-    id NUMBER NOT NULL,
-    name VARCHAR2(100) NOT NULL,
-    CONSTRAINT ACADEMIC_SESSIONS_pk PRIMARY KEY ( id )
+CREATE TABLE STUDENTS (
+    id                     NUMBER NOT NULL,
+    first_name             VARCHAR2(400) NOT NULL,
+    last_name              VARCHAR2(400) NOT NULL,
+    registration_year      TIMESTAMP NOT NULL,
+    email                  VARCHAR2(400) NOT NULL,
+    parent_information_id  NUMBER,
+    id1                    NUMBER
 );
-
 
 CREATE TABLE STUDENT_ATTENDANCES (
-    number_of_working_days NUMBER NOT NULL,
-    number_of_days_off NUMBER NOT NULL,
-    eligibity_for_exam NUMBER,
-    student_id NUMBER,
-    AS_id NUMBER NOT NULL
+    number_of_working_days  NUMBER NOT NULL,
+    number_of_days_off      NUMBER NOT NULL,
+    eligibility_for_exam    NUMBER,
+    student_id              NUMBER NOT NULL,
+    academic_session_id     NUMBER NOT NULL,
+    id                      NUMBER NOT NULL,
+    id1                     NUMBER NOT NULL
 );
 
-CREATE TABLE EXAMS_RESULT(
-    grade NUMBER NOT NULL
+CREATE TABLE FACULTY_LOGIN_DETAILS (
+    login_datetime  TIMESTAMP NOT NULL,
+    faculty_id      NUMBER NOT NULL
 );
 
-CREATE TABLE EXAMS(
-    id NUMBER,
-    start_date DATE,
-    exam_type NUMBER NOT NULL
+CREATE TABLE FACULTY_COURSE_DETAILS (
+    contact_hours  VARCHAR2(400) NOT NULL,
+    course_id      NUMBER NOT NULL,
+    faculty_id     NUMBER NOT NULL
 );
 
-CREATE TABLE EXAM_TYPES(
-    type NUMBER NOT NULL,
-    name VARCHAR2(100) NOT NULL,
-    description VARCHAR2(100)
-);
-
-CREATE TABLE COURSES(
-    id NUMBER,
-    name VARCHAR2(100) NOT NULL,
-    AS_id NUMBER NOT NULL,
-    exam_result NUMBER,
-    DEPT_id NUMBER,
-    LOGON_id NUMBER,
-    building VARCHAR2(100),
-    room NUMBER,
-    date_time VARCHAR2(100)
-);
-
-CREATE TABLE ONLINE_1(
-    logon_id NUMBER,
-    password VARCHAR2(100) NOT NULL
-);
-
-CREATE TABLE SEATED(
-    building VARCHAR2(100),
-    room NUMBER,
-    date_time VARCHAR2(100)
+CREATE TABLE EXAM_TYPES (
+    type         NUMBER NOT NULL,
+    name         VARCHAR2(400) NOT NULL,
+    description  VARCHAR2(400)
 );
 
 
-CREATE TABLE FACULTY_LOGIN_DETAILS(
-    login_data_type VARCHAR2(100),
-    faculty_id NUMBER
+CREATE TABLE EXAMS (
+    id              NUMBER NOT NULL,
+    start_date      TIMESTAMP,
+    course_id       NUMBER NOT NULL,
+    exam_type_type  NUMBER NOT NULL
 );
 
-CREATE TABLE FACULTIES(
-    id NUMBER,
-    firstname VARCHAR2(100) NOT NULL, 
-    lastname VARCHAR2(100) NOT NULL,
-    email VARCHAR2(100) NOT NULL,
-    salary NUMBER,
-    insurance VARCHAR2(100),
-    hourlt_rate NUMBER,
-    DEPT_id NUMBER
-
+CREATE TABLE EXAM_RESULTS (
+    grade       NUMBER NOT NULL,
+    course_id   NUMBER NOT NULL,
+    student_id  NUMBER NOT NULL,
+    exam_id     NUMBER NOT NULL,
+    id          NUMBER NOT NULL
 );
 
-CREATE TABLE DEPARTMENTS(
-    id NUMBER,
-    name VARCHAR2(100) NOT NULL,
-    head VARCHAR2(100) NOT NULL
-);
-
-CREATE TABLE STUDENT_COURSE_DETAILS(
-    grade NUMBER NOT NULL,
-    STUDENT_id NUMBER,
-    COURSE_id NUMBER
-);
-
-CREATE TABLE FACULTY_COURSE_DETAILS(
-    id NUMBER,
-    name VARCHAR2(100) NOT NULL,
-    head VARCHAR2(100) NOT NULL
+CREATE TABLE STUDENT_COURSE_DETAILS (
+    grade       NUMBER NOT NULL,
+    course_id   NUMBER NOT NULL,
+    student_id  NUMBER NOT NULL,
+    id          NUMBER NOT NULL
 );
