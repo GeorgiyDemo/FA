@@ -32,7 +32,7 @@
 		</Vars>
 	</EnvironmentVariables>
 	<Script>
-		<NodeCount>14</NodeCount>
+		<NodeCount>18</NodeCount>
 		<Root>
 			<DisplayName>Сценарии</DisplayName>
 			<NodeIndex>1</NodeIndex>
@@ -1088,7 +1088,7 @@
 															<Control>
 																<TypeId>1</TypeId>
 																<Key>{3FF18ADC-14C3-4519-8694-A1D4E2D00B15}</Key>
-																<ScreenRect>601;319;929;690</ScreenRect>
+																<ScreenRect>905;319;1233;690</ScreenRect>
 																<AHOrientation>4</AHOrientation>
 																<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -1097,7 +1097,7 @@
 																<ChildrenCount>2</ChildrenCount>
 																<Control>
 																	<Key>{80317570-8FF6-4E38-A1B0-D1450D25F8EA}</Key>
-																	<ScreenRect>601;319;929;319</ScreenRect>
+																	<ScreenRect>905;319;1233;319</ScreenRect>
 																	<Caption>Кросс-таблица</Caption>
 																	<ShowCaption>2</ShowCaption>
 																	<AHOrientation>4</AHOrientation>
@@ -1108,7 +1108,7 @@
 																</Control>
 																<Control.1>
 																	<Key>{2E557039-B022-41E1-85B3-5CB38416FCCE}</Key>
-																	<ScreenRect>601;323;929;690</ScreenRect>
+																	<ScreenRect>905;323;1233;690</ScreenRect>
 																	<Caption>Кросс-диаграмма</Caption>
 																	<Alignment>4</Alignment>
 																	<AHOrientation>4</AHOrientation>
@@ -1530,10 +1530,12 @@
 																			<Usable>1</Usable>
 																		</csfValue>
 																		<csfPercentByRow>
+																			<Width>55</Width>
 																			<Usable>1</Usable>
 																			<OrderNumber>1</OrderNumber>
 																		</csfPercentByRow>
 																		<csfPercentByCol>
+																			<Width>153</Width>
 																			<Usable>1</Usable>
 																			<OrderNumber>2</OrderNumber>
 																		</csfPercentByCol>
@@ -1627,7 +1629,7 @@
 															<Control>
 																<TypeId>1</TypeId>
 																<Key>{78D3BE2B-BCC0-46ED-9039-B26583B217F2}</Key>
-																<ScreenRect>601;319;929;690</ScreenRect>
+																<ScreenRect>905;319;1233;690</ScreenRect>
 																<AHOrientation>4</AHOrientation>
 																<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -1636,7 +1638,7 @@
 																<ChildrenCount>2</ChildrenCount>
 																<Control>
 																	<Key>{80317570-8FF6-4E38-A1B0-D1450D25F8EA}</Key>
-																	<ScreenRect>601;319;929;319</ScreenRect>
+																	<ScreenRect>905;319;1233;319</ScreenRect>
 																	<Caption>Кросс-таблица</Caption>
 																	<ShowCaption>2</ShowCaption>
 																	<AHOrientation>4</AHOrientation>
@@ -1647,7 +1649,7 @@
 																</Control>
 																<Control.1>
 																	<Key>{2E557039-B022-41E1-85B3-5CB38416FCCE}</Key>
-																	<ScreenRect>601;323;929;690</ScreenRect>
+																	<ScreenRect>905;323;1233;690</ScreenRect>
 																	<Caption>Кросс-диаграмма</Caption>
 																	<Alignment>4</Alignment>
 																	<AHOrientation>4</AHOrientation>
@@ -1681,7 +1683,7 @@
 										</I_1>
 									</Views>
 									<SubNodes>
-										<Count>9</Count>
+										<Count>13</Count>
 										<I_0>
 											<ID>2</ID>
 											<VendorName>TBGDateReformVendor</VendorName>
@@ -2122,6 +2124,7 @@
 																		<cfCount>
 																			<SubFunctions>
 																				<csfValue>
+																					<Width>122</Width>
 																					<Usable>1</Usable>
 																				</csfValue>
 																			</SubFunctions>
@@ -2143,6 +2146,7 @@
 															<I_0>
 																<Key>{C309017C-C758-4590-82F0-BDC3E3C73026}</Key>
 																<Form>
+																	<View3D>1</View3D>
 																	<Axis>1</Axis>
 																	<MarksStyle>smsLabelPercent</MarksStyle>
 																	<Marks>1</Marks>
@@ -2183,7 +2187,7 @@
 																	<Control>
 																		<TypeId>1</TypeId>
 																		<Key>{9A29B68E-EE1C-4D52-A4A7-ACC7D3033DEA}</Key>
-																		<ScreenRect>905;319;1233;848</ScreenRect>
+																		<ScreenRect>905;319;1233;855</ScreenRect>
 																		<AHOrientation>4</AHOrientation>
 																		<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																		<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -2203,7 +2207,7 @@
 																		</Control>
 																		<Control.1>
 																			<Key>{C309017C-C758-4590-82F0-BDC3E3C73026}</Key>
-																			<ScreenRect>905;323;1233;848</ScreenRect>
+																			<ScreenRect>905;323;1233;855</ScreenRect>
 																			<Caption>Кросс-диаграмма</Caption>
 																			<Alignment>4</Alignment>
 																			<AHOrientation>4</AHOrientation>
@@ -2684,6 +2688,7 @@
 															<I_0>
 																<Key>{960B647D-39B0-4806-85F5-F1414DAB81CC}</Key>
 																<Form>
+																	<View3D>1</View3D>
 																	<Axis>1</Axis>
 																	<MarksStyle>smsLabelValue</MarksStyle>
 																	<Marks>1</Marks>
@@ -2725,7 +2730,7 @@
 																	<Control>
 																		<TypeId>1</TypeId>
 																		<Key>{96C60499-FABC-40F1-A90A-A20FC2CE56CC}</Key>
-																		<ScreenRect>905;319;1233;804</ScreenRect>
+																		<ScreenRect>905;319;1233;740</ScreenRect>
 																		<AHOrientation>4</AHOrientation>
 																		<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																		<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -2745,7 +2750,7 @@
 																		</Control>
 																		<Control.1>
 																			<Key>{960B647D-39B0-4806-85F5-F1414DAB81CC}</Key>
-																			<ScreenRect>905;323;1233;804</ScreenRect>
+																			<ScreenRect>905;323;1233;740</ScreenRect>
 																			<Caption>Кросс-диаграмма</Caption>
 																			<Alignment>4</Alignment>
 																			<AHOrientation>4</AHOrientation>
@@ -3964,6 +3969,7 @@
 																			<OrderNumber>3</OrderNumber>
 																			<SubFunctions>
 																				<csfValue>
+																					<Width>145</Width>
 																					<Usable>1</Usable>
 																				</csfValue>
 																			</SubFunctions>
@@ -4347,7 +4353,7 @@
 																	<Control>
 																		<TypeId>1</TypeId>
 																		<Key>{0F5CBB8F-0574-493F-ADBA-12C7A9B3B7CF}</Key>
-																		<ScreenRect>905;319;1233;695</ScreenRect>
+																		<ScreenRect>905;319;1233;836</ScreenRect>
 																		<AHOrientation>4</AHOrientation>
 																		<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																		<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -4367,7 +4373,7 @@
 																		</Control>
 																		<Control.1>
 																			<Key>{7B5E4CDE-5516-41C8-A1DA-98E0E08C0C04}</Key>
-																			<ScreenRect>905;323;1233;695</ScreenRect>
+																			<ScreenRect>905;323;1233;836</ScreenRect>
 																			<Caption>Кросс-диаграмма</Caption>
 																			<Alignment>4</Alignment>
 																			<AHOrientation>4</AHOrientation>
@@ -4800,6 +4806,7 @@
 																			<OrderNumber>4</OrderNumber>
 																			<SubFunctions>
 																				<csfValue>
+																					<Width>157</Width>
 																					<Usable>1</Usable>
 																				</csfValue>
 																			</SubFunctions>
@@ -5303,6 +5310,7 @@
 																			<OrderNumber>4</OrderNumber>
 																			<SubFunctions>
 																				<csfValue>
+																					<Width>93</Width>
 																					<Usable>1</Usable>
 																				</csfValue>
 																			</SubFunctions>
@@ -5325,6 +5333,77 @@
 															<PivotTable>
 																<CubeGrid/>
 															</PivotTable>
+															<BrowseView>
+																<BrowseColumns>
+																	<Columns>
+																		<Count>3</Count>
+																		<I_0>
+																			<ID>1</ID>
+																			<Name>COL8</Name>
+																			<DataStatus>dsUsable</DataStatus>
+																			<DataType>dtString</DataType>
+																			<Width>128</Width>
+																		</I_0>
+																		<I_1>
+																			<ID>2</ID>
+																			<Name>COL10</Name>
+																			<DataStatus>dsUsable</DataStatus>
+																			<DataType>dtFloat</DataType>
+																			<Alignment>taRightJustify</Alignment>
+																			<Width>88</Width>
+																		</I_1>
+																		<I_2>
+																			<ID>3</ID>
+																			<Name>COL6_REPLACE</Name>
+																			<DataStatus>dsUsable</DataStatus>
+																			<DataType>dtString</DataType>
+																			<Width>88</Width>
+																		</I_2>
+																	</Columns>
+																</BrowseColumns>
+																<FilterColumns/>
+																<VirtualDataSet>
+																	<SortComponent>
+																		<StartTime>2020.12.07 11:51:40</StartTime>
+																		<StopTime>2020.12.07 11:51:40</StopTime>
+																		<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
+																	</SortComponent>
+																</VirtualDataSet>
+																<Statistics>
+																	<Histogram>1</Histogram>
+																	<StatMin>1</StatMin>
+																	<StatMax>1</StatMax>
+																	<StatAvg>1</StatAvg>
+																	<StatStdDev>1</StatStdDev>
+																	<StatSum>1</StatSum>
+																	<StatSumSq>1</StatSumSq>
+																	<StatUnique>1</StatUnique>
+																	<StatNull>1</StatNull>
+																	<StatColumns>
+																		<Columns>
+																			<Count>3</Count>
+																			<I_0>
+																				<ID>1</ID>
+																				<Name>COL8</Name>
+																				<DataStatus>dsInfo</DataStatus>
+																				<DataType>dtString</DataType>
+																			</I_0>
+																			<I_1>
+																				<ID>2</ID>
+																				<Name>COL10</Name>
+																				<DataStatus>dsInfo</DataStatus>
+																				<DataType>dtFloat</DataType>
+																			</I_1>
+																			<I_2>
+																				<ID>3</ID>
+																				<Name>COL6_REPLACE</Name>
+																				<DataStatus>dsInfo</DataStatus>
+																				<DataType>dtString</DataType>
+																			</I_2>
+																		</Columns>
+																	</StatColumns>
+																</Statistics>
+															</BrowseView>
 														</CubeGridForm>
 														<CubeChartForms>
 															<Count>1</Count>
@@ -5370,7 +5449,7 @@
 																	<Control>
 																		<TypeId>1</TypeId>
 																		<Key>{7D298E5A-1232-450A-958B-F56C080D23D3}</Key>
-																		<ScreenRect>905;319;1233;695</ScreenRect>
+																		<ScreenRect>905;319;1233;756</ScreenRect>
 																		<AHOrientation>4</AHOrientation>
 																		<PlacementInfo.Position>-1;-1</PlacementInfo.Position>
 																		<PlacementInfo.Size>450;200</PlacementInfo.Size>
@@ -5390,7 +5469,7 @@
 																		</Control>
 																		<Control.1>
 																			<Key>{A2AC8654-B8C7-4E01-92D4-692C92DF6497}</Key>
-																			<ScreenRect>905;323;1233;695</ScreenRect>
+																			<ScreenRect>905;323;1233;756</ScreenRect>
 																			<Caption>Кросс-диаграмма</Caption>
 																			<Alignment>4</Alignment>
 																			<AHOrientation>4</AHOrientation>
@@ -5509,7 +5588,636 @@
 												</TunedDataSource>
 											</Component>
 											<Views>
-												<Count>2</Count>
+												<Count>1</Count>
+												<I_0>
+													<ID>1</ID>
+													<Name>TBGBrowseVendor</Name>
+													<VendorName>TBGBrowseVendor</VendorName>
+													<CollapsedStat>1</CollapsedStat>
+													<BrowseColumns>
+														<Columns>
+															<Count>10</Count>
+															<I_0>
+																<ID>1</ID>
+																<Name>COL1</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>54</Width>
+															</I_0>
+															<I_1>
+																<ID>2</ID>
+																<Name>COL2</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_1>
+															<I_2>
+																<ID>3</ID>
+																<Name>COL3</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>104</Width>
+															</I_2>
+															<I_3>
+																<ID>4</ID>
+																<Name>COL4</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_3>
+															<I_4>
+																<ID>5</ID>
+																<Name>COL5</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>104</Width>
+															</I_4>
+															<I_5>
+																<ID>6</ID>
+																<Name>COL7</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>48</Width>
+															</I_5>
+															<I_6>
+																<ID>7</ID>
+																<Name>COL8</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>53</Width>
+															</I_6>
+															<I_7>
+																<ID>8</ID>
+																<Name>COL9</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>69</Width>
+															</I_7>
+															<I_8>
+																<ID>9</ID>
+																<Name>COL10</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_8>
+															<I_9>
+																<ID>10</ID>
+																<Name>COL6_REPLACE</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_9>
+														</Columns>
+													</BrowseColumns>
+													<FilterColumns>
+														<Count>3</Count>
+														<Filtered>1</Filtered>
+														<QyeryText>([Дата возврата] в интервале [&apos;13.05.2013&apos;..&apos;13.05.2014&apos;]) И ([Сумма кредита] в интервале [100000..300000]) И ([Вид кредита] = &apos;льготный&apos;)</QyeryText>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtDateTime</DataType>
+															<RelationType>rtBetween</RelationType>
+															<CompareValues>
+																<Count>2</Count>
+																<I_0>2013.05.13</I_0>
+																<I_1>2014.05.13</I_1>
+															</CompareValues>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtBetween</RelationType>
+															<CompareValues>
+																<Count>2</Count>
+																<I_0>100000</I_0>
+																<I_1>300000</I_1>
+															</CompareValues>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>льготный</I_0>
+															</CompareValues>
+														</I_2>
+													</FilterColumns>
+													<VirtualDataSet>
+														<SortComponent>
+															<StartTime>2020.12.07 11:57:00</StartTime>
+															<StopTime>2020.12.07 11:57:00</StopTime>
+															<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
+														</SortComponent>
+													</VirtualDataSet>
+													<Statistics>
+														<Histogram>1</Histogram>
+														<StatAvg>1</StatAvg>
+														<StatSum>1</StatSum>
+														<StatColumns>
+															<Columns>
+																<Count>10</Count>
+																<I_0>
+																	<ID>1</ID>
+																	<Name>COL1</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_0>
+																<I_1>
+																	<ID>2</ID>
+																	<Name>COL2</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_1>
+																<I_2>
+																	<ID>3</ID>
+																	<Name>COL3</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_2>
+																<I_3>
+																	<ID>4</ID>
+																	<Name>COL4</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_3>
+																<I_4>
+																	<ID>5</ID>
+																	<Name>COL5</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_4>
+																<I_5>
+																	<ID>6</ID>
+																	<Name>COL7</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_5>
+																<I_6>
+																	<ID>7</ID>
+																	<Name>COL8</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_6>
+																<I_7>
+																	<ID>8</ID>
+																	<Name>COL9</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_7>
+																<I_8>
+																	<ID>9</ID>
+																	<Name>COL10</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_8>
+																<I_9>
+																	<ID>10</ID>
+																	<Name>COL6_REPLACE</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_9>
+															</Columns>
+														</StatColumns>
+													</Statistics>
+												</I_0>
+											</Views>
+										</I_8>
+										<I_9>
+											<ID>11</ID>
+											<VendorName>TBGReformDataSourceVendor</VendorName>
+											<Name>ReformDataSource5</Name>
+											<DisplayName>Настройка набора данных (без изменений)</DisplayName>
+											<NodeIndex>16</NodeIndex>
+											<Component>
+												<Version>4</Version>
+												<TunedDataSource>
+													<Columns>
+														<Count>10</Count>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL1</Name>
+															<DisplayName>Номер кредитного договора</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL2</Name>
+															<DisplayName>Филиала</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_2>
+														<I_3>
+															<ID>4</ID>
+															<Name>COL4</Name>
+															<DisplayName>Дата выдачи</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_3>
+														<I_4>
+															<ID>5</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_4>
+														<I_5>
+															<ID>7</ID>
+															<Name>COL7</Name>
+															<DisplayName>Срок кредита (в мес)</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_5>
+														<I_6>
+															<ID>8</ID>
+															<Name>COL8</Name>
+															<DisplayName>Процентая ставка</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_6>
+														<I_7>
+															<ID>9</ID>
+															<Name>COL9</Name>
+															<DisplayName>Аннуитентный платеж</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_7>
+														<I_8>
+															<ID>10</ID>
+															<Name>COL10</Name>
+															<DisplayName>Плата по %%</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_8>
+														<I_9>
+															<ID>11</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_9>
+													</Columns>
+												</TunedDataSource>
+											</Component>
+											<Views>
+												<Count>1</Count>
+												<I_0>
+													<ID>1</ID>
+													<Name>TBGBrowseVendor</Name>
+													<VendorName>TBGBrowseVendor</VendorName>
+													<CollapsedStat>1</CollapsedStat>
+													<BrowseColumns>
+														<Columns>
+															<Count>10</Count>
+															<I_0>
+																<ID>1</ID>
+																<Name>COL1</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>60</Width>
+															</I_0>
+															<I_1>
+																<ID>2</ID>
+																<Name>COL2</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_1>
+															<I_2>
+																<ID>3</ID>
+																<Name>COL3</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>55</Width>
+															</I_2>
+															<I_3>
+																<ID>4</ID>
+																<Name>COL4</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_3>
+															<I_4>
+																<ID>5</ID>
+																<Name>COL5</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>104</Width>
+															</I_4>
+															<I_5>
+																<ID>6</ID>
+																<Name>COL7</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>39</Width>
+															</I_5>
+															<I_6>
+																<ID>7</ID>
+																<Name>COL8</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>47</Width>
+															</I_6>
+															<I_7>
+																<ID>8</ID>
+																<Name>COL9</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>56</Width>
+															</I_7>
+															<I_8>
+																<ID>9</ID>
+																<Name>COL10</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_8>
+															<I_9>
+																<ID>10</ID>
+																<Name>COL6_REPLACE</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_9>
+														</Columns>
+													</BrowseColumns>
+													<FilterColumns>
+														<Count>6</Count>
+														<Filtered>1</Filtered>
+														<QyeryText>([Вид кредита] = &apos;льготный&apos;) И ([Дата возврата] в интервале [&apos;03.03.2014&apos;..&apos;01.10.2015&apos;]) И ([Сумма кредита] в интервале [200000..400000]) ИЛИ ([Вид кредита] = &apos;обычный&apos;) И ([Сумма кредита] &lt; 100000) И ([Дата выдачи] в интервале [&apos;01.04.2012&apos;..&apos;30.04.2012&apos;])</QyeryText>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>льготный</I_0>
+															</CompareValues>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtDateTime</DataType>
+															<RelationType>rtBetween</RelationType>
+															<CompareValues>
+																<Count>2</Count>
+																<I_0>2014.03.03</I_0>
+																<I_1>2015.10.01</I_1>
+															</CompareValues>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtBetween</RelationType>
+															<CompareValues>
+																<Count>2</Count>
+																<I_0>200000</I_0>
+																<I_1>400000</I_1>
+															</CompareValues>
+														</I_2>
+														<I_3>
+															<ID>4</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<BooleanJoinType>jtOr</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>обычный</I_0>
+															</CompareValues>
+														</I_3>
+														<I_4>
+															<ID>5</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtLess</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>100000</I_0>
+															</CompareValues>
+														</I_4>
+														<I_5>
+															<ID>6</ID>
+															<Name>COL4</Name>
+															<DisplayName>Дата выдачи</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtDateTime</DataType>
+															<RelationType>rtBetween</RelationType>
+															<CompareValues>
+																<Count>2</Count>
+																<I_0>2012.04.01</I_0>
+																<I_1>2012.04.30</I_1>
+															</CompareValues>
+														</I_5>
+													</FilterColumns>
+													<VirtualDataSet>
+														<SortComponent>
+															<StartTime>2020.12.07 12:37:40</StartTime>
+															<StopTime>2020.12.07 12:37:40</StopTime>
+															<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
+														</SortComponent>
+													</VirtualDataSet>
+													<Statistics>
+														<Histogram>1</Histogram>
+														<StatAvg>1</StatAvg>
+														<StatSum>1</StatSum>
+														<StatColumns>
+															<Columns>
+																<Count>10</Count>
+																<I_0>
+																	<ID>1</ID>
+																	<Name>COL1</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_0>
+																<I_1>
+																	<ID>2</ID>
+																	<Name>COL2</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_1>
+																<I_2>
+																	<ID>3</ID>
+																	<Name>COL3</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_2>
+																<I_3>
+																	<ID>4</ID>
+																	<Name>COL4</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_3>
+																<I_4>
+																	<ID>5</ID>
+																	<Name>COL5</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_4>
+																<I_5>
+																	<ID>6</ID>
+																	<Name>COL7</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_5>
+																<I_6>
+																	<ID>7</ID>
+																	<Name>COL8</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_6>
+																<I_7>
+																	<ID>8</ID>
+																	<Name>COL9</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_7>
+																<I_8>
+																	<ID>9</ID>
+																	<Name>COL10</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_8>
+																<I_9>
+																	<ID>10</ID>
+																	<Name>COL6_REPLACE</Name>
+																	<DataStatus>dsUnUsable</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_9>
+															</Columns>
+														</StatColumns>
+													</Statistics>
+												</I_0>
+											</Views>
+										</I_9>
+										<I_10>
+											<ID>12</ID>
+											<VendorName>TBGReformDataSourceVendor</VendorName>
+											<Name>ReformDataSource6</Name>
+											<DisplayName>Настройка набора данных (без изменений)</DisplayName>
+											<NodeIndex>17</NodeIndex>
+											<Component>
+												<Version>4</Version>
+												<TunedDataSource>
+													<Columns>
+														<Count>10</Count>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL1</Name>
+															<DisplayName>Номер кредитного договора</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL2</Name>
+															<DisplayName>Филиала</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_2>
+														<I_3>
+															<ID>4</ID>
+															<Name>COL4</Name>
+															<DisplayName>Дата выдачи</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_3>
+														<I_4>
+															<ID>5</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_4>
+														<I_5>
+															<ID>7</ID>
+															<Name>COL7</Name>
+															<DisplayName>Срок кредита (в мес)</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_5>
+														<I_6>
+															<ID>8</ID>
+															<Name>COL8</Name>
+															<DisplayName>Процентая ставка</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_6>
+														<I_7>
+															<ID>9</ID>
+															<Name>COL9</Name>
+															<DisplayName>Аннуитентный платеж</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_7>
+														<I_8>
+															<ID>10</ID>
+															<Name>COL10</Name>
+															<DisplayName>Плата по %%</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_8>
+														<I_9>
+															<ID>11</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_9>
+													</Columns>
+												</TunedDataSource>
+											</Component>
+											<Views>
+												<Count>1</Count>
 												<I_0>
 													<ID>1</ID>
 													<Name>TBGBrowseVendor</Name>
@@ -5597,19 +6305,40 @@
 															</I_9>
 														</Columns>
 													</BrowseColumns>
-													<FilterColumns/>
+													<FilterColumns>
+														<Count>1</Count>
+														<Filtered>1</Filtered>
+														<QyeryText>([Сумма кредита] &gt; 280407,3084)</QyeryText>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtMore</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>280407.3084</I_0>
+															</CompareValues>
+														</I_0>
+													</FilterColumns>
 													<VirtualDataSet>
 														<SortComponent>
-															<StartTime>2020.12.07 11:57:00</StartTime>
-															<StopTime>2020.12.07 11:57:00</StopTime>
+															<StartTime>2020.12.07 12:49:39</StartTime>
+															<StopTime>2020.12.07 12:49:39</StopTime>
 															<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
 														</SortComponent>
 													</VirtualDataSet>
 													<Statistics>
+														<Histogram>1</Histogram>
+														<StatMin>1</StatMin>
+														<StatMax>1</StatMax>
 														<StatAvg>1</StatAvg>
 														<StatStdDev>1</StatStdDev>
 														<StatSum>1</StatSum>
 														<StatSumSq>1</StatSumSq>
+														<StatUnique>1</StatUnique>
+														<StatNull>1</StatNull>
 														<StatColumns>
 															<Columns>
 																<Count>10</Count>
@@ -5646,7 +6375,7 @@
 																<I_5>
 																	<ID>6</ID>
 																	<Name>COL7</Name>
-																	<DataStatus>dsInfo</DataStatus>
+																	<DataStatus>dsUnUsable</DataStatus>
 																	<DataType>dtFloat</DataType>
 																</I_5>
 																<I_6>
@@ -5677,153 +6406,594 @@
 														</StatColumns>
 													</Statistics>
 												</I_0>
-												<I_1>
-													<ID>2</ID>
-													<Name>TBGCubeViewVendor</Name>
-													<VendorName>TBGCubeViewVendor</VendorName>
-													<Version>4</Version>
-													<TunedDataSource>
+											</Views>
+										</I_10>
+										<I_11>
+											<ID>13</ID>
+											<VendorName>TBGReformDataSourceVendor</VendorName>
+											<Name>ReformDataSource7</Name>
+											<DisplayName>Настройка набора данных (без изменений)</DisplayName>
+											<NodeIndex>18</NodeIndex>
+											<Component>
+												<Version>4</Version>
+												<TunedDataSource>
+													<Columns>
+														<Count>10</Count>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL1</Name>
+															<DisplayName>Номер кредитного договора</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL2</Name>
+															<DisplayName>Филиала</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_2>
+														<I_3>
+															<ID>4</ID>
+															<Name>COL4</Name>
+															<DisplayName>Дата выдачи</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_3>
+														<I_4>
+															<ID>5</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_4>
+														<I_5>
+															<ID>7</ID>
+															<Name>COL7</Name>
+															<DisplayName>Срок кредита (в мес)</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_5>
+														<I_6>
+															<ID>8</ID>
+															<Name>COL8</Name>
+															<DisplayName>Процентая ставка</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_6>
+														<I_7>
+															<ID>9</ID>
+															<Name>COL9</Name>
+															<DisplayName>Аннуитентный платеж</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_7>
+														<I_8>
+															<ID>10</ID>
+															<Name>COL10</Name>
+															<DisplayName>Плата по %%</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_8>
+														<I_9>
+															<ID>11</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_9>
+													</Columns>
+												</TunedDataSource>
+											</Component>
+											<Views>
+												<Count>1</Count>
+												<I_0>
+													<ID>1</ID>
+													<Name>TBGBrowseVendor</Name>
+													<VendorName>TBGBrowseVendor</VendorName>
+													<BrowseColumns>
 														<Columns>
 															<Count>10</Count>
 															<I_0>
 																<ID>1</ID>
 																<Name>COL1</Name>
-																<DisplayName>Номер кредитного договора</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>44</Width>
 															</I_0>
 															<I_1>
 																<ID>2</ID>
 																<Name>COL2</Name>
-																<DisplayName>Филиала</DisplayName>
-																<DataKind>dkDiscrete</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtString</DataType>
+																<Width>67</Width>
 															</I_1>
 															<I_2>
 																<ID>3</ID>
 																<Name>COL3</Name>
-																<DisplayName>Сумма кредита</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsCase</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>62</Width>
 															</I_2>
 															<I_3>
 																<ID>4</ID>
 																<Name>COL4</Name>
-																<DisplayName>Дата выдачи</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>72</Width>
 															</I_3>
 															<I_4>
 																<ID>5</ID>
 																<Name>COL5</Name>
-																<DisplayName>Дата возврата</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>67</Width>
 															</I_4>
 															<I_5>
-																<ID>7</ID>
+																<ID>6</ID>
 																<Name>COL7</Name>
-																<DisplayName>Срок кредита (в мес)</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsDimension</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>29</Width>
 															</I_5>
 															<I_6>
-																<ID>8</ID>
+																<ID>7</ID>
 																<Name>COL8</Name>
-																<DisplayName>Процентая ставка</DisplayName>
-																<DataKind>dkDiscrete</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtString</DataType>
+																<Width>37</Width>
 															</I_6>
 															<I_7>
-																<ID>9</ID>
+																<ID>8</ID>
 																<Name>COL9</Name>
-																<DisplayName>Аннуитентный платеж</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>60</Width>
 															</I_7>
 															<I_8>
-																<ID>10</ID>
+																<ID>9</ID>
 																<Name>COL10</Name>
-																<DisplayName>Плата по %%</DisplayName>
-																<DataKind>dkContinuous</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
 															</I_8>
 															<I_9>
-																<ID>11</ID>
+																<ID>10</ID>
 																<Name>COL6_REPLACE</Name>
-																<DisplayName>Вид кредита</DisplayName>
-																<DataKind>dkDiscrete</DataKind>
-																<DataStatus>dsUnUsable</DataStatus>
+																<DataStatus>dsUsable</DataStatus>
 																<DataType>dtString</DataType>
+																<Width>88</Width>
 															</I_9>
 														</Columns>
-													</TunedDataSource>
-													<CubeSource/>
-													<CubeEngine>
-														<Dimensions>
-															<Dimensions>
+													</BrowseColumns>
+													<FilterColumns>
+														<Count>2</Count>
+														<Filtered>1</Filtered>
+														<QyeryText>([Вид кредита] = &apos;льготный&apos;) И ([Процентая ставка] = &apos;7,0%&apos;)</QyeryText>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
 																<Count>1</Count>
-																<I_0>
-																	<ID>2</ID>
-																	<Name>COL7</Name>
-																	<DisplayName>Срок кредита (в мес)</DisplayName>
-																	<HAlignment>taLeftJustify</HAlignment>
-																	<DisplayFormat>#0</DisplayFormat>
-																	<Width>154</Width>
-																	<DataType>dtFloat</DataType>
-																	<DimensionType>cdtRows</DimensionType>
-																</I_0>
-															</Dimensions>
-														</Dimensions>
-														<Summaries>
-															<Cases>
-																<Count>2</Count>
+																<I_0>льготный</I_0>
+															</CompareValues>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL8</Name>
+															<DisplayName>Процентая ставка</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>7,0%</I_0>
+															</CompareValues>
+														</I_1>
+													</FilterColumns>
+													<VirtualDataSet>
+														<SortComponent>
+															<StartTime>2020.12.07 12:58:24</StartTime>
+															<StopTime>2020.12.07 12:58:24</StopTime>
+															<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
+														</SortComponent>
+													</VirtualDataSet>
+													<Statistics>
+														<Histogram>1</Histogram>
+														<StatMin>1</StatMin>
+														<StatMax>1</StatMax>
+														<StatAvg>1</StatAvg>
+														<StatStdDev>1</StatStdDev>
+														<StatSum>1</StatSum>
+														<StatSumSq>1</StatSumSq>
+														<StatUnique>1</StatUnique>
+														<StatNull>1</StatNull>
+														<StatColumns>
+															<Columns>
+																<Count>10</Count>
 																<I_0>
 																	<ID>1</ID>
-																	<Name>CountCase</Name>
-																	<DisplayName>Количество</DisplayName>
-																	<DataType>dtNone</DataType>
-																	<CountCase>1</CountCase>
+																	<Name>COL1</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
 																</I_0>
 																<I_1>
 																	<ID>2</ID>
-																	<Name>COL3</Name>
-																	<DisplayName>Сумма кредита</DisplayName>
-																	<DataType>dtFloat</DataType>
-																	<Functions>
-																		<cfSum>
-																			<SubFunctions>
-																				<csfValue>
-																					<Width>246</Width>
-																					<Usable>1</Usable>
-																				</csfValue>
-																			</SubFunctions>
-																		</cfSum>
-																	</Functions>
+																	<Name>COL2</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
 																</I_1>
-															</Cases>
-														</Summaries>
-													</CubeEngine>
-													<CubeViewForm>
-														<Version>1</Version>
-														<CubeGridForm>
-															<PivotTable>
-																<CubeGrid/>
-															</PivotTable>
-														</CubeGridForm>
-													</CubeViewForm>
-												</I_1>
+																<I_2>
+																	<ID>3</ID>
+																	<Name>COL3</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_2>
+																<I_3>
+																	<ID>4</ID>
+																	<Name>COL4</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_3>
+																<I_4>
+																	<ID>5</ID>
+																	<Name>COL5</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_4>
+																<I_5>
+																	<ID>6</ID>
+																	<Name>COL7</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_5>
+																<I_6>
+																	<ID>7</ID>
+																	<Name>COL8</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_6>
+																<I_7>
+																	<ID>8</ID>
+																	<Name>COL9</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_7>
+																<I_8>
+																	<ID>9</ID>
+																	<Name>COL10</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_8>
+																<I_9>
+																	<ID>10</ID>
+																	<Name>COL6_REPLACE</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_9>
+															</Columns>
+														</StatColumns>
+													</Statistics>
+												</I_0>
 											</Views>
-										</I_8>
+										</I_11>
+										<I_12>
+											<ID>14</ID>
+											<VendorName>TBGReformDataSourceVendor</VendorName>
+											<Name>ReformDataSource8</Name>
+											<DisplayName>Настройка набора данных (без изменений)</DisplayName>
+											<NodeIndex>19</NodeIndex>
+											<Component>
+												<Version>4</Version>
+												<TunedDataSource>
+													<Columns>
+														<Count>10</Count>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL1</Name>
+															<DisplayName>Номер кредитного договора</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL2</Name>
+															<DisplayName>Филиала</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL3</Name>
+															<DisplayName>Сумма кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_2>
+														<I_3>
+															<ID>4</ID>
+															<Name>COL4</Name>
+															<DisplayName>Дата выдачи</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_3>
+														<I_4>
+															<ID>5</ID>
+															<Name>COL5</Name>
+															<DisplayName>Дата возврата</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtDateTime</DataType>
+														</I_4>
+														<I_5>
+															<ID>7</ID>
+															<Name>COL7</Name>
+															<DisplayName>Срок кредита (в мес)</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_5>
+														<I_6>
+															<ID>8</ID>
+															<Name>COL8</Name>
+															<DisplayName>Процентая ставка</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_6>
+														<I_7>
+															<ID>9</ID>
+															<Name>COL9</Name>
+															<DisplayName>Аннуитентный платеж</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_7>
+														<I_8>
+															<ID>10</ID>
+															<Name>COL10</Name>
+															<DisplayName>Плата по %%</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtFloat</DataType>
+														</I_8>
+														<I_9>
+															<ID>11</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<DataStatus>dsInfo</DataStatus>
+															<DataType>dtString</DataType>
+														</I_9>
+													</Columns>
+												</TunedDataSource>
+											</Component>
+											<Views>
+												<Count>1</Count>
+												<I_0>
+													<ID>1</ID>
+													<Name>TBGBrowseVendor</Name>
+													<VendorName>TBGBrowseVendor</VendorName>
+													<BrowseColumns>
+														<Columns>
+															<Count>10</Count>
+															<I_0>
+																<ID>1</ID>
+																<Name>COL1</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>34</Width>
+															</I_0>
+															<I_1>
+																<ID>2</ID>
+																<Name>COL2</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_1>
+															<I_2>
+																<ID>3</ID>
+																<Name>COL3</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>52</Width>
+															</I_2>
+															<I_3>
+																<ID>4</ID>
+																<Name>COL4</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_3>
+															<I_4>
+																<ID>5</ID>
+																<Name>COL5</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtDateTime</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>70</Width>
+															</I_4>
+															<I_5>
+																<ID>6</ID>
+																<Name>COL7</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>41</Width>
+															</I_5>
+															<I_6>
+																<ID>7</ID>
+																<Name>COL8</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>53</Width>
+															</I_6>
+															<I_7>
+																<ID>8</ID>
+																<Name>COL9</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>62</Width>
+															</I_7>
+															<I_8>
+																<ID>9</ID>
+																<Name>COL10</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtFloat</DataType>
+																<Alignment>taRightJustify</Alignment>
+																<Width>88</Width>
+															</I_8>
+															<I_9>
+																<ID>10</ID>
+																<Name>COL6_REPLACE</Name>
+																<DataStatus>dsUsable</DataStatus>
+																<DataType>dtString</DataType>
+																<Width>88</Width>
+															</I_9>
+														</Columns>
+													</BrowseColumns>
+													<FilterColumns>
+														<Count>3</Count>
+														<Filtered>1</Filtered>
+														<QyeryText>([Плата по %%] = 225093,48) ИЛИ ([Вид кредита] = &apos;обычный&apos;) И ([Срок кредита (в мес)] &lt; 28,75311943)</QyeryText>
+														<I_0>
+															<ID>1</ID>
+															<Name>COL10</Name>
+															<DisplayName>Плата по %%</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>225093.48</I_0>
+															</CompareValues>
+														</I_0>
+														<I_1>
+															<ID>2</ID>
+															<Name>COL6_REPLACE</Name>
+															<DisplayName>Вид кредита</DisplayName>
+															<BooleanJoinType>jtOr</BooleanJoinType>
+															<DataType>dtString</DataType>
+															<RelationType>rtEqual</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>обычный</I_0>
+															</CompareValues>
+														</I_1>
+														<I_2>
+															<ID>3</ID>
+															<Name>COL7</Name>
+															<DisplayName>Срок кредита (в мес)</DisplayName>
+															<BooleanJoinType>jtAnd</BooleanJoinType>
+															<DataType>dtFloat</DataType>
+															<RelationType>rtLess</RelationType>
+															<CompareValues>
+																<Count>1</Count>
+																<I_0>28.75311943</I_0>
+															</CompareValues>
+														</I_2>
+													</FilterColumns>
+													<VirtualDataSet>
+														<SortComponent>
+															<StartTime>2020.12.07 13:02:41</StartTime>
+															<StopTime>2020.12.07 13:02:41</StopTime>
+															<ElapsedTimeFmt>00:00:00.000</ElapsedTimeFmt>
+														</SortComponent>
+													</VirtualDataSet>
+													<Statistics>
+														<Histogram>1</Histogram>
+														<StatMin>1</StatMin>
+														<StatMax>1</StatMax>
+														<StatAvg>1</StatAvg>
+														<StatStdDev>1</StatStdDev>
+														<StatSum>1</StatSum>
+														<StatSumSq>1</StatSumSq>
+														<StatUnique>1</StatUnique>
+														<StatNull>1</StatNull>
+														<StatColumns>
+															<Columns>
+																<Count>10</Count>
+																<I_0>
+																	<ID>1</ID>
+																	<Name>COL1</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_0>
+																<I_1>
+																	<ID>2</ID>
+																	<Name>COL2</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_1>
+																<I_2>
+																	<ID>3</ID>
+																	<Name>COL3</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_2>
+																<I_3>
+																	<ID>4</ID>
+																	<Name>COL4</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_3>
+																<I_4>
+																	<ID>5</ID>
+																	<Name>COL5</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtDateTime</DataType>
+																</I_4>
+																<I_5>
+																	<ID>6</ID>
+																	<Name>COL7</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_5>
+																<I_6>
+																	<ID>7</ID>
+																	<Name>COL8</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_6>
+																<I_7>
+																	<ID>8</ID>
+																	<Name>COL9</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_7>
+																<I_8>
+																	<ID>9</ID>
+																	<Name>COL10</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtFloat</DataType>
+																</I_8>
+																<I_9>
+																	<ID>10</ID>
+																	<Name>COL6_REPLACE</Name>
+																	<DataStatus>dsInfo</DataStatus>
+																	<DataType>dtString</DataType>
+																</I_9>
+															</Columns>
+														</StatColumns>
+													</Statistics>
+												</I_0>
+											</Views>
+										</I_12>
 									</SubNodes>
 								</I_1>
 							</SubNodes>
