@@ -97,6 +97,7 @@ CREATE TABLE PARENTS_INFORMATION (
     parent_2_last_name   VARCHAR2(400) NOT NULL,
     CONSTRAINT parent_information_pk PRIMARY KEY ( id )
 );
+ALTER TABLE PARENTS_INFORMATION READ ONLY;
 
 CREATE TABLE STUDENTS (
     id                     NUMBER NOT NULL,
@@ -125,7 +126,7 @@ CREATE TABLE STUDENT_ATTENDANCES (
 );
 
 CREATE TABLE FACULTY_LOGIN_DETAILS (
-    login_datetime  TIMESTAMP NOT NULL,
+    login_datetime  TIMESTAMP DEFAULT SYSDATE,
     faculty_id      NUMBER NOT NULL,
     CONSTRAINT faculty_login_detail_pk PRIMARY KEY ( faculty_id ),
     CONSTRAINT faculty_ldetail_faculty_fk FOREIGN KEY ( faculty_id ) REFERENCES FACULTIES ( id )
