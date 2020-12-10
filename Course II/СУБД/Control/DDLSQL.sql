@@ -1,11 +1,11 @@
-DROP TABLE products_count;
-DROP TABLE products;
-DROP TABLE orders;
-DROP TABLE staffs;
 DROP TABLE staffs_houses;
+DROP TABLE products_count;
+DROP TABLE orders;
 DROP TABLE houses;
-DROP TABLE clients;
 DROP TABLE bookings;
+DROP TABLE staffs;
+DROP TABLE clients;
+DROP TABLE products;
 
 CREATE TABLE clients (
     id                 NUMBER,
