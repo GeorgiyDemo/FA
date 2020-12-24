@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D663FDB1-D417-73AE-91D0-D35E41020F28" name="ORDERS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F9B0FE6F-8850-005D-B08E-80AFFA5ADC9F" name="ORDERS">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>F6057955-9265-9603-A694-6009B3D4E752</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>order</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="D593D5E9-7FD4-B1D1-7F6C-5D4B8EB1AC81">
+<Column name="id" id="4D76A952-7904-6624-F228-B69D0B357247">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>93CD565B-1576-BC6C-D1BD-05FDDDD9DA47</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="date" id="B86F13B8-6AA7-0BE3-D723-2A3E9D35AAE2">
+<Column name="order_date" id="4F71D99A-05AC-A009-E596-2CC048F662E2">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>404442A5-50CA-FA1F-84F9-6063A5570BC5</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -31,9 +31,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="CLIENT_id" id="337ACED7-87D8-1D9C-8497-AED094BDEFB1">
+<Column name="CLIENT_id" id="62566CDA-AFB7-9BD4-82AE-ACBF8398560E">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>5AA7F3C4-A571-1489-D53C-493D947BF063</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -43,12 +43,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="22D5C699-61A6-120A-4010-6EC7F8A8FF7A" referredColumn="F5367514-FDE0-5817-F942-92806B7117BF"/>
+<colAssociation fkAssociation="17702EC3-EDE6-636E-A126-367108CEDE54" referredColumn="EF69D355-6730-9D58-7FB5-13944493F065"/>
 </associations>
 </Column>
-<Column name="cost" id="AF26E2D5-957C-6744-316E-7945570FB604">
+<Column name="cost" id="91397D4A-461F-C885-1F47-0F0DD9917997">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>31C96D49-4CBA-AAD3-4A87-DD45151D2808</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -59,27 +59,27 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="A053665A-9F35-8B52-3FFC-B1566CC20D46" name="ORDER_PK">
+<ind_PK_UK id="66BF94EC-FF3B-EC18-72ED-9D7082B63C8F" name="ORDER_PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>BA445500-D35C-9E16-52FE-DFCBD54AD593</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D593D5E9-7FD4-B1D1-7F6C-5D4B8EB1AC81"/>
+<colUsage columnID="4D76A952-7904-6624-F228-B69D0B357247"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A46F624E-F3A6-9852-EA68-6835ACA342B1" name="ORDER_CLIENT_FK">
+<ind_PK_UK id="788B55B6-08DE-84CA-37C4-6177EC2BB852" name="ORDER_CLIENT_FK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>8E8633A4-A725-380D-9714-1B47647FA490</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="337ACED7-87D8-1D9C-8497-AED094BDEFB1"/>
+<colUsage columnID="62566CDA-AFB7-9BD4-82AE-ACBF8398560E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

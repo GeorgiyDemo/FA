@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="43A3569D-C162-EF34-28B7-A0D61D99757A" name="BOOKINGS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6CD61521-6024-C83F-9EC3-02DE258CCB11" name="BOOKINGS">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>65986E18-AC7D-FD33-A30C-BCAC40136B69</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>booking</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="B9975497-12F4-CE07-D2E0-9BA77EE99AEE">
+<Column name="id" id="5B5A0683-C3BC-564E-712B-15837573E5F2">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>BD6CDB1B-72D6-F856-4F06-857D1408B42C</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="CLIENT_id" id="05068F27-5027-3A29-0A79-0B637B472967">
+<Column name="CLIENT_id" id="C4C0C6C9-A005-2BC9-5E5F-690CCD9B9162">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>3364DECD-DB1E-1048-3864-97CB4FCFED7A</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,12 +32,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="FAEECCAB-1BBA-A0E0-8CC5-13E084840133" referredColumn="F5367514-FDE0-5817-F942-92806B7117BF"/>
+<colAssociation fkAssociation="01D77C08-EE8D-A05B-7EC6-AD1AC5DC1D73" referredColumn="EF69D355-6730-9D58-7FB5-13944493F065"/>
 </associations>
 </Column>
-<Column name="date_in" id="C8A85DD0-4E74-E37E-3E93-9718E20F84F6">
+<Column name="date_in" id="3D14B328-50E9-D5EB-7574-CEF740D5422B">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>19DA9E36-9AFC-EBC5-D9F2-E29ED9E131AD</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -46,9 +46,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="date_out" id="DB7D3AA7-4287-2F57-62C0-0B2FD882F080">
+<Column name="date_out" id="905803E1-EF22-1308-1963-86CCAEFC47B7">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>1BAC4AEF-B78B-B590-73AB-229A3B01D690</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -57,9 +57,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="cost" id="F7A4D97F-2D4A-CEB9-D790-6D3FC56C7388">
+<Column name="cost" id="47009284-BCCD-DA6C-6DC1-B3AC6D82BD44">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>D0342335-6FD6-1688-7F7C-214916E6589D</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -68,9 +68,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="STAFF_id" id="69E87DC3-9CC8-B0B6-C672-92274F412425">
+<Column name="STAFF_id" id="D681DA91-20E6-3837-69EF-F994D46867B3">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>15BAC97C-23B4-F9DD-494E-79E35F030D62</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -80,43 +80,43 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="A0998D18-E0D0-F933-C484-99A19242A643" referredColumn="D7C8CF73-E34E-DA8B-2566-6557AE5DF8B2"/>
+<colAssociation fkAssociation="61FE359A-1B11-DD12-9BAC-7FE8154342BE" referredColumn="DC8096E0-ABE5-1227-20B1-BEF5CFE86F90"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="29093096-4AFC-344A-0DC2-A9392AD2D691" name="BOOKING_PK">
+<ind_PK_UK id="61DE59D9-F100-E3D5-AF83-CAE1DFD99678" name="BOOKING_PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="B9975497-12F4-CE07-D2E0-9BA77EE99AEE"/>
+<colUsage columnID="5B5A0683-C3BC-564E-712B-15837573E5F2"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="629E0232-F31D-C928-40B7-F9A951AB5C2A" name="BOOKING_STAFF_FK">
+<ind_PK_UK id="C699E2D7-5D87-57C1-E562-AEFFD2DD9F83" name="BOOKING_STAFF_FK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>FAC706DD-DBB3-9C98-7339-E46061188580</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="69E87DC3-9CC8-B0B6-C672-92274F412425"/>
+<colUsage columnID="D681DA91-20E6-3837-69EF-F994D46867B3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A26EE501-13F6-B8BF-26F4-36A4EEF4A5AD" name="BOOKING_CLIENT_FK">
+<ind_PK_UK id="90FB962D-8A48-45D9-64B7-221E91383E6C" name="BOOKING_CLIENT_FK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>F3C01224-F9C7-3FF3-8011-7F57BC0410CE</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="05068F27-5027-3A29-0A79-0B637B472967"/>
+<colUsage columnID="C4C0C6C9-A005-2BC9-5E5F-690CCD9B9162"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

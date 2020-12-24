@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3DED8E7D-745A-8E22-A51A-76C99FFCE873" name="STAFFS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1C46E77F-3459-D838-FA17-9DCA9C663480" name="STAFFS">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>C3A716C9-78EC-4904-9438-63F24147EDD1</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>staff</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="D7C8CF73-E34E-DA8B-2566-6557AE5DF8B2">
+<Column name="id" id="DC8096E0-ABE5-1227-20B1-BEF5CFE86F90">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>E6529327-A2A7-405F-8DCE-C345B8169992</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,78 +20,78 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="first_name" id="CEDB481B-F228-25FF-702B-5A3A34ADF616">
+<Column name="first_name" id="1791B5FA-E607-C4B3-5647-02F569103436">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>23D99210-6EC1-C6C3-991B-616495056695</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="last_name" id="C07BAA84-1F0B-6D7B-3781-F297CA0AA4F8">
+<Column name="last_name" id="359DFAA9-AE48-3B40-3D67-9C4B9AA59E79">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>EDAA2679-DBF5-8E61-BF1E-118577B0034D</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="position" id="677EB1DF-0449-5785-28CB-74EEFFE2208D">
+<Column name="position" id="08D8317F-6EB2-D5EB-6723-EB462AE7C725">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>8BD90BD5-35E0-6F10-7661-8EDBE464C091</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="type" id="2B3A90EF-4A2A-1D60-8836-4B42ADF58D40">
+<Column name="type" id="18B920D7-107C-8BC4-802B-DBA5CA65187F">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>6C2C4B64-6BCD-0C74-66DD-0D06E68DBEB3</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="phone" id="E2B3E582-730A-935E-C357-B369950AB73C">
+<Column name="phone" id="B6CE5A1E-0447-4A72-D6E6-6C8AC5DA6DE3">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>4FDE73BD-00DB-1B58-8013-9CA707869B05</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E3147F23-475C-EEE0-D028-1E17384D9452" name="STAFF_PK">
+<ind_PK_UK id="365D7EF1-47D4-7E87-026B-EF7D1256F164" name="STAFF_PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>D24EC1A3-9D99-B623-F77A-851A5F99AAB6</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D7C8CF73-E34E-DA8B-2566-6557AE5DF8B2"/>
+<colUsage columnID="DC8096E0-ABE5-1227-20B1-BEF5CFE86F90"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

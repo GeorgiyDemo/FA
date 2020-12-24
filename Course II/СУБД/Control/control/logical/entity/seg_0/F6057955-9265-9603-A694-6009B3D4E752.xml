@@ -4,7 +4,7 @@
 <createdTime>2020-11-09 08:52:18 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,19 +20,19 @@
 <createdTime>2020-11-09 13:16:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="date" id="404442A5-50CA-FA1F-84F9-6063A5570BC5">
+<Attribute name="order_date" id="404442A5-50CA-FA1F-84F9-6063A5570BC5">
 <createdBy>georgiydemo</createdBy>
 <createdTime>2020-11-09 08:52:37 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -45,7 +45,7 @@
 <generatorID>8E8633A4-A725-380D-9714-1B47647FA490</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <referedAttribute>54DA5F95-00B2-A345-179E-D0F1A247DBAD</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -58,7 +58,7 @@
 <createdTime>2020-11-09 13:48:18 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -72,7 +72,7 @@
 <createdTime>2020-11-09 08:52:34 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="A618ADA6-4749-6F0A-CABC-4F0016DA6938" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

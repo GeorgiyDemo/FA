@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B20E18A5-C312-CEF7-AB94-7E6DCFF6A31B" name="PRODUCTS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="760BC6D4-A6D5-100A-A5DC-0036A0DE1C92" name="PRODUCTS">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>C8267C13-FE2C-058A-D2FF-3BD96C7C54C0</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>product</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="DBD6267E-7D57-A624-8905-D39020FA435B">
+<Column name="id" id="F13CA6DD-03FE-F25B-AC20-866F2AD04573">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,21 +20,21 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="title" id="92856CFF-6C08-F05C-BA9D-5502D65C0884">
+<Column name="title" id="2CC03072-A4DC-692B-D4DA-391E810FF7BD">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>910BEBB1-4DBF-8702-3E42-60AF9A8C2C98</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>400</dataTypeSize>
-<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="price" id="201883A0-1117-AEA2-D291-05B7756407EE">
+<Column name="price" id="C053864E-F5DB-E06A-FFBF-1C241BDDA607">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>49E8D30D-BBBE-0CBA-7ACF-7319928C92D7</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -45,16 +45,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="3BD19CCD-59F2-EE12-8CDB-CDC50705C6B5" name="PRODUCT_PK">
+<ind_PK_UK id="620499F6-05CD-FC2C-4F69-F9486BE17B3C" name="PRODUCT_PK">
 <createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-05 12:40:21 UTC</createdTime>
+<createdTime>2020-12-24 08:09:59 UTC</createdTime>
 <generatorID>646D5682-C1E4-6212-C9A0-D5101B1914C0</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="DBD6267E-7D57-A624-8905-D39020FA435B"/>
+<colUsage columnID="F13CA6DD-03FE-F25B-AC20-866F2AD04573"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
