@@ -9,14 +9,15 @@
 #Текущая дата и время
 TIME=$(date '+%H:%M:%S')
 DATE=$(date '+%d/%m/%Y')
-DATA="$DATE $TIME"
 
 #Создаем директорию tmp, если она не создана
 mkdir -p /tmp
 
 #Вывод в файл
-echo $DATA > /tmp/run.log
+echo "$DATE $TIME" >> /tmp/run.log
 #Вывод в stdout
 echo "Hello" >&1
+
 #Вывод в stderr кол-во запусков программы
-echo $(wc -l /tmp/run.log) >&2
+COUNTER=$(wc -l /tmp/run.log  | awk '{ print $1 }')
+echo $COUNTER >&2
