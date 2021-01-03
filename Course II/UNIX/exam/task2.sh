@@ -5,10 +5,12 @@
 '
 
 #Извлекаем 5 случайных чисел из диапазона 1-50
-entries=($(shuf -i 1-50 -n 5))
+entries=$(shuf -i 1-50 -n 5 | sed ':a;N;$!ba;s/\n/ /g')
 #Текущая дата и время
 TIME=$(date '+%H:%M:%S')
 DATE=$(date '+%d/%m/%Y')
+
+RESULT="$DATE $TIME -> $entries"
 
 #Если записываем числа в файл при помощи флага -f
 if [ "$1" = "-f" ]; then
@@ -18,9 +20,9 @@ if [ "$1" = "-f" ]; then
         exit 1
     fi
     #Запись данных в файл
-    echo "$DATE $TIME $entries" >> $2
+    echo $RESULT >> $2
 
 #Значит это просто вывод на stdout
 else
-    echo "$DATE $TIME $entries" >&1
+    echo $RESULT >&1
 fi
