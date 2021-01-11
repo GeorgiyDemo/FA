@@ -303,8 +303,10 @@ class SearcherClass:
             little_way_dict = []
             for j in range(len(times)):
                 train_time = times[j][1] - times[j][0]
-                checked_value = universal_module.UniversalClass.detect_station_waiting_time(
-                    points[j + 1], all_wait_list[i]
+                checked_value = (
+                    universal_module.UniversalClass.detect_station_waiting_time(
+                        points[j + 1], all_wait_list[i]
+                    )
                 )
 
                 if checked_value[0]:

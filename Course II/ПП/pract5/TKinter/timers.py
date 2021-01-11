@@ -15,11 +15,10 @@ class Timer:
         self._running = False
 
     def __repr__(self):
-        s = ['Timer(', str(self._interval), ', ',
-             repr(self._timer_handler), ')']
+        s = ["Timer(", str(self._interval), ", ", repr(self._timer_handler), ")"]
         if self._running:
-            s += [': running']
-        return ''.join(s)
+            s += [": running"]
+        return "".join(s)
 
     def _schedule(self):
         if self._running:

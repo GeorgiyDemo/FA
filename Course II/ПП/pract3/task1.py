@@ -32,6 +32,7 @@ class PointF:
     def __str__(self):
         return "Точка ({}, {})".format(self.X, self.Y)
 
+
 def Draw(number):
     """Отрисовка снежинки"""
     global alllines_list
@@ -75,13 +76,13 @@ def Fractal(p1, p2, p3, iter, buflines_list=[]):
                 buflines_list = []
 
         p4 = PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3)
-        c.create_oval(p4.X-5, p4.Y-5,p4.X+5, p4.Y+5, fill="cyan")
+        c.create_oval(p4.X - 5, p4.Y - 5, p4.X + 5, p4.Y + 5, fill="cyan")
         p5 = PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3)
-        c.create_oval(p5.X-5, p5.Y-5,p5.X+5, p5.Y+5, fill="blue")
+        c.create_oval(p5.X - 5, p5.Y - 5, p5.X + 5, p5.Y + 5, fill="blue")
         ps = PointF((p2.X + p1.X) / 2, (p2.Y + p1.Y) / 2)
-        c.create_oval(ps.X-5, ps.Y-5,ps.X+5, ps.Y+5, fill="red")
+        c.create_oval(ps.X - 5, ps.Y - 5, ps.X + 5, ps.Y + 5, fill="red")
         pn = PointF((4 * ps.X - p3.X) / 3, (4 * ps.Y - p3.Y) / 3)
-        c.create_oval(pn.X-5, pn.Y-5,pn.X+5, pn.Y+5, fill="yellow")
+        c.create_oval(pn.X - 5, pn.Y - 5, pn.X + 5, pn.Y + 5, fill="yellow")
 
         # Рисуем линии
         line1 = c.create_line(p4.X, p4.Y, pn.X, pn.Y, fill="white")
@@ -133,7 +134,11 @@ def main():
 
     # Распаковка ползунка
     scale = tk.Scale(
-        root, from_=0, to=6, command=scale_processing, orient=tk.HORIZONTAL,
+        root,
+        from_=0,
+        to=6,
+        command=scale_processing,
+        orient=tk.HORIZONTAL,
     )
     scale.pack(side=tk.LEFT, padx=5)
 

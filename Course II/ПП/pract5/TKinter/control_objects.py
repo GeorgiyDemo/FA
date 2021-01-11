@@ -11,15 +11,14 @@ except ImportError:
     import tkinter
     import tkinter.font as tkfont
 
-_BaseString = ('This is a really boring basic string used for width '
-               'calculations.')
+_BaseString = "This is a really boring basic string used for width " "calculations."
 
 
 class Widget:
     def __init__(self, widget, width):
         self._widget = widget
         if width is not None:
-            font = tkfont.Font(font=widget.cget('font'))
+            font = tkfont.Font(font=widget.cget("font"))
             avg_char_width = int(font.measure(_BaseString) // len(_BaseString))
             self._widget.config(width=int(width // avg_char_width))
 
@@ -54,7 +53,7 @@ class Input(Widget):
         super(Input, self).__init__(entry, width)
 
         self._input_handler_fn = input_handler
-        self._widget.bind('<Return>', self._input_handler)
+        self._widget.bind("<Return>", self._input_handler)
 
     def _input_handler(self, _):
         if self._input_handler_fn is not None:

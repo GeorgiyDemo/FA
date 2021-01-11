@@ -13,16 +13,27 @@ except ImportError:
 class KeyMap:
     def __init__(self):
         # JavaScript keycode translations
-        self._tr = {'up': 38, 'down': 40, 'left': 37, 'right': 39,
-                    'space': 32, 'return': 13, 'tab': 9, 'backspace': 8,
-                    'comma': 188, 'minus': 189, 'period': 190, 'slash': 191}
-        nums = dict(zip([chr(x) for x in range(ord('0'), ord('9') + 1)],
-                        range(48, 58)))
+        self._tr = {
+            "up": 38,
+            "down": 40,
+            "left": 37,
+            "right": 39,
+            "space": 32,
+            "return": 13,
+            "tab": 9,
+            "backspace": 8,
+            "comma": 188,
+            "minus": 189,
+            "period": 190,
+            "slash": 191,
+        }
+        nums = dict(zip([chr(x) for x in range(ord("0"), ord("9") + 1)], range(48, 58)))
         self._tr.update(nums)
-        alphas = dict(zip([chr(x) for x in range(ord('a'), ord('z') + 1)],
-                          range(65, 91)))
+        alphas = dict(
+            zip([chr(x) for x in range(ord("a"), ord("z") + 1)], range(65, 91))
+        )
         self._tr.update(alphas)
-        fxs = dict(zip(['f%d' % x for x in range(1, 13)], range(112, 124)))
+        fxs = dict(zip(["f%d" % x for x in range(1, 13)], range(112, 124)))
         self._tr.update(fxs)
 
     def __getitem__(self, name):
@@ -35,20 +46,19 @@ KEY_MAP = KeyMap()
 
 
 class InputAdapter:
-
     def __init__(self, status_frame, key_master, mouse_master):
 
         self._key_after_id = None
         self._keydown_handler = None
         self._keyup_handler = None
         self._key_master = key_master
-        key_master.bind('<KeyPress>', self._keydown)
-        key_master.bind('<KeyRelease>', self._keyup)
+        key_master.bind("<KeyPress>", self._keydown)
+        key_master.bind("<KeyRelease>", self._keyup)
 
         self._mouse_click_handler = None
         self._mouse_drag_handler = None
-        mouse_master.bind('<Button-1>', self._mouse_click)
-        mouse_master.bind('<B1-Motion>', self._mouse_drag)
+        mouse_master.bind("<Button-1>", self._mouse_click)
+        mouse_master.bind("<B1-Motion>", self._mouse_drag)
 
     def _keydown(self, key):
         if self._keydown_handler is not None:

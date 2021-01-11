@@ -63,7 +63,7 @@ class MissileClass(PVOClass):
         self.movement_speed = movement_speed
 
     def murder_opportunity(self, aircraft_obj):
-        """"
+        """ "
         Метод для расчета возможности поражения летательного объекта (скорость ракеты должна быть больше скорости летательного аппарата)
         """
         if not isinstance(aircraft_obj, AircraftClass):

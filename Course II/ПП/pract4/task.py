@@ -7,7 +7,7 @@ root = tk.Tk()
 
 COLUMNS = 10
 ROWS = 10
-BOMBS = (COLUMNS + ROWS)//2
+BOMBS = (COLUMNS + ROWS) // 2
 
 
 class Cell:
