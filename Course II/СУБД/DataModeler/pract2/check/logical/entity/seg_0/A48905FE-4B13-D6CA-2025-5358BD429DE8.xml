@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A48905FE-4B13-D6CA-2025-5358BD429DE8" name="FACULTY COURSE DETAIL">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:59:45 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Contact Hours " id="06AFABDC-8910-5C20-DB81-696906200FE6">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:00:05 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID " id="D69EFDFA-2A51-E434-B5EB-390D8421B89B">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:04:34 UTC</createdTime>
+<generatorID>48690138-CDB2-93AC-0812-4B0D09FC50E5</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>1F36AC57-E1F8-FB14-E76B-252591A125BC</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="9EA520F4-3DF6-746A-0947-12E9D6FE5480">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:05:37 UTC</createdTime>
+<generatorID>96F20912-F410-CF99-68C4-9E02A1CDE6A5</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>D8E4DC0B-B7A2-AD45-9FE4-AA66EA9058B5</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D40EAE8A-DD1E-398D-7DC9-FE3E9244870C" name="FACULTY COURSE DETAIL PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:04:34 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D69EFDFA-2A51-E434-B5EB-390D8421B89B</attributeRef>
+<attributeRef>9EA520F4-3DF6-746A-0947-12E9D6FE5480</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

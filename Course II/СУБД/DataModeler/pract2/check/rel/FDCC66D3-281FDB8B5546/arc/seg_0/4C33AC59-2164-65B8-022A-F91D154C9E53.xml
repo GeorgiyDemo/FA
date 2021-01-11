@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="4C33AC59-2164-65B8-022A-F91D154C9E53" name="FKArc_1">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<mandatory>false</mandatory>
+<reverseArc>true</reverseArc>
+<table>499C4185-ACBA-8626-D77F-FDD622B690D3</table>
+<fkeys>
+<fkeyID>58A55FC2-53FF-787A-9D53-4C4B5946C9B7</fkeyID>
+<fkeyID>9464E26F-98BC-E025-D27F-A8A2480D30A0</fkeyID>
+</fkeys>
+</FKArc>

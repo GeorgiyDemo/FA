@@ -1,0 +1,146 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="78412A3C-3C1E-0DD8-15E3-76EBC7D40DC6" name="COURSE">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:52:12 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID " id="1F36AC57-E1F8-FB14-E76B-252591A125BC">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:52:25 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="C80DC746-818B-DAAA-6F32-791C0EC94BBB">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:52:35 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Logon ID" id="058FB14F-75BD-6E7D-C202-978003B25A72">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:10:56 UTC</createdTime>
+<generatorID>5D75046A-4F52-A407-2202-757015F820FE</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>A4066305-A973-801E-E49F-B5E8D5E6FE83</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Date/Time" id="B7D9BE1A-C8B1-03CB-FCCE-155473F72EA3">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:11:25 UTC</createdTime>
+<generatorID>82C619FF-40D2-D776-D5BD-8EE1964D3C56</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>684A26EB-EE88-B306-2609-437210FD2B4E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="9468A2A9-37EC-88E2-1342-3D36B8C20BAD">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:49:23 UTC</createdTime>
+<generatorID>CCDED7C0-DA61-FDCC-1E33-ED0EC336F1D7</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>148E37F2-1FDA-F54F-8A99-3BAC4BC879ED</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="B3DD588A-E9FE-2976-1462-560C9B919B44">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:51:39 UTC</createdTime>
+<generatorID>03020B6B-C218-3C28-AF3B-903AA03D349B</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>5C1F4B0A-12B8-1E8F-E65D-2727CD633CA2</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Building" id="452713A6-FDA8-AD2A-E6B7-EEE043AD3851">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:52:59 UTC</createdTime>
+<generatorID>82C619FF-40D2-D776-D5BD-8EE1964D3C56</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>3724E22A-36EC-0A19-2393-65DC55EB67A3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Room" id="A16A352A-191C-EB9D-CC87-B398AF7349DD">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:53:21 UTC</createdTime>
+<generatorID>82C619FF-40D2-D776-D5BD-8EE1964D3C56</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>E27ABE2B-EC0B-A244-AF7C-4706DA5CAD12</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5444DE96-5ED3-F35E-B8FE-176D6D4090EE" name="COURSE PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:52:34 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1F36AC57-E1F8-FB14-E76B-252591A125BC</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="16E7549B-3EA4-444B-B6CD-78D29DBBC817" name="STUDENT COURSE DETAIL">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:51:29 UTC</createdTime>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Grade" id="B3AD7EAE-A3FB-1EFC-B55E-B33AA5516811">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:51:47 UTC</createdTime>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID " id="FD20A233-1A1C-369C-18EB-C417E0D05E5F">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:02:56 UTC</createdTime>
+<generatorID>67DC4FC5-30AF-CA28-912F-E3EC04775CD5</generatorID>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>1F36AC57-E1F8-FB14-E76B-252591A125BC</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="643A9F9E-EED7-B53E-07ED-4248D805B493">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:45:41 UTC</createdTime>
+<generatorID>65365CFB-65F1-1A9F-D330-5B9BAAC00AA4</generatorID>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>63F46316-A393-A617-2A13-D0383F353920</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9873780D-5056-097F-50EC-E0FA3375A5E6" name="STUDENT COURSE DETAIL PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:02:56 UTC</createdTime>
+<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>FD20A233-1A1C-369C-18EB-C417E0D05E5F</attributeRef>
+<attributeRef>643A9F9E-EED7-B53E-07ED-4248D805B493</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

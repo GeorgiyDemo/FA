@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DF0D9717-9AD6-20FD-8020-46462880B6F6" name="  FACULTY LOGIN DETAIL">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:00:11 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Login DateTime" id="272F8F38-4117-1782-94CA-245001B9548C">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:00:29 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="0B668C4A-9CAE-25D1-2D3A-ACF740D30D40">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:06:02 UTC</createdTime>
+<generatorID>F9B2DCCB-3461-C734-14AC-3CD26BAD4344</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>D8E4DC0B-B7A2-AD45-9FE4-AA66EA9058B5</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DE474D06-EFFA-ED35-0E2E-3B4868E0F863" name="FACULTY LOGIN DETAIL PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:00:31 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0B668C4A-9CAE-25D1-2D3A-ACF740D30D40</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

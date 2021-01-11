@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B8833D51-5067-FCA3-83F4-B665E1709AB2" name="FACULTY_LOGIN_DETAIL">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>DF0D9717-9AD6-20FD-8020-46462880B6F6</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Login_DateTime" id="E76BDA78-87F9-EEB7-46CF-0513BCB9A459">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>272F8F38-4117-1782-94CA-245001B9548C</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FACULTY_ID" id="54B6B38D-D4B3-48F6-9206-12ADE6BFD03D">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>0B668C4A-9CAE-25D1-2D3A-ACF740D30D40</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24C6CD79-CA2D-2AAE-30A0-EB20974E1A17" referredColumn="31216EF7-70EB-1C3C-1CB7-23438328E2D3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4CB11A7F-C597-E197-7C99-91A98B06C80E" name="FACULTY_LOGIN_DETAIL_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>DE474D06-EFFA-ED35-0E2E-3B4868E0F863</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54B6B38D-D4B3-48F6-9206-12ADE6BFD03D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D6903B73-5607-8920-E562-19A7E319FF99" name="FACULTY_LOGIN_DETAIL_FACULTY_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>F9B2DCCB-3461-C734-14AC-3CD26BAD4344</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54B6B38D-D4B3-48F6-9206-12ADE6BFD03D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

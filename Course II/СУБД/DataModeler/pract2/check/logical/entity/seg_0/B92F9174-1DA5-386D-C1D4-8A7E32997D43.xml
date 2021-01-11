@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B92F9174-1DA5-386D-C1D4-8A7E32997D43" name="EXAM RESULT">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:53:22 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Grade" id="EC7F479E-FCB9-F625-7D86-DAFDD2F86D91">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:53:34 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID " id="79ACFD9D-4828-021D-97C6-34AFB0988853">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:08:22 UTC</createdTime>
+<generatorID>77E8D2F6-C03E-6790-FB96-F2F2DBE4BB0C</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>1F36AC57-E1F8-FB14-E76B-252591A125BC</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID 1" id="020B65D2-1B02-D769-03B9-180355544C3A">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:09:14 UTC</createdTime>
+<generatorID>E0047A65-2ED7-7273-1D0E-168D7C71D9E4</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>0A9FFAA3-0869-7A30-4AFA-5B7804793DB2</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID" id="1E1C4D8B-FDAD-A673-43E9-F102BC2B586D">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:45:41 UTC</createdTime>
+<generatorID>2ABBEB6D-05AA-86D3-1654-F7001B63BF65</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<referedAttribute>63F46316-A393-A617-2A13-D0383F353920</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A0A21106-3A6F-3A73-E9CE-2F7BC0C1D942" name="EXAM RESULT PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 19:08:22 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>79ACFD9D-4828-021D-97C6-34AFB0988853</attributeRef>
+<attributeRef>020B65D2-1B02-D769-03B9-180355544C3A</attributeRef>
+<attributeRef>1E1C4D8B-FDAD-A673-43E9-F102BC2B586D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

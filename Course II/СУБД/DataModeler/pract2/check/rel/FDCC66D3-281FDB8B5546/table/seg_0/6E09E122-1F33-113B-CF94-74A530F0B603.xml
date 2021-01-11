@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6E09E122-1F33-113B-CF94-74A530F0B603" name="STUDENT_COURSE_DETAIL">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>16E7549B-3EA4-444B-B6CD-78D29DBBC817</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Grade" id="210BFA6D-5A44-E971-D16D-3B3CD8F62715">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>B3AD7EAE-A3FB-1EFC-B55E-B33AA5516811</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COURSE_ID" id="564C79B0-EFD1-C404-23D5-7806BB5BA459">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>FD20A233-1A1C-369C-18EB-C417E0D05E5F</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D56CDF56-A152-4A14-1536-DDE61CEDB8C3" referredColumn="71F224DD-152F-2B68-742B-FF105B6CAFD9"/>
+</associations>
+</Column>
+<Column name="Student_ID" id="5EED8598-C6E2-04CF-3A7A-7C4B58FE6CC1">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>5EC8292C-7404-E46A-5966-1CE27C00CE84</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2076BCBF-F9DA-CBB0-8BA6-B00B587EDF11" referredColumn="76FEE150-E7DD-5482-B87D-CF024873DE0E"/>
+</associations>
+</Column>
+<Column name="ID" id="4C6AAB94-E0FF-7772-553F-3B552B3BC281">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>643A9F9E-EED7-B53E-07ED-4248D805B493</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DACF911A-F736-0F19-E47C-865DDEC6E08D" name="STUDENT_COURSE_DETAIL_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>9873780D-5056-097F-50EC-E0FA3375A5E6</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="564C79B0-EFD1-C404-23D5-7806BB5BA459"/>
+<colUsage columnID="4C6AAB94-E0FF-7772-553F-3B552B3BC281"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="022BF037-9EAC-FF47-F2AA-513328200B80" name="STUDENT_COURSE_DETAIL_COURSE_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>67DC4FC5-30AF-CA28-912F-E3EC04775CD5</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="564C79B0-EFD1-C404-23D5-7806BB5BA459"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6508253F-00F8-DCCA-F9A3-D287404A43D9" name="STUDENT_COURSE_DETAIL_Student_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>65365CFB-65F1-1A9F-D330-5B9BAAC00AA4</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5EED8598-C6E2-04CF-3A7A-7C4B58FE6CC1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
