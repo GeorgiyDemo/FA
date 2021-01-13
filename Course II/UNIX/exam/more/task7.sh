@@ -6,16 +6,21 @@
 в них строки test поменяет ее на tset
 '
 
-#Директория, которую мы передали в качестве аргумента
+# Если кол-во переданных параметров не 1
+if [[ $(($#)) -ne 1 ]] ; then
+    echo "Ошибка: Необходимо передать параметр" >&2
+    exit 1
+fi
 
-filepath=$(pwd)
+#Директория, которую мы передали в качестве аргумента
+new_path=$1
 
 #Цикл по каждому файлу, который создан в течении 30 дней и не изменялся в течении 7 дней
-find $filepath -type f -ctime -30 -mtime +7 -print | while read line 
+find $new_path -type f -ctime -30 -mtime +7 -print | while read line 
 do
     #Замена test на tset
     echo "Работаем с файлом $line"
     sed -i 's/test/tset/' $line
 done
 
-echo "Успешон выполнили скрипт"
+echo "Успешно выполнили скрипт"
