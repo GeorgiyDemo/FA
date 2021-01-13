@@ -1,0 +1,1 @@
+echo $(date) > ME_SCRIPT13%

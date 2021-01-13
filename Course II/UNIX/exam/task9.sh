@@ -6,7 +6,7 @@
 
 #Исходный файл
 filename='/etc/hosts'
-n=1
+n=0
 
 #Цикл по каждой строке в файле
 while read line; do
@@ -22,10 +22,10 @@ while read line; do
         if ! [[ $IP_ADDRESS == "127.0.0.1" ]] ; then
             
             echo "***Запись, отличающийся от 127.0.0.1***"
-            echo "$n. $line"
             
             #+1 к кол-ву найденных записей
             n=$((n+1))
+            echo "$n. $line"
         fi
     fi
 done < $filename
