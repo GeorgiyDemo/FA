@@ -89,3 +89,7 @@ CREATE TABLE staffs_houses (
     CONSTRAINT staff_house_house_fk FOREIGN KEY ( house_id ) REFERENCES houses ( id ),
     CONSTRAINT staff_house_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id )
 );
+
+/*
+INSERT INTO clients (id, first_name, last_name, email, phone, document_title, document_file, document_text) VALUES (1, 'Иван', 'Иванов', 'example@example.org','37686756453423','Паспорт гражданина РФ', hextoraw('453d7a34'), 'document_text')
+*/
