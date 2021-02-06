@@ -55,24 +55,26 @@ class Generator:
 
         return models.Client(cli_id, first_name, last_name, email, phone, document_title, document_file, document_text, document_comments)
 
-
-    def order_generator(self, order_):
+    def order_generator(self, client_id : int) -> models.Order:
         """Генерация заказа клиента"""
-        #_id
-        #_order_date
-        #_cost  <- рассчитывается в программе
-        pass
+        order_id = Generator.CURRENT_ORDER_ID
+        Generator.CURRENT_ORDER_ID += 1
+        order_date = self.fake_ru.date_time_between(start_date='-2y', end_date='now')
+        cost = None # <- рассчитывается позже в программе
+        return models.Order(order_id,order_date, client_id, cost)
 
-    def product_count_generator(self):
-        #_count
-        pass 
+    def product_count_generator(self, product_id : int, order_id : int) -> models.ProductCount:
+        """Генерация кол-ва заказанных продуктов"""
+        count = random.randint(1,100)
+        return models.ProductCount(count, product_id, order_id) 
 
-    def product_generator(self):
-        """Генерация заказанных клиентом продукта""" 
-        #_id
-        #_title
-        #_price
-        pass
+    def product_generator(self) -> models.Product:
+        """Генерация заказанных клиентом продукта"""
+        product_id = Generator.CURRENT_PRODUCT_ID
+        Generator.CURRENT_PRODUCT_ID += 1
+        title = self.fake_ru.words(1)[0]
+        price = round(random.uniform(2.0, 1000.9),2)
+        return models.Product(product_id, title, price)
     
     def booking_generator(self):
         """Генерация бронированя клиента"""
@@ -139,10 +141,26 @@ def main():
         connection.write(client.to_sql())
         print(f"Записали клиента {client.id} -> {client.first_name} {client.last_name}")
 
-        #Если сработало условие - добавляем заказы пользователя
+        #Добавляем заказы пользователя
         if random.choice((True, False)):
             for i in range(random.randint(1,20)):
-                pass
+                curent_order = gen.order_generator(client.id)
+                #Общая стоимость заказа
+                order_cost = 0
+                
+                #Добавляем продукты в заказ
+                for i in range(random.randint(1,20)):
+                    product = gen.product_generator()
+                    connection.write(product.to_sql())
+                    #Добавляем кол-во продуктов
+                    products_count = gen.product_count_generator(product.id,curent_order.id)
+                    connection.write(products_count.to_sql())
+                    order_cost += (product.price * products_count.count)
+                
+                curent_order.cost = order_cost
+                connection.write(curent_order.to_sql())
+                    
+
 
 
 
