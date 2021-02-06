@@ -1,6 +1,7 @@
 import pymysql.cursors
 from typing import Dict, Tuple, Union, List
 
+
 class MySQLConnector:
     def __init__(self, params: Dict) -> None:
         self.connection = pymysql.connect(**params)
@@ -20,6 +21,7 @@ class MySQLConnector:
     def __del__(self):
         self.connection.close()
 
+
 def main():
 
     HOST = "127.0.0.1"
@@ -27,10 +29,17 @@ def main():
     PASSWORD = ""
     DB = "CONTROL_FA"
 
-    locale_dict = {"host": HOST, "user":USER, "password" : PASSWORD, "db" : DB, "cursorclass" : pymysql.cursors.DictCursor}
+    locale_dict = {
+        "host": HOST,
+        "user": USER,
+        "password": PASSWORD,
+        "db": DB,
+        "cursorclass": pymysql.cursors.DictCursor,
+    }
     connection = MySQLConnector(locale_dict)
-    
+
     result = connection.fetch("SELECT * FROM CLIENTS")
+
 
 if __name__ == "__main__":
     main()

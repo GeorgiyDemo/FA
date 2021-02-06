@@ -12,6 +12,12 @@ SELECT clients.* FROM clients
 LEFT JOIN orders ON orders.client_id = clients.id
 WHERE orders.client_id IS NULL
 
+
+/*
+Получение тех домов, которые простаивают
+*/
+
+
 /*
 Удаляем все данные из СУБД
 */
