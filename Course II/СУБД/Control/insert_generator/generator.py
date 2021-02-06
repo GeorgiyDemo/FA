@@ -65,7 +65,7 @@ class Generator:
 
     def product_count_generator(self, product_id : int, order_id : int) -> models.ProductCount:
         """Генерация кол-ва заказанных продуктов"""
-        count = random.randint(1,100)
+        count = random.randint(1,15)
         return models.ProductCount(count, product_id, order_id) 
 
     def product_generator(self) -> models.Product:
@@ -138,27 +138,28 @@ def main():
     #Генерируем пользователей
     for _ in range(100):
         client = gen.client_generator()
-        connection.write(client.to_sql())
+        connection.write(client.insert())
         print(f"Записали клиента {client.id} -> {client.first_name} {client.last_name}")
 
         #Добавляем заказы пользователя
         if random.choice((True, False)):
-            for i in range(random.randint(1,20)):
+            for _ in range(random.randint(1,20)):
                 curent_order = gen.order_generator(client.id)
+                connection.write(curent_order.insert())
                 #Общая стоимость заказа
                 order_cost = 0
                 
                 #Добавляем продукты в заказ
-                for i in range(random.randint(1,20)):
+                for _ in range(random.randint(1,20)):
                     product = gen.product_generator()
-                    connection.write(product.to_sql())
+                    connection.write(product.insert())
                     #Добавляем кол-во продуктов
                     products_count = gen.product_count_generator(product.id,curent_order.id)
-                    connection.write(products_count.to_sql())
+                    connection.write(products_count.insert())
                     order_cost += (product.price * products_count.count)
                 
                 curent_order.cost = order_cost
-                connection.write(curent_order.to_sql())
+                connection.write(curent_order.update())
                     
 
 
@@ -167,7 +168,7 @@ def main():
     #Генерируем дома
     for _ in range(10):
         house = gen.house_generator()
-        connection.write(house.to_sql())
+        connection.write(house.insert())
         print(f"Записали дом {house.id} -> {house.name}")
     
     #result = connection.fetch("SELECT * FROM CLIENTS")
