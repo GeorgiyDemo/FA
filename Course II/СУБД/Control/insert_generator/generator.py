@@ -107,7 +107,7 @@ class Generator:
         house_name = f"{house_type} {buf_name}"
 
         # Цена
-        house_price = random.randint(3500, 15000)
+        house_price = round(random.uniform(1500.0, 8000.9), 2)
 
         # Доп опции
         house_ac = random.choice((0, 1))
@@ -177,18 +177,23 @@ def main():
         "staff_house": СircleCollection(),
     }
     houses_queue = queue.Queue()
+    houses_list = []
 
     # Генерируем обслуживающий персонал
-    for _ in range(35):
+    for _ in range(30):
         staff = gen.staff_generator()
         connection.write(staff.insert())
         staffs_dict[staff.type].put(staff)
 
     # Генерируем дома
-    for _ in range(35):
+    for _ in range(200):
         house = gen.house_generator()
         connection.write(house.insert())
+        # Заносим в очередь (для бронирований)
         houses_queue.put(house)
+        # Заносим в список (для назначени сотрудников)
+        houses_list.append(house)
+
         print(f"Записали дом {house.id} -> {house.name}")
 
     # Генерируем пользователей
@@ -223,11 +228,6 @@ def main():
         if random.choice((True, False)):
             for _ in range(random.randint(1, 5)):
 
-                # TODO: Администратор может обслуживать одну или несколько броней.
-                # TODO: Сделать добавление нескольких домов в заказ
-                # Берем дом
-                current_house = houses_queue.get_nowait()
-
                 # Берем администратора
                 current_staff = staffs_dict["staff_booking"].get()
 
@@ -235,18 +235,34 @@ def main():
                 current_booking = gen.booking_generator(client.id, current_staff.id)
                 connection.write(current_booking.insert())
 
-                # Обновляем FK для дома
-                current_house.booking_id = current_booking.id
-                connection.write(current_house.update())
+                #Аттачим дома
+                prices_sum = 0
+                for i in range(random.randint(1,4)):
+
+
+                    # Берем дом
+                    current_house = houses_queue.get_nowait()
+
+                    # Обновляем FK для дома
+                    current_house.booking_id = current_booking.id
+                    connection.write(current_house.update())
+
+                    #Добавляем цену дома к сумме
+                    prices_sum += current_house.price
 
                 # Обновляем стоимость бронирования
                 days = current_booking.date_out - current_booking.date_in
                 # Стоимость = цена дома * кол-во дней бронирования
-                current_booking.cost = current_house.price * days.days
+                current_booking.cost = prices_sum * days.days
                 connection.write(current_booking.update())
 
                 # TODO: Один человек может обслуживать несколько домов и один дом может обслуживаться несколькими людьми.
 
+    #Цикл по каждому дому
+    for house in houses_list:
+
+        # 1 дом могут обслуживать до 4 сотрудников
+        for i in range(random.randint(4))
     # result = connection.fetch("SELECT * FROM CLIENTS")
     # print(result)
     # print(type(result))
