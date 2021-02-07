@@ -1,7 +1,8 @@
 import pymysql
 import models
 import random
-import util
+import queue
+from util import СircleCollection, RandomData
 
 from faker import Faker
 from db_logic import MySQLConnector
@@ -17,9 +18,10 @@ class Generator:
     CURRENT_HOUSE_ID = 1
     CURRENT_STAFF_ID = 1
 
-    def __init__(self) -> None:
-        self.fake_ru = Faker("ru_RU")
-        self.fake_en = Faker("en_GB")
+    def __init__(self, data_gen: RandomData) -> None:
+        self.data_gen = data_gen
+        self.fake_ru = data_gen.fake_ru
+        self.fake_en = data_gen.fake_en
 
     def client_generator(self) -> models.Client:
         """Генерация клиента"""
@@ -29,7 +31,7 @@ class Generator:
         Generator.CURRENT_CLIENT_ID += 1
 
         # Работаем с именами
-        first_name, last_name = util.get_random_name(self.fake_ru, self.fake_en)
+        first_name, last_name = self.data_gen.get_random_name()
 
         email = self.fake_ru.email()
         phone = self.fake_ru.phone_number()
@@ -39,7 +41,7 @@ class Generator:
         document_file = (
             "0x" + bytearray(random.getrandbits(8) for _ in range(100)).hex()
         )
-        document_text = f"ID {util.get_number_range(4)} {util.get_number_range(8)}"
+        document_text = f"ID {self.data_gen.get_number_range(4)} {self.data_gen.get_number_range(8)}"
 
         document_comments = random.choice((None, "срок действия заканчивется", "ok"))
 
@@ -81,17 +83,14 @@ class Generator:
         price = round(random.uniform(2.0, 1000.9), 2)
         return models.Product(product_id, title, price)
 
-    # TODO
     def booking_generator(self, client_id: int, staff_id: int) -> models.Booking:
         """Генерация бронированя клиента"""
 
         booking_id = Generator.CURRENT_BOOKING_ID
         Generator.CURRENT_BOOKING_ID += 1
-        # _date_in
-        # _date_out
-        # _cost
-
-        pass
+        date_in, date_out = self.data_gen.data_range_generator()
+        cost = None
+        return models.Booking(booking_id, date_in, date_out, client_id, staff_id, cost)
 
     def house_generator(self, booking_id: int = None) -> models.House:
         """Генерация дома"""
@@ -136,7 +135,7 @@ class Generator:
         Generator.CURRENT_STAFF_ID += 1
 
         # Работаем с именами
-        first_name, last_name = util.get_random_name(self.fake_ru, self.fake_en)
+        first_name, last_name = self.data_gen.get_random_name()
 
         type_ = random.choice(("staff_booking", "staff_house"))
         if type_ == "staff_house":
@@ -171,10 +170,29 @@ def main():
     connection = MySQLConnector(locale_dict)
 
     # Инициализация генератора данных
-    gen = Generator()
+    gen = Generator(RandomData())
+
+    staffs_dict = {
+        "staff_booking": СircleCollection(),
+        "staff_house": СircleCollection(),
+    }
+    houses_queue = queue.Queue()
+
+    # Генерируем обслуживающий персонал
+    for _ in range(35):
+        staff = gen.staff_generator()
+        connection.write(staff.insert())
+        staffs_dict[staff.type].put(staff)
+
+    # Генерируем дома
+    for _ in range(35):
+        house = gen.house_generator()
+        connection.write(house.insert())
+        houses_queue.put(house)
+        print(f"Записали дом {house.id} -> {house.name}")
 
     # Генерируем пользователей
-    for _ in range(100):
+    for _ in range(40):
         client = gen.client_generator()
         connection.write(client.insert())
         print(f"Записали клиента {client.id} -> {client.first_name} {client.last_name}")
@@ -201,21 +219,33 @@ def main():
                 curent_order.cost = order_cost
                 connection.write(curent_order.update())
 
-    # Генерируем дома
-    for _ in range(30):
-        house = gen.house_generator()
-        connection.write(house.insert())
-        print(f"Записали дом {house.id} -> {house.name}")
+        # Добавляем бронирование для пользователя
+        if random.choice((True, False)):
+            for _ in range(random.randint(1, 5)):
 
-    # Генерируем обслуживающий персонал
-    for _ in range(10):
-        staff = gen.staff_generator()
+                # TODO: Администратор может обслуживать одну или несколько броней.
+                # TODO: Сделать добавление нескольких домов в заказ
+                # Берем дом
+                current_house = houses_queue.get_nowait()
 
-    # Генерируем дома
-    for _ in range(30):
-        house = gen.house_generator()
-        connection.write(house.insert())
-        print(f"Записали дом {house.id} -> {house.name}")
+                # Берем администратора
+                current_staff = staffs_dict["staff_booking"].get()
+
+                # Создаем бронирование
+                current_booking = gen.booking_generator(client.id, current_staff.id)
+                connection.write(current_booking.insert())
+
+                # Обновляем FK для дома
+                current_house.booking_id = current_booking.id
+                connection.write(current_house.update())
+
+                # Обновляем стоимость бронирования
+                days = current_booking.date_out - current_booking.date_in
+                # Стоимость = цена дома * кол-во дней бронирования
+                current_booking.cost = current_house.price * days.days
+                connection.write(current_booking.update())
+
+                # TODO: Один человек может обслуживать несколько домов и один дом может обслуживаться несколькими людьми.
 
     # result = connection.fetch("SELECT * FROM CLIENTS")
     # print(result)

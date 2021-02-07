@@ -47,6 +47,11 @@ class House(SQLModel):
         booking_id = self.booking_id if self.booking_id is not None else "NULL"
         return f"INSERT INTO houses (id, name, price, ac, tv, safe, description, type, booking_id) VALUES ({self.id},'{self.name}',{self.price},{self.ac},{self.tv},{self.safe},{description},{type_},{booking_id})"
 
+    def update(self) -> str:
+        if self.booking_id is None:
+            raise ValueError("booking_id не может быть None при обновлении")
+        return f"UPDATE houses SET booking_id={self.booking_id} WHERE id={self.id}"
+
 
 class Client(SQLModel):
     """Клиент"""
@@ -184,9 +189,9 @@ class Booking(SQLModel):
         cost = self.cost
         if cost is None:
             cost = 0
-        return f"INSERT INTO booking (id, date_in, date_out, cost, client_id, staff_id) VALUES ({self.id}, '{self.date_in}','{self.date_out}',{cost}, {self.client_id}, {self.staff_id})"
+        return f"INSERT INTO bookings (id, date_in, date_out, cost, client_id, staff_id) VALUES ({self.id}, '{self.date_in}','{self.date_out}',{cost}, {self.client_id}, {self.staff_id})"
 
     def update(self) -> str:
         if self.cost is None:
             raise ValueError("Сначала необходимо выставить цену")
-        return f"UPDATE booking SET cost={self.cost} WHERE id={self.id}"
+        return f"UPDATE bookings SET cost={self.cost} WHERE id={self.id}"
