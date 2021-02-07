@@ -40,11 +40,7 @@ class RandomData:
     def get_random_name(self) -> Tuple:
         """Возвращает рандомное русское/английское имя"""
 
-        names_list = [
-            self.fake_ru.name().replace("'", "").split(" "),
-            self.fake_en.name().replace("'", "").split(" "),
-        ]
-        current_name_list = random.choice(names_list)
+        current_name_list = self.fake_en.name().replace("'", "").split(" ")
         if len(current_name_list) == 4:
             _, first_name, last_name, _ = current_name_list
         elif len(current_name_list) == 3:

@@ -1,7 +1,14 @@
 /*
 Отображаем все продукты и их кол-во для определенного заказа
 */
-SELECT products.title Продукт, products.price Цена, products_count.count "Кол-во продуктов", orders.cost "Общая стоиммость заказа" FROM products_count
+SELECT
+	products.title Продукт,
+    products.price Цена,
+    products_count.count "Кол-во продуктов",
+    orders.cost "Общая стоиммость заказа"
+    
+FROM products_count
+
 INNER JOIN products ON products_count.product_id=products.id
 INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=1;
 
@@ -17,6 +24,25 @@ WHERE orders.client_id IS NULL
 TODO: Получение тех домов, которые простаивают
 */
 
+/*
+TODO: Получение домов, которые когда-либо заказывал опеределенный клиент
+*/
+
+/*
+Сколько всего денег определенный клиент потратил на номера и ресторан 
+*/
+
+/*
+Получаем название домов и их стоимость за ночь по определенному бронированию
+*/
+SELECT
+	houses.name "Название дома",
+    houses.price "Стоимость дома",
+    bookings.cost "Общая стоимость заказа",
+    DATEDIFF(bookings.date_out, bookings.date_in) "Кол-во дней"
+FROM bookings
+INNER JOIN houses
+	ON houses.booking_id = bookings.id WHERE bookings.id=53;
 
 /*
 Удаляем все данные из СУБД

@@ -151,6 +151,8 @@ class Generator:
         phone = self.fake_ru.phone_number()
         return models.Staff(staff_id, first_name, last_name, position, type_, phone)
 
+    def staffs_houses_generator(self, house_id : int, staff_id : int) -> models.StaffsHouses:
+        return models.StaffsHouses(house_id, staff_id)
 
 def main():
 
@@ -262,14 +264,15 @@ def main():
     for house in houses_list:
 
         # 1 дом могут обслуживать до 4 сотрудников
-        for i in range(random.randint(4))
-    # result = connection.fetch("SELECT * FROM CLIENTS")
-    # print(result)
-    # print(type(result))
+        for _ in range(random.randint(1,4)):
 
-    # mystring = "INSERT INTO clients (id, first_name, last_name, email, phone, document_title, documant_file, document_text, document_comments) VALUES (2, ""
-    # connection.write("")
-
+            current_staff = staffs_dict["staff_booking"].get()
+            current_staffs_houses = gen.staffs_houses_generator(house.id, current_staff.id)
+            
+            #Записываем данные связывающей таблицы
+            connection.write(current_staffs_houses.insert())
+    
+    print("Сгенерировали все данные")
 
 if __name__ == "__main__":
     main()

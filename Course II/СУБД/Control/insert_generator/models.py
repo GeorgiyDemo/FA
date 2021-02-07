@@ -107,7 +107,7 @@ class Order(SQLModel):
         self, id: int, order_date: datetime.datetime, client_id: int, cost: float = None
     ) -> None:
         self.id = id
-        self.order_date = order_date.strftime("%Y-%m-%d %H:%M:%S")
+        self.order_date = order_date.strftime("%Y/%m/%d %H:%M:%S")
         self.client_id = client_id
         self.cost = cost
 
@@ -187,11 +187,22 @@ class Booking(SQLModel):
 
     def insert(self) -> str:
         cost = self.cost
+        date_in = self.date_in.strftime("%Y/%m/%d %H:%M:%S")
+        date_out = self.date_out.strftime("%Y/%m/%d %H:%M:%S")
         if cost is None:
             cost = 0
-        return f"INSERT INTO bookings (id, date_in, date_out, cost, client_id, staff_id) VALUES ({self.id}, '{self.date_in}','{self.date_out}',{cost}, {self.client_id}, {self.staff_id})"
+        return f"INSERT INTO bookings (id, date_in, date_out, cost, client_id, staff_id) VALUES ({self.id}, '{date_in}','{date_out}',{cost}, {self.client_id}, {self.staff_id})"
 
     def update(self) -> str:
         if self.cost is None:
             raise ValueError("Сначала необходимо выставить цену")
         return f"UPDATE bookings SET cost={self.cost} WHERE id={self.id}"
+
+class StaffsHouses(SQLModel):
+    @validate_arguments
+    def __init__(self, house_id : int, staff_id : int) -> None:
+        self.house_id = house_id
+        self.staff_id = staff_id
+    
+    def insert(self) -> str:
+        return f"INSERT INTO staffs_houses (house_id, staff_id) VALUES ({self.house_id}, {self.staff_id})"
