@@ -1,5 +1,5 @@
 /*
-Отображаем все продукты и их кол-во для определенного заказа
+Отображаем все продукты и их цену для определенного заказа
 */
 SELECT
 	products.title Продукт,
@@ -23,6 +23,7 @@ WHERE orders.client_id IS NULL
 /*
 TODO: Получение тех домов, которые простаивают
 */
+SELECT * FROM HOUSES WHERE BOOKING_ID is NULL
 
 /*
 TODO: Получение домов, которые когда-либо заказывал опеределенный клиент
@@ -39,7 +40,7 @@ SELECT
 	houses.name "Название дома",
     houses.price "Стоимость дома",
     bookings.cost "Общая стоимость заказа",
-    DATEDIFF(bookings.date_out, bookings.date_in) "Кол-во дней"
+    bookings.date_out-bookings.date_in "Кол-во дней"
 FROM bookings
 INNER JOIN houses
 	ON houses.booking_id = bookings.id WHERE bookings.id=53;
