@@ -1,1 +1,0 @@
-Применяем SQLAlchemy
