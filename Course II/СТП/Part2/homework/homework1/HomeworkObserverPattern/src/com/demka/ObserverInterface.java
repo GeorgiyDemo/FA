@@ -1,23 +1,18 @@
-package com.demka;
-
 /*
 Интерфейс через который оповещаем в StringBuilderObserver
  */
+
+package com.demka;
+
 public interface ObserverInterface {
 
-    /*
-    Оповещение в String о том, что было оповещение определенного StringBuilder
-     */
+
+    //Оповещение в String о том, что было оповещение определенного StringBuilder
     public void alert(String data);
 
-    /*
-    Добавление строки
-     */
+    //Добавление строки
     public DEMKAStringBuilder append(String str);
 
-    /*
-    Удаление строки
-     */
+    //Удаление строки
     public void undo();
-
 }

@@ -1,36 +1,21 @@
-package com.demka;
-
-import java.util.Stack;
-
 /*
 Пропатченный StringBuilder с оповещателем
  */
+
+package com.demka;
+import java.util.Stack;
 
 class DEMKAStringBuilder implements ObserverInterface {
     private interface Action {
         void undo();
     }
 
-    private class DeleteAction implements Action {
-        private int size;
-
-        public DeleteAction(int size) {
-            this.size = size;
-        }
-
-        public void undo() {
-            stringBuilder.delete(
-                    stringBuilder.length() - size, stringBuilder.length());
-        }
-    }
-
-    private StringBuilder stringBuilder; // делегат
-
+    //Делегат
+    private StringBuilder stringBuilder;
+    //Стек операций
     private Stack<Action> actions = new Stack<Action>();
-
     //Название конкретного sb
     private String name;
-    // конструктор
 
     public DEMKAStringBuilder(String name) {
         this.stringBuilder = new StringBuilder();

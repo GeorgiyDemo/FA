@@ -7,9 +7,11 @@ package com.demka;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("MEOW");
 
+        //Запускаем оповещатель
         StringBuilderObserver observer = new StringBuilderObserver();
+
+        //Генерируем слушателей для оповещалки
         for (int i = 0; i < 10; i++) {
             DEMKAStringBuilder channel = new DEMKAStringBuilder("StringBuilder номер "+i);
             observer.addObserver(channel);
