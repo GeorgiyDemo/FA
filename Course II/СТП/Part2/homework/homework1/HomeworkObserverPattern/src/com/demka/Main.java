@@ -10,14 +10,26 @@ public class Main {
         System.out.println("MEOW");
 
         StringBuilderObserver observer = new StringBuilderObserver();
-
         for (int i = 0; i < 10; i++) {
-            StringBuilderChannel channel = new StringBuilderChannel();
+            DEMKAStringBuilder channel = new DEMKAStringBuilder("StringBuilder номер "+i);
             observer.addObserver(channel);
         }
-        observer.setString("LOL");
 
+        //Оповещение всех sb
+        observer.alert("Какие-то данные для оповещения");
 
+        //Добавление данных для всех
+        observer.append("Какие-то данные для всех ОДИН");
+        observer.append(", какие-то данные для всех ДВА");
+        System.out.println(observer.toString());
+
+        //Добавляем строку для 1 элемента
+        observer.getChannels().get(0).append(", данные только для 0 элемента");
+        System.out.println(observer.toString());
+
+        //Удаляем последние добавленные элементы в sb
+        observer.undo();
+        System.out.println(observer.toString());
 
     }
 }

@@ -8,7 +8,7 @@ public interface ObserverInterface {
     /*
     Оповещение в String о том, что было оповещение определенного StringBuilder
      */
-    public void alert(Object o);
+    public void alert(String data);
 
     /*
     Добавление строки

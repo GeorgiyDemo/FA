@@ -5,6 +5,7 @@ import java.util.Stack;
 /*
 Пропатченный StringBuilder с оповещателем
  */
+
 class DEMKAStringBuilder implements ObserverInterface {
     private interface Action {
         void undo();
@@ -27,11 +28,21 @@ class DEMKAStringBuilder implements ObserverInterface {
 
     private Stack<Action> actions = new Stack<Action>();
 
+    //Название конкретного sb
+    private String name;
     // конструктор
-    public DEMKAStringBuilder() {
-        stringBuilder = new StringBuilder();
+
+    public DEMKAStringBuilder(String name) {
+        this.stringBuilder = new StringBuilder();
+        this.name = name;
     }
 
+    @Override
+    public void alert(String data) {
+        System.out.println("[Оповещение для "+this.name+"] -> "+data);
+    }
+
+    @Override
     public DEMKAStringBuilder append(String str) {
         stringBuilder.append(str);
 
@@ -46,6 +57,7 @@ class DEMKAStringBuilder implements ObserverInterface {
         return this;
     }
 
+    @Override
     public void undo() {
         if (!actions.isEmpty()) {
             actions.pop().undo();
@@ -54,6 +66,6 @@ class DEMKAStringBuilder implements ObserverInterface {
 
     @Override
     public String toString() {
-        return stringBuilder.toString();
+        return "["+this.name+"] -> "+stringBuilder.toString();
     }
 }

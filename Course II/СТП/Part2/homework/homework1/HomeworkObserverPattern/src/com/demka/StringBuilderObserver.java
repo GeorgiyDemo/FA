@@ -5,6 +5,9 @@ import java.nio.channels.Channel;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Та штука, котрая оповещает всех о чем-либо
+ */
 class StringBuilderObserver {
 
     private String news;
@@ -28,17 +31,42 @@ class StringBuilderObserver {
     /*
     Метод для оповещения всех StringBuilderов
      */
-    public void setString(String news) {
-        for (ObserverInterface sb : this.channels) {
-            sb.alert(this.news);
+    public void alert(String someData) {
+
+        for (ObserverInterface sb: this.channels) {
+            sb.alert(someData);
         }
+
     }
 
+    /*
+    Добавление во все StringBuilder'ы данных
+     */
+    public void append(String someData){
+        for (ObserverInterface sb: this.channels) sb.append(someData);
+    }
+
+    /*
+    Удаление последней операции во всех StringBuilder'ах
+     */
+    public void undo(){
+        for (ObserverInterface sb: this.channels) sb.undo();
+    }
+
+
     @Override
-    public void alert(Object o) {
-        for (int i = 0; i < this.channels.size(); i++) {
-
-
+    public String toString() {
+        StringBuilder resultString = new StringBuilder();
+        for (ObserverInterface sb: this.channels) {
+            resultString.append(sb.toString()).append("\n");
         }
+        return resultString.toString();
+    }
+
+    /*
+    Получение списка observer'а
+     */
+    public List<ObserverInterface> getChannels() {
+        return channels;
     }
 }
