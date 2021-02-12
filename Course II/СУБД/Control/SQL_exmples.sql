@@ -1,4 +1,5 @@
 /*
+Задача 1
 Отображаем все продукты и их цену для определенного заказа
 */
 SELECT
@@ -13,6 +14,7 @@ INNER JOIN products ON products_count.product_id=products.id
 INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=1;
 
 /*
+Задача 2
 Отображаем клиентов, которые не делали заказ в ресторане
 */
 SELECT clients.* FROM clients
@@ -21,19 +23,23 @@ WHERE orders.client_id IS NULL
 
 
 /*
+Задача 3
 TODO: Получение тех домов, которые простаивают
 */
 SELECT * FROM HOUSES WHERE BOOKING_ID is NULL
 
 /*
+Задача 4
 TODO: Получение домов, которые когда-либо заказывал опеределенный клиент
 */
 
 /*
-Сколько всего денег определенный клиент потратил на номера и ресторан 
+Задача 5
+Сколько всего денег определенный клиент потратил на номера и ресторан (по имени)
 */
 
 /*
+Задача 6
 Получаем название домов и их стоимость за ночь по определенному бронированию
 */
 SELECT
@@ -46,6 +52,7 @@ INNER JOIN houses
 	ON houses.booking_id = bookings.id WHERE bookings.id=53;
 
 /*
+Задача 7
 Удаляем все данные из СУБД
 */
 SET SQL_SAFE_UPDATES = 0;
