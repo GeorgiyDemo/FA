@@ -1,4 +1,6 @@
-package com.demka;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 /**
  * Абстрактный класс рабочего
@@ -17,13 +19,26 @@ public abstract class Worker {
      * Вычисление заработной платы рабочего
      */
     abstract void SalaryCalculation();
-    /**
-     * Конвертация данного экземпляра класса в строку
-     */
-    abstract String ToString();
 
-    //TODO: Организовать запись и чтение коллекции в/из файл(а)
-    //TODO: Организовать обработку некорректного формата входного файла
+    /**
+     * Запаковка для записи в файл
+     */
+    abstract String Serialize() throws JsonProcessingException;
+
+    /*
+    Группа геттеров для нормального автопреобразования в json
+     */
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
 }
 
 /**
@@ -43,7 +58,6 @@ class HourlyWorker extends Worker{
         SalaryCalculation();
     }
 
-
     /**
      * Вычисление заработной платы рабочего
      */
@@ -57,9 +71,18 @@ class HourlyWorker extends Worker{
      * Конвертация данного экземпляра класса в строку
      */
     @Override
-    String ToString() {
-        return null;
+    public String toString() {
+        return "ЭТО HourlyWorker";
     }
+
+    /**
+     * Запаковка для записи в файл
+     */
+    @Override
+    String Serialize() throws com.fasterxml.jackson.core.JsonProcessingException{
+        return new ObjectMapper().writeValueAsString(this);
+    }
+
 }
 
 /**
@@ -87,7 +110,15 @@ class MonthlyWorker extends  Worker{
      * Конвертация данного экземпляра класса в строку
      */
     @Override
-    String ToString() {
-        return null;
+    public String toString() {
+        return "ЭТО MonthlyWorker";
+    }
+
+    /**
+     * Запаковка для записи в файл
+     */
+    @Override
+    String Serialize() throws com.fasterxml.jackson.core.JsonProcessingException{
+        return new ObjectMapper().writeValueAsString(this);
     }
 }
