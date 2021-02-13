@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Main {
@@ -13,7 +14,7 @@ public class Main {
         return random.nextBoolean();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
 
         List<Worker> workers = new ArrayList<Worker>();
 
@@ -40,6 +41,20 @@ public class Main {
             }
             System.out.println(string);
         });
+
+        //Конвертация в JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonInput = null;
+        try {
+            jsonInput = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(workers);
+            System.out.println(jsonInput);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        //Конвертация обратно из JSON
+        objectMapper = new ObjectMapper();
+        Worker[] RESULT = objectMapper.readValue(jsonInput, Worker[].class);
 
     }
 }
