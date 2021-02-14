@@ -1,60 +1,101 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Main {
-    public static boolean getRandomBoolean() {
+
+
+    private static FileProcessing fileprocessing;
+    private static final String filename = "./dump.json";
+
+    private static boolean getRandomBoolean() {
         Random random = new Random();
         return random.nextBoolean();
     }
 
-    public static void main(String[] args) throws JsonProcessingException {
+    private static List<Worker> generator() throws IOException {
 
         List<Worker> workers = new ArrayList<Worker>();
-
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5000; i++) {
 
             //Генерируем рандомную зарплату
             Random r = new Random();
             double randomSalary = 100 + (10000 - 100) * r.nextDouble();
 
             //Случайно выбираем между HourlyWorker и MonthlyWorker
-            Worker worker = getRandomBoolean() ? new HourlyWorker(i, "Рабочий №1" + i, randomSalary) : new MonthlyWorker(i, "Рабочий №1" + i, randomSalary);
+            Worker worker = getRandomBoolean() ? new HourlyWorker(i, "Рабочий №" + i, randomSalary) : new MonthlyWorker(i, "Рабочий №" + i, randomSalary);
 
             //Добавляем рабочего в список
             workers.add(worker);
         }
 
+        List<Map<String, String>> SerializeList = new ArrayList<>();
         //Цикл по каждому элементу списка
         workers.forEach(worker -> {
-            String string = null;
-            try {
-                string = worker.Serialize();
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-            System.out.println(string);
+            SerializeList.add(worker.Serialize());
         });
 
-        //Конвертация в JSON
+        //Конвертация в JSON и запись в файл
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonInput = null;
         try {
-            jsonInput = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(workers);
-            System.out.println(jsonInput);
+            String result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(workers);
+            fileprocessing.Write(result);
         } catch(Exception e) {
+            System.out.println("Возникла ошибка при записи в файл");
             e.printStackTrace();
         }
 
-        //Конвертация обратно из JSON
-        objectMapper = new ObjectMapper();
-        Worker[] RESULT = objectMapper.readValue(jsonInput, Worker[].class);
+        return workers;
+
+    }
+
+    private static List<Worker> reader() throws IOException {
+
+        List<Worker> workers = new ArrayList<Worker>();
+
+        String result = fileprocessing.Read();
+        System.out.println(result);
+
+        //Переводим строку в list с map
+        ObjectMapper mapper = new ObjectMapper();
+        List<Map<String, String>> mapList = mapper.readValue(result, new TypeReference<List<Map<String, String>>>(){});
+
+
+        //Цикл по каждому элементу списка
+        mapList.forEach(data -> {
+
+            if (data.get("type").equals("hourly"))
+                workers.add(new HourlyWorker(data));
+            else
+                workers.add(new MonthlyWorker(data));
+        });
+
+        return workers;
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Откуда вы хотите получить данные о рабочих?\n1. Сгенерировать данные\n2. Прочитать из файла\n->");
+        Scanner scanner = new Scanner(System.in);
+        String commandInput = scanner.next();
+        System.out.println(commandInput);
+
+        fileprocessing = new FileProcessing(filename);
+
+        //Генерация данных
+        if (commandInput.equals("1")) {
+            List<Worker> workers = generator();
+        }
+        //Чтение из файла
+        else if (commandInput.equals("2")) {
+            List<Worker> workers = reader();
+        }
+        else {
+            System.out.println("Нет такой команды");
+        }
 
     }
 }

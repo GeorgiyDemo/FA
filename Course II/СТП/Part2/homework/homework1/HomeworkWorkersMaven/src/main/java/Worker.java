@@ -2,6 +2,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Абстрактный класс рабочего
  */
@@ -10,6 +13,8 @@ public abstract class Worker {
     int id;
     //ФИО
     String name;
+    //Тип рабочего (нужен для обратного преобразования из JSON
+    String type;
     //зарплата за промежуток времени (час/месяц)
     double salary;
     //итоговая зарплата (вычисляемое значение в SalaryCalculation)
@@ -23,7 +28,7 @@ public abstract class Worker {
     /**
      * Запаковка для записи в файл
      */
-    abstract String Serialize() throws JsonProcessingException;
+    abstract Map<String, String> Serialize();
 
     /*
     Группа геттеров для нормального автопреобразования в json
@@ -38,6 +43,10 @@ public abstract class Worker {
 
     public double getSalary() {
         return salary;
+    }
+
+    public String getType() {
+        return type;
     }
 }
 
@@ -54,6 +63,16 @@ class HourlyWorker extends Worker{
         this.id = id;
         this.name = name;
         this.salary = salary;
+        this.type = "hourly";
+
+        SalaryCalculation();
+    }
+
+    public HourlyWorker(Map<String, String> data) {
+        this.id = Integer.parseInt(data.get("id"));
+        this.name = data.get("name");
+        this.salary = Double.parseDouble(data.get("salary"));
+        this.type = data.get("type");
 
         SalaryCalculation();
     }
@@ -79,8 +98,14 @@ class HourlyWorker extends Worker{
      * Запаковка для записи в файл
      */
     @Override
-    String Serialize() throws com.fasterxml.jackson.core.JsonProcessingException{
-        return new ObjectMapper().writeValueAsString(this);
+    Map<String, String> Serialize(){
+
+        Map<String, String> map=new HashMap<String, String>();
+        map.put("id", String.valueOf(this.id));
+        map.put("name", this.name);
+        map.put("salary", Double.toString(this.salary));
+        map.put("type", this.type);
+        return map;
     }
 
 }
@@ -94,6 +119,16 @@ class MonthlyWorker extends  Worker{
         this.id = id;
         this.name = name;
         this.salary = salary;
+        this.type = "monthly";
+
+        SalaryCalculation();
+    }
+
+    public MonthlyWorker(Map<String, String> data) {
+        this.id = Integer.parseInt(data.get("id"));
+        this.name = data.get("name");
+        this.salary = Double.parseDouble(data.get("salary"));
+        this.type = data.get("type");
 
         SalaryCalculation();
     }
@@ -118,7 +153,13 @@ class MonthlyWorker extends  Worker{
      * Запаковка для записи в файл
      */
     @Override
-    String Serialize() throws com.fasterxml.jackson.core.JsonProcessingException{
-        return new ObjectMapper().writeValueAsString(this);
+    Map<String, String> Serialize(){
+
+        Map<String, String> map=new HashMap<String, String>();
+        map.put("id", String.valueOf(this.id));
+        map.put("name", this.name);
+        map.put("salary", Double.toString(this.salary));
+        map.put("type", this.type);
+        return map;
     }
 }
