@@ -23,6 +23,8 @@ public abstract class Worker {
 
     /**
      * Запаковка для записи в файл
+     *
+     * @return
      */
     Map<String, String> Serialize() {
         Map<String, String> map = new HashMap<>();
@@ -36,22 +38,48 @@ public abstract class Worker {
     /*
     Группа геттеров для нормального автопреобразования в json
      */
+
+    /**
+     * Getter id
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Getter name
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Getter salary
+     *
+     * @return
+     */
     public double getSalary() {
         return salary;
     }
 
+    /**
+     * Getter type
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Getter totalSalary
+     *
+     * @return
+     */
     public double getTotalSalary() {
         return totalSalary;
     }

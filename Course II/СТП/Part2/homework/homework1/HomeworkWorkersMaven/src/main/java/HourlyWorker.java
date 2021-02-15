@@ -34,7 +34,7 @@ public class HourlyWorker extends Worker {
     @Override
     void SalaryCalculation() {
         //Для «почасовщиков» формула для расчета такая: «среднемесячная зарплата = 20.8*8*ставка в час»,
-        this.totalSalary = 20.8 * 8 * this.salary;
+        this.totalSalary = Utils.round(20.8 * 8 * this.salary,2);
     }
 
     /**

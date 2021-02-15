@@ -18,6 +18,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class Main {
@@ -26,11 +28,6 @@ public class Main {
     private static final String filename = "./dump.json";
     private static FileProcessing fileprocessing;
     private static List<Worker> valuesList;
-
-    private static boolean getRandomBoolean() {
-        Random random = new Random();
-        return random.nextBoolean();
-    }
 
     /**
      * Сортировка данных коллекции по зарплате.
@@ -58,6 +55,8 @@ public class Main {
         });
     }
 
+
+
     /**
      * Логика для выполнения дополнительных заданий с выводом элементов коллекции
      */
@@ -78,14 +77,14 @@ public class Main {
         System.out.println("\nВывести первые 5 имен работников из полученного выше списка.");
         for (int i = 0; i < 5; i++) {
             Worker worker = valuesList.get(i);
-            System.out.println(worker.getName() + " зарплата " + worker.getTotalSalary());
+            System.out.println(worker.getName() + ", зарплата " + worker.getTotalSalary());
         }
 
         System.out.println("\nВывести последние 3 идентификаторы работников из полученного выше списка.");
         Collections.reverse(valuesList);
         for (int i = 0; i < 3; i++) {
             Worker worker = valuesList.get(i);
-            System.out.println("ID" + worker.getId() + " зарплата " + worker.getTotalSalary());
+            System.out.println("ID " + worker.getId() + ", зарплата " + worker.getTotalSalary());
         }
 
     }
@@ -97,10 +96,10 @@ public class Main {
 
             //Генерируем рандомную зарплату
             Random r = new Random();
-            double randomSalary = 100 + (10000 - 100) * r.nextDouble();
+            double randomSalary = Utils.round(100 + (10000 - 100) * r.nextDouble(),2);
 
             //Случайно выбираем между HourlyWorker и MonthlyWorker
-            Worker worker = getRandomBoolean() ? new HourlyWorker(i, "Рабочий №" + i, randomSalary) : new MonthlyWorker(i, "Рабочий №" + i, randomSalary);
+            Worker worker = Utils.getRandomBoolean() ? new HourlyWorker(i, "Рабочий №" + i, randomSalary) : new MonthlyWorker(i, "Рабочий №" + i, randomSalary);
 
             //Добавляем рабочего в список
             workers.add(worker);
