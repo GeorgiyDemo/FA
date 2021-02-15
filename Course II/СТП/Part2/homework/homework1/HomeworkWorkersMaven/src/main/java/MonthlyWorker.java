@@ -1,12 +1,11 @@
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Класс работника с фиксированной месячной оплатой
  */
-public class MonthlyWorker extends  Worker{
+public class MonthlyWorker extends Worker {
 
-    public MonthlyWorker(int id, String name, double salary){
+    public MonthlyWorker(int id, String name, double salary) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -32,25 +31,11 @@ public class MonthlyWorker extends  Worker{
         this.totalSalary = this.salary;
     }
 
-    /** TODO
+    /**
      * Конвертация данного экземпляра класса в строку
      */
     @Override
     public String toString() {
-        return "ЭТО MonthlyWorker";
-    }
-
-    /**
-     * Запаковка для записи в файл
-     */
-    @Override
-    Map<String, String> Serialize(){
-
-        Map<String, String> map= new HashMap<>();
-        map.put("id", String.valueOf(this.id));
-        map.put("name", this.name);
-        map.put("salary", Double.toString(this.salary));
-        map.put("type", this.type);
-        return map;
+        return "*Рабочий с фиксированной зарплатой*\nID: " + id + "\nИмя: " + name + "\nЗарплата: " + salary;
     }
 }

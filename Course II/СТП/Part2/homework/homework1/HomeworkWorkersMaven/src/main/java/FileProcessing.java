@@ -1,7 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 // Класс для работы с файлами
@@ -16,7 +13,7 @@ public class FileProcessing {
     //Чтение
     public String Read() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
-        String lines =  reader.lines().collect(Collectors.joining());
+        String lines = reader.lines().collect(Collectors.joining());
         reader.close();
         return lines;
     }

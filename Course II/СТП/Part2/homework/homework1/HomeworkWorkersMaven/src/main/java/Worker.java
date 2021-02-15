@@ -1,7 +1,3 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +24,14 @@ public abstract class Worker {
     /**
      * Запаковка для записи в файл
      */
-    abstract Map<String, String> Serialize();
+    Map<String, String> Serialize() {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", String.valueOf(this.id));
+        map.put("name", this.name);
+        map.put("salary", Double.toString(this.salary));
+        map.put("type", this.type);
+        return map;
+    }
 
     /*
     Группа геттеров для нормального автопреобразования в json
@@ -47,6 +50,10 @@ public abstract class Worker {
 
     public String getType() {
         return type;
+    }
+
+    public double getTotalSalary() {
+        return totalSalary;
     }
 }
 
