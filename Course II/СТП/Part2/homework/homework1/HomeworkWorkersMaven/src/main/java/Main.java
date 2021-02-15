@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -16,9 +15,9 @@ public class Main {
         return random.nextBoolean();
     }
 
-    private static List<Worker> generator() throws IOException {
+    private static List<Worker> generator(){
 
-        List<Worker> workers = new ArrayList<Worker>();
+        List<Worker> workers = new ArrayList<>();
         for (int i = 0; i < 5000; i++) {
 
             //Генерируем рандомную зарплату
@@ -32,6 +31,8 @@ public class Main {
             workers.add(worker);
         }
 
+        System.out.println("Успешная генерация");
+
         List<Map<String, String>> SerializeList = new ArrayList<>();
         //Цикл по каждому элементу списка
         workers.forEach(worker -> {
@@ -43,6 +44,7 @@ public class Main {
         try {
             String result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(workers);
             fileprocessing.Write(result);
+            System.out.println("Успешная запись в файл");
         } catch(Exception e) {
             System.out.println("Возникла ошибка при записи в файл");
             e.printStackTrace();
@@ -54,7 +56,7 @@ public class Main {
 
     private static List<Worker> reader() throws IOException {
 
-        List<Worker> workers = new ArrayList<Worker>();
+        List<Worker> workers = new ArrayList<>();
 
         String result = fileprocessing.Read();
         System.out.println(result);
@@ -73,12 +75,14 @@ public class Main {
                 workers.add(new MonthlyWorker(data));
         });
 
+        System.out.println("Успешно прочитали данные из файла");
+
         return workers;
 
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Откуда вы хотите получить данные о рабочих?\n1. Сгенерировать данные\n2. Прочитать из файла\n->");
+        System.out.println("Как вы хотите получить информацию о рабочих?\n1. Сгенерировать данные\n2. Прочитать данные из файла\n->");
         Scanner scanner = new Scanner(System.in);
         String commandInput = scanner.next();
         System.out.println(commandInput);
