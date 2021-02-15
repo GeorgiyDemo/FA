@@ -18,8 +18,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 
 public class Main {
@@ -54,7 +52,6 @@ public class Main {
             }
         });
     }
-
 
 
     /**
@@ -96,7 +93,7 @@ public class Main {
 
             //Генерируем рандомную зарплату
             Random r = new Random();
-            double randomSalary = Utils.round(100 + (10000 - 100) * r.nextDouble(),2);
+            double randomSalary = Utils.round(100 + (10000 - 100) * r.nextDouble(), 2);
 
             //Случайно выбираем между HourlyWorker и MonthlyWorker
             Worker worker = Utils.getRandomBoolean() ? new HourlyWorker(i, "Рабочий №" + i, randomSalary) : new MonthlyWorker(i, "Рабочий №" + i, randomSalary);
