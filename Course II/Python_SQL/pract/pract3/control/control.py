@@ -1,4 +1,7 @@
+#TODO: Переделать возвращаемое значение в Dict в gen_....
+
 import sqlalchemy
+import random
 from typing import List, Tuple
 from datetime import datetime
 from faker import Faker
@@ -17,32 +20,54 @@ from sqlalchemy import (
 )
 from sqlalchemy.sql import select
 from sqlalchemy import PrimaryKeyConstraint, UniqueConstraint, CheckConstraint
+from sqlalchemy.sql.elements import Null
 
+
+class Util:
+    """Класс утилит с доп методами"""
+
+    @staticmethod
+    def gen_name(fake : Faker):
+        """Генерация имени пользователя"""
+        exit_flag = False
+        while not exit_flag:
+            try:
+                first_name, middle_name, last_name = fake.name().split(" ")
+                exit_flag = True
+            except ValueError:
+                continue
+
+        return first_name, middle_name, last_name
+
+    @staticmethod
+    def get_number_range(n) -> str:
+        """Отдает n рандомных цифр"""
+        result = ""
+        for _ in range(n):
+            result += str(random.choice(range(10)))
+        return result
 
 class Generator:
-    """Генерация данных для сущностей"""
+    """Генерация данных для таблиц"""
 
-    #TODO
     CUSTOMER_ID = 1
+    ACCOUNT_ID = 1
+    TYPE_ID = 1
 
     def __init__(self):
         self.fake = Faker("ru_RU")
 
     def gen_customer(self) -> List:
         """Генерация клиента"""
-        result_list = []
 
         # Текущий ID
         customer_id = Generator.CUSTOMER_ID
         Generator.CUSTOMER_ID += 1
-
-        last_name = "Иванов"
-        first_name = "Иван"
-        middle_name = "Иванович"
-        street = "Ул 8 марта"
+        first_name, middle_name, last_name = Util.gen_name(self.fake)
+        street = self.fake.address()
         city = self.fake.city()
         state = self.fake.city()
-        zip = "4386438906"
+        zip = Util.get_number_range(6)
         phone = self.fake.phone_number()
         email = self.fake.email()
         return [
@@ -59,9 +84,33 @@ class Generator:
         ]
 
     #TODO
-    def gen_account_types(self):
+    def gen_accounts(self):
+        account_id = Generator.ACCOUNT_ID
+        Generator.ACCOUNT_ID += 1
+
+        type = random.randint(0,1)
+        description = Null
+        balance = None  #TODO Потом изменим
+        credit_line = 100000
+        begin_balance = round(random.uniform(1000.0, 30000.0), 2)
+        begin_balance_timestamp = self.fake.date_time_between(start_date="-2y", end_date="now")
+
+       
+
+    #TODO
+    def gen_account_types(self) -> List:
         """Генерация типов аккаунтов"""
-        pass
+        type_id = Generator.TYPE_ID
+        Generator.TYPE_ID += 1
+        if type_id == 1:
+            name = "Обычный"
+            description = "Обычный аккаунт со стандартным пакетом обслуживания"
+        elif type_id == 2:
+            name = "Премиальный"
+            description = "Аккаунт с премиальным обслуживанием и повышенным кешбеком"
+        else:
+            raise ValueError("типов аккаунтов должно быть не более 2!")
+        return [type_id, name, description]
 
     #TODO
     def gen_transactions(self):
@@ -235,9 +284,10 @@ def main():
         values = generator.gen_customer()
         pk = database_processing.insert("customers", values)
         print(f"Записали данные с первичным ключом {pk}")
+    
     result = database_processing.select("customers")
-    print(result)
-
+    for item in result:
+        print(item)
 
 if __name__ == "__main__":
     main()
