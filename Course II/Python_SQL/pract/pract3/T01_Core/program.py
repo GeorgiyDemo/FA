@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy.sql import select
 import pandas as pd
 from datetime import datetime
 from sqlalchemy import (
@@ -128,3 +129,16 @@ ins.compile().params
 connection = engine.connect()
 result = connection.execute(ins)
 print(result.inserted_primary_key)
+
+#SELECT *
+s = select([listing])
+rp = connection.execute(s)
+results = rp.fetchall()
+print(results)
+
+#SELECT WHERE
+selected_listingid = sqlalchemy.sql.column('listing_id')
+where_query = sqlalchemy.sql.select([listing]).where(selected_listingid == 20168)
+rp = connection.execute(where_query)
+results = rp.fetchall()
+print(results)
