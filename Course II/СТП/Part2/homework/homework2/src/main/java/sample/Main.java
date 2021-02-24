@@ -42,7 +42,7 @@ public class Main extends Application {
     public void initRootLayout(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(getClass().getResource("/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(rootLayout);
@@ -57,7 +57,7 @@ public class Main extends Application {
     public boolean showPersonEditDialog(Person person){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/personEditDialog.fxml"));
+            loader.setLocation(getClass().getResource("/personEditDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
@@ -79,7 +79,7 @@ public class Main extends Application {
     public void showPersons(){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/main.fxml"));
+            loader.setLocation(getClass().getResource("/main.fxml"));
             AnchorPane persons = (AnchorPane) loader.load();
 
             rootLayout.setCenter(persons);
