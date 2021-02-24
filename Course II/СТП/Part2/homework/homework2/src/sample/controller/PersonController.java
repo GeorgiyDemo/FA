@@ -41,7 +41,7 @@ public class PersonController {
         showPersonDetails(null);
 
         personTable.getSelectionModel().selectedItemProperty().addListener(
-                ((observableValue, oldValue, newValue) -> showPersonDetails(newValue))
+            ((observableValue, oldValue, newValue) -> showPersonDetails(newValue))
         );
     }
 
@@ -81,17 +81,19 @@ public class PersonController {
     }
     public void setMainApp(Main mainApp){
         this.mainApp = mainApp;
-
         personTable.setItems(mainApp.getPersonData());
     }
 
     @FXML
     private void handleNewPerson(){
-        Person tmp = new Person();
+        Person tmp = new Person("НОВАЯ ФАМИЛИЯ","НОВОЕ ИМЯ");
+        mainApp.setPersonData(tmp);
+        //Обновление отрисовки personTable
+        initialize();
+        //Показываем только что созданную модель
+        showPersonDetails(tmp);
 
     }
-
-    //private
 
     @FXML
     private  void editPersonData(){

@@ -103,4 +103,8 @@ public class Main extends Application {
     public ObservableList<Person> getPersonData() {
         return personData;
     }
+
+    public void setPersonData(Person person){
+        personData.add(person);
+    }
 }

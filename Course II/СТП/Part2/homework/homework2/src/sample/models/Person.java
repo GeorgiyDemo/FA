@@ -18,15 +18,13 @@ public class Person {
         this(null, null);
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, String street, String city, Integer postalCode, Integer dateYear, Integer dateMonth, Integer dateDayOfMonth) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-
-        //TODO: correct fict values
-        this.street = new SimpleStringProperty("STREET");
-        this.city = new SimpleStringProperty("CITY");
-        this.postalCode = new SimpleIntegerProperty(1234);
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1990, 10, 10));
+        this.street = new SimpleStringProperty(street);
+        this.city = new SimpleStringProperty(city);
+        this.postalCode = new SimpleIntegerProperty(postalCode);
+        this.birthday = new SimpleObjectProperty<>(LocalDate.of(dateYear, dateMonth, dateDayOfMonth));
     }
 
     public String getLastName() {
