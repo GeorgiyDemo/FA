@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import sample.controller.PersonController;
 import sample.controller.PersonEditDialog;
 import sample.models.Person;
+import sample.utils.PersonGenerator;
 
 import java.io.IOException;
 
@@ -20,7 +21,9 @@ public class Main extends Application {
 
     public Main(){
         for(int i=0;i<20;i++){
-            personData.add(new Person("Имя" + i, "Фамилия" +i));
+            PersonGenerator gen = new PersonGenerator();
+            Person tmpPerson = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
+            personData.add(tmpPerson);
         }
     }
     private Stage primaryStage;

@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import sample.Main;
 import sample.models.Person;
 import sample.utils.DateUtil;
+import sample.utils.PersonGenerator;
 
 public class PersonController {
     @FXML
@@ -86,7 +87,8 @@ public class PersonController {
 
     @FXML
     private void handleNewPerson(){
-        Person tmp = new Person("НОВАЯ ФАМИЛИЯ","НОВОЕ ИМЯ");
+        PersonGenerator gen = new PersonGenerator();
+        Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
         mainApp.setPersonData(tmp);
         //Обновление отрисовки personTable
         initialize();

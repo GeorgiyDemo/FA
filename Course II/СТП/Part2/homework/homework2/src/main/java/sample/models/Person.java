@@ -15,7 +15,7 @@ public class Person {
 
 
     public Person(){
-        this(null, null);
+        this(null, null,null,null,null,null,null,null);
     }
 
     public Person(String firstName, String lastName, String street, String city, Integer postalCode, Integer dateYear, Integer dateMonth, Integer dateDayOfMonth) {
