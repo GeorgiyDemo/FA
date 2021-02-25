@@ -97,8 +97,20 @@ public class PersonController {
 
     @FXML
     private  void editPersonData(){
+
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
-         Person buf = personTable.getItems().get(selectedIndex);
-        mainApp.showPersonEditDialog(buf);
+        if(selectedIndex >=0) {
+            Person buf = personTable.getItems().get(selectedIndex);
+            mainApp.showPersonEditDialog(buf);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Пользователи не выбраны");
+            alert.setContentText("Пожалуйста выберите пользователя");
+
+            alert.showAndWait();
+        }
     }
 }
