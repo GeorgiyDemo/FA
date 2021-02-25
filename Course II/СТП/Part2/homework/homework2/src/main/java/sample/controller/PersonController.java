@@ -91,8 +91,6 @@ public class PersonController {
         Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
         mainApp.setPersonData(tmp);
         //Обновление отрисовки personTable
-        initialize();
-        //Показываем только что созданную модель
         showPersonDetails(tmp);
 
     }
