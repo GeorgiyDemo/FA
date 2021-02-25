@@ -36,8 +36,8 @@
       </GridPane>
       <ButtonBar layoutX="60.0" layoutY="260.0">
          <buttons>
-            <Button mnemonicParsing="false" text="OK" />
-            <Button mnemonicParsing="false" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#handleOk" text="OK" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
          </buttons>
       </ButtonBar>
    </children>

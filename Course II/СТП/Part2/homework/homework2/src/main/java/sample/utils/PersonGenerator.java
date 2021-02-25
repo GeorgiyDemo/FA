@@ -27,7 +27,7 @@ public class PersonGenerator {
         this.postalCode = generatorPostalCode();
         this.dateYear = 1980 + (int)(Math.random() * ((2006 - 1980) + 1));
         this.dateMonth = 1 + (int)(Math.random() * ((12 - 1) + 1));
-        this.dateDayOfMonth = 1 + (int)(Math.random() * ((31 - 1) + 1));
+        this.dateDayOfMonth = 1 + (int)(Math.random() * ((28 - 1) + 1));
     }
 
     private String generatorFirstName(){
