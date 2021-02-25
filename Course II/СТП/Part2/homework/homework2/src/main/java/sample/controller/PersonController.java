@@ -99,6 +99,8 @@ public class PersonController {
 
     @FXML
     private  void editPersonData(){
-
+        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+         Person buf = personTable.getItems().get(selectedIndex);
+        mainApp.showPersonEditDialog(buf);
     }
 }

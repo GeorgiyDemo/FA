@@ -110,4 +110,5 @@ public class Main extends Application {
     public void setPersonData(Person person){
         personData.add(person);
     }
+
 }
