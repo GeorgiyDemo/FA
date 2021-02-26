@@ -1,8 +1,5 @@
-#TODO: Переделать возвращаемое значение в Dict в gen_....
-
-import sqlalchemy
 import random
-from typing import List, Tuple, Dict
+import sqlalchemy
 from datetime import datetime
 from faker import Faker
 from sqlalchemy import (
@@ -18,16 +15,17 @@ from sqlalchemy import (
     create_engine,
     Float,
 )
-from sqlalchemy.sql import select
 from sqlalchemy import PrimaryKeyConstraint, UniqueConstraint, CheckConstraint
+from sqlalchemy.sql import select
 from sqlalchemy.sql.elements import Null
+from typing import List, Tuple, Dict
 
 
 class Util:
     """Класс утилит с доп методами"""
 
     @staticmethod
-    def gen_name(fake : Faker):
+    def gen_name(fake: Faker):
         """Генерация имени пользователя"""
         exit_flag = False
         while not exit_flag:
@@ -46,6 +44,7 @@ class Util:
         for _ in range(n):
             result += str(random.choice(range(10)))
         return result
+
 
 class Generator:
     """Генерация данных для таблиц"""
@@ -74,36 +73,37 @@ class Generator:
         email = self.fake.email()
         return {
             "customer_id": customer_id,
-            "last_name" :last_name,
-            "first_name" : first_name,
-            "middle_name" : middle_name,
-            "street" : street, 
-            "city" : city,
-            "state" : state,
-            "zip" : zip,
-            "phone" : phone,
-            "email" : email,
+            "last_name": last_name,
+            "first_name": first_name,
+            "middle_name": middle_name,
+            "street": street,
+            "city": city,
+            "state": state,
+            "zip": zip,
+            "phone": phone,
+            "email": email,
         }
 
-    #TODO
     def gen_accounts(self) -> Dict:
         account_id = Generator.ACCOUNT_ID
         Generator.ACCOUNT_ID += 1
-        type = random.randint(0,1)
+        type = random.randint(0, 1)
         description = "-"
         balance = random.uniform(1000.5, 10000.9)
         credit_line = 100000
         begin_balance = round(random.uniform(1000.0, 30000.0), 2)
-        begin_balance_timestamp = self.fake.date_time_between(start_date="-2y", end_date="now")
+        begin_balance_timestamp = self.fake.date_time_between(
+            start_date="-2y", end_date="now"
+        )
 
         return {
-            "account_id" : account_id,
-            "type" : type,
-            "description" : description,
-            "balance" : balance,
-            "credit_line" : credit_line,
-            "begin_balance" : begin_balance,
-            "begin_balance_timestamp" : begin_balance_timestamp,
+            "account_id": account_id,
+            "type": type,
+            "description": description,
+            "balance": balance,
+            "credit_line": credit_line,
+            "begin_balance": begin_balance,
+            "begin_balance_timestamp": begin_balance_timestamp,
         }
 
     def gen_account_types(self) -> Dict:
@@ -118,13 +118,8 @@ class Generator:
             description = "Аккаунт с премиальным обслуживанием и повышенным кешбеком"
         else:
             raise ValueError("типов аккаунтов должно быть не более 2!")
-        return {
-            "type_id" : type_id,
-            "name" : name,
-            "description" : description
-        }
+        return {"type_id": type_id, "name": name, "description": description}
 
-    #TODO
     def gen_transactions(self) -> Dict:
         """Генерация операций"""
 
@@ -134,28 +129,25 @@ class Generator:
         account_id = Generator.ACCOUNT_ID
         Generator.ACCOUNT_ID += 1
 
-        timestamp = self.fake.date()
-
+        timestamp = self.fake.date_time_between(start_date="-2y", end_date="now")
         amount = random.uniform(1000.5, 10000.9)
-        balance =  random.uniform(1000.5, 10000.9)
-        begin_balance = random.uniform(1000.5, 10000.9)
+        balance = random.uniform(1000.5, 10000.9)
         description = "-"
 
         return {
-            "transaction_id" : transaction_id,
-            "account_id" : account_id,
-            "timestamp" : timestamp,
-            "amount" : amount,
-            "balance" : balance,
-            "begin_balance" : begin_balance,
-            "description" : description,
+            "transaction_id": transaction_id,
+            "account_id": account_id,
+            "timestamp": timestamp,
+            "amount": amount,
+            "balance": balance,
+            "description": description,
         }
 
     def gen_customers_accounts(self, customer_id: int, account_id: int) -> Dict:
         """Генерация промежуточной таблицы"""
         return {
-            "customer_id" : customer_id,
-            "account_id" : account_id,
+            "customer_id": customer_id,
+            "account_id": account_id,
         }
 
 
@@ -228,7 +220,6 @@ class DatabaseProcessing:
         )
         self.tables_dict["transactions"] = transactions
 
-
         # Связь многие ко многим для таблиц customers и accounts
         customers_accounts = Table(
             "customers_accounts",
@@ -254,10 +245,7 @@ class DatabaseProcessing:
         result = self.connection.execute(ins)
 
         if len(result.inserted_primary_key) != 0:
-            TODO..
-
-
-        return result.inserted_primary_key[0] if len(result.inserted_primary_key) != 0 else None
+            return result.inserted_primary_key[0]
 
     def select(self, table_name: str) -> List[Tuple]:
         """Выборка данных из таблицы table_name"""
@@ -278,46 +266,50 @@ class DatabaseProcessing:
 
 
 def main():
-
     # Вставка данных
 
     database_processing = DatabaseProcessing("sqlite:///Demenchuk_bank.db")
     generator = Generator()
 
-    #Генерируем виды аккаунтов
+    # Генерируем виды аккаунтов
     for i in range(2):
         account_type = generator.gen_account_types()
         pk = database_processing.insert("account_types", account_type)
         print(f"Записали тип аккаунта с первичным ключом {pk}")
 
-
-    #генерируем пользователей
+    # Генерируем пользователей
     for i in range(100):
         customer = generator.gen_customer()
         pk = database_processing.insert("customers", customer)
         print(f"Записали пользователя с первичным ключом {pk}")
-        #Генерируем аккаунты пользователей
+        # Генерируем аккаунты пользователей
         for j in range(10):
             account = generator.gen_accounts()
             pk = database_processing.insert("accounts", account)
             print(f"Cоздали аккаунт {pk}")
-            
-            #Связываем аккаунты с пользователями
+
+            # Связываем аккаунты с пользователями
             customer_id, account_id = customer["customer_id"], account["account_id"]
-            customers_accounts = generator.gen_customers_accounts(customer_id, account_id)
+            customers_accounts = generator.gen_customers_accounts(
+                customer_id, account_id
+            )
             database_processing.insert("customers_accounts", customers_accounts)
             print(f"Связали аккаунт {account_id} с пользователем {customer_id}")
 
+            # Генерируем транзакции по аккаунтам пользователей
             for k in range(100):
                 tx = generator.gen_transactions()
                 tx_id = tx["transaction_id"]
                 database_processing.insert("transactions", tx)
-                print(f"Создали транзакацию {tx_id} для аккаунта {account_id} пользователя {customer_id}")
-            
-    
+                print(
+                    f"Создали транзакацию {tx_id} для аккаунта {account_id} пользователя {customer_id}"
+                )
+
+    # Выбираем всех клиентов из БД (пример SELECT'а)
     result = database_processing.select("customers")
     for item in result:
         print(item)
+
 
 if __name__ == "__main__":
     main()
