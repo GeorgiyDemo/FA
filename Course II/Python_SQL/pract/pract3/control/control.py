@@ -2,7 +2,7 @@
 
 import sqlalchemy
 import random
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from datetime import datetime
 from faker import Faker
 from sqlalchemy import (
@@ -53,11 +53,13 @@ class Generator:
     CUSTOMER_ID = 1
     ACCOUNT_ID = 1
     TYPE_ID = 1
+    TRANSACTION_ID = 1
+    ACCOUNT_ID = 1
 
     def __init__(self):
         self.fake = Faker("ru_RU")
 
-    def gen_customer(self) -> List:
+    def gen_customer(self) -> Dict:
         """Генерация клиента"""
 
         # Текущий ID
@@ -70,35 +72,41 @@ class Generator:
         zip = Util.get_number_range(6)
         phone = self.fake.phone_number()
         email = self.fake.email()
-        return [
-            customer_id,
-            last_name,
-            first_name,
-            middle_name,
-            street,
-            city,
-            state,
-            zip,
-            phone,
-            email,
-        ]
+        return {
+            "customer_id": customer_id,
+            "last_name" :last_name,
+            "first_name" : first_name,
+            "middle_name" : middle_name,
+            "street" : street, 
+            "city" : city,
+            "state" : state,
+            "zip" : zip,
+            "phone" : phone,
+            "email" : email,
+        }
 
     #TODO
-    def gen_accounts(self):
+    def gen_accounts(self) -> Dict:
         account_id = Generator.ACCOUNT_ID
         Generator.ACCOUNT_ID += 1
-
         type = random.randint(0,1)
-        description = Null
-        balance = None  #TODO Потом изменим
+        description = "-"
+        balance = random.uniform(1000.5, 10000.9)
         credit_line = 100000
         begin_balance = round(random.uniform(1000.0, 30000.0), 2)
         begin_balance_timestamp = self.fake.date_time_between(start_date="-2y", end_date="now")
 
-       
+        return {
+            "account_id" : account_id,
+            "type" : type,
+            "description" : description,
+            "balance" : balance,
+            "credit_line" : credit_line,
+            "begin_balance" : begin_balance,
+            "begin_balance_timestamp" : begin_balance_timestamp,
+        }
 
-    #TODO
-    def gen_account_types(self) -> List:
+    def gen_account_types(self) -> Dict:
         """Генерация типов аккаунтов"""
         type_id = Generator.TYPE_ID
         Generator.TYPE_ID += 1
@@ -110,17 +118,45 @@ class Generator:
             description = "Аккаунт с премиальным обслуживанием и повышенным кешбеком"
         else:
             raise ValueError("типов аккаунтов должно быть не более 2!")
-        return [type_id, name, description]
+        return {
+            "type_id" : type_id,
+            "name" : name,
+            "description" : description
+        }
 
     #TODO
-    def gen_transactions(self):
+    def gen_transactions(self) -> Dict:
         """Генерация операций"""
-        pass
 
-    #TODO
-    def gen_customers_accounts(self, customer_id: int, account_id: int):
+        transaction_id = Generator.TRANSACTION_ID
+        Generator.TRANSACTION_ID += 1
+
+        account_id = Generator.ACCOUNT_ID
+        Generator.ACCOUNT_ID += 1
+
+        timestamp = self.fake.date()
+
+        amount = random.uniform(1000.5, 10000.9)
+        balance =  random.uniform(1000.5, 10000.9)
+        begin_balance = random.uniform(1000.5, 10000.9)
+        description = "-"
+
+        return {
+            "transaction_id" : transaction_id,
+            "account_id" : account_id,
+            "timestamp" : timestamp,
+            "amount" : amount,
+            "balance" : balance,
+            "begin_balance" : begin_balance,
+            "description" : description,
+        }
+
+    def gen_customers_accounts(self, customer_id: int, account_id: int) -> Dict:
         """Генерация промежуточной таблицы"""
-        pass
+        return {
+            "customer_id" : customer_id,
+            "account_id" : account_id,
+        }
 
 
 class DatabaseProcessing:
@@ -154,20 +190,7 @@ class DatabaseProcessing:
             Column("email", String(255), unique=True, nullable=False),
             extend_existing=True,
         )
-        self.tables_dict["customers"] = {}
-        self.tables_dict["customers"]["table"] = customers
-        self.tables_dict["customers"]["fields"] = [
-            "customer_id",
-            "last_name",
-            "first_name",
-            "middle_name",
-            "street",
-            "city",
-            "state",
-            "zip",
-            "phone",
-            "email",
-        ]
+        self.tables_dict["customers"] = customers
 
         account_types = Table(
             "account_types",
@@ -177,10 +200,7 @@ class DatabaseProcessing:
             Column("description", String(255), nullable=True),
             extend_existing=True,
         )
-        self.tables_dict["account_types"] = {}
-        self.tables_dict["account_types"]["table"] = account_types
-        self.tables_dict["account_types"]["fields"] = ["type_id", "name", "description"]
-
+        self.tables_dict["account_types"] = account_types
         accounts = Table(
             "accounts",
             metadata,
@@ -193,17 +213,7 @@ class DatabaseProcessing:
             Column("begin_balance_timestamp", DateTime(), default=datetime.now),
             extend_existing=True,
         )
-        self.tables_dict["accounts"] = {}
-        self.tables_dict["accounts"]["table"] = accounts
-        self.tables_dict["accounts"]["fields"] = [
-            "account_id",
-            "type",
-            "description",
-            "balance",
-            "credit_line",
-            "begin_balance",
-            "begin_balance_timestamp",
-        ]
+        self.tables_dict["accounts"] = accounts
 
         transactions = Table(
             "transactions",
@@ -216,17 +226,8 @@ class DatabaseProcessing:
             Column("description", String(255), nullable=True),
             extend_existing=True,
         )
-        self.tables_dict["transactions"] = {}
-        self.tables_dict["transactions"]["table"] = accounts
-        self.tables_dict["transactions"]["fields"] = [
-            "transaction_id",
-            "account_id",
-            "timestamp",
-            "amount",
-            "balance",
-            "begin_balance",
-            "description",
-        ]
+        self.tables_dict["transactions"] = transactions
+
 
         # Связь многие ко многим для таблиц customers и accounts
         customers_accounts = Table(
@@ -236,25 +237,27 @@ class DatabaseProcessing:
             Column("account_id", ForeignKey("accounts.account_id")),
             extend_existing=True,
         )
-        self.tables_dict["customers_accounts"] = {}
-        self.tables_dict["customers_accounts"]["table"] = customers_accounts
-        self.tables_dict["customers_accounts"]["fields"] = ["customer_id", "account_id"]
+        self.tables_dict["customers_accounts"] = customers_accounts
 
         # Создали все данные
         metadata.create_all(self.engine)
 
-    def insert(self, table_name: str, values: List) -> int:
+    def insert(self, table_name: str, values: Dict) -> int:
         """Вставка данных в таблицу table_name"""
 
         if table_name not in self.tables_dict:
             raise ValueError(f"Переданной таблицы {table_name} не существует!")
 
-        current_table = self.tables_dict[table_name]["table"]
-        fields_list = self.tables_dict[table_name]["fields"]
+        current_table = self.tables_dict[table_name]
 
-        ins = current_table.insert().values(**dict(zip(fields_list, values)))
+        ins = current_table.insert().values(**values)
         result = self.connection.execute(ins)
-        return result.inserted_primary_key[0]
+
+        if len(result.inserted_primary_key) != 0:
+            TODO..
+
+
+        return result.inserted_primary_key[0] if len(result.inserted_primary_key) != 0 else None
 
     def select(self, table_name: str) -> List[Tuple]:
         """Выборка данных из таблицы table_name"""
@@ -264,7 +267,7 @@ class DatabaseProcessing:
             raise ValueError(f"Переданной таблицы {table_name} не существует!")
 
         # Текущая таблица
-        current_table = self.tables_dict[table_name]["table"]
+        current_table = self.tables_dict[table_name]
 
         # Команда для выбора
         s = select([current_table])
@@ -280,10 +283,37 @@ def main():
 
     database_processing = DatabaseProcessing("sqlite:///Demenchuk_bank.db")
     generator = Generator()
+
+    #Генерируем виды аккаунтов
+    for i in range(2):
+        account_type = generator.gen_account_types()
+        pk = database_processing.insert("account_types", account_type)
+        print(f"Записали тип аккаунта с первичным ключом {pk}")
+
+
+    #генерируем пользователей
     for i in range(100):
-        values = generator.gen_customer()
-        pk = database_processing.insert("customers", values)
-        print(f"Записали данные с первичным ключом {pk}")
+        customer = generator.gen_customer()
+        pk = database_processing.insert("customers", customer)
+        print(f"Записали пользователя с первичным ключом {pk}")
+        #Генерируем аккаунты пользователей
+        for j in range(10):
+            account = generator.gen_accounts()
+            pk = database_processing.insert("accounts", account)
+            print(f"Cоздали аккаунт {pk}")
+            
+            #Связываем аккаунты с пользователями
+            customer_id, account_id = customer["customer_id"], account["account_id"]
+            customers_accounts = generator.gen_customers_accounts(customer_id, account_id)
+            database_processing.insert("customers_accounts", customers_accounts)
+            print(f"Связали аккаунт {account_id} с пользователем {customer_id}")
+
+            for k in range(100):
+                tx = generator.gen_transactions()
+                tx_id = tx["transaction_id"]
+                database_processing.insert("transactions", tx)
+                print(f"Создали транзакацию {tx_id} для аккаунта {account_id} пользователя {customer_id}")
+            
     
     result = database_processing.select("customers")
     for item in result:
