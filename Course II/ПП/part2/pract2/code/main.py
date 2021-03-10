@@ -20,7 +20,8 @@ class Colors:
 class PathStorage:
     """Хранение информации о пути"""
 
-    def __init__(self) -> None:
+    def __init__(self, sep : str) -> None:
+        self.sep = sep
         self.__storage = ["storage"]
 
     def add_path(self, path: str) -> None:
@@ -40,20 +41,20 @@ class PathStorage:
         locale_storage = self.__storage.copy()
         locale_storage.append(file_name)
         abs_path = pathlib.Path(__file__).parent.absolute()
-        return str(abs_path) + "/" + "/".join(locale_storage)
+        return str(abs_path) + self.sep + self.sep.join(locale_storage)
 
     @property
     def path(self):
         """Возвращает текущую иерархию каталогов"""
         abs_path = pathlib.Path(__file__).parent.absolute()
-        return str(abs_path) + "/" + "/".join(self.__storage)
+        return str(abs_path) + self.sep + self.sep.join(self.__storage)
 
     @property
     def upper_path(self):
         """Возвращает директорию выше текущей"""
         abs_path = pathlib.Path(__file__).parent.absolute()
         print(self.__storage[1:])
-        return str(abs_path) + "/" + "/".join(self.__storage[:1])
+        return str(abs_path) + self.sep + self.sep.join(self.__storage[:1])
 
 
 class FileProcessing:
@@ -80,7 +81,8 @@ class FileProcessing:
         return commands_dict
 
     def __init__(self) -> None:
-        self.storage = PathStorage()
+        self.sep = os.sep
+        self.storage = PathStorage(self.sep)
 
     def mkdir(self, filename: str):
         """Создание папки (с указанием имени)"""
@@ -123,10 +125,10 @@ class FileProcessing:
         try:
             os.chdir(current_path)
         except FileNotFoundError:
-            self.storage.add_path("../")
+            self.storage.add_path(f"..{self.sep}")
             print(f"Директории {filename} не существует")
         except NotADirectoryError:
-            self.storage.add_path("../")
+            self.storage.add_path(f"..{self.sep}")
             print(f"Файл {filename} не является директорией")
 
     def ls(self):
@@ -194,14 +196,14 @@ class FileProcessing:
         path_old = self.storage.file2path(filename)
         # Копирование на уровень выше
         if ".." in path:
-            path_new = self.storage.upper_path + "/" + filename
+            path_new = self.storage.upper_path + self.sep + filename
         else:
             # Проверяем на то, что это за тип файла
             buff = self.storage.file2path(path)
 
             # Если конечный путь папка - закидываем туда файл
             if os.path.isdir(buff):
-                path_new = self.storage.file2path(path + "/" + filename)
+                path_new = self.storage.file2path(path + self.sep + filename)
             else:
                 # Значит это копирование на одном уровне
                 path_new = self.storage.file2path(path)
@@ -217,13 +219,13 @@ class FileProcessing:
         """Перемещение файлов"""
         path_old = self.storage.file2path(filename)
         if ".." in path:
-            path_new = self.storage.upper_path + "/" + filename
+            path_new = self.storage.upper_path + self.sep + filename
         else:
             # Проверяем на то, что это за тип файла
             buff = self.storage.file2path(path)
             # Если директория - закидываем туда файл
             if os.path.isdir(buff):
-                path_new = self.storage.file2path(path + "/" + filename)
+                path_new = self.storage.file2path(path + self.sep + filename)
             else:
                 # Значит это перемещение на одном уровне
                 path_new = self.storage.file2path(path)
