@@ -3,20 +3,6 @@ import shutil
 import pathlib
 from typing import Dict
 
-
-class Colors:
-    """Хранение цветов"""
-    HEADER = "\033[95m"
-    OKBLUE = "\033[94m"
-    OKCYAN = "\033[96m"
-    OKGREEN = "\033[92m"
-    WARNING = "\033[93m"
-    FAIL = "\033[91m"
-    ENDC = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
-
-
 class PathStorage:
     """Хранение информации о пути"""
 
@@ -139,9 +125,9 @@ class FileProcessing:
         filelist = os.listdir(current_path)
         for i in range(len(filelist)):
             if os.path.isdir(self.storage.file2path(filelist[i])):
-                filelist[i] = f"[dir] {Colors.OKCYAN}{filelist[i]}{Colors.ENDC}"
+                filelist[i] = f"[dir] {filelist[i]}"
             elif os.path.isfile(self.storage.file2path(filelist[i])):
-                filelist[i] = f"[file] {Colors.WARNING}{filelist[i]}{Colors.ENDC}"
+                filelist[i] = f"[file] {filelist[i]}"
 
         r = "\n".join(filelist)
         print(f"Содержимое {current_path}:\n{r}")
@@ -288,7 +274,7 @@ def main():
         else:
             commands_str = "\n".join(
                 [
-                    f"{Colors.OKGREEN}{key}{Colors.ENDC} - {value}"
+                    f"{key} - {value}"
                     for (key, value) in FileProcessing.get_commands().items()
                 ]
             )
