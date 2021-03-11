@@ -17,19 +17,22 @@ public class Person implements APIModel {
     private final IntegerProperty postalCode;
     private final ObjectProperty<LocalDate> birthday;
 
+    private final IntegerProperty id;
+
 
     public Person(){
         this(null, null,null,null,null,null,null,null);
     }
 
-    //Перегрузка, чтоб с JSON было удобно извлекать
-    public Person(String firstName, String lastName, String street, String city, Integer postalCode, LocalDate date) {
+    //Перегрузка, чтоб с JSON было удобно извлекать, уже указывается определенный id
+    public Person(String firstName, String lastName, String street, String city, Integer postalCode, LocalDate date, Integer id) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.street = new SimpleStringProperty(street);
         this.city = new SimpleStringProperty(city);
         this.postalCode = new SimpleIntegerProperty(postalCode);
         this.birthday = new SimpleObjectProperty<>(date);
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public Person(String firstName, String lastName, String street, String city, Integer postalCode, Integer dateYear, Integer dateMonth, Integer dateDayOfMonth) {
@@ -39,6 +42,7 @@ public class Person implements APIModel {
         this.city = new SimpleStringProperty(city);
         this.postalCode = new SimpleIntegerProperty(postalCode);
         this.birthday = new SimpleObjectProperty<>(LocalDate.of(dateYear, dateMonth, dateDayOfMonth));
+        this.id = null;
     }
 
     public String getLastName() {

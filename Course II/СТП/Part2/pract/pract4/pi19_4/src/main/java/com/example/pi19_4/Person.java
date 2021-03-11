@@ -9,6 +9,10 @@ public class Person {
     private String date;
     private String city;
 
+    public String getCity() {
+        return city;
+    }
+
     public String getDate() {
         return date;
     }
@@ -55,5 +59,9 @@ public class Person {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

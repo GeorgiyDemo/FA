@@ -54,8 +54,9 @@ public class API {
             String city = currentPerson.get("city").getAsString();
             Integer postalCode = currentPerson.get("postalCode").getAsInt();
             LocalDate date = LocalDate.parse(currentPerson.get("date").getAsString());
+            Integer id = currentPerson.get("id").getAsInt();
 
-            Person newPerson = new Person(firstName,lastName,street,city,postalCode, date);
+            Person newPerson = new Person(firstName,lastName,street,city,postalCode, date, id);
             result.add(newPerson);
         }
         return result;

@@ -24,17 +24,16 @@ public class Main extends Application {
 
     public Main(){
         myApiSession = new API();
+        
         //Генерируем новых персон (если на беке нет данных)
-
-        for(int i=0;i<5;i++){
+        for(int i=0;i<3;i++){
             PersonGenerator gen = new PersonGenerator();
             Person tmpPerson = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
             myApiSession.CreatePerson(tmpPerson);
             System.out.println(tmpPerson.toJson());
         }
 
-        //Читаем коллекцию персон с бека
-        personData.addAll(myApiSession.GetPerson());
+        this.UpdateTable();
 
     }
     private Stage primaryStage;
@@ -48,6 +47,13 @@ public class Main extends Application {
 
     public BorderPane getRootLayout() {
         return rootLayout;
+    }
+
+    //Обновление таблицы Table
+    public void UpdateTable(){
+        personData.clear();
+        //Читаем коллекцию персон с бека и обновляем ее
+        personData.addAll(myApiSession.GetPerson());
     }
 
     public void initRootLayout(){
@@ -118,8 +124,7 @@ public class Main extends Application {
         return personData;
     }
 
-    public void setPersonData(Person person){
-        personData.add(person);
+    public API getApiSession() {
+        return myApiSession;
     }
-
 }

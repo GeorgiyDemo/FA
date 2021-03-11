@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import sample.Main;
 import sample.models.Person;
+import sample.utils.API;
 import sample.utils.DateUtil;
 import sample.utils.PersonGenerator;
 
@@ -32,6 +33,7 @@ public class PersonController {
     private Label postalCodeLabel;
 
     private Main mainApp;
+    private API myApiSession;
 
     public PersonController(){}
     @FXML
@@ -82,6 +84,7 @@ public class PersonController {
     }
     public void setMainApp(Main mainApp){
         this.mainApp = mainApp;
+        this.myApiSession = mainApp.getApiSession();
         personTable.setItems(mainApp.getPersonData());
     }
 
@@ -89,9 +92,10 @@ public class PersonController {
     private void handleNewPerson(){
         PersonGenerator gen = new PersonGenerator();
         Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
-        mainApp.setPersonData(tmp);
-        //Обновление отрисовки personTable
-        showPersonDetails(tmp);
+        //Добавляем персону в СУБД
+        myApiSession.CreatePerson(tmp);
+        //Обновление данных в таблице
+        mainApp.UpdateTable();
 
     }
 
