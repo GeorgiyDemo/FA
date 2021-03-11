@@ -21,27 +21,27 @@ public class Person implements APIModel {
 
 
     public Person(){
-        this(null, null,null,null,null,null,null,null);
+        this(null, null,null,null,null,null);
     }
 
     //Перегрузка, чтоб с JSON было удобно извлекать, уже указывается определенный id
-    public Person(String firstName, String lastName, String street, String city, Integer postalCode, LocalDate date, Integer id) {
+    public Person(String firstName, String lastName, String street, String city, Integer postalCode, LocalDate birthday, Integer id) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.street = new SimpleStringProperty(street);
         this.city = new SimpleStringProperty(city);
         this.postalCode = new SimpleIntegerProperty(postalCode);
-        this.birthday = new SimpleObjectProperty<>(date);
+        this.birthday = new SimpleObjectProperty<>(birthday);
         this.id = new SimpleIntegerProperty(id);
     }
 
-    public Person(String firstName, String lastName, String street, String city, Integer postalCode, Integer dateYear, Integer dateMonth, Integer dateDayOfMonth) {
+    public Person(String firstName, String lastName, String street, String city, Integer postalCode, LocalDate birthday) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.street = new SimpleStringProperty(street);
         this.city = new SimpleStringProperty(city);
         this.postalCode = new SimpleIntegerProperty(postalCode);
-        this.birthday = new SimpleObjectProperty<>(LocalDate.of(dateYear, dateMonth, dateDayOfMonth));
+        this.birthday = new SimpleObjectProperty<>(birthday);
         this.id = null;
     }
 
@@ -54,7 +54,7 @@ public class Person implements APIModel {
         map.put("street", street.get());
         map.put("postalCode", String.valueOf(postalCode.get()));
         map.put("city", city.get());
-        map.put("date", DateUtil.format(birthday.get()));
+        map.put("birthday", DateUtil.format(birthday.get()));
 
         Gson gson = new Gson();
         return gson.toJson(map);
@@ -129,6 +129,7 @@ public class Person implements APIModel {
     public void setBirthday(LocalDate birthday){
         this.birthday.set(birthday);
     }
+
 
     public int getId() {
         return id.get();

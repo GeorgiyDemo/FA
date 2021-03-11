@@ -95,7 +95,7 @@ public class PersonController {
     @FXML
     private void handleNewPerson(){
         PersonGenerator gen = new PersonGenerator();
-        Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
+        Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDate());
         //Добавляем персону в СУБД
         myApiSession.CreatePerson(tmp);
         //Обновление данных в таблице

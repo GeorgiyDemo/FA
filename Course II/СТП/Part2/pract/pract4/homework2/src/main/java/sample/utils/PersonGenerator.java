@@ -6,6 +6,10 @@ package sample.utils;
 
 import com.github.javafaker.Faker;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class PersonGenerator {
 
     Faker faker = new Faker();
@@ -14,9 +18,7 @@ public class PersonGenerator {
     private  String street;
     private  String city;
     private Integer postalCode;
-    private  Integer dateYear;
-    private Integer dateMonth;
-    private Integer dateDayOfMonth;
+    private LocalDate date;
 
     public PersonGenerator(){
 
@@ -25,9 +27,16 @@ public class PersonGenerator {
         this.street = generatorStreet();
         this.city = generatorCity();
         this.postalCode = generatorPostalCode();
-        this.dateYear = 1980 + (int)(Math.random() * ((2006 - 1980) + 1));
-        this.dateMonth = 1 + (int)(Math.random() * ((12 - 1) + 1));
-        this.dateDayOfMonth = 1 + (int)(Math.random() * ((28 - 1) + 1));
+        this.date = generatorDate();
+    }
+
+    private LocalDate generatorDate(){
+        return convertToLocalDateViaInstant(faker.date().birthday());
+    }
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
     private String generatorFirstName(){
@@ -69,15 +78,7 @@ public class PersonGenerator {
         return postalCode;
     }
 
-    public Integer getDateYear() {
-        return dateYear;
-    }
-
-    public Integer getDateMonth() {
-        return dateMonth;
-    }
-
-    public Integer getDateDayOfMonth() {
-        return dateDayOfMonth;
+    public LocalDate getDate() {
+        return date;
     }
 }

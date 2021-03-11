@@ -20,7 +20,6 @@ public class RestApi {
      */
     public void CreatePerson(Person person){
         HttpClass.PostRequest(ServerURL+"/persons",person.toJson());
-
     }
 
     /**
@@ -52,7 +51,7 @@ public class RestApi {
             String street = currentPerson.get("street").getAsString();
             String city = currentPerson.get("city").getAsString();
             Integer postalCode = currentPerson.get("postalCode").getAsInt();
-            LocalDate date = LocalDate.parse(currentPerson.get("date").getAsString());
+            LocalDate date = LocalDate.parse(currentPerson.get("birthday").getAsString());
             Integer id = currentPerson.get("id").getAsInt();
 
             Person newPerson = new Person(firstName,lastName,street,city,postalCode, date, id);
@@ -67,7 +66,9 @@ public class RestApi {
      * @param person
      */
     public void updatePerson(Person person){
-
+        Integer id = person.getId();
+        String jsonString = person.toJson();
+        HttpClass.PutRequest(ServerURL+"/persons/"+id, jsonString);
     }
 
     /**

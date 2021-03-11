@@ -31,7 +31,7 @@ public class Main extends Application {
         //Генерируем новых персон (если на беке нет данных)
         for(int i=0;i<3;i++){
             PersonGenerator gen = new PersonGenerator();
-            Person tmpPerson = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDateYear(), gen.getDateMonth(), gen.getDateDayOfMonth());
+            Person tmpPerson = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDate());
             myApiSession.CreatePerson(tmpPerson);
             System.out.println(tmpPerson.toJson());
         }
@@ -83,7 +83,7 @@ public class Main extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
             PersonEditDialog controller = loader.getController();
-            controller.setDialogStage(dialogStage);
+            controller.setDialogStage(dialogStage, this);
             controller.setPerson(person);
             dialogStage.showAndWait();;
             return controller.isOkClicked();

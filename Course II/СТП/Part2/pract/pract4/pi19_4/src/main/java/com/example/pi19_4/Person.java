@@ -6,15 +6,15 @@ public class Person {
     private String lastName;
     private String street;
     private String postalCode;
-    private String date;
+    private String birthday;
     private String city;
 
     public String getCity() {
         return city;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirthday() {
+        return birthday;
     }
 
     public String getPostalCode() {
@@ -53,8 +53,8 @@ public class Person {
         this.street = street;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public void setPostalCode(String postalCode) {
