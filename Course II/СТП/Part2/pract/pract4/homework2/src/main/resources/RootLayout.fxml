@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar styleClass="background" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu>
+          </Menu>
+
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
