@@ -45,6 +45,21 @@ public class Person implements APIModel {
         this.id = null;
     }
 
+    @Override
+    public String toJson() {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("firstName", firstName.get());
+        map.put("lastName", lastName.get());
+        map.put("street", street.get());
+        map.put("postalCode", String.valueOf(postalCode.get()));
+        map.put("city", city.get());
+        map.put("date", DateUtil.format(birthday.get()));
+
+        Gson gson = new Gson();
+        return gson.toJson(map);
+    }
+
     public String getLastName() {
         return lastName.get();
     }
@@ -115,18 +130,7 @@ public class Person implements APIModel {
         this.birthday.set(birthday);
     }
 
-    @Override
-    public String toJson() {
-
-        Map<String, String> map = new HashMap<>();
-        map.put("firstName", firstName.get());
-        map.put("lastName", lastName.get());
-        map.put("street", street.get());
-        map.put("postalCode", String.valueOf(postalCode.get()));
-        map.put("city", city.get());
-        map.put("date", DateUtil.format(birthday.get()));
-
-        Gson gson = new Gson();
-        return gson.toJson(map);
+    public int getId() {
+        return id.get();
     }
 }

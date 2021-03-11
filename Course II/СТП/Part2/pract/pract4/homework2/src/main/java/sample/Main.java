@@ -13,18 +13,21 @@ import javafx.stage.Stage;
 import sample.controller.PersonController;
 import sample.controller.PersonEditDialog;
 import sample.models.Person;
-import sample.utils.API;
 import sample.utils.PersonGenerator;
+import sample.utils.RestApi;
 
 import java.io.IOException;
 
 public class Main extends Application {
 
-    private API myApiSession;
+    private RestApi myApiSession;
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+    private ObservableList<Person> personData = FXCollections.observableArrayList();
 
     public Main(){
-        myApiSession = new API();
-        
+        myApiSession = new RestApi();
+
         //Генерируем новых персон (если на беке нет данных)
         for(int i=0;i<3;i++){
             PersonGenerator gen = new PersonGenerator();
@@ -32,30 +35,21 @@ public class Main extends Application {
             myApiSession.CreatePerson(tmpPerson);
             System.out.println(tmpPerson.toJson());
         }
-
         this.UpdateTable();
-
-    }
-    private Stage primaryStage;
-    private BorderPane rootLayout;
-
-    private ObservableList<Person> personData = FXCollections.observableArrayList();
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
     }
 
-    public BorderPane getRootLayout() {
-        return rootLayout;
-    }
-
-    //Обновление таблицы Table
+    /**
+     * Обновление таблицы с актуальными данными с бека
+     */
     public void UpdateTable(){
         personData.clear();
         //Читаем коллекцию персон с бека и обновляем ее
         personData.addAll(myApiSession.GetPerson());
     }
 
+    /**
+     * Инициализация данных
+     */
     public void initRootLayout(){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -71,6 +65,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Показывает окно с изменениями данных пользователей
+     * @param person
+     * @return
+     */
     public boolean showPersonEditDialog(Person person){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -93,6 +92,10 @@ public class Main extends Application {
             return false;
         }
     }
+
+    /**
+     * Показывает персон
+     */
     public void showPersons(){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -110,12 +113,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("ADDRESS");
+        this.primaryStage.setTitle("ПИ19-4 Деменчук");
         initRootLayout();
         showPersons();
     }
 
-
+    /**
+     * Точка входа в прогу
+     * @param args
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -124,7 +130,15 @@ public class Main extends Application {
         return personData;
     }
 
-    public API getApiSession() {
+    public RestApi getApiSession() {
         return myApiSession;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public BorderPane getRootLayout() {
+        return rootLayout;
     }
 }

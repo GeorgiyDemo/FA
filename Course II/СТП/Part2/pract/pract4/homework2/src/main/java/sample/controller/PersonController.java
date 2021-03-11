@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import sample.Main;
 import sample.models.Person;
-import sample.utils.API;
+import sample.utils.RestApi;
 import sample.utils.DateUtil;
 import sample.utils.PersonGenerator;
 
@@ -33,7 +33,7 @@ public class PersonController {
     private Label postalCodeLabel;
 
     private Main mainApp;
-    private API myApiSession;
+    private RestApi myApiSession;
 
     public PersonController(){}
     @FXML
@@ -52,7 +52,11 @@ public class PersonController {
     private void handleDeleteAction(){
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >=0){
-            personTable.getItems().remove(selectedIndex);
+            Person currentPerson = personTable.getItems().get(selectedIndex);
+            if (myApiSession.deletePerson(currentPerson)){
+                personTable.getItems().remove(selectedIndex);
+            }
+
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());

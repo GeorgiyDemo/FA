@@ -1,7 +1,6 @@
 package sample.utils;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import sample.models.Person;
@@ -10,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class API {
+public class RestApi {
 
     private static final String ServerURL = "http://127.0.0.1:8080";
 
@@ -20,7 +19,7 @@ public class API {
      * @param person
      */
     public void CreatePerson(Person person){
-        HttpAPIClass.PostRequest(ServerURL+"/persons",person.toJson());
+        HttpClass.PostRequest(ServerURL+"/persons",person.toJson());
 
     }
 
@@ -41,7 +40,7 @@ public class API {
      */
     public List<Person> GetPerson(){
         List<Person> result = new ArrayList<>();
-        String buffer = HttpAPIClass.GetRequest(ServerURL+"/persons");
+        String buffer = HttpClass.GetRequest(ServerURL+"/persons");
 
         JsonArray jsonResult = JsonParser.parseString(buffer).getAsJsonArray();
 
@@ -76,6 +75,10 @@ public class API {
      * Использует DELETE
      * @param person
      */
-    public void removePerson(Person person){
+    public boolean deletePerson(Person person){
+        Integer id = person.getId();
+        if (id == null)
+            return false;
+        return HttpClass.DeleteRequest(ServerURL+"/persons/"+id);
     }
 }

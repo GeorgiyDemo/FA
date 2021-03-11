@@ -6,7 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-public class HttpAPIClass {
+public class HttpClass {
     public static String GetRequest(String urlString){
         try {
             URL url = new URL(urlString);
@@ -58,6 +58,25 @@ public class HttpAPIClass {
         catch (IOException e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static boolean DeleteRequest(String urlString){
+        try {
+
+            URL url = new URL(urlString);
+            URLConnection conn = url.openConnection();
+            HttpURLConnection http = (HttpURLConnection) conn;
+
+            http.setRequestMethod("DELETE");
+            http.setDoOutput(true);
+            http.connect();
+
+            http.getResponseCode();
+            return true;
+        }
+        catch (IOException e){
+            return false;
         }
     }
 

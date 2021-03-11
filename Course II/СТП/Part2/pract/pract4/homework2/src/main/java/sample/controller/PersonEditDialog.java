@@ -35,6 +35,10 @@ public class PersonEditDialog {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Выставление данных для персоны
+     * @param person
+     */
     public void setPerson(Person person){
         this.person = person;
 
