@@ -13,14 +13,14 @@ import java.util.Date;
 public class PersonGenerator {
 
     Faker faker = new Faker();
-    private  String firstName;
-    private  String lastName;
-    private  String street;
-    private  String city;
+    private String firstName;
+    private String lastName;
+    private String street;
+    private String city;
     private Integer postalCode;
     private LocalDate date;
 
-    public PersonGenerator(){
+    public PersonGenerator() {
 
         this.firstName = generatorFirstName();
         this.lastName = generatorLastName();
@@ -30,32 +30,34 @@ public class PersonGenerator {
         this.date = generatorDate();
     }
 
-    private LocalDate generatorDate(){
+    private LocalDate generatorDate() {
         return convertToLocalDateViaInstant(faker.date().birthday());
     }
+
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
     }
 
-    private String generatorFirstName(){
+    private String generatorFirstName() {
         return faker.name().firstName();
     }
-    private String generatorLastName(){
+
+    private String generatorLastName() {
         return faker.name().lastName();
     }
 
-    private String generatorStreet(){
+    private String generatorStreet() {
         return faker.address().streetAddress();
     }
 
-    private String generatorCity(){
+    private String generatorCity() {
         return faker.address().city();
     }
 
-    private Integer generatorPostalCode(){
-        return 100000 + (int)(Math.random() * ((999999 - 100000) + 1));
+    private Integer generatorPostalCode() {
+        return 100000 + (int) (Math.random() * ((999999 - 100000) + 1));
     }
 
     public String getFirstName() {

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -25,11 +24,11 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<Person> personData = FXCollections.observableArrayList();
 
-    public Main(){
+    public Main() {
         myApiSession = new RestApi();
 
         //Генерируем новых персон (если на беке нет данных)
-        for(int i=0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             PersonGenerator gen = new PersonGenerator();
             Person tmpPerson = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDate());
             myApiSession.CreatePerson(tmpPerson);
@@ -39,9 +38,18 @@ public class Main extends Application {
     }
 
     /**
+     * Точка входа в прогу
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
      * Обновление таблицы с актуальными данными с бека
      */
-    public void UpdateTable(){
+    public void UpdateTable() {
         personData.clear();
         //Читаем коллекцию персон с бека и обновляем ее
         personData.addAll(myApiSession.GetPerson());
@@ -50,28 +58,29 @@ public class Main extends Application {
     /**
      * Инициализация данных
      */
-    public void initRootLayout(){
-        try{
+    public void initRootLayout() {
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(rootLayout);
-            primaryStage .setScene(scene);
+            primaryStage.setScene(scene);
             primaryStage.show();
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Показывает окно с изменениями данных пользователей
+     *
      * @param person
      * @return
      */
-    public boolean showPersonEditDialog(Person person){
-        try{
+    public boolean showPersonEditDialog(Person person) {
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/personEditDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
@@ -85,9 +94,10 @@ public class Main extends Application {
             PersonEditDialog controller = loader.getController();
             controller.setDialogStage(dialogStage, this);
             controller.setPerson(person);
-            dialogStage.showAndWait();;
+            dialogStage.showAndWait();
+            ;
             return controller.isOkClicked();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
@@ -96,8 +106,8 @@ public class Main extends Application {
     /**
      * Показывает персон
      */
-    public void showPersons(){
-        try{
+    public void showPersons() {
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/main.fxml"));
             AnchorPane persons = (AnchorPane) loader.load();
@@ -106,24 +116,17 @@ public class Main extends Application {
 
             PersonController controller = loader.getController();
             controller.setMainApp(this);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("ПИ19-4 Деменчук");
         initRootLayout();
         showPersons();
-    }
-
-    /**
-     * Точка входа в прогу
-     * @param args
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 
     public ObservableList<Person> getPersonData() {

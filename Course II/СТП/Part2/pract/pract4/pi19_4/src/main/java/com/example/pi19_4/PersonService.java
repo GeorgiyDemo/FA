@@ -12,5 +12,5 @@ public interface PersonService {
 
     boolean update(Person person, int id);
 
-    boolean delete (int id);
+    boolean delete(int id);
 }

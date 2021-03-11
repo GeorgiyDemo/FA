@@ -12,43 +12,44 @@ public class PersonController {
     private final PersonService personService;
 
     @Autowired
-    public PersonController(PersonService personService){
+    public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
     @PostMapping(value = "/persons")
-    public ResponseEntity<?> create(@RequestBody Person person){
+    public ResponseEntity<?> create(@RequestBody Person person) {
         Person newPerson = personService.create(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/persons")
-    public ResponseEntity<List<Person>> read(){
+    public ResponseEntity<List<Person>> read() {
         final List<Person> persons = personService.readAll();
         return persons != null && !persons.isEmpty() ? new ResponseEntity<>(persons, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
     @GetMapping(value = "/persons/{id}")
-    public  ResponseEntity<Person> read(@PathVariable(name="id") int id){
+    public ResponseEntity<Person> read(@PathVariable(name = "id") int id) {
         final Person person = personService.read(id);
-        return  person != null ? new ResponseEntity<>(person, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return person != null ? new ResponseEntity<>(person, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
      * Обновление пользователей
+     *
      * @param id
      * @param newPerson
      * @return
      */
     @PutMapping(value = "/persons/{id}")
-    public ResponseEntity<Person> put(@PathVariable(name="id") int id, @RequestBody Person newPerson){
+    public ResponseEntity<Person> put(@PathVariable(name = "id") int id, @RequestBody Person newPerson) {
 
         //Если успешно обновлили данные
-        if (personService.update(newPerson, id)){
+        if (personService.update(newPerson, id)) {
             //id персоны чтоб отдавался
             Person newPersonWithId = personService.read(id);
-            return  new ResponseEntity<>(newPersonWithId, HttpStatus.OK);
+            return new ResponseEntity<>(newPersonWithId, HttpStatus.OK);
         }
         //Если не получилось обновить данные
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,11 +57,12 @@ public class PersonController {
 
     /**
      * Удаление пользователей
+     *
      * @param id
      * @return
      */
     @DeleteMapping(value = "/persons/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name="id") int id){
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         final Person person = personService.read(id);
         //Если есть такой пользователь
         if (person != null) {

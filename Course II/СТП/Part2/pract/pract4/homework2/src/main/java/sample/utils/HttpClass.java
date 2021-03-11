@@ -7,7 +7,7 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 public class HttpClass {
-    public static String GetRequest(String urlString){
+    public static String GetRequest(String urlString) {
         try {
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
@@ -20,19 +20,18 @@ public class HttpClass {
                 sb.append(inputLine);
             }
             return sb.toString();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static String PostRequest(String urlString, String jsonString){
+    public static String PostRequest(String urlString, String jsonString) {
 
         try {
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
-            HttpURLConnection http = (HttpURLConnection)conn;
+            HttpURLConnection http = (HttpURLConnection) conn;
 
             http.setRequestMethod("POST");
             http.setDoOutput(true);
@@ -42,7 +41,7 @@ public class HttpClass {
             http.setFixedLengthStreamingMode(length);
             http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             http.connect();
-            try(OutputStream os = http.getOutputStream()) {
+            try (OutputStream os = http.getOutputStream()) {
                 os.write(out);
             }
 
@@ -54,14 +53,13 @@ public class HttpClass {
                 sb.append(inputLine);
             }
             return sb.toString();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static boolean DeleteRequest(String urlString){
+    public static boolean DeleteRequest(String urlString) {
         try {
 
             URL url = new URL(urlString);
@@ -74,17 +72,16 @@ public class HttpClass {
 
             http.getResponseCode();
             return true;
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             return false;
         }
     }
 
-    public static String PutRequest(String urlString, String jsonString){
+    public static String PutRequest(String urlString, String jsonString) {
         try {
             URL url = new URL(urlString);
             URLConnection conn = url.openConnection();
-            HttpURLConnection http = (HttpURLConnection)conn;
+            HttpURLConnection http = (HttpURLConnection) conn;
 
             http.setRequestMethod("PUT");
             http.setDoOutput(true);
@@ -94,7 +91,7 @@ public class HttpClass {
             http.setFixedLengthStreamingMode(length);
             http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             http.connect();
-            try(OutputStream os = http.getOutputStream()) {
+            try (OutputStream os = http.getOutputStream()) {
                 os.write(out);
             }
 
@@ -106,8 +103,7 @@ public class HttpClass {
                 sb.append(inputLine);
             }
             return sb.toString();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }

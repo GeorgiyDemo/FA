@@ -16,10 +16,11 @@ public class RestApi {
     /**
      * Создание персоны
      * Использет POST
+     *
      * @param person
      */
-    public void CreatePerson(Person person){
-        HttpClass.PostRequest(ServerURL+"/persons",person.toJson());
+    public void CreatePerson(Person person) {
+        HttpClass.PostRequest(ServerURL + "/persons", person.toJson());
     }
 
     /**
@@ -35,11 +36,12 @@ public class RestApi {
     /**
      * Получение всех персон
      * Использет GET
+     *
      * @return
      */
-    public List<Person> GetPerson(){
+    public List<Person> GetPerson() {
         List<Person> result = new ArrayList<>();
-        String buffer = HttpClass.GetRequest(ServerURL+"/persons");
+        String buffer = HttpClass.GetRequest(ServerURL + "/persons");
 
         JsonArray jsonResult = JsonParser.parseString(buffer).getAsJsonArray();
 
@@ -54,7 +56,7 @@ public class RestApi {
             LocalDate date = LocalDate.parse(currentPerson.get("birthday").getAsString());
             Integer id = currentPerson.get("id").getAsInt();
 
-            Person newPerson = new Person(firstName,lastName,street,city,postalCode, date, id);
+            Person newPerson = new Person(firstName, lastName, street, city, postalCode, date, id);
             result.add(newPerson);
         }
         return result;
@@ -63,23 +65,25 @@ public class RestApi {
     /**
      * Обновление персоны
      * Использует PUT
+     *
      * @param person
      */
-    public void updatePerson(Person person){
+    public void updatePerson(Person person) {
         Integer id = person.getId();
         String jsonString = person.toJson();
-        HttpClass.PutRequest(ServerURL+"/persons/"+id, jsonString);
+        HttpClass.PutRequest(ServerURL + "/persons/" + id, jsonString);
     }
 
     /**
      * Удаление персоны.
      * Использует DELETE
+     *
      * @param person
      */
-    public boolean deletePerson(Person person){
+    public boolean deletePerson(Person person) {
         Integer id = person.getId();
         if (id == null)
             return false;
-        return HttpClass.DeleteRequest(ServerURL+"/persons/"+id);
+        return HttpClass.DeleteRequest(ServerURL + "/persons/" + id);
     }
 }

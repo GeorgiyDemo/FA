@@ -9,17 +9,17 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class PersonServiceImpl implements  PersonService{
+public class PersonServiceImpl implements PersonService {
 
-    private  static Map<Integer, Person> REPOSITORY_MAP = new HashMap<>();
+    private static final AtomicInteger PERSON_ID = new AtomicInteger();
+    private static Map<Integer, Person> REPOSITORY_MAP = new HashMap<>();
 
-    private  static  final AtomicInteger PERSON_ID = new AtomicInteger();
     @Override
     public Person create(Person person) {
 
-        final  int personId = PERSON_ID.incrementAndGet();
+        final int personId = PERSON_ID.incrementAndGet();
         person.setId(personId);
-        REPOSITORY_MAP.put(personId,person);
+        REPOSITORY_MAP.put(personId, person);
         return person;
     }
 
@@ -35,7 +35,7 @@ public class PersonServiceImpl implements  PersonService{
 
     @Override
     public boolean update(Person person, int id) {
-        if (REPOSITORY_MAP.containsKey(id)){
+        if (REPOSITORY_MAP.containsKey(id)) {
             person.setId(id);
             REPOSITORY_MAP.put(id, person);
             return true;
@@ -45,6 +45,6 @@ public class PersonServiceImpl implements  PersonService{
 
     @Override
     public boolean delete(int id) {
-        return  REPOSITORY_MAP.remove(id) != null;
+        return REPOSITORY_MAP.remove(id) != null;
     }
 }

@@ -3,7 +3,6 @@ package sample.utils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 public class DateUtil {
 
@@ -11,22 +10,22 @@ public class DateUtil {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
-    public static String format(LocalDate date){
-        if(date == null){
+    public static String format(LocalDate date) {
+        if (date == null) {
             return null;
         }
         return DATE_TIME_FORMATTER.format(date);
     }
 
-    public static LocalDate parse(String dateString){
-        try{
+    public static LocalDate parse(String dateString) {
+        try {
             return DATE_TIME_FORMATTER.parse(dateString, LocalDate::from);
-        }catch(DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return null;
         }
     }
 
-    public static boolean isValid(String dateString){
+    public static boolean isValid(String dateString) {
         return DateUtil.parse(dateString) != null;
     }
 }

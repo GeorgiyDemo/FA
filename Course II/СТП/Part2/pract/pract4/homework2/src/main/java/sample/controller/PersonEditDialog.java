@@ -9,8 +9,6 @@ import sample.models.Person;
 import sample.utils.DateUtil;
 import sample.utils.RestApi;
 
-import java.util.Date;
-
 public class PersonEditDialog {
     @FXML
     private TextField firstNameField;
@@ -39,9 +37,10 @@ public class PersonEditDialog {
 
     /**
      * Выставление данных для персоны
+     *
      * @param person
      */
-    public void setPerson(Person person){
+    public void setPerson(Person person) {
         this.person = person;
 
         firstNameField.setText(person.getFirstName());
@@ -54,18 +53,18 @@ public class PersonEditDialog {
 
     }
 
-    public boolean isOkClicked(){
+    public boolean isOkClicked() {
         return okClicked;
     }
 
     @FXML
-    private void handleCancel(){
+    private void handleCancel() {
         dialogStage.close();
     }
 
     @FXML
-    private void handleOk(){
-        if(isInputValid()){
+    private void handleOk() {
+        if (isInputValid()) {
 
             //Выставялем новые данные для персоны
             person.setCity(cityField.getText());
@@ -84,41 +83,41 @@ public class PersonEditDialog {
         }
     }
 
-    private boolean isInputValid(){
+    private boolean isInputValid() {
         String errorMessage = "";
-        if(firstNameField.getText() == null || firstNameField.getText().length() == 0){
+        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
             errorMessage += "Не валидно имя\n";
         }
-        if(lastNameField.getText() == null || lastNameField.getText().length() == 0){
+        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
             errorMessage += "Не валидна фамилия\n";
         }
-        if(streetField.getText() == null || streetField.getText().length() == 0){
+        if (streetField.getText() == null || streetField.getText().length() == 0) {
             errorMessage += "Не валидна улица\n";
         }
-        if(cityField.getText() == null || cityField.getText().length() == 0){
+        if (cityField.getText() == null || cityField.getText().length() == 0) {
             errorMessage += "Не валиден город\n";
         }
 
-        if(birthdayField.getText() == null || birthdayField.getText().length() == 0){
+        if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
             errorMessage += "Не введена дата рождения\n";
-        }else{
-            if(!DateUtil.isValid(birthdayField.getText())){
+        } else {
+            if (!DateUtil.isValid(birthdayField.getText())) {
                 errorMessage += "Введите дату в формате dd.MM.yyyy\n";
             }
         }
-        if(postalCodeField.getText() == null || postalCodeField.getText().length() == 0){
+        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
             errorMessage += "Не введен почтовый индекс\n";
-        }else{
-            try{
+        } else {
+            try {
                 Integer.parseInt(postalCodeField.getText());
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 errorMessage += "Почтовый индекс состоит из цифр";
             }
         }
 
-        if(errorMessage.length() == 0){
+        if (errorMessage.length() == 0) {
             return true;
-        }else{
+        } else {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(dialogStage);

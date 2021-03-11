@@ -20,8 +20,8 @@ public class Person implements APIModel {
     private final IntegerProperty id;
 
 
-    public Person(){
-        this(null, null,null,null,null,null);
+    public Person() {
+        this(null, null, null, null, null, null);
     }
 
     //Перегрузка, чтоб с JSON было удобно извлекать, уже указывается определенный id
@@ -64,12 +64,20 @@ public class Person implements APIModel {
         return lastName.get();
     }
 
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
+
     public StringProperty getLastNameProperty() {
         return lastName;
     }
 
     public String getFirstName() {
         return firstName.get();
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
     }
 
     public StringProperty getFirstNameProperty() {
@@ -80,12 +88,20 @@ public class Person implements APIModel {
         return street.get();
     }
 
+    public void setStreet(String street) {
+        this.street.set(street);
+    }
+
     public StringProperty getStreetProperty() {
         return street;
     }
 
     public int getPostalCode() {
         return postalCode.get();
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode.set(Integer.parseInt(postalCode));
     }
 
     public IntegerProperty getPostalCodeProperty() {
@@ -96,6 +112,10 @@ public class Person implements APIModel {
         return city.get();
     }
 
+    public void setCity(String city) {
+        this.city.set(city);
+    }
+
     public StringProperty getCityProperty() {
         return city;
     }
@@ -103,33 +123,14 @@ public class Person implements APIModel {
     public LocalDate getBirthday() {
         return birthday.get();
     }
-    public ObjectProperty<LocalDate> getBirthdayProperty() {
-        return birthday;
-    }
 
-    public void setFirstName(String firstName){
-        this.firstName.set(firstName);
-    }
-
-    public void setLastName(String lastName){
-        this.lastName.set(lastName);
-    }
-
-    public void setCity(String city){
-        this.city.set(city);
-    }
-
-    public void setStreet(String street){
-        this.street.set(street);
-    }
-    public void setPostalCode(String postalCode){
-        this.postalCode.set(Integer.parseInt(postalCode));
-    }
-
-    public void setBirthday(LocalDate birthday){
+    public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
     }
 
+    public ObjectProperty<LocalDate> getBirthdayProperty() {
+        return birthday;
+    }
 
     public int getId() {
         return id.get();

@@ -7,9 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import sample.Main;
 import sample.models.Person;
-import sample.utils.RestApi;
 import sample.utils.DateUtil;
 import sample.utils.PersonGenerator;
+import sample.utils.RestApi;
 
 public class PersonController {
     @FXML
@@ -35,29 +35,31 @@ public class PersonController {
     private Main mainApp;
     private RestApi myApiSession;
 
-    public PersonController(){}
+    public PersonController() {
+    }
+
     @FXML
-    private void initialize(){
+    private void initialize() {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
 
         showPersonDetails(null);
 
         personTable.getSelectionModel().selectedItemProperty().addListener(
-            ((observableValue, oldValue, newValue) -> showPersonDetails(newValue))
+                ((observableValue, oldValue, newValue) -> showPersonDetails(newValue))
         );
     }
 
     @FXML
-    private void handleDeleteAction(){
+    private void handleDeleteAction() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
-        if(selectedIndex >=0){
+        if (selectedIndex >= 0) {
             Person currentPerson = personTable.getItems().get(selectedIndex);
-            if (myApiSession.deletePerson(currentPerson)){
+            if (myApiSession.deletePerson(currentPerson)) {
                 personTable.getItems().remove(selectedIndex);
             }
 
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("ОШИБКА");
@@ -68,15 +70,15 @@ public class PersonController {
         }
     }
 
-    private void showPersonDetails(Person person){
-        if(person != null){
+    private void showPersonDetails(Person person) {
+        if (person != null) {
             firstNameLabel.setText(person.getFirstName());
             lastNameLabel.setText(person.getLastName());
             streetLabel.setText(person.getStreet());
             cityLabel.setText(person.getCity());
             birthdayLabel.setText(DateUtil.format(person.getBirthday()));
             postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
-        }else{
+        } else {
             firstNameLabel.setText("");
             lastNameLabel.setText("");
             streetLabel.setText("");
@@ -86,14 +88,15 @@ public class PersonController {
 
         }
     }
-    public void setMainApp(Main mainApp){
+
+    public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         this.myApiSession = mainApp.getApiSession();
         personTable.setItems(mainApp.getPersonData());
     }
 
     @FXML
-    private void handleNewPerson(){
+    private void handleNewPerson() {
         PersonGenerator gen = new PersonGenerator();
         Person tmp = new Person(gen.getFirstName(), gen.getLastName(), gen.getStreet(), gen.getCity(), gen.getPostalCode(), gen.getDate());
         //Добавляем персону в СУБД
@@ -104,14 +107,13 @@ public class PersonController {
     }
 
     @FXML
-    private  void editPersonData(){
+    private void editPersonData() {
 
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
-        if(selectedIndex >=0) {
+        if (selectedIndex >= 0) {
             Person buf = personTable.getItems().get(selectedIndex);
             mainApp.showPersonEditDialog(buf);
-        }
-        else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("ОШИБКА");
