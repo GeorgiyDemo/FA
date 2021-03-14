@@ -8,24 +8,21 @@ from sqlalchemy.sql import expression, functions, func
 from sqlalchemy import types
 
 import warnings
+
 warnings.filterwarnings('ignore')
 
+#Соединяемся с СУБД
 engine = create_engine("sqlite:///Students.db")
 metadata=MetaData()
 connection=engine.connect()
 
-#Объявляем все таблицы
+#Объявляем все таблицы, с которыми будем работать
 exam_marks=Table('exam_marks', metadata, autoload=True, autoload_with=engine)
 lecturer=Table('lecturer', metadata, autoload=True, autoload_with=engine)
 student=Table('student', metadata, autoload=True, autoload_with=engine)
 subj_lect =Table('subj_lect', metadata, autoload=True, autoload_with=engine)
 subject=Table('subject', metadata, autoload=True, autoload_with=engine)
 university=Table('university', metadata, autoload=True, autoload_with=engine)
-
-#Пример
-s = select([university])
-rp = connection.execute(s)
-results = rp.fetchall()
 
 def task_1():
     """Задание 1"""
@@ -40,6 +37,7 @@ def task_1():
         cast(student.c.univ_id, String(20))+"."
         ])
 
+    print(str(s))
     rp = connection.execute(s)
     results = rp.fetchall()
     return [item[0].upper() for item in results if item[0] is not None]
@@ -53,6 +51,7 @@ def task_2():
         cast(func.strftime('%d.%m.%Y.',student.c.birthday),  String(20))
         ])
 
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -65,6 +64,7 @@ def task_3():
         cast(func.strftime('%d-%m-%Y',student.c.birthday),  String(20))+"."
         ])
 
+    print(str(s))
     rp = connection.execute(s)
     results = rp.fetchall()
     return [item[0].lower() for item in results if item[0] is not None]
@@ -77,6 +77,7 @@ def task_4():
     cast(func.strftime('%Y',student.c.birthday),  String(20))+" году" +"."
     ]).where(student.c.student_id == 10)
 
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchone()
 
@@ -87,6 +88,8 @@ def task_5():
         student.c.surname,
         cast((student.c.stipend * 100), Numeric)
     ])
+    
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -97,6 +100,8 @@ def task_6():
         cast(student.c.surname, String(20))+" родился в "+
         cast(func.strftime('%Y',student.c.birthday),  String(20))+" году" +"."
     ]).where(student.c.kurs.in_((1,2,4)))
+
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -108,6 +113,8 @@ def task_7():
         cast(university.c.city, String(20)) +"; Рейтинг="+
         cast(university.c.rating, String(20)) +"."
     ])
+
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -119,6 +126,8 @@ def task_8():
         cast(university.c.city, String(20)) +"; Рейтинг="+
         cast(func.round(university.c.rating, -2), String(20)) +"."
     ])
+    
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -127,6 +136,8 @@ def task_9():
     s = select([
         func.count(exam_marks.c.student_id)
         ]).where(exam_marks.c.subj_id == 20)
+    
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
@@ -136,19 +147,75 @@ def task_10():
     s = select([
         func.count(func.distinct(exam_marks.c.subj_id))
         ])
+    
+    print(str(s))
     rp = connection.execute(s)
     return rp.fetchall()
 
+def task_11():
+    """Задание 11"""
+    s = select([
+        exam_marks.c.student_id, 
+        func.min(exam_marks.c.mark)
+        ]).group_by(exam_marks.c.student_id)
+    
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
 
+def task_12():
+    """Задание 12"""
+    s = select([
+        exam_marks.c.student_id, 
+        func.max(exam_marks.c.mark)
+        ]).group_by(exam_marks.c.student_id)
+    
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_13():
+    """Задание 13"""
+    s = select([
+        student.c.surname, 
+        ]).where(student.c.surname.like("И%")).limit(1)
+
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_14():
+    """Задание 14"""
+    s = select([
+        subject.c.subj_name, 
+        func.max(subject.c.semester.label("max_semester"))
+        ]).group_by(subject.c.subj_name)
+
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_15():
+    """Задание 15"""
+    s = select([
+        func.count(func.distinct(exam_marks.c.student_id)).label("Кол-во студентов"),
+        exam_marks.c.exam_date.label("Дата экзамена"),
+        exam_marks.c.exam_id.label("id экзамена")
+        ]).group_by(exam_marks.c.exam_date)
+ 
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
 
 def main():
 
-    tasks_list = [task_1,task_2,task_3, task_4, task_5, task_6, task_7, task_8, task_9, task_10]
+    tasks_list = [task_1,task_2,task_3, task_4, task_5, \
+        task_6, task_7, task_8, task_9, task_10, task_11, \
+        task_12, task_13, task_14, task_15]
+
     for i in range(len(tasks_list)):
         print(f"\nЗадание №{i+1}")
-        r = tasks_list[i]()
-        print(r)
-
+        [print(r) for r in tasks_list[i]()]
 
 if __name__ == "__main__":
     main()
