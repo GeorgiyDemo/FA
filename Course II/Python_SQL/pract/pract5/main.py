@@ -35,7 +35,6 @@ def task_1():
         cast(student.c.surname, String(20))+";"+
         cast(student.c.name, String(20))+";"+
         cast(student.c.stipend, String(20))+";"+
-        cast(student.c.kurs, String(20))+";"+
         cast(student.c.city, String(20))+";"+
         cast(func.strftime('%d/%m/%Y',student.c.birthday),  String(20))+";"+
         cast(student.c.univ_id, String(20))+"."
@@ -51,7 +50,7 @@ def task_2():
         cast(func.substr(student.c.name,1,1), String(20))+"."+
         cast(student.c.surname, String(20))+"; место жительства-"+
         cast(student.c.city, String(20))+"; родился - "+
-        cast(func.strftime('%d/%m/%Y',student.c.birthday),  String(20))+"."
+        cast(func.strftime('%d.%m.%Y.',student.c.birthday),  String(20))
         ])
 
     rp = connection.execute(s)
@@ -62,7 +61,7 @@ def task_3():
     s = select([
         cast(func.substr(student.c.name,1,1), String(20))+"."+
         cast(student.c.surname, String(20))+"; место жительства-"+
-        cast(student.c.city, String(20))+"; родился:"+
+        cast(student.c.city, String(20))+"; родился: "+
         cast(func.strftime('%d-%m-%Y',student.c.birthday),  String(20))+"."
         ])
 
