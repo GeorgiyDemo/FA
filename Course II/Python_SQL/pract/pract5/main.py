@@ -3,9 +3,8 @@
 Подгруппа 3
 """
 
-from sqlalchemy import select, create_engine, MetaData, Table, cast, String, Numeric
-from sqlalchemy.sql import expression, functions, func
-from sqlalchemy import types
+from sqlalchemy import select, create_engine, MetaData, Table, cast, String, Integer
+from sqlalchemy.sql import func
 
 import warnings
 
@@ -86,7 +85,7 @@ def task_5():
     s = select([
         student.c.name,
         student.c.surname,
-        cast((student.c.stipend * 100), Numeric)
+        cast((student.c.stipend * 100), Integer)
     ])
     
     print(str(s))
@@ -207,11 +206,66 @@ def task_15():
     rp = connection.execute(s)
     return rp.fetchall()
 
+def task_16():
+    """Задание 16"""
+
+    joined_tables = student.join(exam_marks, student.c.student_id==exam_marks.c.student_id)
+    s = select([
+        student.c.kurs,
+        func.avg(exam_marks.c.mark),
+        exam_marks.c.subj_id]
+        ).select_from(joined_tables).group_by(student.c.kurs, exam_marks.c.subj_id)
+   
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_17():
+    """Задание 17"""
+    s = select([
+        exam_marks.c.student_id,
+        func.avg(exam_marks.c.mark)
+        ]).group_by(exam_marks.c.student_id)
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_18():
+    """Задание 18"""
+    s = select([
+        exam_marks.c.exam_id,
+        func.avg(exam_marks.c.mark)
+        ]).group_by(exam_marks.c.exam_id)
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_19():
+    """Задание 19"""
+    s = select([
+        exam_marks.c.exam_id,
+        func.count(exam_marks.c.student_id).label("Кол-во студентов")
+        ]).group_by(exam_marks.c.exam_id)
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
+def task_20():
+    """Задание 20"""
+    s = select([
+        cast(((subject.c.semester +1)/ 2 ), Integer).label("kurs"),
+        func.count().label("Кол-во предметов")
+        ]).group_by("kurs")
+    print(str(s))
+    rp = connection.execute(s)
+    return rp.fetchall()
+
 def main():
 
     tasks_list = [task_1,task_2,task_3, task_4, task_5, \
         task_6, task_7, task_8, task_9, task_10, task_11, \
-        task_12, task_13, task_14, task_15]
+        task_12, task_13, task_14, task_15, task_16, task_17, \
+        task_18, task_19, task_20]
 
     for i in range(len(tasks_list)):
         print(f"\nЗадание №{i+1}")
