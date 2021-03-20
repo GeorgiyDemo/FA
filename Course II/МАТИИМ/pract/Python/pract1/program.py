@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.linalg import matrix_power
+from numpy.matrixlib import matrix
 
 def task1(matrix, k):
     """
@@ -34,14 +35,38 @@ class MatrixGenerator:
                 self.data[i].append(0)
 
     def __str__(self) -> str:
-        return "\n".join(map(str,self.data))
+        return "\n" + "\n".join(
+            ["\t".join([str(cell) for cell in row]) for row in self.data]
+        )
     
     def add(self, step_from : int, step_to : int, koeff : float):
         """
-        Добвление данных
+        Добавление данных
         """
         self.data[step_from-1][step_to-1] = koeff
     
+    def processing(self):
+        """Проставление вероятностей возврата в исходное состояние"""
+        for i in range(len(self.data)):
+            current_summ = round(sum(self.data[i]),2)
+            print(current_summ)
+            if current_summ != 1:
+                new_element = round(1-current_summ, 2)
+                self.data[i][i] = new_element
+                print(f"Выставили вероятность перехода из шага {i+1} в шаг {i+1}: {new_element}")
+
+    def validation(self) -> bool:
+        """Валидация полученной матрицы"""
+        for item in self.data:
+            print(sum(item))
+            if round(sum(item),2) != 1.00:
+                return False
+        return True
+    
+    @property
+    def matrix(self) -> list:
+        return self.data
+
 def main():
     
     #вероятность того, что за 10 шагов система перейдет из состояния 1 в состояние 12;
@@ -122,6 +147,10 @@ def main():
 
     matrix.add(17, 12, 0.79)
     print(matrix)
+    matrix.processing()
+
+    print(matrix)
+    print(matrix.validation())
 
     VECTOR = ([0.1,0.2, 0.3])
 
