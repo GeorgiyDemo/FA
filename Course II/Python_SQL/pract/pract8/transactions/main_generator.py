@@ -1,5 +1,4 @@
 import random
-import sqlalchemy
 from datetime import datetime
 from faker import Faker
 from sqlalchemy import (
@@ -10,18 +9,16 @@ from sqlalchemy import (
     Numeric,
     String,
     DateTime,
-    Boolean,
     ForeignKey,
     create_engine,
     Float,
+    insert
 )
-from sqlalchemy import PrimaryKeyConstraint, UniqueConstraint, CheckConstraint
 from sqlalchemy.sql import select
-from sqlalchemy.sql.elements import Null
 from typing import List, Tuple, Dict
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy import (select, create_engine, MetaData, Table, Numeric, String, 
-                        insert, update, delete)
+
+DB_PATH = "sqlite:///demenchuk_newbank.db"
 
 
 class Util:
@@ -148,19 +145,22 @@ class Generator:
 
     def gen_customers_accounts(self, customer_id: int, account_id: int) -> Dict:
         """Генерация промежуточной таблицы"""
-        return_dict = {"account_id": account_id}
-        #Специально совершаем ошибку, чтоб транзакция не всегда выполнялась
-        if bool(random.randint(0,1)):
+        return_dict = {}
+        # Специально совершаем ошибку, чтоб транзакция не всегда выполнялась
+        if bool(random.randint(0, 1)):
+            return_dict["account_id"] = account_id
             return_dict["customer_id"] = customer_id
             print("Сгенерировали адекватные данные")
         else:
-            return_dict["customer_id"] = random.uniform(10000,20000)
+            return_dict["account_id"] = 1
+            return_dict["customer_id"] = 1
             print("Сгенерировали данные с ошибкой")
         return return_dict
 
+
 class DatabaseProcessing:
     def __init__(self, sql_connection: str) -> None:
-        engine = create_engine("sqlite:///Demenchuk_bank.db")
+        engine = create_engine(DB_PATH)
         self.connection = engine.connect()
         self.engine = engine
         self.metadata = MetaData()
@@ -231,8 +231,10 @@ class DatabaseProcessing:
         customers_accounts = Table(
             "customers_accounts",
             metadata,
-            Column("customer_id", ForeignKey("customers.customer_id"), nullable=False),
-            Column("account_id", ForeignKey("accounts.account_id"), nullable=False),
+            Column(
+                "customer_id", ForeignKey("customers.customer_id"), primary_key=True
+            ),
+            Column("account_id", ForeignKey("accounts.account_id"), primary_key=True),
             extend_existing=True,
         )
         self.tables_dict["customers_accounts"] = customers_accounts
@@ -260,37 +262,29 @@ class DatabaseProcessing:
         """
         transaction = self.connection.begin()
         print("**Запущена транзакция по нескольким объектам**")
-        [print(x["table"]) for x in items_tables]
-
+        [print(f"  {x['table']}") for x in items_tables]
 
         for model in items_tables:
-            
+
             current_table = self.tables_dict[model["table"]]
             ins_line = insert(current_table)
-
-            ins_line.values(model["body"])
-            print("ins_line")
-            print(str(ins_line))
+            ins_line = ins_line.values(model["body"])
 
             r = ins_line.compile().params
-            print("____________")
-            print(r)
-            
-            #print(model)
 
-
-            #Пытаемся выполнить
+            # Пытаемся выполнить
             try:
                 result = self.connection.execute(ins_line)
                 print(f"Операция с таблицей {model['table']} отработала")
-            #Если произошла ошибка - откатываем транзакцию
+            # Если произошла ошибка - откатываем транзакцию
             except IntegrityError as error:
                 transaction.rollback()
-                print(error)
-                print(f"Произошла ошибка в транзакции с таблицей {model['table']}! Откатываемся")
+                print(
+                    f"Произошла ошибка в транзакции с таблицей {model['table']}! Откатываемся"
+                )
                 return False
+        transaction.commit()
         return True
-        
 
     def select(self, table_name: str) -> List[Tuple]:
         """Выборка данных из таблицы table_name"""
@@ -313,7 +307,7 @@ class DatabaseProcessing:
 def main():
     # Вставка данных
 
-    database_processing = DatabaseProcessing("sqlite:///Demenchuk_bank.db")
+    database_processing = DatabaseProcessing(DB_PATH)
     generator = Generator()
 
     # Генерируем виды аккаунтов
@@ -331,24 +325,28 @@ def main():
         for j in range(10):
 
             account = generator.gen_accounts()
-            print(f"Cоздали аккаунт {account}")
 
             customer_id, account_id = customer["customer_id"], account["account_id"]
-            customers_accounts = generator.gen_customers_accounts(customer_id, account_id)
-            
+            customers_accounts = generator.gen_customers_accounts(
+                customer_id, account_id
+            )
+
             transaction_result = database_processing.insert_transaction(
                 [
-                    {"body": account, "table" : "accounts"},
-                    {"body": customers_accounts, "table" : "customers_accounts"}
+                    {"body": account, "table": "accounts"},
+                    {"body": customers_accounts, "table": "customers_accounts"},
                 ]
             )
-            
-            print("transaction_result")
-            print(transaction_result)
-            #Если транзакция выполнилась - дальше можно работать
+
+            if not transaction_result:
+                print(f"[ОШИБКА] Не смогли записать аккаунт в БД: {account}")
+                print(
+                    f"[ОШИБКА] Не смогли связать аккаунт с помощью {customers_accounts}\n"
+                )
+            # Если транзакция выполнилась - дальше можно работать
             if transaction_result:
-                print(f"Записали аккаунт в БД {account}")
-                print(f"Связали аккаунт {account_id} с пользователем {customer_id}")
+                print(f"[ОК] Записали аккаунт в БД: {account}")
+                print(f"[OK] Связали аккаунт с помощью {customers_accounts}\n")
 
                 # Генерируем транзакции по аккаунтам пользователей
                 for k in range(10):
