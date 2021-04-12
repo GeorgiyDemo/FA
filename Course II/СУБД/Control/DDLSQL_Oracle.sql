@@ -1,8 +1,8 @@
 DROP TABLE staffs_houses;
 DROP TABLE products_count;
 DROP TABLE orders;
-DROP TABLE houses;
 DROP TABLE bookings;
+DROP TABLE houses;
 DROP TABLE staffs;
 DROP TABLE clients;
 DROP TABLE products;
@@ -31,18 +31,6 @@ CREATE TABLE staffs (
     CONSTRAINT staff_pk PRIMARY KEY ( id )
 );
 
-CREATE TABLE bookings (
-    id         NUMBER,
-    client_id  NUMBER NOT NULL,
-    date_in    DATE NOT NULL,
-    date_out   DATE NOT NULL,
-    cost       FLOAT NOT NULL,
-    staff_id   NUMBER NOT NULL,
-    CONSTRAINT booking_pk PRIMARY KEY ( id ),
-    CONSTRAINT booking_client_fk FOREIGN KEY ( client_id ) REFERENCES clients ( id ),
-    CONSTRAINT booking_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id )
-);
-
 CREATE TABLE houses (
     id           NUMBER,
     name         VARCHAR2(100) NOT NULL,
@@ -52,9 +40,21 @@ CREATE TABLE houses (
     safe         NUMBER NOT NULL,
     description  VARCHAR2(400),
     type         VARCHAR2(100),
-    booking_id   NUMBER,
-    CONSTRAINT house_pk PRIMARY KEY ( id ),
-    CONSTRAINT house_booking_fk FOREIGN KEY ( booking_id ) REFERENCES bookings ( id )
+    CONSTRAINT house_pk PRIMARY KEY ( id )
+);
+
+CREATE TABLE bookings (
+    id         NUMBER,
+    client_id  NUMBER NOT NULL,
+    date_in    DATE NOT NULL,
+    date_out   DATE NOT NULL,
+    cost       FLOAT NOT NULL,
+    staff_id   NUMBER NOT NULL,
+    house_id   NUMBER NOT NULL,
+    CONSTRAINT booking_pk PRIMARY KEY ( id ),
+    CONSTRAINT booking_client_fk FOREIGN KEY ( client_id ) REFERENCES clients ( id ),
+    CONSTRAINT booking_staff_fk FOREIGN KEY ( staff_id ) REFERENCES staffs ( id ),
+    CONSTRAINT booking_house_fk FOREIGN KEY (house_id ) REFERENCES houses ( id)
 );
 
 CREATE TABLE orders (
