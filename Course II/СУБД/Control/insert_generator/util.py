@@ -51,8 +51,8 @@ class RandomData:
 
     def data_range_generator(self) -> Tuple:
         """Генератор дат для бронирования"""
-        date_in = self.fake_ru.date_time_between(start_date="-2y", end_date="now")
-        date_out = date_in + datetime.timedelta(days=random.randint(1, 25))
+        date_in = self.fake_ru.date_time_between(start_date="-10y", end_date="now")
+        date_out = date_in + datetime.timedelta(days=random.randint(1, 30))
         return date_in, date_out
 
 

@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EC5F26CB-D3FD-F0E4-381C-D00200C377DE" name="HOUSES">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="82B3FD74-6E74-221D-17BE-E40580EF0D8A" name="HOUSES">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>8E91ECBA-A879-7BCF-820C-D79B2BB9CDE9</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>house</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="133C51A9-20F4-C957-7D3D-4D9FAE3A3062">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="id" id="74673EE7-FAA2-B9D6-8E0D-9DA48EFAB74D">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>F76B316D-4384-7A58-0C01-2DF361787E24</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="name" id="73813618-2F5B-8D0C-926D-45BFFEDBB487">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="name" id="F4ACD06A-9D1A-791F-E8B8-6B09978EDCDB">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>81AC426D-1728-4A71-6666-A4F62F596174</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,9 +32,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="price" id="6261E492-310C-DAB9-4AA8-07181F49EEA2">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="price" id="5DA90D76-BC4E-C587-6935-4C53132A97C2">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>81C89F0A-E9D3-73BA-460B-F0281E20C488</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -43,9 +43,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ac" id="6C6DAC14-4D89-9DBE-64E7-A3358D228CA5">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="ac" id="E30125BD-57AF-68F0-0A3B-D3C01050D405">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>E0F2042B-C449-0DE3-7B3B-A97DE8FC69B2</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -55,9 +55,9 @@
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="tv" id="24995C12-B58C-58E7-7C07-5FA654705DB4">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="tv" id="2C0AF0F2-F5CB-49A8-4897-7DCB1DB0AD13">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>5C47C57E-50A1-C834-2BEE-67921FD713AE</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -67,9 +67,9 @@
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="safe" id="F0E3872E-1667-B5F3-941D-C51C307704C9">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="safe" id="1982BECE-5154-23D1-AC77-D0B32ECBDCE4">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>3A7EA077-B0F9-A37E-19A7-58A9CE798F3D</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -79,9 +79,9 @@
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="description" id="90933B74-11C1-20C5-827E-71072FA7B467">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="description" id="3CA594BC-3163-FD4F-940F-E141679499AE">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>6E7A0ECE-9946-FB23-F86D-07117D8D5C8C</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -92,9 +92,9 @@
 <ownDataTypeParameters>400,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="type" id="B7830FDE-0E4D-1BF4-7A83-C9854CC7E180">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="type" id="69DCD324-EA59-BC9F-E4F4-E5D1C299896C">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>E515BF68-CA57-485E-98B1-F98146493E62</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -105,45 +105,30 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="BOOKING_id" id="7D3D2C9F-5630-3EA7-F880-A1C13DC73423">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="id1" id="15617FCB-D393-B356-E0DB-01C602BEDF96">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>F2CC1C57-2408-6F9D-F3D8-A15C4B2C6253</generatorID>
 <ownerDesignName>control</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5249F223-197E-6008-BC63-EC272AD8A9B3" referredColumn="5B5A0683-C3BC-564E-712B-15837573E5F2"/>
-</associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="C2C3AB94-107D-5AB2-D19A-603895BABA56" name="HOUSE_PK">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<ind_PK_UK id="CDF14FDE-49AE-A96E-4B9F-8CE6F83B2AD5" name="HOUSE_PK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>9CFB74DD-8844-1A5B-DBC2-8FC32561391E</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="133C51A9-20F4-C957-7D3D-4D9FAE3A3062"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="836FFA3F-D765-5DA7-0A9C-DE7842437CFA" name="HOUSE_BOOKING_FK">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
-<generatorID>193F09C9-7F1D-1DE6-2DBF-3C8E1657CDA9</generatorID>
-<ownerDesignName>control</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="7D3D2C9F-5630-3EA7-F880-A1C13DC73423"/>
+<colUsage columnID="74673EE7-FAA2-B9D6-8E0D-9DA48EFAB74D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0621FF8C-07DC-71FB-E2CA-2CC2211C65C1" name="CLIENTS">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="45DE79F1-4591-B40A-4256-9B9FCD539033" name="CLIENTS">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>5BC6354E-C15D-E32A-4D17-417CB799363E</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>client</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="EF69D355-6730-9D58-7FB5-13944493F065">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="id" id="456AF78B-1C9B-C626-AD26-0F0C5C2117B2">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>54DA5F95-00B2-A345-179E-D0F1A247DBAD</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="first_name" id="69F01E43-43F8-576A-A027-DB8403062C74">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="first_name" id="BE4E055B-63E4-773D-436C-8C204588295D">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>7E09F18B-92EC-B04D-527B-AABF01026A02</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,9 +32,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="last_name" id="82BF9DF7-BD78-5E47-E8E9-7A30C49AE2C2">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="last_name" id="7A3AF57E-AF56-D98C-3FDE-F95CC332C29F">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>A4D8BBA4-877C-283A-1181-7FCCF579BAF8</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -44,9 +44,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="email" id="08E622EF-677A-E242-F05C-FD9D0AE304E3">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="email" id="5BABFFBA-99E8-AB55-3E4C-AABAB49D807B">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>F0061E73-B198-5F35-4068-C41E340169EE</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -56,9 +56,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="phone" id="CBAF6E60-BCEC-F133-E23F-843A02685554">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="phone" id="579A9C23-9A1A-A20F-E10F-09AB36050D21">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>6AA1EC28-C531-346D-97FB-13922C165955</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -68,9 +68,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="document_title" id="4D7C5F7E-EFC3-6705-A01B-1F10C993465C">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="document_title" id="CB5BBCC0-96C1-658E-43C1-122F8CAE5145">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>0FD78B2C-EF70-40F8-FCC3-EE4C3246115B</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -80,9 +80,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="document_file" id="ACBDE889-1DDF-B0DE-CFE4-8367CEAF4729">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="document_file" id="5D807055-FAB0-C8E2-241E-7FB0C0C12232">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>8F5FD007-9D80-DAFB-9FD7-D597078D9826</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -91,9 +91,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="document_text" id="50A49645-EB3E-E96D-DE09-AB6029791C9C">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="document_text" id="407E69DD-E5DC-0C41-A981-6DC24B9B733F">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>AD67FF56-8470-F5D0-4970-62127E21335E</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -103,9 +103,9 @@
 <ownDataTypeParameters>400,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="document_comments" id="AA4EE193-B5F6-1161-9417-F6F1ABA10BC8">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="document_comments" id="4BF322D1-C17E-BCA6-009C-486557576C63">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>B078D669-F68E-88C4-76E8-2DE12413C9F0</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -116,9 +116,9 @@
 <ownDataTypeParameters>400,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="special_requests" id="5864861B-6607-37C3-C259-C302E0D55C06">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="special_requests" id="9794376E-0432-A3C0-18F8-8B6C58C6815B">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>55E413C3-8868-8410-88BB-9F41BBB0C99D</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -131,16 +131,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="56B81BC9-5E36-E46C-5C41-F0BDA32734DF" name="CLIENT_PK">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<ind_PK_UK id="9B20AE77-6B85-C113-53AA-CF42229D1C46" name="CLIENT_PK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>846793F3-F63E-2FD0-5677-2F40A1D59DE2</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="EF69D355-6730-9D58-7FB5-13944493F065"/>
+<colUsage columnID="456AF78B-1C9B-C626-AD26-0F0C5C2117B2"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

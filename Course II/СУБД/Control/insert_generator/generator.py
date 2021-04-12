@@ -83,16 +83,16 @@ class Generator:
         price = round(random.uniform(2.0, 1000.9), 2)
         return models.Product(product_id, title, price)
 
-    def booking_generator(self, client_id: int, staff_id: int) -> models.Booking:
+    def booking_generator(self, client_id: int, staff_id: int, house_id: int) -> models.Booking:
         """Генерация бронированя клиента"""
 
         booking_id = Generator.CURRENT_BOOKING_ID
         Generator.CURRENT_BOOKING_ID += 1
         date_in, date_out = self.data_gen.data_range_generator()
         cost = None
-        return models.Booking(booking_id, date_in, date_out, client_id, staff_id, cost)
+        return models.Booking(booking_id, date_in, date_out, client_id, staff_id, house_id, cost)
 
-    def house_generator(self, booking_id: int = None) -> models.House:
+    def house_generator(self) -> models.House:
         """Генерация дома"""
 
         house_types = ("Вилла", "Бунгало", "Таунхаус", "Пентхаус", "Коттедж")
@@ -125,7 +125,6 @@ class Generator:
             house_safe,
             house_description,
             house_type,
-            booking_id,
         )
 
     def staff_generator(self) -> models.Staff:
@@ -178,7 +177,7 @@ def main():
         "staff_booking": СircleCollection(),
         "staff_house": СircleCollection(),
     }
-    houses_queue = queue.Queue()
+
     houses_list = []
 
     # Генерируем обслуживающий персонал
@@ -188,18 +187,17 @@ def main():
         staffs_dict[staff.type].put(staff)
 
     # Генерируем дома
-    for _ in range(200):
+    for _ in range(40):
         house = gen.house_generator()
         connection.write(house.insert())
-        # Заносим в очередь (для бронирований)
-        houses_queue.put(house)
-        # Заносим в список (для назначени сотрудников)
+        # Заносим в список (для назначения сотрудников)
         houses_list.append(house)
-
         print(f"Записали дом {house.id} -> {house.name}")
 
+    #Коллекция домов
+    houses_collection = СircleCollection(houses_list)
     # Генерируем пользователей
-    for _ in range(40):
+    for _ in range(100):
         client = gen.client_generator()
         connection.write(client.insert())
         print(f"Записали клиента {client.id} -> {client.first_name} {client.last_name}")
@@ -233,24 +231,15 @@ def main():
                 # Берем администратора
                 current_staff = staffs_dict["staff_booking"].get()
 
+                # Берем дом для бронирования
+                current_house = houses_collection.get()
+
                 # Создаем бронирование
-                current_booking = gen.booking_generator(client.id, current_staff.id)
+                current_booking = gen.booking_generator(client.id, current_staff.id, current_house.id)
                 connection.write(current_booking.insert())
 
                 #Аттачим дома
-                prices_sum = 0
-                for i in range(random.randint(1,4)):
-
-
-                    # Берем дом
-                    current_house = houses_queue.get_nowait()
-
-                    # Обновляем FK для дома
-                    current_house.booking_id = current_booking.id
-                    connection.write(current_house.update())
-
-                    #Добавляем цену дома к сумме
-                    prices_sum += current_house.price
+                prices_sum = current_house.price
 
                 # Обновляем стоимость бронирования
                 days = current_booking.date_out - current_booking.date_in

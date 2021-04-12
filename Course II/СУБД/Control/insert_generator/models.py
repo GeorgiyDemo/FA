@@ -27,7 +27,6 @@ class House(SQLModel):
         safe: int,
         description: str = None,
         type_: str = None,
-        booking_id: int = None,
     ) -> None:
         self.id = id
         self.name = name
@@ -37,21 +36,13 @@ class House(SQLModel):
         self.safe = safe
         self.description = description
         self.type = type_
-        self.booking_id = booking_id
 
     def insert(self) -> str:
         description = (
             "'" + self.description + "'" if self.description is not None else "NULL"
         )
         type_ = "'" + self.type + "'" if self.type is not None else "NULL"
-        booking_id = self.booking_id if self.booking_id is not None else "NULL"
-        return f"INSERT INTO houses (id, name, price, ac, tv, safe, description, type, booking_id) VALUES ({self.id},'{self.name}',{self.price},{self.ac},{self.tv},{self.safe},{description},{type_},{booking_id})"
-
-    def update(self) -> str:
-        if self.booking_id is None:
-            raise ValueError("booking_id не может быть None при обновлении")
-        return f"UPDATE houses SET booking_id={self.booking_id} WHERE id={self.id}"
-
+        return f"INSERT INTO houses (id, name, price, ac, tv, safe, description, type) VALUES ({self.id},'{self.name}',{self.price},{self.ac},{self.tv},{self.safe},{description},{type_})"
 
 class Client(SQLModel):
     """Клиент"""
@@ -176,6 +167,7 @@ class Booking(SQLModel):
         date_out: datetime.datetime,
         client_id: int,
         staff_id: int,
+        house_id: int,
         cost: float = None,
     ) -> None:
         self.id = id_
@@ -183,7 +175,9 @@ class Booking(SQLModel):
         self.date_out = date_out
         self.client_id = client_id
         self.staff_id = staff_id
+        self.house_id = house_id
         self.cost = cost
+
 
     def insert(self) -> str:
         cost = self.cost
@@ -191,7 +185,7 @@ class Booking(SQLModel):
         date_out = self.date_out.strftime("%Y/%m/%d %H:%M:%S")
         if cost is None:
             cost = 0
-        return f"INSERT INTO bookings (id, date_in, date_out, cost, client_id, staff_id) VALUES ({self.id}, '{date_in}','{date_out}',{cost}, {self.client_id}, {self.staff_id})"
+        return f"INSERT INTO bookings (id, date_in, date_out, cost, client_id, staff_id, house_id) VALUES ({self.id}, '{date_in}','{date_out}',{cost}, {self.client_id}, {self.staff_id},{self.house_id})"
 
     def update(self) -> str:
         if self.cost is None:
