@@ -12,6 +12,26 @@ FROM products_count
 INNER JOIN products ON products_count.product_id=products.id 
 INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=1; 
 
+
+SELECT
+orders.id "Номер самого дешевого заказа",
+products.title Продукт, 
+products.price Цена, 
+products_count.count "Кол-во продуктов", 
+orders.cost "Общая стоиммость заказа"
+FROM products_count
+INNER JOIN products ON products_count.product_id=products.id
+INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=(SELECT id FROM orders WHERE cost=(SELECT MIN(cost) FROM orders)); 
+
+SELECT
+orders.id "Номер самого дешевого заказа",
+products.title Продукт, 
+products.price Цена, 
+products_count.count "Кол-во продуктов", 
+orders.cost "Общая стоиммость заказа"
+FROM products_count
+INNER JOIN products ON products_count.product_id=products.id
+INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=(SELECT id FROM orders WHERE cost=(SELECT MIN(cost) FROM orders)); 
 /* 
 Задача 2 
 Отображаем клиентов, которые не делали заказ в ресторане 
