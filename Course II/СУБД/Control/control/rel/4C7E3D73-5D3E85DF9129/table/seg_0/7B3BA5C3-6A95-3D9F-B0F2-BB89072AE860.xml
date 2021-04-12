@@ -1,7 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="760BC6D4-A6D5-100A-A5DC-0036A0DE1C92" name="PRODUCTS">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7B3BA5C3-6A95-3D9F-B0F2-BB89072AE860" name="PRODUCTS">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>C8267C13-FE2C-058A-D2FF-3BD96C7C54C0</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <ordsAlias>product</ordsAlias>
@@ -9,9 +9,9 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="F13CA6DD-03FE-F25B-AC20-866F2AD04573">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="id" id="070A7C2F-254D-FEDD-CD78-9083823E8819">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>55B93077-D1B6-83E8-C9C9-6E9FBCDC2E7B</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="title" id="2CC03072-A4DC-692B-D4DA-391E810FF7BD">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="title" id="D4965231-BC80-B5B3-2B5F-2852D80451B9">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>910BEBB1-4DBF-8702-3E42-60AF9A8C2C98</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,9 +32,9 @@
 <ownDataTypeParameters>40,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="price" id="C053864E-F5DB-E06A-FFBF-1C241BDDA607">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<Column name="price" id="84B092AA-F2A6-4623-11FE-22CBB5C311AD">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>49E8D30D-BBBE-0CBA-7ACF-7319928C92D7</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -45,16 +45,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="620499F6-05CD-FC2C-4F69-F9486BE17B3C" name="PRODUCT_PK">
-<createdBy>georgiydemo</createdBy>
-<createdTime>2020-12-24 08:09:59 UTC</createdTime>
+<ind_PK_UK id="464ED019-0915-F332-DAEC-CA679AD33CA8" name="PRODUCT_PK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
 <generatorID>646D5682-C1E4-6212-C9A0-D5101B1914C0</generatorID>
 <ownerDesignName>control</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="F13CA6DD-03FE-F25B-AC20-866F2AD04573"/>
+<colUsage columnID="070A7C2F-254D-FEDD-CD78-9083823E8819"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

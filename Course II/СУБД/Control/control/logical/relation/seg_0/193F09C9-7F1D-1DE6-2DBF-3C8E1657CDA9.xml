@@ -4,18 +4,18 @@
 <createdTime>2020-11-05 11:40:59 UTC</createdTime>
 <ownerDesignName>control</ownerDesignName>
 <engineerTo>
-<item key="3F9D7439-63B3-6C55-0DC1-1B7EA8A8B8E8" value="true"/>
+<item key="4C7E3D73-A595-59DF-24C0-5D3E85DF9129" value="true"/>
 </engineerTo>
-<sourcePk>4790DCE9-CE67-E8EA-B11C-EAD14699BA1F</sourcePk>
+<sourcePk>9CFB74DD-8844-1A5B-DBC2-8FC32561391E</sourcePk>
 <identifying>false</identifying>
-<nameOnSource>включает</nameOnSource>
-<nameOnTarget>включается в</nameOnTarget>
-<optionalSource>false</optionalSource>
-<optionalTarget>true</optionalTarget>
+<nameOnSource>включается в</nameOnSource>
+<nameOnTarget>включает</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
-<sourceEntity>65986E18-AC7D-FD33-A30C-BCAC40136B69</sourceEntity>
+<sourceEntity>8E91ECBA-A879-7BCF-820C-D79B2BB9CDE9</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
-<targetEntity>8E91ECBA-A879-7BCF-820C-D79B2BB9CDE9</targetEntity>
+<targetEntity>65986E18-AC7D-FD33-A30C-BCAC40136B69</targetEntity>
 <transferable>true</transferable>
 <deleteRule>NO ACTION</deleteRule>
 </Relation>
