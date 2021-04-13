@@ -47,7 +47,6 @@ INNER JOIN orders ON orders.client_id = clients.id GROUP BY TO_CHAR(orders.order
 SELECT TO_CHAR(bookings.date_out, 'YYYY') AS year, COUNT(DISTINCT clients.id) AS "Кол-во клиентов с бронированиями" FROM clients
 INNER JOIN bookings ON bookings.client_id = clients.id GROUP BY TO_CHAR(bookings.date_out, 'YYYY') ORDER BY year DESC
 
-
 /*
 Задача 4
 Получение кол-ва бронирований по каждому из домов за все время
@@ -79,29 +78,66 @@ SELECT house_id, COUNT(*) counter
 FROM bookings
 GROUP BY house_id ORDER BY counter
 
-/*
-Задача 7
-Сколько всего денег определенный клиент потратил на номера и ресторан за определенный промежуток времени (ДИАПАЗОН ДАТ)
-Вывести всех за период и сортировка по кол-ву потраченных денег
+/* Задача 7
+Вывод наиболее растратных клиентов в ресторане
 */
+SELECT
+orders_new.sum_cost,
+clients.first_name || ' ' || clients.last_name name
+FROM
+    (SELECT client_id, SUM(cost) sum_cost
+    FROM orders
+    GROUP BY client_id) orders_new
+
+INNER JOIN clients ON orders_new.client_id=clients.id
+ORDER BY orders_new.sum_cost DESC
 
 /*
 Задача 8
-Получение дохода отеля (с ресторана и бронирований) за определенный промежуток времени (ДИАПАЗОН ДАТ)
+Сколько всего денег клиенты потратили на номера по годам
 */
+SELECT
+TO_CHAR(date_out, 'YYYY') year,
+SUM(cost) sum_cost
+FROM bookings
+GROUP BY TO_CHAR(date_out, 'YYYY') ORDER BY year DESC
 
-/*
-Задача 9
-Получение ФИО работников, которые обслуживали бронирования клиента
+
+/*Задача 9 
+Сколько всего потратил каждый клиент
 */
+SELECT id, name, SUM(sum_cost) sum_cost
+FROM (
+    SELECT clients.id, clients.first_name || ' ' || clients.last_name name,
+    NVL(orders.cost,0)+NVL(bookings.cost,0)
+    sum_cost
+    FROM clients
+    LEFT JOIN orders ON clients.id=orders.client_id
+    LEFT JOIN bookings ON clients.id=bookings.client_id
+)
+GROUP BY id, name ORDER BY sum_cost DESC
 
 /*
 Задача 10
+Получение ФИО работников, которые обслуживали бронирования клиента
+*/
+SELECT 
+    staffs_houses.staff_id id,
+    staffs.first_name || ' ' || staffs.last_name name,
+    staffs.position,
+    staffs.phone
+FROM bookings
+INNER JOIN staffs_houses ON bookings.house_id=staffs_houses.house_id
+INNER JOIN staffs ON staffs_houses.staff_id=staffs.id
+WHERE staffs.type='staff_house' AND bookings.client_id=3
+
+/*
+Задача 11
 Подсчет по месяцам кол-ва бронирований за период (2019-2021)
 */
 
 /*
-Задача 11
+Задача 12
 Подсчет по месяцам кол-ва заказов в ресторане за период (2019-2021)
 */
 
