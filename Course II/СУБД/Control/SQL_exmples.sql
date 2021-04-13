@@ -1,6 +1,6 @@
 /* 
 Задача 1 
-Отображаем все продукты и их цену для определенного заказа 
+Отображаем все продукты и их цену для определенного заказа (макс/мин стоимость) 
 */ 
 
 SELECT 
@@ -32,62 +32,76 @@ orders.cost "Общая стоиммость заказа"
 FROM products_count
 INNER JOIN products ON products_count.product_id=products.id
 INNER JOIN orders ON products_count.order_id=orders.id WHERE order_id=(SELECT id FROM orders WHERE cost=(SELECT MIN(cost) FROM orders)); 
+
 /* 
 Задача 2 
-Отображаем клиентов, которые не делали заказ в ресторане 
-*/ 
-
-SELECT clients.* FROM clients 
-LEFT JOIN orders ON orders.client_id = clients.id 
-WHERE orders.client_id IS NULL 
-//Переделать через минус 
-
-//Добавить выборку по годам 
+Отображаем кол-во клиентов, которые делали заказ в ресторане за каждый год
+*/
+SELECT TO_CHAR(orders.order_date, 'YYYY') AS year, COUNT(DISTINCT clients.id) AS "Кол-во клиентов ресторана" FROM clients
+INNER JOIN orders ON orders.client_id = clients.id GROUP BY TO_CHAR(orders.order_date, 'YYYY') ORDER BY year DESC
 
 /* 
-Задача 3 
-Получаем название домов и их стоимость за ночь по определенному бронированию 
-*/ 
-
-SELECT
-houses.name "Название дома",
-houses.price "Стоимость дома",
-bookings.cost "Общая стоимость заказа",
-bookings.date_out-bookings.date_in "Кол-во дней"
-FROM bookings
-INNER JOIN houses
-ON houses.booking_id = bookings.id WHERE bookings.id=53;
- 
-/*
-Задача 4 
-Получение тех домов, которые простаивают в текущий момент 
+Задача 3
+Отображаем кол-во клиентов, которые делали бронирование за каждый год
 */
+SELECT TO_CHAR(bookings.date_out, 'YYYY') AS year, COUNT(DISTINCT clients.id) AS "Кол-во клиентов с бронированиями" FROM clients
+INNER JOIN bookings ON bookings.client_id = clients.id GROUP BY TO_CHAR(bookings.date_out, 'YYYY') ORDER BY year DESC
 
-SELECT * FROM HOUSES WHERE BOOKING_ID is NULL
+
+/*
+Задача 4
+Получение кол-ва бронирований по каждому из домов за все время
+*/
+SELECT houses.id "Идентификатор дома", COUNT(bookings.id) "Кол-во бронирований" FROM bookings
+INNER JOIN houses 
+ON bookings.house_id=houses.id
+GROUP BY bookings.house_id
 
 /*
 Задача 5
+Получаем название домов, кол-во дней бронирования, стоимость за ночь
+и общую стоимость заказа по определенному пользователю 
+*/
+SELECT
+houses.name AS "Название дома",
+houses.price AS "Цена за ночь",
+bookings.date_out-bookings.date_in AS "Кол-во ночей",
+bookings.cost AS "Общая стоимость"
+FROM bookings
+INNER JOIN houses ON bookings.house_id=houses.id
+WHERE bookings.client_id=3
+ 
+/*
+Задача 6
+Получение самых непопулярных домов для заказа
+*/
+SELECT house_id, COUNT(*) counter
+FROM bookings
+GROUP BY house_id ORDER BY counter
+
+/*
+Задача 7
 Сколько всего денег определенный клиент потратил на номера и ресторан за определенный промежуток времени (ДИАПАЗОН ДАТ)
 Вывести всех за период и сортировка по кол-ву потраченных денег
 */
 
 /*
-Задача 6
+Задача 8
 Получение дохода отеля (с ресторана и бронирований) за определенный промежуток времени (ДИАПАЗОН ДАТ)
 */
 
 /*
-Задача 7
+Задача 9
 Получение ФИО работников, которые обслуживали бронирования клиента
 */
 
 /*
-Задача 8
+Задача 10
 Подсчет по месяцам кол-ва бронирований за период (2019-2021)
 */
 
 /*
-Задача 9
+Задача 11
 Подсчет по месяцам кол-ва заказов в ресторане за период (2019-2021)
 */
 
