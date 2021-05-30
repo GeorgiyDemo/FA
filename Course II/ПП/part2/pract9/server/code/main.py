@@ -10,6 +10,7 @@ data_storage = Storage()
 
 @app.route("/users/auth", methods=["POST"])
 def user_authorization():
+    """Авторизация пользователя"""
     try:
         auth_user = AuthUser.parse_obj(request.json)
         result = data_storage.user_auth(auth_user)
@@ -22,7 +23,7 @@ def user_authorization():
 
 @app.route("/users/reg", methods=["POST"])
 def user_registration():
-    """Управляющая логика обработки входящего запроса на Flask"""
+    """Регистрация пользователя"""
     try:
         new_user = User.parse_obj(request.json)
         data_storage.user_reg(new_user)

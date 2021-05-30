@@ -184,7 +184,7 @@ class WebServer:
         logger.info(
             f"{utils.get_date()} -> {ip_addr}, {path} {status_code} - {cli_request.method} {cli_request.user_agent}")
 
-    def get_header(self, status_code: int, body: str, mime: str):
+    def get_header(self, status_code: int, body: bytes, mime: str):
         """Получает заголовок для ответа сервера"""
         return "\n".join(
             [

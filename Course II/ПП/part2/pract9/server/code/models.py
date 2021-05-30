@@ -24,8 +24,6 @@ class AuthUser(BaseModel):
 class User(AuthUser):
     id: int
     name: str
-    email: str
-    password: str
     api_key: str = token_generator()
     create_at: datetime = datetime.now()
 
