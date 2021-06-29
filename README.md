@@ -17,11 +17,14 @@
 * [Современные технологии программирования (Java)](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%A1%D0%A2%D0%9F)
 * [Операционные системы семейства UNIX и сетевые технологии](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/UNIX)
 * [Программирование в среде R](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/R)
+* [Программирование на языках Python и SQL](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/Python_SQL)
+* [Математическое и имитационное моделирование](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%9C%D0%90%D0%A2%D0%98%D0%98%D0%9C)
 * [Анализ данных](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%90%D0%94)
 * [Программирование на VBA](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/VBA)
 * [Практикум по программированию](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%9F%D0%9F)
 * [Системы управления базами данных](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%A1%D0%A3%D0%91%D0%94)
 * [Банковские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%91%D0%98%D0%A1)
+* [Бухгалтерские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%91%D0%A3%D0%A5%D0%98%D0%A1)
 
 ### Рефераты
 * [Дилемма: “Восток – Запад” в историческом развитии России](https://github.com/GeorgiyDemo/FA/blob/master/more/reports/%D0%94%D0%B5%D0%BC%D0%B5%D0%BD%D1%87%D1%83%D0%BA%20%D0%93.%D0%9C.%20%D0%9F%D0%9819-4%20%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20%D1%80%D0%B5%D1%84%D0%B5%D1%80%D0%B0%D1%82.docx) (История)
