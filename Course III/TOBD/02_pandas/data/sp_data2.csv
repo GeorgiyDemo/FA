@@ -1,0 +1,505 @@
+AAPL;Apple;3.6%
+AMZN;Amazon.com;3.2%
+GOOGL;Alphabet;3.1%
+GOOG;Alphabet;3.1%
+MSFT;Microsoft;3.0%
+FB;Facebook;2.2%
+BRK.B;Berkshire Hathaway;1.8%
+JPM;JPMorgan Chase;1.4%
+XOM;Exxon Mobil;1.3%
+JNJ;Johnson & Johnson;1.3%
+V;Visa;1.2%
+BAC;Bank of America;1.1%
+WFC;Wells Fargo;1.0%
+INTC;Intel;1.0%
+WMT;Walmart;1.0%
+UNH;UnitedHealth Group;0.9%
+CVX;Chevron;0.9%
+HD;Home Depot;0.9%
+PFE;Pfizer;0.8%
+BA;Boeing;0.8%
+MA;Mastercard;0.8%
+CSCO;Cisco Systems;0.8%
+T;AT&T;0.8%
+VZ;Verizon Communications;0.8%
+PG;Procter & Gamble;0.7%
+ORCL;Oracle;0.7%
+KO;Coca-Cola;0.7%
+NFLX;Netflix;0.7%
+C;Citigroup;0.7%
+MRK;Merck & Co;0.6%
+DIS;Walt Disney;0.6%
+NVDA;NVIDIA;0.6%
+ABBV;AbbVie;0.6%
+DWDP;DowDuPont;0.6%
+CMCSA;Comcast;0.6%
+PEP;PepsiCo;0.6%
+IBM;IBM;0.5%
+MCD;McDonald's;0.5%
+PM;Philip Morris Intl;0.5%
+ADBE;Adobe Systems;0.5%
+AMGN;Amgen;0.5%
+NKE;Nike;0.5%
+MMM;3M;0.5%
+MDT;Medtronic;0.5%
+AVGO;Broadcom;0.4%
+GE;General Electric;0.4%
+TXN;Texas Instruments;0.4%
+UNP;Union Pacific;0.4%
+HON;Honeywell International;0.4%
+ABT;Abbott Laboratories;0.4%
+ACN;Accenture;0.4%
+MO;Altria Group;0.4%
+BKNG;Booking Holdings;0.4%
+CRM;Salesforce.com;0.4%
+UTX;United Technologies;0.4%
+PYPL;PayPal Holdings;0.4%
+UPS;United Parcel Service;0.4%
+LLY;Eli Lilly;0.4%
+SLB;Schlumberger;0.4%
+GILD;Gilead Sciences;0.4%
+COST;Costco Wholesale;0.3%
+MS;Morgan Stanley;0.3%
+CAT;Caterpillar;0.3%
+BMY;Bristol-Myers Squibb;0.3%
+QCOM;Qualcomm;0.3%
+LMT;Lockheed Martin;0.3%
+GS;Goldman Sachs Group;0.3%
+TMO;Thermo Fisher Scientific;0.3%
+AXP;American Express;0.3%
+USB;US Bancorp;0.3%
+BLK;BlackRock;0.3%
+FOXA;Twenty-First Century Fox;0.3%
+FOX;Twenty-First Century Fox;0.3%
+LOW;Lowe's Companies;0.3%
+SBUX;Starbucks;0.3%
+TWX;Time Warner;0.3%
+COP;ConocoPhillips;0.3%
+SCHW;Charles Schwab;0.3%
+NEE;NextEra Energy;0.3%
+KHC;Kraft Heinz;0.3%
+DHR;Danaher;0.3%
+CVS;CVS Health;0.3%
+FDX;FedEx;0.3%
+CHTR;Charter Communications;0.3%
+PNC;PNC Financial Services Gr;0.3%
+MU;Micron Technology;0.3%
+EOG;EOG Resources;0.3%
+WBA;Walgreens Boots Alliance;0.3%
+BIIB;Biogen;0.2%
+OXY;Occidental Petroleum;0.2%
+SYK;Stryker;0.2%
+ANTM;Anthem;0.2%
+BDX;Becton, Dickinson and Co;0.2%
+AET;Aetna;0.2%
+GM;General Motors;0.2%
+ADP;Automatic Data Processing;0.2%
+AMT;American Tower;0.2%
+CB;Chubb;0.2%
+MDLZ;Mondelez International;0.2%
+TJX;TJX Companies;0.2%
+ATVI;Activision Blizzard;0.2%
+AGN;Allergan;0.2%
+CSX;CSX;0.2%
+GD;General Dynamics;0.2%
+EL;The Estee Lauder;0.2%
+RTN;Raytheon;0.2%
+CME;CME Group;0.2%
+BK;Bank of New York Mellon;0.2%
+CELG;Celgene;0.2%
+CL;Colgate-Palmolive;0.2%
+NOC;Northrop Grumman;0.2%
+ISRG;Intuitive Surgical;0.2%
+INTU;Intuit;0.2%
+PSX;Phillips 66;0.2%
+SPGI;S&P Global;0.2%
+DUK;Duke Energy;0.2%
+SPG;Simon Property Group;0.2%
+ITW;Illinois Tool Works;0.2%
+AMAT;Applied Materials;0.2%
+VLO;Valero Energy;0.2%
+AIG;American International Gr;0.2%
+MAR;Marriott International;0.2%
+DE;Deere;0.2%
+F;Ford Motor;0.2%
+COF;Capital One Financial;0.2%
+CTSH;Cognizant Tech Solns;0.2%
+MET;MetLife;0.2%
+CCL;Carnival;0.2%
+PX;Praxair;0.2%
+ESRX;Express Scripts Holding;0.2%
+EMR;Emerson Electric;0.2%
+BSX;Boston Scientific;0.2%
+LYB;LyondellBasell Industries;0.2%
+EA;Electronic Arts;0.2%
+SO;Southern;0.2%
+STZ;Constellation Brands;0.2%
+NSC;Norfolk Southern;0.2%
+D;Dominion Energy;0.2%
+ZTS;Zoetis;0.2%
+ICE;Intercontinental Exchange;0.2%
+CI;Cigna;0.2%
+ILMN;Illumina;0.2%
+ECL;Ecolab;0.2%
+HUM;Humana;0.2%
+CCI;Crown Castle Intl;0.2%
+MMC;Marsh & McLennan;0.2%
+PRU;Prudential Financial;0.2%
+TGT;Target;0.2%
+HAL;Halliburton;0.2%
+BBT;BB&T;0.2%
+BAX;Baxter International;0.2%
+EXC;Exelon;0.2%
+VRTX;Vertex Pharmaceuticals;0.2%
+DAL;Delta Air Lines;0.1%
+EBAY;eBay;0.1%
+HPQ;HP;0.1%
+ADI;Analog Devices;0.1%
+SHW;Sherwin-Williams;0.1%
+PSA;Public Storage;0.1%
+HCA;HCA Healthcare;0.1%
+KMI;Kinder Morgan;0.1%
+WM;Waste Management;0.1%
+PGR;Progressive;0.1%
+BHGE;Baker Hughes, a GE;0.1%
+KMB;Kimberly-Clark;0.1%
+APD;Air Products & Chemicals;0.1%
+STT;State Street Corporation;0.1%
+FIS;Fidelity National Info;0.1%
+AFL;Aflac;0.1%
+APC;Anadarko Petroleum;0.1%
+TRV;Travelers Companies;0.1%
+SYY;Sysco;0.1%
+TEL;TE Connectivity;0.1%
+ETN;Eaton;0.1%
+TWTR;Twitter;0.1%
+AON;Aon;0.1%
+PLD;Prologis;0.1%
+REGN;Regeneron Pharmaceuticals;0.1%
+MPC;Marathon Petroleum;0.1%
+MCO;Moody's;0.1%
+VFC;VF;0.1%
+ALL;Allstate;0.1%
+JCI;Johnson Controls;0.1%
+EW;Edwards Lifesciences;0.1%
+ROST;Ross Stores;0.1%
+AEP;American Electric Power;0.1%
+STI;SunTrust Banks;0.1%
+MNST;Monster Beverage;0.1%
+EQIX;Equinix;0.1%
+PXD;Pioneer Natural Resources;0.1%
+FISV;Fiserv;0.1%
+RHT;Red Hat;0.1%
+MCK;McKesson;0.1%
+LUV;Southwest Airlines;0.1%
+ADSK;Autodesk;0.1%
+TROW;T. Rowe Price Group;0.1%
+SRE;Sempra Energy;0.1%
+ROP;Roper Technologies;0.1%
+LRCX;Lam Research;0.1%
+ALGN;Align Technology;0.1%
+FTV;Fortive;0.1%
+WY;Weyerhaeuser;0.1%
+OKE;ONEOK;0.1%
+APH;Amphenol;0.1%
+APTV;Aptiv;0.1%
+ALXN;Alexion Pharmaceuticals;0.1%
+YUM;Yum Brands;0.1%
+SYF;Synchrony Financial;0.1%
+PEG;Public Service Enterprise;0.1%
+TSN;Tyson Foods;0.1%
+PPG;PPG Industries;0.1%
+DG;Dollar General;0.1%
+DFS;Discover Financial;0.1%
+GIS;General Mills;0.1%
+ADM;Archer-Daniels Midland;0.1%
+BF.B;Brown-Forman;0.1%
+CNC;Centene;0.1%
+MTB;M&T Bank;0.1%
+HLT;Hilton Worldwide Holdings;0.1%
+PAYX;Paychex;0.1%
+FCX;Freeport-McMoRan;0.1%
+RCL;Royal Caribbean Cruises;0.1%
+GLW;Corning;0.1%
+HPE;Hewlett Packard Enterprise;0.1%
+WDC;Western Digital;0.1%
+NTRS;Northern Trust;0.1%
+MCHP;Microchip Technology;0.1%
+DXC;DXC Technology;0.1%
+CMI;Cummins;0.1%
+EQR;Equity Residential;0.1%
+AVB;AvalonBay Communities;0.1%
+K;Kellogg;0.1%
+ORLY;O'Reilly Automotive;0.1%
+ZBH;Zimmer Biomet Holdings;0.1%
+IP;International Paper;0.1%
+RSG;Republic Services;0.1%
+ED;Consolidated Edison;0.1%
+IR;Ingersoll-Rand;0.1%
+PH;Parker Hannifin;0.1%
+COL;Rockwell Collins;0.1%
+PCAR;PACCAR;0.1%
+ROK;Rockwell Automation;0.1%
+KR;Kroger;0.1%
+WMB;Williams Companies;0.1%
+XEL;Xcel Energy;0.1%
+SWK;Stanley Black & Decker;0.1%
+DPS;Dr Pepper Snapple Group;0.1%
+DLR;Digital Realty Trust;0.1%
+KEY;KeyCorp;0.1%
+WELL;Welltower;0.1%
+IQV;IQVIA Holdings;0.1%
+AMP;Ameriprise Financial;0.1%
+CBS;CBS;0.1%
+NUE;Nucor;0.1%
+A;Agilent Technologies;0.1%
+DVN;Devon Energy;0.1%
+FITB;Fifth Third Bancorp;0.1%
+DLTR;Dollar Tree Stores;0.1%
+BBY;Best Buy Co;0.1%
+RF;Regions Financial;0.1%
+ABC;AmerisourceBergen;0.1%
+NTAP;NetApp;0.1%
+PCG;PG&E;0.1%
+ANDV;Andeavor;0.1%
+CERN;Cerner;0.1%
+UAL;United Continental Holdings;0.1%
+NEM;Newmont Mining;0.1%
+WLTW;Willis Towers Watson;0.1%
+CTAS;Cintas;0.1%
+INFO;IHS Markit;0.1%
+CFG;Citizens Financial Group;0.1%
+MYL;Mylan;0.1%
+AAL;American Airlines Group;0.1%
+GGP;GGP;0.1%
+IDXX;IDEXX Laboratories;0.1%
+ABMD;Abiomed;0.1%
+EIX;Edison International;0.1%
+HSY;The Hershey;0.1%
+CTL;CenturyLink;0.1%
+LH;Laboratory Corp;0.1%
+HRL;Hormel Foods;0.1%
+VTR;Ventas;0.1%
+HIG;Hartford Financial;0.1%
+WEC;WEC Energy Group;0.1%
+PPL;PPL;0.1%
+WYNN;Wynn Resorts;0.1%
+GPN;Global Payments;0.1%
+CXO;Concho Resources;0.1%
+SWKS;Skyworks Solutions;0.1%
+EXPE;Expedia Group;0.1%
+MSI;Motorola Solutions;0.1%
+BXP;Boston Properties;0.1%
+BEN;Franklin Resources;0.1%
+AZO;AutoZone;0.1%
+VRSK;Verisk Analytics;0.1%
+HES;Hess;0.1%
+SBAC;SBA Communications;0.1%
+GWW;W.W. Grainger;0.1%
+TDG;TransDigm Group;0.1%
+XLNX;Xilinx;0.1%
+HRS;Harris;0.1%
+DTE;DTE Energy;0.1%
+KLAC;KLA-Tencor;0.1%
+VMC;Vulcan Materials;0.1%
+AME;AMETEK;0.1%
+MGM;MGM Resorts International;0.1%
+LEN;Lennar;0.1%
+ES;Eversource Energy;0.1%
+TXT;Textron;0.1%
+OMC;Omnicom Group;0.1%
+MRO;Marathon Oil;0.1%
+CAH;Cardinal Health;0.1%
+ETFC;E*TRADE Financial;0.1%
+TIF;Tiffany;0.1%
+HBAN;Huntington Bancshares;0.1%
+STX;Seagate Technology;0.1%
+SIVB;SVB Financial;0.1%
+CLX;Clorox;0.1%
+FE;FirstEnergy;0.1%
+CBRE;CBRE Group;0.1%
+NBL;Noble Energy;0.1%
+CMA;Comerica;0.1%
+DISH;DISH Network;0.1%
+DHI;D.R. Horton;0.1%
+PFG;Principal Financial Group;0.1%
+L;Loews;0.1%
+APA;Apache;0.1%
+MHK;Mohawk Industries;0.1%
+NDAQ;Nasdaq;0.1%
+NOV;National Oilwell Varco;0.1%
+AMD;Advanced Micro Devices;0.1%
+HST;Host Hotels & Resorts;0.1%
+WAT;Waters;0.1%
+TSS;Total System Services;0.1%
+INCY;Incyte;0.1%
+EMN;Eastman Chemical;0.1%
+CA;CA;0.1%
+LLL;L3 Technologies;0.1%
+ESS;Essex Property Trust;0.1%
+MSCI;MSCI;0.1%
+WRK;WestRock;0.1%
+FAST;Fastenal;0.1%
+CAG;Conagra Brands;0.1%
+DGX;Quest Diagnostics;0.1%
+RMD;ResMed;0.1%
+O;Realty Income;0.1%
+MTD;Mettler-Toledo Intl;0.1%
+ANSS;Ansys;0.1%
+ULTA;Ulta Beauty;0.1%
+EFX;Equifax;0.1%
+EQT;EQT;0.1%
+LNC;Lincoln National;0.1%
+TAP;Molson Coors Brewing;0.1%
+XL;XL Group;0.1%
+CTXS;Citrix Systems;0.1%
+MLM;Martin Marietta Materials;0.1%
+AWK;American Water Works Co;0.1%
+FTI;TechnipFMC;0.1%
+JBHT;JB Hunt Transport;0.1%
+RJF;Raymond James Financial;0.1%
+DISCA;Discovery;0.1%
+ETR;Entergy;0.1%
+AKAM;Akamai Technologies;0.1%
+MKC;McCormick & Co;0.1%
+GPC;Genuine Parts;0.1%
+TTWO;Take-Two Interactive;0.1%
+AEE;Ameren;0.1%
+VRSN;VeriSign;0.1%
+VNO;Vornado Realty Trust;0.1%
+SNPS;Synopsys;0.1%
+URI;United Rentals;0.1%
+EXPD;Expeditors International;0.1%
+TPR;Tapestry;0.1%
+DISCK;Discovery;0.1%
+SYMC;Symantec;0.1%
+ARE;Alexandria Real Estate;0.1%
+IPGP;IPG Photonics;0.0%
+KMX;CarMax;0.0%
+ADS;Alliance Data Systems;0.0%
+CMG;Chipotle Mexican Grill;0.0%
+XYL;Xylem;0.0%
+DVA;DaVita;0.0%
+BLL;Ball;0.0%
+CDNS;Cadence Design Systems;0.0%
+NWL;Newell Brands;0.0%
+IT;Gartner;0.0%
+CHRW;C.H. Robinson Worldwide;0.0%
+CMS;CMS Energy;0.0%
+PVH;PVH;0.0%
+KSS;Kohl's;0.0%
+NCLH;Norwegian Cruise Line;0.0%
+CHD;Church & Dwight Co;0.0%
+GPS;Gap;0.0%
+EXR;Extra Space Storage;0.0%
+FMC;FMC;0.0%
+SJM;JM Smucker;0.0%
+AJG;Arthur J. Gallagher;0.0%
+DOV;Dover;0.0%
+MAS;Masco;0.0%
+VIAB;Viacom;0.0%
+M;Macy's;0.0%
+DRI;Darden Restaurants;0.0%
+COO;The Cooper Companies;0.0%
+CBOE;Cboe Global Markets;0.0%
+GRMN;Garmin;0.0%
+HAS;Hasbro;0.0%
+RL;Ralph Lauren;0.0%
+CINF;Cincinnati Financial;0.0%
+IVZ;Invesco;0.0%
+KSU;Kansas City Southern;0.0%
+HSIC;Henry Schein;0.0%
+HCP;HCP;0.0%
+PKG;Packaging Corp of America;0.0%
+NLSN;Nielsen Holdings;0.0%
+VAR;Varian Medical Systems;0.0%
+CNP;CenterPoint Energy;0.0%
+MOS;Mosaic;0.0%
+CPB;Campbell Soup;0.0%
+FFIV;F5 Networks;0.0%
+HOLX;Hologic;0.0%
+MAA;Mid-America Apartment;0.0%
+UHS;Universal Health Services;0.0%
+ZION;Zions Bancorp;0.0%
+COTY;Coty;0.0%
+QRVO;Qorvo;0.0%
+WHR;Whirlpool;0.0%
+AOS;A.O. Smith;0.0%
+COG;Cabot Oil & Gas;0.0%
+NRG;NRG Energy;0.0%
+CF;CF Industries Holdings;0.0%
+PRGO;Perrigo Co;0.0%
+LKQ;LKQ;0.0%
+ALB;Albemarle;0.0%
+UAA;Under Armour;0.0%
+XRAY;Dentsply Sirona;0.0%
+AAP;Advance Auto Parts;0.0%
+DRE;Duke Realty;0.0%
+BWA;BorgWarner;0.0%
+KORS;Michael Kors Holdings;0.0%
+REG;Regency Centers;0.0%
+LB;L Brands;0.0%
+IFF;International Flavors;0.0%
+NKTR;Nektar Therapeutics;0.0%
+UDR;UDR;0.0%
+HII;Huntington Ingalls Indus;0.0%
+TMK;Torchmark;0.0%
+UA;Under Armour;0.0%
+WU;The Western Union;0.0%
+JNPR;Juniper Networks;0.0%
+IRM;Iron Mountain;0.0%
+NWS;News;0.0%
+AVY;Avery Dennison;0.0%
+NWSA;News;0.0%
+RE;Everest Re Group;0.0%
+LNT;Alliant Energy;0.0%
+JEC;Jacobs Engineering Group;0.0%
+SNA;Snap-on;0.0%
+IPG;The Interpublic Group;0.0%
+TSCO;Tractor Supply;0.0%
+SLG;SL Green Realty;0.0%
+FRT;Federal Realty Investment;0.0%
+PHM;PulteGroup;0.0%
+UNM;Unum;0.0%
+AES;AES;0.0%
+RHI;Robert Half International;0.0%
+PKI;PerkinElmer;0.0%
+PNW;Pinnacle West Capital;0.0%
+ARNC;Arconic;0.0%
+AMG;Affiliated Managers Group;0.0%
+JWN;Nordstrom;0.0%
+FBHS;Fortune Brands Home;0.0%
+NI;NiSource;0.0%
+XEC;Cimarex Energy;0.0%
+TRIP;TripAdvisor;0.0%
+MAC;Macerich;0.0%
+PNR;Pentair;0.0%
+ALLE;Allegion;0.0%
+ALK;Alaska Air Group;0.0%
+JEF;Jefferies Financial Group;0.0%
+HOG;Harley-Davidson;0.0%
+FLIR;FLIR Systems;0.0%
+EVRG;Evergy;0.0%
+HBI;Hanesbrands;0.0%
+SEE;Sealed Air;0.0%
+KIM;Kimco Realty;0.0%
+XRX;Xerox;0.0%
+HP;Helmerich & Payne;0.0%
+FLR;Fluor;0.0%
+FL;Foot Locker;0.0%
+PBCT;People's United;0.0%
+AIV;Apartment Inv & Mgmt;0.0%
+MAT;Mattel;0.0%
+GT;Goodyear Tire & Rubber;0.0%
+LEG;Leggett & Platt;0.0%
+NFX;Newfield Exploration;0.0%
+SRCL;Stericycle;0.0%
+EVHC;Envision Healthcare;0.0%
+BHF;Brighthouse Financial;0.0%
+FLS;Flowserve;0.0%
+PWR;Quanta Services;0.0%
+SCG;SCANA;0.0%
+AIZ;Assurant;0.0%
+AYI;Acuity Brands;0.0%
+HRB;H&R Block;0.0%
+RRC;Range Resources;0.0%
