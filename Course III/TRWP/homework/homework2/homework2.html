@@ -1,0 +1,42 @@
+<!--
+Деменчук ПИ19-3
+
+7.
+а) BUTTON, несколько дополнительных форм 
+б) В элементах INPUT указать имя формы и ее цвет фона
+в) По кнопке определить число форм, расположенных в документе HTML
+По другой кнопке изменить цвет дополнительной формы.
+
+-->
+<script>
+    const M = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн"];
+
+    function loadM() { //построение списка выбора и таблицы
+        s = "<table border><tr>"
+        for (i = 0; i < M.length; i++) s += "<td>" + M[i];
+        s += "</table>"
+        document.getElementById("demo").innerHTML = s
+        k = frm.elements.length
+        for (i = 0; i < k; i++) {
+            alert(frm.elements[i].type + " " + frm.elements[i].name)
+        }
+        with (document.frm.mont) {
+            options.length = M.length
+            for (i = 0; i < M.length; i++) {
+                options[i].value = "M" + i
+                options[i].text = M[i]
+            }
+        }
+    }
+
+</script>
+<body>
+
+<p id="demo"></p>
+<form name="frm">
+    <br><input onclick="loadM()" type="button" value="задать спиcки">
+    <br>
+    <select name="mont"> </select>
+    <input name='x1'>
+</form>
+</body>

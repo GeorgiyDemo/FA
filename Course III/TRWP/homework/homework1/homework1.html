@@ -1,0 +1,44 @@
+<!--
+Деменчук ПИ19-3
+
+7. В окне 3 элемента:
+2 элемента для ввода текста и кнопка.
+Вводится 2 числа.
+По нажатию кнопки максимальное число заменяется на разность максимального и минимального.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ДЗ2</title>
+    <style>
+        body { background-color: grey; }
+        h3{ color: white;}
+    </style>
+</head>
+<body>
+
+<h3 s>ДЗ №1</h3>
+<input id='x' type='number'>
+<input id='y' type='number'>
+
+<button id="button">Нажмите для вычисления</button>
+
+<script>
+
+    //Нажатие на button
+    document.getElementById('button').onclick = function changeContent() {
+        let x = parseInt(document.getElementById("x").value);
+        let y = parseInt(document.getElementById("y").value);
+
+        if (x < y)
+            document.getElementById("y").value = y - x;
+        else
+            document.getElementById("x").value = x - y;
+
+    }
+
+</script>
+</body>
+</html>
