@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta charset="utf-8"> <title>Задание 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+<form>
+    <div class="center">
+        <h2>Оценка качества преподавания</h2>
+    </div>
+
+    Данный опрос необходим для анализа качества преподавания в нашем учебном заведении и предназначен для студентов, опучающихся по дисциплинам ПИ и ПМ
+    <div class="DEMKAStandartForm">
+        <legend>Контактная информация</legend>
+
+        <table class="DEMKAmaintable">
+            <tr>
+                <td class="DEMKALefttable"><label>Имя</label></td><td class="DEMKARighttable"><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td class="DEMKALefttable"><label>Телефон</label></td><td class="DEMKARighttable"><input type="text" name="phone" /></td>
+            </tr>
+            <tr>
+                <td class="DEMKALefttable"><label>Email</label></td><td class="DEMKARighttable"><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td class="DEMKALefttable"><label>Дата посещения</label></td><td class="DEMKARighttable"><input type="date" name="date" /></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <div class="DEMKAStandartForm">
+        <legend>Персональная информация</legend>
+        <table class="DEMKAmaintable">
+            <tr>
+                <td class="DEMKALefttable"><label>Возраст</label></td><td class="DEMKARighttable"><input type="number" min="1" max="100" step="1" name="age" /></td>
+            </tr>
+            <tr>
+                <td class="DEMKALefttable"><label>Любимый язык программирования</label></td><td class="DEMKARighttable">
+                <select name="programmingLangSelector">
+                    <option value="1">Python</option>
+                    <option value="2">C++</option>
+                    <option value="3">C#</option>
+                    <option value="4">Java</option>
+                </select>
+            </td>
+            </tr>
+            <tr>
+                <td class="DEMKALefttable"><label>Какой язык программирования вы бы хотели изучать в будущем?</label></td><td class="DEMKARighttable"><textarea id="programmingLangList" name="programmingLangList"></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <div class="DEMKAStandartForm">
+        <legend>Оценка нашего университета</legend>
+        <label>Почему вы выбрали наше учебное заведение?</label><br>
+        <input type="radio" name="radiochoise_type" value="1"/><label>Недалеко от дома/работы</label><br>
+        <input type="radio" name="radiochoise_type" value="2"/><label>Востребованность на рынке труда</label><br>
+        <input type="radio" name="radiochoise_type" value="3"/><label>Престиж</label><br>
+        <input type="radio" name="radiochoise_type" value="4"/><label>Оптимальное соотношение цены и качества</label><br>
+        <label>Вы будете рекомендовать наш университет своим знакомым?</label><br>
+        <input type="radio" name="radiochoise_advice" value="true"/><label>Да</label><br>
+        <input type="radio" name="radiochoise_advice" value="false"/><label>Нет</label><br>
+    </div>
+    <br>
+    <input type="submit" value="Отправить" class="DEMKAsendbutton">
+</form>
+<br>
+
+
+</body>
+
+</html>

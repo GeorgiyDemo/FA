@@ -8,35 +8,53 @@
 По другой кнопке изменить цвет дополнительной формы.
 
 -->
-<script>
-    const M = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн"];
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя работа 2</title>
+    <script src="js/jquery-3.6.0.js"></script>
+</head>
+<body>
 
-    function loadM() { //построение списка выбора и таблицы
-        s = "<table border><tr>"
-        for (i = 0; i < M.length; i++) s += "<td>" + M[i];
-        s += "</table>"
-        document.getElementById("demo").innerHTML = s
-        k = frm.elements.length
-        for (i = 0; i < k; i++) {
-            alert(frm.elements[i].type + " " + frm.elements[i].name)
-        }
-        with (document.frm.mont) {
-            options.length = M.length
-            for (i = 0; i < M.length; i++) {
-                options[i].value = "M" + i
-                options[i].text = M[i]
-            }
-        }
+<form id="form">
+    Введите имя формы<br>
+    <input name='formName'><br>
+    Введите цвет формы<br>
+    <input type="color" id="formColor" name="head"><br>
+    <br>
+    <input type='button' value="Определить кол-во форм" id="button1" onclick="formCounter()"><br>
+    <input type='button' value="Изменить цвет формы" id="button2" onclick="formColorChanger()"><br>
+    <br>
+    <div id="result1"></div>
+    <div id="result2"></div>
+</form>
+<form id="otherForm">
+    <br>
+    Призвольная дополнительная форма, на которой меняется цвет фона<br>
+    <br>
+</form>
+
+<script>
+
+    /*
+    Изменение цвета формы
+    */
+    function formColorChanger(){
+
+        let pickedColor = $('#formColor').val();
+        let myForm = document.getElementById("otherForm");
+        myForm.style.backgroundColor = pickedColor;
+    }
+
+    /*
+    Подсчет кол-ва форм в документе
+     */
+    function formCounter(){
+        let result1 = $('form').find('input, textarea, select').length;
+        document.getElementById("result1").innerHTML="Количество элементов form: "+result1;
     }
 
 </script>
-<body>
-
-<p id="demo"></p>
-<form name="frm">
-    <br><input onclick="loadM()" type="button" value="задать спиcки">
-    <br>
-    <select name="mont"> </select>
-    <input name='x1'>
-</form>
 </body>
+</html>
