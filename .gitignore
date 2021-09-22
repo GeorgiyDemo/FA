@@ -5,7 +5,6 @@ Thumbs.db
 .DS_Store
 .ipynb_checkpoints
 .idea/
-*.css
 *.so
 *.o
 *.pptx
@@ -17,3 +16,4 @@ Course II/ПП/part2/pract7/ftp-server/storage/
 *.log
 venv
 Course III/ECONOMETRICS/task1/
+Course I/ОВС/лабы/PHP/css/bootstrap.css
