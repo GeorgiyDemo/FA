@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<address_book>
+<country name="algeria">
+<address id="1">
+	<gender>m</gender>
+	<name>Aicha Barki</name>
+	<email>aiqraa.asso@caramail.com</email>
+	<position>Presidente</position>
+	<company>Association Algerienne d'Alphabetisation Iqraa</company>
+	<phones>
+		<phone type="work">+ (213) 6150 4015</phone>
+		<phone type="personal">+ (213) 2173 5247</phone>
+	</phones>	
+</address>
+</country>
+<country name="angola">
+<address id="2">
+	<gender>m</gender>
+	<name>Francisco Domingos</name>
+	<email>frandomingos@hotmail.com</email>
+	<position>Directeur General</position>
+	<company>Institut National de Education des Adultes</company>
+	<phones>
+		<phone type="work">+ (244-2) 325 023</phone>
+		<phone type="personal">+ (244-2) 325 023</phone>
+	</phones>	
+</address>
+<address id="3">
+	<gender>f</gender>
+	<name>Maria Luisa</name>
+	<email>luisagrilo@ebonet.net</email>
+	<position>Directrice Nationale</position>
+	<company>Institut National de Education des Adultes</company>
+	<phones>
+		<phone type="personal">+ (244) 4232 2836</phone>
+	</phones>	
+</address>
+<address id="4">
+	<gender>m</gender>
+	<name>Abraao Chanda</name>
+	<email>ineda@snet.co.ao</email>
+	<position>Chef</position>
+	<company>Institut National de Education des Adultes</company>
+	<phones>
+		<phone type="work">+ (244-2) 325 023</phone>
+		<phone type="personal">+ (244-2) 325 023</phone>
+	</phones>	
+</address>
+</country>
+<country name="argentina">
+<address id="5">
+	<gender>m</gender>
+	<name>Beatriz Busaniche</name>
+	<email>busaniche@caminandoutopias.org.ar</email>
+	<position>Executive Director</position>
+	<company>Universidad de Buenos Aires</company>
+	<phones>
+		<phone type="work">+ (54-11) 4784 1159</phone>
+	</phones>	
+</address>
+</country>
+<country name="australia">
+<address id="6">
+	<gender>f</gender>
+	<name>Francesca Beddie</name>
+	<email>f.beddie@ala.asn.au</email>
+	<position>Executive Director</position>
+	<company>Adult Learning Australia</company>
+	<phones>
+		<phone type="work">+ (61-2) 6274 9500</phone>
+		<phone type="personal">+ (61-2) 6274 9513</phone>
+	</phones>	
+</address>
+<address id="7">
+	<gender>m</gender>
+	<name>Graham John Smith</name>
+	<email>grasm@connexus.net.au</email>
+	<position>Secretary</position>
+	<company>Disability Australia Ltd</company>
+	<phones>
+		<phone type="work">+ (61-3) 9807 4702</phone>
+	</phones>	
+</address>
+</country>
+
+</address_book>

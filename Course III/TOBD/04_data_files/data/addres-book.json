@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Faina Lee",
+    "email": "faina@mail.ru",
+    "birthday": "22.08.1994",
+    "phones": [
+      {
+        "phone": "232-19-55"
+      },
+      {
+        "phone": "+7 (916) 232-19-55"
+      }
+    ]
+  },
+  {
+    "name": "Robert Lee",
+    "email": "robert@mail.ru",
+    "birthday": "22.08.1994",
+    "phones": [
+      {
+        "phone": "111-19-55"
+      },
+      {
+        "phone": "+7 (916) 445-19-55"
+      }
+    ]
+  }
+]
