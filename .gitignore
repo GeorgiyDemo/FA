@@ -17,3 +17,6 @@ Course II/ПП/part2/pract7/ftp-server/storage/
 venv
 Course III/ECONOMETRICS/task1/
 Course I/ОВС/лабы/PHP/css/bootstrap.css
+*.npy
+*.npz
+*.h5
