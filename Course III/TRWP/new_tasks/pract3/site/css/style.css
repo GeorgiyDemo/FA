@@ -11,21 +11,25 @@ section {
 
 /*font-family: 'Open Sans', sans-serif;*/
 /*font-family: 'Oswald', sans-serif*/
-.container{
+.container {
     padding-inline: 0;
 }
-h1, h2, h3, h4, h5, h6{
+
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif
 }
-h2{
+
+h2 {
     font-weight: bold;
     font-size: 48px;
     letter-spacing: 3px;
     color: #252525;
 }
-p{
+
+p {
     font-family: 'Open Sans', sans-serif;
 }
+
 .header-menu {
     padding-top: 79px;
 }
@@ -69,9 +73,11 @@ li.active > hr {
     color: rgba(255, 255, 255, 1);
     letter-spacing: 1.28px;
 }
-.header-carousel-pagination ol{
+
+.header-carousel-pagination ol {
     margin-top: 2rem;
 }
+
 .header-carousel-pagination ol li {
     display: inline-block;
     font-weight: bold;
@@ -80,53 +86,62 @@ li.active > hr {
     color: rgba(255, 255, 255, 0.437245);
     margin-right: 9px;
 }
-.header-carousel-pagination ol li:hover{
+
+.header-carousel-pagination ol li:hover {
     cursor: pointer;
 }
+
 .header-carousel-pagination ol li.active {
     font-size: 36px;
     color: #ffffff;
     text-decoration: line-through;
-    text-decoration-color:  #4CAF50;
+    text-decoration-color: #4CAF50;
 }
 
-.we-are{
+.we-are {
     height: 560px;
     margin-top: 149px;
     margin-bottom: 117px;
     position: relative;
 }
-.we-are-sm{
+
+.we-are-sm {
     display: none;
 }
-.we-are img{
+
+.we-are img {
     position: absolute;
 }
-#we-are-first-img{
+
+#we-are-first-img {
     left: 193px;
     bottom: 186px;
     top: 0;
     z-index: -1;
 }
-#we-are-second-img{
+
+#we-are-second-img {
     top: 62px;
     bottom: 79px;
     left: 403px;
     z-index: -2;
 }
-#we-are-third-img{
+
+#we-are-third-img {
     top: 168px;
     left: 603px;
     bottom: 0;
     z-index: -3;
 }
-.we-are-title, .we-are-title-sm{
+
+.we-are-title, .we-are-title-sm {
     font-weight: 700;
     font-size: 36px;
     letter-spacing: 2.3px;
     color: #333333;
 
 }
+
 .we-are-title-span, .we-are-title-span-sm {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -135,7 +150,8 @@ li.active > hr {
     letter-spacing: 2.7px;
     color: #504E4E;
 }
-.we-are-description, .we-are-description-1{
+
+.we-are-description, .we-are-description-1 {
     width: 280px;
     font-weight: 300;
     font-size: 15px;
@@ -143,10 +159,12 @@ li.active > hr {
     letter-spacing: 1.26px;
     color: #5B5858;
 }
-.we-are-img-sm{
+
+.we-are-img-sm {
     margin-bottom: 20px;
 }
-.we-are-description-sm, .we-are-description-1-sm{
+
+.we-are-description-sm, .we-are-description-1-sm {
     font-weight: 300;
     font-size: 15px;
     line-height: 25px;
@@ -154,26 +172,30 @@ li.active > hr {
     color: #5B5858;
     padding: 25px;
 }
-.we-are-description{
+
+.we-are-description {
     padding-top: 77px;
     padding-right: 50px;
 }
-.we-are-description-1{
+
+.we-are-description-1 {
     padding-top: 404px;
     padding-left: 76px;
 }
 
-.our-services{
-    background:  #FBFBFB;
+.our-services {
+    background: #FBFBFB;
     padding-top: 129px;
     padding-bottom: 136px;
 }
-.our-services-item{
+
+.our-services-item {
     margin-top: 85px;
     background: #ffffff;
     padding: 45px;
 }
-.our-services-item h4{
+
+.our-services-item h4 {
     font-style: normal;
     font-weight: 300;
     font-size: 20px;
@@ -182,31 +204,37 @@ li.active > hr {
     color: #252525;
     margin-bottom: 15px;
 }
-.our-services-item p{
+
+.our-services-item p {
     margin: 19px 0;
     font-size: 12px;
     line-height: 25px;
     letter-spacing: 1px;
     color: #777777;
 }
-.black-hr{
+
+.black-hr {
     width: 45px;
     height: 2px;
     background: #252525;
-    margin: 0 auto 0 0 ;
+    margin: 0 auto 0 0;
 }
-.our-services-item.active{
+
+.our-services-item.active {
     border-bottom: 3px solid #70BF73;
 
 }
-.our-services-item.active span{
+
+.our-services-item.active span {
     opacity: 1;
 }
-.our-services-item a:hover{
+
+.our-services-item a:hover {
     text-decoration: none;
 
 }
-.our-services-item span{
+
+.our-services-item span {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 10px;
@@ -216,32 +244,36 @@ li.active > hr {
     opacity: 0.5;
 }
 
-.our-services-item-oval{
+.our-services-item-oval {
     padding: 9px 10px 11px 12px;
-    box-shadow: 0px 0px 20px #DBDBDB;
+    box-shadow: 0 0 20px #DBDBDB;
     border-radius: 31px;
 }
-.latest-works{
+
+.latest-works {
     padding: 164px 16px 0 16px;
 }
-.latest-works-title{
-   margin-top: 57px;
+
+.latest-works-title {
+    margin-top: 57px;
 }
-.latest-works-menu{
+
+.latest-works-menu {
     margin-top: 50px;
     margin-bottom: 161px;
 }
-.latest-works-menu li a{
-    font-family: 'Open Sans',sans-serif;
+
+.latest-works-menu li a {
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     line-height: 18px;
     letter-spacing: 0.8px;
     color: #252525;
     opacity: 0.3;
     margin-right: 40px;
-    }
+}
 
-.latest-works-menu li a:hover{
+.latest-works-menu li a:hover {
     text-decoration: none;
     opacity: 1;
 }
@@ -255,54 +287,63 @@ li.active > hr {
     position: absolute;
     bottom: 0;
 }
-.latest-works-item a:hover{
+
+.latest-works-item a:hover {
     text-decoration: none;
 }
+
 .latest-works-item a h4:hover {
     text-decoration: line-through;
     text-decoration-color: #4CAF50;
 }
-.latest-works-item-info{
+
+.latest-works-item-info {
     margin-bottom: 137px;
     margin-top: 24px;
 }
-.latest-works-item-info span{
-    font-family:'Open Sans', sans-serif;
+
+.latest-works-item-info span {
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     letter-spacing: 1.2px;
     color: rgba(37, 37, 37, 1)
 
 }
-.latest-works-item-info p{
+
+.latest-works-item-info p {
     font-weight: 300;
     font-size: 13px;
     line-height: 23px;
     letter-spacing: 0.8px;
     color: #C2C2C2;
 }
-.latest-works-item-info a{
-    font-family: 'Open Sans',sans-serif;
+
+.latest-works-item-info a {
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     line-height: 18px;
     letter-spacing: 0.8px;
     color: #252525;
     opacity: 0.3;
 }
-.latest-works-item-info a:hover{
+
+.latest-works-item-info a:hover {
     opacity: 1;
     text-decoration: line-through;
-    text-decoration-color:  #4CAF50;
-    text-decoration-width: 2px;
+    text-decoration-color: #4CAF50;
 }
-.the-team{
+
+.the-team {
     background: #FBFBFB;
     padding-top: 129px;
     padding-bottom: 167px;
 }
-.the-team-avatars{
+
+.the-team-avatars {
     padding-top: 71px;
 }
-.the-team-name{
+
+.the-team-name {
     position: absolute;
     text-align: center;
     max-width: none;
@@ -313,8 +354,9 @@ li.active > hr {
     opacity: 0.5;
     cursor: pointer;
 }
-.the-team-name span{
-    font-family: 'Oswald',sans-serif;
+
+.the-team-name span {
+    font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 18px;
     line-height: 27px;
@@ -322,23 +364,26 @@ li.active > hr {
     color: #252525;
 }
 
-.the-team-name.active{
+.the-team-name.active {
     opacity: 0.9;
 }
-.the-team-name.active > .the-team-name-profession
-{
+
+.the-team-name.active > .the-team-name-profession {
     display: inline !important;
 }
-.the-team-name-profession{
+
+.the-team-name-profession {
     text-align: center;
 }
-.the-team-name-profession hr{
+
+.the-team-name-profession hr {
     width: 45px;
     height: 1px;
     background: #252525;
     margin: 8px auto;
 }
-.the-team-name-profession p{
+
+.the-team-name-profession p {
     font-size: 12px;
     line-height: 25px;
     letter-spacing: 1px;
@@ -346,12 +391,14 @@ li.active > hr {
     margin-top: 10px;
     margin-bottom: 20px;
 }
-.reviews{
+
+.reviews {
     padding-top: 117px;
     padding-bottom: 90px;
     background: #ffffff;
 }
-.reviews-item p{
+
+.reviews-item p {
     font-weight: 300;
     font-size: 14px;
     line-height: 31px;
@@ -360,27 +407,32 @@ li.active > hr {
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 30px;
 }
-.reviews-item hr{
+
+.reviews-item hr {
     margin: 29px 0;
 }
-.reviews-client{
+
+.reviews-client {
     padding-top: 30px;
     padding-bottom: 25px;
 }
-.reviews a span img{
+
+.reviews a span img {
     position: absolute;
     bottom: 30px;
     opacity: 1;
 }
-.reviews-client-name{
+
+.reviews-client-name {
     font-family: 'Oswald', sans-serif;
     font-size: 18px;
     line-height: 27px;
-letter-spacing: 1.1px;
+    letter-spacing: 1.1px;
     color: #373737;
     text-transform: uppercase;
 }
-.reviews-client-prof{
+
+.reviews-client-prof {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 14px;
@@ -388,49 +440,58 @@ letter-spacing: 1.1px;
     letter-spacing: 0.9px;
     color: #B8B8B8;
 }
-.contacts-case{
+
+.contacts-case {
     padding-top: 69px;
     padding-bottom: 100px;
     text-align: center;
     background: #FBFBFB;
 }
-.contacts-mail{
+
+.contacts-mail {
     background: #70BD59;
     padding-top: 69px;
     padding-bottom: 100px;
     text-align: center;
 }
-.contacts-case h4, .contacts-mail h4{
+
+.contacts-case h4, .contacts-mail h4 {
     margin-top: 19px;
     margin-bottom: 22px;
     font-size: 24px;
     line-height: 36px;
     letter-spacing: 2px;
 }
-.contacts-mail h4{
+
+.contacts-mail h4 {
     color: #FFFFFF;
 }
-.contacts-case p, .contacts-mail a{
+
+.contacts-case p, .contacts-mail a {
     font-size: 14px;
     line-height: 19px;
     letter-spacing: 1.5px;
     color: #373737;
     opacity: 0.8;
 }
-.contacts-mail a{
+
+.contacts-mail a {
     color: #FFFFFF;
 }
-.contacts-mail a:hover{
+
+.contacts-mail a:hover {
     text-decoration: none;
     opacity: 1;
 }
-.footer{
+
+.footer {
     background: #2E2E2E;
     padding-top: 142px;
 
 }
-.footer span{
-    font-family: 'Oswald',sans-serif;
+
+.footer span {
+    font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 13px;
     line-height: 19px;
@@ -438,23 +499,27 @@ letter-spacing: 1.1px;
     color: #FFFFFF;
     opacity: 0.5;
 }
-.footer div{
+
+.footer div {
     text-align: center;
 }
-.footer-contacts{
+
+.footer-contacts {
     margin-top: 10px;
     margin-bottom: 29px;
 }
-.social-icons a{
+
+.social-icons a {
     opacity: 0.5;
-    margin-right: 21px;
-    ;
+    margin-right: 21px;;
 }
+
 .social-icons a:hover {
-opacity: 1;
+    opacity: 1;
     text-decoration: none
 }
-.copyright{
+
+.copyright {
     background: #252525;
     text-align: center;
     padding: 20px;
@@ -470,42 +535,51 @@ opacity: 1;
 and (min-device-width: 375px)
 and (max-device-width: 667px)
 and (-webkit-min-device-pixel-ratio: 2) {
-    .header-content h1{
-      font-size: 46px;
+    .header-content h1 {
+        font-size: 46px;
     }
-    .we-are{
+
+    .we-are {
         display: none;
     }
-    .we-are-sm{
+
+    .we-are-sm {
         display: block;
     }
+
     .our-services {
         padding-top: 73px;
         padding-bottom: 79px;
     }
-    }
-    .our-services-item{
-       margin-right: 0;
-    }
-    .latest-works{
-        padding-top: 50px;
-    }
-    .latest-works-menu{
-        margin-bottom: 50px;
-        padding-inline: revert;
-    }
-    .latest-works-menu li{
-        margin-bottom: 1rem;
-    }
+}
 
-    .kitty a h4{
-        width: 100%;
-    }
-    .the-team {
-        padding-top: 75px;
-        padding-bottom: 75px;
+.our-services-item {
+    margin-right: 0;
+}
 
-    }
-    .the-team-avatars-item{
-        margin-bottom: 20px;
+.latest-works {
+    padding-top: 50px;
+}
+
+.latest-works-menu {
+    margin-bottom: 50px;
+    padding-inline: revert;
+}
+
+.latest-works-menu li {
+    margin-bottom: 1rem;
+}
+
+.kitty a h4 {
+    width: 100%;
+}
+
+.the-team {
+    padding-top: 75px;
+    padding-bottom: 75px;
+
+}
+
+.the-team-avatars-item {
+    margin-bottom: 20px;
 }
