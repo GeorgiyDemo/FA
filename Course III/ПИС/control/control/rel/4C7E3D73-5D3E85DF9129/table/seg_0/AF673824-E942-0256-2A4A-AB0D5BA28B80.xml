@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AF673824-E942-0256-2A4A-AB0D5BA28B80" name="STAFFS_HOUSES">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>48EC5EEB-A5AE-F7CF-0E3F-38BAD17E9849</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<ordsAlias>staff_house</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="HOUSE_id" id="3F79C31A-85CB-E99D-AF62-693A961EEDD4">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>7197F774-56E3-15B8-A132-24DADBBA4EC6</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8401DE39-309E-418F-34EC-A46309C19D1D" referredColumn="74673EE7-FAA2-B9D6-8E0D-9DA48EFAB74D"/>
+</associations>
+</Column>
+<Column name="STAFFS_id" id="A486B266-50AC-B1EE-DA28-4D88287318F8">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>62FF29E5-6136-AA5A-F797-B5C5D0985DCD</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1B4D1551-53CD-D80A-6234-BB778C4C568A" referredColumn="32DB3932-21D2-C81B-59C8-F8E4E42BED57"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B867A8E1-6948-BAD0-27A9-08DE4006430C" name="STAFFS_HOUSES_PK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>ADAE6CB8-229A-3513-BC4B-99A8CB19914D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3F79C31A-85CB-E99D-AF62-693A961EEDD4"/>
+<colUsage columnID="A486B266-50AC-B1EE-DA28-4D88287318F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="535B808F-CB41-A681-BC92-EDE4176EC2DE" name="STAFFS_HOUSES_STAFFS_FK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>2B93A640-025F-1C0E-F577-11404EC1DD6C</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A486B266-50AC-B1EE-DA28-4D88287318F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85EBB769-65D3-10FF-7857-5795C8C8325F" name="STAFF_HOUSE_HOUSE_FK">
+<createdBy>demg</createdBy>
+<createdTime>2021-11-06 12:20:58 UTC</createdTime>
+<generatorID>C2881EFA-4AD6-35A8-FC1F-5E67F892C24B</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3F79C31A-85CB-E99D-AF62-693A961EEDD4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
