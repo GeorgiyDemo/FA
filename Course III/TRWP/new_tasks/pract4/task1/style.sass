@@ -1,0 +1,83 @@
+@mixin square($size, $color)
+  width: $size
+  height: $size
+  background-color: $color
+
+@mixin color-changer()
+  background-color: black
+
+$title-font: normal 24px/1.5 'Open Sans', sans-serif
+$color: #1db07d
+
+h1.title
+  font: $title-font
+  color: $color
+
+div.container
+  color: $color
+  background: #fff
+  width: 100%
+
+.small-square-first
+  +square(100px, #d714a1)
+
+.small-square-second
+  +square(100px, #438173)
+
+.small-square-third
+  +square(100px, #631f7e)
+
+.frame
+  transition: .2s
+
+  &:hover
+    +color-changer
+
+.dialog-button
+  box-sizing: border-box
+  color: #ffffff
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12)
+  padding: 12px 40px
+  cursor: pointer
+
+.confirm
+  @extend .dialog-button
+  background-color: #87bae1
+  float: left
+
+.cancel
+  @extend .dialog-button
+  background-color: #e4749e
+  float: right
+
+ul
+  list-style: none
+
+  li
+    padding: 15px
+    display: inline-block
+
+    a
+      text-decoration: none
+      font-size: 16px
+      color: #444
+
+
+$width: 800px
+$awesome-blue: #2196f3
+
+.container
+  width: $width
+
+.column-half
+  width: $width / 2
+
+.column-fifth
+  width: $width / 5
+
+a
+  padding: 10px 15px
+  background-color: $awesome-blue
+
+  &:hover
+    background-color: darken($awesome-blue, 10%)
