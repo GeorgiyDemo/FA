@@ -8,8 +8,8 @@ div.container {
   width: 100%; }
 
 .small-square-first {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   background-color: #d714a1; }
 
 .small-square-second {
@@ -27,20 +27,16 @@ div.container {
   .frame:hover {
     background-color: black; }
 
-.dialog-button, .confirm, .cancel {
+.dialog-button, .mybutton {
   box-sizing: border-box;
   color: #ffffff;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   padding: 12px 40px;
   cursor: pointer; }
 
-.confirm {
-  background-color: #87bae1;
+.mybutton {
+  background-color: #1db07d;
   float: left; }
-
-.cancel {
-  background-color: #e4749e;
-  float: right; }
 
 ul {
   list-style: none; }
@@ -53,16 +49,16 @@ ul {
       color: #444; }
 
 .container {
-  width: 800px; }
+  width: 1000px; }
 
 .column-half {
-  width: 400px; }
+  width: 500px; }
 
 .column-fifth {
-  width: 160px; }
+  width: 200px; }
 
 a {
   padding: 10px 15px;
-  background-color: #2196f3; }
+  background-color: #1db07d; }
   a:hover {
-    background-color: #0c7cd5; }
+    background-color: #16845e; }

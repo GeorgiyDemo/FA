@@ -19,7 +19,7 @@ div.container
   width: 100%
 
 .small-square-first
-  +square(100px, #d714a1)
+  +square(200px, #d714a1)
 
 .small-square-second
   +square(100px, #438173)
@@ -40,15 +40,10 @@ div.container
   padding: 12px 40px
   cursor: pointer
 
-.confirm
+.mybutton
   @extend .dialog-button
-  background-color: #87bae1
+  background-color: #1db07d
   float: left
-
-.cancel
-  @extend .dialog-button
-  background-color: #e4749e
-  float: right
 
 ul
   list-style: none
@@ -63,8 +58,7 @@ ul
       color: #444
 
 
-$width: 800px
-$awesome-blue: #2196f3
+$width: 1000px
 
 .container
   width: $width
@@ -77,7 +71,7 @@ $awesome-blue: #2196f3
 
 a
   padding: 10px 15px
-  background-color: $awesome-blue
+  background-color: $color
 
   &:hover
-    background-color: darken($awesome-blue, 10%)
+    background-color: darken($color, 10%)
