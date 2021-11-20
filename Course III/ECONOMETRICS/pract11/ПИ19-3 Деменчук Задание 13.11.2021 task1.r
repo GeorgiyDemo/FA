@@ -26,7 +26,7 @@ s_many <- summary(p_many)
 s_many
 
 
-dw <- dwtest(p_many) # Тест Дарбина-Ватсона
+dw <- dwtest(p_many); dw # Тест Дарбина-Ватсона
 #DW стремится к 0
 #p-value < 2.2e-16 меньше всех уровней значимостей
 #H0 отвергается
