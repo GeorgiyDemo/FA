@@ -76,7 +76,7 @@ y <- n1$y; y
 
 p1 <- lm(y~x1+x2+x3+x4, data=o1)
 s1 <- summary(p_many)
-s_many
+s1
 
 o2=train[11:20,];o2
 
@@ -88,11 +88,11 @@ y <- n2$y; y
 
 p2 <- lm(y~x1+x2+x3+x4, data=o2)
 s2 <- summary(p_many)
-s_many
+s2
 
-RSS <- sum(p_many$residuals^2); rss
-RSS1 <- sum(p1$residuals^2); rss1
-RSS2 <- sum(p2$residuals^2); rss2
+RSS <- sum(p_many$residuals^2); RSS
+RSS1 <- sum(p1$residuals^2); RSS1
+RSS2 <- sum(p2$residuals^2); RSS2
 
 
 n1=length(o1$x1);n1
