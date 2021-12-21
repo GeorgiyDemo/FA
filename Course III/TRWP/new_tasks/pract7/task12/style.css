@@ -1,0 +1,14 @@
+#map { height: 600px; }
+
+.main-map{
+    min-width: 100%;
+    padding: 0;
+}
+
+.bd-title{
+    margin-top: 20px;
+}
+
+.stats {
+    margin-top: 50px;
+}

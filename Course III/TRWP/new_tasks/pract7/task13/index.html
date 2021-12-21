@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link crossorigin="" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet">
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script crossorigin=""
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script src="script.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h3 class="bd-title" id="content">Взрослые больницы на карте Москвы</h3>
+
+    <div class="main-map">
+        <div id="map"></div>
+        <script>
+
+        </script>
+    </div>
+
+    <div class="control-buttons">
+        <button class="btn btn-outline-primary" onclick="randomFiller()" type="button">Случайное заполнение</button>
+        <button class="btn btn-outline-primary" onclick="dataFiller()" type="button">Заполнение из данных</button>
+    </div>
+
+    <div class="stats">
+        <div id="mytable"></div>
+        <script>
+            tableStats();
+        </script>
+    </div>
+</div>
+</body>
+</html>
