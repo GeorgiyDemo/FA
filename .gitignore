@@ -16,6 +16,7 @@ venv
 *.h5
 .Rhistory
 *.db
+
 Course I/ОВС/лабы/PHP/css/bootstrap.css
 Course II/UNIX/pract/Github 5_FTP_server/ftp-server/storage/
 Course II/UNIX/pract/Github 5_FTP_server/ftp-cli/storage/
@@ -25,6 +26,6 @@ Course III/TOBD/10_multiprocessing/data/
 Course III/TOBD/10_multiprocessing/out/
 Course III/TOBD/11_dask_array/data/
 Course III/TOBD/12_dask_bag/data/
+Course III/TOBD/13_dask_dataframe/data/
 
-Course III/TOBD/13_dask_dataframe/
 Course III/TOBD/14_delayed_distributed/
