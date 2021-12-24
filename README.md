@@ -27,6 +27,16 @@
 * [Бухгалтерские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%91%D0%A3%D0%A5%D0%98%D0%A1)
 * [Нечеткие множества и мягкие вычисления](https://github.com/GeorgiyDemo/FA/tree/master/Course%20II/%D0%9D%D0%9C%D0%B8%D0%9C%D0%92)
 
+
+### 3 Курс
+* [Технологии обработки больших данных](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/TOBD)
+* [Технологии разработки web приложений](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/TRWP)
+* [Эконометрика](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/ECONOMETRICS)
+* [Обработка данных и моделирование в Microsoft Excel](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/EXCEL)
+* [Проектирование информационных систем](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/%D0%9F%D0%98%D0%A1)
+* [Финансовая математика](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/FINMAT)
+* [Бухгалтерские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course%20III/%D0%91%D0%A3%D0%A5%D0%98%D0%A1)
+
 ### Курсовые
 * [SpringBootChat](https://github.com/GeorgiyDemo/SpringBootChat) (Java) - Чат на лонгпулах с использованием Spring Web & JavaFX
 
