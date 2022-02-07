@@ -1,0 +1,32 @@
+    1  history
+    2  echo "" > .bash_history 
+    3  exit
+    4  history
+    5  echo "FILE TEXT" > file1.txt
+    6  echo "FILE TEXT" > file2.txt
+    7  md5sum file1.txt 
+    8  md5sum file2.txt 
+    9  echo "FILE TEXT2"> > file2.txt
+   10  echo "FILE TEXT2" >> file2.txt
+   11  md5sum file1.txt file2.txt 
+   12  adduser test22
+   13  sudo adduser test22
+   14  cat /etc/passwd
+   15  cat /etc/shadow
+   16  sudo cat /etc/shadow
+   17  cat /etc/group
+   18  mkdir tmp
+   19  ls
+   20  touch script.sh
+   21  chmod +x script.sh
+   22  nano script.sh 
+   23  ./script.sh 
+   24  ls
+   25  cd tmp/
+   26  ls
+   27  cd ../
+   28  echo "CHECK" > tmp/passwd.backup 
+   29  ./script.sh 
+   30  cat tmp/passwd.backup 
+   31  ls
+   32  history > pract_history.txt

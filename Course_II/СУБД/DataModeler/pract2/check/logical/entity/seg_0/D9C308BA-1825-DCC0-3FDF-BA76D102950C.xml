@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D9C308BA-1825-DCC0-3FDF-BA76D102950C" name="ONLINE">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:58:14 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Logon ID" id="A4066305-A973-801E-E49F-B5E8D5E6FE83">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:58:26 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Password" id="37DC13DE-CEB7-A017-92B0-59B9D3B4187F">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:58:29 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="537A66A1-FD2A-2F1D-7067-C10C6354A0DE" name="ONLINE PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-08 18:58:28 UTC</createdTime>
+<ownerDesignName>check</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FDCC66D3-ED4C-4C8D-8379-281FDB8B5546" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A4066305-A973-801E-E49F-B5E8D5E6FE83</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

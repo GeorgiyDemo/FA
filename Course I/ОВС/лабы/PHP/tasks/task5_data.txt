@@ -1,6 +1,0 @@
-rrrr : 2
-LASK CHECK : 2
-
-Гоша : 2
-Дем : 1
-MEOW : 2

@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6E30F3E6-B435-A6A7-2575-50589F49D3B1" name="STUDENT_ATTENDANCE">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>002C67E6-185A-D173-C39B-0A20D1AFFC45</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Number_of_Working_Days" id="D081BE4A-0F32-2278-7F81-945214C8F4A9">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>940D0CD8-BFAE-7539-9A80-80DE98F534F1</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Number_of_Days_Off" id="831B689D-D027-F4D2-6DC3-B6F013A2F39D">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>97BAE988-0C35-9A65-EBF4-4BD132A5710F</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Eligibility_for_Exam" id="78A828AC-C980-9B0F-9C37-366E83CE7C4A">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>91941DF3-65B5-A263-54A1-F9727B8DCF36</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Student_ID" id="C8F3D453-26CA-FC08-AA90-8895F255C4D0">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>2703F076-42F8-DECD-500D-F8A7250A8F60</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0ECAD4FD-DDF5-EBDB-F611-FEA32462D913" referredColumn="76FEE150-E7DD-5482-B87D-CF024873DE0E"/>
+</associations>
+</Column>
+<Column name="ACADEMIC_SESSION_ID" id="2A86456E-5B85-7B6D-3C5D-873F509DD923">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>0BC8B753-AA6A-1303-5139-726990076003</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7E320DEE-1AF1-EE08-AE4C-EF0EA6F8ABA9" referredColumn="EFA17869-6CD7-14A5-BB56-8246E6967AF4"/>
+</associations>
+</Column>
+<Column name="ID" id="FCDE048F-55C6-0EFC-B01D-CFD9992BB08A">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>4DFF9C78-DAE7-14C4-C98E-CD6C469835D9</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID1" id="126BE742-9473-4AEC-7947-5621753A409B">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>55F60DEF-C6D1-BB3D-699A-7303BBF903A6</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A1E7782F-64FD-4A3E-F0E9-61171E25D6F2" name="STUDENT_ATTENDANCE_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>B2C865AC-3240-48B1-4E85-25FDEBD59C07</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FCDE048F-55C6-0EFC-B01D-CFD9992BB08A"/>
+<colUsage columnID="126BE742-9473-4AEC-7947-5621753A409B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FE394EBB-6B11-7949-B59E-93DF92E55BD2" name="STUDENT_ATTENDANCE_ACADEMIC_SESSION_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>287F6347-DAE6-37C7-C2E6-81F73F32D42B</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A86456E-5B85-7B6D-3C5D-873F509DD923"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98F65CC4-4A8A-D3C2-B260-357F9181665A" name="STUDENT_ATTENDANCE_Student_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>4A909BB1-FB82-84C3-EB10-AF3616234604</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C8F3D453-26CA-FC08-AA90-8895F255C4D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

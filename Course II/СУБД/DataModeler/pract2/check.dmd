@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Khamikoeva_pract9_task4.1_8-11-2020" id="7257083D-C207-ECFB-BCB8-E8D4341B94B3" version="3.5">
-<createdBy>ohami</createdBy>
-<createdTime>2020-11-08 18:46:55 UTC</createdTime>
-<ownerDesignName>Khamikoeva_pract9_task4.1_8-11-2020</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>7257083D-C207-ECFB-BCB8-E8D4341B94B3</designId>
-</OSDM_Design>

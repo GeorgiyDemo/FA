@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="68E1FD20-7DDF-A0C8-0390-C6CC9EBE33D6" name="ACADEMIC_SESSION">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>C9E806AD-E279-AB60-1A8F-5FF248F79A75</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="EFA17869-6CD7-14A5-BB56-8246E6967AF4">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>148E37F2-1FDA-F54F-8A99-3BAC4BC879ED</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="700F9912-77C8-2A1F-1435-43B4DF6AAE3B">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>18666BD4-DA28-EF53-80F0-9DD3B9BC27A0</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6D0C8398-5F1A-A98D-CAD9-3C5D1774D8E7" name="ACADEMIC_SESSION_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>7F2C1935-58D3-0BB3-39CD-BF727DB56D35</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EFA17869-6CD7-14A5-BB56-8246E6967AF4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

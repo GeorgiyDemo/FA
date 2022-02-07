@@ -1,1 +1,0 @@
-SELECT name, student_id FROM student WHERE city NOT IN (SELECT city FROM university)

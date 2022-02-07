@@ -1,5 +1,0 @@
-nodejs
-bb
-sl
-htop
-npm

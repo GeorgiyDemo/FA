@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="486F6F27-1E7E-6EC6-F928-76770E0D2BDA" name="SEATED">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:25:07 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="AE018014-6CF8-B723-FA45-035D78640A39">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:27:55 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="House" id="A1B35208-D07A-EDF5-E27E-9105DBF023F7">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:26:04 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Room" id="3BFC6338-A610-1EAF-8E0D-FFE5819D8A5E">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:26:19 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DateTime" id="BD11DD73-6F0E-7492-A10D-A19D4792E955">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:26:25 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4ABEC173-DDA2-18B4-6D9C-339F5E900367" name="SEATED PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:28:04 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>AE018014-6CF8-B723-FA45-035D78640A39</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

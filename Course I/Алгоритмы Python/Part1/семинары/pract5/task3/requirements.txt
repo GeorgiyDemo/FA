@@ -1,4 +1,0 @@
-fpdf==1.7.2
-PyYAML==5.4
-qrcode==6.1
-texttable==1.6.2

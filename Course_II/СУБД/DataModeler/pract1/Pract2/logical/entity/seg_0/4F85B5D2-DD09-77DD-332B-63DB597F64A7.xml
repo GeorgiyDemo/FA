@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4F85B5D2-DD09-77DD-332B-63DB597F64A7" name="FACULTY">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:00:52 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="BC479C08-0F02-DCDF-FC02-7247A1DF9E2B">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:18 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="First Name" id="B8ACD74A-DE33-DB2B-E58F-476D1C36D334">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:22 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Last Name" id="1E774229-11DF-ABD6-276D-6CE9C0DFD589">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:27 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Email" id="BD9E8355-F943-E68F-472F-88248E390602">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:31 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Login Date" id="EDBB07D0-4A6C-8240-8FD9-68D20253F84D">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:35 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Login Time" id="3997135E-4BD6-5206-2CC6-E4EF17156D67">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:39 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Details" id="DC947EF5-ED23-A537-0D1C-50610A833009">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:44 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="771E6EBF-32BC-D50B-94B8-F7E2C2D5EF9E" name="FACULTY PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 10:01:55 UTC</createdTime>
+<ownerDesignName>Pract2</ownerDesignName>
+<engineerTo>
+<item key="0FECEB92-3090-3F76-D2D4-A9F74BD2A547" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BC479C08-0F02-DCDF-FC02-7247A1DF9E2B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

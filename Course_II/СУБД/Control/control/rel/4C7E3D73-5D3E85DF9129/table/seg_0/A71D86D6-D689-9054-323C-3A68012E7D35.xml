@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A71D86D6-D689-9054-323C-3A68012E7D35" name="PRODUCTS_COUNT">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>2A91365A-17A5-4DC0-DA4B-7C83395B3428</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<ordsAlias>product_count</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRODUCT_id" id="FF5E4C9F-BD47-2F20-E1D8-EA50F3DACF6B">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>3C8D81AC-391B-B010-9D21-C23C577A45D1</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6CCA564C-AAA8-C4FC-844D-7E75AAF4A6A6" referredColumn="070A7C2F-254D-FEDD-CD78-9083823E8819"/>
+</associations>
+</Column>
+<Column name="count" id="1BE80C3F-CC63-4A3F-8F8B-C7C74948B6FD">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>A883F9E1-5A81-923E-FEFD-84EE71B82C6D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_id" id="D5E2D1C4-A935-F0DB-BC70-CFAC84A10F20">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>5337BB1F-1BDF-A2D8-F2B1-6E464B3706F2</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0A6E8848-FAFE-2CBD-9636-48F17F4E47DA" referredColumn="51BD3532-F5B0-D6E2-60B1-3E7E2B9A9E63"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2EF0A759-2113-1CBF-C58E-1B6704786E12" name="PRODUCT_COUNT_PK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>9A0AF081-C55D-2ED8-F4F6-AC52C2676B0D</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF5E4C9F-BD47-2F20-E1D8-EA50F3DACF6B"/>
+<colUsage columnID="D5E2D1C4-A935-F0DB-BC70-CFAC84A10F20"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="889A035A-1849-C023-6AA7-55F37B8B3655" name="PRODUCT_COUNT_ORDER_FK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>BBE75A78-8260-0015-CB90-474AE0BF46C6</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D5E2D1C4-A935-F0DB-BC70-CFAC84A10F20"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="004E0D70-763B-3C22-0AD7-8D1ED3EA3467" name="PRODUCT_COUNT_PRODUCT_FK">
+<createdBy>demg</createdBy>
+<createdTime>2021-04-12 17:22:34 UTC</createdTime>
+<generatorID>A6633229-688F-6AF4-4805-52C7F6206F8A</generatorID>
+<ownerDesignName>control</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF5E4C9F-BD47-2F20-E1D8-EA50F3DACF6B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

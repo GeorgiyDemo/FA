@@ -1,0 +1,241 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FECB1726-AF92-4AE9-1C01-36E63AF516C8" name="COURSE">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>78412A3C-3C1E-0DD8-15E3-76EBC7D40DC6</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="71F224DD-152F-2B68-742B-FF105B6CAFD9">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>1F36AC57-E1F8-FB14-E76B-252591A125BC</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="FEE6E761-243A-1E0B-00F0-06BB35C7F8CA">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>C80DC746-818B-DAAA-6F32-791C0EC94BBB</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEPARTMENT_ID" id="E5088F48-F6DE-2A0A-D155-91FA6718B9D7">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>2A6F66E0-EF2D-48C3-989C-22BCFCABE050</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BEAFACA6-78B2-C6BB-6A09-73C8AF9C29CB" referredColumn="D8668EB5-CB72-FBA4-53FD-101D4D7E9C4C"/>
+</associations>
+</Column>
+<Column name="ACADEMIC_SESSION_ID" id="B6AEAD67-A1E5-8868-EF19-C8DFC4E862F0">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>FB09CBE1-B6FE-D53C-FC31-ABE6D449D5CF</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="134BD6A0-D8F3-4CC7-0595-3B86FEFBA600" referredColumn="EFA17869-6CD7-14A5-BB56-8246E6967AF4"/>
+</associations>
+</Column>
+<Column name="ONLINE_Logon_ID" id="F86753C0-EF03-6EFF-0DF6-DBFA93025A28">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>058FB14F-75BD-6E7D-C202-978003B25A72</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3E34CAE3-35EE-75A7-BD1B-DCC5BFF9C3F6" referredColumn="AB6B89ED-10D0-7585-3999-0C73260528C1"/>
+</associations>
+</Column>
+<Column name="SEATED_Building" id="0E8EBE48-D413-D374-39FD-9A98AC6D8D2F">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>F5D83225-901F-9EDC-86F5-073426F4826C</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DDC785B2-BAB2-4713-3B3E-7A2305864BA4" referredColumn="F4D2C244-00B4-8A94-434E-FCD325015C25"/>
+</associations>
+</Column>
+<Column name="SEATED_Room" id="44486BAA-F54E-3F39-58C2-576702EF28E7">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>4FA6B5FB-33CC-9AD6-4B9E-171C32ABE815</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DDC785B2-BAB2-4713-3B3E-7A2305864BA4" referredColumn="F4A8F19D-4519-F98F-31FE-3877C5452378"/>
+</associations>
+</Column>
+<Column name="SEATED_Date/Time" id="10DA2D55-3689-9F4B-5337-D8B737DF899E">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>B7D9BE1A-C8B1-03CB-FCCE-155473F72EA3</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DDC785B2-BAB2-4713-3B3E-7A2305864BA4" referredColumn="70472E32-969E-C65D-262D-6B238F6259CD"/>
+</associations>
+</Column>
+<Column name="ID1" id="CD998553-0944-4617-3E24-4521D28EA532">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>9468A2A9-37EC-88E2-1342-3D36B8C20BAD</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID2" id="54CE094F-D5DB-A29D-07D3-5D5901ED2BE7">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>B3DD588A-E9FE-2976-1462-560C9B919B44</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Building" id="C2B29089-0068-7F39-BFCC-ACB315E516CA">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>452713A6-FDA8-AD2A-E6B7-EEE043AD3851</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Room" id="21AFAE0D-4777-BE04-FDE4-37F9CC0C099F">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-12-06 18:00:03 UTC</createdTime>
+<generatorID>A16A352A-191C-EB9D-CC87-B398AF7349DD</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>400</dataTypeSize>
+<ownDataTypeParameters>400,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="72D69990-6879-FA48-3211-13A38BC41800" name="COURSE_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>5444DE96-5ED3-F35E-B8FE-176D6D4090EE</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="71F224DD-152F-2B68-742B-FF105B6CAFD9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="234C05C6-14D8-906A-6819-CBCDEFB1D9F2" name="COURSE_ACADEMIC_SESSION_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>CCDED7C0-DA61-FDCC-1E33-ED0EC336F1D7</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6AEAD67-A1E5-8868-EF19-C8DFC4E862F0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C7D8F643-708B-840A-067D-45E6159DF927" name="COURSE_ONLINE_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>5D75046A-4F52-A407-2202-757015F820FE</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F86753C0-EF03-6EFF-0DF6-DBFA93025A28"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="10429EA8-948E-B297-D9DB-A8D811C6537C" name="COURSE_SEATED_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>82C619FF-40D2-D776-D5BD-8EE1964D3C56</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="10DA2D55-3689-9F4B-5337-D8B737DF899E"/>
+<colUsage columnID="0E8EBE48-D413-D374-39FD-9A98AC6D8D2F"/>
+<colUsage columnID="44486BAA-F54E-3F39-58C2-576702EF28E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B149A6E7-3F77-C305-E0DD-E89AD546C5DD" name="COURSE_DEPARTMENT_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>03020B6B-C218-3C28-AF3B-903AA03D349B</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E5088F48-F6DE-2A0A-D155-91FA6718B9D7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40A938DD-BFD3-238A-F0A2-A01DF7B6AEF5" name="EXAM">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>1103C1A1-8218-47DB-5056-7347BDD66ED9</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="560F3395-83A5-0F77-0AD5-5D0BFF47C86A">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>0A9FFAA3-0869-7A30-4AFA-5B7804793DB2</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Start_Date" id="1AF49C15-29C6-0D56-6AB9-118B8DB4C2EA">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>5DD2BD43-DB19-657A-CD37-1BC765C4C965</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COURSE_ID" id="97AE5AFE-C052-34C0-2A75-44B27DE6E7B4">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>4B827C00-9A42-3634-9CDF-A20E5846DE9A</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4014BC0E-4C2C-74F2-98D4-712B90755AAF" referredColumn="71F224DD-152F-2B68-742B-FF105B6CAFD9"/>
+</associations>
+</Column>
+<Column name="EXAM_TYPE_Type" id="ADB5C4F0-6D0D-EAC7-85FF-020973B393D3">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>87C3A1A3-4A1F-E935-A968-D935CDD02509</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="559B7B4B-2068-9B65-746B-A6AEBACCA4B6" referredColumn="167FACC4-6035-B6C2-FE7D-90D775981FD8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0C937262-D673-685B-19AA-C5126AD63488" name="EXAM_PK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>AF31A661-7465-BEC6-50EE-1A8C49B10A4B</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="560F3395-83A5-0F77-0AD5-5D0BFF47C86A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E83FCD5F-CFCA-D22E-79F3-F27386064870" name="EXAM_COURSE_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>DB724EC5-E049-B7DB-2CBD-7631C984BFBA</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="97AE5AFE-C052-34C0-2A75-44B27DE6E7B4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A6B5BA1F-831A-C43F-F293-FC1C729E4C1D" name="EXAM_EXAM_TYPE_FK">
+<createdBy>ohami</createdBy>
+<createdTime>2020-11-30 14:42:00 UTC</createdTime>
+<generatorID>C1B9082C-85CB-6E2C-3617-525614D9269C</generatorID>
+<ownerDesignName>check</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADB5C4F0-6D0D-EAC7-85FF-020973B393D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9AEB60D6-E14E-6672-F2EB-85EA12697652" name="ONLINE">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:25:17 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="login" id="A8863AB7-DEFE-1509-7683-AFF7E923696A">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:27:11 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="password" id="43A955FA-0CD2-F593-026D-929037CE56AE">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:27:14 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>A3A3C77D-0366-9768-FF89-1C25E56881C8</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="41A13CC3-C321-231D-D79D-3E73E3121AFE" name="ONLINE PK">
+<createdBy>georgiydemo</createdBy>
+<createdTime>2020-10-22 11:28:11 UTC</createdTime>
+<ownerDesignName>pract3-1-4</ownerDesignName>
+<engineerTo>
+<item key="BFDD68D3-D557-4736-62D5-5B601C047886" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A8863AB7-DEFE-1509-7683-AFF7E923696A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

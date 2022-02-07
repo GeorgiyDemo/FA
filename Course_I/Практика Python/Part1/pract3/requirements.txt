@@ -1,0 +1,4 @@
+pytils==0.3
+PyYAML==5.4
+word2number==1.1
+yandex-translater==6.0
