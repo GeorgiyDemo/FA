@@ -1,4 +1,4 @@
-package com.demka.task1;
+package com.demka.task2;
 
 import org.junit.Test;
 
