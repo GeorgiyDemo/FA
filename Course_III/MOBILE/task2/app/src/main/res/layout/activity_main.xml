@@ -7,23 +7,66 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/inputtext1"
+        android:id="@+id/textViewFirstNumber"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/inputtext2"
+        android:id="@+id/textViewOp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="24dp"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewSecondNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEqualOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="24dp"
+        android:text="="
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="24dp"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,157 +75,178 @@
     <Button
         android:id="@+id/number3"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="3"
-        app:layout_constraintEnd_toStartOf="@+id/buttonplus"
-        app:layout_constraintStart_toEndOf="@+id/number2"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/resultButton"
+        app:layout_constraintStart_toEndOf="@+id/number2" />
 
     <Button
         android:id="@+id/number0"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="50dp"
         android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/number9"
-        app:layout_constraintTop_toBottomOf="@+id/buttonminus" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelButton" />
 
     <Button
-        android:id="@+id/buttonminus"
+        android:id="@+id/subtractionButton"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="-"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/number6"
-        app:layout_constraintTop_toBottomOf="@+id/buttonplus" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/multiplicationButton"
+        app:layout_constraintStart_toEndOf="@+id/number6" />
 
     <Button
         android:id="@+id/number5"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="5"
-        app:layout_constraintEnd_toStartOf="@+id/number6"
-        app:layout_constraintStart_toEndOf="@+id/number4"
-        app:layout_constraintTop_toBottomOf="@+id/number2" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number2"
+        app:layout_constraintStart_toEndOf="@+id/number4" />
 
     <Button
         android:id="@+id/number4"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
         android:text="4"
-        app:layout_constraintEnd_toStartOf="@+id/number5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number1" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number1"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/number7"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
         android:text="7"
-        app:layout_constraintEnd_toStartOf="@+id/number8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number4" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/number1"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
         android:text="1"
-        app:layout_constraintEnd_toStartOf="@+id/number2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/multiplicationButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
+        android:text="*"
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/divisionButton"
+        app:layout_constraintStart_toEndOf="@+id/number3" />
+
+    <Button
+        android:id="@+id/divisionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="50dp"
+        android:text="/"
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resultButton" />
+
+    <Button
+        android:id="@+id/resultButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="50dp"
+        android:text="="
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/number0" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="50dp"
+        android:text="C"
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/number9"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="9"
-        app:layout_constraintEnd_toStartOf="@+id/number0"
-        app:layout_constraintStart_toEndOf="@+id/number8"
-        app:layout_constraintTop_toBottomOf="@+id/number5" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number6"
+        app:layout_constraintStart_toEndOf="@+id/number8" />
 
     <Button
         android:id="@+id/number8"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="8"
-        app:layout_constraintEnd_toStartOf="@+id/number9"
-        app:layout_constraintStart_toEndOf="@+id/number7"
-        app:layout_constraintTop_toBottomOf="@+id/number5" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number5"
+        app:layout_constraintStart_toEndOf="@+id/number7" />
 
     <Button
-        android:id="@+id/buttonplus"
+        android:id="@+id/additionButton"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/number3"
-        app:layout_constraintTop_toBottomOf="@+id/inputtext3" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/subtractionButton"
+        app:layout_constraintStart_toEndOf="@+id/number9" />
 
     <Button
         android:id="@+id/number6"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
         android:text="6"
-        app:layout_constraintEnd_toStartOf="@+id/buttonminus"
-        app:layout_constraintStart_toEndOf="@+id/number5"
-        app:layout_constraintTop_toBottomOf="@+id/number3" />
-
-    <TextView
-        android:id="@+id/inputtext3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number3"
+        app:layout_constraintStart_toEndOf="@+id/number5" />
 
     <Button
         android:id="@+id/number2"
         android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="20dp"
+
         android:text="2"
-        app:layout_constraintEnd_toStartOf="@+id/number3"
-        app:layout_constraintStart_toEndOf="@+id/number1"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toTopOf="@+id/number0"
+        app:layout_constraintStart_toEndOf="@+id/number1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

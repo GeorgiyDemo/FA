@@ -1,12 +1,14 @@
 package com.demka.task2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,16 +23,20 @@ public class MainActivity extends AppCompatActivity {
     Button number8;
     Button number9;
 
-    Button buttonplus;
-    Button buttonminus;
+    Button additionButton;
+    Button subtractionButton;
+    Button multiplicationButton;
+    Button divisionButton;
+    Button resultButton;
+    Button cancelButton;
 
-    TextView inputtext1;
-    TextView inputtext2;
-    TextView inputtext3;
+    TextView textViewFirstNumber;
+    TextView textViewOp;
+    TextView textViewSecondNumber;
+    TextView textViewEqualOp;
+    TextView textViewResult;
 
-    TextView currentTextView;
     Boolean isSecondValue;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,169 +56,216 @@ public class MainActivity extends AppCompatActivity {
         number8 = findViewById(R.id.number8);
         number9 = findViewById(R.id.number9);
 
-        buttonplus = findViewById(R.id.buttonplus);
-        buttonminus = findViewById(R.id.buttonminus);
+        additionButton = findViewById(R.id.additionButton);
+        subtractionButton = findViewById(R.id.subtractionButton);
+        multiplicationButton = findViewById(R.id.multiplicationButton);
+        divisionButton = findViewById(R.id.divisionButton);
+        resultButton = findViewById(R.id.resultButton);
+        cancelButton = findViewById(R.id.cancelButton);
 
-        inputtext1 = findViewById(R.id.inputtext1);
-        inputtext2 = findViewById(R.id.inputtext2);
-        inputtext3 = findViewById(R.id.inputtext3);
+        textViewFirstNumber = findViewById(R.id.textViewFirstNumber);
+        textViewOp = findViewById(R.id.textViewOp);
+        textViewSecondNumber = findViewById(R.id.textViewSecondNumber);
+        textViewEqualOp = findViewById(R.id.textViewEqualOp);
+        textViewResult = findViewById(R.id.textViewResult);
 
+        textViewEqualOp.setVisibility(View.INVISIBLE);
 
-        number0.setOnClickListener(new View.OnClickListener(){
+        number0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"0");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"0");
-                }
-
+                textSender(isSecondValue, "0");
             }
         });
 
-        number1.setOnClickListener(new View.OnClickListener(){
+        number1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"1");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"1");
-                }
+                textSender(isSecondValue, "1");
             }
         });
 
-        number2.setOnClickListener(new View.OnClickListener(){
+        number2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"2");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"2");
-                }
+                textSender(isSecondValue, "2");
             }
         });
 
-        number3.setOnClickListener(new View.OnClickListener(){
+        number3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"3");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"3");
-                }
+                textSender(isSecondValue, "3");
             }
         });
 
-        number4.setOnClickListener(new View.OnClickListener(){
+        number4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"4");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"4");
-                }
+                textSender(isSecondValue, "4");
             }
         });
 
-        number5.setOnClickListener(new View.OnClickListener(){
+        number5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"5");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"5");
-                }
+                textSender(isSecondValue, "5");
             }
         });
 
-        number6.setOnClickListener(new View.OnClickListener(){
+        number6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"6");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"6");
-                }
+                textSender(isSecondValue, "6");
             }
         });
 
-        number7.setOnClickListener(new View.OnClickListener(){
+        number7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"7");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"7");
-                }
+                textSender(isSecondValue, "7");
             }
         });
 
-        number8.setOnClickListener(new View.OnClickListener(){
+        number8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"8");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"8");
-                }
+                textSender(isSecondValue, "8");
             }
         });
 
-        number9.setOnClickListener(new View.OnClickListener(){
+        number9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (isSecondValue){
-                    inputtext3.setText(inputtext3.getText()+"9");
-                }
-                else{
-                    inputtext1.setText(inputtext1.getText()+"9");
-                }
+                textSender(isSecondValue, "9");
             }
         });
 
 
-
-        buttonplus.setOnClickListener(new View.OnClickListener(){
+        additionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isSecondValue = true;
-                inputtext2.setText("+");
+                textViewOp.setText("+");
             }
         });
 
-        buttonminus.setOnClickListener(new View.OnClickListener(){
+        subtractionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isSecondValue = true;
-                inputtext2.setText("-");
+                textViewOp.setText("-");
             }
         });
 
+        multiplicationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSecondValue = true;
+                textViewOp.setText("*");
+            }
+        });
+
+        divisionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSecondValue = true;
+                textViewOp.setText("/");
+            }
+        });
+
+        resultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resultButtonClicked(textViewOp.getText().toString());
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelButtonClicked();
+            }
+        });
+
+    }
 
 
+    /**
+     * Метод для самой логики вычисления
+     *
+     * @param currentOp - текст с TextView с текущей операцией
+     */
+    private void resultButtonClicked(String currentOp) {
+
+        Double result = 0.0;
+        Double firstValue = Double.parseDouble(textViewFirstNumber.getText().toString());
+        Double secondValue = Double.parseDouble(textViewSecondNumber.getText().toString());
+
+        textViewEqualOp.setVisibility(View.VISIBLE);
+        try {
+            switch (currentOp) {
+                case ("+"):
+                    result = firstValue + secondValue;
+                    break;
+                case ("-"):
+                    result = firstValue - secondValue;
+                    break;
+                case ("*"):
+                    result = firstValue * secondValue;
+                    break;
+                case ("/"):
+                    result = firstValue / secondValue;
+                    break;
+            }
+            textViewResult.setText(Double.toString(round(result, 12)));
+        } catch (Exception e) {
+            textViewResult.setText(R.string.error);
+        }
+
+    }
+
+    /**
+     * Нажатие на кнопку сброса вычислений
+     */
+    private void cancelButtonClicked() {
+        isSecondValue = false;
+        textViewOp.setText("");
+        textViewFirstNumber.setText("");
+        textViewSecondNumber.setText("");
+        textViewResult.setText("");
+        textViewEqualOp.setVisibility(View.INVISIBLE);
+
+    }
+
+    /**
+     * Метод для добавления данных в textView в числами, над которыми производим вычисления
+     *
+     * @param isSecondValue - ввод первого или 2 значения
+     * @param value         - само значение, которое вводим
+     */
+
+    private void textSender(Boolean isSecondValue, String value) {
+        if (isSecondValue) {
+            textViewSecondNumber.setText(textViewSecondNumber.getText() + value);
+        } else {
+            textViewFirstNumber.setText(textViewFirstNumber.getText() + value);
+        }
+    }
 
 
+    /**
+     * Округление данных
+     *
+     * @param value  - значение для округления
+     * @param places - на сколько знаков округляем
+     * @return - округленное значение
+     */
+    private double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
 
-
-
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">task2</string>
+    <string name="app_name" translatable="false">Calculator</string>
+    <string name="error" translatable="false">Error</string>
 </resources>

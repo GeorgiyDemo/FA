@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">Калькулятор</string>
+    <string name="error" translatable="false">Ошибка</string>
+</resources>
