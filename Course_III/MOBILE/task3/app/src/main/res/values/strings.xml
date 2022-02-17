@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Clicker</string>
+    <string name="inc">Прибавить</string>
+    <string name="dec">Убавить</string>
+    <string name="reset">Сброс</string>
+
+    <plurals name="plurals">
+        <item quantity="zero">нет клика</item>
+        <item quantity="one">раз</item>
+        <item quantity="two">раза</item>
+        <item quantity="few">раза</item>
+        <item quantity="many">раз</item>
+        <item quantity="other">раз</item>
+    </plurals>
+</resources>
