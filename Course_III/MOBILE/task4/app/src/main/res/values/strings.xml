@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DetectNumber</string>
+    <string name="behind">Недолёт!</string>
+    <string name="ahead">Перелет!</string>
+    <string name="hit">В точку!</string>
+    <string name="input_value">Ввести значение</string>
+    <string name="play_more">Сыграть ещё</string>
+    <string name="try_to_guess">Попробуйте угадать число (1 &#8211; 100) </string>
+    <string name="error">Неверный ввод!</string>
 </resources>

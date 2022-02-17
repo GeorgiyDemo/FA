@@ -31,33 +31,24 @@ public class MainActivity extends AppCompatActivity {
         mainText = findViewById(R.id.mainText);
         imageView = findViewById(R.id.imageView3);
 
-        View.OnClickListener incListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score++;
-                String itemPlural = getResources().getQuantityString(R.plurals.plurals, score);
-                String s = "Кнопка нажата " + score + " " + itemPlural;
-                mainText.setText(s.toCharArray(), 0, s.length());
-            }
+        View.OnClickListener incListener = v -> {
+            score++;
+            String itemPlural = getResources().getQuantityString(R.plurals.plurals, score);
+            String s = "Кнопка нажата " + score + " " + itemPlural;
+            mainText.setText(s.toCharArray(), 0, s.length());
         };
 
-        View.OnClickListener decListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score--;
-                String itemPlural = getResources().getQuantityString(R.plurals.plurals, score);
-                String s = "Кнопка нажата " + score + " " + itemPlural;
-                mainText.setText(s.toCharArray(), 0, s.length());
-            }
+        View.OnClickListener decListener = v -> {
+            score--;
+            String itemPlural = getResources().getQuantityString(R.plurals.plurals, score);
+            String s = "Кнопка нажата " + score + " " + itemPlural;
+            mainText.setText(s.toCharArray(), 0, s.length());
         };
 
-        View.OnClickListener resetListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score = 0;
-                String s = "Кнопка нажата 0 раз";
-                mainText.setText(s.toCharArray(), 0, s.length());
-            }
+        View.OnClickListener resetListener = v -> {
+            score = 0;
+            String s = "Кнопка нажата 0 раз";
+            mainText.setText(s.toCharArray(), 0, s.length());
         };
 
         incButton.setOnClickListener(incListener);
