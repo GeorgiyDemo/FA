@@ -69,6 +69,4 @@ getAuthors ((Magazine _ _ _):os) = getAuthors os
 getAuthors ((NewsPaper _ _ _ _):os) = getAuthors os
 
 main = do
-   -- TODO вызов с main
-   print (removeOdd [1,4,5,6,10])
-   print (countTrue [True, False, True])
+    print()
