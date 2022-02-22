@@ -8,19 +8,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     TextView mainTextView;
-    Button mainButton, okBtn, cncBtn;
+    Button mainButton, okBtn, cncBtn, sortButton;
     EditText mainEditText;
     ListView mainListView;
+    Switch removeSwitch;
     ArrayAdapter<String> mArrayAdapter;
     ArrayList<String> mNameList = new ArrayList<>();
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        removeSwitch = findViewById(R.id.removeSwitch);
+        sortButton = findViewById(R.id.sortButton);
         mainTextView = findViewById(R.id.main_textview);
         mainButton = findViewById(R.id.main_button);
         mainEditText = findViewById(R.id.main_edittext);
@@ -37,15 +42,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cncBtn = findViewById(R.id.cnc_btn);
 
         View.OnClickListener oclBtnListener = this::oclBtnClicked;
+        View.OnClickListener sortButtonListener = this::sortButtonClicked;
 
         mainButton.setOnClickListener(this);
         okBtn.setOnClickListener(oclBtnListener);
         cncBtn.setOnClickListener(oclBtnListener);
+        sortButton.setOnClickListener(sortButtonListener);
 
         mArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mNameList);
         mainListView.setAdapter(mArrayAdapter);
         mainListView.setOnItemClickListener(this);
-
     }
 
     @Override
@@ -72,9 +78,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("omg android", position + ": " + mNameList.get(position));
-        mainTextView.setText(mNameList.get(position));
 
+        if (removeSwitch.isChecked()) {
+            mNameList.remove(position);
+            mArrayAdapter.notifyDataSetChanged();
+        } else {
+            Log.d("omg android", position + ": " + mNameList.get(position));
+            mainTextView.setText(mNameList.get(position));
+        }
+
+    }
+
+    //Обработчик
+    private void sortButtonClicked(View v) {
+        Collections.sort(mNameList);
+        mArrayAdapter.notifyDataSetChanged();
     }
 
     private void oclBtnClicked(View v) {

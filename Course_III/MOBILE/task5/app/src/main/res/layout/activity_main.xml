@@ -20,9 +20,9 @@
     <ListView
         android:id="@+id/main_listview"
         android:layout_width="377dp"
-        android:layout_height="485dp"
+        android:layout_height="450dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="cancel" />
+
+        <Button
+            android:id="@+id/sortButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Сортировка" />
+
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/removeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="133dp"
+        android:text="Удаление элементов"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
