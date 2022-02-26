@@ -1,41 +1,41 @@
 package com.demka.twowindows;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class FirstActivity extends MenuActivity {
 
 
-    Button btnActTwo;
     final String TAG = "States";
-
-
+    Button btnActTwo;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnActTwo = findViewById(R.id.btnActTwo);
+        editText = findViewById(R.id.editText);
+
         View.OnClickListener btnListener = this::onClick;
         btnActTwo.setOnClickListener(btnListener);
+
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnActTwo:
-                Intent intent = new Intent(this, MainActivity2.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+        if (editText.getText().toString().equals("")) {
+            Toast.makeText(getApplicationContext(), "Введите текст", Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("data", editText.getText().toString());
+            startActivity(intent);
+            Log.d(TAG, "MainActivity: onCreate()");
         }
-        Log.d(TAG, "MainActivity: onCreate()");
     }
 
     @Override
@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         Log.d(TAG, "MainActivity: onRestart()");
     }
-
-
 
 
 }

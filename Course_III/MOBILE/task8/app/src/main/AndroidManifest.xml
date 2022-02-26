@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TwoWindows">
         <activity
-            android:name=".MainActivity4"
+            android:name=".ForthActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".ThirdActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".SecondActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
