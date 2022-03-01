@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+</head>
+<body>
+
+   
+<script type="text/babel">
+
+    function Hello1() {
+    return <h1>Привет</h1>;
+    }
+
+    var Hello2 =() => {
+        return (<h1>Привет</h1>);
+    }
+
+    class Hello3 extends React.Component {
+        render() {
+            return <h1>Привет</h1>;
+        }
+    }
+
+
+
+    class Timer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { seconds: 0 };
+    }
+
+    tick() {
+        this.setState(state => ({
+        seconds: state.seconds + 1
+        }));
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    render() {
+        return (
+        <div>
+            Seconds: {this.state.seconds}
+        </div>
+        );
+    }
+    }
+
+    ReactDOM.render(<Timer />,document.getElementById('timer-example'));
+    ReactDOM.render(<Hello1 />,document.getElementById("hello1"));
+    ReactDOM.render(<Hello2 />,document.getElementById("hello2"));
+    ReactDOM.render(<Hello3 />,document.getElementById("hello3"));
+
+    </script>
+
+   <div id="timer-example"></div>
+   <div id="hello1"></div>
+   <div id="hello2"></div>
+   <div id="hello3"></div>
+
+</body>
+</html> 
