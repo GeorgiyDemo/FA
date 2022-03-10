@@ -10,6 +10,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MD22">
         <activity
+            android:name=".TextStyleSetAlign"
+            android:exported="false" />
+        <activity
+            android:name=".TextStyleSetColor"
+            android:exported="false" />
+        <activity
+            android:name=".TextStyleEditor"
+            android:exported="false"
+            android:label="Style editor" />
+        <activity
+            android:name=".SetResultActivity"
+            android:exported="false"
+            android:label="Set result activity" />
+        <activity
+            android:name=".ActivityTime"
+            android:exported="false"
+            android:label="Time basic">
+            <intent-filter>
+                <action android:name="com.demka.md22.intent.action.showtime" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Info"
+            android:exported="false"
+            android:label="Info">
+            <intent-filter>
+                <action android:name="com.demka.md22.intent.action.showdate" />
+                <action android:name="com.demka.md22.intent.action.showtime" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityDate"
+            android:exported="false"
+            android:label="Date basic">
+            <intent-filter>
+                <action android:name="com.demka.md22.intent.action.showdate" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
