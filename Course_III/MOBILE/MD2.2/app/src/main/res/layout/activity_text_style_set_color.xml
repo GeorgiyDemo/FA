@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,27 +13,27 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/redColorButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Красный" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/greenColorButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Зеленый" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/blueColorButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Синий" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/pinkColorButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Розовый" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

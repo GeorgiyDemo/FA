@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,21 +13,21 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/leftAlignButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Left" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/rightAlignButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Right" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/centerAlignButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Center" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

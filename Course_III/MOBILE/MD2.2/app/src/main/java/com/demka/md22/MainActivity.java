@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void textStyleEditorButtonClicked(){
+    public void textStyleEditorButtonClicked() {
         Intent intent = new Intent(this, TextStyleEditor.class);
         startActivity(intent);
     }
