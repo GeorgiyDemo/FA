@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MD2.3</string>
+    <string name="run_camera">Запуск камеры</string>
+    <string name="text_description">Демонстрация работы с активити камеры</string>
+</resources>
