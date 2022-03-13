@@ -24,24 +24,28 @@
             android:id="@+id/catButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFE91E63"
             android:text="Общее" />
 
         <Button
             android:id="@+id/catButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFE91E63"
             android:text="Дом" />
 
         <Button
             android:id="@+id/catButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFE91E63"
             android:text="Работа" />
 
         <Button
             android:id="@+id/catButton4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FFE91E63"
             android:text="Учеба" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
