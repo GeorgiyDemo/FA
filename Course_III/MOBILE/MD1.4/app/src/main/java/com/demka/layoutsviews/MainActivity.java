@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mArrayAdapter.notifyDataSetChanged();
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("omg android", position + ": " + mNameList.get(position));
             mainTextView.setText(mNameList.get(position));
         }
-
     }
 
     //Обработчик
