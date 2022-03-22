@@ -1,0 +1,16 @@
+button{
+    width: 100px;
+    height:30px;
+    border-radius: 4px;
+    margin:50px;
+}
+
+.on{
+    color:rgb(0, 0, 0);
+    background-color: rgb(30, 255, 0);
+}
+
+.off{
+    color:rgb(0, 0, 0);
+    background-color: rgb(255, 2, 2);
+}
