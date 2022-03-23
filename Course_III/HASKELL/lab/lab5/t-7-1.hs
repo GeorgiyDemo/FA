@@ -24,6 +24,12 @@ treeToList (Unit c False ts) acc = concatMap (\ u -> treeToList u (acc++[c])) ts
 save :: MyTree -> FilePath -> IO ()
 save editor f = writeFile f $ show editor
 
+
+-- TODO вроде как надо возвращать IO String, но все равно выходит фигня
+readData :: String -> String
+readData (userInput) = if (userInput == "1") then getLine else readFile "word.txt"
+
+
 --Main-метод
 main :: IO ()
 main = do
@@ -36,27 +42,14 @@ main = do
     putStrLn "Как считать данные о слове для поиска?\n1. С клавиатуры\n2. С файла"  
     userInput <- getLine
 
-    -- Если пользователь ввел 1, то просим ввести слово из клавиатуры
-    if userInput == "1" then do
-        putStrLn "Введите слово для поиска в дереве"
-        word <- getLine
-        putStrLn ("Ввели слово " ++ word)
-        print(exist tree word)
-
-    --
-    else do
-        putStrLn "Читаем данные из файла.."
-        word <- readFile "word.txt"
-        putStrLn ("Считали слово " ++ word)
-        print(exist tree word)
-
-    
+    word <- readData userInput
+    result <- exist tree word
 
     putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
     userInput <- getLine  
 
     if userInput == "1" then do
-        putStrLn ("Вывели какие-то данные")
+        putStrLn ("Результат: " ++ show result)
 
 
     else do
