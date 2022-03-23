@@ -11,7 +11,7 @@
 
 -- Создаем кастомный тип, согласно заданию
 -- у каждого работника есть массив подчиненных
-data Employee = JobWorker (String) [Employee] deriving (Show, Eq)
+data Employee = JobWorker (String) [Employee] deriving (Show, Eq, Read)
 
 -- Метод по поиску значения
 find ((employee, emp) :xs) manager =

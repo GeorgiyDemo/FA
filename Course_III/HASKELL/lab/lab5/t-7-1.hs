@@ -8,9 +8,9 @@
 
 1)exists, которая проверяет, что заданное слово содержится в trie-дереве.
 -}
-
+import System.Environment
 -- Созданный кастомный тип дерева
-data MyTree = Unit Char Bool [MyTree] deriving (Eq, Show)
+data MyTree = Unit Char Bool [MyTree] deriving (Eq, Show, Read)
 
 -- Метод для проверки на наличие элемента в дерева  
 exist :: MyTree -> String -> Bool
@@ -20,9 +20,58 @@ exist t s = s `elem` (treeToList t "")
 treeToList :: MyTree -> String -> [String]
 treeToList (Unit c True _) acc = [acc ++ [c]] 
 treeToList (Unit c False ts) acc = concatMap (\ u -> treeToList u (acc++[c])) ts
- 
+
+save :: MyTree -> FilePath -> IO ()
+save editor f = writeFile f $ show editor
+
 --Main-метод
-main = do 
+main :: IO ()
+main = do
+
+    --Читаем наш тип дерева из файла
+    buf <- readFile "tree.txt"
+    let tree = read buf :: MyTree
+
+    -- Спрашиваем пользователя о том, как он хочет ввести данные
+    putStrLn "Как считать данные о слове для поиска?\n1. С клавиатуры\n2. С файла"  
+    userInput <- getLine
+
+
+    if userInput == "1" then do
+        putStrLn "Введите слово для поиска в дереве"
+        word <- getLine
+        putStrLn ("Ввели слово " ++ word) 
+
+    else do
+        putStrLn "Читаем данные из файла.."
+        word <- readFile "word.txt"
+        putStrLn ("Считали слово " ++ word)
+    
+
+    -- Вызываем метод поиска и печатаем результат
+    let word = "fal"
+    print(exist tree word)
+    
+    --print(searchWord)
     --Построение тестового дерева
-    print(exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "fal")
-    print(exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "t")
+    
+    --Ввод данных из файла
+    --src <- readFile "file.in"
+
+    -- Запись данных в файл
+    --writeFile "file.out" exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "t")
+    
+
+    putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
+    userInput <- getLine  
+
+    if userInput == "1" then do
+        putStrLn ("Вывели какие-то данные")
+
+
+    else do
+        putStrLn "Занесли данные в файл"
+
+    -- Проверка на наличие слова в тестовом дереве
+    --print(exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "fal")
+    --print(exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "t")
