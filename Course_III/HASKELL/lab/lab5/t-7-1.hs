@@ -36,30 +36,20 @@ main = do
     putStrLn "Как считать данные о слове для поиска?\n1. С клавиатуры\n2. С файла"  
     userInput <- getLine
 
-
+    -- Если пользователь ввел 1, то просим ввести слово из клавиатуры
     if userInput == "1" then do
         putStrLn "Введите слово для поиска в дереве"
         word <- getLine
-        putStrLn ("Ввели слово " ++ word) 
+        putStrLn ("Ввели слово " ++ word)
+        print(exist tree word)
 
+    --
     else do
         putStrLn "Читаем данные из файла.."
         word <- readFile "word.txt"
         putStrLn ("Считали слово " ++ word)
-    
+        print(exist tree word)
 
-    -- Вызываем метод поиска и печатаем результат
-    let word = "fal"
-    print(exist tree word)
-    
-    --print(searchWord)
-    --Построение тестового дерева
-    
-    --Ввод данных из файла
-    --src <- readFile "file.in"
-
-    -- Запись данных в файл
-    --writeFile "file.out" exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "t")
     
 
     putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
