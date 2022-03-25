@@ -21,14 +21,16 @@ treeToList :: MyTree -> String -> [String]
 treeToList (Unit c True _) acc = [acc ++ [c]] 
 treeToList (Unit c False ts) acc = concatMap (\ u -> treeToList u (acc++[c])) ts
 
+--Сохранение струкутры в файл
 save :: MyTree -> FilePath -> IO ()
 save editor f = writeFile f $ show editor
 
-
--- TODO вроде как надо возвращать IO String, но все равно выходит фигня
+-- Чистаем ввод от пользователя
 readData :: String -> IO String
 readData (userInput) = if (userInput == "1") then getLine else readFile "word.txt"
 
+example :: String -> [Char]
+example = id
 
 --Main-метод
 main :: IO ()
@@ -43,9 +45,9 @@ main = do
     userInput <- getLine
 
     result <- readData userInput
-    print(result)
-
-    let result = exist tree "false"
+    let filtered = example result
+    print(filtered)
+    let result = exist tree filtered
 
     putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
     userInput <- getLine  
