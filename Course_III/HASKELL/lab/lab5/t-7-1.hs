@@ -26,7 +26,7 @@ save editor f = writeFile f $ show editor
 
 
 -- TODO вроде как надо возвращать IO String, но все равно выходит фигня
-readData :: String -> String
+readData :: String -> IO String
 readData (userInput) = if (userInput == "1") then getLine else readFile "word.txt"
 
 
@@ -42,17 +42,20 @@ main = do
     putStrLn "Как считать данные о слове для поиска?\n1. С клавиатуры\n2. С файла"  
     userInput <- getLine
 
-    word <- readData userInput
-    result <- exist tree word
+    result <- readData userInput
+    print(result)
+
+    let result = exist tree "false"
 
     putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
     userInput <- getLine  
 
+    let formatedResult = "Результат: " ++ show result
     if userInput == "1" then do
-        putStrLn ("Результат: " ++ show result)
-
+        putStrLn formatedResult
 
     else do
+        writeFile "result.txt" formatedResult
         putStrLn "Занесли данные в файл"
 
     -- Проверка на наличие слова в тестовом дереве
