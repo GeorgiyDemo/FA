@@ -8,7 +8,7 @@
 
 1)exists, которая проверяет, что заданное слово содержится в trie-дереве.
 -}
-import System.Environment
+
 -- Созданный кастомный тип дерева
 data MyTree = Unit Char Bool [MyTree] deriving (Eq, Show, Read)
 
@@ -25,12 +25,13 @@ treeToList (Unit c False ts) acc = concatMap (\ u -> treeToList u (acc++[c])) ts
 save :: MyTree -> FilePath -> IO ()
 save editor f = writeFile f $ show editor
 
--- Чистаем ввод от пользователя
+-- Ввод данных
 readData :: String -> IO String
 readData (userInput) = if (userInput == "1") then getLine else readFile "word.txt"
 
-example :: String -> [Char]
-example = id
+-- Конвертер для преобразования String в массив Char
+myconverter :: String -> [Char]
+myconverter = id
 
 --Main-метод
 main :: IO ()
@@ -44,21 +45,31 @@ main = do
     putStrLn "Как считать данные о слове для поиска?\n1. С клавиатуры\n2. С файла"  
     userInput <- getLine
 
-    result <- readData userInput
-    let filtered = example result
-    print(filtered)
-    let result = exist tree filtered
+    -- Вызов readData
+    input <- readData userInput
+    putStrLn ("Ввод: " ++ input)
 
+    -- Преобразование в массив char
+    let converted = myconverter input
+    -- Получение результата
+    let result = exist tree converted
+
+    -- Спрашиваем как выводить данные будем
     putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
     userInput <- getLine  
 
+    -- Запись ворматированного вывода в переменную
     let formatedResult = "Результат: " ++ show result
+    -- Если вывод на экран
     if userInput == "1" then do
         putStrLn formatedResult
 
+    -- Если вывод в файл
     else do
         writeFile "result.txt" formatedResult
         putStrLn "Занесли данные в файл"
+    
+    save tree "tree.txt"
 
     -- Проверка на наличие слова в тестовом дереве
     --print(exist (Unit 'f' False [(Unit 'a' False [(Unit 'l' True []),(Unit 's' True [])])]) "fal")

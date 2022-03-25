@@ -29,9 +29,58 @@ getAllSubordinate employee (JobWorker (name) emp) =
     concat (map (\item -> workerNamesList item) (find (employeeList
     (JobWorker (name) emp)) employee))
 
+
+-- Ввод данных
+readData :: String -> IO String
+readData (userInput) = if (userInput == "1") then getLine else readFile "word.txt"
+
+--Сохранение струкутры в файл
+save :: Employee -> FilePath -> IO ()
+save editor f = writeFile f $ show editor
+
+-- Конвертер для преобразования String в массив Char
+myconverter :: String -> [Char]
+myconverter = id
+
 -- Точка входа в приложение
 main = do
 
+    --Читаем наше дерево
+    buf <- readFile "tree.txt"
+    let tree = read buf :: Employee
+
+    -- Спрашиваем пользователя о том, как он хочет ввести данные
+    putStrLn "Как считать данные о работнике?\n1. С клавиатуры\n2. С файла"  
+    userInput <- getLine
+
+    -- Вызов readData
+    input <- readData userInput
+    putStrLn ("Ввод: " ++ input)
+
+    -- Преобразование в массив char
+    let converted = myconverter input
+
+    -- Получение иерархии от getAllSubordinate
+    let result = getAllSubordinate converted tree
+
+    -- Спрашиваем как выводить данные будем
+    putStrLn "Как вывести данные?\n1. На экран\n2. В файл"  
+    userInput <- getLine  
+
+    -- Запись ворматированного вывода в переменную
+    let formatedResult = "Результат: " ++ show result
+    -- Если вывод на экран
+    if userInput == "1" then do
+        putStrLn formatedResult
+
+    -- Если вывод в файл
+    else do
+        writeFile "result.txt" formatedResult
+        putStrLn "Занесли данные в файл"
+
+    save tree "tree.txt"
+
+    {-
     -- Формируем тестовую иерархию работников 1
     print(getAllSubordinate "Ivanov" (
         JobWorker "Ivanov"[
@@ -60,3 +109,4 @@ main = do
                             JobWorker "2.3" []
                             ]
                         ]))
+    -}
