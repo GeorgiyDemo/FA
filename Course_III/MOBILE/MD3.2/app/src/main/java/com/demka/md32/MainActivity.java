@@ -1,54 +1,88 @@
 package com.demka.md32;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnAdd;
-    Button btnDelete;
-    Button btnRead;
-    EditText etName;
+    FloatingActionButton editButton;
     DBHelper dbHelper;
+
+    RecyclerView myRecyclerView;
+    MyAdapter myAdapter;
+
+    ActivityResultLauncher<Intent> editActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnAdd = findViewById(R.id.btnAdd);
-        btnDelete = findViewById(R.id.btnDelete);
-        btnRead = findViewById(R.id.btnRead);
-        etName = findViewById(R.id.etName);
+        editButton = findViewById(R.id.editButton);
+        myRecyclerView = findViewById(R.id.myRecyclerView);
 
-        View.OnClickListener addButtonListener = this::addButtonClicked;
-        View.OnClickListener deleteButtonListener = this::deleteButtonClicked;
-        View.OnClickListener readButtonListener = this::readButtonClicked;
+        View.OnClickListener editButtonListener = this::editButtonClicked;
 
-        btnAdd.setOnClickListener(addButtonListener);
-        btnDelete.setOnClickListener(deleteButtonListener);
-        btnRead.setOnClickListener(readButtonListener);
+        editButton.setOnClickListener(editButtonListener);
 
         dbHelper = new DBHelper(this);
+        myAdapter = new MyAdapter(this, dbHelper);
+        myRecyclerView.setAdapter(myAdapter);
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        editActivity = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == AppCompatActivity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data == null) {
+                            return;
+                        }
+                        String content = data.getStringExtra("content");
+                        String flag = data.getStringExtra("flag");
+
+                        if (flag.equals("remove")) {
+                            itemRemoved(content);
+                        } else if (flag.equals("add")) {
+                            itemAdded(content);
+                        }
+                    }
+                }
+        );
     }
 
-    public void addButtonClicked(View v) {
-        String data = etName.getText().toString();
-        dbHelper.addData(data);
+    public void itemAdded(String data) {
+
+        long index = dbHelper.addData(data);
+
+        Map<String, String> newMap = new HashMap<>();
+        newMap.put("id", String.valueOf(index));
+        newMap.put("name", data);
+
+        myAdapter.addItem(newMap);
+        myAdapter.notifyItemInserted(myAdapter.dataList.size());
     }
 
-    public void deleteButtonClicked(View v) {
-        String data = etName.getText().toString();
+    public void itemRemoved(String data) {
+
         dbHelper.deleteData(data);
-
+        myAdapter.remove(data);
     }
 
-    public void readButtonClicked(View v) {
-        dbHelper.getData();
+    public void editButtonClicked(View v) {
+        Intent intent = new Intent(this, EditItemActivity.class);
+        editActivity.launch(intent);
     }
 }

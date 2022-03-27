@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -26,42 +27,42 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void addData(String data) {
+    public long addData(String data) {
 
         ContentValues cv = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
 
-        Log.i("LOG_TAG", data);
         cv.put("name", data);
-        db.insert("mytable", null, cv);
+        long index = db.insert("mytable", null, cv);
+        return index;
     }
 
     public boolean deleteData(String data) {
-        ContentValues cv = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
         String whereClause = String.format("name='%s'", data);
         int result = db.delete("mytable", whereClause, null);
         return result == 1;
     }
 
-    public List<String> getData() {
-        List<String> resultList = new ArrayList<>();
+    public List<Map<String, String>> getData() {
+        List<Map<String, String>> resultList = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase();
 
         Cursor c = db.query("mytable", null, null, null, null, null, null);
+
         if (c.moveToFirst()) {
             int idColIndex = c.getColumnIndex("id");
             int nameColIndex = c.getColumnIndex("name");
             do {
-
-                resultList.add(c.getString(nameColIndex));
-                Log.d("LOG_TAG", "ID = " + c.getInt(idColIndex) + ", name = " + c.getString(nameColIndex));
+                Map<String, String> bufMap = new HashMap<>();
+                bufMap.put("id", c.getString(idColIndex));
+                bufMap.put("name", c.getString(nameColIndex));
+                resultList.add(bufMap);
             } while (c.moveToNext());
 
-        } else
-            Log.d("LOG_TAG", "0 rows");
-        c.close();
+        }
 
+        c.close();
         return resultList;
     }
 }
