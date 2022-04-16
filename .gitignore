@@ -16,6 +16,7 @@ venv
 *.h5
 .Rhistory
 *.db
+node_modules
 
 Course I/ОВС/лабы/PHP/css/bootstrap.css
 Course II/UNIX/pract/Github 5_FTP_server/ftp-server/storage/
@@ -28,7 +29,5 @@ Course III/TOBD/11_dask_array/data/
 Course III/TOBD/12_dask_bag/data/
 Course III/TOBD/13_dask_dataframe/data/
 Course III/TOBD/14_delayed/data/
+Course_III/ML/ML4.2 Предобработка/data/
 
-Course_III/KIS/lab1
-Course_III/KIS/lab2
-node_modules
