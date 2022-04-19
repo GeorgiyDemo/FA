@@ -1,0 +1,20 @@
+.App1 {
+  font-family: sans-serif;
+  text-align: left;
+}
+.App2 {
+  font-family: sans-serif;
+  text-align: left;
+}
+h3 {
+  font-size: 14px;
+  color: rgb(58, 83, 224);
+  letter-spacing: 3px;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+p {
+  font-size: 12px;
+}
