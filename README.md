@@ -43,7 +43,7 @@
 
 ### Курсовые
 * [SpringBootChat](https://github.com/GeorgiyDemo/SpringBootChat) (Java) - Чат на лонгпулах с использованием Spring Web & JavaFX
-
+* [MLCoursepaper](https://github.com/GeorgiyDemo/CoursepaperCifar10) (Jupyter Notebook) - Сравнение алгоритмов классического и глубокого машинного обучения в задачах распознавания объектов на фотографии
 
 ### Рефераты
 * [Дилемма: “Восток – Запад” в историческом развитии России](https://github.com/GeorgiyDemo/FA/blob/master/more/reports/%D0%94%D0%B5%D0%BC%D0%B5%D0%BD%D1%87%D1%83%D0%BA%20%D0%93.%D0%9C.%20%D0%9F%D0%9819-4%20%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20%D1%80%D0%B5%D1%84%D0%B5%D1%80%D0%B0%D1%82.docx) (История)
