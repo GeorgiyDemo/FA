@@ -28,8 +28,6 @@ class App extends React.Component {
             return (
                 <div>
                     <button onClick={this.handleClick}>Выйти</button>
-
-
                     <p>Ваши сообщения:{this.messages}</p>
                     <ul>{listItems}</ul>
                 </div>

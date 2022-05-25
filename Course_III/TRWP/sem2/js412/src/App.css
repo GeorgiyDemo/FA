@@ -1,38 +1,117 @@
-.App {
-  text-align: center;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.filter {
+    margin: 50px auto;
+    width: 90%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+    -webkit-text-stroke: 2px black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.filter-menu {
+    text-align: center;
+    font-family: sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+
+.filter-results {
+    margin-top: 30px;
+    font-family: sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.blocks > * {
+    animation: flyIn 0.5s linear;
+    border-radius: 60px;
+    display: inline-block;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+
+.blocks_3up > * {
+    width: 33.333333%;
+}
+
+.feature {
+    padding: 20px 5px;
+    text-align: center;
+    transition: all 0.3s linear;
+}
+
+.feature:hover {
+    background: #f2f2f2;
+    border-radius: 40px;
+    color: #004966;
+}
+
+
+.feature-bd,
+.feature-ft {
+    margin-top: 20px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+    height: 200px;
+    padding: 30px 20px;
+    border-radius: 30px;
+}
+
+@-webkit-keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-moz-keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-o-keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filter-menu {
+    float: right;
+    position: relative;
+
 }
