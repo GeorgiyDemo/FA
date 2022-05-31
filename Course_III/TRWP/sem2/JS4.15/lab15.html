@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <title>Задание 15</title>
+
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+</head>
+
+<body>
+  <script type="text/babel">
+
+  class Comment extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
+    render(){
+      return (
+      <div className="Comment">
+        <div className="UserInfo">
+          <img className="Avatar"
+            src={this.props.author.avatarUrl}
+            alt={this.props.author.name}
+          />
+          <div className="Comment-text">
+            {this.props.author.name}
+          </div>
+        </div>
+        <div className="Comment-text">
+          {this.props.text}
+        </div>
+        <div className="Comment-text">
+          {this.props.date.toLocaleDateString()}
+        </div>
+      </div>
+    );
+    }
+  }
+  ReactDOM.render(
+  <Comment author = {{avatarUrl:"./img/comment.jpg.webp", name:"Cat"}} text = {"Это тестовый комментарий"} date = {new Date()} />,
+  document.getElementById('comments-app')
+  );
+
+</script>
+  <div id='comments-app'></div>
+  </div>
+</body>
+</html>
