@@ -33,13 +33,18 @@
 
 
 ### 3 Курс
-* [Технологии обработки больших данных](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TOBD)
+
 * [Технологии разработки web приложений](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TRWP)
-* [Эконометрика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/ECONOMETRICS)
+* [Технологии разработки приложений для мобильных устройств](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/MOBILE)
+* [Технологии обработки больших данных](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TOBD)
+* [Технологии анализа данных и машинного обучения](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TOBD)
 * [Обработка данных и моделирование в Microsoft Excel](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/EXCEL)
-* [Проектирование информационных систем](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/%D0%9F%D0%98%D0%A1)
-* [Финансовая математика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/FINMAT)
 * [Бухгалтерские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/%D0%91%D0%A3%D0%A5%D0%98%D0%A1)
+* [Корпоративные информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/KIS)
+* [Проектирование информационных систем](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/%D0%9F%D0%98%D0%A1)
+* [Программирование на Haskell](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/HASKELL)
+* [Финансовая математика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/FINMAT)
+* [Эконометрика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/ECONOMETRICS)
 
 ### Курсовые
 * [SpringBootChat](https://github.com/GeorgiyDemo/SpringBootChat) (Java) - Чат на лонгпулах с использованием Spring Web & JavaFX
