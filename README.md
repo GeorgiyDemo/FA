@@ -37,7 +37,7 @@
 * [Технологии разработки web приложений](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TRWP)
 * [Технологии разработки приложений для мобильных устройств](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/MOBILE)
 * [Технологии обработки больших данных](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TOBD)
-* [Технологии анализа данных и машинного обучения](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/TOBD)
+* [Технологии анализа данных и машинного обучения](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/ML)
 * [Обработка данных и моделирование в Microsoft Excel](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/EXCEL)
 * [Бухгалтерские информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/%D0%91%D0%A3%D0%A5%D0%98%D0%A1)
 * [Корпоративные информационные системы](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/KIS)
