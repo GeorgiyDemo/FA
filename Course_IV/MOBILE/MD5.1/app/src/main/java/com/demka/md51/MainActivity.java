@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = findViewById(R.id.startButton);
-        stopButton = findViewById(R.id.stopButton);
+        startButton = findViewById(R.id.startServiceButton);
+        stopButton = findViewById(R.id.stopServiceButton);
 
 
         startButton.setOnClickListener(this);
@@ -27,8 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         if (view == startButton) {
+
             startService(new Intent(this, NewService.class));
         } else if (view == stopButton) {
+
             stopService(new Intent(this, NewService.class));
         }
     }
