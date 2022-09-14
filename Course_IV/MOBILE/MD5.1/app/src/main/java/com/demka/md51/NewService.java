@@ -1,50 +1,70 @@
 package com.demka.md51;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class NewService extends Service {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
-    private MediaPlayer player;
-    private static final String TAG = "NewService";
+public class NewService extends Service
+{
+    private static Timer timer = new Timer();
+    private Context ctx;
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v(TAG, "onStartCommand called");
-
-        player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
-        player.setLooping(true);
-
-        // starting the process
-        player.start();
-
-        return START_STICKY;
-    }
-
-    @Override
-
-    // execution of the service will
-    // stop on calling this method
-    public void onDestroy() {
-        Log.v(TAG, "onDestroy called");
-
-        super.onDestroy();
-
-        // stopping the process
-        player.stop();
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        Log.v(TAG, "onBind called");
+    public IBinder onBind(Intent arg0)
+    {
         return null;
     }
+
+    public void onCreate()
+    {
+        super.onCreate();
+        ctx = this;
+        startService();
+    }
+
+    private void startService()
+    {
+        timer.scheduleAtFixedRate(new mainTask(), 0, 5000);
+    }
+
+    private class mainTask extends TimerTask
+    {
+        public void run()
+        {
+            toastHandler.sendEmptyMessage(0);
+        }
+    }
+
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Toast.makeText(this, "Service Stopped ...", Toast.LENGTH_SHORT).show();
+    }
+
+    private final Handler toastHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String strDt = simpleDate.format(currentTime);
+            Toast.makeText(getApplicationContext(), strDt, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
 
