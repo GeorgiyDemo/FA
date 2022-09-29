@@ -1,30 +1,37 @@
-import AssetExample from './components/AssetExample';
+import * as React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
+// You can import from local files
+import AssetExample from './components/CurrentCard';
+import Balance from './components/Balance';
+import Article from  './components/Articles';
+import NextButton from './components/NextButton';
 
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-const LotsOfStyles = () => {
-    return (
-      <View style={styles.container}>
-       <Text style={styles.header}>Журнал Bright</Text>
-       <AssetExample/>
-      </View>
-    );
-};
+// or any pure javascript modules available in npm
+import { Card } from 'react-native-paper';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+            <AssetExample />
+            <Balance/>
+      <Card>
+        <Article/>
+      </Card>
+      <NextButton/>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-
   container: {
-    paddingTop: 40,
-    backgroundColor: '#edf0f0',
-    height: '100%'
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
 
-  header: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginTop: 0,
-  },
+
 });
-export default LotsOfStyles;
-

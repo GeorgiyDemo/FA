@@ -1,55 +1,66 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-const FlexDimensionsBasics = () => {
-  return (
-    <View style={styles.baseview}>
-      <View style={styles.baseview}>
-        <Text style={[styles.text, styles.bold]}>
-          Излишек средств банков в ЦБ достиг годового максимума
-        </Text>
+import Wizard from './components/Wizard';
+import Input from './components/Input';
+
+const forms = [
+  {
+    placeholder: 'Страница 1',
+    name: 'username',
+  },
+  {
+    placeholder: 'Страница 2',
+    name: 'email',
+  },
+  {
+    placeholder: 'Страница 3',
+    name: 'avatar',
+  },
+];
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <View style={styles.root}>
+        <Wizard
+          initialValues={{
+            username: '',
+            email: '',
+            avatar: '',
+          }}
+        >
+          {forms.map(el => (
+
+            <Wizard.Step key={el.name}>
+            
+              {({ onChangeValue, values }) => (
+            
+                <View style={styles.container}>
+                  <Input
+                    onChangeValue={onChangeValue}
+                    placeholder={el.placeholder}
+                    value={values[el.name]}
+                    name={el.name}
+                  />
+                </View>
+              )}
+            
+            </Wizard.Step>
+          ))}
+        </Wizard>
       </View>
-      <View style={styles.view2}>
-        <Text style={[styles.text, styles.font]}>
-          С чем связан резкий рост профицита ликвидности
-        </Text>
-      </View>
-      <View style={styles.view3}>
-        <Text style={styles.text}>
-Российские банки к середине сентября существенно нарастили чистые требования к Центробанку: структурный профицит ликвидности банковского сектора на 14 сентября достиг 3,66 трлн руб. — максимального уровня с августа 2021 года, следует из статистики регулятора. С начала недели показатель увеличился на 22,2%.
-        </Text>
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  baseview: {
+  root: {
     flex: 1,
-    backgroundColor: '#FFF',
-    padding: 'auto',
   },
-  view2: {
+  container: {
     flex: 1,
-    backgroundColor: '#e5e5e5',
-  },
-  view3: {
-    flex: 6,
-    backgroundColor: '#aaa',
-  },
-  text: {
-    margin: 'auto',
+    alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
-    paddingStart: '5%',
-    paddingEnd: '5%',
-  },
-  bold: {
-    fontWeight: 'bold',
-  },
-  font: {
-    fontSize: '15',
   },
 });
-
-export default FlexDimensionsBasics;
