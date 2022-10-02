@@ -46,6 +46,13 @@
 * [Финансовая математика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/FINMAT)
 * [Эконометрика](https://github.com/GeorgiyDemo/FA/tree/master/Course_III/ECONOMETRICS)
 
+### 4 Курс
+
+* [Технологии анализа данных и машинного обучения](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/ML)
+* [Технологии разработки приложений для мобильных устройств](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/MOBILE)
+* [Технологии параллельного программирования](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/Parallel%20computing)
+
+
 ### Курсовые
 * [SpringBootChat](https://github.com/GeorgiyDemo/SpringBootChat) (Java) - Чат на лонгпулах с использованием Spring Web & JavaFX
 * [MLCoursepaper](https://github.com/GeorgiyDemo/CoursepaperCifar10) (Jupyter Notebook) - Сравнение алгоритмов классического и глубокого машинного обучения в задачах распознавания объектов на фотографии
