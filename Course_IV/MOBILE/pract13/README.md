@@ -1,25 +1,11 @@
-# SQLite Example
+# Sample Snack app
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-</p>
+Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
 
-Example demonstrating use of the `SQLite` API in Expo.
+When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.io/get-started/installation).
 
-The app allows adding todo items, marking them as done, and deleting done items.
-`SQLite` features used include creating and opening databases, creating tables,
-inserting items, querying and displaying results, using prepared statements.
+All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
 
-![Simulator Example](https://i.imgur.com/CDrXKzV.png)
+If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io/c/snack).
 
-## 🚀 How to use
-
-- Run `yarn` or `npm install`
-- Run `yarn start` or `npm run start` to try it out.
-
-## 📝 Notes
-
-- [Expo SQLite docs](https://docs.expo.dev/versions/latest/sdk/sqlite/)
+Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "github.com/expo/examples:with-sqlite",
-    "slug": "snack-85354872-7a6e-42a3-bdd3-71179c3dd9b9",
+    "name": "rude-graham-crackers",
+    "slug": "snack-bb98d3e0-1f35-4988-a6dc-1d180699889e",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,7 +28,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "description": "github.com/expo/examples:with-sqlite @ Nov 10, 2022"
+    }
   }
 }
