@@ -7,15 +7,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~46.0.19",
-    "expo-status-bar": "~1.4.0",
-    "react": "18.0.0",
-    "react-native": "0.69.6",
-    "expo-sqlite": "~10.3.0",
-    "expo-constants": "~13.2.4",
+    "expo": "~47.0.9",
+    "expo-status-bar": "~1.4.2",
+    "react": "18.1.0",
+    "react-native": "0.70.5",
+    "expo-sqlite": "~11.0.0",
+    "expo-constants": "~14.0.2",
     "@expo/vector-icons": "^13.0.0",
     "react-native-paper": "4.9.2",
-    "expo-checkbox": "~2.2.0"
+    "expo-checkbox": "~2.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

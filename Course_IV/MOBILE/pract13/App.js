@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import Checkbox from 'expo-checkbox';
 import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabase('todo.db');
@@ -7,6 +8,7 @@ const db = SQLite.openDatabase('todo.db');
 const App = () => {
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState([]);
+  const [completedTodos, setCompletedTodos] = useState([]);
 
   useEffect(() => {
     db.transaction(tx => {
@@ -37,6 +39,11 @@ const App = () => {
     );
   };
 
+  const markTodoCompleted = id => {
+    // Add the todo item to the completedTodos list
+    setCompletedTodos(prevCompletedTodos => [...prevCompletedTodos, id]);
+  };
+
   const updateList = () => {
     db.transaction(tx => {
       tx.executeSql('select * from todo', [], (_, { rows }) =>
@@ -44,6 +51,8 @@ const App = () => {
       );
     });
   };
+
+
 
   return (
     <View style={styles.container}>
@@ -60,7 +69,12 @@ const App = () => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.listItem}>
-            <Text>{item.todo}</Text>
+
+            <Checkbox
+              value={completedTodos.includes(item.id)}
+              onValueChange={() => markTodoCompleted(item.id)}
+            />
+            <Text style={completedTodos.includes(item.id) ? styles.completedTdoText : styles.todoText}>{item.todo}</Text>
             <TouchableOpacity onPress={() => deleteTodo(item.id)}>
               <Text style={styles.deleteButton}>Delete</Text>
             </TouchableOpacity>
@@ -108,6 +122,9 @@ borderRadius: 6,
   },
   deleteButton: {
     color: '#0066cc',
+    fontSize: 18,
+  },
+  todoText: {
     fontSize: 18,
   },
 });
