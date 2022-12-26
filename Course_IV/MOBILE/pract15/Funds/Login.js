@@ -12,7 +12,7 @@ export default function Earnings() {
 
     const storeToken = async (value) => {
         try {
-            await AsyncStorage.setItem('token', value)
+            await AsyncStorage.setItem('token', JSON.parse(value)["token"])
         } catch (e) {
             console.log('cant save token')
         }
@@ -26,7 +26,7 @@ export default function Earnings() {
         const requestOptions = {
             method: 'POST',
             headers: {
-
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 "email": username,

@@ -73,9 +73,10 @@ export default function Earnings() {
 
     const getData = () => {
         setIsLoading(true)
-        let URL = 'https://6391c942b750c8d178cd4371.mockapi.io/api/costs'
+        let URL = 'https://6391c942b750c8d178cd4371.mockapi.io/api/earnings'
         fetch(URL, {
             headers: {
+              "Content-Type": "application/json",
                 'Token': token
             }
         }).then(res => res.json()).then(res => {
@@ -87,14 +88,15 @@ export default function Earnings() {
         const requestOptions = {
             method: 'DELETE',
             headers: {
-                'Token': token
+                'Token': token,
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 "id": id
             })
         }
 
-        fetch('https://6391c942b750c8d178cd4371.mockapi.io/api/costs/'+id, requestOptions).then((res) => {
+        fetch('https://6391c942b750c8d178cd4371.mockapi.io/api/earnings/'+id, requestOptions).then((res) => {
             return res.json();
         }).then((res) => {
             getData()
@@ -108,6 +110,7 @@ export default function Earnings() {
         const requestOptions = {
             method: 'POST',
             headers: {
+              "Content-Type": "application/json",
                 'Token': token
             },
             body: JSON.stringify({
@@ -118,7 +121,7 @@ export default function Earnings() {
             })
         }
         if (currentAmount !== '') {
-            fetch('https://6391c942b750c8d178cd4371.mockapi.io/api/costs', requestOptions).then((res) => {
+            fetch('https://6391c942b750c8d178cd4371.mockapi.io/api/earnings', requestOptions).then((res) => {
                 return res.json();
             }).then((res) => {
                 getData()
