@@ -51,6 +51,11 @@
 * [Технологии анализа данных и машинного обучения](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/ML)
 * [Технологии разработки приложений для мобильных устройств](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/MOBILE)
 * [Технологии параллельного программирования](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/Parallel%20computing)
+* [Информационная безопасность](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/%D0%98%D0%91)
+* [Моделирование архитектуры предприятия](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/%D0%9C%D0%90%D0%9F)
+* [Программная инженерия](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/%D0%9F%D0%98)
+* [Системный анализ в профессиональной деятельности](https://github.com/GeorgiyDemo/FA/tree/master/Course_IV/%D0%A1%D0%90)
+
 
 
 ### Курсовые
