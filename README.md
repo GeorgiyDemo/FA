@@ -72,5 +72,6 @@
 * [Контрольная работа](https://github.com/GeorgiyDemo/FA/blob/master/more/reports/%D0%94%D0%B5%D0%BC%D0%B5%D0%BD%D1%87%D1%83%D0%BA%20%D0%93.%D0%9C.%20%D0%9F%D0%9819-4%20%D0%9E%D0%92%D0%A1%20%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F.docx) (Организация вычислительных систем)
 
 ### Дополнительные репозитории
-* [Demka-fa](https://github.com/demka-fa)
-* [Cats-in-FA](https://github.com/Cats-in-FA/Cats-in-FA)
+* [Demka-fa](https://github.com/demka-fa) - другие мои работы по университету
+* [Cats-in-FA](https://github.com/Cats-in-FA/Cats-in-FA) - сборник совместных заданий c [Cat-in-box](https://github.com/Cat-in-box)
+* [FASoftwareEngineering](https://github.com/FASoftwareEngineering/main-service) - реализация сервиса на FastAPI по программной инженерии
