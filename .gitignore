@@ -7,7 +7,6 @@ Thumbs.db
 .idea/
 *.so
 *.o
-*.pptx
 *.pyc
 *.log
 venv
